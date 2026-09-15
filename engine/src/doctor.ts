@@ -20,8 +20,10 @@ export async function doctor(): Promise<{ ok: boolean; checks: DoctorCheck[] }> 
 
   const ff = await probe("ffmpeg", ["-version"]);
   checks.push({ name: "ffmpeg", ok: ff.ok, detail: ff.ok ? ff.out.split("\n")[0]!.slice(0, 60) : "not on PATH (winget install Gyan.FFmpeg)" });
-  const enc = await probe("ffmpeg", ["-hide_banner", "-encoders"]);
-  checks.push({ name: "nvenc", ok: enc.out.includes("h264_nvenc"), detail: enc.out.includes("h264_nvenc") ? "h264_nvenc available" : "not available (CPU x264 will be used)" });
+  // A real 3-frame test encode: the encoder can be compiled in but rejected by the driver.
+  const enc = await probe("ffmpeg", ["-v", "error", "-f", "lavfi", "-i", "color=c=black:s=256x256:d=0.1", "-c:v", "h264_nvenc", "-f", "null", "-"]);
+  const why = enc.out.split(/\r?\n/).find((l) => /driver|nvenc/i.test(l))?.trim();
+  checks.push({ name: "nvenc", ok: true, detail: enc.ok ? "h264_nvenc works" : `unavailable — ${why ?? "encoder failed"}; --nvenc falls back to x264` });
 
   const gpu = await probe("nvidia-smi", ["--query-gpu=name,memory.total", "--format=csv,noheader"]);
   checks.push({ name: "gpu", ok: true, detail: gpu.ok ? gpu.out : "no nvidia-smi" });

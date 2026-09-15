@@ -3,6 +3,6 @@
   "topic": "Why databases use indexes",
   "createdAt": "2026-09-15T19:15:13.346Z",
   "targetSeconds": 40,
-  "status": "qa_failed",
-  "lastRenderMs": 64265
+  "status": "qa_passed",
+  "lastRenderMs": 62259
 }

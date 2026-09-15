@@ -83,28 +83,22 @@ async function run(argv: string[], log: (l: string) => void) {
   await proc;
 }
 
-/** NVENC path: mux Remotion's JPEG sequence with its own mixed audio via ffmpeg on the GPU. */
+/**
+ * NVENC path: mux Remotion's JPEG sequence with its own mixed audio via ffmpeg on
+ * the GPU. Falls back to libx264 (same inputs) if the driver rejects NVENC —
+ * FFmpeg 9 needs NVIDIA driver ≥ 610.
+ */
 async function encodeNvenc(seqDir: string, mixWav: string, fps: number, out: string, log: (l: string) => void) {
-  const args = [
-    "-y",
-    "-framerate", String(fps),
-    "-i", path.join(seqDir, "element-%d.jpeg"),
-    "-i", mixWav,
-    "-map", "0:v", "-map", "1:a",
-    "-c:v", "h264_nvenc", "-preset", "p5", "-rc", "vbr", "-cq", "19", "-b:v", "0",
-    "-pix_fmt", "yuv420p",
-    "-c:a", "aac", "-b:a", "192k",
-    "-shortest", "-movflags", "+faststart",
-    out,
-  ];
-  const proc = execa("ffmpeg", args, { all: true });
-  proc.all?.on("data", (c: Buffer) => {
-    const t = c.toString().trim();
-    if (t && !t.startsWith("frame=")) log(t);
-  });
-  await proc;
+  const inputs = ["-y", "-v", "error", "-framerate", String(fps), "-i", path.join(seqDir, "element-%04d.jpeg"), "-i", mixWav, "-map", "0:v", "-map", "1:a"];
+  const tail = ["-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", out];
+  const nvenc = ["-c:v", "h264_nvenc", "-preset", "p5", "-rc", "vbr", "-cq", "19", "-b:v", "0"];
+  const x264 = ["-c:v", "libx264", "-preset", "medium", "-crf", "18"];
+  const r = await execa("ffmpeg", [...inputs, ...nvenc, ...tail], { all: true, reject: false });
+  if (r.exitCode === 0) return;
+  const reason = (r.all ?? "").split(/\r?\n/).find((l) => /nvenc|driver/i.test(l)) ?? "unknown error";
+  log(`warn: h264_nvenc unavailable (${reason.trim()}); encoding with libx264 instead`);
+  await execa("ffmpeg", [...inputs, ...x264, ...tail]);
 }
-
 /**
  * Two-pass-free loudness normalisation to the Shorts/TikTok target (-14 LUFS,
  * -1.5 dBTP). Video stream is copied, so this costs ~1 s.

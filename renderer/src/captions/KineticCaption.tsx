@@ -90,7 +90,7 @@ export const KineticCaption: React.FC<Props> = ({ words, sceneStart, rect, palet
           const active = abs >= w.startFrame && abs < w.endFrame;
           const past = abs >= w.endFrame;
           const pop = spring({ frame: abs - w.startFrame, fps, config: { damping: 12, stiffness: 260 } });
-          const scale = active ? interpolate(pop, [0, 1], [1, 1.14]) : 1;
+          const scale = active ? interpolate(pop, [0, 1], [1, 1.09]) : 1;
           const color = w.emphasis ? palette.accent : active ? palette.accent2 : past ? palette.fgDim : palette.fg;
           return (
             <span
@@ -103,7 +103,7 @@ export const KineticCaption: React.FC<Props> = ({ words, sceneStart, rect, palet
                 paintOrder: "stroke fill",
                 textShadow: `0 ${fontPx * 0.06}px ${fontPx * 0.12}px rgba(0,0,0,0.45)`,
                 whiteSpace: "nowrap",
-                margin: `${fontPx * 0.06}px ${fontPx * 0.15}px`,
+                margin: `${fontPx * 0.06}px ${fontPx * 0.2}px`,
               }}
             >
               {w.text}

@@ -1496,7 +1496,7 @@
     }
   ],
   "meta": {
-    "resolvedAt": "2026-09-15T19:22:45.898Z",
+    "resolvedAt": "2026-09-15T19:31:38.065Z",
     "engineVersion": "0.1.0",
     "ttsModel": "hexgrad/Kokoro-82M",
     "manifestHash": "ca21fac21b6bd043"
