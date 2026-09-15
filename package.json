@@ -1,0 +1,29 @@
+{
+  "name": "video-builder",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Local-first 2D stickman Shorts compiler: JSON manifest in, 1080x1920 MP4 out",
+  "type": "module",
+  "workspaces": [
+    "engine",
+    "renderer"
+  ],
+  "scripts": {
+    "vb": "node --import tsx engine/src/cli/index.ts",
+    "mcp": "node --import tsx engine/src/mcp/server.ts",
+    "studio": "npm run studio -w renderer",
+    "typecheck": "tsc -b engine renderer",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.13",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.1"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "overrides": {
+    "zod": "4.5.4"
+  }
+}

@@ -1,0 +1,1504 @@
+{
+  "version": 1,
+  "slug": "database-indexes",
+  "title": "Why databases use indexes",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "durationInFrames": 1202,
+  "theme": "midnight",
+  "voice": "af_heart",
+  "music": {
+    "src": "assets/music/lofi-01.wav",
+    "volume": 0.16
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "speech": "Your database query takes four seconds. Here's the one line that makes it instant.",
+      "startFrame": 0,
+      "durationInFrames": 162,
+      "speechFrames": 154,
+      "audioSrc": "audio/hook.wav",
+      "words": [
+        {
+          "text": "Your",
+          "i": 0,
+          "start": 0.25,
+          "end": 0.375,
+          "startFrame": 8,
+          "endFrame": 11,
+          "emphasis": false
+        },
+        {
+          "text": "database",
+          "i": 1,
+          "start": 0.375,
+          "end": 0.925,
+          "startFrame": 11,
+          "endFrame": 28,
+          "emphasis": false
+        },
+        {
+          "text": "query",
+          "i": 2,
+          "start": 0.925,
+          "end": 1.275,
+          "startFrame": 28,
+          "endFrame": 38,
+          "emphasis": false
+        },
+        {
+          "text": "takes",
+          "i": 3,
+          "start": 1.275,
+          "end": 1.575,
+          "startFrame": 38,
+          "endFrame": 47,
+          "emphasis": false
+        },
+        {
+          "text": "four",
+          "i": 4,
+          "start": 1.575,
+          "end": 1.8,
+          "startFrame": 47,
+          "endFrame": 54,
+          "emphasis": true
+        },
+        {
+          "text": "seconds.",
+          "i": 5,
+          "start": 1.8,
+          "end": 2.663,
+          "startFrame": 54,
+          "endFrame": 80,
+          "emphasis": true
+        },
+        {
+          "text": "Here's",
+          "i": 6,
+          "start": 2.663,
+          "end": 2.975,
+          "startFrame": 80,
+          "endFrame": 89,
+          "emphasis": false
+        },
+        {
+          "text": "the",
+          "i": 7,
+          "start": 2.975,
+          "end": 3.112,
+          "startFrame": 89,
+          "endFrame": 93,
+          "emphasis": false
+        },
+        {
+          "text": "one",
+          "i": 8,
+          "start": 3.112,
+          "end": 3.35,
+          "startFrame": 93,
+          "endFrame": 101,
+          "emphasis": false
+        },
+        {
+          "text": "line",
+          "i": 9,
+          "start": 3.35,
+          "end": 3.7,
+          "startFrame": 101,
+          "endFrame": 111,
+          "emphasis": false
+        },
+        {
+          "text": "that",
+          "i": 10,
+          "start": 3.7,
+          "end": 3.825,
+          "startFrame": 111,
+          "endFrame": 115,
+          "emphasis": false
+        },
+        {
+          "text": "makes",
+          "i": 11,
+          "start": 3.825,
+          "end": 4.062,
+          "startFrame": 115,
+          "endFrame": 122,
+          "emphasis": false
+        },
+        {
+          "text": "it",
+          "i": 12,
+          "start": 4.062,
+          "end": 4.175,
+          "startFrame": 122,
+          "endFrame": 125,
+          "emphasis": false
+        },
+        {
+          "text": "instant.",
+          "i": 13,
+          "start": 4.175,
+          "end": 5.025,
+          "startFrame": 125,
+          "endFrame": 151,
+          "emphasis": true
+        }
+      ],
+      "layout": "character_center",
+      "transition": "cut",
+      "character": {
+        "id": "narrator",
+        "pose": "shocked",
+        "expression": "surprised",
+        "position": "center",
+        "poseChanges": [
+          {
+            "pose": "pointing_up",
+            "expression": "smug",
+            "atFrame": 80
+          }
+        ]
+      },
+      "props": [
+        {
+          "name": "clock",
+          "atFrame": 47,
+          "untilFrame": 80,
+          "anim": "shake",
+          "position": "above_character",
+          "scale": 1
+        },
+        {
+          "name": "lightbulb",
+          "atFrame": 93,
+          "untilFrame": 162,
+          "anim": "pop",
+          "position": "above_character",
+          "scale": 1
+        }
+      ],
+      "sfx": [
+        {
+          "name": "error",
+          "atFrame": 47,
+          "volume": 0.6,
+          "src": "assets/sfx/error.wav"
+        },
+        {
+          "name": "ding",
+          "atFrame": 93,
+          "volume": 0.8,
+          "src": "assets/sfx/ding.wav"
+        }
+      ],
+      "bubbles": [
+        {
+          "text": "4s?!",
+          "atFrame": 54,
+          "untilFrame": 80
+        }
+      ],
+      "camera": [
+        {
+          "move": "punch_in",
+          "atFrame": 47
+        }
+      ]
+    },
+    {
+      "id": "problem",
+      "speech": "Without an index, the database reads every single row, top to bottom, to find what you asked for.",
+      "startFrame": 162,
+      "durationInFrames": 190,
+      "speechFrames": 183,
+      "audioSrc": "audio/problem.wav",
+      "words": [
+        {
+          "text": "Without",
+          "i": 0,
+          "start": 0.225,
+          "end": 0.537,
+          "startFrame": 169,
+          "endFrame": 178,
+          "emphasis": false
+        },
+        {
+          "text": "an",
+          "i": 1,
+          "start": 0.537,
+          "end": 0.625,
+          "startFrame": 178,
+          "endFrame": 181,
+          "emphasis": false
+        },
+        {
+          "text": "index,",
+          "i": 2,
+          "start": 0.625,
+          "end": 1.275,
+          "startFrame": 181,
+          "endFrame": 200,
+          "emphasis": false
+        },
+        {
+          "text": "the",
+          "i": 3,
+          "start": 1.275,
+          "end": 1.375,
+          "startFrame": 200,
+          "endFrame": 203,
+          "emphasis": false
+        },
+        {
+          "text": "database",
+          "i": 4,
+          "start": 1.375,
+          "end": 1.95,
+          "startFrame": 203,
+          "endFrame": 221,
+          "emphasis": false
+        },
+        {
+          "text": "reads",
+          "i": 5,
+          "start": 1.95,
+          "end": 2.263,
+          "startFrame": 221,
+          "endFrame": 230,
+          "emphasis": false
+        },
+        {
+          "text": "every",
+          "i": 6,
+          "start": 2.263,
+          "end": 2.612,
+          "startFrame": 230,
+          "endFrame": 240,
+          "emphasis": true
+        },
+        {
+          "text": "single",
+          "i": 7,
+          "start": 2.612,
+          "end": 2.95,
+          "startFrame": 240,
+          "endFrame": 251,
+          "emphasis": true
+        },
+        {
+          "text": "row,",
+          "i": 8,
+          "start": 2.95,
+          "end": 3.475,
+          "startFrame": 251,
+          "endFrame": 266,
+          "emphasis": true
+        },
+        {
+          "text": "top",
+          "i": 9,
+          "start": 3.475,
+          "end": 3.75,
+          "startFrame": 266,
+          "endFrame": 275,
+          "emphasis": false
+        },
+        {
+          "text": "to",
+          "i": 10,
+          "start": 3.75,
+          "end": 3.85,
+          "startFrame": 275,
+          "endFrame": 278,
+          "emphasis": false
+        },
+        {
+          "text": "bottom,",
+          "i": 11,
+          "start": 3.85,
+          "end": 4.4,
+          "startFrame": 278,
+          "endFrame": 294,
+          "emphasis": false
+        },
+        {
+          "text": "to",
+          "i": 12,
+          "start": 4.4,
+          "end": 4.525,
+          "startFrame": 294,
+          "endFrame": 298,
+          "emphasis": false
+        },
+        {
+          "text": "find",
+          "i": 13,
+          "start": 4.525,
+          "end": 4.787,
+          "startFrame": 298,
+          "endFrame": 306,
+          "emphasis": false
+        },
+        {
+          "text": "what",
+          "i": 14,
+          "start": 4.787,
+          "end": 4.912,
+          "startFrame": 306,
+          "endFrame": 309,
+          "emphasis": false
+        },
+        {
+          "text": "you",
+          "i": 15,
+          "start": 4.912,
+          "end": 5.025,
+          "startFrame": 309,
+          "endFrame": 313,
+          "emphasis": false
+        },
+        {
+          "text": "asked",
+          "i": 16,
+          "start": 5.025,
+          "end": 5.325,
+          "startFrame": 313,
+          "endFrame": 322,
+          "emphasis": false
+        },
+        {
+          "text": "for.",
+          "i": 17,
+          "start": 5.325,
+          "end": 5.975,
+          "startFrame": 322,
+          "endFrame": 341,
+          "emphasis": false
+        }
+      ],
+      "layout": "character_bottom",
+      "transition": "cut",
+      "character": {
+        "id": "narrator",
+        "pose": "explaining",
+        "expression": "neutral",
+        "position": "center",
+        "poseChanges": [
+          {
+            "pose": "facepalm",
+            "expression": "worried",
+            "atFrame": 230
+          },
+          {
+            "pose": "pointing_up",
+            "expression": "neutral",
+            "atFrame": 266
+          },
+          {
+            "pose": "explaining",
+            "atFrame": 298
+          }
+        ]
+      },
+      "props": [
+        {
+          "name": "database",
+          "atFrame": 162,
+          "untilFrame": 352,
+          "anim": "pop",
+          "position": "top_left",
+          "scale": 1
+        },
+        {
+          "name": "document",
+          "atFrame": 230,
+          "untilFrame": 352,
+          "anim": "drop",
+          "position": "top_right",
+          "scale": 1
+        },
+        {
+          "name": "document",
+          "atFrame": 240,
+          "untilFrame": 352,
+          "anim": "drop",
+          "position": "top_right",
+          "scale": 1
+        },
+        {
+          "name": "document",
+          "atFrame": 251,
+          "untilFrame": 352,
+          "anim": "drop",
+          "position": "top_right",
+          "scale": 1
+        }
+      ],
+      "sfx": [
+        {
+          "name": "pop",
+          "atFrame": 162,
+          "volume": 0.8,
+          "src": "assets/sfx/pop.wav"
+        },
+        {
+          "name": "tick",
+          "atFrame": 230,
+          "volume": 0.8,
+          "src": "assets/sfx/tick.wav"
+        },
+        {
+          "name": "tick",
+          "atFrame": 240,
+          "volume": 0.8,
+          "src": "assets/sfx/tick.wav"
+        },
+        {
+          "name": "tick",
+          "atFrame": 251,
+          "volume": 0.8,
+          "src": "assets/sfx/tick.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": []
+    },
+    {
+      "id": "analogy",
+      "speech": "That's like finding one word in a book by reading the whole book. Nobody does that.",
+      "startFrame": 352,
+      "durationInFrames": 154,
+      "speechFrames": 147,
+      "audioSrc": "audio/analogy.wav",
+      "words": [
+        {
+          "text": "That's",
+          "i": 0,
+          "start": 0.25,
+          "end": 0.512,
+          "startFrame": 360,
+          "endFrame": 367,
+          "emphasis": false
+        },
+        {
+          "text": "like",
+          "i": 1,
+          "start": 0.512,
+          "end": 0.725,
+          "startFrame": 367,
+          "endFrame": 374,
+          "emphasis": false
+        },
+        {
+          "text": "finding",
+          "i": 2,
+          "start": 0.725,
+          "end": 1.15,
+          "startFrame": 374,
+          "endFrame": 387,
+          "emphasis": false
+        },
+        {
+          "text": "one",
+          "i": 3,
+          "start": 1.15,
+          "end": 1.375,
+          "startFrame": 387,
+          "endFrame": 393,
+          "emphasis": false
+        },
+        {
+          "text": "word",
+          "i": 4,
+          "start": 1.375,
+          "end": 1.613,
+          "startFrame": 393,
+          "endFrame": 400,
+          "emphasis": false
+        },
+        {
+          "text": "in",
+          "i": 5,
+          "start": 1.613,
+          "end": 1.688,
+          "startFrame": 400,
+          "endFrame": 403,
+          "emphasis": false
+        },
+        {
+          "text": "a",
+          "i": 6,
+          "start": 1.688,
+          "end": 1.75,
+          "startFrame": 403,
+          "endFrame": 405,
+          "emphasis": false
+        },
+        {
+          "text": "book",
+          "i": 7,
+          "start": 1.75,
+          "end": 2.05,
+          "startFrame": 405,
+          "endFrame": 413,
+          "emphasis": false
+        },
+        {
+          "text": "by",
+          "i": 8,
+          "start": 2.05,
+          "end": 2.225,
+          "startFrame": 413,
+          "endFrame": 419,
+          "emphasis": false
+        },
+        {
+          "text": "reading",
+          "i": 9,
+          "start": 2.225,
+          "end": 2.513,
+          "startFrame": 419,
+          "endFrame": 427,
+          "emphasis": false
+        },
+        {
+          "text": "the",
+          "i": 10,
+          "start": 2.513,
+          "end": 2.6,
+          "startFrame": 427,
+          "endFrame": 430,
+          "emphasis": false
+        },
+        {
+          "text": "whole",
+          "i": 11,
+          "start": 2.6,
+          "end": 2.85,
+          "startFrame": 430,
+          "endFrame": 438,
+          "emphasis": true
+        },
+        {
+          "text": "book.",
+          "i": 12,
+          "start": 2.85,
+          "end": 3.513,
+          "startFrame": 438,
+          "endFrame": 457,
+          "emphasis": true
+        },
+        {
+          "text": "Nobody",
+          "i": 13,
+          "start": 3.513,
+          "end": 3.875,
+          "startFrame": 457,
+          "endFrame": 468,
+          "emphasis": true
+        },
+        {
+          "text": "does",
+          "i": 14,
+          "start": 3.875,
+          "end": 4.1,
+          "startFrame": 468,
+          "endFrame": 475,
+          "emphasis": false
+        },
+        {
+          "text": "that.",
+          "i": 15,
+          "start": 4.1,
+          "end": 4.775,
+          "startFrame": 475,
+          "endFrame": 495,
+          "emphasis": false
+        }
+      ],
+      "layout": "character_left",
+      "transition": "slide",
+      "character": {
+        "id": "narrator",
+        "pose": "presenting",
+        "expression": "neutral",
+        "position": "center",
+        "poseChanges": [
+          {
+            "pose": "shrugging",
+            "expression": "confused",
+            "atFrame": 430
+          },
+          {
+            "pose": "pointing_right",
+            "expression": "smug",
+            "atFrame": 457
+          }
+        ]
+      },
+      "props": [
+        {
+          "name": "book",
+          "atFrame": 405,
+          "untilFrame": 506,
+          "anim": "bounce",
+          "position": "right",
+          "scale": 1.2
+        },
+        {
+          "name": "magnifier",
+          "atFrame": 419,
+          "untilFrame": 506,
+          "anim": "slide_right",
+          "position": "right",
+          "scale": 1
+        }
+      ],
+      "sfx": [
+        {
+          "name": "whoosh",
+          "atFrame": 352,
+          "volume": 0.5,
+          "src": "assets/sfx/whoosh.wav"
+        },
+        {
+          "name": "pop",
+          "atFrame": 405,
+          "volume": 0.8,
+          "src": "assets/sfx/pop.wav"
+        },
+        {
+          "name": "swoosh",
+          "atFrame": 419,
+          "volume": 0.5,
+          "src": "assets/sfx/swoosh.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": []
+    },
+    {
+      "id": "solution",
+      "speech": "An index is the book's table of contents. Sorted. So the database jumps straight to the right page.",
+      "startFrame": 506,
+      "durationInFrames": 195,
+      "speechFrames": 187,
+      "audioSrc": "audio/solution.wav",
+      "words": [
+        {
+          "text": "An",
+          "i": 0,
+          "start": 0.25,
+          "end": 0.35,
+          "startFrame": 514,
+          "endFrame": 517,
+          "emphasis": false
+        },
+        {
+          "text": "index",
+          "i": 1,
+          "start": 0.35,
+          "end": 0.775,
+          "startFrame": 517,
+          "endFrame": 529,
+          "emphasis": false
+        },
+        {
+          "text": "is",
+          "i": 2,
+          "start": 0.775,
+          "end": 0.912,
+          "startFrame": 529,
+          "endFrame": 533,
+          "emphasis": false
+        },
+        {
+          "text": "the",
+          "i": 3,
+          "start": 0.912,
+          "end": 1,
+          "startFrame": 533,
+          "endFrame": 536,
+          "emphasis": false
+        },
+        {
+          "text": "book's",
+          "i": 4,
+          "start": 1,
+          "end": 1.275,
+          "startFrame": 536,
+          "endFrame": 544,
+          "emphasis": false
+        },
+        {
+          "text": "table",
+          "i": 5,
+          "start": 1.275,
+          "end": 1.613,
+          "startFrame": 544,
+          "endFrame": 554,
+          "emphasis": true
+        },
+        {
+          "text": "of",
+          "i": 6,
+          "start": 1.613,
+          "end": 1.7,
+          "startFrame": 554,
+          "endFrame": 557,
+          "emphasis": true
+        },
+        {
+          "text": "contents.",
+          "i": 7,
+          "start": 1.7,
+          "end": 2.725,
+          "startFrame": 557,
+          "endFrame": 588,
+          "emphasis": true
+        },
+        {
+          "text": "Sorted.",
+          "i": 8,
+          "start": 2.725,
+          "end": 3.487,
+          "startFrame": 588,
+          "endFrame": 611,
+          "emphasis": false
+        },
+        {
+          "text": "So",
+          "i": 9,
+          "start": 3.487,
+          "end": 3.612,
+          "startFrame": 611,
+          "endFrame": 614,
+          "emphasis": false
+        },
+        {
+          "text": "the",
+          "i": 10,
+          "start": 3.612,
+          "end": 3.7,
+          "startFrame": 614,
+          "endFrame": 617,
+          "emphasis": false
+        },
+        {
+          "text": "database",
+          "i": 11,
+          "start": 3.7,
+          "end": 4.287,
+          "startFrame": 617,
+          "endFrame": 635,
+          "emphasis": false
+        },
+        {
+          "text": "jumps",
+          "i": 12,
+          "start": 4.287,
+          "end": 4.625,
+          "startFrame": 635,
+          "endFrame": 645,
+          "emphasis": false
+        },
+        {
+          "text": "straight",
+          "i": 13,
+          "start": 4.625,
+          "end": 4.95,
+          "startFrame": 645,
+          "endFrame": 655,
+          "emphasis": true
+        },
+        {
+          "text": "to",
+          "i": 14,
+          "start": 4.95,
+          "end": 5.037,
+          "startFrame": 655,
+          "endFrame": 657,
+          "emphasis": true
+        },
+        {
+          "text": "the",
+          "i": 15,
+          "start": 5.037,
+          "end": 5.125,
+          "startFrame": 657,
+          "endFrame": 660,
+          "emphasis": true
+        },
+        {
+          "text": "right",
+          "i": 16,
+          "start": 5.125,
+          "end": 5.35,
+          "startFrame": 660,
+          "endFrame": 667,
+          "emphasis": true
+        },
+        {
+          "text": "page.",
+          "i": 17,
+          "start": 5.35,
+          "end": 6.125,
+          "startFrame": 667,
+          "endFrame": 690,
+          "emphasis": true
+        }
+      ],
+      "layout": "character_bottom",
+      "transition": "wipe",
+      "character": {
+        "id": "narrator",
+        "pose": "pointing_up",
+        "expression": "happy",
+        "position": "center",
+        "poseChanges": [
+          {
+            "pose": "explaining",
+            "atFrame": 588
+          },
+          {
+            "pose": "pointing_right",
+            "expression": "smug",
+            "atFrame": 635
+          }
+        ]
+      },
+      "props": [
+        {
+          "name": "book",
+          "atFrame": 506,
+          "untilFrame": 701,
+          "anim": "pop",
+          "position": "top_left",
+          "scale": 1
+        },
+        {
+          "name": "document",
+          "atFrame": 557,
+          "untilFrame": 701,
+          "anim": "pop",
+          "position": "top_right",
+          "scale": 1
+        },
+        {
+          "name": "rocket",
+          "atFrame": 635,
+          "untilFrame": 701,
+          "anim": "slide_left",
+          "position": "top",
+          "scale": 0.9
+        }
+      ],
+      "sfx": [
+        {
+          "name": "pop",
+          "atFrame": 506,
+          "volume": 0.8,
+          "src": "assets/sfx/pop.wav"
+        },
+        {
+          "name": "click",
+          "atFrame": 588,
+          "volume": 0.8,
+          "src": "assets/sfx/click.wav"
+        },
+        {
+          "name": "whoosh",
+          "atFrame": 635,
+          "volume": 0.8,
+          "src": "assets/sfx/whoosh.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": [
+        {
+          "move": "punch_in",
+          "atFrame": 635
+        }
+      ]
+    },
+    {
+      "id": "numbers",
+      "speech": "Ten million rows. Full scan: seconds. With an index: a few milliseconds.",
+      "startFrame": 701,
+      "durationInFrames": 162,
+      "speechFrames": 154,
+      "audioSrc": "audio/numbers.wav",
+      "words": [
+        {
+          "text": "Ten",
+          "i": 0,
+          "start": 0.25,
+          "end": 0.475,
+          "startFrame": 709,
+          "endFrame": 715,
+          "emphasis": true
+        },
+        {
+          "text": "million",
+          "i": 1,
+          "start": 0.475,
+          "end": 0.825,
+          "startFrame": 715,
+          "endFrame": 726,
+          "emphasis": true
+        },
+        {
+          "text": "rows.",
+          "i": 2,
+          "start": 0.825,
+          "end": 1.562,
+          "startFrame": 726,
+          "endFrame": 748,
+          "emphasis": false
+        },
+        {
+          "text": "Full",
+          "i": 3,
+          "start": 1.562,
+          "end": 1.8,
+          "startFrame": 748,
+          "endFrame": 755,
+          "emphasis": false
+        },
+        {
+          "text": "scan:",
+          "i": 4,
+          "start": 1.8,
+          "end": 2.237,
+          "startFrame": 755,
+          "endFrame": 768,
+          "emphasis": false
+        },
+        {
+          "text": "seconds.",
+          "i": 5,
+          "start": 2.237,
+          "end": 2.95,
+          "startFrame": 768,
+          "endFrame": 790,
+          "emphasis": false
+        },
+        {
+          "text": "With",
+          "i": 6,
+          "start": 2.95,
+          "end": 3.112,
+          "startFrame": 790,
+          "endFrame": 794,
+          "emphasis": false
+        },
+        {
+          "text": "an",
+          "i": 7,
+          "start": 3.112,
+          "end": 3.2,
+          "startFrame": 794,
+          "endFrame": 797,
+          "emphasis": false
+        },
+        {
+          "text": "index:",
+          "i": 8,
+          "start": 3.2,
+          "end": 3.688,
+          "startFrame": 797,
+          "endFrame": 812,
+          "emphasis": false
+        },
+        {
+          "text": "a",
+          "i": 9,
+          "start": 3.688,
+          "end": 3.75,
+          "startFrame": 812,
+          "endFrame": 814,
+          "emphasis": false
+        },
+        {
+          "text": "few",
+          "i": 10,
+          "start": 3.75,
+          "end": 3.95,
+          "startFrame": 814,
+          "endFrame": 820,
+          "emphasis": false
+        },
+        {
+          "text": "milliseconds.",
+          "i": 11,
+          "start": 3.95,
+          "end": 5.025,
+          "startFrame": 820,
+          "endFrame": 852,
+          "emphasis": true
+        }
+      ],
+      "layout": "caption_only",
+      "transition": "zoom",
+      "character": null,
+      "props": [
+        {
+          "name": "chart_down",
+          "atFrame": 748,
+          "untilFrame": 790,
+          "anim": "pop",
+          "position": "top",
+          "scale": 1
+        },
+        {
+          "name": "chart_up",
+          "atFrame": 790,
+          "untilFrame": 863,
+          "anim": "pop",
+          "position": "top",
+          "scale": 1
+        }
+      ],
+      "sfx": [
+        {
+          "name": "boom",
+          "atFrame": 701,
+          "volume": 0.6,
+          "src": "assets/sfx/boom.wav"
+        },
+        {
+          "name": "error",
+          "atFrame": 748,
+          "volume": 0.5,
+          "src": "assets/sfx/error.wav"
+        },
+        {
+          "name": "cash",
+          "atFrame": 790,
+          "volume": 0.8,
+          "src": "assets/sfx/cash.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": []
+    },
+    {
+      "id": "catch",
+      "speech": "The catch? Every write also has to update the index. So index what you search, not everything.",
+      "startFrame": 863,
+      "durationInFrames": 189,
+      "speechFrames": 182,
+      "audioSrc": "audio/catch.wav",
+      "words": [
+        {
+          "text": "The",
+          "i": 0,
+          "start": 0.225,
+          "end": 0.338,
+          "startFrame": 870,
+          "endFrame": 873,
+          "emphasis": false
+        },
+        {
+          "text": "catch?",
+          "i": 1,
+          "start": 0.338,
+          "end": 0.875,
+          "startFrame": 873,
+          "endFrame": 889,
+          "emphasis": false
+        },
+        {
+          "text": "Every",
+          "i": 2,
+          "start": 0.875,
+          "end": 1.175,
+          "startFrame": 889,
+          "endFrame": 898,
+          "emphasis": true
+        },
+        {
+          "text": "write",
+          "i": 3,
+          "start": 1.175,
+          "end": 1.425,
+          "startFrame": 898,
+          "endFrame": 906,
+          "emphasis": true
+        },
+        {
+          "text": "also",
+          "i": 4,
+          "start": 1.425,
+          "end": 1.775,
+          "startFrame": 906,
+          "endFrame": 916,
+          "emphasis": false
+        },
+        {
+          "text": "has",
+          "i": 5,
+          "start": 1.775,
+          "end": 1.975,
+          "startFrame": 916,
+          "endFrame": 922,
+          "emphasis": false
+        },
+        {
+          "text": "to",
+          "i": 6,
+          "start": 1.975,
+          "end": 2.1,
+          "startFrame": 922,
+          "endFrame": 926,
+          "emphasis": false
+        },
+        {
+          "text": "update",
+          "i": 7,
+          "start": 2.1,
+          "end": 2.462,
+          "startFrame": 926,
+          "endFrame": 937,
+          "emphasis": false
+        },
+        {
+          "text": "the",
+          "i": 8,
+          "start": 2.462,
+          "end": 2.55,
+          "startFrame": 937,
+          "endFrame": 940,
+          "emphasis": false
+        },
+        {
+          "text": "index.",
+          "i": 9,
+          "start": 2.55,
+          "end": 3.388,
+          "startFrame": 940,
+          "endFrame": 965,
+          "emphasis": false
+        },
+        {
+          "text": "So",
+          "i": 10,
+          "start": 3.388,
+          "end": 3.587,
+          "startFrame": 965,
+          "endFrame": 971,
+          "emphasis": false
+        },
+        {
+          "text": "index",
+          "i": 11,
+          "start": 3.587,
+          "end": 4.013,
+          "startFrame": 971,
+          "endFrame": 983,
+          "emphasis": false
+        },
+        {
+          "text": "what",
+          "i": 12,
+          "start": 4.013,
+          "end": 4.15,
+          "startFrame": 983,
+          "endFrame": 988,
+          "emphasis": false
+        },
+        {
+          "text": "you",
+          "i": 13,
+          "start": 4.15,
+          "end": 4.312,
+          "startFrame": 988,
+          "endFrame": 992,
+          "emphasis": false
+        },
+        {
+          "text": "search,",
+          "i": 14,
+          "start": 4.312,
+          "end": 4.825,
+          "startFrame": 992,
+          "endFrame": 1008,
+          "emphasis": false
+        },
+        {
+          "text": "not",
+          "i": 15,
+          "start": 4.825,
+          "end": 5.05,
+          "startFrame": 1008,
+          "endFrame": 1015,
+          "emphasis": true
+        },
+        {
+          "text": "everything.",
+          "i": 16,
+          "start": 5.05,
+          "end": 5.95,
+          "startFrame": 1015,
+          "endFrame": 1042,
+          "emphasis": true
+        }
+      ],
+      "layout": "character_bottom",
+      "transition": "cut",
+      "character": {
+        "id": "narrator",
+        "pose": "thinking",
+        "expression": "confused",
+        "position": "center",
+        "poseChanges": [
+          {
+            "pose": "explaining",
+            "expression": "worried",
+            "atFrame": 889
+          },
+          {
+            "pose": "pointing_up",
+            "expression": "happy",
+            "atFrame": 965
+          },
+          {
+            "pose": "shrugging",
+            "expression": "smug",
+            "atFrame": 1008
+          }
+        ]
+      },
+      "props": [
+        {
+          "name": "warning",
+          "atFrame": 873,
+          "untilFrame": 965,
+          "anim": "shake",
+          "position": "top",
+          "scale": 1
+        },
+        {
+          "name": "checkmark",
+          "atFrame": 992,
+          "untilFrame": 1052,
+          "anim": "pop",
+          "position": "top_left",
+          "scale": 1
+        },
+        {
+          "name": "cross",
+          "atFrame": 1015,
+          "untilFrame": 1052,
+          "anim": "pop",
+          "position": "top_right",
+          "scale": 1
+        }
+      ],
+      "sfx": [
+        {
+          "name": "glitch",
+          "atFrame": 873,
+          "volume": 0.5,
+          "src": "assets/sfx/glitch.wav"
+        },
+        {
+          "name": "ding",
+          "atFrame": 992,
+          "volume": 0.6,
+          "src": "assets/sfx/ding.wav"
+        },
+        {
+          "name": "error",
+          "atFrame": 1015,
+          "volume": 0.5,
+          "src": "assets/sfx/error.wav"
+        }
+      ],
+      "bubbles": [
+        {
+          "text": "HMM",
+          "atFrame": 863,
+          "untilFrame": 889
+        }
+      ],
+      "camera": []
+    },
+    {
+      "id": "cta",
+      "speech": "Follow for one backend concept a day, explained in under a minute.",
+      "startFrame": 1052,
+      "durationInFrames": 150,
+      "speechFrames": 132,
+      "audioSrc": "audio/cta.wav",
+      "words": [
+        {
+          "text": "Follow",
+          "i": 0,
+          "start": 0.275,
+          "end": 0.6,
+          "startFrame": 1060,
+          "endFrame": 1070,
+          "emphasis": true
+        },
+        {
+          "text": "for",
+          "i": 1,
+          "start": 0.6,
+          "end": 0.75,
+          "startFrame": 1070,
+          "endFrame": 1075,
+          "emphasis": false
+        },
+        {
+          "text": "one",
+          "i": 2,
+          "start": 0.75,
+          "end": 0.975,
+          "startFrame": 1075,
+          "endFrame": 1081,
+          "emphasis": false
+        },
+        {
+          "text": "backend",
+          "i": 3,
+          "start": 0.975,
+          "end": 1.375,
+          "startFrame": 1081,
+          "endFrame": 1093,
+          "emphasis": false
+        },
+        {
+          "text": "concept",
+          "i": 4,
+          "start": 1.375,
+          "end": 1.863,
+          "startFrame": 1093,
+          "endFrame": 1108,
+          "emphasis": false
+        },
+        {
+          "text": "a",
+          "i": 5,
+          "start": 1.863,
+          "end": 1.925,
+          "startFrame": 1108,
+          "endFrame": 1110,
+          "emphasis": false
+        },
+        {
+          "text": "day,",
+          "i": 6,
+          "start": 1.925,
+          "end": 2.525,
+          "startFrame": 1110,
+          "endFrame": 1128,
+          "emphasis": false
+        },
+        {
+          "text": "explained",
+          "i": 7,
+          "start": 2.525,
+          "end": 3.15,
+          "startFrame": 1128,
+          "endFrame": 1147,
+          "emphasis": false
+        },
+        {
+          "text": "in",
+          "i": 8,
+          "start": 3.15,
+          "end": 3.325,
+          "startFrame": 1147,
+          "endFrame": 1152,
+          "emphasis": false
+        },
+        {
+          "text": "under",
+          "i": 9,
+          "start": 3.325,
+          "end": 3.538,
+          "startFrame": 1152,
+          "endFrame": 1158,
+          "emphasis": true
+        },
+        {
+          "text": "a",
+          "i": 10,
+          "start": 3.538,
+          "end": 3.587,
+          "startFrame": 1158,
+          "endFrame": 1160,
+          "emphasis": true
+        },
+        {
+          "text": "minute.",
+          "i": 11,
+          "start": 3.587,
+          "end": 4.3,
+          "startFrame": 1160,
+          "endFrame": 1181,
+          "emphasis": true
+        }
+      ],
+      "layout": "character_center",
+      "transition": "cut",
+      "character": {
+        "id": "narrator",
+        "pose": "waving",
+        "expression": "happy",
+        "position": "center",
+        "poseChanges": [
+          {
+            "pose": "celebrating",
+            "atFrame": 1128
+          }
+        ]
+      },
+      "props": [
+        {
+          "name": "heart",
+          "atFrame": 1060,
+          "untilFrame": 1202,
+          "anim": "bounce",
+          "position": "above_character",
+          "scale": 1
+        },
+        {
+          "name": "clock",
+          "atFrame": 1152,
+          "untilFrame": 1202,
+          "anim": "pop",
+          "position": "above_character",
+          "scale": 1
+        }
+      ],
+      "sfx": [
+        {
+          "name": "pop",
+          "atFrame": 1060,
+          "volume": 0.8,
+          "src": "assets/sfx/pop.wav"
+        },
+        {
+          "name": "ding",
+          "atFrame": 1128,
+          "volume": 0.8,
+          "src": "assets/sfx/ding.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": []
+    }
+  ],
+  "meta": {
+    "resolvedAt": "2026-09-15T19:22:45.898Z",
+    "engineVersion": "0.1.0",
+    "ttsModel": "hexgrad/Kokoro-82M",
+    "manifestHash": "ca21fac21b6bd043"
+  }
+}

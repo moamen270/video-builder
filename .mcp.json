@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "video-builder": {
+      "command": "node",
+      "args": ["--import", "tsx", "engine/src/mcp/server.ts"]
+    }
+  }
+}

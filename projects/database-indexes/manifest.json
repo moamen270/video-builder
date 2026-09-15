@@ -1,0 +1,173 @@
+{
+  "version": 1,
+  "slug": "database-indexes",
+  "title": "Why databases use indexes",
+  "voice": "af_heart",
+  "speed": 1.08,
+  "theme": "midnight",
+  "music": { "track": "lofi-01", "volume": 0.16 },
+  "scenes": [
+    {
+      "id": "hook",
+      "speech": "Your database query takes four seconds. Here's the one line that makes it instant.",
+      "emphasis": ["four seconds", "instant"],
+      "layout": "character_center",
+      "character": {
+        "pose": "shocked",
+        "expression": "surprised",
+        "poseChanges": [
+          { "pose": "pointing_up", "expression": "smug", "at": "word:here's" }
+        ]
+      },
+      "props": [
+        { "name": "clock", "at": "word:four", "until": "word:here's", "anim": "shake", "position": "above_character" },
+        { "name": "lightbulb", "at": "word:one", "anim": "pop", "position": "above_character" }
+      ],
+      "sfx": [
+        { "name": "error", "at": "word:four", "volume": 0.6 },
+        { "name": "ding", "at": "word:one" }
+      ],
+      "camera": [{ "move": "punch_in", "at": "word:four" }],
+      "bubbles": [{ "text": "4s?!", "at": "word:seconds", "until": "word:here's" }]
+    },
+    {
+      "id": "problem",
+      "speech": "Without an index, the database reads every single row, top to bottom, to find what you asked for.",
+      "emphasis": ["every single row"],
+      "layout": "character_bottom",
+      "character": {
+        "pose": "explaining",
+        "poseChanges": [
+          { "pose": "facepalm", "expression": "worried", "at": "word:every" },
+          { "pose": "pointing_up", "expression": "neutral", "at": "word:top" },
+          { "pose": "explaining", "at": "word:find" }
+        ]
+      },
+      "props": [
+        { "name": "database", "at": "start", "anim": "pop", "position": "top_left" },
+        { "name": "document", "at": "word:every", "anim": "drop", "position": "top_right" },
+        { "name": "document", "at": "word:single", "anim": "drop", "position": "top_right" },
+        { "name": "document", "at": "word:row", "anim": "drop", "position": "top_right" }
+      ],
+      "sfx": [
+        { "name": "pop", "at": "start" },
+        { "name": "tick", "at": "word:every" },
+        { "name": "tick", "at": "word:single" },
+        { "name": "tick", "at": "word:row" }
+      ]
+    },
+    {
+      "id": "analogy",
+      "speech": "That's like finding one word in a book by reading the whole book. Nobody does that.",
+      "emphasis": ["whole book", "Nobody"],
+      "layout": "character_left",
+      "transition": "slide",
+      "character": {
+        "pose": "presenting",
+        "expression": "neutral",
+        "poseChanges": [
+          { "pose": "shrugging", "expression": "confused", "at": "word:whole" },
+          { "pose": "pointing_right", "expression": "smug", "at": "word:nobody" }
+        ]
+      },
+      "props": [
+        { "name": "book", "at": "word:book", "anim": "bounce", "position": "right", "scale": 1.2 },
+        { "name": "magnifier", "at": "word:reading", "anim": "slide_right", "position": "right" }
+      ],
+      "sfx": [
+        { "name": "whoosh", "at": "start", "volume": 0.5 },
+        { "name": "pop", "at": "word:book" },
+        { "name": "swoosh", "at": "word:reading", "volume": 0.5 }
+      ]
+    },
+    {
+      "id": "solution",
+      "speech": "An index is the book's table of contents. Sorted. So the database jumps straight to the right page.",
+      "emphasis": ["table of contents", "straight to the right page"],
+      "layout": "character_bottom",
+      "transition": "wipe",
+      "character": {
+        "pose": "pointing_up",
+        "expression": "happy",
+        "poseChanges": [
+          { "pose": "explaining", "at": "word:sorted" },
+          { "pose": "pointing_right", "expression": "smug", "at": "word:jumps" }
+        ]
+      },
+      "props": [
+        { "name": "book", "at": "start", "anim": "pop", "position": "top_left" },
+        { "name": "document", "at": "word:contents", "anim": "pop", "position": "top_right" },
+        { "name": "rocket", "at": "word:jumps", "anim": "slide_left", "position": "top", "scale": 0.9 }
+      ],
+      "sfx": [
+        { "name": "pop", "at": "start" },
+        { "name": "click", "at": "word:sorted" },
+        { "name": "whoosh", "at": "word:jumps" }
+      ],
+      "camera": [{ "move": "punch_in", "at": "word:jumps" }]
+    },
+    {
+      "id": "numbers",
+      "speech": "Ten million rows. Full scan: seconds. With an index: a few milliseconds.",
+      "emphasis": ["Ten million", "milliseconds"],
+      "layout": "caption_only",
+      "transition": "zoom",
+      "character": null,
+      "props": [
+        { "name": "chart_down", "at": "word:full", "until": "word:with", "anim": "pop", "position": "top" },
+        { "name": "chart_up", "at": "word:with", "anim": "pop", "position": "top" }
+      ],
+      "sfx": [
+        { "name": "boom", "at": "start", "volume": 0.6 },
+        { "name": "error", "at": "word:full", "volume": 0.5 },
+        { "name": "cash", "at": "word:with" }
+      ]
+    },
+    {
+      "id": "catch",
+      "speech": "The catch? Every write also has to update the index. So index what you search, not everything.",
+      "emphasis": ["Every write", "not everything"],
+      "layout": "character_bottom",
+      "character": {
+        "pose": "thinking",
+        "expression": "confused",
+        "poseChanges": [
+          { "pose": "explaining", "expression": "worried", "at": "word:every" },
+          { "pose": "pointing_up", "expression": "happy", "at": "word:so" },
+          { "pose": "shrugging", "expression": "smug", "at": "word:not" }
+        ]
+      },
+      "props": [
+        { "name": "warning", "at": "word:catch", "until": "word:so", "anim": "shake", "position": "top" },
+        { "name": "checkmark", "at": "word:search", "anim": "pop", "position": "top_left" },
+        { "name": "cross", "at": "word:everything", "anim": "pop", "position": "top_right" }
+      ],
+      "sfx": [
+        { "name": "glitch", "at": "word:catch", "volume": 0.5 },
+        { "name": "ding", "at": "word:search", "volume": 0.6 },
+        { "name": "error", "at": "word:everything", "volume": 0.5 }
+      ],
+      "bubbles": [{ "text": "HMM", "at": "start", "until": "word:every" }]
+    },
+    {
+      "id": "cta",
+      "speech": "Follow for one backend concept a day, explained in under a minute.",
+      "emphasis": ["Follow", "under a minute"],
+      "layout": "character_center",
+      "pauseAfter": 0.6,
+      "character": {
+        "pose": "waving",
+        "expression": "happy",
+        "poseChanges": [{ "pose": "celebrating", "at": "word:explained" }]
+      },
+      "props": [
+        { "name": "heart", "at": "word:follow", "anim": "bounce", "position": "above_character" },
+        { "name": "clock", "at": "word:under", "anim": "pop", "position": "above_character" }
+      ],
+      "sfx": [
+        { "name": "pop", "at": "word:follow" },
+        { "name": "ding", "at": "word:explained" }
+      ]
+    }
+  ]
+}

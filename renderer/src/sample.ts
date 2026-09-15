@@ -1,0 +1,54 @@
+import type { ResolvedManifest, Word } from "@vb/engine/schema";
+
+/** Default props so Remotion Studio opens without a project. Audio paths are empty → skipped. */
+const text = "Your database is slow because it's reading every single row.";
+const words: Word[] = text.split(" ").map((t, i) => ({
+  text: t,
+  i,
+  start: i * 0.32,
+  end: i * 0.32 + 0.28,
+  startFrame: Math.round(i * 0.32 * 30),
+  endFrame: Math.round((i * 0.32 + 0.28) * 30),
+  emphasis: ["every", "single", "row."].includes(t),
+}));
+
+export const SAMPLE: ResolvedManifest = {
+  version: 1,
+  slug: "sample",
+  title: "Sample",
+  fps: 30,
+  width: 1080,
+  height: 1920,
+  durationInFrames: 120,
+  theme: "midnight",
+  voice: "af_heart",
+  music: null,
+  scenes: [
+    {
+      id: "hook",
+      speech: text,
+      startFrame: 0,
+      durationInFrames: 120,
+      speechFrames: 105,
+      audioSrc: "",
+      words,
+      layout: "character_bottom",
+      transition: "cut",
+      character: {
+        id: "narrator",
+        pose: "explaining",
+        expression: "neutral",
+        position: "center",
+        poseChanges: [
+          { pose: "shocked", expression: "surprised", atFrame: 30 },
+          { pose: "pointing_up", atFrame: 66 },
+        ],
+      },
+      props: [{ name: "database", atFrame: 10, untilFrame: 120, anim: "pop", position: "top", scale: 1 }],
+      sfx: [],
+      bubbles: [{ text: "?!", atFrame: 32, untilFrame: 70 }],
+      camera: [{ move: "punch_in", atFrame: 30 }],
+    },
+  ],
+  meta: { resolvedAt: "", engineVersion: "0", ttsModel: "", manifestHash: "" },
+};

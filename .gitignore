@@ -1,0 +1,16 @@
+node_modules/
+dist/
+*.log
+.env
+py/.venv/
+__pycache__/
+*.pyc
+renderer/build/
+# Per-project generated artefacts. Keep manifest.json, project.json,
+# build/alignment.json and build/manifest.resolved.json (reproducibility);
+# drop audio, staged assets and renders (regenerable, large).
+projects/*/build/audio/
+projects/*/build/assets/
+projects/*/build/render.props.json
+projects/*/build/tts.*.json
+projects/*/output/
