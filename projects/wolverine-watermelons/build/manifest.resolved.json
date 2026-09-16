@@ -862,7 +862,7 @@
       "id": "laugh",
       "speech": "HAHAHAHA",
       "isClip": true,
-      "clipVolume": 1.3,
+      "clipVolume": 1.4,
       "startFrame": 657,
       "durationInFrames": 150,
       "speechFrames": 135,
@@ -1217,7 +1217,7 @@
       "overlays": [
         {
           "kind": "claw_marks",
-          "atFrame": 964,
+          "atFrame": 961,
           "untilFrame": 1052
         },
         {
@@ -1229,9 +1229,9 @@
     }
   ],
   "meta": {
-    "resolvedAt": "2026-09-16T08:46:59.053Z",
+    "resolvedAt": "2026-09-16T09:06:46.619Z",
     "engineVersion": "0.1.0",
     "ttsModel": "hexgrad/Kokoro-82M",
-    "manifestHash": "651cf2252e746a97"
+    "manifestHash": "7454caf6659a0782"
   }
 }

@@ -36,6 +36,35 @@ interface Props {
   zones?: Record<PropPosition, Rect>;
 }
 
+/** Claw length beyond the hand, rig units (see <Claws>). */
+export const CLAW_LEN = 54;
+
+/**
+ * Geometry of a strike at the viewer ("camera" target) in SCENE pixels: the
+ * shoulder pivot, the claw-tip radius and the sweep angles (rig convention,
+ * 0 = down, + = screen-right). Angles are diagonal: upper-right → lower-left.
+ * Shared with the claw_marks overlay so the scars follow the claws exactly.
+ */
+export function cameraSlashGeometry(rect: Rect, flip: boolean) {
+  const scale = Math.min(rect.w / RW, rect.h / RH);
+  const svgTop = rect.y + rect.h - RH * scale;
+  const shX = rect.x + rect.w / 2; // SHOULDER.x is the rig centre
+  const shY = svgTop + SHOULDER.y * scale;
+  const dir = flip ? -1 : 1;
+  return {
+    shX,
+    shY,
+    tipR: (UPPER_ARM + FORE_ARM + CLAW_LEN) * scale,
+    handR: (UPPER_ARM + FORE_ARM) * scale,
+    /** Screen-space sweep (already mirrored when flipped). */
+    windup: 138 * dir,
+    hit: 72 * dir,
+    follow: 8 * dir,
+    /** Lateral fan of the three claw tips at the hand, rig units → px. */
+    fan: 16 * scale,
+  };
+}
+
 /**
  * Melee strike state for one frame. The hand is driven to pass through the
  * target zone centre exactly at `atFrame`; if the target is out of reach the
@@ -54,8 +83,18 @@ function strikeAt(
   const st = [...strikes].reverse().find((s) => abs >= s.atFrame - 8 && abs <= s.atFrame + 20);
   if (!st) return null;
   const t = abs - st.atFrame;
-  // "camera": slash the viewer's screen — a flat swipe across at shoulder height, no lunge.
-  const zone = st.target === "camera" ? { x: rect.x + rect.w / 2 + 40, y: rect.y + rect.h * 0.28, w: 200, h: 100 } : zones[st.target];
+  if (st.target === "camera") {
+    // Slash the viewer's screen: a diagonal sweep upper-right → lower-left, no lunge, no hop.
+    const g = cameraSlashGeometry(rect, flip);
+    const sign = g.hit >= 0 ? 1 : -1;
+    const armScreen = t < -3 ? ip(t, [-8, -3], [g.hit + sign * 60, g.windup], { extrapolateLeft: "clamp" }) : t < 0 ? ip(t, [-3, 0], [g.windup, g.hit]) : ip(t, [0, 4, 20], [g.hit, g.follow, g.follow], { extrapolateRight: "clamp" });
+    const w = ip(t, [-8, -3, 4, 20], [0, 1, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+    const torsoAdd = sign * ip(t, [-8, -3, 0, 4, 20], [0, -8, 14, 16, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+    const nodAdd = ip(t, [-3, 0, 4, 20], [-6, 10, 12, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+    // Rig angle = screen angle un-mirrored; the striking arm is the one on the target side.
+    return { armDeg: flip ? -armScreen : armScreen, useLeft: flip ? sign > 0 : sign < 0, w, lungeX: 0, hopY: 0, torsoAdd: flip ? -torsoAdd : torsoAdd, nodAdd };
+  }
+  const zone = zones[st.target];
   const cx = zone.x + zone.w / 2;
   const cy = zone.y + zone.h / 2;
   // Shoulder in screen space (svg is bottom-aligned and centred in the rect).
@@ -232,8 +271,8 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
         <polyline points={`${shoulder.x},${shoulder.y} ${lElbow.x},${lElbow.y} ${lHand.x},${lHand.y}`} {...line} />
         <polyline points={`${shoulder.x},${shoulder.y} ${rElbow.x},${rElbow.y} ${rHand.x},${rHand.y}`} {...line} />
         {/* hands */}
-        {wolv && <Claws x={lHand.x} y={lHand.y} deg={rig.lUpper + rig.lLower + torso} />}
-        {wolv && <Claws x={rHand.x} y={rHand.y} deg={rig.rUpper + rig.rLower + wiggle + torso} />}
+        {wolv && <Claws x={lHand.x} y={lHand.y} deg={lForeDeg} />}
+        {wolv && <Claws x={rHand.x} y={rHand.y} deg={rForeDeg} />}
         {gun && !gunLeft && <Pistol x={rHand.x} y={rHand.y} deg={rForeDeg} flash={flash} big={Boolean(lastShot?.big)} accent={accent} />}
         {gun && gunLeft && <Pistol x={lHand.x} y={lHand.y} deg={lForeDeg} flash={flash} big={Boolean(lastShot?.big)} accent={accent} />}
         <circle cx={lHand.x} cy={lHand.y} r={wolv ? 9 : 7} fill={ink} />
