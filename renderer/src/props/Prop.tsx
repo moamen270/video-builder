@@ -25,10 +25,12 @@ export const Prop: React.FC<Props> = ({ prop, sceneStart, zone, palette, slot, s
   if (abs < prop.atFrame || abs >= prop.untilFrame) return null;
 
   const local = abs - prop.atFrame;
-  const size = Math.min(zone.w / Math.max(1, slots * 0.78), zone.h) * 0.86 * prop.scale;
+  const ground = prop.position.startsWith("ground_");
+  // Ground slots: exact height (300 px × scale) and bottom-aligned so characters can stand on them.
+  const size = ground ? zone.h * prop.scale : Math.min(zone.w / Math.max(1, slots * 0.78), zone.h) * 0.86 * prop.scale;
   // Fan multiple props across the zone horizontally.
   const cx = zone.x + (zone.w / (slots + 1)) * (slot + 1);
-  const cy = zone.y + zone.h / 2;
+  const cy = ground ? zone.y + zone.h - size / 2 : zone.y + zone.h / 2;
 
   const enter = spring({ frame: local, fps, config: { damping: 11, stiffness: 190, mass: 0.8 } });
   const exit = interpolate(abs, [prop.untilFrame - EXIT_FRAMES, prop.untilFrame], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
@@ -80,9 +82,11 @@ export const Prop: React.FC<Props> = ({ prop, sceneStart, zone, palette, slot, s
       break;
   }
   const iconT = interpolate(local, [0, prop.anim === "bloom" ? 18 : 14], [0, 1], { extrapolateRight: "clamp" });
-  // Gentle hover so props never sit dead still.
-  ty += Math.sin((abs + slot * 7) / 11) * 5;
-  rot += Math.sin((abs + slot * 5) / 17) * 2;
+  // Gentle hover so props never sit dead still — except things standing on the ground.
+  if (!ground) {
+    ty += Math.sin((abs + slot * 7) / 11) * 5;
+    rot += Math.sin((abs + slot * 5) / 17) * 2;
+  }
 
   const Icon = ICONS[prop.name];
   return (

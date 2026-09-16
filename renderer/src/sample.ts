@@ -48,6 +48,7 @@ export const SAMPLE: ResolvedManifest = {
         ],
         shots: [],
         travel: null,
+        jump: null,
       },
       props: [{ name: "database", atFrame: 10, untilFrame: 120, anim: "pop", position: "top", scale: 1 }],
       sfx: [],

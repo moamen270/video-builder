@@ -235,6 +235,25 @@ export const ICONS: Record<PropName, Icon> = {
   number_2: ({ line, accent }) => <Numeral n="2" line={line} accent={accent} />,
   number_3: ({ line, accent }) => <Numeral n="3" line={line} accent={accent} />,
   number_4: ({ line, accent }) => <Numeral n="4" line={line} accent={accent} />,
+  crate: ({ line }) => (
+    <g>
+      <rect x={2} y={2} width={96} height={96} rx={3} fill="#b07a3c" stroke={line} strokeWidth={4} />
+      {[18, 34, 50, 66, 82].map((y) => (
+        <line key={y} x1={4} y1={y} x2={96} y2={y} stroke="#8a5a26" strokeWidth={2} />
+      ))}
+      <rect x={2} y={2} width={96} height={12} fill="#c98d48" stroke={line} strokeWidth={4} />
+      <rect x={2} y={86} width={96} height={12} fill="#c98d48" stroke={line} strokeWidth={4} />
+      <rect x={2} y={2} width={12} height={96} fill="#c98d48" stroke={line} strokeWidth={4} />
+      <rect x={86} y={2} width={12} height={96} fill="#c98d48" stroke={line} strokeWidth={4} />
+      <line x1={14} y1={14} x2={86} y2={86} stroke="#c98d48" strokeWidth={9} />
+      <line x1={14} y1={14} x2={86} y2={86} stroke={line} strokeWidth={3} />
+      <line x1={86} y1={14} x2={14} y2={86} stroke="#c98d48" strokeWidth={9} />
+      <line x1={86} y1={14} x2={14} y2={86} stroke={line} strokeWidth={3} />
+      {[[8, 8], [92, 8], [8, 92], [92, 92]].map(([x, y]) => (
+        <circle key={`${x}${y}`} cx={x} cy={y} r={2.5} fill="#3b2a14" />
+      ))}
+    </g>
+  ),
   watermelon: ({ line }) => (
     <g {...base(line)}>
       <ellipse cx={50} cy={54} rx={42} ry={36} fill="#2f9e44" />

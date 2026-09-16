@@ -86,6 +86,7 @@ export const PROPS = [
   "number_2",
   "number_3",
   "number_4",
+  "crate", // wooden box that sits on the ground — a landing surface for `jump`
 ] as const;
 export type PropName = (typeof PROPS)[number];
 
@@ -100,6 +101,9 @@ export const PROP_POSITIONS = [
   "right",
   "center",
   "above_character",
+  "ground_left", // bottom-aligned on the character's ground line
+  "ground_center",
+  "ground_right",
 ] as const;
 export type PropPosition = (typeof PROP_POSITIONS)[number];
 

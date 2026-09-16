@@ -80,8 +80,33 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
                 endFrame: at(s.character.travel.end, "character.travel.end"),
               }
             : null,
+          jump: null as null | {
+            atFrame: number; crouchFrames: number; airFrames: number; landFrames: number; settleFrames: number; fromX: number; toX: number; height: number;
+          },
         }
       : null;
+    if (character && s.character?.jump) {
+      const j = s.character.jump;
+      const atFrame = at(j.at, "character.jump.at");
+      // Where is he when the jump starts? Wherever travel has carried him (clamped), else his stop.
+      let fromX = travelX(s.layout, s.character.position);
+      if (character.travel) {
+        const tr = character.travel;
+        const k = Math.max(0, Math.min(1, (atFrame - tr.startFrame) / Math.max(1, tr.endFrame - tr.startFrame)));
+        fromX = tr.fromX + (tr.toX - tr.fromX) * k;
+      }
+      character.jump = {
+        atFrame,
+        crouchFrames: Math.round(0.3 * fps),
+        airFrames: Math.round(j.air * fps),
+        landFrames: Math.round(0.25 * fps),
+        settleFrames: Math.round(1.1 * fps),
+        fromX,
+        toX: travelX(s.layout, j.to),
+        height: j.height,
+      };
+      if (!character.pose.startsWith("walk_")) warnings.push({ path: where, message: `jump only animates on walk_* poses (pose is "${character.pose}")` });
+    }
     if (character && character.shots.length && character.style !== "gunslinger") {
       warnings.push({ path: where, message: `shots only render for style "gunslinger" (character is "${character.style}")` });
     }

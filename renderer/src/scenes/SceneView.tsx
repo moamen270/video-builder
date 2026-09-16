@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, Audio, Sequence, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import type { ResolvedScene } from "@vb/engine/schema";
 import { Stickman } from "../characters/Stickman";
+import { motionAt, type MotionState } from "../characters/motion";
 import { KineticCaption } from "../captions/KineticCaption";
 import { Prop } from "../props/Prop";
 import { Bubble } from "./Bubble";
@@ -49,13 +50,10 @@ export const SceneView: React.FC<Props> = ({ scene, palette }) => {
   const zoneSeen = new Map<string, number>();
 
   let charRect = scene.character && spec.character ? spec.character[scene.character.position] : null;
-  const travel = scene.character?.travel;
-  if (charRect && travel) {
-    const x = interpolate(abs, [travel.startFrame, Math.max(travel.startFrame + 1, travel.endFrame)], [travel.fromX, travel.toX], {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    });
-    charRect = { ...charRect, x };
+  let motion: MotionState | null = null;
+  if (charRect && scene.character && (scene.character.travel || scene.character.jump)) {
+    motion = motionAt(scene, charRect.x, abs);
+    charRect = { ...charRect, x: motion.x, y: charRect.y - motion.lift };
   }
 
   return (
@@ -85,6 +83,7 @@ export const SceneView: React.FC<Props> = ({ scene, palette }) => {
             headFill={palette.propFill}
             style={scene.character.style}
             flip={scene.character.position === "right"}
+            walker={motion ? { action: motion.action, shadow: motion.shadow } : undefined}
           />
         )}
 

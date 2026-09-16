@@ -45,6 +45,20 @@ export const CharacterState = z.object({
   poseChanges: z.array(PoseChange).default([]),
   /** Gunslinger only: muzzle flash + recoil at these anchors. `big` = the dramatic final shot. */
   shots: z.array(z.object({ at: Anchor, big: z.boolean().default(false) })).max(8).default([]),
+  /**
+   * Side-view jump (walk_* poses): crouch → flight → landing absorb → rebound/balance → stand.
+   * `to` is the landing stop; `height` is the landing surface above ground in px
+   * (a `crate` at scale 1 in a ground_* slot is 300 px tall). Walking stops when the jump starts.
+   */
+  jump: z
+    .object({
+      at: Anchor,
+      to: z.enum(TRAVEL_STOPS),
+      height: z.number().min(0).max(600).default(0),
+      /** Seconds in the air. */
+      air: z.number().min(0.3).max(1.2).default(0.55),
+    })
+    .optional(),
   /** Move the character horizontally between two stops. Use with walk_* poses. Defaults: whole scene. */
   travel: z
     .object({

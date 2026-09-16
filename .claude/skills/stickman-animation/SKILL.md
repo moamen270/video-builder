@@ -38,6 +38,10 @@ on words**, and **camera cues**. Aim for one visible change every 1.5–2 s.
 Locomotion: `"travel": { "from": "offscreen_left", "to": "offscreen_right", "start": "start", "end": "end" }`
 moves the character rect between stops (`offscreen_left left center right offscreen_right`).
 Silent visual scenes: `"silence": 9` (seconds) instead of `speech`/`clip` — music only, no captions.
+Jumping (walk_* poses): `"jump": { "at": "start+5", "to": "right", "height": 300, "air": 0.6 }` —
+crouch 0.3 s → flight → landing absorb → damped rebound/balance 1.1 s → stand. Walking stops at `at`.
+`height` = landing surface above ground in px; a `crate` in a `ground_*` slot is 300 px × scale.
+Ground props (`ground_left/center/right`) are bottom-aligned on the character's ground line and don't hover.
 
 Expressions: `neutral happy surprised worried confused smug laughing fierce`
 (`laughing` = closed eyes + big D mouth; `fierce` = angled brows + toothy grin).

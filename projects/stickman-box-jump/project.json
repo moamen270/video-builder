@@ -1,0 +1,19 @@
+{
+  "slug": "stickman-box-jump",
+  "topic": "Stickman jumps onto a box",
+  "createdAt": "2026-09-16T07:22:31.907Z",
+  "targetSeconds": 40,
+  "status": "qa_passed",
+  "lastRenderMs": 22082,
+  "versions": [
+    {
+      "n": 1,
+      "at": "2026-09-16T07:25:06.975Z",
+      "seconds": 11.5,
+      "renderMs": 22082,
+      "qaOk": true,
+      "manifestHash": "99e435691ff338d9",
+      "note": "v1: walk in, crouch, jump onto crate, absorb + rebound, stand"
+    }
+  ]
+}

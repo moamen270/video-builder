@@ -44,6 +44,10 @@ export interface LayoutSpec {
 }
 
 const propZones = (o: Partial<Record<PropPosition, Rect>>): Record<PropPosition, Rect> => ({
+  // ground_* default to the character_bottom ground line (y = 1780)
+  ground_left: { x: 40, y: 1480, w: 300, h: 300 },
+  ground_center: { x: 390, y: 1480, w: 300, h: 300 },
+  ground_right: { x: 700, y: 1480, w: 300, h: 300 },
   top: { x: 140, y: 300, w: 800, h: 460 },
   top_left: { x: 80, y: 300, w: 420, h: 420 },
   top_right: { x: 580, y: 300, w: 420, h: 420 },
@@ -73,6 +77,9 @@ export const LAYOUTS: Record<Layout, LayoutSpec> = {
     },
     caption: { x: SAFE.left, y: 380, w: W - SAFE.left - SAFE.right, h: 440 },
     props: propZones({
+      ground_left: { x: 40, y: 1260, w: 300, h: 300 },
+      ground_center: { x: 390, y: 1260, w: 300, h: 300 },
+      ground_right: { x: 700, y: 1260, w: 300, h: 300 },
       top: { x: 460, y: 940, w: 480, h: 480 },
       right: { x: 460, y: 940, w: 480, h: 480 },
       center: { x: 460, y: 940, w: 480, h: 480 },
@@ -89,6 +96,9 @@ export const LAYOUTS: Record<Layout, LayoutSpec> = {
     caption: { x: SAFE.left, y: 1330, w: W - SAFE.left - SAFE.right, h: 200 },
     // Three non-overlapping top slots so props can persist across scenes side by side.
     props: propZones({
+      ground_left: { x: 40, y: 1080, w: 300, h: 300 },
+      ground_center: { x: 390, y: 1080, w: 300, h: 300 },
+      ground_right: { x: 700, y: 1080, w: 300, h: 300 },
       above_character: { x: 340, y: 270, w: 400, h: 300 },
       top_left: { x: 50, y: 240, w: 350, h: 350 },
       top: { x: 365, y: 240, w: 350, h: 350 },

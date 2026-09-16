@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "slug": "stickman-box-jump",
+  "title": "Stickman jumps onto a box",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "durationInFrames": 345,
+  "theme": "paper",
+  "voice": "af_heart",
+  "music": {
+    "src": "assets/music/lofi-01.wav",
+    "volume": 0.45
+  },
+  "scenes": [
+    {
+      "id": "jump",
+      "speech": "",
+      "isClip": false,
+      "clipVolume": 1,
+      "startFrame": 0,
+      "durationInFrames": 345,
+      "speechFrames": 330,
+      "audioSrc": "audio/jump.wav",
+      "words": [],
+      "layout": "character_bottom",
+      "transition": "cut",
+      "character": {
+        "id": "walker",
+        "style": "stickman",
+        "pose": "walk_right",
+        "expression": "neutral",
+        "position": "center",
+        "poseChanges": [],
+        "shots": [],
+        "travel": {
+          "fromX": -440,
+          "toX": 320,
+          "startFrame": 0,
+          "endFrame": 126
+        },
+        "jump": {
+          "atFrame": 150,
+          "crouchFrames": 9,
+          "airFrames": 18,
+          "landFrames": 8,
+          "settleFrames": 33,
+          "fromX": 320,
+          "toX": 600,
+          "height": 300
+        }
+      },
+      "props": [
+        {
+          "name": "crate",
+          "atFrame": 0,
+          "untilFrame": 345,
+          "anim": "fade",
+          "position": "ground_right",
+          "scale": 1
+        }
+      ],
+      "sfx": [
+        {
+          "name": "whoosh",
+          "atFrame": 159,
+          "volume": 0.5,
+          "src": "assets/sfx/whoosh.wav"
+        },
+        {
+          "name": "drum",
+          "atFrame": 177,
+          "volume": 0.7,
+          "src": "assets/sfx/drum.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": []
+    }
+  ],
+  "meta": {
+    "resolvedAt": "2026-09-16T07:24:43.899Z",
+    "engineVersion": "0.1.0",
+    "ttsModel": "hexgrad/Kokoro-82M",
+    "manifestHash": "99e435691ff338d9"
+  }
+}

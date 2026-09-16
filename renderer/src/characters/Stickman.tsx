@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import type { CharacterStyle, Expression, Pose, ResolvedScene, Word } from "@vb/engine/schema";
 import { LEFT_HAND_POSES, RIGS, SNAP_POSES, WALK_POSES, lerpRig, type Rig } from "./poses";
-import { Walker } from "./Walker";
+import { Walker, type WalkerAction } from "./Walker";
 import type { Rect } from "../theme";
 
 /** Rig space: 240 wide × 420 tall, feet at y≈400. */
@@ -29,6 +29,8 @@ interface Props {
   headFill: string;
   style: CharacterStyle;
   flip?: boolean;
+  /** For walk_* poses: what the side-view rig is doing this frame. */
+  walker?: { action: WalkerAction; shadow: number };
 }
 
 interface PoseState {
@@ -64,13 +66,13 @@ const polar = (x: number, y: number, len: number, deg: number) => {
   return { x: x + Math.sin(r) * len, y: y + Math.cos(r) * len };
 };
 
-export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, style, flip }) => {
+export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, style, flip, walker }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const abs = frame + scene.startFrame;
   const st = poseAt(scene, abs);
   if (WALK_POSES.has(st.pose)) {
-    return <Walker rect={rect} frame={abs} fps={fps} ink={ink} headFill={headFill} facingLeft={st.pose === "walk_left"} />;
+    return <Walker rect={rect} frame={abs} fps={fps} ink={ink} headFill={headFill} facingLeft={st.pose === "walk_left"} action={walker?.action} shadow={walker?.shadow} />;
   }
 
   // Spring between previous and current pose.

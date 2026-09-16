@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "slug": "stickman-box-jump",
+  "title": "Stickman jumps onto a box",
+  "theme": "paper",
+  "music": { "track": "lofi-01", "volume": 0.45 },
+  "characters": [{ "id": "walker", "style": "stickman" }],
+  "notes": "No narration. Walks in from the left, stops short of a wooden crate, crouches, jumps onto it, absorbs the landing, wobbles for balance and settles standing on the box.",
+  "scenes": [
+    {
+      "id": "jump",
+      "silence": 11,
+      "pauseAfter": 0.5,
+      "layout": "character_bottom",
+      "character": {
+        "id": "walker",
+        "pose": "walk_right",
+        "travel": { "from": "offscreen_left", "to": "center", "start": "start", "end": "start+4.2" },
+        "jump": { "at": "start+5.0", "to": "right", "height": 300, "air": 0.6 }
+      },
+      "props": [{ "name": "crate", "at": "start", "anim": "fade", "position": "ground_right", "scale": 1 }],
+      "sfx": [
+        { "name": "whoosh", "at": "start+5.3", "volume": 0.5 },
+        { "name": "drum", "at": "start+5.9", "volume": 0.7 }
+      ]
+    }
+  ]
+}
