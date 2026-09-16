@@ -19,10 +19,14 @@ export const POSES = [
   "waving",
   "presenting",
   "leaning",
+  "claws_out", // hero stance: fists low and wide, chin down
+  "slash_left", // fast horizontal swipe, ends with the arm across to screen-left
+  "slash_right",
+  "laughing", // head back, hands on belly, body shakes while words are spoken
 ] as const;
 export type Pose = (typeof POSES)[number];
 
-export const EXPRESSIONS = ["neutral", "happy", "surprised", "worried", "confused", "smug"] as const;
+export const EXPRESSIONS = ["neutral", "happy", "surprised", "worried", "confused", "smug", "laughing", "fierce"] as const;
 export type Expression = (typeof EXPRESSIONS)[number];
 
 export const POSITIONS = ["left", "center", "right"] as const;
@@ -62,10 +66,12 @@ export const PROPS = [
   "heart",
   "star",
   "trophy",
+  "watermelon",
+  "watermelon_split", // two halves flying apart with juice — pair with anim "burst"
 ] as const;
 export type PropName = (typeof PROPS)[number];
 
-export const PROP_ANIMS = ["pop", "bounce", "slide_left", "slide_right", "drop", "fade", "shake"] as const;
+export const PROP_ANIMS = ["pop", "bounce", "slide_left", "slide_right", "drop", "fade", "shake", "burst"] as const;
 export type PropAnim = (typeof PROP_ANIMS)[number];
 
 export const PROP_POSITIONS = [
@@ -79,10 +85,14 @@ export const PROP_POSITIONS = [
 ] as const;
 export type PropPosition = (typeof PROP_POSITIONS)[number];
 
-export const SFX = ["pop", "whoosh", "click", "ding", "boom", "error", "swoosh", "tick", "cash", "glitch", "drum"] as const;
+export const SFX = ["pop", "whoosh", "click", "ding", "boom", "error", "swoosh", "tick", "cash", "glitch", "drum", "slash", "splat", "snikt"] as const;
 export type SfxName = (typeof SFX)[number];
 
 export const THEMES = ["midnight", "paper", "sunset", "mint", "grape"] as const;
+
+/** Character costumes. `stickman` is the plain narrator; `wolverine` adds a pointed mask, claws and blue trunks. */
+export const CHARACTER_STYLES = ["stickman", "wolverine"] as const;
+export type CharacterStyle = (typeof CHARACTER_STYLES)[number];
 export type Theme = (typeof THEMES)[number];
 
 /** Kokoro-82M English voices. af_ = American female, am_ = American male, bf_/bm_ = British. */

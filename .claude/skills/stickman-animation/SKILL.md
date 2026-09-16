@@ -26,6 +26,12 @@ on words**, and **camera cues**. Aim for one visible change every 1.5–2 s.
 | `waving` | greeting / CTA opener | `happy` |
 | `presenting` | introducing an analogy or prop to the side | prop in `right` |
 | `leaning` | casual aside, "between you and me" | `smug` |
+| `claws_out` | hero stance, fists low and wide, chin down — menace or "let's go" | `fierce`, SFX `snikt` |
+| `slash_left` / `slash_right` | one fast horizontal swipe (snaps, no ease) — anchor a `watermelon_split` + `splat` 0.08 s later | `fierce`, SFX `slash` |
+| `laughing` | head back, hands on belly; body bounces on every spoken word — write "Ha ha ha ha!" as separate words | `laughing` |
+
+Expressions: `neutral happy surprised worried confused smug laughing fierce`
+(`laughing` = closed eyes + big D mouth; `fierce` = angled brows + toothy grin).
 
 Rules:
 - Start each scene in the pose that matches its first clause; add 1–3
@@ -34,6 +40,15 @@ Rules:
 - Give an `expression` on every pose change where the mood shifts.
 - `position`: `center` for hooks/CTA; `left`/`right` when props need the other
   side. The stickman flips to face inward when on the right.
+
+### Character styles
+
+`characters[].style`: `stickman` (plain narrator) or `wolverine` (yellow ink,
+black pointed mask, claws on both hands, blue trunks). Set `"color": "#ffcc00"`
+with wolverine. Claws are always drawn, so every gesture reads as a threat —
+lean into it. Comedy formula that works: setup → `claws_out` + `snikt` bubble →
+2–3 `slash_*` beats with `watermelon` → `watermelon_split` swaps → `laughing`
+scene with 8–9 "ha" words → one-line punch ("Best. Job. Ever.").
 
 ## Layouts
 
@@ -53,7 +68,11 @@ Anchor a prop to the **noun** it depicts (`"at": "word:database"`), default
 
 Entrance `anim`: `pop` (default, everything), `bounce` (heavy things landing),
 `drop` (lists: one per item word), `slide_left`/`slide_right` (motion, arrival),
-`fade` (background context), `shake` (warnings, errors).
+`fade` (background context), `shake` (warnings, errors), `burst` (only for
+`watermelon_split`: halves fly apart with juice over ~0.5 s).
+
+Before/after swap: give the "before" prop `until: "word:X+0.08"` and the
+"after" prop `at: "word:X+0.08"` in the same `position`. Up to 8 props per scene.
 
 Position guide: `top` (centered, wide), `top_left`/`top_right` (pairs, before/after,
 good/bad), `left`/`right` (beside the stickman), `above_character` (the idea
@@ -70,7 +89,8 @@ One SFX per visual event, volume 0.5–0.8; never two on the same word.
 `pop` prop appears · `whoosh`/`swoosh` slide-ins and scene transitions ·
 `click`/`tick` countable beats, typing · `ding` correct/insight ·
 `error` wrong/slow · `boom` big reveal or number · `glitch` "the catch", bugs ·
-`cash` savings/speed win · `drum` build-up before the answer.
+`cash` savings/speed win · `drum` build-up before the answer ·
+`snikt` claws out · `slash` swipe · `splat` something got cut.
 
 ## Bubbles, camera, transitions
 

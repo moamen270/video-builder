@@ -2,7 +2,7 @@ import { existsSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { ASSETS_DIR } from "./paths.js";
 import {
-  CAMERA_MOVES, EXPRESSIONS, LAYOUTS, POSES, POSITIONS, PROPS, PROP_ANIMS, PROP_POSITIONS, SFX, THEMES, TRANSITIONS, VIDEO, VOICES,
+  CAMERA_MOVES, CHARACTER_STYLES, EXPRESSIONS, LAYOUTS, POSES, POSITIONS, PROPS, PROP_ANIMS, PROP_POSITIONS, SFX, THEMES, TRANSITIONS, VIDEO, VOICES,
 } from "./schema/catalog.js";
 
 const names = (dir: string) => (existsSync(dir) ? readdirSync(dir).filter((f) => /\.(mp3|wav|ogg)$/.test(f)).map((f) => path.parse(f).name) : []);
@@ -23,6 +23,7 @@ export function catalogSummary() {
     sfxFilesPresent: names(path.join(ASSETS_DIR, "sfx")),
     music: names(path.join(ASSETS_DIR, "music")),
     themes: THEMES,
+    characterStyles: CHARACTER_STYLES,
     voices: VOICES,
     cameraMoves: CAMERA_MOVES,
     transitions: TRANSITIONS,

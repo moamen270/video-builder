@@ -37,7 +37,14 @@ export const RIGS: Record<Pose, Rig> = {
   waving: { lUpper: -10, lLower: -8, rUpper: 150, rLower: 35, lThigh: -7, lShin: 0, rThigh: 7, rShin: 0, head: -5, torso: 0, lift: 0, nod: 0 },
   presenting: { lUpper: -85, lLower: -30, rUpper: 10, rLower: 8, lThigh: -8, lShin: 0, rThigh: 8, rShin: 0, head: -6, torso: -3, lift: 0, nod: 0 },
   leaning: { lUpper: -14, lLower: -10, rUpper: 30, rLower: 20, lThigh: -14, lShin: 6, rThigh: 4, rShin: 0, head: -6, torso: 12, lift: 4, nod: 0 },
+  claws_out: { lUpper: -42, lLower: -30, rUpper: 42, rLower: 30, lThigh: -20, lShin: 8, rThigh: 20, rShin: -8, head: 0, torso: 0, lift: 6, nod: 14 },
+  slash_left: { lUpper: -96, lLower: 12, rUpper: 55, rLower: 60, lThigh: -26, lShin: 10, rThigh: 8, rShin: 0, head: -10, torso: -12, lift: 2, nod: 6 },
+  slash_right: { lUpper: -55, lLower: -60, rUpper: 96, rLower: -12, lThigh: -8, lShin: 0, rThigh: 26, rShin: -10, head: 10, torso: 12, lift: 2, nod: 6 },
+  laughing: { lUpper: -28, lLower: -118, rUpper: 28, rLower: 118, lThigh: -12, lShin: 0, rThigh: 12, rShin: 0, head: 0, torso: -6, lift: -2, nod: -24 },
 };
+
+/** Poses that should snap rather than ease (attacks). */
+export const SNAP_POSES: ReadonlySet<Pose> = new Set<Pose>(["slash_left", "slash_right", "claws_out"]);
 
 export const RIG_KEYS = Object.keys(RIGS.idle) as (keyof Rig)[];
 

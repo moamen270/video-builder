@@ -65,7 +65,12 @@ export const Prop: React.FC<Props> = ({ prop, sceneStart, zone, palette, slot, s
       sc = interpolate(enter, [0, 1], [0.3, 1]);
       rot = local < 24 ? Math.sin(local * 1.6) * interpolate(local, [0, 24], [14, 0]) : 0;
       break;
+    case "burst":
+      // Appears instantly at full size and kicks outward; the icon's own `t` does the splitting.
+      sc = interpolate(local, [0, 4, 10], [1.0, 1.25, 1.1], { extrapolateRight: "clamp" });
+      break;
   }
+  const iconT = interpolate(local, [0, 14], [0, 1], { extrapolateRight: "clamp" });
   // Gentle hover so props never sit dead still.
   ty += Math.sin((abs + slot * 7) / 11) * 5;
   rot += Math.sin((abs + slot * 5) / 17) * 2;
@@ -85,7 +90,7 @@ export const Prop: React.FC<Props> = ({ prop, sceneStart, zone, palette, slot, s
       }}
     >
       <svg viewBox="0 0 100 100" width={size} height={size} style={{ overflow: "visible" }}>
-        <Icon line={palette.ink} fill={palette.propFill} accent={palette.accent} />
+        <Icon line={palette.ink} fill={palette.propFill} accent={palette.accent} t={iconT} />
       </svg>
     </div>
   );

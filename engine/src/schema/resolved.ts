@@ -1,6 +1,7 @@
 import { z } from "zod";
 import {
   CAMERA_MOVES,
+  CHARACTER_STYLES,
   EXPRESSIONS,
   LAYOUTS,
   POSES,
@@ -83,6 +84,7 @@ export const ResolvedScene = z.object({
   character: z
     .object({
       id: z.string(),
+      style: z.enum(CHARACTER_STYLES),
       color: z.string().optional(),
       pose: z.enum(POSES),
       expression: z.enum(EXPRESSIONS),

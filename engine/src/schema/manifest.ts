@@ -1,6 +1,7 @@
 import { z } from "zod";
 import {
   CAMERA_MOVES,
+  CHARACTER_STYLES,
   EXPRESSIONS,
   LAYOUTS,
   POSES,
@@ -84,8 +85,8 @@ export const Scene = z.object({
   layout: z.enum(LAYOUTS).default("character_bottom"),
   transition: z.enum(TRANSITIONS).default("cut"),
   character: CharacterState.nullable().prefault({}),
-  props: z.array(PropCue).max(4).default([]),
-  sfx: z.array(SfxCue).max(6).default([]),
+  props: z.array(PropCue).max(8).default([]),
+  sfx: z.array(SfxCue).max(8).default([]),
   bubbles: z.array(Bubble).max(2).default([]),
   camera: z.array(CameraCue).max(2).default([]),
 });
@@ -93,7 +94,7 @@ export type Scene = z.infer<typeof Scene>;
 
 export const CharacterDef = z.object({
   id: z.string().min(1),
-  style: z.literal("stickman").default("stickman"),
+  style: z.enum(CHARACTER_STYLES).default("stickman"),
   /** Line colour; defaults to theme foreground. */
   color: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
 });

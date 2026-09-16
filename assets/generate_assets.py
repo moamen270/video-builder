@@ -135,6 +135,48 @@ def drum() -> np.ndarray:
     return kick + lowpass(snare, 5000) * 0.5
 
 
+def slash() -> np.ndarray:
+    """Fast blade swipe: short descending noise sweep with a metallic ring."""
+    rng = np.random.default_rng(8)
+    x = t(0.32)
+    n = len(x)
+    noise = rng.normal(0, 1, n)
+    sweep = np.linspace(6000, 900, n)
+    out = np.zeros(n)
+    step = 256
+    for i in range(0, n, step):
+        out[i : i + step] = lowpass(noise[i : i + step], float(sweep[min(i, n - 1)]))
+    shape = np.sin(np.pi * np.arange(n) / n) ** 0.6
+    ring = np.sin(2 * np.pi * 3400 * x) * env(n, 0.001, 0.12) * 0.5
+    return out * shape + ring
+
+
+def splat() -> np.ndarray:
+    """Wet impact: low thud plus filtered noise burst with a short decay."""
+    rng = np.random.default_rng(9)
+    x = t(0.55)
+    n = len(x)
+    f = 220 * np.exp(-x * 25) + 60
+    thud = np.sin(2 * np.pi * np.cumsum(f) / SR) * env(n, 0.001, 0.18)
+    burst = lowpass(rng.normal(0, 1, n), 1400) * env(n, 0.002, 0.14, 2.5)
+    wobble = np.sin(2 * np.pi * 90 * x) * np.exp(-x * 14) * 0.3
+    return thud + burst * 1.2 + wobble
+
+
+def snikt() -> np.ndarray:
+    """Three claws unsheathing: rapid metallic clicks with a bright ring."""
+    x = t(0.45)
+    n = len(x)
+    out = np.zeros(n)
+    for k, off in enumerate((0.0, 0.05, 0.1)):
+        i = int(off * SR)
+        seg = t(0.3)
+        tone = (np.sin(2 * np.pi * (5200 + k * 700) * seg) + 0.5 * np.sin(2 * np.pi * (7800 + k * 500) * seg)) * env(len(seg), 0.0005, 0.08)
+        click = np.random.default_rng(10 + k).normal(0, 1, len(seg)) * env(len(seg), 0.0003, 0.01)
+        out[i : i + len(seg)] += tone + click * 0.6
+    return out
+
+
 def lofi_loop(name: str = "lofi-01", bpm: float = 78, bars: int = 8, seed: int = 7) -> np.ndarray:
     """Warm lo-fi chord loop with soft kick/hat. Loops cleanly (bar-aligned)."""
     rng = np.random.default_rng(seed)
@@ -190,6 +232,9 @@ def main() -> None:
     write("cash", cash())
     write("glitch", glitch())
     write("drum", drum())
+    write("slash", slash())
+    write("splat", splat())
+    write("snikt", snikt())
     print("music:")
     write("lofi-01", lofi_loop("lofi-01", 78, 8, 7), MUSIC)
     write("lofi-02", lofi_loop("lofi-02", 88, 8, 11), MUSIC)

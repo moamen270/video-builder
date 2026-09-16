@@ -1,0 +1,265 @@
+{
+  "model": "hexgrad/Kokoro-82M",
+  "voice": "am_fenrir",
+  "speed": 1,
+  "scenes": [
+    {
+      "sceneId": "intro",
+      "file": "intro.wav",
+      "duration": 2.125,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Wolverine",
+          "start": 0.175,
+          "end": 0.625,
+          "ws": " "
+        },
+        {
+          "text": "got",
+          "start": 0.625,
+          "end": 0.762,
+          "ws": " "
+        },
+        {
+          "text": "a",
+          "start": 0.762,
+          "end": 0.825,
+          "ws": " "
+        },
+        {
+          "text": "summer",
+          "start": 0.825,
+          "end": 1.175,
+          "ws": " "
+        },
+        {
+          "text": "job.",
+          "start": 1.175,
+          "end": 2.025,
+          "ws": ""
+        }
+      ],
+      "hash": "0a6949c74274b27a"
+    },
+    {
+      "sceneId": "reveal",
+      "file": "reveal.wav",
+      "duration": 1.825,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Watermelon",
+          "start": 0.175,
+          "end": 0.7,
+          "ws": " "
+        },
+        {
+          "text": "slicing.",
+          "start": 0.7,
+          "end": 1.725,
+          "ws": ""
+        }
+      ],
+      "hash": "f25ee5d4e9a3af17"
+    },
+    {
+      "sceneId": "cut1",
+      "file": "cut1.wav",
+      "duration": 1.075,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Hyah!",
+          "start": 0.175,
+          "end": 0.95,
+          "ws": ""
+        }
+      ],
+      "hash": "447393586c219d6b"
+    },
+    {
+      "sceneId": "cut2",
+      "file": "cut2.wav",
+      "duration": 1.325,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Another",
+          "start": 0.175,
+          "end": 0.5,
+          "ws": " "
+        },
+        {
+          "text": "one.",
+          "start": 0.5,
+          "end": 1.225,
+          "ws": ""
+        }
+      ],
+      "hash": "42e49555832820e5"
+    },
+    {
+      "sceneId": "cut3",
+      "file": "cut3.wav",
+      "duration": 1.625,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "And!",
+          "start": 0.175,
+          "end": 0.338,
+          "ws": " "
+        },
+        {
+          "text": "Another!",
+          "start": 0.338,
+          "end": 0.75,
+          "ws": " "
+        },
+        {
+          "text": "One!",
+          "start": 0.75,
+          "end": 1.525,
+          "ws": ""
+        }
+      ],
+      "hash": "25536e14db215021"
+    },
+    {
+      "sceneId": "laugh",
+      "file": "laugh.wav",
+      "duration": 2.45,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Ha",
+          "start": 0.175,
+          "end": 0.35,
+          "ws": " "
+        },
+        {
+          "text": "ha",
+          "start": 0.35,
+          "end": 0.5,
+          "ws": " "
+        },
+        {
+          "text": "ha",
+          "start": 0.5,
+          "end": 0.65,
+          "ws": " "
+        },
+        {
+          "text": "ha",
+          "start": 0.65,
+          "end": 0.825,
+          "ws": " "
+        },
+        {
+          "text": "ha!",
+          "start": 0.825,
+          "end": 1.075,
+          "ws": " "
+        },
+        {
+          "text": "Ha",
+          "start": 1.075,
+          "end": 1.25,
+          "ws": " "
+        },
+        {
+          "text": "ha",
+          "start": 1.25,
+          "end": 1.425,
+          "ws": " "
+        },
+        {
+          "text": "ha",
+          "start": 1.425,
+          "end": 1.6,
+          "ws": " "
+        },
+        {
+          "text": "ha!",
+          "start": 1.6,
+          "end": 2.35,
+          "ws": ""
+        }
+      ],
+      "hash": "a8a263a194126821"
+    },
+    {
+      "sceneId": "more",
+      "file": "more.wav",
+      "duration": 2.5,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Mwahahaha!",
+          "start": 0.175,
+          "end": 0.85,
+          "ws": " "
+        },
+        {
+          "text": "Oh,",
+          "start": 0.85,
+          "end": 1.012,
+          "ws": " "
+        },
+        {
+          "text": "that's",
+          "start": 1.012,
+          "end": 1.262,
+          "ws": " "
+        },
+        {
+          "text": "the",
+          "start": 1.262,
+          "end": 1.35,
+          "ws": " "
+        },
+        {
+          "text": "good",
+          "start": 1.35,
+          "end": 1.575,
+          "ws": " "
+        },
+        {
+          "text": "stuff.",
+          "start": 1.575,
+          "end": 2.4,
+          "ws": ""
+        }
+      ],
+      "hash": "a48f8ab6136d452d"
+    },
+    {
+      "sceneId": "outro",
+      "file": "outro.wav",
+      "duration": 1.7,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Best.",
+          "start": 0.175,
+          "end": 0.475,
+          "ws": " "
+        },
+        {
+          "text": "Job.",
+          "start": 0.475,
+          "end": 0.825,
+          "ws": " "
+        },
+        {
+          "text": "Ever.",
+          "start": 0.825,
+          "end": 1.6,
+          "ws": ""
+        }
+      ],
+      "hash": "c477d86f51618c39"
+    }
+  ]
+}

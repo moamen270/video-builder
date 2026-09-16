@@ -5,6 +5,8 @@ export interface IconColors {
   line: string;
   fill: string;
   accent: string;
+  /** 0→1 progress since the prop appeared (for icons with internal motion). */
+  t?: number;
 }
 
 type Icon = React.FC<IconColors>;
@@ -180,4 +182,40 @@ export const ICONS: Record<PropName, Icon> = {
       <path d="M44 54h12v14H44zM30 68h40v16H30z" fill={fill} />
     </g>
   ),
+  watermelon: ({ line }) => (
+    <g {...base(line)}>
+      <ellipse cx={50} cy={54} rx={42} ry={36} fill="#2f9e44" />
+      {[-30, -15, 0, 15, 30].map((dx) => (
+        <path key={dx} d={`M ${50 + dx} 20 q ${dx * 0.15} 34 0 68`} stroke="#1b5e20" strokeWidth={5} fill="none" />
+      ))}
+      <path d="M 50 18 q -4 -10 4 -14" stroke="#5b3a1a" strokeWidth={5} />
+    </g>
+  ),
+  watermelon_split: ({ line, t = 1 }) => {
+    // Two halves fly apart and tip over; seeds and juice scatter with t.
+    const k = Math.min(1, Math.max(0, t));
+    const dx = 26 * k;
+    const rot = 22 * k;
+    const half = (sign: 1 | -1) => (
+      <g transform={`translate(${50 + sign * dx} 56) rotate(${sign * rot})`}>
+        <path d={`M ${-sign * 2} -36 A 40 34 0 0 ${sign === 1 ? 1 : 0} ${-sign * 2} 32 Z`} fill="#2f9e44" stroke={line} strokeWidth={sw} strokeLinejoin="round" />
+        <path d={`M ${-sign * 2} -28 A 31 26 0 0 ${sign === 1 ? 1 : 0} ${-sign * 2} 24 Z`} fill="#ff4d6d" />
+        {[-14, 0, 12].map((y, i) => (
+          <ellipse key={i} cx={sign * (10 + (i % 2) * 6)} cy={y} rx={2.6} ry={4} fill="#111" />
+        ))}
+      </g>
+    );
+    const drops = [
+      [-38, -30, 0.9], [-20, -46, 1.1], [12, -50, 1.0], [34, -36, 0.8], [46, -8, 0.7], [-46, 0, 0.7],
+    ] as const;
+    return (
+      <g>
+        {half(-1)}
+        {half(1)}
+        {drops.map(([x, y, sz], i) => (
+          <circle key={i} cx={50 + x * k} cy={56 + y * k + 30 * k * k} r={4 * sz * (1 - 0.4 * k)} fill="#ff4d6d" opacity={1 - 0.5 * k} />
+        ))}
+      </g>
+    );
+  },
 };

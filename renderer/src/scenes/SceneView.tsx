@@ -75,6 +75,7 @@ export const SceneView: React.FC<Props> = ({ scene, palette }) => {
             ink={scene.character.color ?? palette.ink}
             accent={palette.accent}
             headFill={palette.propFill}
+            style={scene.character.style}
             flip={scene.character.position === "right"}
           />
         )}

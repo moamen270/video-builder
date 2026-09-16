@@ -59,10 +59,12 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
     const tl: SceneTimeline = { startFrame, endFrame, words, fps };
     const at = (anchor: string, sub: string) => resolveAnchor(anchor, tl, `${where}.${sub}`);
 
+    const charDef = s.character ? m.characters.find((c) => c.id === s.character!.id) : undefined;
     const character = s.character
       ? {
           id: s.character.id,
-          color: m.characters.find((c) => c.id === s.character!.id)?.color,
+          style: charDef?.style ?? "stickman",
+          color: charDef?.color,
           pose: s.character.pose,
           expression: s.character.expression,
           position: s.character.position,
