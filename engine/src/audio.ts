@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { execa } from "execa";
 import { AlignmentFile, type Manifest, type SceneAlignment, type VoiceFx } from "./schema/index.js";
@@ -7,14 +7,36 @@ import { PY_DIR, type ProjectPaths } from "./paths.js";
 
 export type AudioProgress = (msg: string) => void;
 
-const sceneSpeed = (m: Manifest, s: Manifest["scenes"][number]) => s.speed ?? m.speed;
-const sceneFx = (m: Manifest, s: Manifest["scenes"][number]): VoiceFx => s.voiceFx ?? m.voiceFx;
+type Scene = Manifest["scenes"][number];
+const sceneSpeed = (m: Manifest, s: Scene) => s.speed ?? m.speed;
+const sceneFx = (m: Manifest, s: Scene): VoiceFx => s.voiceFx ?? m.voiceFx;
 
-export function sceneHash(m: Manifest, s: Manifest["scenes"][number]): string {
-  return createHash("sha256")
-    .update([m.voice, sceneSpeed(m, s), sceneFx(m, s), s.speech, s.pauseAfter, "v2"].join("|"))
-    .digest("hex")
-    .slice(0, 16);
+export function sceneHash(m: Manifest, s: Scene, p: ProjectPaths): string {
+  const parts: unknown[] = [m.voice, sceneSpeed(m, s), sceneFx(m, s), s.speech ?? "", s.pauseAfter, "v3"];
+  if (s.clip) {
+    const f = path.join(p.clipsDir, s.clip.file);
+    const st = existsSync(f) ? statSync(f) : null;
+    parts.push("clip", s.clip.file, st?.size ?? 0, st?.mtimeMs ?? 0, s.clip.caption ?? "", s.clip.maxSeconds ?? 0);
+  }
+  return createHash("sha256").update(parts.join("|")).digest("hex").slice(0, 16);
+}
+
+/** Copy a pre-recorded clip into the scene slot: mono 24 kHz, trimmed, padded with pauseAfter. */
+async function importClip(m: Manifest, s: Scene, p: ProjectPaths, hash: string): Promise<SceneAlignment & { hash: string }> {
+  const clip = s.clip!;
+  const src = path.join(p.clipsDir, clip.file);
+  if (!existsSync(src)) throw new Error(`scene "${s.id}": clip not found at ${src}`);
+  const dest = path.join(p.audioDir, `${s.id}.wav`);
+  const trim = clip.maxSeconds ? ["-t", String(clip.maxSeconds)] : [];
+  // Measure the speech part first (trimmed), then write it padded with silence.
+  const probe = await execa("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", src]);
+  const raw = Number(probe.stdout.trim());
+  const duration = clip.maxSeconds ? Math.min(raw, clip.maxSeconds) : raw;
+  const fx = sceneFx(m, s);
+  const filters = ["aresample=24000", fx !== "none" ? FX_FILTERS[fx] : "", "apad"].filter(Boolean).join(",");
+  await execa("ffmpeg", ["-y", "-v", "error", ...trim, "-i", src, "-af", filters, "-t", (duration + s.pauseAfter).toFixed(4), "-ar", "24000", "-ac", "1", dest]);
+  const tokens = clip.caption ? [{ text: clip.caption, start: 0, end: Number(duration.toFixed(3)), ws: "" }] : [];
+  return { sceneId: s.id, file: path.basename(dest), duration: Number(duration.toFixed(4)), sampleRate: 24000, tokens, hash };
 }
 
 /**
@@ -23,6 +45,7 @@ export function sceneHash(m: Manifest, s: Manifest["scenes"][number]): string {
  */
 const FX_FILTERS: Record<Exclude<VoiceFx, "none">, string> = {
   deep: "asetrate=24000*0.88,aresample=24000,atempo=1/0.88,bass=g=4:f=140,aecho=0.7:0.35:28:0.18",
+  theatre: "bass=g=2:f=160,aecho=0.75:0.5:55|120:0.22|0.12",
   villain: "asetrate=24000*0.80,aresample=24000,atempo=1/0.80,bass=g=8:f=120,aecho=0.8:0.6:45|95|170:0.42|0.28|0.16,alimiter=limit=0.95",
 };
 
@@ -56,11 +79,17 @@ export async function ensureAudio(
     }
   }
 
-  const todo = m.scenes
-    .map((s) => ({ id: s.id, speech: s.speech, pauseAfter: s.pauseAfter, speed: sceneSpeed(m, s), fx: sceneFx(m, s), hash: sceneHash(m, s) }))
-    .filter((s) => !reusable.has(`${s.id}:${s.hash}`));
+  const pending = m.scenes.filter((s) => !reusable.has(`${s.id}:${sceneHash(m, s, p)}`));
+  const clipScenes = pending.filter((s) => s.clip);
+  const todo = pending
+    .filter((s) => !s.clip)
+    .map((s) => ({ id: s.id, speech: s.speech!, pauseAfter: s.pauseAfter, speed: sceneSpeed(m, s), fx: sceneFx(m, s), hash: sceneHash(m, s, p) }));
 
   let fresh: (SceneAlignment & { hash: string })[] = [];
+  for (const s of clipScenes) {
+    log(`importing clip ${s.clip!.file} for ${s.id}`);
+    fresh.push(await importClip(m, s, p, sceneHash(m, s, p)));
+  }
   if (todo.length > 0) {
     log(`synthesizing ${todo.length}/${m.scenes.length} scene(s) with ${m.voice} @ ${m.speed}x`);
     const reqPath = path.join(p.build, "tts.request.json");
@@ -76,7 +105,7 @@ export async function ensureAudio(
     });
     await proc;
     const result = AlignmentFile.parse(JSON.parse(readFileSync(outPath, "utf8")));
-    fresh = result.scenes;
+    fresh.push(...result.scenes);
     for (const sc of todo) {
       if (sc.fx !== "none") {
         const dur = fresh.find((f) => f.sceneId === sc.id)?.duration ?? 0;
@@ -86,7 +115,7 @@ export async function ensureAudio(
     }
     rmSync(reqPath, { force: true });
     rmSync(outPath, { force: true });
-  } else {
+  } else if (clipScenes.length === 0) {
     log("audio up to date, nothing to synthesize");
   }
 

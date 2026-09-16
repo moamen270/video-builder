@@ -1,8 +1,8 @@
-import { mkdirSync, renameSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { execa } from "execa";
-import { RENDERER_DIR, type ProjectPaths } from "./paths.js";
+import { RENDERER_DIR, type ProjectPaths, type VersionPaths } from "./paths.js";
 import type { ResolvedManifest } from "./schema/index.js";
 
 export interface RenderOptions {
@@ -21,17 +21,25 @@ export interface RenderResult {
   file: string;
   ms: number;
   frames: number;
+  /** Version number, or null for previews. */
+  version: number | null;
 }
 
 export const COMPOSITION_ID = "Short";
 
 /**
- * Render the resolved manifest with the Remotion CLI. The project's build/ dir is
- * the public dir, so `staticFile("audio/hook.wav")` resolves inside the project.
+ * Render the resolved manifest with the Remotion CLI into a version folder
+ * (`target`), or into output/preview when `target` is null.
+ * The project's build/ dir is the public dir, so `staticFile("audio/hook.wav")`
+ * resolves inside the project.
  */
-export async function renderProject(resolved: ResolvedManifest, p: ProjectPaths, opts: RenderOptions = {}): Promise<RenderResult> {
+export async function renderProject(resolved: ResolvedManifest, p: ProjectPaths, target: VersionPaths | null, opts: RenderOptions = {}): Promise<RenderResult> {
   const log = opts.log ?? (() => {});
-  mkdirSync(p.outputDir, { recursive: true });
+  const isPreview = target === null;
+  const outDir = isPreview ? p.previewDir : target.dir;
+  const outFile = isPreview ? path.join(p.previewDir, "preview.mp4") : target.finalMp4;
+  if (!isPreview && existsSync(outFile)) throw new Error(`refusing to overwrite ${outFile} — versions are immutable`);
+  mkdirSync(outDir, { recursive: true });
   const concurrency = opts.concurrency ?? Math.min(8, Math.max(1, os.cpus().length - 1));
   const t0 = performance.now();
 
@@ -52,26 +60,30 @@ export async function renderProject(resolved: ResolvedManifest, p: ProjectPaths,
   if (opts.scale && opts.scale !== 1) common.push(`--scale=${opts.scale}`);
 
   if (opts.nvenc) {
-    const seqDir = path.join(p.outputDir, "frames");
-    const mixWav = path.join(p.outputDir, "mix.wav");
+    const seqDir = path.join(outDir, "frames");
+    const mixWav = path.join(outDir, "mix.wav");
     mkdirSync(seqDir, { recursive: true });
     log(`rendering image sequence (concurrency ${concurrency})…`);
     await run(["npx", ...common, "--sequence", "--image-format=jpeg", "--jpeg-quality=95", seqDir], log);
     log("rendering mixed audio track…");
     await run(["npx", ...common.filter((a) => !a.startsWith("--scale")), "--codec=wav", mixWav], log);
     log("encoding with h264_nvenc…");
-    await encodeNvenc(seqDir, mixWav, resolved.fps, p.finalMp4, log);
+    await encodeNvenc(seqDir, mixWav, resolved.fps, outFile, log);
+    rmSync(seqDir, { recursive: true, force: true });
+    rmSync(mixWav, { force: true });
   } else {
     log(`rendering ${resolved.durationInFrames} frames (concurrency ${concurrency})…`);
-    await run(["npx", ...common, "--codec=h264", "--crf=18", "--pixel-format=yuv420p", p.finalMp4], log);
+    await run(["npx", ...common, "--codec=h264", "--crf=18", "--pixel-format=yuv420p", outFile], log);
   }
 
-  log("mastering audio to -14 LUFS…");
-  await masterLoudness(p.finalMp4, log);
+  if (!isPreview) {
+    log("mastering audio to -14 LUFS…");
+    await masterLoudness(outFile, log);
+  }
 
   const ms = Math.round(performance.now() - t0);
-  log(`done in ${(ms / 1000).toFixed(1)}s → ${p.finalMp4}`);
-  return { file: p.finalMp4, ms, frames: resolved.durationInFrames };
+  log(`done in ${(ms / 1000).toFixed(1)}s → ${outFile}`);
+  return { file: outFile, ms, frames: resolved.durationInFrames, version: isPreview ? null : target.n };
 }
 
 async function run(argv: string[], log: (l: string) => void) {

@@ -12,7 +12,7 @@ describe("Manifest schema", () => {
   it("applies defaults", () => {
     const m = Manifest.parse(base);
     expect(m.voice).toBe("af_heart");
-    expect(m.scenes[0]!.character).toEqual({ id: "narrator", pose: "explaining", expression: "neutral", position: "center", poseChanges: [] });
+    expect(m.scenes[0]!.character).toEqual({ id: "narrator", pose: "explaining", expression: "neutral", position: "center", poseChanges: [], shots: [] });
     expect(m.scenes[0]!.pauseAfter).toBe(0.25);
     expect(m.characters).toEqual([{ id: "narrator", style: "stickman" }]);
   });
@@ -51,5 +51,16 @@ describe("Manifest schema", () => {
   it("allows character: null for caption-only scenes", () => {
     const m = Manifest.parse({ ...base, scenes: [{ id: "a", speech: "x", layout: "caption_only", character: null }] });
     expect(m.scenes[0]!.character).toBeNull();
+  });
+});
+
+describe("clip scenes", () => {
+  it("accepts clip without speech and rejects both/neither", () => {
+    const ok = Manifest.safeParse({ ...base, scenes: [{ id: "l", clip: { file: "laugh.wav", caption: "HAHA" } }] });
+    expect(ok.success).toBe(true);
+    const both = Manifest.safeParse({ ...base, scenes: [{ id: "l", speech: "x", clip: { file: "laugh.wav" } }] });
+    expect(both.success).toBe(false);
+    const neither = Manifest.safeParse({ ...base, scenes: [{ id: "l" }] });
+    expect(neither.success).toBe(false);
   });
 });

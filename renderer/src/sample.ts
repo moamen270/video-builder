@@ -27,6 +27,8 @@ export const SAMPLE: ResolvedManifest = {
     {
       id: "hook",
       speech: text,
+      isClip: false,
+      clipVolume: 1,
       startFrame: 0,
       durationInFrames: 120,
       speechFrames: 105,
@@ -44,6 +46,7 @@ export const SAMPLE: ResolvedManifest = {
           { pose: "shocked", expression: "surprised", atFrame: 30 },
           { pose: "pointing_up", atFrame: 66 },
         ],
+        shots: [],
       },
       props: [{ name: "database", atFrame: 10, untilFrame: 120, anim: "pop", position: "top", scale: 1 }],
       sfx: [],

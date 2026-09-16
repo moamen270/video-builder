@@ -28,7 +28,11 @@ on words**, and **camera cues**. Aim for one visible change every 1.5–2 s.
 | `leaning` | casual aside, "between you and me" | `smug` |
 | `claws_out` | hero stance, fists low and wide, chin down — menace or "let's go" | `fierce`, SFX `snikt` |
 | `slash_left` / `slash_right` | one fast horizontal swipe (snaps, no ease) — anchor a `watermelon_split` + `splat` 0.08 s later | `fierce`, SFX `slash` |
-| `laughing` | head back, hands on belly; body bounces on every spoken word — write "Ha ha ha ha!" as separate words | `laughing` |
+| `laughing` | head back, hands on belly; body bounces while audio plays — use with a real laugh `clip`, not TTS "ha ha" | `laughing` |
+| `aim_right` / `aim_left` | gunslinger: arm locked straight out at a target in `right`/`left` | `smug`, `fierce`, `shots` |
+| `aim_high` / `aim_up` | gunslinger: arm at ~120° / ~150° for targets in `top_right` / `top` | `shots` |
+| `reload` | hands together at chest — the beat before the shot | SFX `reload` |
+| `bow` | theatrical bow, one arm sweeping — finales, "thank you" | `happy`, `smug` |
 
 Expressions: `neutral happy surprised worried confused smug laughing fierce`
 (`laughing` = closed eyes + big D mouth; `fierce` = angled brows + toothy grin).
@@ -50,11 +54,29 @@ something trivial; the joke is never in his lines. Pair with `voiceFx: "deep"`,
 `speed` 0.9–0.98, `am_michael`/`am_fenrir`, `snikt` on the reveal, and a
 `voiceFx: "villain"` scene for the evil laugh (`"Muahahahaha! Hahahahaha!"`).
 
+`gunslinger` = plain stickman with a long pistol in the right hand. Put the
+shots in `character.shots: [{ "at": "word:one+0.05", "big": false }]` — each
+one draws a muzzle flash and a recoil kick; `big: true` for the dramatic last
+shot. Aim poses point the barrel: `aim_right` → prop zone `right`, `aim_high`
+→ `top_right`, `aim_up` → `top`, `aim_left` → `left`. Sequence that works:
+`reload` + SFX `reload` → aim pose → shot on the word → target swaps to `lotus`
+(`anim: bloom`) + `gunshot` + `chime` 0.2 s later + camera `shake`.
+
+### Clip scenes (real laughs, screams, stingers)
+
+A scene may use a pre-recorded file instead of TTS:
+`"clip": { "file": "laugh.wav", "caption": "HAHAHAHA", "maxSeconds": 6, "volume": 1.1 }`
+(no `speech`). Files live in `projects/<slug>/clips/`. Generate laughter with
+`uv run --project py vb-audio laugh --out projects/<slug>/clips --count 4`
+(Bark; ranks candidates by laugh-likeness, copy the best to `laugh.wav`).
+Anchors inside a clip scene: `start`, `end`, `start+2.2`, or `word:<caption>`.
+
 ### Voice FX and speed
 
 Manifest `voiceFx` (default `none`) applies to every scene; a scene can override
 it. `deep` = pitch −12 % + small room (gritty narrator). `villain` = pitch −20 %,
-bass, big reverb — use only on the laugh or one threat line. Scenes may also
+bass, big reverb — one threat line at most. `theatre` = no pitch change, stage
+reverb — performers, showmen, Jhin-types. Voice FX also apply to clips. Scenes may also
 override `speed` (0.7–1.4): slow to 0.9 for menace, 1.15 for lists.
 
 ## Layouts
@@ -76,7 +98,11 @@ Anchor a prop to the **noun** it depicts (`"at": "word:database"`), default
 Entrance `anim`: `pop` (default, everything), `bounce` (heavy things landing),
 `drop` (lists: one per item word), `slide_left`/`slide_right` (motion, arrival),
 `fade` (background context), `shake` (warnings, errors), `burst` (only for
-`watermelon_split`: halves fly apart with juice over ~0.5 s).
+`watermelon_split`: halves fly apart with juice over ~0.5 s), `bloom` (for
+`lotus`: petals unfold), `stamp` (slams in from large — `number_1..4`, verdicts).
+
+Persisting props across scenes: re-add them in the next scene with
+`"at": "start", "anim": "fade"` in the same position (props never carry over).
 
 Before/after swap: give the "before" prop `until: "word:X+0.08"` and the
 "after" prop `at: "word:X+0.08"` in the same `position`. Up to 8 props per scene.
@@ -97,7 +123,8 @@ One SFX per visual event, volume 0.5–0.8; never two on the same word.
 `click`/`tick` countable beats, typing · `ding` correct/insight ·
 `error` wrong/slow · `boom` big reveal or number · `glitch` "the catch", bugs ·
 `cash` savings/speed win · `drum` build-up before the answer ·
-`snikt` claws out · `slash` swipe · `splat` something got cut.
+`snikt` claws out · `slash` swipe · `splat` something got cut ·
+`gunshot` / `gunshot_big` (finale) · `reload` cylinder + shells · `chime` a bloom, a soft win.
 
 ## Bubbles, camera, transitions
 
@@ -138,7 +165,8 @@ Word matching ignores case and punctuation; `#2` = second occurrence.
 
 ## Reviewing the contact sheet
 
-After `video_render` you get a 5×3 grid. Check: stickman never overlaps the
+After `video_render` you get a 4×3 grid (every render is a new `output/v<N>/`;
+say "v3 vs v2", never overwrite). Check: stickman never overlaps the
 caption; props are visible when their noun is spoken (compare against the
 `words` timing); no scene shows the same pose in 3 consecutive frames; text
 stays inside the frame. Fix by moving anchors or changing layout, then re-render

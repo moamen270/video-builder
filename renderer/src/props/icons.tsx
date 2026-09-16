@@ -11,6 +11,16 @@ export interface IconColors {
 
 type Icon = React.FC<IconColors>;
 
+/** Big stencil numeral in a rounded plate — the shot counter. */
+const Numeral: React.FC<{ n: string; line: string; accent: string }> = ({ n, line, accent }) => (
+  <g>
+    <rect x={14} y={8} width={72} height={84} rx={14} fill={accent} stroke={line} strokeWidth={5} />
+    <text x={50} y={74} textAnchor="middle" fontFamily='"Segoe UI Black", "Arial Black", Impact, sans-serif' fontWeight={900} fontSize={66} fill="#111111">
+      {n}
+    </text>
+  </g>
+);
+
 const sw = 6;
 const base = (line: string) => ({ stroke: line, strokeWidth: sw, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, fill: "none" });
 
@@ -182,6 +192,49 @@ export const ICONS: Record<PropName, Icon> = {
       <path d="M44 54h12v14H44zM30 68h40v16H30z" fill={fill} />
     </g>
   ),
+  target: ({ line, fill }) => (
+    <g {...base(line)}>
+      <rect x={46} y={70} width={8} height={26} fill="#5b3a1a" stroke="none" />
+      <rect x={30} y={90} width={40} height={8} rx={3} fill="#5b3a1a" stroke="none" />
+      <circle cx={50} cy={42} r={36} fill="#ffffff" />
+      <circle cx={50} cy={42} r={27} fill="#e63946" stroke="none" />
+      <circle cx={50} cy={42} r={18} fill="#ffffff" stroke="none" />
+      <circle cx={50} cy={42} r={9} fill="#e63946" stroke="none" />
+      <circle cx={50} cy={42} r={3} fill={fill} stroke="none" />
+    </g>
+  ),
+  lotus: ({ line, t = 1 }) => {
+    // Petals unfold from the centre with t; a Jhin kill blooms.
+    const k = Math.min(1, Math.max(0, t));
+    const petal = (deg: number, len: number, w: number, col: string, i: number) => {
+      const grow = Math.min(1, Math.max(0, (k - i * 0.06) / 0.7));
+      return (
+        <path
+          key={`${deg}-${len}`}
+          transform={`translate(50 62) rotate(${deg}) scale(${grow})`}
+          d={`M 0 0 C ${-w} ${-len * 0.45} ${-w * 0.6} ${-len} 0 ${-len} C ${w * 0.6} ${-len} ${w} ${-len * 0.45} 0 0 Z`}
+          fill={col}
+          stroke={line}
+          strokeWidth={3}
+          strokeLinejoin="round"
+        />
+      );
+    };
+    const outer = [-70, -35, 0, 35, 70].map((d, i) => petal(d, 44, 16, "#c2185b", i));
+    const inner = [-45, -15, 15, 45].map((d, i) => petal(d, 34, 13, "#f06292", i + 2));
+    return (
+      <g>
+        <ellipse cx={50} cy={80} rx={34 * k} ry={9 * k} fill="#2f9e44" stroke={line} strokeWidth={3} />
+        {outer}
+        {inner}
+        <circle cx={50} cy={60} r={6 * k} fill="#ffd166" />
+      </g>
+    );
+  },
+  number_1: ({ line, accent }) => <Numeral n="1" line={line} accent={accent} />,
+  number_2: ({ line, accent }) => <Numeral n="2" line={line} accent={accent} />,
+  number_3: ({ line, accent }) => <Numeral n="3" line={line} accent={accent} />,
+  number_4: ({ line, accent }) => <Numeral n="4" line={line} accent={accent} />,
   watermelon: ({ line }) => (
     <g {...base(line)}>
       <ellipse cx={50} cy={54} rx={42} ry={36} fill="#2f9e44" />

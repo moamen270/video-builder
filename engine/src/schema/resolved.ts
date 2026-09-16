@@ -69,9 +69,14 @@ export const ResolvedCamera = z.object({
   atFrame: z.number().int(),
 });
 
+export const ResolvedShot = z.object({ atFrame: z.number().int(), big: z.boolean() });
+
 export const ResolvedScene = z.object({
   id: z.string(),
   speech: z.string(),
+  /** True when the audio is a pre-recorded clip rather than TTS. */
+  isClip: z.boolean().default(false),
+  clipVolume: z.number().default(1),
   startFrame: z.number().int(),
   durationInFrames: z.number().int(),
   /** Speech-only length (excludes pauseAfter), frames. */
@@ -90,6 +95,7 @@ export const ResolvedScene = z.object({
       expression: z.enum(EXPRESSIONS),
       position: z.enum(POSITIONS),
       poseChanges: z.array(ResolvedPoseChange),
+      shots: z.array(ResolvedShot).default([]),
     })
     .nullable(),
   props: z.array(ResolvedProp),

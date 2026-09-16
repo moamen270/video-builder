@@ -11,12 +11,11 @@ import path from "node:path";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
-import { buildProject, compileProject, loadResolved } from "../build.js";
+import { buildProject, compileProject, loadResolved, renderVersion } from "../build.js";
 import { catalogSummary } from "../catalog-info.js";
 import { doctor } from "../doctor.js";
-import { PROJECTS_DIR, SKILLS_DIR, projectPaths } from "../paths.js";
+import { PROJECTS_DIR, SKILLS_DIR, latestVersion, projectPaths, versionPaths } from "../paths.js";
 import { ManifestError, createProject, loadManifest, readMeta, slugify, validateManifest } from "../project.js";
-import { renderProject } from "../render.js";
 import { runQa } from "../qa.js";
 import { ResolveError } from "../resolver/anchors.js";
 import { VIDEO } from "../schema/index.js";
@@ -99,8 +98,9 @@ server.registerTool(
       if (!meta) return errText(new Error(`no project "${slug}"`));
       const manifest = existsSync(p.manifest) ? JSON.parse(readFileSync(p.manifest, "utf8")) : null;
       const resolved = loadResolved(p);
-      const qa = existsSync(p.qaReport) ? JSON.parse(readFileSync(p.qaReport, "utf8")) : null;
-      return text({ meta, manifest, timing: resolved ? timingSummary(resolved) : null, qa, output: existsSync(p.finalMp4) ? p.finalMp4 : null });
+      const latest = latestVersion(p);
+      const qa = latest && existsSync(latest.qaReport) ? JSON.parse(readFileSync(latest.qaReport, "utf8")) : null;
+      return text({ meta, manifest, timing: resolved ? timingSummary(resolved) : null, latestVersion: latest ? { n: latest.n, file: latest.finalMp4, qa } : null });
     } catch (e) {
       return errText(e);
     }
@@ -164,25 +164,27 @@ server.registerTool(
   "video_render",
   {
     description:
-      "Render the compiled project to output/final.mp4 and run technical QA. ~1–2 min for a 40 s video. preview=true renders at half resolution for a fast look (no QA). Returns QA checks and the contact-sheet image so you can review the visuals.",
+      "Render the compiled project into a NEW immutable version folder output/v<N>/ (earlier versions are never touched) and run technical QA. ~1–2 min for a 40 s video. preview=true renders half-res to output/preview (no version, no QA). Returns QA checks and the contact-sheet image so you can review the visuals.",
     inputSchema: {
       slug: z.string(),
       preview: z.boolean().optional(),
       nvenc: z.boolean().optional().describe("Encode with the GPU via image sequence (needs h264_nvenc)"),
       compileFirst: z.boolean().optional().describe("Run video_compile first (default true)"),
+      note: z.string().optional().describe("Why this version exists, e.g. 'slower laugh, new outro'"),
     },
   },
-  async ({ slug, preview, nvenc, compileFirst = true }) => {
+  async ({ slug, preview, nvenc, compileFirst = true, note }) => {
     try {
       const p = projectPaths(slug);
+      const { manifest } = loadManifest(slug);
       let resolved = loadResolved(p);
       if (compileFirst || !resolved) resolved = (await compileProject(slug, { log })).resolved;
       if (preview) {
-        const r = await renderProject(resolved, p, { scale: 0.5, log });
-        return text({ file: r.file, renderMs: r.ms, note: "preview — half resolution, no QA" });
+        const r = await renderVersion({ manifest, resolved, warnings: [], paths: p }, { scale: 0.5, log });
+        return text({ file: r.file, renderMs: r.renderMs, note: "preview — half resolution, no QA, not a version" });
       }
-      const r = await buildProject(slug, { nvenc, log });
-      return withContactSheet({ file: r.paths.finalMp4, seconds: r.resolved.durationInFrames / r.resolved.fps, renderMs: r.renderMs, qa: r.qa.checks, qaOk: r.qa.ok, warnings: r.warnings }, r.paths.contactSheet);
+      const r = await buildProject(slug, { nvenc, log, note });
+      return withContactSheet({ version: r.version?.n, file: r.file, seconds: r.resolved.durationInFrames / r.resolved.fps, renderMs: r.renderMs, qa: r.qa.checks, qaOk: r.qa.ok, warnings: r.warnings }, r.version!.contactSheet);
     } catch (e) {
       return errText(e);
     }
@@ -191,14 +193,16 @@ server.registerTool(
 
 server.registerTool(
   "video_qa",
-  { description: "Re-run technical QA on an existing render and return the report plus contact sheet image.", inputSchema: { slug: z.string() } },
-  async ({ slug }) => {
+  { description: "Re-run technical QA on a rendered version (default latest) and return the report plus contact sheet image.", inputSchema: { slug: z.string(), version: z.number().int().optional() } },
+  async ({ slug, version }) => {
     try {
       const p = projectPaths(slug);
-      const resolved = loadResolved(p);
+      const v = version ? versionPaths(p, version) : latestVersion(p);
+      if (!v || !existsSync(v.finalMp4)) return errText(new Error("no rendered version"));
+      const resolved = existsSync(v.resolvedSnapshot) ? JSON.parse(readFileSync(v.resolvedSnapshot, "utf8")) : loadResolved(p);
       if (!resolved) return errText(new Error("not compiled"));
-      const qa = await runQa(resolved, p);
-      return withContactSheet(qa, p.contactSheet);
+      const qa = await runQa(resolved, v);
+      return withContactSheet(qa, v.contactSheet);
     } catch (e) {
       return errText(e);
     }
@@ -207,11 +211,12 @@ server.registerTool(
 
 server.registerTool(
   "video_contact_sheet",
-  { description: "Return the 5x3 frame grid of the last render as an image, for visual review.", inputSchema: { slug: z.string() } },
-  async ({ slug }) => {
+  { description: "Return the 4x3 frame grid of a rendered version (default latest) as an image, for visual review.", inputSchema: { slug: z.string(), version: z.number().int().optional() } },
+  async ({ slug, version }) => {
     const p = projectPaths(slug);
-    if (!existsSync(p.contactSheet)) return errText(new Error("no contact sheet yet — render first"));
-    return withContactSheet({ file: p.contactSheet }, p.contactSheet);
+    const v = version ? versionPaths(p, version) : latestVersion(p);
+    if (!v || !existsSync(v.contactSheet)) return errText(new Error("no contact sheet yet — render first"));
+    return withContactSheet({ version: v.n, file: v.contactSheet }, v.contactSheet);
   },
 );
 
@@ -243,7 +248,7 @@ function timingSummary(r: NonNullable<ReturnType<typeof loadResolved>>) {
 }
 
 function estimate(m: ReturnType<typeof loadManifest>["manifest"]) {
-  const words = m.scenes.reduce((n, s) => n + s.speech.split(/\s+/).length, 0);
+  const words = m.scenes.reduce((n, s) => n + (s.speech?.split(/\s+/).length ?? 0), 0);
   return +(words / (2.6 * m.speed) + m.scenes.reduce((n, s) => n + s.pauseAfter, 0)).toFixed(1);
 }
 

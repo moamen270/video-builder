@@ -71,8 +71,12 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
           poseChanges: s.character.poseChanges
             .map((pc, i) => ({ pose: pc.pose, expression: pc.expression, atFrame: at(pc.at, `character.poseChanges[${i}]`) }))
             .sort((x, y) => x.atFrame - y.atFrame),
+          shots: s.character.shots.map((sh, i) => ({ atFrame: at(sh.at, `character.shots[${i}]`), big: sh.big })),
         }
       : null;
+    if (character && character.shots.length && character.style !== "gunslinger") {
+      warnings.push({ path: where, message: `shots only render for style "gunslinger" (character is "${character.style}")` });
+    }
 
     if (s.layout !== "caption_only" && !character) {
       warnings.push({ path: where, message: `layout "${s.layout}" but character is null; nothing will be drawn there` });
@@ -105,7 +109,9 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
 
     return {
       id: s.id,
-      speech: s.speech,
+      speech: s.speech ?? s.clip?.caption ?? "",
+      isClip: Boolean(s.clip),
+      clipVolume: s.clip?.volume ?? 1,
       startFrame,
       durationInFrames,
       speechFrames,

@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -30,13 +30,51 @@ export function projectPaths(slug: string) {
     alignment: path.join(build, "alignment.json"),
     resolved: path.join(build, "manifest.resolved.json"),
     buildAssets: path.join(build, "assets"),
+    /** Pre-recorded audio referenced by `scene.clip.file` (laughs, stingers). */
+    clipsDir: path.join(root, "clips"),
     outputDir: path.join(root, "output"),
-    finalMp4: path.join(root, "output", "final.mp4"),
-    qaReport: path.join(root, "output", "qa.json"),
-    contactSheet: path.join(root, "output", "contact.png"),
+    /** Non-versioned scratch output for --frames/--scale previews. */
+    previewDir: path.join(root, "output", "preview"),
   };
 }
 export type ProjectPaths = ReturnType<typeof projectPaths>;
+
+/**
+ * Renders are immutable: each one lives in output/v<N>/ with everything needed
+ * to judge and reproduce it. Nothing here is ever overwritten.
+ */
+export function versionPaths(p: ProjectPaths, n: number) {
+  const dir = path.join(p.outputDir, `v${n}`);
+  return {
+    n,
+    dir,
+    finalMp4: path.join(dir, "final.mp4"),
+    qaReport: path.join(dir, "qa.json"),
+    contactSheet: path.join(dir, "contact.png"),
+    manifestSnapshot: path.join(dir, "manifest.json"),
+    resolvedSnapshot: path.join(dir, "manifest.resolved.json"),
+  };
+}
+export type VersionPaths = ReturnType<typeof versionPaths>;
+
+export function listVersions(p: ProjectPaths): number[] {
+  if (!existsSync(p.outputDir)) return [];
+  return readdirSync(p.outputDir)
+    .map((d) => /^v(\d+)$/.exec(d)?.[1])
+    .filter((x): x is string => Boolean(x))
+    .map(Number)
+    .sort((a, b) => a - b);
+}
+
+export function latestVersion(p: ProjectPaths): VersionPaths | null {
+  const vs = listVersions(p);
+  return vs.length ? versionPaths(p, vs[vs.length - 1]!) : null;
+}
+
+export function nextVersion(p: ProjectPaths): VersionPaths {
+  const vs = listVersions(p);
+  return versionPaths(p, (vs[vs.length - 1] ?? 0) + 1);
+}
 
 export function projectExists(slug: string): boolean {
   return existsSync(projectPaths(slug).manifest);

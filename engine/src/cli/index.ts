@@ -2,12 +2,10 @@
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import path from "node:path";
 import { Command } from "commander";
-import { buildProject, compileProject } from "../build.js";
+import { buildProject, compileProject, loadResolved, renderVersion } from "../build.js";
 import { doctor } from "../doctor.js";
-import { PROJECTS_DIR, projectPaths } from "../paths.js";
+import { PROJECTS_DIR, latestVersion, listVersions, projectPaths, versionPaths } from "../paths.js";
 import { createProject, loadManifest, readMeta, slugify, validateManifest, ManifestError } from "../project.js";
-import { renderProject } from "../render.js";
-import { loadResolved } from "../build.js";
 import { runQa } from "../qa.js";
 import { ResolveError } from "../resolver/anchors.js";
 import { catalogSummary } from "../catalog-info.js";
@@ -85,17 +83,29 @@ program
   .option("--frames <range>", "e.g. 0-90 for a preview")
   .option("--scale <f>", "0.25–1", parseFloat)
   .option("--nvenc", "encode with h264_nvenc via image sequence")
-  .description("render an already-compiled project")
-  .action(async (slug: string, o: { concurrency?: string; frames?: string; scale?: number; nvenc?: boolean }) => {
+  .option("--note <text>", "why this version exists (stored in project.json)")
+  .description("render an already-compiled project into a NEW output/vN folder (previews go to output/preview)")
+  .action(async (slug: string, o: { concurrency?: string; frames?: string; scale?: number; nvenc?: boolean; note?: string }) => {
     try {
-      const p = projectPaths(slug);
-      const resolved = loadResolved(p);
+      const { manifest, paths } = loadManifest(slug);
+      const resolved = loadResolved(paths);
       if (!resolved) throw new Error(`run "vb compile ${slug}" first`);
-      const r = await renderProject(resolved, p, { ...o, concurrency: o.concurrency ? Number(o.concurrency) : undefined, log });
+      const r = await renderVersion({ manifest, resolved, warnings: [], paths }, { ...o, concurrency: o.concurrency ? Number(o.concurrency) : undefined, log });
       console.log(r.file);
     } catch (e) {
       fail(e);
     }
+  });
+
+program
+  .command("versions")
+  .argument("<slug>")
+  .description("list rendered versions of a project")
+  .action((slug: string) => {
+    const meta = readMeta(projectPaths(slug));
+    if (!meta) fail(new Error(`no project "${slug}"`));
+    for (const v of meta!.versions) console.log(`v${v.n}  ${v.at.slice(0, 16)}  ${v.seconds.toFixed(1)}s  qa=${v.qaOk ?? "skipped"}  ${v.note ?? ""}`);
+    if (!meta!.versions.length) console.log("(no versions rendered yet)");
   });
 
 program
@@ -107,11 +117,12 @@ program
   .option("--nvenc")
   .option("--force-audio")
   .option("--skip-qa")
-  .description("compile + render + QA in one go")
-  .action(async (slug: string, o: { concurrency?: string; frames?: string; scale?: number; nvenc?: boolean; forceAudio?: boolean; skipQa?: boolean }) => {
+  .option("--note <text>", "why this version exists")
+  .description("compile + render a NEW version + QA in one go")
+  .action(async (slug: string, o: { concurrency?: string; frames?: string; scale?: number; nvenc?: boolean; forceAudio?: boolean; skipQa?: boolean; note?: string }) => {
     try {
       const r = await buildProject(slug, { ...o, concurrency: o.concurrency ? Number(o.concurrency) : undefined, log });
-      console.log(JSON.stringify({ file: r.paths.finalMp4, seconds: r.resolved.durationInFrames / r.resolved.fps, renderMs: r.renderMs, qa: r.qa.ok, warnings: r.warnings }, null, 2));
+      console.log(JSON.stringify({ version: r.version?.n ?? "preview", file: r.file, seconds: r.resolved.durationInFrames / r.resolved.fps, renderMs: r.renderMs, qa: r.qa.ok, warnings: r.warnings }, null, 2));
       process.exit(r.qa.ok ? 0 : 2);
     } catch (e) {
       fail(e);
@@ -121,12 +132,15 @@ program
 program
   .command("qa")
   .argument("<slug>")
-  .description("re-run technical QA on output/final.mp4")
-  .action(async (slug: string) => {
+  .option("-v, --version <n>", "version to check (default: latest)")
+  .description("re-run technical QA on a rendered version")
+  .action(async (slug: string, o: { version?: string }) => {
     const p = projectPaths(slug);
-    const resolved = loadResolved(p);
+    const v = o.version ? versionPaths(p, Number(o.version)) : latestVersion(p);
+    if (!v || !existsSync(v.finalMp4)) fail(new Error(`no rendered version${o.version ? ` v${o.version}` : ""} for ${slug} (have: ${listVersions(p).join(", ") || "none"})`));
+    const resolved = existsSync(v!.resolvedSnapshot) ? JSON.parse(readFileSync(v!.resolvedSnapshot, "utf8")) : loadResolved(p);
     if (!resolved) fail(new Error("not compiled"));
-    const r = await runQa(resolved!, p);
+    const r = await runQa(resolved!, v!);
     for (const c of r.checks) console.log(`${c.ok ? "pass" : "FAIL"} ${c.name}: ${c.detail}`);
     process.exit(r.ok ? 0 : 2);
   });

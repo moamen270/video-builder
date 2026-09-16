@@ -69,8 +69,17 @@ export const Prop: React.FC<Props> = ({ prop, sceneStart, zone, palette, slot, s
       // Appears instantly at full size and kicks outward; the icon's own `t` does the splitting.
       sc = interpolate(local, [0, 4, 10], [1.0, 1.25, 1.1], { extrapolateRight: "clamp" });
       break;
+    case "bloom":
+      // Grows gently; the icon's `t` unfolds petals over ~0.6 s.
+      sc = interpolate(enter, [0, 1], [0.6, 1]);
+      break;
+    case "stamp":
+      // Slams in from large to normal with a hard settle — for numbers.
+      sc = interpolate(local, [0, 3, 6], [2.2, 0.92, 1], { extrapolateRight: "clamp" });
+      op = interpolate(local, [0, 2], [0, 1], { extrapolateRight: "clamp" });
+      break;
   }
-  const iconT = interpolate(local, [0, 14], [0, 1], { extrapolateRight: "clamp" });
+  const iconT = interpolate(local, [0, prop.anim === "bloom" ? 18 : 14], [0, 1], { extrapolateRight: "clamp" });
   // Gentle hover so props never sit dead still.
   ty += Math.sin((abs + slot * 7) / 11) * 5;
   rot += Math.sin((abs + slot * 5) / 17) * 2;

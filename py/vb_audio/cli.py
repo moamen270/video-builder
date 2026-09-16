@@ -83,6 +83,14 @@ def cmd_doctor(_: argparse.Namespace) -> int:
     return 0 if ok else 1
 
 
+def cmd_laugh(args: argparse.Namespace) -> int:
+    from .laugh import DEFAULT_PROMPT, DEFAULT_VOICE, generate
+
+    res = generate(Path(args.out), args.prompt or DEFAULT_PROMPT, args.voice or DEFAULT_VOICE, int(args.count), int(args.seed), float(args.max_seconds))
+    _log(f"[laugh] best: {res[0].file} (score {res[0].score})" if res else "[laugh] nothing generated")
+    return 0
+
+
 def cmd_probe(args: argparse.Namespace) -> int:
     import soundfile as sf
 
@@ -103,6 +111,15 @@ def main(argv: list[str] | None = None) -> int:
 
     d = sub.add_parser("doctor")
     d.set_defaults(fn=cmd_doctor)
+
+    lg = sub.add_parser("laugh", help="generate laughter candidates with Bark")
+    lg.add_argument("--out", required=True, help="directory for laugh_<seed>.wav + candidates.json")
+    lg.add_argument("--prompt", default=None)
+    lg.add_argument("--voice", default=None, help="Bark speaker preset, e.g. v2/en_speaker_6")
+    lg.add_argument("--count", default=4)
+    lg.add_argument("--seed", default=1)
+    lg.add_argument("--max-seconds", default=6.0)
+    lg.set_defaults(fn=cmd_laugh)
 
     pr = sub.add_parser("probe")
     pr.add_argument("file")

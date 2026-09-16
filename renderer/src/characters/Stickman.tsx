@@ -92,7 +92,16 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const blinkPeriod = Math.round(fps * 2.7);
   const blink = abs % blinkPeriod < 4;
 
-  const lift = rig.lift + bob + laughLift;
+  // "wolverine" = the plain stickman with claws. No costume: the claws carry the aura.
+  const wolv = style === "wolverine";
+  // "gunslinger" = pistol in the right hand; `shots` add a muzzle flash + recoil.
+  const gun = style === "gunslinger";
+  const shots = scene.character?.shots ?? [];
+  const lastShot = shots.filter((sh) => sh.atFrame <= abs).at(-1);
+  const sinceShot = lastShot ? abs - lastShot.atFrame : Infinity;
+  const kick = sinceShot < 7 ? (1 - sinceShot / 7) * (lastShot?.big ? 1.6 : 1) : 0;
+  const flash = sinceShot < (lastShot?.big ? 6 : 4) ? 1 - sinceShot / (lastShot?.big ? 6 : 4) : 0;
+  const lift = rig.lift + bob + laughLift - kick * 4;
   const torso = rig.torso + sway * 0.4 - laughNod * 0.4;
 
   // Torso: shoulder→hip rotates around hip by torso lean.
@@ -102,8 +111,11 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
 
   const lElbow = polar(shoulder.x, shoulder.y, UPPER_ARM, rig.lUpper + torso + sway * 0.6);
   const lHand = polar(lElbow.x, lElbow.y, FORE_ARM, rig.lUpper + rig.lLower + torso + sway * 0.6);
-  const rElbow = polar(shoulder.x, shoulder.y, UPPER_ARM, rig.rUpper + torso - sway * 0.6);
-  const rHand = polar(rElbow.x, rElbow.y, FORE_ARM, rig.rUpper + rig.rLower + wiggle + torso - sway * 0.6);
+  const recoil = kick * 14;
+  const rArmDeg = rig.rUpper + torso - sway * 0.6 + recoil;
+  const rElbow = polar(shoulder.x, shoulder.y, UPPER_ARM, rArmDeg);
+  const rForeDeg = rig.rUpper + rig.rLower + wiggle + torso - sway * 0.6 + recoil * 1.4;
+  const rHand = polar(rElbow.x, rElbow.y, FORE_ARM, rForeDeg);
 
   const lKnee = polar(HIP.x, HIP.y, THIGH, rig.lThigh);
   const lFoot = polar(lKnee.x, lKnee.y, SHIN, rig.lThigh + rig.lShin);
@@ -113,8 +125,6 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const scale = Math.min(rect.w / RW, rect.h / RH);
   const face = useMemo(() => faceFor(st.expression), [st.expression]);
   const mouthOpen = talking ? (laughing ? 0.7 + 0.3 * laughBeat : 0.5 + 0.5 * Math.abs(Math.sin(abs / 1.7))) : 0;
-  // "wolverine" = the plain stickman with claws. No costume: the claws carry the aura.
-  const wolv = style === "wolverine";
 
   const line = { stroke: ink, strokeWidth: STROKE, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, fill: "none" };
 
@@ -139,6 +149,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
         {/* hands */}
         {wolv && <Claws x={lHand.x} y={lHand.y} deg={rig.lUpper + rig.lLower + torso} />}
         {wolv && <Claws x={rHand.x} y={rHand.y} deg={rig.rUpper + rig.rLower + wiggle + torso} />}
+        {gun && <Pistol x={rHand.x} y={rHand.y} deg={rForeDeg} flash={flash} big={Boolean(lastShot?.big)} accent={accent} />}
         <circle cx={lHand.x} cy={lHand.y} r={wolv ? 9 : 7} fill={ink} />
         <circle cx={rHand.x} cy={rHand.y} r={wolv ? 9 : 7} fill={ink} />
         {/* head */}
@@ -187,6 +198,33 @@ interface Face {
   browR: [number, number];
   mouth: MouthKind;
 }
+
+/**
+ * Long-barrelled pistol held along the forearm direction (`deg`, 0 = down).
+ * `flash` 0–1 draws the muzzle flash at the barrel tip.
+ */
+const Pistol: React.FC<{ x: number; y: number; deg: number; flash: number; big: boolean; accent: string }> = ({ x, y, deg, flash, big, accent }) => {
+  const L = 62; // barrel length in rig units
+  return (
+    <g transform={`translate(${x} ${y}) rotate(${deg})`}>
+      {/* grip (into the hand) + frame + barrel, drawn pointing "down" in local space = along the forearm */}
+      <rect x={-6} y={-8} width={12} height={22} rx={3} fill="#1a1d29" />
+      <rect x={-4} y={8} width={8} height={L} rx={2} fill="#2b3042" />
+      <rect x={-2} y={10} width={4} height={L - 6} rx={1} fill="#8a93aa" />
+      <rect x={-7} y={12} width={14} height={10} rx={2} fill="#3a4055" />
+      <circle cx={0} cy={18} r={2.5} fill={accent} />
+      {flash > 0 && (
+        <g transform={`translate(0 ${L + 10})`} opacity={flash}>
+          <path
+            d={`M 0 ${-6 * flash} L ${8 * flash} ${8 * flash} L ${22 * flash * (big ? 1.6 : 1)} ${16 * flash} L ${6 * flash} ${22 * flash} L 0 ${38 * flash * (big ? 1.7 : 1)} L ${-6 * flash} ${22 * flash} L ${-22 * flash * (big ? 1.6 : 1)} ${16 * flash} L ${-8 * flash} ${8 * flash} Z`}
+            fill="#ffd166"
+          />
+          <circle r={7 * flash * (big ? 1.5 : 1)} cy={8} fill="#ffffff" />
+        </g>
+      )}
+    </g>
+  );
+};
 
 /** Three adamantium claws fanning out of a hand, along the forearm direction. */
 const Claws: React.FC<{ x: number; y: number; deg: number }> = ({ x, y, deg }) => (

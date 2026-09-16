@@ -11,6 +11,10 @@ manifests; the engine does TTS, timing, rendering and QA. Read
 3. `video_compile` → read back exact words + per-scene seconds; fix anchors.
 4. `video_render` → inspect QA checks and the contact-sheet image; iterate.
 Only changed scenes are re-synthesized; a full render is ~1 min per 40 s.
+Every render is a NEW `output/v<N>/` (mp4, qa, contact sheet, manifest
+snapshot). Never delete or overwrite a version — Moamen compares them.
+Laughter/screams: never TTS "ha ha"; use a `clip` scene with a Bark-generated
+wav (`vb-audio laugh`) or a file the user provides.
 
 ## Repo rules
 - Never hand-edit `projects/*/build/manifest.resolved.json` — it is generated.

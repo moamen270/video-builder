@@ -1,0 +1,230 @@
+{
+  "version": 1,
+  "slug": "jhin-four-shots",
+  "title": "Jhin: four shots",
+  "voice": "bm_george",
+  "speed": 0.9,
+  "voiceFx": "theatre",
+  "theme": "grape",
+  "music": null,
+  "characters": [{ "id": "jhin", "style": "gunslinger" }],
+  "notes": "Theatrical, calm, precise. Every shot is a performance; the fourth is the finale. Lotuses bloom where targets die and stay on stage. The laugh is a real Bark clip, not TTS.",
+  "scenes": [
+    {
+      "id": "intro",
+      "speech": "Four shots. That is all a masterpiece requires.",
+      "emphasis": ["Four", "masterpiece"],
+      "layout": "character_center",
+      "pauseAfter": 0.6,
+      "character": {
+        "id": "jhin",
+        "pose": "idle",
+        "expression": "neutral",
+        "poseChanges": [
+          { "pose": "pointing_up", "expression": "smug", "at": "word:four" },
+          { "pose": "presenting", "expression": "neutral", "at": "word:that" }
+        ]
+      },
+      "props": [{ "name": "number_4", "at": "word:four", "until": "word:that", "anim": "stamp", "position": "above_character", "scale": 0.8 }],
+      "sfx": [{ "name": "drum", "at": "word:four", "volume": 0.7 }],
+      "camera": [{ "move": "slow_zoom", "at": "start" }]
+    },
+    {
+      "id": "prepare",
+      "speech": "Watch closely.",
+      "emphasis": ["closely"],
+      "layout": "character_center",
+      "pauseAfter": 0.7,
+      "character": {
+        "id": "jhin",
+        "pose": "reload",
+        "expression": "neutral",
+        "position": "left",
+        "poseChanges": [{ "pose": "aim_right", "expression": "smug", "at": "word:closely+0.2" }]
+      },
+      "props": [{ "name": "target", "at": "word:closely", "anim": "drop", "position": "right", "scale": 1.3 }],
+      "sfx": [
+        { "name": "reload", "at": "start", "volume": 0.8 },
+        { "name": "click", "at": "word:closely+0.2", "volume": 0.6 }
+      ]
+    },
+    {
+      "id": "one",
+      "speech": "One.",
+      "emphasis": ["One"],
+      "layout": "character_center",
+      "pauseAfter": 0.75,
+      "character": {
+        "id": "jhin",
+        "pose": "aim_right",
+        "expression": "smug",
+        "position": "left",
+        "shots": [{ "at": "word:one+0.05" }]
+      },
+      "props": [
+        { "name": "target", "at": "start", "until": "word:one+0.1", "anim": "fade", "position": "right", "scale": 1.3 },
+        { "name": "lotus", "at": "word:one+0.1", "anim": "bloom", "position": "right", "scale": 1.3 }
+      ],
+      "sfx": [
+        { "name": "gunshot", "at": "word:one+0.05", "volume": 0.9 },
+        { "name": "chime", "at": "word:one+0.25", "volume": 0.5 }
+      ],
+      "bubbles": [{ "text": "1", "at": "word:one+0.1" }],
+      "camera": [{ "move": "shake", "at": "word:one+0.05" }]
+    },
+    {
+      "id": "two",
+      "speech": "Two.",
+      "emphasis": ["Two"],
+      "layout": "character_center",
+      "pauseAfter": 0.75,
+      "character": {
+        "id": "jhin",
+        "pose": "aim_right",
+        "expression": "smug",
+        "position": "left",
+        "poseChanges": [{ "pose": "aim_high", "at": "start+0.1" }],
+        "shots": [{ "at": "word:two+0.05" }]
+      },
+      "props": [
+        { "name": "lotus", "at": "start", "anim": "fade", "position": "right", "scale": 1.3 },
+        { "name": "target", "at": "start", "until": "word:two+0.1", "anim": "drop", "position": "top_right", "scale": 1.1 },
+        { "name": "lotus", "at": "word:two+0.1", "anim": "bloom", "position": "top_right", "scale": 1.1 }
+      ],
+      "sfx": [
+        { "name": "whoosh", "at": "start", "volume": 0.35 },
+        { "name": "gunshot", "at": "word:two+0.05", "volume": 0.9 },
+        { "name": "chime", "at": "word:two+0.25", "volume": 0.5 }
+      ],
+      "bubbles": [{ "text": "2", "at": "word:two+0.1" }],
+      "camera": [{ "move": "shake", "at": "word:two+0.05" }]
+    },
+    {
+      "id": "three",
+      "speech": "Three.",
+      "emphasis": ["Three"],
+      "layout": "character_center",
+      "pauseAfter": 0.75,
+      "character": {
+        "id": "jhin",
+        "pose": "aim_high",
+        "expression": "smug",
+        "position": "left",
+        "poseChanges": [{ "pose": "aim_up", "at": "start+0.1" }],
+        "shots": [{ "at": "word:three+0.05" }]
+      },
+      "props": [
+        { "name": "lotus", "at": "start", "anim": "fade", "position": "right", "scale": 1.3 },
+        { "name": "lotus", "at": "start", "anim": "fade", "position": "top_right", "scale": 1.1 },
+        { "name": "target", "at": "start", "until": "word:three+0.1", "anim": "drop", "position": "top", "scale": 1.0 },
+        { "name": "lotus", "at": "word:three+0.1", "anim": "bloom", "position": "top", "scale": 1.0 }
+      ],
+      "sfx": [
+        { "name": "whoosh", "at": "start", "volume": 0.35 },
+        { "name": "gunshot", "at": "word:three+0.05", "volume": 0.9 },
+        { "name": "chime", "at": "word:three+0.25", "volume": 0.5 }
+      ],
+      "bubbles": [{ "text": "3", "at": "word:three+0.1" }],
+      "camera": [{ "move": "shake", "at": "word:three+0.05" }]
+    },
+    {
+      "id": "pause",
+      "speech": "And now... the finale.",
+      "emphasis": ["finale"],
+      "layout": "character_center",
+      "pauseAfter": 0.9,
+      "speed": 0.85,
+      "character": {
+        "id": "jhin",
+        "pose": "reload",
+        "expression": "neutral",
+        "poseChanges": [{ "pose": "aim_left", "expression": "fierce", "at": "word:finale" }]
+      },
+      "props": [
+        { "name": "lotus", "at": "start", "anim": "fade", "position": "right", "scale": 1.0 },
+        { "name": "lotus", "at": "start", "anim": "fade", "position": "top_right", "scale": 1.0 },
+        { "name": "lotus", "at": "start", "anim": "fade", "position": "top", "scale": 0.9 },
+        { "name": "target", "at": "word:finale", "anim": "drop", "position": "left", "scale": 1.3 }
+      ],
+      "sfx": [
+        { "name": "reload", "at": "word:now", "volume": 0.8 },
+        { "name": "drum", "at": "word:finale", "volume": 0.8 }
+      ],
+      "camera": [{ "move": "slow_zoom", "at": "start" }]
+    },
+    {
+      "id": "four",
+      "speech": "Four.",
+      "emphasis": ["Four"],
+      "layout": "character_center",
+      "pauseAfter": 1.0,
+      "speed": 0.8,
+      "character": {
+        "id": "jhin",
+        "pose": "aim_left",
+        "expression": "fierce",
+        "shots": [{ "at": "word:four+0.05", "big": true }]
+      },
+      "props": [
+        { "name": "lotus", "at": "start", "anim": "fade", "position": "right", "scale": 1.0 },
+        { "name": "lotus", "at": "start", "anim": "fade", "position": "top_right", "scale": 1.0 },
+        { "name": "lotus", "at": "start", "anim": "fade", "position": "top", "scale": 0.9 },
+        { "name": "target", "at": "start", "until": "word:four+0.1", "anim": "fade", "position": "left", "scale": 1.3 },
+        { "name": "lotus", "at": "word:four+0.1", "anim": "bloom", "position": "left", "scale": 1.5 }
+      ],
+      "sfx": [
+        { "name": "gunshot_big", "at": "word:four+0.05", "volume": 1.0 },
+        { "name": "chime", "at": "word:four+0.4", "volume": 0.7 }
+      ],
+      "bubbles": [{ "text": "4", "at": "word:four+0.1" }],
+      "camera": [{ "move": "punch_in", "at": "word:four" }, { "move": "shake", "at": "word:four+0.05" }]
+    },
+    {
+      "id": "laugh",
+      "clip": { "file": "laugh.wav", "caption": "HAHAHAHA", "maxSeconds": 6, "volume": 1.1 },
+      "layout": "character_center",
+      "pauseAfter": 0.4,
+      "voiceFx": "theatre",
+      "transition": "zoom",
+      "character": {
+        "id": "jhin",
+        "pose": "laughing",
+        "expression": "laughing",
+        "poseChanges": [{ "pose": "celebrating", "expression": "laughing", "at": "start+2.2" }, { "pose": "laughing", "expression": "laughing", "at": "start+3.8" }]
+      },
+      "props": [
+        { "name": "lotus", "at": "start", "anim": "fade", "position": "right", "scale": 1.0 },
+        { "name": "lotus", "at": "start", "anim": "fade", "position": "top_right", "scale": 1.0 },
+        { "name": "lotus", "at": "start", "anim": "fade", "position": "top", "scale": 0.9 },
+        { "name": "lotus", "at": "start", "anim": "fade", "position": "left", "scale": 1.0 }
+      ],
+      "camera": [{ "move": "punch_in", "at": "start" }, { "move": "shake", "at": "start+2.2" }]
+    },
+    {
+      "id": "outro",
+      "speech": "Perfection. In four acts.",
+      "emphasis": ["Perfection", "four acts"],
+      "layout": "character_center",
+      "pauseAfter": 1.0,
+      "speed": 0.88,
+      "character": {
+        "id": "jhin",
+        "pose": "presenting",
+        "expression": "smug",
+        "poseChanges": [{ "pose": "bow", "expression": "happy", "at": "word:in" }]
+      },
+      "props": [
+        { "name": "lotus", "at": "start", "anim": "fade", "position": "right", "scale": 1.0 },
+        { "name": "lotus", "at": "start", "anim": "fade", "position": "top_right", "scale": 1.0 },
+        { "name": "lotus", "at": "start", "anim": "fade", "position": "top", "scale": 0.9 },
+        { "name": "lotus", "at": "start", "anim": "fade", "position": "left", "scale": 1.0 },
+        { "name": "number_4", "at": "word:four", "anim": "stamp", "position": "above_character", "scale": 0.8 }
+      ],
+      "sfx": [
+        { "name": "chime", "at": "word:perfection", "volume": 0.6 },
+        { "name": "drum", "at": "word:four", "volume": 0.6 }
+      ],
+      "camera": [{ "move": "slow_zoom", "at": "start" }]
+    }
+  ]
+}

@@ -52,7 +52,7 @@ export const SceneView: React.FC<Props> = ({ scene, palette }) => {
 
   return (
     <AbsoluteFill style={trans}>
-      {scene.audioSrc && <Audio src={staticFile(scene.audioSrc)} />}
+      {scene.audioSrc && <Audio src={staticFile(scene.audioSrc)} volume={scene.clipVolume} />}
       {scene.sfx.map((fx, i) => (
         <Sequence key={i} from={fx.atFrame - scene.startFrame} durationInFrames={Math.max(1, scene.startFrame + scene.durationInFrames - fx.atFrame)}>
           <Audio src={staticFile(fx.src)} volume={fx.volume} />

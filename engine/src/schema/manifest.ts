@@ -42,6 +42,8 @@ export const CharacterState = z.object({
   position: z.enum(POSITIONS).default("center"),
   /** Mid-scene pose switches. Storytelling rule of thumb: one every ~1.5 s. */
   poseChanges: z.array(PoseChange).default([]),
+  /** Gunslinger only: muzzle flash + recoil at these anchors. `big` = the dramatic final shot. */
+  shots: z.array(z.object({ at: Anchor, big: z.boolean().default(false) })).max(8).default([]),
 });
 
 export const PropCue = z.object({
@@ -77,8 +79,22 @@ export const Scene = z.object({
   id: z
     .string()
     .regex(/^[a-z0-9_-]+$/, "scene id: lowercase letters, digits, - or _"),
-  /** Exactly what the narrator says. Captions are derived from this — never a separate string. */
-  speech: z.string().min(1).max(400),
+  /** Exactly what the narrator says. Captions are derived from this — never a separate string. Omit when using `clip`. */
+  speech: z.string().min(1).max(400).optional(),
+  /**
+   * Pre-recorded audio instead of TTS (laughs, screams, sung lines). `file` is
+   * relative to projects/<slug>/clips/. `caption` is shown as one caption word
+   * for the whole clip. Anchors in a clip scene: start, end, or word:<caption>.
+   */
+  clip: z
+    .object({
+      file: z.string().min(1),
+      caption: z.string().max(40).optional(),
+      /** Trim the clip to this many seconds. */
+      maxSeconds: z.number().min(0.5).max(20).optional(),
+      volume: z.number().min(0).max(2).default(1),
+    })
+    .optional(),
   /** Phrases (verbatim substrings of `speech`) to highlight in the accent colour. */
   emphasis: z.array(z.string().min(1)).default([]),
   /** Silence appended after this scene's speech, seconds. */
@@ -130,12 +146,14 @@ export const Manifest = z.object({
 }).superRefine((m, ctx) => {
   const ids = new Set<string>();
   for (const [i, s] of m.scenes.entries()) {
+    if (!s.speech && !s.clip) ctx.addIssue({ code: "custom", path: ["scenes", i], message: "scene needs `speech` or `clip`" });
+    if (s.speech && s.clip) ctx.addIssue({ code: "custom", path: ["scenes", i], message: "scene has both `speech` and `clip`; pick one" });
     if (ids.has(s.id)) {
       ctx.addIssue({ code: "custom", path: ["scenes", i, "id"], message: `duplicate scene id "${s.id}"` });
     }
     ids.add(s.id);
     for (const [j, e] of s.emphasis.entries()) {
-      if (!s.speech.toLowerCase().includes(e.toLowerCase())) {
+      if (s.speech && !s.speech.toLowerCase().includes(e.toLowerCase())) {
         ctx.addIssue({
           code: "custom",
           path: ["scenes", i, "emphasis", j],
@@ -152,7 +170,7 @@ export const Manifest = z.object({
     }
   }
   // Rough pre-TTS length check: ~2.6 words/sec at speed 1.0 for Kokoro.
-  const words = m.scenes.reduce((n, s) => n + s.speech.split(/\s+/).length, 0);
+  const words = m.scenes.reduce((n, s) => n + (s.speech?.split(/\s+/).length ?? 0), 0);
   const pauses = m.scenes.reduce((n, s) => n + s.pauseAfter, 0);
   const estSec = words / (2.6 * m.speed) + pauses;
   if (estSec > VIDEO.maxDurationSec * 1.15) {

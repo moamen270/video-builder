@@ -4,5 +4,16 @@
   "createdAt": "2026-09-16T02:26:42.539Z",
   "targetSeconds": 40,
   "status": "qa_passed",
-  "lastRenderMs": 48199
+  "lastRenderMs": 48199,
+  "versions": [
+    {
+      "n": 1,
+      "at": "2026-09-16T02:49:43.907Z",
+      "seconds": 29.466666666666665,
+      "renderMs": 48199,
+      "qaOk": true,
+      "manifestHash": "6c98e31eb571406c",
+      "note": "migrated from pre-versioning output/"
+    }
+  ]
 }

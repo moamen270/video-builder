@@ -1,7 +1,7 @@
 import { existsSync, statSync, writeFileSync } from "node:fs";
 import { execa } from "execa";
 import { VIDEO, type ResolvedManifest } from "./schema/index.js";
-import type { ProjectPaths } from "./paths.js";
+import type { VersionPaths } from "./paths.js";
 
 export interface QaCheck {
   name: string;
@@ -29,7 +29,7 @@ export interface QaReport {
  * Deterministic technical QA on the rendered MP4. No taste judgments — that's
  * for the agent looking at the contact sheet.
  */
-export async function runQa(resolved: ResolvedManifest, p: ProjectPaths): Promise<QaReport> {
+export async function runQa(resolved: ResolvedManifest, p: VersionPaths): Promise<QaReport> {
   const checks: QaCheck[] = [];
   const file = p.finalMp4;
   if (!existsSync(file)) {

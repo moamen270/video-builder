@@ -177,6 +177,53 @@ def snikt() -> np.ndarray:
     return out
 
 
+def gunshot(big: bool = False) -> np.ndarray:
+    """Pistol report: sharp transient, low body, filtered tail. `big` = the fourth shot."""
+    rng = np.random.default_rng(21 if big else 20)
+    dur = 1.3 if big else 0.7
+    x = t(dur)
+    n = len(x)
+    crack = rng.normal(0, 1, n) * env(n, 0.0003, 0.02)
+    body_f = (95 if big else 130) * np.exp(-x * 14) + (40 if big else 55)
+    body = np.sin(2 * np.pi * np.cumsum(body_f) / SR) * env(n, 0.001, 0.32 if big else 0.2, 2.5)
+    tail = lowpass(rng.normal(0, 1, n), 2200 if big else 3200) * env(n, 0.002, 0.45 if big else 0.22, 2.0)
+    out = crack * 1.4 + body * 1.2 + tail * 0.7
+    if big:
+        ring = np.sin(2 * np.pi * 1850 * x) * env(n, 0.005, 0.9, 2.0) * 0.18
+        sub = np.sin(2 * np.pi * 48 * x) * env(n, 0.01, 0.8, 2.0) * 0.5
+        out = out + ring + sub
+    return out
+
+
+def reload() -> np.ndarray:
+    """Cylinder open, four shells, snap shut."""
+    x = t(1.1)
+    n = len(x)
+    out = np.zeros(n)
+    rng = np.random.default_rng(22)
+
+    def click(at: float, f: float, dur: float = 0.06, amp: float = 1.0) -> None:
+        i = int(at * SR)
+        seg = t(dur)
+        c = (np.sin(2 * np.pi * f * seg) * env(len(seg), 0.0005, 0.02) + rng.normal(0, 0.6, len(seg)) * env(len(seg), 0.0003, 0.008)) * amp
+        out[i : i + len(seg)] += c[: max(0, min(len(seg), n - i))]
+
+    click(0.0, 900, 0.09, 1.0)
+    for k, at in enumerate((0.22, 0.34, 0.46, 0.58)):
+        click(at, 2600 + k * 120, 0.05, 0.7)
+    click(0.85, 700, 0.12, 1.3)
+    click(0.87, 1400, 0.05, 0.8)
+    return out
+
+
+def chime() -> np.ndarray:
+    """Soft bell for a bloom."""
+    x = t(1.4)
+    tone = sum(np.sin(2 * np.pi * f * x) * a for f, a in [(1046.5, 1.0), (2093, 0.4), (3136, 0.2), (1567, 0.3)])
+    shimmer = np.sin(2 * np.pi * 5.5 * x) * 0.15 + 1
+    return tone * shimmer * env(len(x), 0.004, 0.8, 2.2)
+
+
 def lofi_loop(name: str = "lofi-01", bpm: float = 78, bars: int = 8, seed: int = 7) -> np.ndarray:
     """Warm lo-fi chord loop with soft kick/hat. Loops cleanly (bar-aligned)."""
     rng = np.random.default_rng(seed)
@@ -235,6 +282,10 @@ def main() -> None:
     write("slash", slash())
     write("splat", splat())
     write("snikt", snikt())
+    write("gunshot", gunshot(False))
+    write("gunshot_big", gunshot(True))
+    write("reload", reload())
+    write("chime", chime())
     print("music:")
     write("lofi-01", lofi_loop("lofi-01", 78, 8, 7), MUSIC)
     write("lofi-02", lofi_loop("lofi-02", 88, 8, 11), MUSIC)

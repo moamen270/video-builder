@@ -41,6 +41,17 @@ export function loadManifest(slug: string): { manifest: Manifest; paths: Project
   return { manifest, paths };
 }
 
+export const VersionRecord = z.object({
+  n: z.number().int(),
+  at: z.string(),
+  seconds: z.number(),
+  renderMs: z.number(),
+  qaOk: z.boolean().nullable(),
+  manifestHash: z.string(),
+  note: z.string().optional(),
+});
+export type VersionRecord = z.infer<typeof VersionRecord>;
+
 export const ProjectMeta = z.object({
   slug: z.string(),
   topic: z.string(),
@@ -48,6 +59,8 @@ export const ProjectMeta = z.object({
   targetSeconds: z.number().int().min(10).max(60),
   status: z.enum(["draft", "audio", "resolved", "rendered", "qa_passed", "qa_failed"]),
   lastRenderMs: z.number().optional(),
+  /** Append-only history; one entry per output/v<N>/. */
+  versions: z.array(VersionRecord).default([]),
 });
 export type ProjectMeta = z.infer<typeof ProjectMeta>;
 
@@ -83,6 +96,7 @@ export function createProject(opts: { slug: string; topic: string; targetSeconds
     createdAt: new Date().toISOString(),
     targetSeconds: opts.targetSeconds ?? 40,
     status: "draft",
+    versions: [],
   };
   writeFileSync(p.projectJson, JSON.stringify(meta, null, 2));
 
