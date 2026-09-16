@@ -4,7 +4,7 @@
   "createdAt": "2026-09-16T02:26:42.539Z",
   "targetSeconds": 40,
   "status": "qa_passed",
-  "lastRenderMs": 59022,
+  "lastRenderMs": 57568,
   "versions": [
     {
       "n": 1,
@@ -45,6 +45,16 @@
       "manifestHash": "7454caf6659a0782",
       "note": "v4: claws follow the aimed arm again; laugh pitch-matched to the narrator (same deep chain); finale marks trace the claw-tip path, dolly 1.7x",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/wolverine-watermelons-v4/final.mp4"
+    },
+    {
+      "n": 5,
+      "at": "2026-09-16T09:17:47.304Z",
+      "seconds": 35.06666666666667,
+      "renderMs": 57568,
+      "qaOk": true,
+      "manifestHash": "464f1a165791dcb8",
+      "note": "v5: finale swing crosses the middle of the frame; three parallel claw marks",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/wolverine-watermelons-v5/final.mp4"
     }
   ]
 }

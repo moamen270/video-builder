@@ -29,7 +29,7 @@ export const SceneView: React.FC<Props> = ({ scene, palette }) => {
     if (abs < c.atFrame) continue;
     const t = abs - c.atFrame;
     if (c.move === "punch_in") camScale *= interpolate(spring({ frame: t, fps, config: { damping: 14, stiffness: 200 } }), [0, 1], [1, 1.09]);
-    else if (c.move === "dolly_in") camScale *= interpolate(spring({ frame: t, fps, config: { damping: 18, stiffness: 90 } }), [0, 1], [1, 1.7]);
+    else if (c.move === "dolly_in") camScale *= interpolate(spring({ frame: t, fps, config: { damping: 18, stiffness: 90 } }), [0, 1], [1, 1.45]);
     else if (c.move === "slow_zoom") camScale *= interpolate(t, [0, scene.durationInFrames], [1, 1.06], { extrapolateRight: "clamp" });
     else if (c.move === "shake" && t < 12) {
       const k = interpolate(t, [0, 12], [1, 0]);

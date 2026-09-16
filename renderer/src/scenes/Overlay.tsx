@@ -64,8 +64,14 @@ const ClawMarks: React.FC<{ t: number; abs: number; slash: SlashGeom | null; cam
 
   const pivot = toScreen(camera, g.shX, g.shY);
   const R = g.tipR * camera.scale;
-  // Tips are fanned ~16 rig units apart; exaggerate 2.4x so three distinct gashes read on screen.
-  const fanDeg = ((g.fan * 2.4 * camera.scale) / R) * (180 / Math.PI);
+  // Fanned claws physically trace the same circle (one groove); the cartoon convention is
+  // three parallel gashes, so stagger them radially and let each lag a hair behind the last.
+  const gap = 4.2 * g.fan * camera.scale;
+  const claws = [
+    { dr: -gap, lagDeg: 0 },
+    { dr: 0, lagDeg: 3 },
+    { dr: gap, lagDeg: 6 },
+  ];
   const a0 = g.windup;
   const a1 = g.follow;
   const aEnd = a0 + (a1 - a0) * reveal;
@@ -79,8 +85,6 @@ const ClawMarks: React.FC<{ t: number; abs: number; slash: SlashGeom | null; cam
     }
     return pts.join(" ");
   };
-  const claws = [-fanDeg, 0, fanDeg];
-
   return (
     <AbsoluteFill style={{ pointerEvents: "none" }}>
       <AbsoluteFill style={{ background: "#000000", opacity: dim }} />
@@ -91,14 +95,13 @@ const ClawMarks: React.FC<{ t: number; abs: number; slash: SlashGeom | null; cam
             <feDisplacementMap in="SourceGraphic" in2="n" scale={12} xChannelSelector="R" yChannelSelector="G" />
           </filter>
         </defs>
-        {claws.map((off, i) => {
-          // Each claw cuts a band between the hand radius and the tip radius: draw at the tip with width.
-          const d = arc(off, R - 12);
+        {claws.map((c, i) => {
+          const d = arc(c.lagDeg, R - 12 + c.dr);
           return (
             <g key={i} filter="url(#tear)">
-              <path d={d} fill="none" stroke="#050608" strokeWidth={44} strokeLinecap="round" />
-              <path d={d} fill="none" stroke="#1c2230" strokeWidth={28} strokeLinecap="round" />
-              <path d={d} fill="none" stroke="#e8edf7" strokeWidth={8} strokeLinecap="round" opacity={0.9} />
+              <path d={d} fill="none" stroke="#050608" strokeWidth={40} strokeLinecap="round" />
+              <path d={d} fill="none" stroke="#1c2230" strokeWidth={24} strokeLinecap="round" />
+              <path d={d} fill="none" stroke="#e8edf7" strokeWidth={7} strokeLinecap="round" opacity={0.9} />
             </g>
           );
         })}

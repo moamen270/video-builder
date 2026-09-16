@@ -1163,7 +1163,7 @@
         "style": "wolverine",
         "pose": "claws_out",
         "expression": "fierce",
-        "position": "center",
+        "position": "left",
         "poseChanges": [],
         "shots": [],
         "strikes": [
@@ -1229,9 +1229,9 @@
     }
   ],
   "meta": {
-    "resolvedAt": "2026-09-16T09:06:46.619Z",
+    "resolvedAt": "2026-09-16T09:16:47.563Z",
     "engineVersion": "0.1.0",
     "ttsModel": "hexgrad/Kokoro-82M",
-    "manifestHash": "7454caf6659a0782"
+    "manifestHash": "464f1a165791dcb8"
   }
 }

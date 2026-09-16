@@ -590,7 +590,8 @@
             "target": "camera",
             "big": true
           }
-        ]
+        ],
+        "position": "left"
       },
       "sfx": [
         {
