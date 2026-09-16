@@ -50,7 +50,7 @@ export const SAMPLE: ResolvedManifest = {
       },
       props: [{ name: "database", atFrame: 10, untilFrame: 120, anim: "pop", position: "top", scale: 1 }],
       sfx: [],
-      bubbles: [{ text: "?!", atFrame: 32, untilFrame: 70 }],
+      bubbles: [{ text: "?!", atFrame: 32, untilFrame: 70, side: "right" }],
       camera: [{ move: "punch_in", atFrame: 30 }],
     },
   ],

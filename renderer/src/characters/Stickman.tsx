@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import type { CharacterStyle, Expression, Pose, ResolvedScene, Word } from "@vb/engine/schema";
-import { RIGS, SNAP_POSES, lerpRig, type Rig } from "./poses";
+import { LEFT_HAND_POSES, RIGS, SNAP_POSES, lerpRig, type Rig } from "./poses";
 import type { Rect } from "../theme";
 
 /** Rig space: 240 wide × 420 tall, feet at y≈400. */
@@ -100,6 +100,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const lastShot = shots.filter((sh) => sh.atFrame <= abs).at(-1);
   const sinceShot = lastShot ? abs - lastShot.atFrame : Infinity;
   const kick = sinceShot < 7 ? (1 - sinceShot / 7) * (lastShot?.big ? 1.6 : 1) : 0;
+  const gunLeft = gun && LEFT_HAND_POSES.has(st.pose);
   const flash = sinceShot < (lastShot?.big ? 6 : 4) ? 1 - sinceShot / (lastShot?.big ? 6 : 4) : 0;
   const lift = rig.lift + bob + laughLift - kick * 4;
   const torso = rig.torso + sway * 0.4 - laughNod * 0.4;
@@ -109,12 +110,16 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const neck = polar(HIP.x, HIP.y, HIP.y - NECK.y, 180 + torso);
   const headC = polar(neck.x, neck.y, HEAD_R + 6, 180 + torso + rig.head);
 
-  const lElbow = polar(shoulder.x, shoulder.y, UPPER_ARM, rig.lUpper + torso + sway * 0.6);
-  const lHand = polar(lElbow.x, lElbow.y, FORE_ARM, rig.lUpper + rig.lLower + torso + sway * 0.6);
   const recoil = kick * 14;
-  const rArmDeg = rig.rUpper + torso - sway * 0.6 + recoil;
+  const lRecoil = gunLeft ? -recoil : 0;
+  const rRecoil = gunLeft ? 0 : recoil;
+  const lArmDeg = rig.lUpper + torso + sway * 0.6 + lRecoil;
+  const lElbow = polar(shoulder.x, shoulder.y, UPPER_ARM, lArmDeg);
+  const lForeDeg = rig.lUpper + rig.lLower + torso + sway * 0.6 + lRecoil * 1.4;
+  const lHand = polar(lElbow.x, lElbow.y, FORE_ARM, lForeDeg);
+  const rArmDeg = rig.rUpper + torso - sway * 0.6 + rRecoil;
   const rElbow = polar(shoulder.x, shoulder.y, UPPER_ARM, rArmDeg);
-  const rForeDeg = rig.rUpper + rig.rLower + wiggle + torso - sway * 0.6 + recoil * 1.4;
+  const rForeDeg = rig.rUpper + rig.rLower + wiggle + torso - sway * 0.6 + rRecoil * 1.4;
   const rHand = polar(rElbow.x, rElbow.y, FORE_ARM, rForeDeg);
 
   const lKnee = polar(HIP.x, HIP.y, THIGH, rig.lThigh);
@@ -149,7 +154,8 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
         {/* hands */}
         {wolv && <Claws x={lHand.x} y={lHand.y} deg={rig.lUpper + rig.lLower + torso} />}
         {wolv && <Claws x={rHand.x} y={rHand.y} deg={rig.rUpper + rig.rLower + wiggle + torso} />}
-        {gun && <Pistol x={rHand.x} y={rHand.y} deg={rForeDeg} flash={flash} big={Boolean(lastShot?.big)} accent={accent} />}
+        {gun && !gunLeft && <Pistol x={rHand.x} y={rHand.y} deg={rForeDeg} flash={flash} big={Boolean(lastShot?.big)} accent={accent} />}
+        {gun && gunLeft && <Pistol x={lHand.x} y={lHand.y} deg={lForeDeg} flash={flash} big={Boolean(lastShot?.big)} accent={accent} />}
         <circle cx={lHand.x} cy={lHand.y} r={wolv ? 9 : 7} fill={ink} />
         <circle cx={rHand.x} cy={rHand.y} r={wolv ? 9 : 7} fill={ink} />
         {/* head */}
@@ -201,25 +207,40 @@ interface Face {
 
 /**
  * Long-barrelled pistol held along the forearm direction (`deg`, 0 = down).
- * `flash` 0–1 draws the muzzle flash at the barrel tip.
+ * Local +y runs out along the barrel; the grip hangs toward screen-down, so the
+ * silhouette stays upright whether he aims left or right. `flash` 0–1 draws
+ * the muzzle flash at the tip.
  */
 const Pistol: React.FC<{ x: number; y: number; deg: number; flash: number; big: boolean; accent: string }> = ({ x, y, deg, flash, big, accent }) => {
-  const L = 62; // barrel length in rig units
+  const L = 74; // barrel length in rig units
+  // Rig angles are 0 = down, positive = screen-right (x = sin, y = cos). SVG rotate() is
+  // clockwise, so rotate(-deg) maps local +y onto that direction.
+  const d = ((deg % 360) + 540) % 360 - 180; // -180..180
+  const mirror = d > 0 ? -1 : 1; // keep the grip hanging toward screen-down on either side
+  const dark = "#171a26";
+  const steel = "#9aa3b8";
   return (
-    <g transform={`translate(${x} ${y}) rotate(${deg})`}>
-      {/* grip (into the hand) + frame + barrel, drawn pointing "down" in local space = along the forearm */}
-      <rect x={-6} y={-8} width={12} height={22} rx={3} fill="#1a1d29" />
-      <rect x={-4} y={8} width={8} height={L} rx={2} fill="#2b3042" />
-      <rect x={-2} y={10} width={4} height={L - 6} rx={1} fill="#8a93aa" />
-      <rect x={-7} y={12} width={14} height={10} rx={2} fill="#3a4055" />
-      <circle cx={0} cy={18} r={2.5} fill={accent} />
+    <g transform={`translate(${x} ${y}) rotate(${-deg}) scale(${mirror} 1)`}>
+      {/* grip: hangs below the hand, angled back */}
+      <path d="M -2 -14 L 14 -14 L 26 -32 L 12 -38 Z" fill={dark} />
+      <rect x={4} y={-36} width={10} height={8} rx={2} fill={accent} transform="rotate(-30 9 -32)" />
+      {/* frame / body over the hand */}
+      <rect x={-12} y={-14} width={26} height={22} rx={5} fill={dark} />
+      <rect x={-9} y={-11} width={20} height={16} rx={4} fill="#2c3145" />
+      <circle cx={2} cy={-3} r={4} fill={accent} />
+      {/* cylinder + long barrel */}
+      <rect x={-13} y={8} width={26} height={16} rx={6} fill="#3a4157" />
+      <rect x={-7} y={22} width={14} height={L - 22} rx={3} fill="#2c3145" />
+      <rect x={-4} y={24} width={8} height={L - 26} rx={2} fill={steel} />
+      <rect x={-9} y={L - 14} width={18} height={12} rx={3} fill={dark} />
+      <rect x={-2} y={L - 4} width={4} height={6} fill={steel} />
       {flash > 0 && (
-        <g transform={`translate(0 ${L + 10})`} opacity={flash}>
+        <g transform={`translate(0 ${L + 8})`} opacity={flash}>
           <path
-            d={`M 0 ${-6 * flash} L ${8 * flash} ${8 * flash} L ${22 * flash * (big ? 1.6 : 1)} ${16 * flash} L ${6 * flash} ${22 * flash} L 0 ${38 * flash * (big ? 1.7 : 1)} L ${-6 * flash} ${22 * flash} L ${-22 * flash * (big ? 1.6 : 1)} ${16 * flash} L ${-8 * flash} ${8 * flash} Z`}
+            d={`M 0 ${-8 * flash} L ${10 * flash} ${8 * flash} L ${28 * flash * (big ? 1.6 : 1)} ${16 * flash} L ${8 * flash} ${24 * flash} L 0 ${46 * flash * (big ? 1.8 : 1)} L ${-8 * flash} ${24 * flash} L ${-28 * flash * (big ? 1.6 : 1)} ${16 * flash} L ${-10 * flash} ${8 * flash} Z`}
             fill="#ffd166"
           />
-          <circle r={7 * flash * (big ? 1.5 : 1)} cy={8} fill="#ffffff" />
+          <circle r={9 * flash * (big ? 1.5 : 1)} cy={10} fill="#ffffff" />
         </g>
       )}
     </g>
@@ -228,7 +249,7 @@ const Pistol: React.FC<{ x: number; y: number; deg: number; flash: number; big: 
 
 /** Three adamantium claws fanning out of a hand, along the forearm direction. */
 const Claws: React.FC<{ x: number; y: number; deg: number }> = ({ x, y, deg }) => (
-  <g transform={`translate(${x} ${y}) rotate(${deg})`}>
+  <g transform={`translate(${x} ${y}) rotate(${-deg})`}>
     {[-16, 0, 16].map((dx) => (
       <g key={dx}>
         <path d={`M ${dx * 0.45 - 4} 2 L ${dx * 0.45 + 4} 2 L ${dx} 58 Z`} fill="#0b0d14" />

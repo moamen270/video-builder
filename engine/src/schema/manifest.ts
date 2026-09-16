@@ -68,6 +68,8 @@ export const Bubble = z.object({
   text: z.string().min(1).max(24),
   at: Anchor,
   until: Anchor.optional(),
+  /** Which side of the head. Use "left" when the right arm is raised (aim_high, pointing_up). */
+  side: z.enum(["left", "right"]).default("right"),
 });
 
 export const CameraCue = z.object({

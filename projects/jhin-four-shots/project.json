@@ -3,6 +3,35 @@
   "topic": "Jhin: four shots",
   "createdAt": "2026-09-16T03:14:04.420Z",
   "targetSeconds": 40,
-  "status": "draft",
-  "versions": []
+  "status": "qa_passed",
+  "lastRenderMs": 53184,
+  "versions": [
+    {
+      "n": 1,
+      "at": "2026-09-16T03:32:36.643Z",
+      "seconds": 30.1,
+      "renderMs": 54493,
+      "qaOk": true,
+      "manifestHash": "3c6bbf8a4d9cfb66",
+      "note": "v1: bm_george theatre, Bark laugh_4"
+    },
+    {
+      "n": 2,
+      "at": "2026-09-16T03:34:37.573Z",
+      "seconds": 30.1,
+      "renderMs": 52734,
+      "qaOk": true,
+      "manifestHash": "f4564a15528968e4",
+      "note": "v2: counter bubbles on the free side, gun follows aiming hand"
+    },
+    {
+      "n": 3,
+      "at": "2026-09-16T03:37:41.793Z",
+      "seconds": 30.1,
+      "renderMs": 53184,
+      "qaOk": true,
+      "manifestHash": "f4564a15528968e4",
+      "note": "v3: pistol/claw rotation fixed — barrel points where he aims"
+    }
+  ]
 }

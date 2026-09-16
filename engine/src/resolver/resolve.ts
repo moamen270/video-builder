@@ -103,6 +103,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
       text: b.text,
       atFrame: at(b.at, `bubbles[${i}].at`),
       untilFrame: b.until ? at(b.until, `bubbles[${i}].until`) : endFrame,
+      side: b.side,
     }));
 
     const camera = s.camera.map((c, i) => ({ move: c.move, atFrame: at(c.at, `camera[${i}].at`) }));

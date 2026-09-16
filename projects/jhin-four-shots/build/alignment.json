@@ -1,0 +1,226 @@
+{
+  "model": "hexgrad/Kokoro-82M",
+  "voice": "bm_george",
+  "speed": 0.9,
+  "scenes": [
+    {
+      "sceneId": "intro",
+      "file": "intro.wav",
+      "duration": 4.1,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Four",
+          "start": 0.275,
+          "end": 0.575,
+          "ws": " "
+        },
+        {
+          "text": "shots.",
+          "start": 0.575,
+          "end": 1.3,
+          "ws": " "
+        },
+        {
+          "text": "That",
+          "start": 1.3,
+          "end": 1.55,
+          "ws": " "
+        },
+        {
+          "text": "is",
+          "start": 1.55,
+          "end": 1.7,
+          "ws": " "
+        },
+        {
+          "text": "all",
+          "start": 1.7,
+          "end": 1.887,
+          "ws": " "
+        },
+        {
+          "text": "a",
+          "start": 1.887,
+          "end": 1.975,
+          "ws": " "
+        },
+        {
+          "text": "masterpiece",
+          "start": 1.975,
+          "end": 2.725,
+          "ws": " "
+        },
+        {
+          "text": "requires.",
+          "start": 2.725,
+          "end": 4,
+          "ws": ""
+        }
+      ],
+      "hash": "16e852d7fe167324"
+    },
+    {
+      "sceneId": "prepare",
+      "file": "prepare.wav",
+      "duration": 2,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Watch",
+          "start": 0.275,
+          "end": 0.637,
+          "ws": " "
+        },
+        {
+          "text": "closely.",
+          "start": 0.637,
+          "end": 1.9,
+          "ws": ""
+        }
+      ],
+      "hash": "601d6e0127a78aaa"
+    },
+    {
+      "sceneId": "one",
+      "file": "one.wav",
+      "duration": 1.325,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "One.",
+          "start": 0.275,
+          "end": 1.225,
+          "ws": ""
+        }
+      ],
+      "hash": "eb6bbe221684e015"
+    },
+    {
+      "sceneId": "two",
+      "file": "two.wav",
+      "duration": 1.35,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Two.",
+          "start": 0.275,
+          "end": 1.175,
+          "ws": ""
+        }
+      ],
+      "hash": "8661510e0e6013f7"
+    },
+    {
+      "sceneId": "three",
+      "file": "three.wav",
+      "duration": 1.35,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Three.",
+          "start": 0.275,
+          "end": 1.25,
+          "ws": ""
+        }
+      ],
+      "hash": "d74b85375a465e77"
+    },
+    {
+      "sceneId": "pause",
+      "file": "pause.wav",
+      "duration": 2.675,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "And",
+          "start": 0.275,
+          "end": 0.45,
+          "ws": " "
+        },
+        {
+          "text": "now...",
+          "start": 0.45,
+          "end": 1.025,
+          "ws": " "
+        },
+        {
+          "text": "the",
+          "start": 1.025,
+          "end": 1.175,
+          "ws": " "
+        },
+        {
+          "text": "finale.",
+          "start": 1.175,
+          "end": 2.575,
+          "ws": ""
+        }
+      ],
+      "hash": "47be7205cc0f7dd2"
+    },
+    {
+      "sceneId": "four",
+      "file": "four.wav",
+      "duration": 1.525,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Four.",
+          "start": 0.325,
+          "end": 1.35,
+          "ws": ""
+        }
+      ],
+      "hash": "8294aa877ca8f1c5"
+    },
+    {
+      "sceneId": "laugh",
+      "file": "laugh.wav",
+      "duration": 6,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "HAHAHAHA",
+          "start": 0,
+          "end": 6,
+          "ws": ""
+        }
+      ],
+      "hash": "676c1012b6d9e463"
+    },
+    {
+      "sceneId": "outro",
+      "file": "outro.wav",
+      "duration": 2.85,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Perfection.",
+          "start": 0.25,
+          "end": 1.087,
+          "ws": " "
+        },
+        {
+          "text": "In",
+          "start": 1.087,
+          "end": 1.312,
+          "ws": " "
+        },
+        {
+          "text": "four",
+          "start": 1.312,
+          "end": 1.7,
+          "ws": " "
+        },
+        {
+          "text": "acts.",
+          "start": 1.7,
+          "end": 2.75,
+          "ws": ""
+        }
+      ],
+      "hash": "1aff350dea8cf8fb"
+    }
+  ]
+}

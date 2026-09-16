@@ -49,6 +49,9 @@ export const RIGS: Record<Pose, Rig> = {
   bow: { lUpper: -70, lLower: -40, rUpper: 20, rLower: 60, lThigh: -10, lShin: 0, rThigh: 10, rShin: 0, head: 0, torso: 30, lift: 6, nod: 30 },
 };
 
+/** Poses where the gunslinger's pistol is in the LEFT hand. */
+export const LEFT_HAND_POSES: ReadonlySet<Pose> = new Set<Pose>(["aim_left", "pointing_left", "slash_left"]);
+
 /** Poses that should snap rather than ease (attacks). */
 export const SNAP_POSES: ReadonlySet<Pose> = new Set<Pose>(["slash_left", "slash_right", "claws_out", "aim_right", "aim_left", "aim_high", "aim_up"]);
 

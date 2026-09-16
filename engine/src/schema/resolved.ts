@@ -62,6 +62,7 @@ export const ResolvedBubble = z.object({
   text: z.string(),
   atFrame: z.number().int(),
   untilFrame: z.number().int(),
+  side: z.enum(["left", "right"]).default("right"),
 });
 
 export const ResolvedCamera = z.object({

@@ -23,7 +23,8 @@ export const Bubble: React.FC<Props> = ({ bubble, sceneStart, anchor, palette })
   const w = Math.max(200, bubble.text.length * fontPx * 0.62 + 80);
   const h = fontPx + 70;
   // Beside the head (head sits ~10% down the character rect), never over the caption zone above.
-  const x = Math.min(1080 - w - 30, anchor.x + anchor.w * 0.68);
+  const left = bubble.side === "left";
+  const x = left ? Math.max(30, anchor.x + anchor.w * 0.32 - w) : Math.min(1080 - w - 30, anchor.x + anchor.w * 0.68);
   const y = anchor.y + anchor.h * 0.08 - h * 0.35;
   return (
     <div
@@ -33,11 +34,11 @@ export const Bubble: React.FC<Props> = ({ bubble, sceneStart, anchor, palette })
         top: y,
         width: w,
         height: h,
-        transform: `scale(${interpolate(s, [0, 1], [0.3, 1]) * out}) rotate(${interpolate(s, [0, 1], [-12, -4])}deg)`,
-        transformOrigin: "20% 100%",
+        transform: `scale(${interpolate(s, [0, 1], [0.3, 1]) * out}) rotate(${(left ? -1 : 1) * interpolate(s, [0, 1], [-12, -4])}deg)`,
+        transformOrigin: left ? "80% 100%" : "20% 100%",
       }}
     >
-      <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{ position: "absolute", inset: 0, overflow: "visible" }}>
+      <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{ position: "absolute", inset: 0, overflow: "visible", transform: left ? "scaleX(-1)" : undefined }}>
         <path
           d={`M20 0 H${w - 20} Q${w} 0 ${w} 20 V${h - 44} Q${w} ${h - 24} ${w - 20} ${h - 24} H70 L40 ${h} L48 ${h - 24} H20 Q0 ${h - 24} 0 ${h - 44} V20 Q0 0 20 0 Z`}
           fill="#ffffff"

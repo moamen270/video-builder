@@ -96,7 +96,7 @@
         { "name": "gunshot", "at": "word:two+0.05", "volume": 0.9 },
         { "name": "chime", "at": "word:two+0.25", "volume": 0.5 }
       ],
-      "bubbles": [{ "text": "2", "at": "word:two+0.1" }],
+      "bubbles": [{ "text": "2", "at": "word:two+0.1", "side": "left" }],
       "camera": [{ "move": "shake", "at": "word:two+0.05" }]
     },
     {
@@ -124,7 +124,7 @@
         { "name": "gunshot", "at": "word:three+0.05", "volume": 0.9 },
         { "name": "chime", "at": "word:three+0.25", "volume": 0.5 }
       ],
-      "bubbles": [{ "text": "3", "at": "word:three+0.1" }],
+      "bubbles": [{ "text": "3", "at": "word:three+0.1", "side": "left" }],
       "camera": [{ "move": "shake", "at": "word:three+0.05" }]
     },
     {
@@ -217,8 +217,7 @@
         { "name": "lotus", "at": "start", "anim": "fade", "position": "right", "scale": 1.0 },
         { "name": "lotus", "at": "start", "anim": "fade", "position": "top_right", "scale": 1.0 },
         { "name": "lotus", "at": "start", "anim": "fade", "position": "top", "scale": 0.9 },
-        { "name": "lotus", "at": "start", "anim": "fade", "position": "left", "scale": 1.0 },
-        { "name": "number_4", "at": "word:four", "anim": "stamp", "position": "above_character", "scale": 0.8 }
+        { "name": "lotus", "at": "start", "anim": "fade", "position": "left", "scale": 1.0 }
       ],
       "sfx": [
         { "name": "chime", "at": "word:perfection", "volume": 0.6 },
