@@ -54,6 +54,18 @@ Rules:
 - `position`: `center` for hooks/CTA; `left`/`right` when props need the other
   side. The stickman flips to face inward when on the right.
 
+### Strikes (melee that actually connects)
+
+Never fake a hit with `slash_*` poses. Use `character.strikes`:
+`[{ "at": "word:bub+0.15", "target": "right", "big": false }]` — the hand winds up
+high (8 frames), comes down THROUGH the centre of the `target` prop zone exactly at
+`at` (the body lunges if the target is out of reach), follows through and recovers.
+Put the prop swap at `at + 0.03` with `"exit": "cut"` on the struck prop:
+`{ "name": "watermelon", "at": "start", "until": "word:bub+0.18", "exit": "cut", "position": "right" }`,
+`{ "name": "watermelon_split", "at": "word:bub+0.18", "anim": "burst", "position": "right" }`.
+SFX: `slash` at `at - 0.05`, `splat` at the swap. Works with any front-rig style; on
+wolverine the claws lead the swing.
+
 ### Character styles
 
 `characters[].style`: `stickman` (plain narrator) or `wolverine` — the same

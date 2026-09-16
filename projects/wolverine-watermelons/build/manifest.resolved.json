@@ -16,6 +16,8 @@
     {
       "id": "intro",
       "speech": "Everyone thinks I'm just a guy with claws.",
+      "isClip": false,
+      "clipVolume": 1,
       "startFrame": 0,
       "durationInFrames": 119,
       "speechFrames": 105,
@@ -108,7 +110,11 @@
             "expression": "fierce",
             "atFrame": 70
           }
-        ]
+        ],
+        "shots": [],
+        "strikes": [],
+        "travel": null,
+        "jump": null
       },
       "props": [],
       "sfx": [
@@ -123,7 +129,8 @@
         {
           "text": "SNIKT",
           "atFrame": 72,
-          "untilFrame": 119
+          "untilFrame": 119,
+          "side": "right"
         }
       ],
       "camera": [
@@ -136,6 +143,8 @@
     {
       "id": "purpose",
       "speech": "I'm not. I have a purpose.",
+      "isClip": false,
+      "clipVolume": 1,
       "startFrame": 119,
       "durationInFrames": 87,
       "speechFrames": 72,
@@ -210,7 +219,11 @@
             "expression": "smug",
             "atFrame": 157
           }
-        ]
+        ],
+        "shots": [],
+        "strikes": [],
+        "travel": null,
+        "jump": null
       },
       "props": [],
       "sfx": [
@@ -227,6 +240,8 @@
     {
       "id": "reveal",
       "speech": "Watermelons. They know what they did.",
+      "isClip": false,
+      "clipVolume": 1,
       "startFrame": 206,
       "durationInFrames": 112,
       "speechFrames": 97,
@@ -301,7 +316,11 @@
             "expression": "fierce",
             "atFrame": 250
           }
-        ]
+        ],
+        "shots": [],
+        "strikes": [],
+        "travel": null,
+        "jump": null
       },
       "props": [
         {
@@ -310,7 +329,8 @@
           "untilFrame": 318,
           "anim": "drop",
           "position": "right",
-          "scale": 1.5
+          "scale": 1.5,
+          "exit": "fade"
         }
       ],
       "sfx": [
@@ -327,6 +347,8 @@
     {
       "id": "destroy",
       "speech": "I will destroy every last one of them.",
+      "isClip": false,
+      "clipVolume": 1,
       "startFrame": 318,
       "durationInFrames": 119,
       "speechFrames": 101,
@@ -419,7 +441,11 @@
             "expression": "fierce",
             "atFrame": 338
           }
-        ]
+        ],
+        "shots": [],
+        "strikes": [],
+        "travel": null,
+        "jump": null
       },
       "props": [
         {
@@ -428,7 +454,8 @@
           "untilFrame": 437,
           "anim": "fade",
           "position": "right",
-          "scale": 1.5
+          "scale": 1.5,
+          "exit": "fade"
         }
       ],
       "sfx": [
@@ -454,6 +481,8 @@
     {
       "id": "cut1",
       "speech": "Come here, bub.",
+      "isClip": false,
+      "clipVolume": 1,
       "startFrame": 437,
       "durationInFrames": 69,
       "speechFrames": 53,
@@ -495,12 +524,17 @@
         "pose": "claws_out",
         "expression": "fierce",
         "position": "left",
-        "poseChanges": [
+        "poseChanges": [],
+        "shots": [],
+        "strikes": [
           {
-            "pose": "slash_right",
-            "atFrame": 465
+            "atFrame": 467,
+            "target": "right",
+            "big": false
           }
-        ]
+        ],
+        "travel": null,
+        "jump": null
       },
       "props": [
         {
@@ -509,7 +543,8 @@
           "untilFrame": 467,
           "anim": "fade",
           "position": "right",
-          "scale": 1.5
+          "scale": 1.5,
+          "exit": "cut"
         },
         {
           "name": "watermelon_split",
@@ -517,7 +552,8 @@
           "untilFrame": 506,
           "anim": "burst",
           "position": "right",
-          "scale": 1.6
+          "scale": 1.6,
+          "exit": "fade"
         }
       ],
       "sfx": [
@@ -529,7 +565,7 @@
         },
         {
           "name": "splat",
-          "atFrame": 468,
+          "atFrame": 467,
           "volume": 0.9,
           "src": "assets/sfx/splat.wav"
         }
@@ -538,13 +574,15 @@
       "camera": [
         {
           "move": "shake",
-          "atFrame": 468
+          "atFrame": 467
         }
       ]
     },
     {
       "id": "cut2",
       "speech": "You're next.",
+      "isClip": false,
+      "clipVolume": 1,
       "startFrame": 506,
       "durationInFrames": 58,
       "speechFrames": 46,
@@ -577,12 +615,17 @@
         "pose": "claws_out",
         "expression": "fierce",
         "position": "right",
-        "poseChanges": [
+        "poseChanges": [],
+        "shots": [],
+        "strikes": [
           {
-            "pose": "slash_left",
-            "atFrame": 526
+            "atFrame": 528,
+            "target": "left",
+            "big": false
           }
-        ]
+        ],
+        "travel": null,
+        "jump": null
       },
       "props": [
         {
@@ -591,7 +634,8 @@
           "untilFrame": 528,
           "anim": "drop",
           "position": "left",
-          "scale": 1.5
+          "scale": 1.5,
+          "exit": "cut"
         },
         {
           "name": "watermelon_split",
@@ -599,7 +643,8 @@
           "untilFrame": 564,
           "anim": "burst",
           "position": "left",
-          "scale": 1.6
+          "scale": 1.6,
+          "exit": "fade"
         }
       ],
       "sfx": [
@@ -617,7 +662,7 @@
         },
         {
           "name": "splat",
-          "atFrame": 529,
+          "atFrame": 528,
           "volume": 0.9,
           "src": "assets/sfx/splat.wav"
         }
@@ -626,13 +671,15 @@
       "camera": [
         {
           "move": "shake",
-          "atFrame": 529
+          "atFrame": 528
         }
       ]
     },
     {
       "id": "cut3",
       "speech": "Nobody. Gets. Out.",
+      "isClip": false,
+      "clipVolume": 1,
       "startFrame": 564,
       "durationInFrames": 93,
       "speechFrames": 75,
@@ -676,108 +723,122 @@
         "position": "center",
         "poseChanges": [
           {
-            "pose": "slash_right",
-            "atFrame": 578
-          },
-          {
-            "pose": "slash_left",
-            "atFrame": 595
-          },
-          {
-            "pose": "slash_right",
-            "atFrame": 609
-          },
-          {
             "pose": "claws_out",
             "expression": "smug",
-            "atFrame": 624
+            "atFrame": 627
           }
-        ]
+        ],
+        "shots": [],
+        "strikes": [
+          {
+            "atFrame": 581,
+            "target": "right",
+            "big": false
+          },
+          {
+            "atFrame": 598,
+            "target": "left",
+            "big": false
+          },
+          {
+            "atFrame": 612,
+            "target": "above_character",
+            "big": true
+          }
+        ],
+        "travel": null,
+        "jump": null
       },
       "props": [
         {
           "name": "watermelon",
           "atFrame": 564,
-          "untilFrame": 581,
+          "untilFrame": 582,
           "anim": "pop",
           "position": "right",
-          "scale": 1.15
+          "scale": 1.15,
+          "exit": "cut"
         },
         {
           "name": "watermelon_split",
-          "atFrame": 581,
-          "untilFrame": 607,
+          "atFrame": 582,
+          "untilFrame": 610,
           "anim": "burst",
           "position": "right",
-          "scale": 1.25
+          "scale": 1.25,
+          "exit": "fade"
         },
         {
           "name": "watermelon",
           "atFrame": 564,
-          "untilFrame": 598,
+          "untilFrame": 599,
           "anim": "pop",
           "position": "left",
-          "scale": 1.15
+          "scale": 1.15,
+          "exit": "cut"
         },
         {
           "name": "watermelon_split",
-          "atFrame": 598,
-          "untilFrame": 621,
+          "atFrame": 599,
+          "untilFrame": 624,
           "anim": "burst",
           "position": "left",
-          "scale": 1.25
+          "scale": 1.25,
+          "exit": "fade"
         },
         {
           "name": "watermelon",
           "atFrame": 595,
-          "untilFrame": 612,
+          "untilFrame": 613,
           "anim": "drop",
           "position": "above_character",
-          "scale": 1.15
+          "scale": 1.15,
+          "exit": "cut"
         },
         {
           "name": "watermelon_split",
-          "atFrame": 612,
+          "atFrame": 613,
           "untilFrame": 657,
           "anim": "burst",
           "position": "above_character",
-          "scale": 1.35
+          "scale": 1.35,
+          "exit": "fade"
         }
       ],
       "sfx": [
         {
           "name": "slash",
-          "atFrame": 578,
+          "atFrame": 580,
           "volume": 0.9,
           "src": "assets/sfx/slash.wav"
         },
         {
           "name": "splat",
-          "atFrame": 581,
+          "atFrame": 582,
           "volume": 0.8,
           "src": "assets/sfx/splat.wav"
         },
         {
           "name": "slash",
-          "atFrame": 595,
+          "atFrame": 597,
           "volume": 0.9,
           "src": "assets/sfx/slash.wav"
         },
         {
           "name": "splat",
-          "atFrame": 598,
+          "atFrame": 599,
           "volume": 0.8,
           "src": "assets/sfx/splat.wav"
         },
         {
           "name": "slash",
-          "atFrame": 609,
+          "atFrame": 611,
           "volume": 0.9,
           "src": "assets/sfx/slash.wav"
         },
         {
           "name": "splat",
-          "atFrame": 612,
+          "atFrame": 613,
           "volume": 0.9,
           "src": "assets/sfx/splat.wav"
         }
@@ -786,13 +847,15 @@
       "camera": [
         {
           "move": "shake",
-          "atFrame": 612
+          "atFrame": 613
         }
       ]
     },
     {
       "id": "laugh",
       "speech": "Muahahahaha! Hahahahaha!",
+      "isClip": false,
+      "clipVolume": 1,
       "startFrame": 657,
       "durationInFrames": 97,
       "speechFrames": 82,
@@ -831,7 +894,11 @@
             "expression": "laughing",
             "atFrame": 695
           }
-        ]
+        ],
+        "shots": [],
+        "strikes": [],
+        "travel": null,
+        "jump": null
       },
       "props": [
         {
@@ -840,7 +907,8 @@
           "untilFrame": 754,
           "anim": "burst",
           "position": "left",
-          "scale": 1
+          "scale": 1,
+          "exit": "fade"
         },
         {
           "name": "watermelon_split",
@@ -848,7 +916,8 @@
           "untilFrame": 754,
           "anim": "burst",
           "position": "right",
-          "scale": 1
+          "scale": 1,
+          "exit": "fade"
         },
         {
           "name": "fire",
@@ -856,7 +925,8 @@
           "untilFrame": 754,
           "anim": "pop",
           "position": "above_character",
-          "scale": 0.9
+          "scale": 0.9,
+          "exit": "fade"
         }
       ],
       "sfx": [
@@ -871,7 +941,8 @@
         {
           "text": "MUAHAHA",
           "atFrame": 663,
-          "untilFrame": 695
+          "untilFrame": 695,
+          "side": "right"
         }
       ],
       "camera": [
@@ -888,6 +959,8 @@
     {
       "id": "outro",
       "speech": "Some call it a hobby. I call it justice.",
+      "isClip": false,
+      "clipVolume": 1,
       "startFrame": 754,
       "durationInFrames": 130,
       "speechFrames": 103,
@@ -994,7 +1067,11 @@
             "expression": "fierce",
             "atFrame": 820
           }
-        ]
+        ],
+        "shots": [],
+        "strikes": [],
+        "travel": null,
+        "jump": null
       },
       "props": [
         {
@@ -1003,7 +1080,8 @@
           "untilFrame": 884,
           "anim": "fade",
           "position": "left",
-          "scale": 0.9
+          "scale": 0.9,
+          "exit": "fade"
         },
         {
           "name": "watermelon_split",
@@ -1011,7 +1089,8 @@
           "untilFrame": 884,
           "anim": "fade",
           "position": "right",
-          "scale": 0.9
+          "scale": 0.9,
+          "exit": "fade"
         }
       ],
       "sfx": [
@@ -1032,7 +1111,8 @@
         {
           "text": "SNIKT",
           "atFrame": 807,
-          "untilFrame": 820
+          "untilFrame": 820,
+          "side": "right"
         }
       ],
       "camera": [
@@ -1044,9 +1124,9 @@
     }
   ],
   "meta": {
-    "resolvedAt": "2026-09-16T02:48:55.714Z",
+    "resolvedAt": "2026-09-16T08:27:38.062Z",
     "engineVersion": "0.1.0",
     "ttsModel": "hexgrad/Kokoro-82M",
-    "manifestHash": "6c98e31eb571406c"
+    "manifestHash": "529a38a536f504fa"
   }
 }

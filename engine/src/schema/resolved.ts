@@ -48,6 +48,7 @@ export const ResolvedProp = z.object({
   anim: z.enum(PROP_ANIMS),
   position: z.enum(PROP_POSITIONS),
   scale: z.number(),
+  exit: z.enum(["fade", "cut"]).default("fade"),
 });
 
 export const ResolvedSfx = z.object({
@@ -71,6 +72,7 @@ export const ResolvedCamera = z.object({
 });
 
 export const ResolvedShot = z.object({ atFrame: z.number().int(), big: z.boolean() });
+export const ResolvedStrike = z.object({ atFrame: z.number().int(), target: z.enum(PROP_POSITIONS), big: z.boolean() });
 
 export const ResolvedScene = z.object({
   id: z.string(),
@@ -97,6 +99,7 @@ export const ResolvedScene = z.object({
       position: z.enum(POSITIONS),
       poseChanges: z.array(ResolvedPoseChange),
       shots: z.array(ResolvedShot).default([]),
+      strikes: z.array(ResolvedStrike).default([]),
       jump: z
         .object({
           atFrame: z.number().int(),

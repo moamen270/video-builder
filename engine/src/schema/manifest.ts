@@ -43,6 +43,15 @@ export const CharacterState = z.object({
   position: z.enum(POSITIONS).default("center"),
   /** Mid-scene pose switches. Storytelling rule of thumb: one every ~1.5 s. */
   poseChanges: z.array(PoseChange).default([]),
+  /**
+   * Melee strikes (front rig): wind-up, then the hand swings THROUGH the centre of the
+   * `target` prop zone at `at` (lunging closer if out of reach), follow-through, recover.
+   * Put the prop swap (e.g. watermelon → watermelon_split) at the same anchor +0.03.
+   */
+  strikes: z
+    .array(z.object({ at: Anchor, target: z.enum(PROP_POSITIONS), big: z.boolean().default(false) }))
+    .max(8)
+    .default([]),
   /** Gunslinger only: muzzle flash + recoil at these anchors. `big` = the dramatic final shot. */
   shots: z.array(z.object({ at: Anchor, big: z.boolean().default(false) })).max(8).default([]),
   /**
@@ -79,6 +88,8 @@ export const PropCue = z.object({
   position: z.enum(PROP_POSITIONS).default("top"),
   /** 0.5–2, relative to the default prop size. */
   scale: z.number().min(0.4).max(2.5).default(1),
+  /** How the prop leaves at `until`: short fade (default) or an instant cut (use when it gets struck/replaced). */
+  exit: z.enum(["fade", "cut"]).default("fade"),
 });
 
 export const SfxCue = z.object({

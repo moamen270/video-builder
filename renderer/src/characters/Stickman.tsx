@@ -1,9 +1,10 @@
 import React, { useMemo } from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import type { CharacterStyle, Expression, Pose, ResolvedScene, Word } from "@vb/engine/schema";
+import type { CharacterStyle, Expression, Pose, PropPosition, ResolvedScene, Word } from "@vb/engine/schema";
 import { LEFT_HAND_POSES, RIGS, SNAP_POSES, WALK_POSES, lerpRig, type Rig } from "./poses";
 import { Walker, type WalkerAction } from "./Walker";
 import type { Rect } from "../theme";
+import { interpolate as ip } from "remotion";
 
 /** Rig space: 240 wide × 420 tall, feet at y≈400. */
 const RW = 240;
@@ -31,6 +32,53 @@ interface Props {
   flip?: boolean;
   /** For walk_* poses: what the side-view rig is doing this frame. */
   walker?: { action: WalkerAction; shadow: number };
+  /** Prop zones of the current layout — strike targets are aimed at their centres. */
+  zones?: Record<PropPosition, Rect>;
+}
+
+/**
+ * Melee strike state for one frame. The hand is driven to pass through the
+ * target zone centre exactly at `atFrame`; if the target is out of reach the
+ * whole body lunges toward it. Returns null when no strike is active.
+ */
+function strikeAt(
+  strikes: { atFrame: number; target: PropPosition; big: boolean }[],
+  abs: number,
+  zones: Record<PropPosition, Rect> | undefined,
+  rect: Rect,
+  scale: number,
+  flip: boolean,
+): { armDeg: number; useLeft: boolean; w: number; lungeX: number; torsoAdd: number; nodAdd: number } | null {
+  if (!zones) return null;
+  const st = strikes.find((s) => abs >= s.atFrame - 8 && abs <= s.atFrame + 20);
+  if (!st) return null;
+  const t = abs - st.atFrame;
+  const zone = zones[st.target];
+  const cx = zone.x + zone.w / 2;
+  const cy = zone.y + zone.h / 2;
+  // Shoulder in screen space (svg is bottom-aligned and centred in the rect).
+  const svgLeft = rect.x + (rect.w - RW * scale) / 2;
+  const svgTop = rect.y + rect.h - RH * scale;
+  const shX = svgLeft + SHOULDER.x * scale;
+  const shY = svgTop + SHOULDER.y * scale;
+  const dx0 = cx - shX;
+  const dy = cy - shY;
+  const sign = dx0 >= 0 ? 1 : -1;
+  const reach = (UPPER_ARM + FORE_ARM) * scale * 0.92;
+  const dist0 = Math.hypot(dx0, dy);
+  const lungeFull = Math.min(520, Math.max(0, dist0 - reach)) * sign * (st.big ? 1.05 : 1);
+  const lunge = ip(t, [-3, 0, 6, 20], [0, lungeFull, lungeFull, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const dx = cx - (shX + lunge);
+  const hit = (Math.atan2(dx, dy) * 180) / Math.PI; // rig convention: 0 = down, + = screen-right
+  // Over-the-top chop: wind up high and back, come down through the target, follow through below it.
+  const windup = hit + sign * 125;
+  const follow = hit - sign * (st.big ? 60 : 45);
+  const armDeg = t < -3 ? ip(t, [-8, -3], [hit + sign * 70, windup], { extrapolateLeft: "clamp" }) : t < 0 ? ip(t, [-3, 0], [windup, hit]) : ip(t, [0, 4, 20], [hit, follow, follow], { extrapolateRight: "clamp" });
+  const w = ip(t, [-8, -3, 4, 20], [0, 1, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const torsoAdd = sign * ip(t, [-8, -3, 0, 4, 20], [0, -8, 14, 16, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const nodAdd = ip(t, [-3, 0, 4, 20], [-6, 10, 12, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // A mirrored rig (position right) swaps screen-left/right for the rig's own arms and angles.
+  return flip ? { armDeg: -armDeg, useLeft: sign > 0, w, lungeX: lunge, torsoAdd: -torsoAdd, nodAdd } : { armDeg, useLeft: sign < 0, w, lungeX: lunge, torsoAdd, nodAdd };
 }
 
 interface PoseState {
@@ -66,7 +114,7 @@ const polar = (x: number, y: number, len: number, deg: number) => {
   return { x: x + Math.sin(r) * len, y: y + Math.cos(r) * len };
 };
 
-export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, style, flip, walker }) => {
+export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, style, flip, walker, zones }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const abs = frame + scene.startFrame;
@@ -78,7 +126,25 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   // Spring between previous and current pose.
   const snap = SNAP_POSES.has(st.pose);
   const t = spring({ frame: abs - st.since, fps, config: snap ? { damping: 20, stiffness: 420, mass: 0.6 } : { damping: 13, stiffness: 140, mass: 0.9 } });
-  const rig: Rig = lerpRig(RIGS[st.prev], RIGS[st.pose], t);
+  const rigBase: Rig = lerpRig(RIGS[st.prev], RIGS[st.pose], t);
+  const scale = Math.min(rect.w / RW, rect.h / RH);
+  const strike = strikeAt(scene.character?.strikes ?? [], abs, zones, rect, scale, Boolean(flip));
+  const rig: Rig = { ...rigBase };
+  if (strike) {
+    const k = strike.w;
+    if (strike.useLeft) {
+      rig.lUpper = rigBase.lUpper + (strike.armDeg - rigBase.lUpper) * k;
+      rig.lLower = rigBase.lLower * (1 - k);
+      rig.rUpper = rigBase.rUpper + (-strike.armDeg * 0.35 - rigBase.rUpper) * k; // other arm counter-swings
+    } else {
+      rig.rUpper = rigBase.rUpper + (strike.armDeg - rigBase.rUpper) * k;
+      rig.rLower = rigBase.rLower * (1 - k);
+      rig.lUpper = rigBase.lUpper + (-strike.armDeg * 0.35 - rigBase.lUpper) * k;
+    }
+    rig.torso = rigBase.torso + strike.torsoAdd * k;
+    rig.nod = rigBase.nod + strike.nodAdd * k;
+  }
+  const lungeX = strike?.lungeX ?? 0;
 
   // Idle life: breathing bob, subtle arm sway, micro head motion.
   const bob = Math.sin(abs / 9) * 2.2;
@@ -133,14 +199,13 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const rKnee = polar(HIP.x, HIP.y, THIGH, rig.rThigh);
   const rFoot = polar(rKnee.x, rKnee.y, SHIN, rig.rThigh + rig.rShin);
 
-  const scale = Math.min(rect.w / RW, rect.h / RH);
   const face = useMemo(() => faceFor(st.expression), [st.expression]);
   const mouthOpen = talking ? (laughing ? 0.7 + 0.3 * laughBeat : 0.5 + 0.5 * Math.abs(Math.sin(abs / 1.7))) : 0;
 
   const line = { stroke: ink, strokeWidth: STROKE, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, fill: "none" };
 
   return (
-    <div style={{ position: "absolute", left: rect.x, top: rect.y, width: rect.w, height: rect.h, display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
+    <div style={{ position: "absolute", left: rect.x + lungeX, top: rect.y, width: rect.w, height: rect.h, display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
       <svg
         width={RW * scale}
         height={RH * scale}

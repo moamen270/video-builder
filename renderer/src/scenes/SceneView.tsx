@@ -84,6 +84,7 @@ export const SceneView: React.FC<Props> = ({ scene, palette }) => {
             style={scene.character.style}
             flip={scene.character.position === "right"}
             walker={motion ? { action: motion.action, shadow: motion.shadow } : undefined}
+            zones={spec.props}
           />
         )}
 

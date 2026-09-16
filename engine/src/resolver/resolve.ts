@@ -72,6 +72,9 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
             .map((pc, i) => ({ pose: pc.pose, expression: pc.expression, atFrame: at(pc.at, `character.poseChanges[${i}]`) }))
             .sort((x, y) => x.atFrame - y.atFrame),
           shots: s.character.shots.map((sh, i) => ({ atFrame: at(sh.at, `character.shots[${i}]`), big: sh.big })),
+          strikes: s.character.strikes
+            .map((st, i) => ({ atFrame: at(st.at, `character.strikes[${i}]`), target: st.target, big: st.big }))
+            .sort((x, y) => x.atFrame - y.atFrame),
           travel: s.character.travel
             ? {
                 fromX: travelX(s.layout, s.character.travel.from),
@@ -122,7 +125,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
       const atFrame = at(pr.at, `props[${i}].at`);
       const untilFrame = pr.until ? at(pr.until, `props[${i}].until`) : endFrame;
       if (untilFrame <= atFrame) warnings.push({ path: `${where}.props[${i}]`, message: `"until" is not after "at"; prop never visible` });
-      return { name: pr.name, atFrame, untilFrame, anim: pr.anim, position: pr.position, scale: pr.scale };
+      return { name: pr.name, atFrame, untilFrame, anim: pr.anim, position: pr.position, scale: pr.scale, exit: pr.exit };
     });
 
     const sfx = s.sfx.map((fx, i) => ({

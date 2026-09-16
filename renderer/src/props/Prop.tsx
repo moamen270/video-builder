@@ -33,7 +33,7 @@ export const Prop: React.FC<Props> = ({ prop, sceneStart, zone, palette, slot, s
   const cy = ground ? zone.y + zone.h - size / 2 : zone.y + zone.h / 2;
 
   const enter = spring({ frame: local, fps, config: { damping: 11, stiffness: 190, mass: 0.8 } });
-  const exit = interpolate(abs, [prop.untilFrame - EXIT_FRAMES, prop.untilFrame], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const exit = prop.exit === "cut" ? 1 : interpolate(abs, [prop.untilFrame - EXIT_FRAMES, prop.untilFrame], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
   let tx = 0;
   let ty = 0;
