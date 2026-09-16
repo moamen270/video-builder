@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "slug": "walking-stickman",
+  "title": "Walking stickman",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "durationInFrames": 285,
+  "theme": "paper",
+  "voice": "af_heart",
+  "music": {
+    "src": "assets/music/lofi-01.wav",
+    "volume": 0.45
+  },
+  "scenes": [
+    {
+      "id": "walk",
+      "speech": "",
+      "isClip": false,
+      "clipVolume": 1,
+      "startFrame": 0,
+      "durationInFrames": 285,
+      "speechFrames": 270,
+      "audioSrc": "audio/walk.wav",
+      "words": [],
+      "layout": "character_bottom",
+      "transition": "cut",
+      "character": {
+        "id": "walker",
+        "style": "stickman",
+        "pose": "walk_right",
+        "expression": "neutral",
+        "position": "center",
+        "poseChanges": [],
+        "shots": [],
+        "travel": {
+          "fromX": -440,
+          "toX": 1080,
+          "startFrame": 0,
+          "endFrame": 285
+        }
+      },
+      "props": [],
+      "sfx": [],
+      "bubbles": [],
+      "camera": []
+    }
+  ],
+  "meta": {
+    "resolvedAt": "2026-09-16T03:53:23.289Z",
+    "engineVersion": "0.1.0",
+    "ttsModel": "hexgrad/Kokoro-82M",
+    "manifestHash": "0c97db0099099c6c"
+  }
+}

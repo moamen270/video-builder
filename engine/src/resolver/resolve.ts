@@ -72,6 +72,14 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
             .map((pc, i) => ({ pose: pc.pose, expression: pc.expression, atFrame: at(pc.at, `character.poseChanges[${i}]`) }))
             .sort((x, y) => x.atFrame - y.atFrame),
           shots: s.character.shots.map((sh, i) => ({ atFrame: at(sh.at, `character.shots[${i}]`), big: sh.big })),
+          travel: s.character.travel
+            ? {
+                fromX: travelX(s.layout, s.character.travel.from),
+                toX: travelX(s.layout, s.character.travel.to),
+                startFrame: at(s.character.travel.start, "character.travel.start"),
+                endFrame: at(s.character.travel.end, "character.travel.end"),
+              }
+            : null,
         }
       : null;
     if (character && character.shots.length && character.style !== "gunslinger") {
@@ -81,7 +89,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
     if (s.layout !== "caption_only" && !character) {
       warnings.push({ path: where, message: `layout "${s.layout}" but character is null; nothing will be drawn there` });
     }
-    if (character && a.duration > 3 && character.poseChanges.length === 0) {
+    if (character && s.speech && a.duration > 3 && character.poseChanges.length === 0 && !character.pose.startsWith("walk_")) {
       warnings.push({ path: where, message: `${a.duration.toFixed(1)}s scene with no poseChanges — add a switch every ~1.5s` });
     }
 
@@ -167,6 +175,33 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
 }
 
 const AUDIO_EXTS = [".mp3", ".wav", ".ogg"];
+
+/**
+ * Left edge (px) of the character rect for a travel stop. Mirrors the layout
+ * rects in renderer/src/theme.ts: on-screen stops use the layout's left/center/
+ * right rects; offscreen stops sit one rect-width outside the 1080 px frame.
+ */
+const CHAR_RECT_X: Record<string, { left: number; center: number; right: number; w: number }> = {
+  character_bottom: { left: 40, center: 320, right: 600, w: 440 },
+  character_left: { left: 30, center: 30, right: 30, w: 400 },
+  character_center: { left: 80, center: 280, right: 480, w: 520 },
+  caption_only: { left: 40, center: 320, right: 600, w: 440 },
+};
+function travelX(layout: string, stop: string): number {
+  const r = CHAR_RECT_X[layout] ?? CHAR_RECT_X.character_bottom!;
+  switch (stop) {
+    case "offscreen_left":
+      return -r.w;
+    case "offscreen_right":
+      return VIDEO.width;
+    case "left":
+      return r.left;
+    case "right":
+      return r.right;
+    default:
+      return r.center;
+  }
+}
 
 /** Copy assets/<kind>/<name>.<ext> into build/assets/<kind>/ and return the public-relative path. */
 function stageAsset(kind: "sfx" | "music", name: string, p: ProjectPaths, where: string): string {

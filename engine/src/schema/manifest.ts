@@ -12,6 +12,7 @@ import {
   SFX,
   THEMES,
   TRANSITIONS,
+  TRAVEL_STOPS,
   VIDEO,
   VOICES,
   VOICE_FX,
@@ -44,6 +45,15 @@ export const CharacterState = z.object({
   poseChanges: z.array(PoseChange).default([]),
   /** Gunslinger only: muzzle flash + recoil at these anchors. `big` = the dramatic final shot. */
   shots: z.array(z.object({ at: Anchor, big: z.boolean().default(false) })).max(8).default([]),
+  /** Move the character horizontally between two stops. Use with walk_* poses. Defaults: whole scene. */
+  travel: z
+    .object({
+      from: z.enum(TRAVEL_STOPS),
+      to: z.enum(TRAVEL_STOPS),
+      start: Anchor.default("start"),
+      end: Anchor.default("end"),
+    })
+    .optional(),
 });
 
 export const PropCue = z.object({
@@ -97,6 +107,8 @@ export const Scene = z.object({
       volume: z.number().min(0).max(2).default(1),
     })
     .optional(),
+  /** A silent scene of this many seconds (music only, no captions). Third alternative to speech/clip. */
+  silence: z.number().min(0.5).max(30).optional(),
   /** Phrases (verbatim substrings of `speech`) to highlight in the accent colour. */
   emphasis: z.array(z.string().min(1)).default([]),
   /** Silence appended after this scene's speech, seconds. */
@@ -148,8 +160,9 @@ export const Manifest = z.object({
 }).superRefine((m, ctx) => {
   const ids = new Set<string>();
   for (const [i, s] of m.scenes.entries()) {
-    if (!s.speech && !s.clip) ctx.addIssue({ code: "custom", path: ["scenes", i], message: "scene needs `speech` or `clip`" });
-    if (s.speech && s.clip) ctx.addIssue({ code: "custom", path: ["scenes", i], message: "scene has both `speech` and `clip`; pick one" });
+    const sources = [s.speech, s.clip, s.silence].filter((x) => x !== undefined).length;
+    if (sources === 0) ctx.addIssue({ code: "custom", path: ["scenes", i], message: "scene needs `speech`, `clip` or `silence`" });
+    if (sources > 1) ctx.addIssue({ code: "custom", path: ["scenes", i], message: "scene has more than one of `speech`/`clip`/`silence`; pick one" });
     if (ids.has(s.id)) {
       ctx.addIssue({ code: "custom", path: ["scenes", i, "id"], message: `duplicate scene id "${s.id}"` });
     }

@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "slug": "walking-stickman",
+  "title": "Walking stickman",
+  "theme": "paper",
+  "music": { "track": "lofi-01", "volume": 0.45 },
+  "characters": [{ "id": "walker", "style": "stickman" }],
+  "notes": "No narration. A stickman in profile walks from off-screen left to off-screen right at an even pace, never looking at the camera.",
+  "scenes": [
+    {
+      "id": "walk",
+      "silence": 9,
+      "pauseAfter": 0.5,
+      "layout": "character_bottom",
+      "character": {
+        "id": "walker",
+        "pose": "walk_right",
+        "travel": { "from": "offscreen_left", "to": "offscreen_right" }
+      }
+    }
+  ]
+}

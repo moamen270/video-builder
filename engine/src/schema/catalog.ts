@@ -29,6 +29,8 @@ export const POSES = [
   "aim_up", // arm at ~150°, for targets straight above
   "reload", // both hands in front at chest height
   "bow", // theatrical bow, one arm sweeping
+  "walk_right", // side view, procedural gait, facing screen-right — pair with character.travel
+  "walk_left",
 ] as const;
 export type Pose = (typeof POSES)[number];
 
@@ -36,6 +38,10 @@ export const EXPRESSIONS = ["neutral", "happy", "surprised", "worried", "confuse
 export type Expression = (typeof EXPRESSIONS)[number];
 
 export const POSITIONS = ["left", "center", "right"] as const;
+
+/** Horizontal stops for character.travel; offscreen_* start/end fully outside the frame. */
+export const TRAVEL_STOPS = ["offscreen_left", "left", "center", "right", "offscreen_right"] as const;
+export type TravelStop = (typeof TRAVEL_STOPS)[number];
 export type Position = (typeof POSITIONS)[number];
 
 /** Screen layouts. Captions always stay inside the platform-safe zone (see LAYOUT_SAFE_AREA). */

@@ -1,7 +1,8 @@
 import React, { useMemo } from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import type { CharacterStyle, Expression, Pose, ResolvedScene, Word } from "@vb/engine/schema";
-import { LEFT_HAND_POSES, RIGS, SNAP_POSES, lerpRig, type Rig } from "./poses";
+import { LEFT_HAND_POSES, RIGS, SNAP_POSES, WALK_POSES, lerpRig, type Rig } from "./poses";
+import { Walker } from "./Walker";
 import type { Rect } from "../theme";
 
 /** Rig space: 240 wide × 420 tall, feet at y≈400. */
@@ -68,6 +69,9 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const { fps } = useVideoConfig();
   const abs = frame + scene.startFrame;
   const st = poseAt(scene, abs);
+  if (WALK_POSES.has(st.pose)) {
+    return <Walker rect={rect} frame={abs} fps={fps} ink={ink} headFill={headFill} facingLeft={st.pose === "walk_left"} />;
+  }
 
   // Spring between previous and current pose.
   const snap = SNAP_POSES.has(st.pose);

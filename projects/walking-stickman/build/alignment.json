@@ -1,0 +1,15 @@
+{
+  "model": "hexgrad/Kokoro-82M",
+  "voice": "af_heart",
+  "speed": 1.05,
+  "scenes": [
+    {
+      "sceneId": "walk",
+      "file": "walk.wav",
+      "duration": 9,
+      "sampleRate": 24000,
+      "tokens": [],
+      "hash": "26b2d0f6149cc7b7"
+    }
+  ]
+}

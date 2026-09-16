@@ -97,6 +97,11 @@ export const ResolvedScene = z.object({
       position: z.enum(POSITIONS),
       poseChanges: z.array(ResolvedPoseChange),
       shots: z.array(ResolvedShot).default([]),
+      /** Pixel x of the character rect's left edge over [startFrame, endFrame]. */
+      travel: z
+        .object({ fromX: z.number(), toX: z.number(), startFrame: z.number().int(), endFrame: z.number().int() })
+        .nullable()
+        .default(null),
     })
     .nullable(),
   props: z.array(ResolvedProp),

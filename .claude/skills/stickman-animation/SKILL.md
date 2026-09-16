@@ -33,6 +33,11 @@ on words**, and **camera cues**. Aim for one visible change every 1.5–2 s.
 | `aim_high` / `aim_up` | gunslinger: arm at ~120° / ~150° for targets in `top_right` / `top` | `shots` |
 | `reload` | hands together at chest — the beat before the shot | SFX `reload` |
 | `bow` | theatrical bow, one arm sweeping — finales, "thank you" | `happy`, `smug` |
+| `walk_right` / `walk_left` | side view, procedural gait, no face to camera — pair with `character.travel` | — |
+
+Locomotion: `"travel": { "from": "offscreen_left", "to": "offscreen_right", "start": "start", "end": "end" }`
+moves the character rect between stops (`offscreen_left left center right offscreen_right`).
+Silent visual scenes: `"silence": 9` (seconds) instead of `speech`/`clip` — music only, no captions.
 
 Expressions: `neutral happy surprised worried confused smug laughing fierce`
 (`laughing` = closed eyes + big D mouth; `fierce` = angled brows + toothy grin).

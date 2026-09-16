@@ -12,13 +12,21 @@ const sceneSpeed = (m: Manifest, s: Scene) => s.speed ?? m.speed;
 const sceneFx = (m: Manifest, s: Scene): VoiceFx => s.voiceFx ?? m.voiceFx;
 
 export function sceneHash(m: Manifest, s: Scene, p: ProjectPaths): string {
-  const parts: unknown[] = [m.voice, sceneSpeed(m, s), sceneFx(m, s), s.speech ?? "", s.pauseAfter, "v3"];
+  const parts: unknown[] = [m.voice, sceneSpeed(m, s), sceneFx(m, s), s.speech ?? "", s.pauseAfter, s.silence ?? "", "v3"];
   if (s.clip) {
     const f = path.join(p.clipsDir, s.clip.file);
     const st = existsSync(f) ? statSync(f) : null;
     parts.push("clip", s.clip.file, st?.size ?? 0, st?.mtimeMs ?? 0, s.clip.caption ?? "", s.clip.maxSeconds ?? 0);
   }
   return createHash("sha256").update(parts.join("|")).digest("hex").slice(0, 16);
+}
+
+/** A silent scene: N seconds of nothing so the visuals (and music) carry it. */
+async function makeSilence(s: Scene, p: ProjectPaths, hash: string): Promise<SceneAlignment & { hash: string }> {
+  const dest = path.join(p.audioDir, `${s.id}.wav`);
+  const dur = s.silence!;
+  await execa("ffmpeg", ["-y", "-v", "error", "-f", "lavfi", "-i", "anullsrc=r=24000:cl=mono", "-t", (dur + s.pauseAfter).toFixed(4), dest]);
+  return { sceneId: s.id, file: path.basename(dest), duration: dur, sampleRate: 24000, tokens: [], hash };
 }
 
 /** Copy a pre-recorded clip into the scene slot: mono 24 kHz, trimmed, padded with pauseAfter. */
@@ -81,14 +89,19 @@ export async function ensureAudio(
 
   const pending = m.scenes.filter((s) => !reusable.has(`${s.id}:${sceneHash(m, s, p)}`));
   const clipScenes = pending.filter((s) => s.clip);
+  const silentScenes = pending.filter((s) => s.silence !== undefined);
   const todo = pending
-    .filter((s) => !s.clip)
+    .filter((s) => !s.clip && s.silence === undefined)
     .map((s) => ({ id: s.id, speech: s.speech!, pauseAfter: s.pauseAfter, speed: sceneSpeed(m, s), fx: sceneFx(m, s), hash: sceneHash(m, s, p) }));
 
   let fresh: (SceneAlignment & { hash: string })[] = [];
   for (const s of clipScenes) {
     log(`importing clip ${s.clip!.file} for ${s.id}`);
     fresh.push(await importClip(m, s, p, sceneHash(m, s, p)));
+  }
+  for (const s of silentScenes) {
+    log(`${s.silence}s of silence for ${s.id}`);
+    fresh.push(await makeSilence(s, p, sceneHash(m, s, p)));
   }
   if (todo.length > 0) {
     log(`synthesizing ${todo.length}/${m.scenes.length} scene(s) with ${m.voice} @ ${m.speed}x`);
@@ -115,7 +128,7 @@ export async function ensureAudio(
     }
     rmSync(reqPath, { force: true });
     rmSync(outPath, { force: true });
-  } else if (clipScenes.length === 0) {
+  } else if (clipScenes.length === 0 && silentScenes.length === 0) {
     log("audio up to date, nothing to synthesize");
   }
 

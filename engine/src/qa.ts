@@ -70,10 +70,11 @@ export async function runQa(resolved: ResolvedManifest, p: VersionPaths): Promis
   checks.push({ name: "no_blank_frames", ok: dead === 0, detail: `${dead}/${luminance.length} samples are black/white` });
 
   const loud = await measureLoudness(file);
+  const hasNarration = resolved.scenes.some((s) => s.words.length > 0);
   checks.push({
-    name: "voice_audible",
-    ok: loud !== null && loud > -30,
-    detail: loud === null ? "could not measure" : `mean volume ${loud.toFixed(1)} dB`,
+    name: hasNarration ? "voice_audible" : "audio_present",
+    ok: loud !== null && loud > (hasNarration ? -30 : -45),
+    detail: loud === null ? "could not measure" : `mean volume ${loud.toFixed(1)} dB${hasNarration ? "" : " (no narration in this video)"}`,
   });
 
   let contactSheet: string | null = null;

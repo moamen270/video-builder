@@ -48,7 +48,15 @@ export const SceneView: React.FC<Props> = ({ scene, palette }) => {
   for (const p of visible) zoneCounts.set(p.position, (zoneCounts.get(p.position) ?? 0) + 1);
   const zoneSeen = new Map<string, number>();
 
-  const charRect = scene.character && spec.character ? spec.character[scene.character.position] : null;
+  let charRect = scene.character && spec.character ? spec.character[scene.character.position] : null;
+  const travel = scene.character?.travel;
+  if (charRect && travel) {
+    const x = interpolate(abs, [travel.startFrame, Math.max(travel.startFrame + 1, travel.endFrame)], [travel.fromX, travel.toX], {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    });
+    charRect = { ...charRect, x };
+  }
 
   return (
     <AbsoluteFill style={trans}>

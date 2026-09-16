@@ -1,0 +1,19 @@
+{
+  "slug": "walking-stickman",
+  "topic": "Walking stickman",
+  "createdAt": "2026-09-16T03:51:54.739Z",
+  "targetSeconds": 40,
+  "status": "qa_passed",
+  "lastRenderMs": 18988,
+  "versions": [
+    {
+      "n": 1,
+      "at": "2026-09-16T03:53:43.215Z",
+      "seconds": 9.5,
+      "renderMs": 18988,
+      "qaOk": true,
+      "manifestHash": "0c97db0099099c6c",
+      "note": "v1: profile walk, offscreen left → right, lofi only"
+    }
+  ]
+}
