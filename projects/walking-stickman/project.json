@@ -13,7 +13,8 @@
       "renderMs": 18988,
       "qaOk": true,
       "manifestHash": "0c97db0099099c6c",
-      "note": "v1: profile walk, offscreen left → right, lofi only"
+      "note": "v1: profile walk, offscreen left → right, lofi only",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/walking-stickman-v1/final.mp4"
     }
   ]
 }

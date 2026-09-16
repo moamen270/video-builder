@@ -9,3 +9,4 @@ export * from "./qa.js";
 export * from "./build.js";
 export * from "./doctor.js";
 export * from "./catalog-info.js";
+export * from "./publish.js";

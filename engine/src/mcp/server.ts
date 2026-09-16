@@ -17,6 +17,7 @@ import { doctor } from "../doctor.js";
 import { PROJECTS_DIR, SKILLS_DIR, latestVersion, projectPaths, versionPaths } from "../paths.js";
 import { ManifestError, createProject, loadManifest, readMeta, slugify, validateManifest } from "../project.js";
 import { runQa } from "../qa.js";
+import { publishVersion } from "../publish.js";
 import { ResolveError } from "../resolver/anchors.js";
 import { VIDEO } from "../schema/index.js";
 
@@ -217,6 +218,21 @@ server.registerTool(
     const v = version ? versionPaths(p, version) : latestVersion(p);
     if (!v || !existsSync(v.contactSheet)) return errText(new Error("no contact sheet yet — render first"));
     return withContactSheet({ version: v.n, file: v.contactSheet }, v.contactSheet);
+  },
+);
+
+server.registerTool(
+  "video_publish",
+  {
+    description: "Upload a rendered version to GitHub Releases (tag <slug>-vN; assets: final.mp4, contact.png, qa.json, manifest.json). Returns the public download URL. Default: latest version.",
+    inputSchema: { slug: z.string(), version: z.number().int().optional() },
+  },
+  async ({ slug, version }) => {
+    try {
+      return text(await publishVersion(slug, version, { log }));
+    } catch (e) {
+      return errText(e);
+    }
   },
 );
 

@@ -13,7 +13,8 @@
       "renderMs": 54493,
       "qaOk": true,
       "manifestHash": "3c6bbf8a4d9cfb66",
-      "note": "v1: bm_george theatre, Bark laugh_4"
+      "note": "v1: bm_george theatre, Bark laugh_4",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/jhin-four-shots-v1/final.mp4"
     },
     {
       "n": 2,
@@ -22,7 +23,8 @@
       "renderMs": 52734,
       "qaOk": true,
       "manifestHash": "f4564a15528968e4",
-      "note": "v2: counter bubbles on the free side, gun follows aiming hand"
+      "note": "v2: counter bubbles on the free side, gun follows aiming hand",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/jhin-four-shots-v2/final.mp4"
     },
     {
       "n": 3,
@@ -31,7 +33,8 @@
       "renderMs": 53184,
       "qaOk": true,
       "manifestHash": "f4564a15528968e4",
-      "note": "v3: pistol/claw rotation fixed — barrel points where he aims"
+      "note": "v3: pistol/claw rotation fixed — barrel points where he aims",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/jhin-four-shots-v3/final.mp4"
     }
   ]
 }

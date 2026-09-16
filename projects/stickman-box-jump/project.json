@@ -13,7 +13,8 @@
       "renderMs": 22082,
       "qaOk": true,
       "manifestHash": "99e435691ff338d9",
-      "note": "v1: walk in, crouch, jump onto crate, absorb + rebound, stand"
+      "note": "v1: walk in, crouch, jump onto crate, absorb + rebound, stand",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/stickman-box-jump-v1/final.mp4"
     }
   ]
 }

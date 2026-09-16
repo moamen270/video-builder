@@ -49,6 +49,8 @@ export const VersionRecord = z.object({
   qaOk: z.boolean().nullable(),
   manifestHash: z.string(),
   note: z.string().optional(),
+  /** Direct download URL once published as a GitHub Release asset. */
+  publishedUrl: z.string().optional(),
 });
 export type VersionRecord = z.infer<typeof VersionRecord>;
 

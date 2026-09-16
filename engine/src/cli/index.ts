@@ -9,6 +9,7 @@ import { createProject, loadManifest, readMeta, slugify, validateManifest, Manif
 import { runQa } from "../qa.js";
 import { ResolveError } from "../resolver/anchors.js";
 import { catalogSummary } from "../catalog-info.js";
+import { publishAll, publishVersion } from "../publish.js";
 
 const log = (l: string) => console.error(l);
 
@@ -97,16 +98,7 @@ program
     }
   });
 
-program
-  .command("versions")
-  .argument("<slug>")
-  .description("list rendered versions of a project")
-  .action((slug: string) => {
-    const meta = readMeta(projectPaths(slug));
-    if (!meta) fail(new Error(`no project "${slug}"`));
-    for (const v of meta!.versions) console.log(`v${v.n}  ${v.at.slice(0, 16)}  ${v.seconds.toFixed(1)}s  qa=${v.qaOk ?? "skipped"}  ${v.note ?? ""}`);
-    if (!meta!.versions.length) console.log("(no versions rendered yet)");
-  });
+
 
 program
   .command("build")
@@ -143,6 +135,39 @@ program
     const r = await runQa(resolved!, v!);
     for (const c of r.checks) console.log(`${c.ok ? "pass" : "FAIL"} ${c.name}: ${c.detail}`);
     process.exit(r.ok ? 0 : 2);
+  });
+
+program
+  .command("publish")
+  .argument("[slug]", "project to publish (omit with --all)")
+  .option("-v, --version <n>", "version (default: latest)")
+  .option("--all", "publish every unpublished version of every project")
+  .description("upload a rendered version to GitHub Releases (tag <slug>-vN) and print its URL")
+  .action(async (slug: string | undefined, o: { version?: string; all?: boolean }) => {
+    try {
+      if (o.all) {
+        const r = await publishAll({ log });
+        for (const x of r) console.log(`${x.tag.padEnd(28)} ${x.videoUrl}`);
+        if (!r.length) console.log("everything already published");
+        return;
+      }
+      if (!slug) fail(new Error("slug required (or --all)"));
+      const r = await publishVersion(slug!, o.version ? Number(o.version) : undefined, { log });
+      console.log(r.videoUrl);
+    } catch (e) {
+      fail(e);
+    }
+  });
+
+program
+  .command("versions")
+  .argument("<slug>")
+  .description("list rendered versions of a project")
+  .action((slug: string) => {
+    const meta = readMeta(projectPaths(slug));
+    if (!meta) fail(new Error(`no project "${slug}"`));
+    for (const v of meta!.versions) console.log(`v${v.n}  ${v.at.slice(0, 16)}  ${v.seconds.toFixed(1)}s  qa=${v.qaOk ?? "skipped"}  ${v.note ?? ""}${v.publishedUrl ? `\n      ${v.publishedUrl}` : ""}`);
+    if (!meta!.versions.length) console.log("(no versions rendered yet)");
   });
 
 program

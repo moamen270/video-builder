@@ -13,6 +13,8 @@ manifests; the engine does TTS, timing, rendering and QA. Read
 Only changed scenes are re-synthesized; a full render is ~1 min per 40 s.
 Every render is a NEW `output/v<N>/` (mp4, qa, contact sheet, manifest
 snapshot). Never delete or overwrite a version — Moamen compares them.
+When Moamen wants to watch a video away from this PC: `vb publish <slug>` (or
+`video_publish`) → GitHub Release URL. Never commit MP4s.
 Laughter/screams: never TTS "ha ha"; use a `clip` scene with a Bark-generated
 wav (`vb-audio laugh`) or a file the user provides.
 

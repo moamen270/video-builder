@@ -44,11 +44,20 @@ npm run vb -- qa       database-indexes      # re-run checks, regenerate contact
 npm run vb -- catalog                        # every pose/prop/sfx/voice the schema accepts
 npm run vb -- render database-indexes --frames 0-90 --scale 0.5   # quick preview
 npm run vb -- render database-indexes --nvenc                     # GPU encode
+npm run vb -- publish  database-indexes      # upload latest version to GitHub Releases → public URL
+npm run vb -- publish --all                  # publish every unpublished version
 npm run studio                               # Remotion Studio for the renderer
 npm test                                     # unit tests
 ```
 
 Only scenes whose text/voice/speed changed are re-synthesized on `compile`.
+
+Every render is an immutable `output/v<N>/` (mp4, QA, contact sheet, manifest
+snapshot). Renders are not committed; `vb publish` uploads a version as a
+GitHub Release tagged `<slug>-v<N>` — see the
+[Releases page](https://github.com/moamen270/video-builder/releases) for every
+video ever rendered. The token comes from `GITHUB_TOKEN`, `gh auth token`, or the
+credential git already stores for github.com.
 
 ## Agent interface (MCP)
 
@@ -56,7 +65,7 @@ Only scenes whose text/voice/speed changed are re-synthesized on `compile`.
 `video_catalog`, `video_read_skill`, `video_create_project`, `video_list_projects`,
 `video_get_project`, `video_validate_manifest`, `video_write_manifest`,
 `video_compile`, `video_render` (returns QA + contact sheet image),
-`video_qa`, `video_contact_sheet`, `video_doctor`, `video_logs`.
+`video_qa`, `video_contact_sheet`, `video_publish`, `video_doctor`, `video_logs`.
 
 Skills in `.claude/skills/`: **2d-storytelling** (hooks, pacing, retention
 devices, script → manifest) and **stickman-animation** (pose/prop/SFX vocabulary,
