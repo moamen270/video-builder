@@ -160,9 +160,10 @@ export const Walker: React.FC<Props> = ({ rect, frame, fps, ink, headFill, facin
   // Walking bob on top of the planted-foot rule.
   const bob = action.kind === "walk" ? -4 * Math.abs(Math.cos(ph)) : action.kind === "stand" ? -1.5 * Math.sin(frame / 12) : 0;
 
-  const shoulder = polar(HIP.x, HIP.y, HIP.y - SHOULDER_Y, 180 + L.lean);
-  const neck = polar(HIP.x, HIP.y, HIP.y - NECK_Y, 180 + L.lean);
-  const head = polar(neck.x, neck.y, HEAD_R + 4, 180 + L.lean * 0.6 + L.nod);
+  // 180° is straight up; subtracting the lean tips the torso FORWARD (+x, toward where he's going).
+  const shoulder = polar(HIP.x, HIP.y, HIP.y - SHOULDER_Y, 180 - L.lean);
+  const neck = polar(HIP.x, HIP.y, HIP.y - NECK_Y, 180 - L.lean);
+  const head = polar(neck.x, neck.y, HEAD_R + 4, 180 - (L.lean * 0.6 + L.nod));
 
   const elbowN = polar(shoulder.x, shoulder.y, UPPER_ARM, L.armN);
   const handN = polar(elbowN.x, elbowN.y, FORE_ARM, L.armN + L.foreN);

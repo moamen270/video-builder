@@ -4,7 +4,7 @@
   "createdAt": "2026-09-16T07:22:31.907Z",
   "targetSeconds": 40,
   "status": "qa_passed",
-  "lastRenderMs": 22082,
+  "lastRenderMs": 21398,
   "versions": [
     {
       "n": 1,
@@ -15,6 +15,16 @@
       "manifestHash": "99e435691ff338d9",
       "note": "v1: walk in, crouch, jump onto crate, absorb + rebound, stand",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/stickman-box-jump-v1/final.mp4"
+    },
+    {
+      "n": 2,
+      "at": "2026-09-16T08:12:00.520Z",
+      "seconds": 11.5,
+      "renderMs": 21398,
+      "qaOk": true,
+      "manifestHash": "99e435691ff338d9",
+      "note": "v2: torso and head lean forward toward the box (lean sign was inverted)",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/stickman-box-jump-v2/final.mp4"
     }
   ]
 }
