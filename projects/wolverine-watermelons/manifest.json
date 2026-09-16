@@ -2,189 +2,211 @@
   "version": 1,
   "slug": "wolverine-watermelons",
   "title": "Wolverine vs watermelons",
-  "voice": "am_fenrir",
-  "speed": 1.0,
-  "theme": "grape",
-  "music": { "track": "lofi-02", "volume": 0.14 },
-  "characters": [{ "id": "logan", "style": "wolverine", "color": "#ffcc00" }],
+  "voice": "am_michael",
+  "speed": 0.98,
+  "voiceFx": "deep",
+  "theme": "midnight",
+  "music": { "track": "lofi-02", "volume": 0.12 },
+  "characters": [{ "id": "logan", "style": "wolverine" }],
+  "notes": "Gritty, deadpan. He takes the watermelons personally. No jokes in the delivery — the joke is that he's serious.",
   "scenes": [
     {
       "id": "intro",
-      "speech": "Wolverine got a summer job.",
-      "emphasis": ["summer job"],
+      "speech": "Everyone thinks I'm just a guy with claws.",
+      "emphasis": ["claws"],
       "layout": "character_center",
-      "pauseAfter": 0.4,
+      "pauseAfter": 0.45,
       "character": {
         "id": "logan",
         "pose": "idle",
         "expression": "neutral",
-        "poseChanges": [{ "pose": "claws_out", "expression": "fierce", "at": "word:job" }]
+        "poseChanges": [{ "pose": "claws_out", "expression": "fierce", "at": "word:claws" }]
       },
-      "sfx": [{ "name": "snikt", "at": "word:job", "volume": 0.9 }],
-      "bubbles": [{ "text": "SNIKT!", "at": "word:job+0.05" }],
-      "camera": [{ "move": "punch_in", "at": "word:job" }]
+      "sfx": [{ "name": "snikt", "at": "word:claws", "volume": 0.9 }],
+      "bubbles": [{ "text": "SNIKT", "at": "word:claws+0.05" }],
+      "camera": [{ "move": "punch_in", "at": "word:claws" }]
+    },
+    {
+      "id": "purpose",
+      "speech": "I'm not. I have a purpose.",
+      "emphasis": ["purpose"],
+      "layout": "character_center",
+      "pauseAfter": 0.5,
+      "character": {
+        "id": "logan",
+        "pose": "claws_out",
+        "expression": "fierce",
+        "poseChanges": [{ "pose": "pointing_up", "expression": "smug", "at": "word:purpose" }]
+      },
+      "sfx": [{ "name": "drum", "at": "word:purpose", "volume": 0.6 }]
     },
     {
       "id": "reveal",
-      "speech": "Watermelon slicing.",
-      "emphasis": ["Watermelon"],
+      "speech": "Watermelons. They know what they did.",
+      "emphasis": ["Watermelons", "know what they did"],
       "layout": "character_center",
       "pauseAfter": 0.5,
-      "character": { "id": "logan", "pose": "claws_out", "expression": "fierce", "position": "left" },
-      "props": [{ "name": "watermelon", "at": "word:watermelon", "anim": "drop", "position": "right", "scale": 1.4 }],
-      "sfx": [{ "name": "drum", "at": "start", "volume": 0.7 }, { "name": "pop", "at": "word:watermelon" }]
-    },
-    {
-      "id": "cut1",
-      "speech": "Hyah!",
-      "layout": "character_center",
-      "pauseAfter": 0.6,
-      "transition": "cut",
+      "speed": 0.94,
       "character": {
         "id": "logan",
         "pose": "claws_out",
         "expression": "fierce",
         "position": "left",
-        "poseChanges": [{ "pose": "slash_right", "at": "word:hyah" }]
+        "poseChanges": [{ "pose": "pointing_right", "expression": "fierce", "at": "word:they" }]
       },
-      "props": [
-        { "name": "watermelon", "at": "start", "until": "word:hyah+0.08", "anim": "fade", "position": "right", "scale": 1.4 },
-        { "name": "watermelon_split", "at": "word:hyah+0.08", "anim": "burst", "position": "right", "scale": 1.5 }
-      ],
-      "sfx": [
-        { "name": "slash", "at": "word:hyah", "volume": 0.9 },
-        { "name": "splat", "at": "word:hyah+0.1", "volume": 0.9 }
-      ],
-      "camera": [{ "move": "shake", "at": "word:hyah+0.1" }]
+      "props": [{ "name": "watermelon", "at": "word:watermelons", "anim": "drop", "position": "right", "scale": 1.5 }],
+      "sfx": [{ "name": "boom", "at": "word:watermelons", "volume": 0.55 }]
     },
     {
-      "id": "cut2",
-      "speech": "Another one.",
-      "emphasis": ["Another"],
+      "id": "destroy",
+      "speech": "I will destroy every last one of them.",
+      "emphasis": ["destroy", "every last one"],
       "layout": "character_center",
-      "pauseAfter": 0.2,
+      "pauseAfter": 0.6,
+      "speed": 0.92,
+      "character": {
+        "id": "logan",
+        "pose": "pointing_right",
+        "expression": "fierce",
+        "position": "left",
+        "poseChanges": [{ "pose": "claws_out", "expression": "fierce", "at": "word:destroy" }]
+      },
+      "props": [{ "name": "watermelon", "at": "start", "anim": "fade", "position": "right", "scale": 1.5 }],
+      "sfx": [{ "name": "glitch", "at": "word:destroy", "volume": 0.5 }],
+      "camera": [{ "move": "slow_zoom", "at": "start" }, { "move": "shake", "at": "word:destroy" }]
+    },
+    {
+      "id": "cut1",
+      "speech": "Come here, bub.",
+      "emphasis": ["bub"],
+      "layout": "character_center",
+      "pauseAfter": 0.55,
       "character": {
         "id": "logan",
         "pose": "claws_out",
-        "expression": "smug",
-        "position": "right",
-        "poseChanges": [{ "pose": "slash_left", "expression": "fierce", "at": "word:one" }]
+        "expression": "fierce",
+        "position": "left",
+        "poseChanges": [{ "pose": "slash_right", "at": "word:bub+0.1" }]
       },
       "props": [
-        { "name": "watermelon", "at": "start", "until": "word:one+0.08", "anim": "drop", "position": "left", "scale": 1.4 },
-        { "name": "watermelon_split", "at": "word:one+0.08", "anim": "burst", "position": "left", "scale": 1.5 }
+        { "name": "watermelon", "at": "start", "until": "word:bub+0.18", "anim": "fade", "position": "right", "scale": 1.5 },
+        { "name": "watermelon_split", "at": "word:bub+0.18", "anim": "burst", "position": "right", "scale": 1.6 }
       ],
       "sfx": [
-        { "name": "whoosh", "at": "start", "volume": 0.5 },
-        { "name": "slash", "at": "word:one", "volume": 0.9 },
-        { "name": "splat", "at": "word:one+0.1", "volume": 0.9 }
+        { "name": "slash", "at": "word:bub+0.1", "volume": 0.9 },
+        { "name": "splat", "at": "word:bub+0.2", "volume": 0.9 }
       ],
-      "camera": [{ "move": "shake", "at": "word:one+0.1" }]
+      "camera": [{ "move": "shake", "at": "word:bub+0.2" }]
+    },
+    {
+      "id": "cut2",
+      "speech": "You're next.",
+      "emphasis": ["next"],
+      "layout": "character_center",
+      "pauseAfter": 0.4,
+      "character": {
+        "id": "logan",
+        "pose": "claws_out",
+        "expression": "fierce",
+        "position": "right",
+        "poseChanges": [{ "pose": "slash_left", "at": "word:next+0.1" }]
+      },
+      "props": [
+        { "name": "watermelon", "at": "start", "until": "word:next+0.18", "anim": "drop", "position": "left", "scale": 1.5 },
+        { "name": "watermelon_split", "at": "word:next+0.18", "anim": "burst", "position": "left", "scale": 1.6 }
+      ],
+      "sfx": [
+        { "name": "whoosh", "at": "start", "volume": 0.4 },
+        { "name": "slash", "at": "word:next+0.1", "volume": 0.9 },
+        { "name": "splat", "at": "word:next+0.2", "volume": 0.9 }
+      ],
+      "camera": [{ "move": "shake", "at": "word:next+0.2" }]
     },
     {
       "id": "cut3",
-      "speech": "And! Another! One!",
-      "emphasis": ["Another", "One"],
+      "speech": "Nobody. Gets. Out.",
+      "emphasis": ["Nobody", "Out"],
       "layout": "character_center",
-      "pauseAfter": 0.5,
+      "pauseAfter": 0.6,
+      "speed": 0.9,
       "character": {
         "id": "logan",
         "pose": "claws_out",
         "expression": "fierce",
         "poseChanges": [
-          { "pose": "slash_right", "at": "word:and" },
-          { "pose": "slash_left", "at": "word:another" },
-          { "pose": "slash_right", "at": "word:one" },
-          { "pose": "claws_out", "expression": "smug", "at": "word:one+0.45" }
+          { "pose": "slash_right", "at": "word:nobody" },
+          { "pose": "slash_left", "at": "word:gets" },
+          { "pose": "slash_right", "at": "word:out" },
+          { "pose": "claws_out", "expression": "smug", "at": "word:out+0.5" }
         ]
       },
       "props": [
-        { "name": "watermelon", "at": "start", "until": "word:and+0.08", "anim": "pop", "position": "right", "scale": 1.1 },
-        { "name": "watermelon_split", "at": "word:and+0.08", "until": "word:another+0.3", "anim": "burst", "position": "right", "scale": 1.2 },
-        { "name": "watermelon", "at": "start", "until": "word:another+0.08", "anim": "pop", "position": "left", "scale": 1.1 },
-        { "name": "watermelon_split", "at": "word:another+0.08", "until": "word:one+0.3", "anim": "burst", "position": "left", "scale": 1.2 },
-        { "name": "watermelon", "at": "word:another", "until": "word:one+0.08", "anim": "drop", "position": "above_character", "scale": 1.1 },
-        { "name": "watermelon_split", "at": "word:one+0.08", "anim": "burst", "position": "above_character", "scale": 1.3 }
+        { "name": "watermelon", "at": "start", "until": "word:nobody+0.1", "anim": "pop", "position": "right", "scale": 1.15 },
+        { "name": "watermelon_split", "at": "word:nobody+0.1", "until": "word:gets+0.4", "anim": "burst", "position": "right", "scale": 1.25 },
+        { "name": "watermelon", "at": "start", "until": "word:gets+0.1", "anim": "pop", "position": "left", "scale": 1.15 },
+        { "name": "watermelon_split", "at": "word:gets+0.1", "until": "word:out+0.4", "anim": "burst", "position": "left", "scale": 1.25 },
+        { "name": "watermelon", "at": "word:gets", "until": "word:out+0.1", "anim": "drop", "position": "above_character", "scale": 1.15 },
+        { "name": "watermelon_split", "at": "word:out+0.1", "anim": "burst", "position": "above_character", "scale": 1.35 }
       ],
       "sfx": [
-        { "name": "slash", "at": "word:and", "volume": 0.9 },
-        { "name": "splat", "at": "word:and+0.1", "volume": 0.8 },
-        { "name": "slash", "at": "word:another", "volume": 0.9 },
-        { "name": "splat", "at": "word:another+0.1", "volume": 0.8 },
-        { "name": "slash", "at": "word:one", "volume": 0.9 },
-        { "name": "splat", "at": "word:one+0.1", "volume": 0.9 }
+        { "name": "slash", "at": "word:nobody", "volume": 0.9 },
+        { "name": "splat", "at": "word:nobody+0.1", "volume": 0.8 },
+        { "name": "slash", "at": "word:gets", "volume": 0.9 },
+        { "name": "splat", "at": "word:gets+0.1", "volume": 0.8 },
+        { "name": "slash", "at": "word:out", "volume": 0.9 },
+        { "name": "splat", "at": "word:out+0.1", "volume": 0.9 }
       ],
-      "camera": [{ "move": "shake", "at": "word:one+0.1" }]
+      "camera": [{ "move": "shake", "at": "word:out+0.1" }]
     },
     {
       "id": "laugh",
-      "speech": "Ha ha ha ha ha! Ha ha ha ha!",
+      "speech": "Muahahahaha! Hahahahaha!",
       "layout": "character_center",
-      "pauseAfter": 0.3,
+      "pauseAfter": 0.5,
+      "speed": 0.9,
+      "voiceFx": "villain",
       "transition": "zoom",
       "character": {
         "id": "logan",
         "pose": "laughing",
         "expression": "laughing",
-        "poseChanges": [
-          { "pose": "celebrating", "expression": "laughing", "at": "word:ha#6" },
-          { "pose": "laughing", "expression": "laughing", "at": "word:ha#8" }
-        ]
+        "poseChanges": [{ "pose": "celebrating", "expression": "laughing", "at": "word:hahahahaha" }]
       },
       "props": [
         { "name": "watermelon_split", "at": "start", "anim": "burst", "position": "left", "scale": 1.0 },
         { "name": "watermelon_split", "at": "start", "anim": "burst", "position": "right", "scale": 1.0 },
-        { "name": "star", "at": "word:ha#6", "anim": "pop", "position": "above_character", "scale": 0.8 }
+        { "name": "fire", "at": "word:hahahahaha", "anim": "pop", "position": "above_character", "scale": 0.9 }
       ],
-      "sfx": [{ "name": "boom", "at": "start", "volume": 0.5 }],
-      "bubbles": [{ "text": "HA HA!", "at": "word:ha#2", "until": "word:ha#6" }],
-      "camera": [{ "move": "punch_in", "at": "start" }]
-    },
-    {
-      "id": "more",
-      "speech": "Mwahahaha! Oh, that's the good stuff.",
-      "emphasis": ["good stuff"],
-      "layout": "character_center",
-      "pauseAfter": 0.4,
-      "character": {
-        "id": "logan",
-        "pose": "laughing",
-        "expression": "laughing",
-        "poseChanges": [
-          { "pose": "leaning", "expression": "smug", "at": "word:oh" },
-          { "pose": "thinking", "expression": "happy", "at": "word:good" }
-        ]
-      },
-      "props": [{ "name": "heart", "at": "word:good", "anim": "pop", "position": "above_character", "scale": 0.8 }],
-      "sfx": [{ "name": "pop", "at": "word:good" }]
+      "sfx": [{ "name": "boom", "at": "start", "volume": 0.6 }],
+      "bubbles": [{ "text": "MUAHAHA", "at": "start+0.2", "until": "word:hahahahaha" }],
+      "camera": [{ "move": "punch_in", "at": "start" }, { "move": "shake", "at": "word:hahahahaha" }]
     },
     {
       "id": "outro",
-      "speech": "Best. Job. Ever.",
-      "emphasis": ["Best", "Ever"],
+      "speech": "Some call it a hobby. I call it justice.",
+      "emphasis": ["justice"],
       "layout": "character_center",
-      "pauseAfter": 0.8,
+      "pauseAfter": 0.9,
+      "speed": 0.94,
       "character": {
         "id": "logan",
-        "pose": "claws_out",
-        "expression": "fierce",
+        "pose": "leaning",
+        "expression": "smug",
         "poseChanges": [
-          { "pose": "pointing_up", "expression": "smug", "at": "word:job" },
-          { "pose": "celebrating", "expression": "laughing", "at": "word:ever" }
+          { "pose": "claws_out", "expression": "fierce", "at": "word:i" },
+          { "pose": "pointing_up", "expression": "fierce", "at": "word:justice" }
         ]
       },
       "props": [
-        { "name": "watermelon", "at": "word:best", "anim": "pop", "position": "left", "scale": 0.9 },
-        { "name": "watermelon", "at": "word:job", "anim": "pop", "position": "right", "scale": 0.9 },
-        { "name": "trophy", "at": "word:ever", "anim": "bounce", "position": "above_character", "scale": 0.9 }
+        { "name": "watermelon_split", "at": "start", "anim": "fade", "position": "left", "scale": 0.9 },
+        { "name": "watermelon_split", "at": "start", "anim": "fade", "position": "right", "scale": 0.9 }
       ],
       "sfx": [
-        { "name": "tick", "at": "word:best" },
-        { "name": "tick", "at": "word:job" },
-        { "name": "ding", "at": "word:ever" }
+        { "name": "snikt", "at": "word:i", "volume": 0.9 },
+        { "name": "boom", "at": "word:justice", "volume": 0.6 }
       ],
-      "bubbles": [{ "text": "SNIKT!", "at": "word:ever+0.3" }],
-      "camera": [{ "move": "punch_in", "at": "word:ever" }]
+      "bubbles": [{ "text": "SNIKT", "at": "word:i+0.05", "until": "word:justice" }],
+      "camera": [{ "move": "punch_in", "at": "word:justice" }]
     }
   ]
 }

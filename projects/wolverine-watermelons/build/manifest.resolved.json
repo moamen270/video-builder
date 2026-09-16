@@ -5,65 +5,92 @@
   "fps": 30,
   "width": 1080,
   "height": 1920,
-  "durationInFrames": 552,
-  "theme": "grape",
-  "voice": "am_fenrir",
+  "durationInFrames": 884,
+  "theme": "midnight",
+  "voice": "am_michael",
   "music": {
     "src": "assets/music/lofi-02.wav",
-    "volume": 0.14
+    "volume": 0.12
   },
   "scenes": [
     {
       "id": "intro",
-      "speech": "Wolverine got a summer job.",
+      "speech": "Everyone thinks I'm just a guy with claws.",
       "startFrame": 0,
-      "durationInFrames": 76,
-      "speechFrames": 64,
+      "durationInFrames": 119,
+      "speechFrames": 105,
       "audioSrc": "audio/intro.wav",
       "words": [
         {
-          "text": "Wolverine",
+          "text": "Everyone",
           "i": 0,
-          "start": 0.175,
-          "end": 0.625,
-          "startFrame": 5,
-          "endFrame": 19,
-          "emphasis": false
-        },
-        {
-          "text": "got",
-          "i": 1,
-          "start": 0.625,
-          "end": 0.762,
-          "startFrame": 19,
-          "endFrame": 23,
-          "emphasis": false
-        },
-        {
-          "text": "a",
-          "i": 2,
-          "start": 0.762,
-          "end": 0.825,
-          "startFrame": 23,
+          "start": 0.375,
+          "end": 0.838,
+          "startFrame": 11,
           "endFrame": 25,
           "emphasis": false
         },
         {
-          "text": "summer",
-          "i": 3,
-          "start": 0.825,
+          "text": "thinks",
+          "i": 1,
+          "start": 0.838,
           "end": 1.175,
           "startFrame": 25,
           "endFrame": 35,
-          "emphasis": true
+          "emphasis": false
         },
         {
-          "text": "job.",
-          "i": 4,
+          "text": "I'm",
+          "i": 2,
           "start": 1.175,
-          "end": 2.025,
+          "end": 1.488,
           "startFrame": 35,
-          "endFrame": 61,
+          "endFrame": 45,
+          "emphasis": false
+        },
+        {
+          "text": "just",
+          "i": 3,
+          "start": 1.488,
+          "end": 1.712,
+          "startFrame": 45,
+          "endFrame": 51,
+          "emphasis": false
+        },
+        {
+          "text": "a",
+          "i": 4,
+          "start": 1.712,
+          "end": 1.812,
+          "startFrame": 51,
+          "endFrame": 54,
+          "emphasis": false
+        },
+        {
+          "text": "guy",
+          "i": 5,
+          "start": 1.812,
+          "end": 2.15,
+          "startFrame": 54,
+          "endFrame": 65,
+          "emphasis": false
+        },
+        {
+          "text": "with",
+          "i": 6,
+          "start": 2.15,
+          "end": 2.337,
+          "startFrame": 65,
+          "endFrame": 70,
+          "emphasis": false
+        },
+        {
+          "text": "claws.",
+          "i": 7,
+          "start": 2.337,
+          "end": 3.4,
+          "startFrame": 70,
+          "endFrame": 102,
           "emphasis": true
         }
       ],
@@ -72,7 +99,6 @@
       "character": {
         "id": "logan",
         "style": "wolverine",
-        "color": "#ffcc00",
         "pose": "idle",
         "expression": "neutral",
         "position": "center",
@@ -80,7 +106,7 @@
           {
             "pose": "claws_out",
             "expression": "fierce",
-            "atFrame": 35
+            "atFrame": 70
           }
         ]
       },
@@ -88,50 +114,86 @@
       "sfx": [
         {
           "name": "snikt",
-          "atFrame": 35,
+          "atFrame": 70,
           "volume": 0.9,
           "src": "assets/sfx/snikt.wav"
         }
       ],
       "bubbles": [
         {
-          "text": "SNIKT!",
-          "atFrame": 37,
-          "untilFrame": 76
+          "text": "SNIKT",
+          "atFrame": 72,
+          "untilFrame": 119
         }
       ],
       "camera": [
         {
           "move": "punch_in",
-          "atFrame": 35
+          "atFrame": 70
         }
       ]
     },
     {
-      "id": "reveal",
-      "speech": "Watermelon slicing.",
-      "startFrame": 76,
-      "durationInFrames": 70,
-      "speechFrames": 55,
-      "audioSrc": "audio/reveal.wav",
+      "id": "purpose",
+      "speech": "I'm not. I have a purpose.",
+      "startFrame": 119,
+      "durationInFrames": 87,
+      "speechFrames": 72,
+      "audioSrc": "audio/purpose.wav",
       "words": [
         {
-          "text": "Watermelon",
+          "text": "I'm",
           "i": 0,
-          "start": 0.175,
-          "end": 0.7,
-          "startFrame": 81,
-          "endFrame": 97,
-          "emphasis": true
+          "start": 0.375,
+          "end": 0.575,
+          "startFrame": 130,
+          "endFrame": 136,
+          "emphasis": false
         },
         {
-          "text": "slicing.",
+          "text": "not.",
           "i": 1,
-          "start": 0.7,
-          "end": 1.725,
-          "startFrame": 97,
-          "endFrame": 128,
+          "start": 0.575,
+          "end": 0.912,
+          "startFrame": 136,
+          "endFrame": 146,
           "emphasis": false
+        },
+        {
+          "text": "I",
+          "i": 2,
+          "start": 0.912,
+          "end": 1.025,
+          "startFrame": 146,
+          "endFrame": 150,
+          "emphasis": false
+        },
+        {
+          "text": "have",
+          "i": 3,
+          "start": 1.025,
+          "end": 1.188,
+          "startFrame": 150,
+          "endFrame": 155,
+          "emphasis": false
+        },
+        {
+          "text": "a",
+          "i": 4,
+          "start": 1.188,
+          "end": 1.25,
+          "startFrame": 155,
+          "endFrame": 157,
+          "emphasis": false
+        },
+        {
+          "text": "purpose.",
+          "i": 5,
+          "start": 1.25,
+          "end": 2.275,
+          "startFrame": 157,
+          "endFrame": 187,
+          "emphasis": true
         }
       ],
       "layout": "character_center",
@@ -139,54 +201,207 @@
       "character": {
         "id": "logan",
         "style": "wolverine",
-        "color": "#ffcc00",
         "pose": "claws_out",
         "expression": "fierce",
-        "position": "left",
-        "poseChanges": []
+        "position": "center",
+        "poseChanges": [
+          {
+            "pose": "pointing_up",
+            "expression": "smug",
+            "atFrame": 157
+          }
+        ]
       },
-      "props": [
-        {
-          "name": "watermelon",
-          "atFrame": 81,
-          "untilFrame": 146,
-          "anim": "drop",
-          "position": "right",
-          "scale": 1.4
-        }
-      ],
+      "props": [],
       "sfx": [
         {
           "name": "drum",
-          "atFrame": 76,
-          "volume": 0.7,
+          "atFrame": 157,
+          "volume": 0.6,
           "src": "assets/sfx/drum.wav"
-        },
-        {
-          "name": "pop",
-          "atFrame": 81,
-          "volume": 0.8,
-          "src": "assets/sfx/pop.wav"
         }
       ],
       "bubbles": [],
       "camera": []
     },
     {
-      "id": "cut1",
-      "speech": "Hyah!",
-      "startFrame": 146,
-      "durationInFrames": 51,
-      "speechFrames": 33,
-      "audioSrc": "audio/cut1.wav",
+      "id": "reveal",
+      "speech": "Watermelons. They know what they did.",
+      "startFrame": 206,
+      "durationInFrames": 112,
+      "speechFrames": 97,
+      "audioSrc": "audio/reveal.wav",
       "words": [
         {
-          "text": "Hyah!",
+          "text": "Watermelons.",
           "i": 0,
-          "start": 0.175,
-          "end": 0.95,
-          "startFrame": 151,
-          "endFrame": 175,
+          "start": 0.45,
+          "end": 1.45,
+          "startFrame": 220,
+          "endFrame": 250,
+          "emphasis": true
+        },
+        {
+          "text": "They",
+          "i": 1,
+          "start": 1.45,
+          "end": 1.625,
+          "startFrame": 250,
+          "endFrame": 255,
+          "emphasis": false
+        },
+        {
+          "text": "know",
+          "i": 2,
+          "start": 1.625,
+          "end": 1.85,
+          "startFrame": 255,
+          "endFrame": 262,
+          "emphasis": true
+        },
+        {
+          "text": "what",
+          "i": 3,
+          "start": 1.85,
+          "end": 2,
+          "startFrame": 262,
+          "endFrame": 266,
+          "emphasis": true
+        },
+        {
+          "text": "they",
+          "i": 4,
+          "start": 2,
+          "end": 2.188,
+          "startFrame": 266,
+          "endFrame": 272,
+          "emphasis": true
+        },
+        {
+          "text": "did.",
+          "i": 5,
+          "start": 2.188,
+          "end": 3.125,
+          "startFrame": 272,
+          "endFrame": 300,
+          "emphasis": true
+        }
+      ],
+      "layout": "character_center",
+      "transition": "cut",
+      "character": {
+        "id": "logan",
+        "style": "wolverine",
+        "pose": "claws_out",
+        "expression": "fierce",
+        "position": "left",
+        "poseChanges": [
+          {
+            "pose": "pointing_right",
+            "expression": "fierce",
+            "atFrame": 250
+          }
+        ]
+      },
+      "props": [
+        {
+          "name": "watermelon",
+          "atFrame": 220,
+          "untilFrame": 318,
+          "anim": "drop",
+          "position": "right",
+          "scale": 1.5
+        }
+      ],
+      "sfx": [
+        {
+          "name": "boom",
+          "atFrame": 220,
+          "volume": 0.55,
+          "src": "assets/sfx/boom.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": []
+    },
+    {
+      "id": "destroy",
+      "speech": "I will destroy every last one of them.",
+      "startFrame": 318,
+      "durationInFrames": 119,
+      "speechFrames": 101,
+      "audioSrc": "audio/destroy.wav",
+      "words": [
+        {
+          "text": "I",
+          "i": 0,
+          "start": 0.4,
+          "end": 0.55,
+          "startFrame": 330,
+          "endFrame": 335,
+          "emphasis": false
+        },
+        {
+          "text": "will",
+          "i": 1,
+          "start": 0.55,
+          "end": 0.675,
+          "startFrame": 335,
+          "endFrame": 338,
+          "emphasis": false
+        },
+        {
+          "text": "destroy",
+          "i": 2,
+          "start": 0.675,
+          "end": 1.438,
+          "startFrame": 338,
+          "endFrame": 361,
+          "emphasis": true
+        },
+        {
+          "text": "every",
+          "i": 3,
+          "start": 1.438,
+          "end": 1.8,
+          "startFrame": 361,
+          "endFrame": 372,
+          "emphasis": true
+        },
+        {
+          "text": "last",
+          "i": 4,
+          "start": 1.8,
+          "end": 2.2,
+          "startFrame": 372,
+          "endFrame": 384,
+          "emphasis": true
+        },
+        {
+          "text": "one",
+          "i": 5,
+          "start": 2.2,
+          "end": 2.337,
+          "startFrame": 384,
+          "endFrame": 388,
+          "emphasis": true
+        },
+        {
+          "text": "of",
+          "i": 6,
+          "start": 2.337,
+          "end": 2.475,
+          "startFrame": 388,
+          "endFrame": 392,
+          "emphasis": false
+        },
+        {
+          "text": "them.",
+          "i": 7,
+          "start": 2.475,
+          "end": 3.25,
+          "startFrame": 392,
+          "endFrame": 416,
           "emphasis": false
         }
       ],
@@ -195,45 +410,126 @@
       "character": {
         "id": "logan",
         "style": "wolverine",
-        "color": "#ffcc00",
+        "pose": "pointing_right",
+        "expression": "fierce",
+        "position": "left",
+        "poseChanges": [
+          {
+            "pose": "claws_out",
+            "expression": "fierce",
+            "atFrame": 338
+          }
+        ]
+      },
+      "props": [
+        {
+          "name": "watermelon",
+          "atFrame": 318,
+          "untilFrame": 437,
+          "anim": "fade",
+          "position": "right",
+          "scale": 1.5
+        }
+      ],
+      "sfx": [
+        {
+          "name": "glitch",
+          "atFrame": 338,
+          "volume": 0.5,
+          "src": "assets/sfx/glitch.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": [
+        {
+          "move": "slow_zoom",
+          "atFrame": 318
+        },
+        {
+          "move": "shake",
+          "atFrame": 338
+        }
+      ]
+    },
+    {
+      "id": "cut1",
+      "speech": "Come here, bub.",
+      "startFrame": 437,
+      "durationInFrames": 69,
+      "speechFrames": 53,
+      "audioSrc": "audio/cut1.wav",
+      "words": [
+        {
+          "text": "Come",
+          "i": 0,
+          "start": 0.35,
+          "end": 0.575,
+          "startFrame": 448,
+          "endFrame": 454,
+          "emphasis": false
+        },
+        {
+          "text": "here,",
+          "i": 1,
+          "start": 0.575,
+          "end": 0.825,
+          "startFrame": 454,
+          "endFrame": 462,
+          "emphasis": false
+        },
+        {
+          "text": "bub.",
+          "i": 2,
+          "start": 0.825,
+          "end": 1.65,
+          "startFrame": 462,
+          "endFrame": 487,
+          "emphasis": true
+        }
+      ],
+      "layout": "character_center",
+      "transition": "cut",
+      "character": {
+        "id": "logan",
+        "style": "wolverine",
         "pose": "claws_out",
         "expression": "fierce",
         "position": "left",
         "poseChanges": [
           {
             "pose": "slash_right",
-            "atFrame": 151
+            "atFrame": 465
           }
         ]
       },
       "props": [
         {
           "name": "watermelon",
-          "atFrame": 146,
-          "untilFrame": 153,
+          "atFrame": 437,
+          "untilFrame": 467,
           "anim": "fade",
           "position": "right",
-          "scale": 1.4
+          "scale": 1.5
         },
         {
           "name": "watermelon_split",
-          "atFrame": 153,
-          "untilFrame": 197,
+          "atFrame": 467,
+          "untilFrame": 506,
           "anim": "burst",
           "position": "right",
-          "scale": 1.5
+          "scale": 1.6
         }
       ],
       "sfx": [
         {
           "name": "slash",
-          "atFrame": 151,
+          "atFrame": 465,
           "volume": 0.9,
           "src": "assets/sfx/slash.wav"
         },
         {
           "name": "splat",
-          "atFrame": 154,
+          "atFrame": 468,
           "volume": 0.9,
           "src": "assets/sfx/splat.wav"
         }
@@ -242,35 +538,35 @@
       "camera": [
         {
           "move": "shake",
-          "atFrame": 154
+          "atFrame": 468
         }
       ]
     },
     {
       "id": "cut2",
-      "speech": "Another one.",
-      "startFrame": 197,
-      "durationInFrames": 46,
-      "speechFrames": 40,
+      "speech": "You're next.",
+      "startFrame": 506,
+      "durationInFrames": 58,
+      "speechFrames": 46,
       "audioSrc": "audio/cut2.wav",
       "words": [
         {
-          "text": "Another",
+          "text": "You're",
           "i": 0,
-          "start": 0.175,
-          "end": 0.5,
-          "startFrame": 202,
-          "endFrame": 212,
-          "emphasis": true
+          "start": 0.4,
+          "end": 0.55,
+          "startFrame": 518,
+          "endFrame": 523,
+          "emphasis": false
         },
         {
-          "text": "one.",
+          "text": "next.",
           "i": 1,
-          "start": 0.5,
-          "end": 1.225,
-          "startFrame": 212,
-          "endFrame": 234,
-          "emphasis": false
+          "start": 0.55,
+          "end": 1.425,
+          "startFrame": 523,
+          "endFrame": 549,
+          "emphasis": true
         }
       ],
       "layout": "character_center",
@@ -278,52 +574,50 @@
       "character": {
         "id": "logan",
         "style": "wolverine",
-        "color": "#ffcc00",
         "pose": "claws_out",
-        "expression": "smug",
+        "expression": "fierce",
         "position": "right",
         "poseChanges": [
           {
             "pose": "slash_left",
-            "expression": "fierce",
-            "atFrame": 212
+            "atFrame": 526
           }
         ]
       },
       "props": [
         {
           "name": "watermelon",
-          "atFrame": 197,
-          "untilFrame": 214,
+          "atFrame": 506,
+          "untilFrame": 528,
           "anim": "drop",
           "position": "left",
-          "scale": 1.4
+          "scale": 1.5
         },
         {
           "name": "watermelon_split",
-          "atFrame": 214,
-          "untilFrame": 243,
+          "atFrame": 528,
+          "untilFrame": 564,
           "anim": "burst",
           "position": "left",
-          "scale": 1.5
+          "scale": 1.6
         }
       ],
       "sfx": [
         {
           "name": "whoosh",
-          "atFrame": 197,
-          "volume": 0.5,
+          "atFrame": 506,
+          "volume": 0.4,
           "src": "assets/sfx/whoosh.wav"
         },
         {
           "name": "slash",
-          "atFrame": 212,
+          "atFrame": 526,
           "volume": 0.9,
           "src": "assets/sfx/slash.wav"
         },
         {
           "name": "splat",
-          "atFrame": 215,
+          "atFrame": 529,
           "volume": 0.9,
           "src": "assets/sfx/splat.wav"
         }
@@ -332,43 +626,43 @@
       "camera": [
         {
           "move": "shake",
-          "atFrame": 215
+          "atFrame": 529
         }
       ]
     },
     {
       "id": "cut3",
-      "speech": "And! Another! One!",
-      "startFrame": 243,
-      "durationInFrames": 64,
-      "speechFrames": 49,
+      "speech": "Nobody. Gets. Out.",
+      "startFrame": 564,
+      "durationInFrames": 93,
+      "speechFrames": 75,
       "audioSrc": "audio/cut3.wav",
       "words": [
         {
-          "text": "And!",
+          "text": "Nobody.",
           "i": 0,
-          "start": 0.175,
-          "end": 0.338,
-          "startFrame": 248,
-          "endFrame": 253,
-          "emphasis": false
-        },
-        {
-          "text": "Another!",
-          "i": 1,
-          "start": 0.338,
-          "end": 0.75,
-          "startFrame": 253,
-          "endFrame": 266,
+          "start": 0.45,
+          "end": 1.038,
+          "startFrame": 578,
+          "endFrame": 595,
           "emphasis": true
         },
         {
-          "text": "One!",
+          "text": "Gets.",
+          "i": 1,
+          "start": 1.038,
+          "end": 1.512,
+          "startFrame": 595,
+          "endFrame": 609,
+          "emphasis": false
+        },
+        {
+          "text": "Out.",
           "i": 2,
-          "start": 0.75,
-          "end": 1.525,
-          "startFrame": 266,
-          "endFrame": 289,
+          "start": 1.512,
+          "end": 2.375,
+          "startFrame": 609,
+          "endFrame": 635,
           "emphasis": true
         }
       ],
@@ -377,114 +671,113 @@
       "character": {
         "id": "logan",
         "style": "wolverine",
-        "color": "#ffcc00",
         "pose": "claws_out",
         "expression": "fierce",
         "position": "center",
         "poseChanges": [
           {
             "pose": "slash_right",
-            "atFrame": 248
+            "atFrame": 578
           },
           {
             "pose": "slash_left",
-            "atFrame": 253
+            "atFrame": 595
           },
           {
             "pose": "slash_right",
-            "atFrame": 266
+            "atFrame": 609
           },
           {
             "pose": "claws_out",
             "expression": "smug",
-            "atFrame": 280
+            "atFrame": 624
           }
         ]
       },
       "props": [
         {
           "name": "watermelon",
-          "atFrame": 243,
-          "untilFrame": 250,
+          "atFrame": 564,
+          "untilFrame": 581,
           "anim": "pop",
           "position": "right",
-          "scale": 1.1
+          "scale": 1.15
         },
         {
           "name": "watermelon_split",
-          "atFrame": 250,
-          "untilFrame": 262,
+          "atFrame": 581,
+          "untilFrame": 607,
           "anim": "burst",
           "position": "right",
-          "scale": 1.2
+          "scale": 1.25
         },
         {
           "name": "watermelon",
-          "atFrame": 243,
-          "untilFrame": 255,
+          "atFrame": 564,
+          "untilFrame": 598,
           "anim": "pop",
           "position": "left",
-          "scale": 1.1
+          "scale": 1.15
         },
         {
           "name": "watermelon_split",
-          "atFrame": 255,
-          "untilFrame": 275,
+          "atFrame": 598,
+          "untilFrame": 621,
           "anim": "burst",
           "position": "left",
-          "scale": 1.2
+          "scale": 1.25
         },
         {
           "name": "watermelon",
-          "atFrame": 253,
-          "untilFrame": 268,
+          "atFrame": 595,
+          "untilFrame": 612,
           "anim": "drop",
           "position": "above_character",
-          "scale": 1.1
+          "scale": 1.15
         },
         {
           "name": "watermelon_split",
-          "atFrame": 268,
-          "untilFrame": 307,
+          "atFrame": 612,
+          "untilFrame": 657,
           "anim": "burst",
           "position": "above_character",
-          "scale": 1.3
+          "scale": 1.35
         }
       ],
       "sfx": [
         {
           "name": "slash",
-          "atFrame": 248,
+          "atFrame": 578,
           "volume": 0.9,
           "src": "assets/sfx/slash.wav"
         },
         {
           "name": "splat",
-          "atFrame": 251,
+          "atFrame": 581,
           "volume": 0.8,
           "src": "assets/sfx/splat.wav"
         },
         {
           "name": "slash",
-          "atFrame": 253,
+          "atFrame": 595,
           "volume": 0.9,
           "src": "assets/sfx/slash.wav"
         },
         {
           "name": "splat",
-          "atFrame": 256,
+          "atFrame": 598,
           "volume": 0.8,
           "src": "assets/sfx/splat.wav"
         },
         {
           "name": "slash",
-          "atFrame": 266,
+          "atFrame": 609,
           "volume": 0.9,
           "src": "assets/sfx/slash.wav"
         },
         {
           "name": "splat",
-          "atFrame": 269,
+          "atFrame": 612,
           "volume": 0.9,
           "src": "assets/sfx/splat.wav"
         }
@@ -493,97 +786,34 @@
       "camera": [
         {
           "move": "shake",
-          "atFrame": 269
+          "atFrame": 612
         }
       ]
     },
     {
       "id": "laugh",
-      "speech": "Ha ha ha ha ha! Ha ha ha ha!",
-      "startFrame": 307,
-      "durationInFrames": 83,
-      "speechFrames": 74,
+      "speech": "Muahahahaha! Hahahahaha!",
+      "startFrame": 657,
+      "durationInFrames": 97,
+      "speechFrames": 82,
       "audioSrc": "audio/laugh.wav",
       "words": [
         {
-          "text": "Ha",
+          "text": "Muahahahaha!",
           "i": 0,
-          "start": 0.175,
-          "end": 0.35,
-          "startFrame": 312,
-          "endFrame": 318,
-          "emphasis": false
-        },
-        {
-          "text": "ha",
-          "i": 1,
-          "start": 0.35,
-          "end": 0.5,
-          "startFrame": 318,
-          "endFrame": 322,
-          "emphasis": false
-        },
-        {
-          "text": "ha",
-          "i": 2,
-          "start": 0.5,
-          "end": 0.65,
-          "startFrame": 322,
-          "endFrame": 327,
-          "emphasis": false
-        },
-        {
-          "text": "ha",
-          "i": 3,
-          "start": 0.65,
-          "end": 0.825,
-          "startFrame": 327,
-          "endFrame": 332,
-          "emphasis": false
-        },
-        {
-          "text": "ha!",
-          "i": 4,
-          "start": 0.825,
-          "end": 1.075,
-          "startFrame": 332,
-          "endFrame": 339,
-          "emphasis": false
-        },
-        {
-          "text": "Ha",
-          "i": 5,
-          "start": 1.075,
+          "start": 0.45,
           "end": 1.25,
-          "startFrame": 339,
-          "endFrame": 345,
+          "startFrame": 671,
+          "endFrame": 695,
           "emphasis": false
         },
         {
-          "text": "ha",
-          "i": 6,
+          "text": "Hahahahaha!",
+          "i": 1,
           "start": 1.25,
-          "end": 1.425,
-          "startFrame": 345,
-          "endFrame": 350,
-          "emphasis": false
-        },
-        {
-          "text": "ha",
-          "i": 7,
-          "start": 1.425,
-          "end": 1.6,
-          "startFrame": 350,
-          "endFrame": 355,
-          "emphasis": false
-        },
-        {
-          "text": "ha!",
-          "i": 8,
-          "start": 1.6,
-          "end": 2.35,
-          "startFrame": 355,
-          "endFrame": 378,
+          "end": 2.625,
+          "startFrame": 695,
+          "endFrame": 736,
           "emphasis": false
         }
       ],
@@ -592,7 +822,6 @@
       "character": {
         "id": "logan",
         "style": "wolverine",
-        "color": "#ffcc00",
         "pose": "laughing",
         "expression": "laughing",
         "position": "center",
@@ -600,202 +829,149 @@
           {
             "pose": "celebrating",
             "expression": "laughing",
-            "atFrame": 339
-          },
-          {
-            "pose": "laughing",
-            "expression": "laughing",
-            "atFrame": 350
+            "atFrame": 695
           }
         ]
       },
       "props": [
         {
           "name": "watermelon_split",
-          "atFrame": 307,
-          "untilFrame": 390,
+          "atFrame": 657,
+          "untilFrame": 754,
           "anim": "burst",
           "position": "left",
           "scale": 1
         },
         {
           "name": "watermelon_split",
-          "atFrame": 307,
-          "untilFrame": 390,
+          "atFrame": 657,
+          "untilFrame": 754,
           "anim": "burst",
           "position": "right",
           "scale": 1
         },
         {
-          "name": "star",
-          "atFrame": 339,
-          "untilFrame": 390,
+          "name": "fire",
+          "atFrame": 695,
+          "untilFrame": 754,
           "anim": "pop",
           "position": "above_character",
-          "scale": 0.8
+          "scale": 0.9
         }
       ],
       "sfx": [
         {
           "name": "boom",
-          "atFrame": 307,
-          "volume": 0.5,
+          "atFrame": 657,
+          "volume": 0.6,
           "src": "assets/sfx/boom.wav"
         }
       ],
       "bubbles": [
         {
-          "text": "HA HA!",
-          "atFrame": 318,
-          "untilFrame": 339
+          "text": "MUAHAHA",
+          "atFrame": 663,
+          "untilFrame": 695
         }
       ],
       "camera": [
         {
           "move": "punch_in",
-          "atFrame": 307
+          "atFrame": 657
+        },
+        {
+          "move": "shake",
+          "atFrame": 695
         }
       ]
     },
     {
-      "id": "more",
-      "speech": "Mwahahaha! Oh, that's the good stuff.",
-      "startFrame": 390,
-      "durationInFrames": 87,
-      "speechFrames": 75,
-      "audioSrc": "audio/more.wav",
-      "words": [
-        {
-          "text": "Mwahahaha!",
-          "i": 0,
-          "start": 0.175,
-          "end": 0.85,
-          "startFrame": 395,
-          "endFrame": 416,
-          "emphasis": false
-        },
-        {
-          "text": "Oh,",
-          "i": 1,
-          "start": 0.85,
-          "end": 1.012,
-          "startFrame": 416,
-          "endFrame": 420,
-          "emphasis": false
-        },
-        {
-          "text": "that's",
-          "i": 2,
-          "start": 1.012,
-          "end": 1.262,
-          "startFrame": 420,
-          "endFrame": 428,
-          "emphasis": false
-        },
-        {
-          "text": "the",
-          "i": 3,
-          "start": 1.262,
-          "end": 1.35,
-          "startFrame": 428,
-          "endFrame": 431,
-          "emphasis": false
-        },
-        {
-          "text": "good",
-          "i": 4,
-          "start": 1.35,
-          "end": 1.575,
-          "startFrame": 431,
-          "endFrame": 437,
-          "emphasis": true
-        },
-        {
-          "text": "stuff.",
-          "i": 5,
-          "start": 1.575,
-          "end": 2.4,
-          "startFrame": 437,
-          "endFrame": 462,
-          "emphasis": true
-        }
-      ],
-      "layout": "character_center",
-      "transition": "cut",
-      "character": {
-        "id": "logan",
-        "style": "wolverine",
-        "color": "#ffcc00",
-        "pose": "laughing",
-        "expression": "laughing",
-        "position": "center",
-        "poseChanges": [
-          {
-            "pose": "leaning",
-            "expression": "smug",
-            "atFrame": 416
-          },
-          {
-            "pose": "thinking",
-            "expression": "happy",
-            "atFrame": 431
-          }
-        ]
-      },
-      "props": [
-        {
-          "name": "heart",
-          "atFrame": 431,
-          "untilFrame": 477,
-          "anim": "pop",
-          "position": "above_character",
-          "scale": 0.8
-        }
-      ],
-      "sfx": [
-        {
-          "name": "pop",
-          "atFrame": 431,
-          "volume": 0.8,
-          "src": "assets/sfx/pop.wav"
-        }
-      ],
-      "bubbles": [],
-      "camera": []
-    },
-    {
       "id": "outro",
-      "speech": "Best. Job. Ever.",
-      "startFrame": 477,
-      "durationInFrames": 75,
-      "speechFrames": 51,
+      "speech": "Some call it a hobby. I call it justice.",
+      "startFrame": 754,
+      "durationInFrames": 130,
+      "speechFrames": 103,
       "audioSrc": "audio/outro.wav",
       "words": [
         {
-          "text": "Best.",
+          "text": "Some",
           "i": 0,
-          "start": 0.175,
-          "end": 0.475,
-          "startFrame": 482,
-          "endFrame": 491,
-          "emphasis": true
-        },
-        {
-          "text": "Job.",
-          "i": 1,
-          "start": 0.475,
-          "end": 0.825,
-          "startFrame": 491,
-          "endFrame": 502,
+          "start": 0.425,
+          "end": 0.65,
+          "startFrame": 767,
+          "endFrame": 774,
           "emphasis": false
         },
         {
-          "text": "Ever.",
+          "text": "call",
+          "i": 1,
+          "start": 0.65,
+          "end": 0.863,
+          "startFrame": 774,
+          "endFrame": 780,
+          "emphasis": false
+        },
+        {
+          "text": "it",
           "i": 2,
-          "start": 0.825,
-          "end": 1.6,
-          "startFrame": 502,
-          "endFrame": 525,
+          "start": 0.863,
+          "end": 0.938,
+          "startFrame": 780,
+          "endFrame": 782,
+          "emphasis": false
+        },
+        {
+          "text": "a",
+          "i": 3,
+          "start": 0.938,
+          "end": 1,
+          "startFrame": 782,
+          "endFrame": 784,
+          "emphasis": false
+        },
+        {
+          "text": "hobby.",
+          "i": 4,
+          "start": 1,
+          "end": 1.7,
+          "startFrame": 784,
+          "endFrame": 805,
+          "emphasis": false
+        },
+        {
+          "text": "I",
+          "i": 5,
+          "start": 1.7,
+          "end": 1.85,
+          "startFrame": 805,
+          "endFrame": 810,
+          "emphasis": false
+        },
+        {
+          "text": "call",
+          "i": 6,
+          "start": 1.85,
+          "end": 2.062,
+          "startFrame": 810,
+          "endFrame": 816,
+          "emphasis": false
+        },
+        {
+          "text": "it",
+          "i": 7,
+          "start": 2.062,
+          "end": 2.188,
+          "startFrame": 816,
+          "endFrame": 820,
+          "emphasis": false
+        },
+        {
+          "text": "justice.",
+          "i": 8,
+          "start": 2.188,
+          "end": 3.325,
+          "startFrame": 820,
+          "endFrame": 854,
           "emphasis": true
         }
       ],
@@ -804,88 +980,73 @@
       "character": {
         "id": "logan",
         "style": "wolverine",
-        "color": "#ffcc00",
-        "pose": "claws_out",
-        "expression": "fierce",
+        "pose": "leaning",
+        "expression": "smug",
         "position": "center",
         "poseChanges": [
           {
-            "pose": "pointing_up",
-            "expression": "smug",
-            "atFrame": 491
+            "pose": "claws_out",
+            "expression": "fierce",
+            "atFrame": 805
           },
           {
-            "pose": "celebrating",
-            "expression": "laughing",
-            "atFrame": 502
+            "pose": "pointing_up",
+            "expression": "fierce",
+            "atFrame": 820
           }
         ]
       },
       "props": [
         {
-          "name": "watermelon",
-          "atFrame": 482,
-          "untilFrame": 552,
-          "anim": "pop",
+          "name": "watermelon_split",
+          "atFrame": 754,
+          "untilFrame": 884,
+          "anim": "fade",
           "position": "left",
           "scale": 0.9
         },
         {
-          "name": "watermelon",
-          "atFrame": 491,
-          "untilFrame": 552,
-          "anim": "pop",
+          "name": "watermelon_split",
+          "atFrame": 754,
+          "untilFrame": 884,
+          "anim": "fade",
           "position": "right",
-          "scale": 0.9
-        },
-        {
-          "name": "trophy",
-          "atFrame": 502,
-          "untilFrame": 552,
-          "anim": "bounce",
-          "position": "above_character",
           "scale": 0.9
         }
       ],
       "sfx": [
         {
-          "name": "tick",
-          "atFrame": 482,
-          "volume": 0.8,
-          "src": "assets/sfx/tick.wav"
+          "name": "snikt",
+          "atFrame": 805,
+          "volume": 0.9,
+          "src": "assets/sfx/snikt.wav"
         },
         {
-          "name": "tick",
-          "atFrame": 491,
-          "volume": 0.8,
-          "src": "assets/sfx/tick.wav"
-        },
-        {
-          "name": "ding",
-          "atFrame": 502,
-          "volume": 0.8,
-          "src": "assets/sfx/ding.wav"
+          "name": "boom",
+          "atFrame": 820,
+          "volume": 0.6,
+          "src": "assets/sfx/boom.wav"
         }
       ],
       "bubbles": [
         {
-          "text": "SNIKT!",
-          "atFrame": 511,
-          "untilFrame": 552
+          "text": "SNIKT",
+          "atFrame": 807,
+          "untilFrame": 820
         }
       ],
       "camera": [
         {
           "move": "punch_in",
-          "atFrame": 502
+          "atFrame": 820
         }
       ]
     }
   ],
   "meta": {
-    "resolvedAt": "2026-09-16T02:29:54.573Z",
+    "resolvedAt": "2026-09-16T02:48:55.714Z",
     "engineVersion": "0.1.0",
     "ttsModel": "hexgrad/Kokoro-82M",
-    "manifestHash": "c486d169710eb7ea"
+    "manifestHash": "6c98e31eb571406c"
   }
 }

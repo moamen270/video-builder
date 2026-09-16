@@ -50,12 +50,12 @@ class Synth:
         self.speed = speed
         self.pipeline = KPipeline(lang_code=lang, repo_id=REPO_ID)
 
-    def synth_scene(self, scene_id: str, text: str, out_path: Path, pause_after: float = 0.0) -> SceneAudio:
+    def synth_scene(self, scene_id: str, text: str, out_path: Path, pause_after: float = 0.0, speed: float | None = None) -> SceneAudio:
         chunks: list[np.ndarray] = []
         tokens: list[Token] = []
         offset = 0.0
 
-        for result in self.pipeline(text, voice=self.voice, speed=self.speed, split_pattern=r"\n+"):
+        for result in self.pipeline(text, voice=self.voice, speed=speed if speed is not None else self.speed, split_pattern=r"\n+"):
             audio = result.audio
             if audio is None:
                 continue

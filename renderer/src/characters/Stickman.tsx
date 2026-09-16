@@ -56,7 +56,6 @@ function poseAt(scene: ResolvedScene, frame: number): PoseState {
 
 const isTalking = (words: Word[], frame: number) => words.some((w) => frame >= w.startFrame && frame < w.endFrame);
 
-const WOLV = { yellow: "#ffcc00", blue: "#1f4fd1", black: "#111111" };
 
 /** 0° = straight down, 90° = screen-right, 180° = straight up. */
 const polar = (x: number, y: number, len: number, deg: number) => {
@@ -114,8 +113,8 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const scale = Math.min(rect.w / RW, rect.h / RH);
   const face = useMemo(() => faceFor(st.expression), [st.expression]);
   const mouthOpen = talking ? (laughing ? 0.7 + 0.3 * laughBeat : 0.5 + 0.5 * Math.abs(Math.sin(abs / 1.7))) : 0;
+  // "wolverine" = the plain stickman with claws. No costume: the claws carry the aura.
   const wolv = style === "wolverine";
-  const legColor = wolv ? WOLV.blue : ink;
 
   const line = { stroke: ink, strokeWidth: STROKE, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, fill: "none" };
 
@@ -130,30 +129,21 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
         {/* shadow */}
         <ellipse cx={120} cy={404} rx={58 + Math.abs(lift) * 0.4} ry={7} fill="rgba(0,0,0,0.25)" />
         {/* legs */}
-        <polyline points={`${HIP.x},${HIP.y} ${lKnee.x},${lKnee.y} ${lFoot.x},${lFoot.y}`} {...line} stroke={legColor} />
-        <polyline points={`${HIP.x},${HIP.y} ${rKnee.x},${rKnee.y} ${rFoot.x},${rFoot.y}`} {...line} stroke={legColor} />
-        {wolv && <ellipse cx={HIP.x} cy={HIP.y + 6} rx={22} ry={13} fill={WOLV.blue} />}
+        <polyline points={`${HIP.x},${HIP.y} ${lKnee.x},${lKnee.y} ${lFoot.x},${lFoot.y}`} {...line} />
+        <polyline points={`${HIP.x},${HIP.y} ${rKnee.x},${rKnee.y} ${rFoot.x},${rFoot.y}`} {...line} />
         {/* torso */}
         <line x1={HIP.x} y1={HIP.y} x2={neck.x} y2={neck.y} {...line} strokeWidth={STROKE + 1} />
         {/* arms */}
         <polyline points={`${shoulder.x},${shoulder.y} ${lElbow.x},${lElbow.y} ${lHand.x},${lHand.y}`} {...line} />
         <polyline points={`${shoulder.x},${shoulder.y} ${rElbow.x},${rElbow.y} ${rHand.x},${rHand.y}`} {...line} />
         {/* hands */}
-        <circle cx={lHand.x} cy={lHand.y} r={wolv ? 9 : 7} fill={ink} />
-        <circle cx={rHand.x} cy={rHand.y} r={wolv ? 9 : 7} fill={ink} />
         {wolv && <Claws x={lHand.x} y={lHand.y} deg={rig.lUpper + rig.lLower + torso} />}
         {wolv && <Claws x={rHand.x} y={rHand.y} deg={rig.rUpper + rig.rLower + wiggle + torso} />}
+        <circle cx={lHand.x} cy={lHand.y} r={wolv ? 9 : 7} fill={ink} />
+        <circle cx={rHand.x} cy={rHand.y} r={wolv ? 9 : 7} fill={ink} />
         {/* head */}
         <g transform={`translate(${headC.x} ${headC.y}) rotate(${rig.head + torso * 0.5 + nodTalk * 0.3})`}>
-          <circle r={HEAD_R} fill={wolv ? WOLV.yellow : headFill} stroke={ink} strokeWidth={STROKE} />
-          {wolv && (
-            <g>
-              {/* pointed mask: two dark wings sweeping up into ears */}
-              <path d="M -30 -8 L -44 -52 L -12 -22 L 0 -14 L 12 -22 L 44 -52 L 30 -8 Q 0 -30 -30 -8 Z" fill={WOLV.black} stroke={ink} strokeWidth={4} strokeLinejoin="round" />
-              <path d="M -34 -2 Q -18 -12 -6 -2 L -6 6 Q -18 2 -34 6 Z" fill={WOLV.black} />
-              <path d="M 34 -2 Q 18 -12 6 -2 L 6 6 Q 18 2 34 6 Z" fill={WOLV.black} />
-            </g>
-          )}
+          <circle r={HEAD_R} fill={headFill} stroke={ink} strokeWidth={STROKE} />
           <g transform={`translate(0 ${rig.nod * 0.25 + nodTalk * 0.4})`}>
             {/* eyes */}
             {blink ? (
@@ -165,22 +155,22 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
               <>
                 {face.eyes === "closed" ? (
                   <>
-                    <path d="M -17 -4 Q -10 -12 -3 -4" stroke={wolv ? "#ffffff" : ink} strokeWidth={4} fill="none" strokeLinecap="round" />
-                    <path d="M 3 -4 Q 10 -12 17 -4" stroke={wolv ? "#ffffff" : ink} strokeWidth={4} fill="none" strokeLinecap="round" />
+                    <path d="M -17 -4 Q -10 -12 -3 -4" stroke={ink} strokeWidth={4} fill="none" strokeLinecap="round" />
+                    <path d="M 3 -4 Q 10 -12 17 -4" stroke={ink} strokeWidth={4} fill="none" strokeLinecap="round" />
                   </>
                 ) : (
                   <>
-                    <circle cx={-10} cy={-4} r={face.eyeR} fill={wolv ? "#ffffff" : ink} />
-                    <circle cx={10} cy={-4} r={face.eyeR} fill={wolv ? "#ffffff" : ink} />
+                    <circle cx={-10} cy={-4} r={face.eyeR} fill={ink} />
+                    <circle cx={10} cy={-4} r={face.eyeR} fill={ink} />
                   </>
                 )}
               </>
             )}
-            {/* brows (the mask already reads as brows on wolverine) */}
-            {!wolv && <line x1={-17} y1={-16 + face.browL[0]} x2={-4} y2={-16 + face.browL[1]} {...line} strokeWidth={4} />}
-            {!wolv && <line x1={4} y1={-16 + face.browR[0]} x2={17} y2={-16 + face.browR[1]} {...line} strokeWidth={4} />}
+            {/* brows */}
+            <line x1={-17} y1={-16 + face.browL[0]} x2={-4} y2={-16 + face.browL[1]} {...line} strokeWidth={4} />
+            <line x1={4} y1={-16 + face.browR[0]} x2={17} y2={-16 + face.browR[1]} {...line} strokeWidth={4} />
             {/* mouth */}
-            <Mouth kind={face.mouth} open={mouthOpen} ink={wolv ? WOLV.black : ink} accent={accent} />
+            <Mouth kind={face.mouth} open={mouthOpen} ink={ink} accent={accent} />
           </g>
         </g>
       </svg>
@@ -198,11 +188,15 @@ interface Face {
   mouth: MouthKind;
 }
 
-/** Three claws fanning out of a hand, along the forearm direction. */
+/** Three adamantium claws fanning out of a hand, along the forearm direction. */
 const Claws: React.FC<{ x: number; y: number; deg: number }> = ({ x, y, deg }) => (
   <g transform={`translate(${x} ${y}) rotate(${deg})`}>
-    {[-14, 0, 14].map((dx) => (
-      <line key={dx} x1={dx * 0.5} y1={4} x2={dx} y2={40} stroke="#dfe6f2" strokeWidth={5} strokeLinecap="round" />
+    {[-16, 0, 16].map((dx) => (
+      <g key={dx}>
+        <path d={`M ${dx * 0.45 - 4} 2 L ${dx * 0.45 + 4} 2 L ${dx} 58 Z`} fill="#0b0d14" />
+        <path d={`M ${dx * 0.45 - 2} 4 L ${dx * 0.45 + 2} 4 L ${dx} 54 Z`} fill="#e6ecf7" />
+        <path d={`M ${dx * 0.45 - 1} 6 L ${dx * 0.45} 6 L ${dx * 0.85} 40 Z`} fill="#ffffff" opacity={0.7} />
+      </g>
     ))}
   </g>
 );

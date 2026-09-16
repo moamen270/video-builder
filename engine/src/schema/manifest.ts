@@ -14,6 +14,7 @@ import {
   TRANSITIONS,
   VIDEO,
   VOICES,
+  VOICE_FX,
 } from "./catalog.js";
 
 /**
@@ -82,6 +83,10 @@ export const Scene = z.object({
   emphasis: z.array(z.string().min(1)).default([]),
   /** Silence appended after this scene's speech, seconds. */
   pauseAfter: z.number().min(0).max(2).default(0.25),
+  /** Override the manifest speed for this scene (slower for menace, faster for lists). */
+  speed: z.number().min(0.7).max(1.4).optional(),
+  /** Override the manifest voiceFx for this scene (e.g. "villain" on the evil laugh). */
+  voiceFx: z.enum(VOICE_FX).optional(),
   layout: z.enum(LAYOUTS).default("character_bottom"),
   transition: z.enum(TRANSITIONS).default("cut"),
   character: CharacterState.nullable().prefault({}),
@@ -108,6 +113,8 @@ export const Manifest = z.object({
   voice: z.enum(VOICES).default("af_heart"),
   /** Kokoro speed multiplier. Shorts usually want 1.05–1.15. */
   speed: z.number().min(0.8).max(1.3).default(1.05),
+  /** Voice post-processing applied to every scene unless the scene overrides it. */
+  voiceFx: z.enum(VOICE_FX).default("none"),
   theme: z.enum(THEMES).default("midnight"),
   music: z
     .object({

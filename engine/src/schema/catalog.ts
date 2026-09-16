@@ -113,6 +113,10 @@ export const VOICES = [
 ] as const;
 export type Voice = (typeof VOICES)[number];
 
+/** Post-processing on the synthesized voice. `deep` = pitch down ~12% + light room; `villain` = pitch down ~20%, bass, big reverb. */
+export const VOICE_FX = ["none", "deep", "villain"] as const;
+export type VoiceFx = (typeof VOICE_FX)[number];
+
 export const CAMERA_MOVES = ["none", "punch_in", "slow_zoom", "shake"] as const;
 export type CameraMove = (typeof CAMERA_MOVES)[number];
 

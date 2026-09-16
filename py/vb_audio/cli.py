@@ -38,6 +38,7 @@ def cmd_synth(args: argparse.Namespace) -> int:
             text=sc["speech"],
             out_path=out_dir / f"{sc['id']}.wav",
             pause_after=float(sc.get("pauseAfter", 0.0)),
+            speed=float(sc["speed"]) if sc.get("speed") is not None else None,
         )
         d = dataclasses.asdict(res)
         d["sceneId"] = d.pop("scene_id")

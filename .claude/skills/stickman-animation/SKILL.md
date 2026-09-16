@@ -43,12 +43,19 @@ Rules:
 
 ### Character styles
 
-`characters[].style`: `stickman` (plain narrator) or `wolverine` (yellow ink,
-black pointed mask, claws on both hands, blue trunks). Set `"color": "#ffcc00"`
-with wolverine. Claws are always drawn, so every gesture reads as a threat —
-lean into it. Comedy formula that works: setup → `claws_out` + `snikt` bubble →
-2–3 `slash_*` beats with `watermelon` → `watermelon_split` swaps → `laughing`
-scene with 8–9 "ha" words → one-line punch ("Best. Job. Ever.").
+`characters[].style`: `stickman` (plain narrator) or `wolverine` — the same
+plain stickman with three adamantium claws on each hand. No costume, no mask:
+the claws and the delivery carry the aura. Play him deadpan and serious about
+something trivial; the joke is never in his lines. Pair with `voiceFx: "deep"`,
+`speed` 0.9–0.98, `am_michael`/`am_fenrir`, `snikt` on the reveal, and a
+`voiceFx: "villain"` scene for the evil laugh (`"Muahahahaha! Hahahahaha!"`).
+
+### Voice FX and speed
+
+Manifest `voiceFx` (default `none`) applies to every scene; a scene can override
+it. `deep` = pitch −12 % + small room (gritty narrator). `villain` = pitch −20 %,
+bass, big reverb — use only on the laugh or one threat line. Scenes may also
+override `speed` (0.7–1.4): slow to 0.9 for menace, 1.15 for lists.
 
 ## Layouts
 
@@ -109,10 +116,12 @@ One SFX per visual event, volume 0.5–0.8; never two on the same word.
   "version": 1, "slug": "kebab-case", "title": "…",
   "voice": "af_heart",      // af_heart af_bella af_nicole af_sarah af_sky am_adam am_michael am_fenrir am_puck bf_emma bf_isabella bm_george bm_lewis
   "speed": 1.08,            // 0.8–1.3
+  "voiceFx": "none",        // none deep villain
   "theme": "midnight",      // midnight paper sunset mint grape
   "music": { "track": "lofi-01", "volume": 0.16 } | null,
   "scenes": [{
     "id": "hook", "speech": "…", "emphasis": ["…"], "pauseAfter": 0.25,
+    "speed": 0.95, "voiceFx": "villain",          // optional per-scene overrides
     "layout": "character_bottom", "transition": "cut",
     "character": { "pose": "explaining", "expression": "neutral", "position": "center",
                    "poseChanges": [{ "pose": "shocked", "expression": "surprised", "at": "word:slow" }] } | null,

@@ -1,17 +1,38 @@
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { execa } from "execa";
-import { AlignmentFile, type Manifest, type SceneAlignment } from "./schema/index.js";
+import { AlignmentFile, type Manifest, type SceneAlignment, type VoiceFx } from "./schema/index.js";
 import { PY_DIR, type ProjectPaths } from "./paths.js";
 
 export type AudioProgress = (msg: string) => void;
 
+const sceneSpeed = (m: Manifest, s: Manifest["scenes"][number]) => s.speed ?? m.speed;
+const sceneFx = (m: Manifest, s: Manifest["scenes"][number]): VoiceFx => s.voiceFx ?? m.voiceFx;
+
 export function sceneHash(m: Manifest, s: Manifest["scenes"][number]): string {
   return createHash("sha256")
-    .update([m.voice, m.speed, s.speech, s.pauseAfter].join("|"))
+    .update([m.voice, sceneSpeed(m, s), sceneFx(m, s), s.speech, s.pauseAfter, "v2"].join("|"))
     .digest("hex")
     .slice(0, 16);
+}
+
+/**
+ * ffmpeg filter chains for voice post-processing. Pitch is lowered by resampling
+ * and the tempo restored with atempo, so word timestamps stay valid.
+ */
+const FX_FILTERS: Record<Exclude<VoiceFx, "none">, string> = {
+  deep: "asetrate=24000*0.88,aresample=24000,atempo=1/0.88,bass=g=4:f=140,aecho=0.7:0.35:28:0.18",
+  villain: "asetrate=24000*0.80,aresample=24000,atempo=1/0.80,bass=g=8:f=120,aecho=0.8:0.6:45|95|170:0.42|0.28|0.16,alimiter=limit=0.95",
+};
+
+async function applyVoiceFx(file: string, fx: VoiceFx, seconds: number) {
+  if (fx === "none") return;
+  const tmp = file.replace(/\.wav$/, ".fx.wav");
+  // atempo drifts slightly at strong ratios; pin the length so scenes never overlap.
+  await execa("ffmpeg", ["-y", "-v", "error", "-i", file, "-af", `${FX_FILTERS[fx]},apad`, "-t", seconds.toFixed(4), "-ar", "24000", "-ac", "1", tmp]);
+  rmSync(file, { force: true });
+  renameSync(tmp, file);
 }
 
 /**
@@ -36,7 +57,7 @@ export async function ensureAudio(
   }
 
   const todo = m.scenes
-    .map((s) => ({ id: s.id, speech: s.speech, pauseAfter: s.pauseAfter, hash: sceneHash(m, s) }))
+    .map((s) => ({ id: s.id, speech: s.speech, pauseAfter: s.pauseAfter, speed: sceneSpeed(m, s), fx: sceneFx(m, s), hash: sceneHash(m, s) }))
     .filter((s) => !reusable.has(`${s.id}:${s.hash}`));
 
   let fresh: (SceneAlignment & { hash: string })[] = [];
@@ -56,6 +77,13 @@ export async function ensureAudio(
     await proc;
     const result = AlignmentFile.parse(JSON.parse(readFileSync(outPath, "utf8")));
     fresh = result.scenes;
+    for (const sc of todo) {
+      if (sc.fx !== "none") {
+        const dur = fresh.find((f) => f.sceneId === sc.id)?.duration ?? 0;
+        log(`voice fx "${sc.fx}" on ${sc.id}`);
+        await applyVoiceFx(path.join(p.audioDir, `${sc.id}.wav`), sc.fx, dur + sc.pauseAfter);
+      }
+    }
     rmSync(reqPath, { force: true });
     rmSync(outPath, { force: true });
   } else {
