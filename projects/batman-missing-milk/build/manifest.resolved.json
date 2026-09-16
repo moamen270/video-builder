@@ -1,0 +1,984 @@
+{
+  "version": 1,
+  "slug": "batman-missing-milk",
+  "title": "Batman: the case of the missing milk",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "durationInFrames": 855,
+  "theme": "midnight",
+  "voice": "am_fenrir",
+  "music": {
+    "src": "assets/music/lofi-02.wav",
+    "volume": 0.1
+  },
+  "scenes": [
+    {
+      "id": "intro",
+      "speech": "It's three A.M. in Gotham.",
+      "isClip": false,
+      "clipVolume": 1,
+      "startFrame": 0,
+      "durationInFrames": 91,
+      "speechFrames": 70,
+      "audioSrc": "audio/intro.wav",
+      "words": [
+        {
+          "text": "It's",
+          "i": 0,
+          "start": 0.2,
+          "end": 0.425,
+          "startFrame": 6,
+          "endFrame": 13,
+          "emphasis": false
+        },
+        {
+          "text": "three",
+          "i": 1,
+          "start": 0.425,
+          "end": 0.675,
+          "startFrame": 13,
+          "endFrame": 20,
+          "emphasis": true
+        },
+        {
+          "text": "A.M.",
+          "i": 2,
+          "start": 0.675,
+          "end": 1.012,
+          "startFrame": 20,
+          "endFrame": 30,
+          "emphasis": true
+        },
+        {
+          "text": "in",
+          "i": 3,
+          "start": 1.012,
+          "end": 1.15,
+          "startFrame": 30,
+          "endFrame": 35,
+          "emphasis": false
+        },
+        {
+          "text": "Gotham.",
+          "i": 4,
+          "start": 1.15,
+          "end": 2.225,
+          "startFrame": 35,
+          "endFrame": 67,
+          "emphasis": false
+        }
+      ],
+      "layout": "character_center",
+      "transition": "cut",
+      "character": {
+        "id": "bruce",
+        "style": "batman",
+        "pose": "arms_crossed",
+        "expression": "neutral",
+        "position": "center",
+        "poseChanges": [
+          {
+            "pose": "arms_crossed",
+            "expression": "fierce",
+            "atFrame": 35
+          }
+        ],
+        "shots": [],
+        "strikes": [],
+        "travel": null,
+        "jump": null
+      },
+      "props": [
+        {
+          "name": "moon",
+          "atFrame": 0,
+          "untilFrame": 91,
+          "anim": "fade",
+          "position": "top_right",
+          "scale": 0.9,
+          "exit": "fade"
+        }
+      ],
+      "sfx": [
+        {
+          "name": "thunder",
+          "atFrame": 0,
+          "volume": 0.8,
+          "src": "assets/sfx/thunder.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": [
+        {
+          "move": "slow_zoom",
+          "atFrame": 0
+        }
+      ],
+      "overlays": []
+    },
+    {
+      "id": "crime",
+      "speech": "Someone drank the last of the milk.",
+      "isClip": false,
+      "clipVolume": 1,
+      "startFrame": 91,
+      "durationInFrames": 90,
+      "speechFrames": 72,
+      "audioSrc": "audio/crime.wav",
+      "words": [
+        {
+          "text": "Someone",
+          "i": 0,
+          "start": 0.225,
+          "end": 0.5,
+          "startFrame": 98,
+          "endFrame": 106,
+          "emphasis": false
+        },
+        {
+          "text": "drank",
+          "i": 1,
+          "start": 0.5,
+          "end": 0.8,
+          "startFrame": 106,
+          "endFrame": 115,
+          "emphasis": false
+        },
+        {
+          "text": "the",
+          "i": 2,
+          "start": 0.8,
+          "end": 0.925,
+          "startFrame": 115,
+          "endFrame": 119,
+          "emphasis": false
+        },
+        {
+          "text": "last",
+          "i": 3,
+          "start": 0.925,
+          "end": 1.262,
+          "startFrame": 119,
+          "endFrame": 129,
+          "emphasis": false
+        },
+        {
+          "text": "of",
+          "i": 4,
+          "start": 1.262,
+          "end": 1.337,
+          "startFrame": 129,
+          "endFrame": 131,
+          "emphasis": false
+        },
+        {
+          "text": "the",
+          "i": 5,
+          "start": 1.337,
+          "end": 1.425,
+          "startFrame": 131,
+          "endFrame": 134,
+          "emphasis": false
+        },
+        {
+          "text": "milk.",
+          "i": 6,
+          "start": 1.425,
+          "end": 2.3,
+          "startFrame": 134,
+          "endFrame": 160,
+          "emphasis": true
+        }
+      ],
+      "layout": "character_center",
+      "transition": "cut",
+      "character": {
+        "id": "bruce",
+        "style": "batman",
+        "pose": "thinking",
+        "expression": "neutral",
+        "position": "left",
+        "poseChanges": [
+          {
+            "pose": "shocked",
+            "expression": "surprised",
+            "atFrame": 134
+          }
+        ],
+        "shots": [],
+        "strikes": [],
+        "travel": null,
+        "jump": null
+      },
+      "props": [
+        {
+          "name": "moon",
+          "atFrame": 91,
+          "untilFrame": 181,
+          "anim": "fade",
+          "position": "top_right",
+          "scale": 0.9,
+          "exit": "fade"
+        },
+        {
+          "name": "milk",
+          "atFrame": 134,
+          "untilFrame": 181,
+          "anim": "drop",
+          "position": "right",
+          "scale": 1.3,
+          "exit": "fade"
+        }
+      ],
+      "sfx": [
+        {
+          "name": "boom",
+          "atFrame": 134,
+          "volume": 0.5,
+          "src": "assets/sfx/boom.wav"
+        }
+      ],
+      "bubbles": [
+        {
+          "text": "EMPTY",
+          "atFrame": 143,
+          "untilFrame": 181,
+          "side": "right"
+        }
+      ],
+      "camera": [
+        {
+          "move": "punch_in",
+          "atFrame": 134
+        }
+      ],
+      "overlays": []
+    },
+    {
+      "id": "insult",
+      "speech": "And put the empty carton back.",
+      "isClip": false,
+      "clipVolume": 1,
+      "startFrame": 181,
+      "durationInFrames": 91,
+      "speechFrames": 70,
+      "audioSrc": "audio/insult.wav",
+      "words": [
+        {
+          "text": "And",
+          "i": 0,
+          "start": 0.2,
+          "end": 0.312,
+          "startFrame": 187,
+          "endFrame": 190,
+          "emphasis": false
+        },
+        {
+          "text": "put",
+          "i": 1,
+          "start": 0.312,
+          "end": 0.438,
+          "startFrame": 190,
+          "endFrame": 194,
+          "emphasis": false
+        },
+        {
+          "text": "the",
+          "i": 2,
+          "start": 0.438,
+          "end": 0.588,
+          "startFrame": 194,
+          "endFrame": 199,
+          "emphasis": false
+        },
+        {
+          "text": "empty",
+          "i": 3,
+          "start": 0.588,
+          "end": 0.925,
+          "startFrame": 199,
+          "endFrame": 209,
+          "emphasis": true
+        },
+        {
+          "text": "carton",
+          "i": 4,
+          "start": 0.925,
+          "end": 1.325,
+          "startFrame": 209,
+          "endFrame": 221,
+          "emphasis": true
+        },
+        {
+          "text": "back.",
+          "i": 5,
+          "start": 1.325,
+          "end": 2.225,
+          "startFrame": 221,
+          "endFrame": 248,
+          "emphasis": true
+        }
+      ],
+      "layout": "character_center",
+      "transition": "cut",
+      "character": {
+        "id": "bruce",
+        "style": "batman",
+        "pose": "facepalm",
+        "expression": "worried",
+        "position": "left",
+        "poseChanges": [
+          {
+            "pose": "pointing_right",
+            "expression": "fierce",
+            "atFrame": 221
+          }
+        ],
+        "shots": [],
+        "strikes": [],
+        "travel": null,
+        "jump": null
+      },
+      "props": [
+        {
+          "name": "milk",
+          "atFrame": 181,
+          "untilFrame": 272,
+          "anim": "fade",
+          "position": "right",
+          "scale": 1.3,
+          "exit": "fade"
+        }
+      ],
+      "sfx": [
+        {
+          "name": "error",
+          "atFrame": 221,
+          "volume": 0.5,
+          "src": "assets/sfx/error.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": [],
+      "overlays": []
+    },
+    {
+      "id": "vow",
+      "speech": "This city deserves better.",
+      "isClip": false,
+      "clipVolume": 1,
+      "startFrame": 272,
+      "durationInFrames": 89,
+      "speechFrames": 65,
+      "audioSrc": "audio/vow.wav",
+      "words": [
+        {
+          "text": "This",
+          "i": 0,
+          "start": 0.225,
+          "end": 0.375,
+          "startFrame": 279,
+          "endFrame": 283,
+          "emphasis": false
+        },
+        {
+          "text": "city",
+          "i": 1,
+          "start": 0.375,
+          "end": 0.65,
+          "startFrame": 283,
+          "endFrame": 292,
+          "emphasis": false
+        },
+        {
+          "text": "deserves",
+          "i": 2,
+          "start": 0.65,
+          "end": 1.1,
+          "startFrame": 292,
+          "endFrame": 305,
+          "emphasis": true
+        },
+        {
+          "text": "better.",
+          "i": 3,
+          "start": 1.1,
+          "end": 2.05,
+          "startFrame": 305,
+          "endFrame": 333,
+          "emphasis": true
+        }
+      ],
+      "layout": "character_center",
+      "transition": "cut",
+      "character": {
+        "id": "bruce",
+        "style": "batman",
+        "pose": "arms_crossed",
+        "expression": "fierce",
+        "position": "center",
+        "poseChanges": [],
+        "shots": [],
+        "strikes": [],
+        "travel": null,
+        "jump": null
+      },
+      "props": [
+        {
+          "name": "moon",
+          "atFrame": 272,
+          "untilFrame": 361,
+          "anim": "fade",
+          "position": "top_right",
+          "scale": 0.9,
+          "exit": "fade"
+        }
+      ],
+      "sfx": [
+        {
+          "name": "thunder",
+          "atFrame": 305,
+          "volume": 0.7,
+          "src": "assets/sfx/thunder.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": [
+        {
+          "move": "punch_in",
+          "atFrame": 292
+        }
+      ],
+      "overlays": []
+    },
+    {
+      "id": "investigate",
+      "speech": "I checked the fingerprints. The glass. The cereal bowl.",
+      "isClip": false,
+      "clipVolume": 1,
+      "startFrame": 361,
+      "durationInFrames": 125,
+      "speechFrames": 110,
+      "audioSrc": "audio/investigate.wav",
+      "words": [
+        {
+          "text": "I",
+          "i": 0,
+          "start": 0.2,
+          "end": 0.338,
+          "startFrame": 367,
+          "endFrame": 371,
+          "emphasis": false
+        },
+        {
+          "text": "checked",
+          "i": 1,
+          "start": 0.338,
+          "end": 0.613,
+          "startFrame": 371,
+          "endFrame": 379,
+          "emphasis": false
+        },
+        {
+          "text": "the",
+          "i": 2,
+          "start": 0.613,
+          "end": 0.7,
+          "startFrame": 379,
+          "endFrame": 382,
+          "emphasis": false
+        },
+        {
+          "text": "fingerprints.",
+          "i": 3,
+          "start": 0.7,
+          "end": 1.4,
+          "startFrame": 382,
+          "endFrame": 403,
+          "emphasis": true
+        },
+        {
+          "text": "The",
+          "i": 4,
+          "start": 1.4,
+          "end": 1.5,
+          "startFrame": 403,
+          "endFrame": 406,
+          "emphasis": false
+        },
+        {
+          "text": "glass.",
+          "i": 5,
+          "start": 1.5,
+          "end": 2,
+          "startFrame": 406,
+          "endFrame": 421,
+          "emphasis": true
+        },
+        {
+          "text": "The",
+          "i": 6,
+          "start": 2,
+          "end": 2.138,
+          "startFrame": 421,
+          "endFrame": 425,
+          "emphasis": false
+        },
+        {
+          "text": "cereal",
+          "i": 7,
+          "start": 2.138,
+          "end": 2.575,
+          "startFrame": 425,
+          "endFrame": 438,
+          "emphasis": true
+        },
+        {
+          "text": "bowl.",
+          "i": 8,
+          "start": 2.575,
+          "end": 3.55,
+          "startFrame": 438,
+          "endFrame": 468,
+          "emphasis": true
+        }
+      ],
+      "layout": "character_center",
+      "transition": "cut",
+      "character": {
+        "id": "bruce",
+        "style": "batman",
+        "pose": "pointing_left",
+        "expression": "neutral",
+        "position": "center",
+        "poseChanges": [
+          {
+            "pose": "pointing_up",
+            "atFrame": 406
+          },
+          {
+            "pose": "pointing_right",
+            "atFrame": 425
+          }
+        ],
+        "shots": [],
+        "strikes": [],
+        "travel": null,
+        "jump": null
+      },
+      "props": [
+        {
+          "name": "magnifier",
+          "atFrame": 382,
+          "untilFrame": 486,
+          "anim": "drop",
+          "position": "top_left",
+          "scale": 0.9,
+          "exit": "fade"
+        },
+        {
+          "name": "question",
+          "atFrame": 406,
+          "untilFrame": 486,
+          "anim": "drop",
+          "position": "top",
+          "scale": 0.9,
+          "exit": "fade"
+        },
+        {
+          "name": "document",
+          "atFrame": 425,
+          "untilFrame": 486,
+          "anim": "drop",
+          "position": "top_right",
+          "scale": 0.9,
+          "exit": "fade"
+        }
+      ],
+      "sfx": [
+        {
+          "name": "tick",
+          "atFrame": 382,
+          "volume": 0.8,
+          "src": "assets/sfx/tick.wav"
+        },
+        {
+          "name": "tick",
+          "atFrame": 406,
+          "volume": 0.8,
+          "src": "assets/sfx/tick.wav"
+        },
+        {
+          "name": "tick",
+          "atFrame": 425,
+          "volume": 0.8,
+          "src": "assets/sfx/tick.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": [],
+      "overlays": []
+    },
+    {
+      "id": "evidence",
+      "speech": "Every clue pointed to one man.",
+      "isClip": false,
+      "clipVolume": 1,
+      "startFrame": 486,
+      "durationInFrames": 102,
+      "speechFrames": 75,
+      "audioSrc": "audio/evidence.wav",
+      "words": [
+        {
+          "text": "Every",
+          "i": 0,
+          "start": 0.225,
+          "end": 0.5,
+          "startFrame": 493,
+          "endFrame": 501,
+          "emphasis": false
+        },
+        {
+          "text": "clue",
+          "i": 1,
+          "start": 0.5,
+          "end": 0.75,
+          "startFrame": 501,
+          "endFrame": 509,
+          "emphasis": false
+        },
+        {
+          "text": "pointed",
+          "i": 2,
+          "start": 0.75,
+          "end": 1.125,
+          "startFrame": 509,
+          "endFrame": 520,
+          "emphasis": false
+        },
+        {
+          "text": "to",
+          "i": 3,
+          "start": 1.125,
+          "end": 1.25,
+          "startFrame": 520,
+          "endFrame": 524,
+          "emphasis": false
+        },
+        {
+          "text": "one",
+          "i": 4,
+          "start": 1.25,
+          "end": 1.5,
+          "startFrame": 524,
+          "endFrame": 531,
+          "emphasis": true
+        },
+        {
+          "text": "man.",
+          "i": 5,
+          "start": 1.5,
+          "end": 2.4,
+          "startFrame": 531,
+          "endFrame": 558,
+          "emphasis": true
+        }
+      ],
+      "layout": "character_center",
+      "transition": "cut",
+      "character": {
+        "id": "bruce",
+        "style": "batman",
+        "pose": "thinking",
+        "expression": "neutral",
+        "position": "center",
+        "poseChanges": [
+          {
+            "pose": "pointing_up",
+            "expression": "smug",
+            "atFrame": 524
+          }
+        ],
+        "shots": [],
+        "strikes": [],
+        "travel": null,
+        "jump": null
+      },
+      "props": [
+        {
+          "name": "bat_signal",
+          "atFrame": 524,
+          "untilFrame": 588,
+          "anim": "pop",
+          "position": "above_character",
+          "scale": 0.9,
+          "exit": "fade"
+        }
+      ],
+      "sfx": [
+        {
+          "name": "drum",
+          "atFrame": 524,
+          "volume": 0.8,
+          "src": "assets/sfx/drum.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": [
+        {
+          "move": "slow_zoom",
+          "atFrame": 486
+        }
+      ],
+      "overlays": []
+    },
+    {
+      "id": "reveal",
+      "speech": "It was me.",
+      "isClip": false,
+      "clipVolume": 1,
+      "startFrame": 588,
+      "durationInFrames": 90,
+      "speechFrames": 48,
+      "audioSrc": "audio/reveal.wav",
+      "words": [
+        {
+          "text": "It",
+          "i": 0,
+          "start": 0.225,
+          "end": 0.35,
+          "startFrame": 595,
+          "endFrame": 599,
+          "emphasis": false
+        },
+        {
+          "text": "was",
+          "i": 1,
+          "start": 0.35,
+          "end": 0.588,
+          "startFrame": 599,
+          "endFrame": 606,
+          "emphasis": false
+        },
+        {
+          "text": "me.",
+          "i": 2,
+          "start": 0.588,
+          "end": 1.475,
+          "startFrame": 606,
+          "endFrame": 632,
+          "emphasis": true
+        }
+      ],
+      "layout": "character_center",
+      "transition": "cut",
+      "character": {
+        "id": "bruce",
+        "style": "batman",
+        "pose": "pointing_up",
+        "expression": "smug",
+        "position": "center",
+        "poseChanges": [
+          {
+            "pose": "shocked",
+            "expression": "surprised",
+            "atFrame": 606
+          },
+          {
+            "pose": "facepalm",
+            "expression": "worried",
+            "atFrame": 633
+          }
+        ],
+        "shots": [],
+        "strikes": [],
+        "travel": null,
+        "jump": null
+      },
+      "props": [
+        {
+          "name": "bat_signal",
+          "atFrame": 588,
+          "untilFrame": 633,
+          "anim": "fade",
+          "position": "above_character",
+          "scale": 0.9,
+          "exit": "fade"
+        }
+      ],
+      "sfx": [
+        {
+          "name": "glitch",
+          "atFrame": 606,
+          "volume": 0.6,
+          "src": "assets/sfx/glitch.wav"
+        }
+      ],
+      "bubbles": [
+        {
+          "text": "...",
+          "atFrame": 618,
+          "untilFrame": 672,
+          "side": "right"
+        }
+      ],
+      "camera": [
+        {
+          "move": "shake",
+          "atFrame": 606
+        }
+      ],
+      "overlays": []
+    },
+    {
+      "id": "line",
+      "speech": "I'm Batman.",
+      "isClip": false,
+      "clipVolume": 1,
+      "startFrame": 678,
+      "durationInFrames": 84,
+      "speechFrames": 54,
+      "audioSrc": "audio/line.wav",
+      "words": [
+        {
+          "text": "I'm",
+          "i": 0,
+          "start": 0.25,
+          "end": 0.487,
+          "startFrame": 686,
+          "endFrame": 693,
+          "emphasis": false
+        },
+        {
+          "text": "Batman.",
+          "i": 1,
+          "start": 0.487,
+          "end": 1.7,
+          "startFrame": 693,
+          "endFrame": 729,
+          "emphasis": true
+        }
+      ],
+      "layout": "character_center",
+      "transition": "cut",
+      "character": {
+        "id": "bruce",
+        "style": "batman",
+        "pose": "arms_crossed",
+        "expression": "fierce",
+        "position": "center",
+        "poseChanges": [],
+        "shots": [],
+        "strikes": [],
+        "travel": null,
+        "jump": null
+      },
+      "props": [
+        {
+          "name": "moon",
+          "atFrame": 678,
+          "untilFrame": 762,
+          "anim": "fade",
+          "position": "top_right",
+          "scale": 0.9,
+          "exit": "fade"
+        },
+        {
+          "name": "bat_signal",
+          "atFrame": 693,
+          "untilFrame": 762,
+          "anim": "pop",
+          "position": "top_left",
+          "scale": 0.9,
+          "exit": "fade"
+        }
+      ],
+      "sfx": [
+        {
+          "name": "thunder",
+          "atFrame": 693,
+          "volume": 0.9,
+          "src": "assets/sfx/thunder.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": [
+        {
+          "move": "punch_in",
+          "atFrame": 693
+        }
+      ],
+      "overlays": []
+    },
+    {
+      "id": "outro",
+      "speech": "Goodnight.",
+      "isClip": false,
+      "clipVolume": 1,
+      "startFrame": 762,
+      "durationInFrames": 93,
+      "speechFrames": 45,
+      "audioSrc": "audio/outro.wav",
+      "words": [
+        {
+          "text": "Goodnight.",
+          "i": 0,
+          "start": 0.225,
+          "end": 1.375,
+          "startFrame": 769,
+          "endFrame": 803,
+          "emphasis": false
+        }
+      ],
+      "layout": "character_center",
+      "transition": "cut",
+      "character": {
+        "id": "bruce",
+        "style": "batman",
+        "pose": "leaning",
+        "expression": "smug",
+        "position": "center",
+        "poseChanges": [],
+        "shots": [],
+        "strikes": [],
+        "travel": null,
+        "jump": null
+      },
+      "props": [
+        {
+          "name": "moon",
+          "atFrame": 762,
+          "untilFrame": 855,
+          "anim": "fade",
+          "position": "top_right",
+          "scale": 0.9,
+          "exit": "fade"
+        }
+      ],
+      "sfx": [
+        {
+          "name": "whoosh",
+          "atFrame": 787,
+          "volume": 0.5,
+          "src": "assets/sfx/whoosh.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": [],
+      "overlays": [
+        {
+          "kind": "blackout",
+          "atFrame": 790,
+          "untilFrame": 855
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "resolvedAt": "2026-09-16T18:21:38.412Z",
+    "engineVersion": "0.1.0",
+    "ttsModel": "hexgrad/Kokoro-82M",
+    "manifestHash": "94a4da8c3c583645"
+  }
+}

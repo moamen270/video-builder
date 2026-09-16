@@ -1,0 +1,346 @@
+{
+  "model": "hexgrad/Kokoro-82M",
+  "voice": "am_fenrir",
+  "speed": 0.86,
+  "scenes": [
+    {
+      "sceneId": "intro",
+      "file": "intro.wav",
+      "duration": 2.325,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "It's",
+          "start": 0.2,
+          "end": 0.425,
+          "ws": " "
+        },
+        {
+          "text": "three",
+          "start": 0.425,
+          "end": 0.675,
+          "ws": " "
+        },
+        {
+          "text": "A.M.",
+          "start": 0.675,
+          "end": 1.012,
+          "ws": " "
+        },
+        {
+          "text": "in",
+          "start": 1.012,
+          "end": 1.15,
+          "ws": " "
+        },
+        {
+          "text": "Gotham.",
+          "start": 1.15,
+          "end": 2.225,
+          "ws": ""
+        }
+      ],
+      "hash": "a4c7839c5bce4754"
+    },
+    {
+      "sceneId": "crime",
+      "file": "crime.wav",
+      "duration": 2.4,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Someone",
+          "start": 0.225,
+          "end": 0.5,
+          "ws": " "
+        },
+        {
+          "text": "drank",
+          "start": 0.5,
+          "end": 0.8,
+          "ws": " "
+        },
+        {
+          "text": "the",
+          "start": 0.8,
+          "end": 0.925,
+          "ws": " "
+        },
+        {
+          "text": "last",
+          "start": 0.925,
+          "end": 1.262,
+          "ws": " "
+        },
+        {
+          "text": "of",
+          "start": 1.262,
+          "end": 1.337,
+          "ws": " "
+        },
+        {
+          "text": "the",
+          "start": 1.337,
+          "end": 1.425,
+          "ws": " "
+        },
+        {
+          "text": "milk.",
+          "start": 1.425,
+          "end": 2.3,
+          "ws": ""
+        }
+      ],
+      "hash": "9df465ac86780c68"
+    },
+    {
+      "sceneId": "insult",
+      "file": "insult.wav",
+      "duration": 2.325,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "And",
+          "start": 0.2,
+          "end": 0.312,
+          "ws": " "
+        },
+        {
+          "text": "put",
+          "start": 0.312,
+          "end": 0.438,
+          "ws": " "
+        },
+        {
+          "text": "the",
+          "start": 0.438,
+          "end": 0.588,
+          "ws": " "
+        },
+        {
+          "text": "empty",
+          "start": 0.588,
+          "end": 0.925,
+          "ws": " "
+        },
+        {
+          "text": "carton",
+          "start": 0.925,
+          "end": 1.325,
+          "ws": " "
+        },
+        {
+          "text": "back.",
+          "start": 1.325,
+          "end": 2.225,
+          "ws": ""
+        }
+      ],
+      "hash": "2675de4a3674197c"
+    },
+    {
+      "sceneId": "vow",
+      "file": "vow.wav",
+      "duration": 2.15,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "This",
+          "start": 0.225,
+          "end": 0.375,
+          "ws": " "
+        },
+        {
+          "text": "city",
+          "start": 0.375,
+          "end": 0.65,
+          "ws": " "
+        },
+        {
+          "text": "deserves",
+          "start": 0.65,
+          "end": 1.1,
+          "ws": " "
+        },
+        {
+          "text": "better.",
+          "start": 1.1,
+          "end": 2.05,
+          "ws": ""
+        }
+      ],
+      "hash": "6b582d9da2e06baf"
+    },
+    {
+      "sceneId": "investigate",
+      "file": "investigate.wav",
+      "duration": 3.65,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "I",
+          "start": 0.2,
+          "end": 0.338,
+          "ws": " "
+        },
+        {
+          "text": "checked",
+          "start": 0.338,
+          "end": 0.613,
+          "ws": " "
+        },
+        {
+          "text": "the",
+          "start": 0.613,
+          "end": 0.7,
+          "ws": " "
+        },
+        {
+          "text": "fingerprints.",
+          "start": 0.7,
+          "end": 1.4,
+          "ws": " "
+        },
+        {
+          "text": "The",
+          "start": 1.4,
+          "end": 1.5,
+          "ws": " "
+        },
+        {
+          "text": "glass.",
+          "start": 1.5,
+          "end": 2,
+          "ws": " "
+        },
+        {
+          "text": "The",
+          "start": 2,
+          "end": 2.138,
+          "ws": " "
+        },
+        {
+          "text": "cereal",
+          "start": 2.138,
+          "end": 2.575,
+          "ws": " "
+        },
+        {
+          "text": "bowl.",
+          "start": 2.575,
+          "end": 3.55,
+          "ws": ""
+        }
+      ],
+      "hash": "5f5a327d41d0333d"
+    },
+    {
+      "sceneId": "evidence",
+      "file": "evidence.wav",
+      "duration": 2.5,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Every",
+          "start": 0.225,
+          "end": 0.5,
+          "ws": " "
+        },
+        {
+          "text": "clue",
+          "start": 0.5,
+          "end": 0.75,
+          "ws": " "
+        },
+        {
+          "text": "pointed",
+          "start": 0.75,
+          "end": 1.125,
+          "ws": " "
+        },
+        {
+          "text": "to",
+          "start": 1.125,
+          "end": 1.25,
+          "ws": " "
+        },
+        {
+          "text": "one",
+          "start": 1.25,
+          "end": 1.5,
+          "ws": " "
+        },
+        {
+          "text": "man.",
+          "start": 1.5,
+          "end": 2.4,
+          "ws": ""
+        }
+      ],
+      "hash": "5d8a35fab085f51b"
+    },
+    {
+      "sceneId": "reveal",
+      "file": "reveal.wav",
+      "duration": 1.575,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "It",
+          "start": 0.225,
+          "end": 0.35,
+          "ws": " "
+        },
+        {
+          "text": "was",
+          "start": 0.35,
+          "end": 0.588,
+          "ws": " "
+        },
+        {
+          "text": "me.",
+          "start": 0.588,
+          "end": 1.475,
+          "ws": ""
+        }
+      ],
+      "hash": "d2fa2934ef29def2"
+    },
+    {
+      "sceneId": "line",
+      "file": "line.wav",
+      "duration": 1.8,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "I'm",
+          "start": 0.25,
+          "end": 0.487,
+          "ws": " "
+        },
+        {
+          "text": "Batman.",
+          "start": 0.487,
+          "end": 1.7,
+          "ws": ""
+        }
+      ],
+      "hash": "9eea0d433e779ceb"
+    },
+    {
+      "sceneId": "outro",
+      "file": "outro.wav",
+      "duration": 1.475,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Goodnight.",
+          "start": 0.225,
+          "end": 1.375,
+          "ws": ""
+        }
+      ],
+      "hash": "83278905ede535f8"
+    }
+  ]
+}

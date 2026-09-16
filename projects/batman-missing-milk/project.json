@@ -1,0 +1,20 @@
+{
+  "slug": "batman-missing-milk",
+  "topic": "Batman: the case of the missing milk",
+  "createdAt": "2026-09-16T18:17:52.983Z",
+  "targetSeconds": 40,
+  "status": "qa_passed",
+  "lastRenderMs": 46230,
+  "versions": [
+    {
+      "n": 1,
+      "at": "2026-09-16T18:22:26.475Z",
+      "seconds": 28.5,
+      "renderMs": 46230,
+      "qaOk": true,
+      "manifestHash": "94a4da8c3c583645",
+      "note": "v1: am_fenrir deep, noir milk mystery, batman style (ears + cape)",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/batman-missing-milk-v1/final.mp4"
+    }
+  ]
+}

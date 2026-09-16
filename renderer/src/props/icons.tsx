@@ -235,6 +235,33 @@ export const ICONS: Record<PropName, Icon> = {
   number_2: ({ line, accent }) => <Numeral n="2" line={line} accent={accent} />,
   number_3: ({ line, accent }) => <Numeral n="3" line={line} accent={accent} />,
   number_4: ({ line, accent }) => <Numeral n="4" line={line} accent={accent} />,
+  milk: ({ line, fill, accent }) => (
+    <g {...base(line)}>
+      <path d="M 26 30 L 26 92 L 74 92 L 74 30 L 62 12 L 38 12 Z" fill="#f4f6fb" />
+      <path d="M 26 30 L 74 30 M 38 12 L 50 30 L 62 12" />
+      <rect x={32} y={44} width={36} height={30} rx={4} fill={accent} stroke="none" />
+      <path d="M 40 52 h 20 M 40 60 h 20 M 40 68 h 12" stroke="#ffffff" strokeWidth={4} />
+      <circle cx={50} cy={22} r={4} fill={fill} stroke="none" />
+    </g>
+  ),
+  bat_signal: ({ line }) => (
+    <g {...base(line)}>
+      <circle cx={50} cy={50} r={42} fill="#fff7c2" />
+      <circle cx={50} cy={50} r={36} fill="#ffe66d" stroke="none" />
+      <path
+        d="M 50 40 C 46 32 40 30 34 32 C 28 34 24 40 22 46 C 26 44 30 44 33 46 C 31 50 30 54 32 58 C 36 54 40 53 44 56 L 50 66 L 56 56 C 60 53 64 54 68 58 C 70 54 69 50 67 46 C 70 44 74 44 78 46 C 76 40 72 34 66 32 C 60 30 54 32 50 40 Z"
+        fill="#111111"
+        stroke="none"
+      />
+    </g>
+  ),
+  moon: ({ line }) => (
+    <g {...base(line)}>
+      <path d="M 62 10 A 40 40 0 1 0 62 90 A 40 40 0 0 0 62 10 Z" fill="#ffe9a8" />
+      <circle cx={44} cy={38} r={4} fill="#e8d28a" stroke="none" />
+      <circle cx={36} cy={62} r={6} fill="#e8d28a" stroke="none" />
+    </g>
+  ),
   crate: ({ line }) => (
     <g>
       <rect x={2} y={2} width={96} height={96} rx={3} fill="#b07a3c" stroke={line} strokeWidth={4} />

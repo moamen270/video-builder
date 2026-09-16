@@ -47,6 +47,7 @@ export const RIGS: Record<Pose, Rig> = {
   aim_up: { lUpper: -24, lLower: -20, rUpper: 150, rLower: 8, lThigh: -12, lShin: 0, rThigh: 12, rShin: 0, head: -8, torso: -4, lift: -4, nod: -10 },
   reload: { lUpper: -40, lLower: -95, rUpper: 40, rLower: 95, lThigh: -8, lShin: 0, rThigh: 8, rShin: 0, head: 0, torso: 2, lift: 0, nod: 16 },
   bow: { lUpper: -70, lLower: -40, rUpper: 20, rLower: 60, lThigh: -10, lShin: 0, rThigh: 10, rShin: 0, head: 0, torso: 30, lift: 6, nod: 30 },
+  arms_crossed: { lUpper: -34, lLower: 122, rUpper: 34, rLower: -122, lThigh: -10, lShin: 0, rThigh: 10, rShin: 0, head: 0, torso: 0, lift: 0, nod: 5 },
   walk_right: { lUpper: -8, lLower: -6, rUpper: 8, rLower: 6, lThigh: -7, lShin: 0, rThigh: 7, rShin: 0, head: 0, torso: 0, lift: 0, nod: 0 },
   walk_left: { lUpper: -8, lLower: -6, rUpper: 8, rLower: 6, lThigh: -7, lShin: 0, rThigh: 7, rShin: 0, head: 0, torso: 0, lift: 0, nod: 0 },
 };

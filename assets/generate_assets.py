@@ -224,6 +224,18 @@ def chime() -> np.ndarray:
     return tone * shimmer * env(len(x), 0.004, 0.8, 2.2)
 
 
+def thunder() -> np.ndarray:
+    """Distant thunder: layered low rumbles with a slow decay and a crackle onset."""
+    rng = np.random.default_rng(31)
+    x = t(2.6)
+    n = len(x)
+    rumble = lowpass(rng.normal(0, 1, n), 140) * env(n, 0.05, 1.6, 2.0)
+    rumble2 = lowpass(rng.normal(0, 1, n), 60) * env(n, 0.2, 2.2, 1.6)
+    crack = lowpass(rng.normal(0, 1, n), 2500) * env(n, 0.002, 0.08)
+    wobble = 1 + 0.35 * np.sin(2 * np.pi * 1.7 * x) * np.exp(-x)
+    return (rumble * 1.4 + rumble2 * 2.2) * wobble + crack * 0.5
+
+
 def lofi_loop(name: str = "lofi-01", bpm: float = 78, bars: int = 8, seed: int = 7) -> np.ndarray:
     """Warm lo-fi chord loop with soft kick/hat. Loops cleanly (bar-aligned)."""
     rng = np.random.default_rng(seed)
@@ -286,6 +298,7 @@ def main() -> None:
     write("gunshot_big", gunshot(True))
     write("reload", reload())
     write("chime", chime())
+    write("thunder", thunder())
     print("music:")
     write("lofi-01", lofi_loop("lofi-01", 78, 8, 7), MUSIC)
     write("lofi-02", lofi_loop("lofi-02", 88, 8, 11), MUSIC)

@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "slug": "batman-missing-milk",
+  "title": "Batman: the case of the missing milk",
+  "voice": "am_fenrir",
+  "speed": 0.86,
+  "voiceFx": "deep",
+  "theme": "midnight",
+  "music": { "track": "lofi-02", "volume": 0.1 },
+  "characters": [{ "id": "bruce", "style": "batman" }],
+  "notes": "Noir gravel, zero self-awareness. The world's greatest detective investigates a domestic crime. Every line is delivered like a rooftop monologue.",
+  "scenes": [
+    {
+      "id": "intro",
+      "speech": "It's three A.M. in Gotham.",
+      "emphasis": ["three A.M."],
+      "layout": "character_center",
+      "pauseAfter": 0.7,
+      "character": {
+        "id": "bruce",
+        "pose": "arms_crossed",
+        "expression": "neutral",
+        "poseChanges": [{ "pose": "arms_crossed", "expression": "fierce", "at": "word:gotham" }]
+      },
+      "props": [{ "name": "moon", "at": "start", "anim": "fade", "position": "top_right", "scale": 0.9 }],
+      "sfx": [{ "name": "thunder", "at": "start", "volume": 0.8 }],
+      "camera": [{ "move": "slow_zoom", "at": "start" }]
+    },
+    {
+      "id": "crime",
+      "speech": "Someone drank the last of the milk.",
+      "emphasis": ["milk"],
+      "layout": "character_center",
+      "pauseAfter": 0.6,
+      "character": {
+        "id": "bruce",
+        "pose": "thinking",
+        "expression": "neutral",
+        "position": "left",
+        "poseChanges": [{ "pose": "shocked", "expression": "surprised", "at": "word:milk" }]
+      },
+      "props": [
+        { "name": "moon", "at": "start", "anim": "fade", "position": "top_right", "scale": 0.9 },
+        { "name": "milk", "at": "word:milk", "anim": "drop", "position": "right", "scale": 1.3 }
+      ],
+      "sfx": [{ "name": "boom", "at": "word:milk", "volume": 0.5 }],
+      "bubbles": [{ "text": "EMPTY", "at": "word:milk+0.3" }],
+      "camera": [{ "move": "punch_in", "at": "word:milk" }]
+    },
+    {
+      "id": "insult",
+      "speech": "And put the empty carton back.",
+      "emphasis": ["empty carton", "back"],
+      "layout": "character_center",
+      "pauseAfter": 0.7,
+      "character": {
+        "id": "bruce",
+        "pose": "facepalm",
+        "expression": "worried",
+        "position": "left",
+        "poseChanges": [{ "pose": "pointing_right", "expression": "fierce", "at": "word:back" }]
+      },
+      "props": [{ "name": "milk", "at": "start", "anim": "fade", "position": "right", "scale": 1.3 }],
+      "sfx": [{ "name": "error", "at": "word:back", "volume": 0.5 }]
+    },
+    {
+      "id": "vow",
+      "speech": "This city deserves better.",
+      "emphasis": ["deserves better"],
+      "layout": "character_center",
+      "pauseAfter": 0.8,
+      "speed": 0.82,
+      "character": { "id": "bruce", "pose": "arms_crossed", "expression": "fierce" },
+      "props": [{ "name": "moon", "at": "start", "anim": "fade", "position": "top_right", "scale": 0.9 }],
+      "sfx": [{ "name": "thunder", "at": "word:better", "volume": 0.7 }],
+      "camera": [{ "move": "punch_in", "at": "word:deserves" }]
+    },
+    {
+      "id": "investigate",
+      "speech": "I checked the fingerprints. The glass. The cereal bowl.",
+      "emphasis": ["fingerprints", "glass", "cereal bowl"],
+      "layout": "character_center",
+      "pauseAfter": 0.5,
+      "character": {
+        "id": "bruce",
+        "pose": "pointing_left",
+        "expression": "neutral",
+        "poseChanges": [
+          { "pose": "pointing_up", "at": "word:glass" },
+          { "pose": "pointing_right", "at": "word:cereal" }
+        ]
+      },
+      "props": [
+        { "name": "magnifier", "at": "word:fingerprints", "anim": "drop", "position": "top_left", "scale": 0.9 },
+        { "name": "question", "at": "word:glass", "anim": "drop", "position": "top", "scale": 0.9 },
+        { "name": "document", "at": "word:cereal", "anim": "drop", "position": "top_right", "scale": 0.9 }
+      ],
+      "sfx": [
+        { "name": "tick", "at": "word:fingerprints" },
+        { "name": "tick", "at": "word:glass" },
+        { "name": "tick", "at": "word:cereal" }
+      ]
+    },
+    {
+      "id": "evidence",
+      "speech": "Every clue pointed to one man.",
+      "emphasis": ["one man"],
+      "layout": "character_center",
+      "pauseAfter": 0.9,
+      "speed": 0.84,
+      "character": {
+        "id": "bruce",
+        "pose": "thinking",
+        "expression": "neutral",
+        "poseChanges": [{ "pose": "pointing_up", "expression": "smug", "at": "word:one" }]
+      },
+      "props": [{ "name": "bat_signal", "at": "word:one", "anim": "pop", "position": "above_character", "scale": 0.9 }],
+      "sfx": [{ "name": "drum", "at": "word:one", "volume": 0.8 }],
+      "camera": [{ "move": "slow_zoom", "at": "start" }]
+    },
+    {
+      "id": "reveal",
+      "speech": "It was me.",
+      "emphasis": ["me"],
+      "layout": "character_center",
+      "pauseAfter": 1.4,
+      "speed": 0.8,
+      "character": {
+        "id": "bruce",
+        "pose": "pointing_up",
+        "expression": "smug",
+        "poseChanges": [
+          { "pose": "shocked", "expression": "surprised", "at": "word:me" },
+          { "pose": "facepalm", "expression": "worried", "at": "word:me+0.9" }
+        ]
+      },
+      "props": [{ "name": "bat_signal", "at": "start", "until": "word:me+0.9", "anim": "fade", "position": "above_character", "scale": 0.9 }],
+      "sfx": [{ "name": "glitch", "at": "word:me", "volume": 0.6 }],
+      "bubbles": [{ "text": "...", "at": "word:me+0.4", "until": "end-0.2" }],
+      "camera": [{ "move": "shake", "at": "word:me" }]
+    },
+    {
+      "id": "line",
+      "speech": "I'm Batman.",
+      "emphasis": ["Batman"],
+      "layout": "character_center",
+      "pauseAfter": 1.0,
+      "speed": 0.78,
+      "transition": "cut",
+      "character": { "id": "bruce", "pose": "arms_crossed", "expression": "fierce" },
+      "props": [
+        { "name": "moon", "at": "start", "anim": "fade", "position": "top_right", "scale": 0.9 },
+        { "name": "bat_signal", "at": "word:batman", "anim": "pop", "position": "top_left", "scale": 0.9 }
+      ],
+      "sfx": [{ "name": "thunder", "at": "word:batman", "volume": 0.9 }],
+      "camera": [{ "move": "punch_in", "at": "word:batman" }]
+    },
+    {
+      "id": "outro",
+      "speech": "Goodnight.",
+      "layout": "character_center",
+      "pauseAfter": 1.6,
+      "speed": 0.84,
+      "character": { "id": "bruce", "pose": "leaning", "expression": "smug" },
+      "props": [{ "name": "moon", "at": "start", "anim": "fade", "position": "top_right", "scale": 0.9 }],
+      "sfx": [{ "name": "whoosh", "at": "word:goodnight+0.6", "volume": 0.5 }],
+      "overlays": [{ "kind": "blackout", "at": "word:goodnight+0.7" }]
+    }
+  ]
+}

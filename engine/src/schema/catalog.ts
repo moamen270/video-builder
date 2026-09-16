@@ -31,6 +31,7 @@ export const POSES = [
   "bow", // theatrical bow, one arm sweeping
   "walk_right", // side view, procedural gait, facing screen-right — pair with character.travel
   "walk_left",
+  "arms_crossed", // brooding, immovable
 ] as const;
 export type Pose = (typeof POSES)[number];
 
@@ -87,6 +88,9 @@ export const PROPS = [
   "number_3",
   "number_4",
   "crate", // wooden box that sits on the ground — a landing surface for `jump`
+  "milk", // carton
+  "bat_signal", // spotlight disc with a bat silhouette
+  "moon", // crescent
 ] as const;
 export type PropName = (typeof PROPS)[number];
 
@@ -107,13 +111,13 @@ export const PROP_POSITIONS = [
 ] as const;
 export type PropPosition = (typeof PROP_POSITIONS)[number];
 
-export const SFX = ["pop", "whoosh", "click", "ding", "boom", "error", "swoosh", "tick", "cash", "glitch", "drum", "slash", "splat", "snikt", "gunshot", "gunshot_big", "reload", "chime"] as const;
+export const SFX = ["pop", "whoosh", "click", "ding", "boom", "error", "swoosh", "tick", "cash", "glitch", "drum", "slash", "splat", "snikt", "gunshot", "gunshot_big", "reload", "chime", "thunder"] as const;
 export type SfxName = (typeof SFX)[number];
 
 export const THEMES = ["midnight", "paper", "sunset", "mint", "grape"] as const;
 
 /** Character costumes. `stickman` is the plain narrator; `wolverine` adds a pointed mask, claws and blue trunks. */
-export const CHARACTER_STYLES = ["stickman", "wolverine", "gunslinger"] as const;
+export const CHARACTER_STYLES = ["stickman", "wolverine", "gunslinger", "batman"] as const; // batman: cowl ears + flowing cape, face untouched
 export type CharacterStyle = (typeof CHARACTER_STYLES)[number];
 export type Theme = (typeof THEMES)[number];
 

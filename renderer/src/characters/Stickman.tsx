@@ -212,6 +212,8 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const wolv = style === "wolverine";
   // "gunslinger" = pistol in the right hand; `shots` add a muzzle flash + recoil.
   const gun = style === "gunslinger";
+  // "batman" = cowl ears + a cape that hangs from the shoulders and sways with the body.
+  const bat = style === "batman";
   const shots = scene.character?.shots ?? [];
   const lastShot = shots.filter((sh) => sh.atFrame <= abs).at(-1);
   const sinceShot = lastShot ? abs - lastShot.atFrame : Infinity;
@@ -262,6 +264,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
       >
         {/* shadow */}
         <ellipse cx={120} cy={404} rx={58 + Math.abs(lift) * 0.4} ry={7} fill="rgba(0,0,0,0.25)" />
+        {bat && <Cape shoulder={shoulder} hip={HIP} torso={torso} frame={abs} ink={ink} />}
         {/* legs */}
         <polyline points={`${HIP.x},${HIP.y} ${lKnee.x},${lKnee.y} ${lFoot.x},${lFoot.y}`} {...line} />
         <polyline points={`${HIP.x},${HIP.y} ${rKnee.x},${rKnee.y} ${rFoot.x},${rFoot.y}`} {...line} />
@@ -279,6 +282,12 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
         <circle cx={rHand.x} cy={rHand.y} r={wolv ? 9 : 7} fill={ink} />
         {/* head */}
         <g transform={`translate(${headC.x} ${headC.y}) rotate(${rig.head + torso * 0.5 + nodTalk * 0.3})`}>
+          {bat && (
+            <g>
+              <path d={`M -26 -${HEAD_R - 8} L -18 -${HEAD_R + 30} L -6 -${HEAD_R - 2} Z`} fill={ink} />
+              <path d={`M 26 -${HEAD_R - 8} L 18 -${HEAD_R + 30} L 6 -${HEAD_R - 2} Z`} fill={ink} />
+            </g>
+          )}
           <circle r={HEAD_R} fill={headFill} stroke={ink} strokeWidth={STROKE} />
           <g transform={`translate(0 ${rig.nod * 0.25 + nodTalk * 0.4})`}>
             {/* eyes */}
@@ -364,6 +373,27 @@ const Pistol: React.FC<{ x: number; y: number; deg: number; flash: number; big: 
       )}
     </g>
   );
+};
+
+/**
+ * Cape: hangs from both shoulders to below the knees, flares out, and its hem
+ * ripples with a slow wave plus the torso sway. Drawn behind the body.
+ */
+const Cape: React.FC<{ shoulder: { x: number; y: number }; hip: { x: number; y: number }; torso: number; frame: number; ink: string }> = ({ shoulder, hip, torso, frame, ink }) => {
+  const top = shoulder.y - 4;
+  const hemY = hip.y + 96;
+  const drift = torso * 1.6 + Math.sin(frame / 14) * 6; // whole cape leans with the body and breathes
+  const w = 78;
+  const pts: string[] = [];
+  const N = 7;
+  for (let i = 0; i <= N; i++) {
+    const k = i / N;
+    const x = shoulder.x - w + 2 * w * k + drift;
+    const y = hemY + Math.sin(frame / 5 + k * 6.5) * 6 + (i % 2 ? 10 : -6); // scalloped, rippling hem
+    pts.push(`${i === 0 ? "L" : "L"} ${x.toFixed(1)} ${y.toFixed(1)}`);
+  }
+  const d = `M ${shoulder.x - 22} ${top} Q ${shoulder.x - w - 14 + drift * 0.5} ${(top + hemY) / 2} ${(shoulder.x - w + drift).toFixed(1)} ${hemY} ${pts.slice(1).join(" ")} Q ${shoulder.x + w + 14 + drift * 0.5} ${(top + hemY) / 2} ${shoulder.x + 22} ${top} Z`;
+  return <path d={d} fill="#1e2440" stroke={ink} strokeWidth={5} strokeLinejoin="round" opacity={0.95} />;
 };
 
 /** Three adamantium claws fanning out of a hand, along the forearm direction. */

@@ -79,6 +79,10 @@ something trivial; the joke is never in his lines. Pair with `voiceFx: "deep"`,
 `speed` 0.9–0.98, `am_michael`/`am_fenrir`, `snikt` on the reveal, and a
 `voiceFx: "villain"` scene for the evil laugh (`"Muahahahaha! Hahahahaha!"`).
 
+`batman` = plain stickman with cowl ears and a rippling cape (face untouched). Pair
+with `arms_crossed`, `voiceFx: deep`, speed ≤ 0.86, `thunder`, `moon`/`bat_signal`
+props, midnight theme; deliver trivial problems as rooftop monologues.
+
 `gunslinger` = plain stickman with a long pistol in the right hand. Put the
 shots in `character.shots: [{ "at": "word:one+0.05", "big": false }]` — each
 one draws a muzzle flash and a recoil kick; `big: true` for the dramatic last
