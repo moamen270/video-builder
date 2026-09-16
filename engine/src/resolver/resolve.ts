@@ -143,6 +143,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
     }));
 
     const camera = s.camera.map((c, i) => ({ move: c.move, atFrame: at(c.at, `camera[${i}].at`) }));
+    const overlays = s.overlays.map((o, i) => ({ kind: o.kind, atFrame: at(o.at, `overlays[${i}].at`), untilFrame: o.until ? at(o.until, `overlays[${i}].until`) : endFrame }));
 
     return {
       id: s.id,
@@ -161,6 +162,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
       sfx,
       bubbles,
       camera,
+      overlays,
     };
   });
 

@@ -64,7 +64,11 @@ Put the prop swap at `at + 0.03` with `"exit": "cut"` on the struck prop:
 `{ "name": "watermelon", "at": "start", "until": "word:bub+0.18", "exit": "cut", "position": "right" }`,
 `{ "name": "watermelon_split", "at": "word:bub+0.18", "anim": "burst", "position": "right" }`.
 SFX: `slash` at `at - 0.05`, `splat` at the swap. Works with any front-rig style; on
-wolverine the claws lead the swing.
+wolverine the claws lead the swing. Targets above the shoulder make him HOP to reach.
+Strike `target: "camera"` = a flat swipe at the viewer; pair with camera `dolly_in`
+(2.3× push toward the character) and `overlays: [{ "kind": "claw_marks", "at": <same> }]`
+so three gashes tear across the screen, the picture dims behind them, then
+`{ "kind": "blackout", "at": "end-0.5" }`. Strikes can be as close as 12 frames apart.
 
 ### Character styles
 
@@ -153,7 +157,9 @@ One SFX per visual event, volume 0.5–0.8; never two on the same word.
   `"NOPE"`. One per scene max, anchored to the reaction word, `until` the
   next thought.
 - `camera`: `punch_in` on the hook's key word and the payoff word (max 2 per
-  video); `slow_zoom` on a calm explainer scene; `shake` with `boom`/`error`.
+  video); `slow_zoom` on a calm explainer scene; `shake` with `boom`/`error`;
+  `dolly_in` for a character looming at the viewer (finales).
+- `overlays` (on the viewer's screen, outside the camera): `claw_marks`, `flash`, `blackout`.
 - `transition` (into the scene): `cut` default; `slide` for a change of
   subject; `wipe` before → after; `zoom` for the pattern-interrupt scene.
 

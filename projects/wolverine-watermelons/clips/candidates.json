@@ -1,0 +1,26 @@
+[
+  {
+    "file": "laugh_23.wav",
+    "seed": 23,
+    "duration": 6.0,
+    "score": 0.208,
+    "voiced_ratio": 0.27,
+    "modulation": 0.353
+  },
+  {
+    "file": "laugh_21.wav",
+    "seed": 21,
+    "duration": 6.0,
+    "score": 0.169,
+    "voiced_ratio": 0.29,
+    "modulation": 0.258
+  },
+  {
+    "file": "laugh_22.wav",
+    "seed": 22,
+    "duration": 6.0,
+    "score": 0.148,
+    "voiced_ratio": 0.38,
+    "modulation": 0.174
+  }
+]

@@ -285,23 +285,17 @@
     {
       "sceneId": "laugh",
       "file": "laugh.wav",
-      "duration": 2.725,
+      "duration": 4.5,
       "sampleRate": 24000,
       "tokens": [
         {
-          "text": "Muahahahaha!",
-          "start": 0.45,
-          "end": 1.25,
-          "ws": " "
-        },
-        {
-          "text": "Hahahahaha!",
-          "start": 1.25,
-          "end": 2.625,
+          "text": "HAHAHAHA",
+          "start": 0,
+          "end": 4.5,
           "ws": ""
         }
       ],
-      "hash": "fc03d61718c7b2e0"
+      "hash": "69954a810f87d3b8"
     },
     {
       "sceneId": "outro",
@@ -364,7 +358,28 @@
           "ws": ""
         }
       ],
-      "hash": "b233a6681755bfd6"
+      "hash": "2c4f06ff5c45e84d"
+    },
+    {
+      "sceneId": "finale",
+      "file": "finale.wav",
+      "duration": 1.725,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Your",
+          "start": 0.425,
+          "end": 0.637,
+          "ws": " "
+        },
+        {
+          "text": "turn.",
+          "start": 0.637,
+          "end": 1.625,
+          "ws": ""
+        }
+      ],
+      "hash": "c1e308bf89c905f8"
     }
   ]
 }

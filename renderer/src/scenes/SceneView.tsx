@@ -6,6 +6,7 @@ import { motionAt, type MotionState } from "../characters/motion";
 import { KineticCaption } from "../captions/KineticCaption";
 import { Prop } from "../props/Prop";
 import { Bubble } from "./Bubble";
+import { Overlay } from "./Overlay";
 import { LAYOUTS, type Palette } from "../theme";
 
 interface Props {
@@ -28,6 +29,7 @@ export const SceneView: React.FC<Props> = ({ scene, palette }) => {
     if (abs < c.atFrame) continue;
     const t = abs - c.atFrame;
     if (c.move === "punch_in") camScale *= interpolate(spring({ frame: t, fps, config: { damping: 14, stiffness: 200 } }), [0, 1], [1, 1.09]);
+    else if (c.move === "dolly_in") camScale *= interpolate(spring({ frame: t, fps, config: { damping: 18, stiffness: 90 } }), [0, 1], [1, 2.3]);
     else if (c.move === "slow_zoom") camScale *= interpolate(t, [0, scene.durationInFrames], [1, 1.06], { extrapolateRight: "clamp" });
     else if (c.move === "shake" && t < 12) {
       const k = interpolate(t, [0, 12], [1, 0]);
@@ -92,6 +94,10 @@ export const SceneView: React.FC<Props> = ({ scene, palette }) => {
 
         <KineticCaption words={scene.words} sceneStart={scene.startFrame} rect={spec.caption} palette={palette} fontPx={spec.captionFontPx} />
       </AbsoluteFill>
+      {/* Screen-space effects: outside the camera transform, on the viewer's glass. */}
+      {scene.overlays.map((o, i) => (
+        <Overlay key={i} overlay={o} abs={abs} />
+      ))}
     </AbsoluteFill>
   );
 };

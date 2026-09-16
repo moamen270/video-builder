@@ -4,7 +4,7 @@
   "createdAt": "2026-09-16T02:26:42.539Z",
   "targetSeconds": 40,
   "status": "qa_passed",
-  "lastRenderMs": 48602,
+  "lastRenderMs": 113215,
   "versions": [
     {
       "n": 1,
@@ -25,6 +25,16 @@
       "manifestHash": "529a38a536f504fa",
       "note": "v2: strikes aim at and pass through each melon (lunge + over-the-top chop); claws point along the arm; melons cut instantly on contact",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/wolverine-watermelons-v2/final.mp4"
+    },
+    {
+      "n": 3,
+      "at": "2026-09-16T08:48:54.405Z",
+      "seconds": 35.06666666666667,
+      "renderMs": 113215,
+      "qaOk": true,
+      "manifestHash": "651cf2252e746a97",
+      "note": "v3: real laugh clip (Bark, villain fx), overhead melon hop-strike, screen-slash finale with claw marks",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/wolverine-watermelons-v3/final.mp4"
     }
   ]
 }

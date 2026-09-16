@@ -13,6 +13,7 @@ import {
   THEMES,
   TRANSITIONS,
   TRAVEL_STOPS,
+  OVERLAYS,
   VIDEO,
   VOICES,
   VOICE_FX,
@@ -49,7 +50,7 @@ export const CharacterState = z.object({
    * Put the prop swap (e.g. watermelon → watermelon_split) at the same anchor +0.03.
    */
   strikes: z
-    .array(z.object({ at: Anchor, target: z.enum(PROP_POSITIONS), big: z.boolean().default(false) }))
+    .array(z.object({ at: Anchor, target: z.enum([...PROP_POSITIONS, "camera"]), big: z.boolean().default(false) }))
     .max(8)
     .default([]),
   /** Gunslinger only: muzzle flash + recoil at these anchors. `big` = the dramatic final shot. */
@@ -112,6 +113,14 @@ export const CameraCue = z.object({
   at: Anchor,
 });
 
+export const OverlayCue = z.object({
+  /** claw_marks: three slashes torn across the frame + flash + dim. flash: white hit. blackout: fade to black. */
+  kind: z.enum(OVERLAYS),
+  at: Anchor,
+  /** Default: end of scene. */
+  until: Anchor.optional(),
+});
+
 export const Scene = z.object({
   id: z
     .string()
@@ -137,7 +146,7 @@ export const Scene = z.object({
   /** Phrases (verbatim substrings of `speech`) to highlight in the accent colour. */
   emphasis: z.array(z.string().min(1)).default([]),
   /** Silence appended after this scene's speech, seconds. */
-  pauseAfter: z.number().min(0).max(2).default(0.25),
+  pauseAfter: z.number().min(0).max(4).default(0.25),
   /** Override the manifest speed for this scene (slower for menace, faster for lists). */
   speed: z.number().min(0.7).max(1.4).optional(),
   /** Override the manifest voiceFx for this scene (e.g. "villain" on the evil laugh). */
@@ -149,6 +158,7 @@ export const Scene = z.object({
   sfx: z.array(SfxCue).max(8).default([]),
   bubbles: z.array(Bubble).max(2).default([]),
   camera: z.array(CameraCue).max(2).default([]),
+  overlays: z.array(OverlayCue).max(3).default([]),
 });
 export type Scene = z.infer<typeof Scene>;
 

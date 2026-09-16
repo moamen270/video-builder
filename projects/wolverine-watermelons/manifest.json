@@ -427,10 +427,8 @@
     },
     {
       "id": "laugh",
-      "speech": "Muahahahaha! Hahahahaha!",
       "layout": "character_center",
       "pauseAfter": 0.5,
-      "speed": 0.9,
       "voiceFx": "villain",
       "transition": "zoom",
       "character": {
@@ -441,7 +439,12 @@
           {
             "pose": "celebrating",
             "expression": "laughing",
-            "at": "word:hahahahaha"
+            "at": "start+1.6"
+          },
+          {
+            "pose": "laughing",
+            "expression": "laughing",
+            "at": "start+3.0"
           }
         ]
       },
@@ -462,7 +465,7 @@
         },
         {
           "name": "fire",
-          "at": "word:hahahahaha",
+          "at": "start+1.6",
           "anim": "pop",
           "position": "above_character",
           "scale": 0.9
@@ -479,7 +482,7 @@
         {
           "text": "MUAHAHA",
           "at": "start+0.2",
-          "until": "word:hahahahaha"
+          "until": "start+1.6"
         }
       ],
       "camera": [
@@ -489,9 +492,15 @@
         },
         {
           "move": "shake",
-          "at": "word:hahahahaha"
+          "at": "start+1.6"
         }
-      ]
+      ],
+      "clip": {
+        "file": "laugh.wav",
+        "caption": "HAHAHAHA",
+        "maxSeconds": 4.5,
+        "volume": 1.3
+      }
     },
     {
       "id": "outro",
@@ -500,7 +509,7 @@
         "justice"
       ],
       "layout": "character_center",
-      "pauseAfter": 0.9,
+      "pauseAfter": 0.6,
       "speed": 0.94,
       "character": {
         "id": "logan",
@@ -558,6 +567,71 @@
         {
           "move": "punch_in",
           "at": "word:justice"
+        }
+      ]
+    },
+    {
+      "id": "finale",
+      "speech": "Your turn.",
+      "emphasis": [
+        "turn"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 2.4,
+      "speed": 0.9,
+      "transition": "cut",
+      "character": {
+        "id": "logan",
+        "pose": "claws_out",
+        "expression": "fierce",
+        "strikes": [
+          {
+            "at": "word:turn+0.55",
+            "target": "camera",
+            "big": true
+          }
+        ]
+      },
+      "sfx": [
+        {
+          "name": "drum",
+          "at": "start",
+          "volume": 0.7
+        },
+        {
+          "name": "slash",
+          "at": "word:turn+0.5",
+          "volume": 1.0
+        },
+        {
+          "name": "glitch",
+          "at": "word:turn+0.55",
+          "volume": 0.9
+        },
+        {
+          "name": "boom",
+          "at": "word:turn+0.6",
+          "volume": 0.8
+        }
+      ],
+      "camera": [
+        {
+          "move": "dolly_in",
+          "at": "start+0.15"
+        },
+        {
+          "move": "shake",
+          "at": "word:turn+0.55"
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "claw_marks",
+          "at": "word:turn+0.55"
+        },
+        {
+          "kind": "blackout",
+          "at": "end-0.5"
         }
       ]
     }

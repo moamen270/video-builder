@@ -139,7 +139,11 @@ export type Voice = (typeof VOICES)[number];
 export const VOICE_FX = ["none", "deep", "villain", "theatre"] as const;
 export type VoiceFx = (typeof VOICE_FX)[number];
 
-export const CAMERA_MOVES = ["none", "punch_in", "slow_zoom", "shake"] as const;
+export const CAMERA_MOVES = ["none", "punch_in", "slow_zoom", "shake", "dolly_in"] as const; // dolly_in: fast 2.3x push toward the character (looming at the viewer)
+
+/** Full-frame effects drawn on top of everything — on the "viewer's screen", not in the scene. */
+export const OVERLAYS = ["claw_marks", "flash", "blackout"] as const;
+export type OverlayKind = (typeof OVERLAYS)[number];
 export type CameraMove = (typeof CAMERA_MOVES)[number];
 
 export const TRANSITIONS = ["cut", "slide", "wipe", "zoom"] as const;

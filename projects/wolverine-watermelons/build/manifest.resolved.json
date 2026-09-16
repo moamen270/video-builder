@@ -5,7 +5,7 @@
   "fps": 30,
   "width": 1080,
   "height": 1920,
-  "durationInFrames": 884,
+  "durationInFrames": 1052,
   "theme": "midnight",
   "voice": "am_michael",
   "music": {
@@ -138,7 +138,8 @@
           "move": "punch_in",
           "atFrame": 70
         }
-      ]
+      ],
+      "overlays": []
     },
     {
       "id": "purpose",
@@ -235,7 +236,8 @@
         }
       ],
       "bubbles": [],
-      "camera": []
+      "camera": [],
+      "overlays": []
     },
     {
       "id": "reveal",
@@ -342,7 +344,8 @@
         }
       ],
       "bubbles": [],
-      "camera": []
+      "camera": [],
+      "overlays": []
     },
     {
       "id": "destroy",
@@ -476,7 +479,8 @@
           "move": "shake",
           "atFrame": 338
         }
-      ]
+      ],
+      "overlays": []
     },
     {
       "id": "cut1",
@@ -576,7 +580,8 @@
           "move": "shake",
           "atFrame": 467
         }
-      ]
+      ],
+      "overlays": []
     },
     {
       "id": "cut2",
@@ -673,7 +678,8 @@
           "move": "shake",
           "atFrame": 528
         }
-      ]
+      ],
+      "overlays": []
     },
     {
       "id": "cut3",
@@ -849,34 +855,26 @@
           "move": "shake",
           "atFrame": 613
         }
-      ]
+      ],
+      "overlays": []
     },
     {
       "id": "laugh",
-      "speech": "Muahahahaha! Hahahahaha!",
-      "isClip": false,
-      "clipVolume": 1,
+      "speech": "HAHAHAHA",
+      "isClip": true,
+      "clipVolume": 1.3,
       "startFrame": 657,
-      "durationInFrames": 97,
-      "speechFrames": 82,
+      "durationInFrames": 150,
+      "speechFrames": 135,
       "audioSrc": "audio/laugh.wav",
       "words": [
         {
-          "text": "Muahahahaha!",
+          "text": "HAHAHAHA",
           "i": 0,
-          "start": 0.45,
-          "end": 1.25,
-          "startFrame": 671,
-          "endFrame": 695,
-          "emphasis": false
-        },
-        {
-          "text": "Hahahahaha!",
-          "i": 1,
-          "start": 1.25,
-          "end": 2.625,
-          "startFrame": 695,
-          "endFrame": 736,
+          "start": 0,
+          "end": 4.5,
+          "startFrame": 657,
+          "endFrame": 792,
           "emphasis": false
         }
       ],
@@ -892,7 +890,12 @@
           {
             "pose": "celebrating",
             "expression": "laughing",
-            "atFrame": 695
+            "atFrame": 705
+          },
+          {
+            "pose": "laughing",
+            "expression": "laughing",
+            "atFrame": 747
           }
         ],
         "shots": [],
@@ -904,7 +907,7 @@
         {
           "name": "watermelon_split",
           "atFrame": 657,
-          "untilFrame": 754,
+          "untilFrame": 807,
           "anim": "burst",
           "position": "left",
           "scale": 1,
@@ -913,7 +916,7 @@
         {
           "name": "watermelon_split",
           "atFrame": 657,
-          "untilFrame": 754,
+          "untilFrame": 807,
           "anim": "burst",
           "position": "right",
           "scale": 1,
@@ -921,8 +924,8 @@
         },
         {
           "name": "fire",
-          "atFrame": 695,
-          "untilFrame": 754,
+          "atFrame": 705,
+          "untilFrame": 807,
           "anim": "pop",
           "position": "above_character",
           "scale": 0.9,
@@ -941,7 +944,7 @@
         {
           "text": "MUAHAHA",
           "atFrame": 663,
-          "untilFrame": 695,
+          "untilFrame": 705,
           "side": "right"
         }
       ],
@@ -952,17 +955,18 @@
         },
         {
           "move": "shake",
-          "atFrame": 695
+          "atFrame": 705
         }
-      ]
+      ],
+      "overlays": []
     },
     {
       "id": "outro",
       "speech": "Some call it a hobby. I call it justice.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 754,
-      "durationInFrames": 130,
+      "startFrame": 807,
+      "durationInFrames": 121,
       "speechFrames": 103,
       "audioSrc": "audio/outro.wav",
       "words": [
@@ -971,8 +975,8 @@
           "i": 0,
           "start": 0.425,
           "end": 0.65,
-          "startFrame": 767,
-          "endFrame": 774,
+          "startFrame": 820,
+          "endFrame": 827,
           "emphasis": false
         },
         {
@@ -980,8 +984,8 @@
           "i": 1,
           "start": 0.65,
           "end": 0.863,
-          "startFrame": 774,
-          "endFrame": 780,
+          "startFrame": 827,
+          "endFrame": 833,
           "emphasis": false
         },
         {
@@ -989,8 +993,8 @@
           "i": 2,
           "start": 0.863,
           "end": 0.938,
-          "startFrame": 780,
-          "endFrame": 782,
+          "startFrame": 833,
+          "endFrame": 835,
           "emphasis": false
         },
         {
@@ -998,8 +1002,8 @@
           "i": 3,
           "start": 0.938,
           "end": 1,
-          "startFrame": 782,
-          "endFrame": 784,
+          "startFrame": 835,
+          "endFrame": 837,
           "emphasis": false
         },
         {
@@ -1007,8 +1011,8 @@
           "i": 4,
           "start": 1,
           "end": 1.7,
-          "startFrame": 784,
-          "endFrame": 805,
+          "startFrame": 837,
+          "endFrame": 858,
           "emphasis": false
         },
         {
@@ -1016,8 +1020,8 @@
           "i": 5,
           "start": 1.7,
           "end": 1.85,
-          "startFrame": 805,
-          "endFrame": 810,
+          "startFrame": 858,
+          "endFrame": 863,
           "emphasis": false
         },
         {
@@ -1025,8 +1029,8 @@
           "i": 6,
           "start": 1.85,
           "end": 2.062,
-          "startFrame": 810,
-          "endFrame": 816,
+          "startFrame": 863,
+          "endFrame": 869,
           "emphasis": false
         },
         {
@@ -1034,8 +1038,8 @@
           "i": 7,
           "start": 2.062,
           "end": 2.188,
-          "startFrame": 816,
-          "endFrame": 820,
+          "startFrame": 869,
+          "endFrame": 873,
           "emphasis": false
         },
         {
@@ -1043,8 +1047,8 @@
           "i": 8,
           "start": 2.188,
           "end": 3.325,
-          "startFrame": 820,
-          "endFrame": 854,
+          "startFrame": 873,
+          "endFrame": 907,
           "emphasis": true
         }
       ],
@@ -1060,12 +1064,12 @@
           {
             "pose": "claws_out",
             "expression": "fierce",
-            "atFrame": 805
+            "atFrame": 858
           },
           {
             "pose": "pointing_up",
             "expression": "fierce",
-            "atFrame": 820
+            "atFrame": 873
           }
         ],
         "shots": [],
@@ -1076,8 +1080,8 @@
       "props": [
         {
           "name": "watermelon_split",
-          "atFrame": 754,
-          "untilFrame": 884,
+          "atFrame": 807,
+          "untilFrame": 928,
           "anim": "fade",
           "position": "left",
           "scale": 0.9,
@@ -1085,8 +1089,8 @@
         },
         {
           "name": "watermelon_split",
-          "atFrame": 754,
-          "untilFrame": 884,
+          "atFrame": 807,
+          "untilFrame": 928,
           "anim": "fade",
           "position": "right",
           "scale": 0.9,
@@ -1096,13 +1100,13 @@
       "sfx": [
         {
           "name": "snikt",
-          "atFrame": 805,
+          "atFrame": 858,
           "volume": 0.9,
           "src": "assets/sfx/snikt.wav"
         },
         {
           "name": "boom",
-          "atFrame": 820,
+          "atFrame": 873,
           "volume": 0.6,
           "src": "assets/sfx/boom.wav"
         }
@@ -1110,23 +1114,124 @@
       "bubbles": [
         {
           "text": "SNIKT",
-          "atFrame": 807,
-          "untilFrame": 820,
+          "atFrame": 860,
+          "untilFrame": 873,
           "side": "right"
         }
       ],
       "camera": [
         {
           "move": "punch_in",
-          "atFrame": 820
+          "atFrame": 873
+        }
+      ],
+      "overlays": []
+    },
+    {
+      "id": "finale",
+      "speech": "Your turn.",
+      "isClip": false,
+      "clipVolume": 1,
+      "startFrame": 928,
+      "durationInFrames": 124,
+      "speechFrames": 52,
+      "audioSrc": "audio/finale.wav",
+      "words": [
+        {
+          "text": "Your",
+          "i": 0,
+          "start": 0.425,
+          "end": 0.637,
+          "startFrame": 941,
+          "endFrame": 947,
+          "emphasis": false
+        },
+        {
+          "text": "turn.",
+          "i": 1,
+          "start": 0.637,
+          "end": 1.625,
+          "startFrame": 947,
+          "endFrame": 977,
+          "emphasis": true
+        }
+      ],
+      "layout": "character_center",
+      "transition": "cut",
+      "character": {
+        "id": "logan",
+        "style": "wolverine",
+        "pose": "claws_out",
+        "expression": "fierce",
+        "position": "center",
+        "poseChanges": [],
+        "shots": [],
+        "strikes": [
+          {
+            "atFrame": 964,
+            "target": "camera",
+            "big": true
+          }
+        ],
+        "travel": null,
+        "jump": null
+      },
+      "props": [],
+      "sfx": [
+        {
+          "name": "drum",
+          "atFrame": 928,
+          "volume": 0.7,
+          "src": "assets/sfx/drum.wav"
+        },
+        {
+          "name": "slash",
+          "atFrame": 962,
+          "volume": 1,
+          "src": "assets/sfx/slash.wav"
+        },
+        {
+          "name": "glitch",
+          "atFrame": 964,
+          "volume": 0.9,
+          "src": "assets/sfx/glitch.wav"
+        },
+        {
+          "name": "boom",
+          "atFrame": 965,
+          "volume": 0.8,
+          "src": "assets/sfx/boom.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": [
+        {
+          "move": "dolly_in",
+          "atFrame": 933
+        },
+        {
+          "move": "shake",
+          "atFrame": 964
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "claw_marks",
+          "atFrame": 964,
+          "untilFrame": 1052
+        },
+        {
+          "kind": "blackout",
+          "atFrame": 1037,
+          "untilFrame": 1052
         }
       ]
     }
   ],
   "meta": {
-    "resolvedAt": "2026-09-16T08:27:38.062Z",
+    "resolvedAt": "2026-09-16T08:46:59.053Z",
     "engineVersion": "0.1.0",
     "ttsModel": "hexgrad/Kokoro-82M",
-    "manifestHash": "529a38a536f504fa"
+    "manifestHash": "651cf2252e746a97"
   }
 }

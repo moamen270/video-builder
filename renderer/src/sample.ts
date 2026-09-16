@@ -55,6 +55,7 @@ export const SAMPLE: ResolvedManifest = {
       sfx: [],
       bubbles: [{ text: "?!", atFrame: 32, untilFrame: 70, side: "right" }],
       camera: [{ move: "punch_in", atFrame: 30 }],
+      overlays: [],
     },
   ],
   meta: { resolvedAt: "", engineVersion: "0", ttsModel: "", manifestHash: "" },

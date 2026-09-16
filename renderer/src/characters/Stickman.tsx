@@ -42,18 +42,20 @@ interface Props {
  * whole body lunges toward it. Returns null when no strike is active.
  */
 function strikeAt(
-  strikes: { atFrame: number; target: PropPosition; big: boolean }[],
+  strikes: { atFrame: number; target: PropPosition | "camera"; big: boolean }[],
   abs: number,
   zones: Record<PropPosition, Rect> | undefined,
   rect: Rect,
   scale: number,
   flip: boolean,
-): { armDeg: number; useLeft: boolean; w: number; lungeX: number; torsoAdd: number; nodAdd: number } | null {
+): { armDeg: number; useLeft: boolean; w: number; lungeX: number; hopY: number; torsoAdd: number; nodAdd: number } | null {
   if (!zones) return null;
-  const st = strikes.find((s) => abs >= s.atFrame - 8 && abs <= s.atFrame + 20);
+  // Latest strike whose window contains this frame — a new wind-up overrides the previous recovery.
+  const st = [...strikes].reverse().find((s) => abs >= s.atFrame - 8 && abs <= s.atFrame + 20);
   if (!st) return null;
   const t = abs - st.atFrame;
-  const zone = zones[st.target];
+  // "camera": slash the viewer's screen — a flat swipe across at shoulder height, no lunge.
+  const zone = st.target === "camera" ? { x: rect.x + rect.w / 2 + 40, y: rect.y + rect.h * 0.28, w: 200, h: 100 } : zones[st.target];
   const cx = zone.x + zone.w / 2;
   const cy = zone.y + zone.h / 2;
   // Shoulder in screen space (svg is bottom-aligned and centred in the rect).
@@ -66,10 +68,18 @@ function strikeAt(
   const sign = dx0 >= 0 ? 1 : -1;
   const reach = (UPPER_ARM + FORE_ARM) * scale * 0.92;
   const dist0 = Math.hypot(dx0, dy);
-  const lungeFull = Math.min(520, Math.max(0, dist0 - reach)) * sign * (st.big ? 1.05 : 1);
+  // Close the gap along the line to the target: horizontally as a lunge, vertically as a hop.
+  const excess = Math.max(0, dist0 - reach);
+  const ux = dist0 > 0 ? dx0 / dist0 : 0;
+  const uy = dist0 > 0 ? dy / dist0 : 0;
+  const lungeFull = Math.min(520, excess * Math.abs(ux)) * sign * (st.big ? 1.05 : 1);
+  const hopFull = Math.min(420, Math.max(0, -uy) * excess); // only when the target is above the shoulder
   const lunge = ip(t, [-3, 0, 6, 20], [0, lungeFull, lungeFull, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const hopK = ip(t, [-4, 0, 6], [0, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const hopY = -hopFull * Math.sin((hopK * Math.PI) / 2); // up at contact, back down after
   const dx = cx - (shX + lunge);
-  const hit = (Math.atan2(dx, dy) * 180) / Math.PI; // rig convention: 0 = down, + = screen-right
+  const dyNow = cy - (shY + hopY);
+  const hit = (Math.atan2(dx, dyNow) * 180) / Math.PI; // rig convention: 0 = down, + = screen-right
   // Over-the-top chop: wind up high and back, come down through the target, follow through below it.
   const windup = hit + sign * 125;
   const follow = hit - sign * (st.big ? 60 : 45);
@@ -78,7 +88,7 @@ function strikeAt(
   const torsoAdd = sign * ip(t, [-8, -3, 0, 4, 20], [0, -8, 14, 16, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const nodAdd = ip(t, [-3, 0, 4, 20], [-6, 10, 12, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   // A mirrored rig (position right) swaps screen-left/right for the rig's own arms and angles.
-  return flip ? { armDeg: -armDeg, useLeft: sign > 0, w, lungeX: lunge, torsoAdd: -torsoAdd, nodAdd } : { armDeg, useLeft: sign < 0, w, lungeX: lunge, torsoAdd, nodAdd };
+  return flip ? { armDeg: -armDeg, useLeft: sign > 0, w, lungeX: lunge, hopY, torsoAdd: -torsoAdd, nodAdd } : { armDeg, useLeft: sign < 0, w, lungeX: lunge, hopY, torsoAdd, nodAdd };
 }
 
 interface PoseState {
@@ -132,19 +142,14 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const rig: Rig = { ...rigBase };
   if (strike) {
     const k = strike.w;
-    if (strike.useLeft) {
-      rig.lUpper = rigBase.lUpper + (strike.armDeg - rigBase.lUpper) * k;
-      rig.lLower = rigBase.lLower * (1 - k);
-      rig.rUpper = rigBase.rUpper + (-strike.armDeg * 0.35 - rigBase.rUpper) * k; // other arm counter-swings
-    } else {
-      rig.rUpper = rigBase.rUpper + (strike.armDeg - rigBase.rUpper) * k;
-      rig.rLower = rigBase.rLower * (1 - k);
-      rig.lUpper = rigBase.lUpper + (-strike.armDeg * 0.35 - rigBase.lUpper) * k;
-    }
+    // The other arm counter-swings for balance; the striking arm is aimed below in screen space.
+    if (strike.useLeft) rig.rUpper = rigBase.rUpper + (-strike.armDeg * 0.35 - rigBase.rUpper) * k;
+    else rig.lUpper = rigBase.lUpper + (-strike.armDeg * 0.35 - rigBase.lUpper) * k;
     rig.torso = rigBase.torso + strike.torsoAdd * k;
     rig.nod = rigBase.nod + strike.nodAdd * k;
   }
   const lungeX = strike?.lungeX ?? 0;
+  const hopY = strike?.hopY ?? 0;
 
   // Idle life: breathing bob, subtle arm sway, micro head motion.
   const bob = Math.sin(abs / 9) * 2.2;
@@ -185,13 +190,17 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const recoil = kick * 14;
   const lRecoil = gunLeft ? -recoil : 0;
   const rRecoil = gunLeft ? 0 : recoil;
-  const lArmDeg = rig.lUpper + torso + sway * 0.6 + lRecoil;
+  // Strikes aim the whole (straight) arm at a screen-space angle, overriding torso/sway offsets.
+  const aimL = strike && strike.useLeft ? strike : null;
+  const aimR = strike && !strike.useLeft ? strike : null;
+  const blend = (base: number, aim: typeof strike) => (aim ? base + (aim.armDeg - base) * aim.w : base);
+  const lArmDeg = blend(rig.lUpper + torso + sway * 0.6 + lRecoil, aimL);
   const lElbow = polar(shoulder.x, shoulder.y, UPPER_ARM, lArmDeg);
-  const lForeDeg = rig.lUpper + rig.lLower + torso + sway * 0.6 + lRecoil * 1.4;
+  const lForeDeg = blend(rig.lUpper + rig.lLower + torso + sway * 0.6 + lRecoil * 1.4, aimL);
   const lHand = polar(lElbow.x, lElbow.y, FORE_ARM, lForeDeg);
-  const rArmDeg = rig.rUpper + torso - sway * 0.6 + rRecoil;
+  const rArmDeg = blend(rig.rUpper + torso - sway * 0.6 + rRecoil, aimR);
   const rElbow = polar(shoulder.x, shoulder.y, UPPER_ARM, rArmDeg);
-  const rForeDeg = rig.rUpper + rig.rLower + wiggle + torso - sway * 0.6 + rRecoil * 1.4;
+  const rForeDeg = blend(rig.rUpper + rig.rLower + wiggle + torso - sway * 0.6 + rRecoil * 1.4, aimR);
   const rHand = polar(rElbow.x, rElbow.y, FORE_ARM, rForeDeg);
 
   const lKnee = polar(HIP.x, HIP.y, THIGH, rig.lThigh);
@@ -205,7 +214,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const line = { stroke: ink, strokeWidth: STROKE, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, fill: "none" };
 
   return (
-    <div style={{ position: "absolute", left: rect.x + lungeX, top: rect.y, width: rect.w, height: rect.h, display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
+    <div style={{ position: "absolute", left: rect.x + lungeX, top: rect.y + hopY, width: rect.w, height: rect.h, display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
       <svg
         width={RW * scale}
         height={RH * scale}

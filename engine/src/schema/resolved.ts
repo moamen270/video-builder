@@ -13,6 +13,7 @@ import {
   THEMES,
   TRANSITIONS,
   VOICES,
+  OVERLAYS,
 } from "./catalog.js";
 
 /**
@@ -71,8 +72,14 @@ export const ResolvedCamera = z.object({
   atFrame: z.number().int(),
 });
 
+export const ResolvedOverlay = z.object({
+  kind: z.enum(OVERLAYS),
+  atFrame: z.number().int(),
+  untilFrame: z.number().int(),
+});
+
 export const ResolvedShot = z.object({ atFrame: z.number().int(), big: z.boolean() });
-export const ResolvedStrike = z.object({ atFrame: z.number().int(), target: z.enum(PROP_POSITIONS), big: z.boolean() });
+export const ResolvedStrike = z.object({ atFrame: z.number().int(), target: z.enum([...PROP_POSITIONS, "camera"]), big: z.boolean() });
 
 export const ResolvedScene = z.object({
   id: z.string(),
@@ -124,6 +131,7 @@ export const ResolvedScene = z.object({
   sfx: z.array(ResolvedSfx),
   bubbles: z.array(ResolvedBubble),
   camera: z.array(ResolvedCamera),
+  overlays: z.array(ResolvedOverlay).default([]),
 });
 export type ResolvedScene = z.infer<typeof ResolvedScene>;
 
