@@ -81,6 +81,11 @@ field reference). Any other MCP client (Codex, etc.) reads them via `video_read_
 
 ## Channel packaging
 
+Dummy Sticky: [YouTube](https://www.youtube.com/@DummySticky) ·
+[TikTok](https://www.tiktok.com/@dummysticky) ·
+[Instagram](https://www.instagram.com/dummysticky) ·
+[Facebook](https://www.facebook.com/DummySticky).
+
 `brand.json` holds the channel identity (name, `@handle`, watermark on/off,
 default hashtags); the handle is drawn on every frame. Each manifest carries a
 `social` block (title, hook, description, tags, hashtags, pinned comment, cover

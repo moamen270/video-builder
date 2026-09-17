@@ -12,6 +12,10 @@ export const Brand = z.object({
   watermark: z.boolean().default(true),
   /** Appended to every post's hashtags (first three matter most on YouTube). */
   defaultHashtags: z.array(z.string().regex(/^#\w+$/)).default([]),
+  /** Channel bio as used on the platforms (reference for consistency). */
+  bio: z.string().default(""),
+  /** Channel URLs; listed at the bottom of every YouTube description. */
+  links: z.record(z.string(), z.string().url()).default({}),
 });
 export type Brand = z.infer<typeof Brand>;
 

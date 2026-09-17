@@ -3,5 +3,16 @@
   "handle": "@DummySticky",
   "tagline": "Stickmen with too much attitude.",
   "watermark": true,
-  "defaultHashtags": ["#shorts", "#stickman", "#animation"]
+  "defaultHashtags": [
+    "#shorts",
+    "#stickman",
+    "#animation"
+  ],
+  "bio": "Stick figures. Serious faces. Ridiculous problems.\n30-second shorts about heroes who take small things way too seriously.",
+  "links": {
+    "youtube": "https://www.youtube.com/@DummySticky",
+    "tiktok": "https://www.tiktok.com/@dummysticky",
+    "instagram": "https://www.instagram.com/dummysticky",
+    "facebook": "https://www.facebook.com/DummySticky"
+  }
 }

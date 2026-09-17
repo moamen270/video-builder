@@ -21,7 +21,8 @@ export function socialMarkdown(m: Manifest, brand: Brand | null, ctx: { version:
   const s = m.social;
   if (!s) return `# ${m.title} — v${ctx.version}\n\n_No \`social\` block in manifest.json; add one (title, description, tags, hashtags) and rerun \`vb social ${m.slug}\`._\n`;
   const hashtags = uniq([...s.hashtags, ...(brand?.defaultHashtags ?? [])]);
-  const handleLine = brand ? `${brand.name} ${brand.handle}` : "";
+  const links = Object.entries(brand?.links ?? {});
+  const handleLine = brand ? [`${brand.name} ${brand.handle}`, ...links.map(([k, u]) => `${k[0]!.toUpperCase()}${k.slice(1)}: ${u}`)].join("\n") : "";
   const ytTitle = s.title.length > YT_TITLE_MAX ? s.title.slice(0, YT_TITLE_MAX - 1) + "…" : s.title;
   const ytDescription = [s.description.trim(), "", handleLine, hashtags.join(" ")].filter((l, i, a) => !(l === "" && a[i - 1] === "")).join("\n").trim();
   const ytTags = trimTags(uniq(s.tags), YT_TAGS_MAX);
