@@ -132,6 +132,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
           : null,
         poseChanges: e.poseChanges.map((pc, k) => ({ pose: pc.pose, expression: pc.expression, atFrame: at(pc.at, `extras[${i}].poseChanges[${k}]`) })).sort((a, b) => a.atFrame - b.atFrame),
         koFrame: ko,
+        fallDir: e.fallDir ?? null,
       };
     });
 

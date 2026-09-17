@@ -229,11 +229,12 @@ def thunder() -> np.ndarray:
     rng = np.random.default_rng(31)
     x = t(2.6)
     n = len(x)
-    rumble = lowpass(rng.normal(0, 1, n), 140) * env(n, 0.05, 1.6, 2.0)
-    rumble2 = lowpass(rng.normal(0, 1, n), 60) * env(n, 0.2, 2.2, 1.6)
-    crack = lowpass(rng.normal(0, 1, n), 2500) * env(n, 0.002, 0.08)
-    wobble = 1 + 0.35 * np.sin(2 * np.pi * 1.7 * x) * np.exp(-x)
-    return (rumble * 1.4 + rumble2 * 2.2) * wobble + crack * 0.5
+    # Steep low-pass (three poles) so no hiss survives; slow swell, long tail, sub layer.
+    r1 = lowpass(lowpass(lowpass(rng.normal(0, 1, n), 110), 110), 110) * env(n, 0.35, 1.9, 1.8)
+    r2 = lowpass(lowpass(lowpass(rng.normal(0, 1, n), 55), 55), 55) * env(n, 0.5, 2.3, 1.5)
+    sub = np.sin(2 * np.pi * 42 * x + 3 * np.sin(2 * np.pi * 0.6 * x)) * env(n, 0.4, 2.2, 1.6) * 0.5
+    wobble = 1 + 0.25 * np.sin(2 * np.pi * 1.3 * x) * np.exp(-x * 0.8)
+    return (r1 * 2.0 + r2 * 3.0 + sub) * wobble
 
 
 def thud() -> np.ndarray:

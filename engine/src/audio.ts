@@ -9,10 +9,11 @@ export type AudioProgress = (msg: string) => void;
 
 type Scene = Manifest["scenes"][number];
 const sceneSpeed = (m: Manifest, s: Scene) => s.speed ?? m.speed;
+const sceneVoice = (m: Manifest, s: Scene) => s.voice ?? m.voice;
 const sceneFx = (m: Manifest, s: Scene): VoiceFx => s.voiceFx ?? m.voiceFx;
 
 export function sceneHash(m: Manifest, s: Scene, p: ProjectPaths): string {
-  const parts: unknown[] = [m.voice, sceneSpeed(m, s), sceneFx(m, s), s.speech ?? "", s.pauseAfter, s.silence ?? "", "v3"];
+  const parts: unknown[] = [sceneVoice(m, s), sceneSpeed(m, s), sceneFx(m, s), s.speech ?? "", s.pauseAfter, s.silence ?? "", "v4"];
   if (s.clip) {
     const f = path.join(p.clipsDir, s.clip.file);
     const st = existsSync(f) ? statSync(f) : null;
@@ -55,7 +56,8 @@ const FX_FILTERS: Record<Exclude<VoiceFx, "none">, string> = {
   deep: "asetrate=24000*0.88,aresample=24000,atempo=1/0.88,bass=g=4:f=140,aecho=0.7:0.35:28:0.18",
   theatre: "bass=g=2:f=160,aecho=0.75:0.5:55|120:0.22|0.12",
   // Batman: lower, compressed hard, soft-clipped for rasp, highs shaved, tight room.
-  growl: "asetrate=24000*0.9,aresample=24000,atempo=1/0.9,acompressor=threshold=-20dB:ratio=6:attack=4:release=90:makeup=4,volume=4dB,aeval=tanh(1.7*val(0)),equalizer=f=2200:t=q:w=1.4:g=3,treble=g=-5,bass=g=4:f=130,aecho=0.6:0.25:16:0.12,alimiter=limit=0.92",
+  young: "asetrate=24000*1.12,aresample=24000,atempo=1/1.12,treble=g=2,aecho=0.6:0.2:14:0.08",
+  growl: "asetrate=24000*0.88,aresample=24000,atempo=1/0.88,acompressor=threshold=-20dB:ratio=6:attack=4:release=90:makeup=4,volume=4dB,aeval=tanh(1.7*val(0)),equalizer=f=2200:t=q:w=1.4:g=3,treble=g=-5,bass=g=4:f=130,aecho=0.6:0.25:16:0.12,alimiter=limit=0.92",
   villain: "asetrate=24000*0.80,aresample=24000,atempo=1/0.80,bass=g=8:f=120,aecho=0.8:0.6:45|95|170:0.42|0.28|0.16,alimiter=limit=0.95",
 };
 
@@ -94,7 +96,7 @@ export async function ensureAudio(
   const silentScenes = pending.filter((s) => s.silence !== undefined);
   const todo = pending
     .filter((s) => !s.clip && s.silence === undefined)
-    .map((s) => ({ id: s.id, speech: s.speech!, pauseAfter: s.pauseAfter, speed: sceneSpeed(m, s), fx: sceneFx(m, s), hash: sceneHash(m, s, p) }));
+    .map((s) => ({ id: s.id, speech: s.speech!, pauseAfter: s.pauseAfter, speed: sceneSpeed(m, s), voice: sceneVoice(m, s), fx: sceneFx(m, s), hash: sceneHash(m, s, p) }));
 
   let fresh: (SceneAlignment & { hash: string })[] = [];
   for (const s of clipScenes) {

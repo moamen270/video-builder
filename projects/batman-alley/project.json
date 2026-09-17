@@ -4,7 +4,7 @@
   "createdAt": "2026-09-17T03:52:17.267Z",
   "targetSeconds": 40,
   "status": "qa_passed",
-  "lastRenderMs": 34972,
+  "lastRenderMs": 49181,
   "versions": [
     {
       "n": 1,
@@ -24,6 +24,16 @@
       "manifestHash": "faf0b416eef00195",
       "note": "v2: all three bodies in frame for the count and finale",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/batman-alley-v2/final.mp4"
+    },
+    {
+      "n": 3,
+      "at": "2026-09-17T04:32:50.065Z",
+      "seconds": 26.733333333333334,
+      "renderMs": 49181,
+      "qaOk": true,
+      "manifestHash": "58d7552249173cb8",
+      "note": "v3: bm_lewis growl (102 Hz), villains Joker/Penguin/Riddler, Robin cameo + chase, consistent bodies, no thunder/glitch/bat-signal overlay, 26.7 s",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/batman-alley-v3/final.mp4"
     }
   ]
 }

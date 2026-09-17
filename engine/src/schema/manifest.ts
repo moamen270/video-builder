@@ -61,6 +61,8 @@ export const Extra = z.object({
   travel: ExtraTravel.optional(),
   poseChanges: z.array(PoseChange).default([]),
   knockedOutAt: Anchor.optional(),
+  /** Which way he falls when knocked out. Default: toward the centre of the frame. */
+  fallDir: z.enum(["left", "right"]).optional(),
 });
 
 export const CharacterState = z.object({
@@ -211,6 +213,8 @@ export const Scene = z.object({
   speed: z.number().min(0.7).max(1.4).optional(),
   /** Override the manifest voiceFx for this scene (e.g. "villain" on the evil laugh). */
   voiceFx: z.enum(VOICE_FX).optional(),
+  /** Override the narrator voice for this scene — a second character speaking. */
+  voice: z.enum(VOICES).optional(),
   layout: z.enum(LAYOUTS).default("character_bottom"),
   transition: z.enum(TRANSITIONS).default("cut"),
   character: CharacterState.nullable().prefault({}),

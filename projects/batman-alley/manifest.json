@@ -2,21 +2,13 @@
   "version": 1,
   "slug": "batman-alley",
   "title": "Batman: alley",
-  "voice": "am_fenrir",
-  "speed": 0.84,
+  "voice": "bm_lewis",
+  "speed": 0.82,
   "voiceFx": "growl",
   "theme": "midnight",
-  "music": {
-    "track": "lofi-02",
-    "volume": 0.07
-  },
-  "characters": [
-    {
-      "id": "bruce",
-      "style": "batman"
-    }
-  ],
-  "notes": "Action first, words second. Three goons own the alley until the signal comes on. Batman drops in, says four words, throws once, leaves through the screen.",
+  "music": { "track": "lofi-02", "volume": 0.07 },
+  "characters": [{ "id": "bruce", "style": "batman" }],
+  "notes": "Action first, words second. Joker, Penguin and Riddler own the alley until the signal comes on. Batman drops in, says four words, throws once, leaves through the screen. Robin shows up late and chases him.",
   "scenes": [
     {
       "id": "alley",
@@ -25,80 +17,18 @@
       "layout": "character_center",
       "character": null,
       "extras": [
-        {
-          "id": "t1",
-          "pose": "walk_right",
-          "x": 0.22,
-          "travel": {
-            "fromX": -0.18,
-            "toX": 0.22,
-            "start": "start",
-            "end": "start+2.2"
-          }
-        },
-        {
-          "id": "t2",
-          "pose": "idle",
-          "x": 0.5,
-          "poseChanges": [
-            {
-              "pose": "shrugging",
-              "expression": "smug",
-              "at": "start+1.4"
-            },
-            {
-              "pose": "celebrating",
-              "expression": "happy",
-              "at": "start+2.4"
-            }
-          ]
-        },
-        {
-          "id": "t3",
-          "pose": "walk_left",
-          "x": 0.78,
-          "travel": {
-            "fromX": 1.18,
-            "toX": 0.78,
-            "start": "start+0.3",
-            "end": "start+2.6"
-          }
-        }
+        { "id": "t1", "style": "joker", "pose": "walk_right", "x": 0.26, "travel": { "fromX": -0.18, "toX": 0.26, "start": "start", "end": "start+2.2" } },
+        { "id": "t2", "style": "penguin", "pose": "idle", "x": 0.5, "poseChanges": [{ "pose": "shrugging", "expression": "smug", "at": "start+1.4" }, { "pose": "celebrating", "expression": "happy", "at": "start+2.4" }] },
+        { "id": "t3", "style": "riddler", "pose": "walk_left", "x": 0.74, "travel": { "fromX": 1.18, "toX": 0.74, "start": "start+0.3", "end": "start+2.6" } }
       ],
-      "props": [
-        {
-          "name": "bat_signal",
-          "at": "start+1.0",
-          "anim": "fade",
-          "position": "top_right",
-          "scale": 0.9
-        }
-      ],
+      "props": [{ "name": "bat_signal", "at": "start+1.0", "anim": "fade", "position": "top_right", "scale": 0.9 }],
       "sfx": [
-        {
-          "name": "thunder",
-          "at": "start",
-          "volume": 0.3
-        },
-        {
-          "name": "chime",
-          "at": "start+1.0",
-          "volume": 0.5
-        }
+        { "name": "drum", "at": "start+1.0", "volume": 0.5 },
+        { "name": "chime", "at": "start+1.0", "volume": 0.5 }
       ],
       "bubbles": [
-        {
-          "text": "HEH",
-          "at": "start+1.6",
-          "until": "start+2.4",
-          "on": "t2"
-        },
-        {
-          "text": "?!",
-          "at": "start+2.9",
-          "on": "t3",
-          "side": "left"
-        }
+        { "text": "HEH", "at": "start+1.6", "until": "start+2.4", "on": "t2" },
+        { "text": "?!", "at": "start+2.9", "on": "t3", "side": "left" }
       ]
     },
     {
@@ -110,155 +40,44 @@
         "id": "bruce",
         "pose": "claws_out",
         "expression": "fierce",
-        "entrance": {
-          "kind": "drop_in",
-          "at": "start+0.05",
-          "duration": 0.55
-        },
-        "poseChanges": [
-          {
-            "pose": "arms_crossed",
-            "expression": "fierce",
-            "at": "start+0.95"
-          }
-        ]
+        "entrance": { "kind": "drop_in", "at": "start+0.05", "duration": 0.55 },
+        "poseChanges": [{ "pose": "arms_crossed", "expression": "fierce", "at": "start+0.95" }]
       },
       "extras": [
-        {
-          "id": "t1",
-          "pose": "idle",
-          "x": 0.22,
-          "poseChanges": [
-            {
-              "pose": "shocked",
-              "expression": "surprised",
-              "at": "start+0.7"
-            }
-          ]
-        },
-        {
-          "id": "t2",
-          "pose": "celebrating",
-          "expression": "happy",
-          "x": 0.5,
-          "knockedOutAt": "start+0.6"
-        },
-        {
-          "id": "t3",
-          "pose": "idle",
-          "x": 0.78,
-          "poseChanges": [
-            {
-              "pose": "shocked",
-              "expression": "surprised",
-              "at": "start+0.7"
-            }
-          ]
-        }
+        { "id": "t1", "style": "joker", "pose": "idle", "x": 0.26, "poseChanges": [{ "pose": "shocked", "expression": "surprised", "at": "start+0.7" }] },
+        { "id": "t2", "style": "penguin", "pose": "celebrating", "expression": "happy", "x": 0.5, "knockedOutAt": "start+0.6", "fallDir": "right" },
+        { "id": "t3", "style": "riddler", "pose": "idle", "x": 0.74, "poseChanges": [{ "pose": "shocked", "expression": "surprised", "at": "start+0.7" }] }
       ],
-      "props": [
-        {
-          "name": "bat_signal",
-          "at": "start",
-          "anim": "fade",
-          "position": "top_right",
-          "scale": 0.9
-        }
-      ],
+      "props": [{ "name": "bat_signal", "at": "start", "anim": "fade", "position": "top_right", "scale": 0.9 }],
       "sfx": [
-        {
-          "name": "whoosh",
-          "at": "start+0.1",
-          "volume": 0.6
-        },
-        {
-          "name": "thud",
-          "at": "start+0.6",
-          "volume": 1.0
-        },
-        {
-          "name": "boom",
-          "at": "start+0.6",
-          "volume": 0.6
-        }
+        { "name": "whoosh", "at": "start+0.1", "volume": 0.6 },
+        { "name": "thud", "at": "start+0.6", "volume": 1.0 },
+        { "name": "boom", "at": "start+0.6", "volume": 0.6 }
       ],
-      "camera": [
-        {
-          "move": "shake",
-          "at": "start+0.6"
-        }
-      ]
+      "camera": [{ "move": "shake", "at": "start+0.6" }]
     },
     {
       "id": "line",
       "speech": "I'm Batman.",
-      "emphasis": [
-        "Batman"
-      ],
+      "emphasis": ["Batman"],
       "layout": "character_center",
       "pauseAfter": 0.8,
       "speed": 0.78,
-      "character": {
-        "id": "bruce",
-        "pose": "arms_crossed",
-        "expression": "fierce"
-      },
+      "character": { "id": "bruce", "pose": "arms_crossed", "expression": "fierce" },
       "extras": [
-        {
-          "id": "t1",
-          "pose": "shocked",
-          "expression": "surprised",
-          "x": 0.22
-        },
-        {
-          "id": "t2",
-          "pose": "idle",
-          "x": 0.5,
-          "knockedOutAt": "start"
-        },
-        {
-          "id": "t3",
-          "pose": "shocked",
-          "expression": "surprised",
-          "x": 0.78
-        }
+        { "id": "t1", "style": "joker", "pose": "shocked", "expression": "surprised", "x": 0.26 },
+        { "id": "t2", "style": "penguin", "pose": "idle", "x": 0.5, "knockedOutAt": "start", "fallDir": "right" },
+        { "id": "t3", "style": "riddler", "pose": "shocked", "expression": "surprised", "x": 0.74 }
       ],
-      "props": [
-        {
-          "name": "bat_signal",
-          "at": "start",
-          "anim": "fade",
-          "position": "top_right",
-          "scale": 0.9
-        }
-      ],
-      "sfx": [
-        {
-          "name": "thunder",
-          "at": "word:batman+0.3",
-          "volume": 0.3
-        }
-      ],
-      "bubbles": [
-        {
-          "text": "?!",
-          "at": "word:batman+0.3",
-          "on": "t1"
-        }
-      ],
-      "camera": [
-        {
-          "move": "punch_in",
-          "at": "word:batman"
-        }
-      ]
+      "props": [{ "name": "bat_signal", "at": "start", "anim": "fade", "position": "top_right", "scale": 0.9 }],
+      "sfx": [{ "name": "boom", "at": "word:batman+0.35", "volume": 0.35 }],
+      "bubbles": [{ "text": "?!", "at": "word:batman+0.3", "on": "t1" }],
+      "camera": [{ "move": "punch_in", "at": "word:batman" }]
     },
     {
       "id": "run",
       "speech": "Going somewhere?",
-      "emphasis": [
-        "somewhere"
-      ],
+      "emphasis": ["somewhere"],
       "layout": "character_center",
       "pauseAfter": 1.0,
       "character": {
@@ -266,294 +85,134 @@
         "pose": "arms_crossed",
         "expression": "fierce",
         "poseChanges": [
-          {
-            "pose": "pointing_right",
-            "expression": "fierce",
-            "at": "start+0.45"
-          },
-          {
-            "pose": "pointing_left",
-            "at": "start+0.85"
-          },
-          {
-            "pose": "arms_crossed",
-            "expression": "smug",
-            "at": "start+1.5"
-          }
+          { "pose": "pointing_right", "expression": "fierce", "at": "start+0.35" },
+          { "pose": "pointing_left", "at": "start+0.75" },
+          { "pose": "arms_crossed", "expression": "smug", "at": "start+1.4" }
         ],
-        "throws": [
-          {
-            "at": "start+0.5",
-            "targets": [
-              "t3",
-              "t1"
-            ],
-            "flight": 0.3
-          }
-        ]
+        "throws": [{ "at": "start+0.4", "targets": ["t3", "t1"], "flight": 0.28 }]
       },
       "extras": [
-        {
-          "id": "t1",
-          "pose": "run_left",
-          "expression": "worried",
-          "x": 0.22,
-          "travel": {
-            "fromX": 0.22,
-            "toX": -0.06,
-            "start": "start+0.1",
-            "end": "start+2.4"
-          }
-        },
-        {
-          "id": "t2",
-          "pose": "idle",
-          "x": 0.5,
-          "knockedOutAt": "start"
-        },
-        {
-          "id": "t3",
-          "pose": "run_right",
-          "expression": "worried",
-          "x": 0.78,
-          "travel": {
-            "fromX": 0.78,
-            "toX": 1.06,
-            "start": "start+0.1",
-            "end": "start+2.4"
-          }
-        }
+        { "id": "t1", "style": "joker", "pose": "run_left", "expression": "worried", "x": 0.26, "travel": { "fromX": 0.26, "toX": 0.0, "start": "start+0.1", "end": "start+2.4" } },
+        { "id": "t2", "style": "penguin", "pose": "idle", "x": 0.5, "knockedOutAt": "start", "fallDir": "right" },
+        { "id": "t3", "style": "riddler", "pose": "run_right", "expression": "worried", "x": 0.74, "travel": { "fromX": 0.74, "toX": 1.0, "start": "start+0.1", "end": "start+2.4" } }
       ],
-      "props": [
-        {
-          "name": "bat_signal",
-          "at": "start",
-          "anim": "fade",
-          "position": "top_right",
-          "scale": 0.9
-        }
-      ],
+      "props": [{ "name": "bat_signal", "at": "start", "anim": "fade", "position": "top_right", "scale": 0.9 }],
       "sfx": [
-        {
-          "name": "whoosh",
-          "at": "start+0.5",
-          "volume": 0.7
-        },
-        {
-          "name": "thud",
-          "at": "start+0.8",
-          "volume": 0.9
-        },
-        {
-          "name": "thud",
-          "at": "start+1.1",
-          "volume": 0.9
-        },
-        {
-          "name": "swoosh",
-          "at": "start+1.1",
-          "volume": 0.5
-        }
+        { "name": "whoosh", "at": "start+0.4", "volume": 0.7 },
+        { "name": "thud", "at": "start+0.68", "volume": 0.9 },
+        { "name": "thud", "at": "start+0.96", "volume": 0.9 },
+        { "name": "swoosh", "at": "start+0.96", "volume": 0.5 }
       ],
-      "camera": [
-        {
-          "move": "shake",
-          "at": "start+0.8"
-        },
-        {
-          "move": "shake",
-          "at": "start+1.1"
-        }
-      ]
+      "camera": [{ "move": "shake", "at": "start+0.68" }, { "move": "shake", "at": "start+0.96" }]
     },
     {
       "id": "count",
       "speech": "Three for three.",
-      "emphasis": [
-        "Three",
-        "three"
-      ],
+      "emphasis": ["Three", "three"],
       "layout": "character_center",
-      "pauseAfter": 0.9,
+      "pauseAfter": 0.8,
       "speed": 0.8,
       "character": {
         "id": "bruce",
         "pose": "pointing_left",
         "expression": "neutral",
         "poseChanges": [
-          {
-            "pose": "pointing_right",
-            "at": "word:for"
-          },
-          {
-            "pose": "arms_crossed",
-            "expression": "smug",
-            "at": "word:three#2+0.3"
-          }
+          { "pose": "pointing_right", "at": "word:for" },
+          { "pose": "arms_crossed", "expression": "smug", "at": "word:three#2+0.3" }
         ]
       },
       "extras": [
-        {
-          "id": "t1",
-          "pose": "idle",
-          "x": 0.42,
-          "knockedOutAt": "start"
-        },
-        {
-          "id": "t2",
-          "pose": "idle",
-          "x": 0.5,
-          "knockedOutAt": "start"
-        },
-        {
-          "id": "t3",
-          "pose": "idle",
-          "x": 0.6,
-          "knockedOutAt": "start"
-        }
+        { "id": "t1", "style": "joker", "pose": "idle", "x": 0.163, "knockedOutAt": "start", "fallDir": "right" },
+        { "id": "t2", "style": "penguin", "pose": "idle", "x": 0.5, "knockedOutAt": "start", "fallDir": "right" },
+        { "id": "t3", "style": "riddler", "pose": "idle", "x": 0.806, "knockedOutAt": "start", "fallDir": "left" }
       ],
-      "props": [
-        {
-          "name": "bat_signal",
-          "at": "start",
-          "anim": "fade",
-          "position": "top_right",
-          "scale": 0.9
-        }
-      ],
+      "props": [{ "name": "bat_signal", "at": "start", "anim": "fade", "position": "top_right", "scale": 0.9 }],
       "sfx": [
-        {
-          "name": "tick",
-          "at": "word:three"
-        },
-        {
-          "name": "tick",
-          "at": "word:for"
-        },
-        {
-          "name": "tick",
-          "at": "word:three#2"
-        }
+        { "name": "tick", "at": "word:three" },
+        { "name": "tick", "at": "word:for" },
+        { "name": "tick", "at": "word:three#2" }
       ]
+    },
+    {
+      "id": "robin",
+      "speech": "Hello! Robin here!",
+      "emphasis": ["Robin"],
+      "voice": "am_puck",
+      "voiceFx": "young",
+      "speed": 1.05,
+      "layout": "character_center",
+      "pauseAfter": 0.6,
+      "character": { "id": "bruce", "pose": "arms_crossed", "expression": "neutral" },
+      "extras": [
+        { "id": "t1", "style": "joker", "pose": "idle", "x": 0.163, "knockedOutAt": "start", "fallDir": "right" },
+        { "id": "t2", "style": "penguin", "pose": "idle", "x": 0.5, "knockedOutAt": "start", "fallDir": "right" },
+        { "id": "t3", "style": "riddler", "pose": "idle", "x": 0.806, "knockedOutAt": "start", "fallDir": "left" },
+        { "id": "robin", "style": "robin", "pose": "walk_right", "expression": "happy", "x": 0.16, "scale": 0.72, "travel": { "fromX": -0.15, "toX": 0.16, "start": "start", "end": "word:robin" }, "poseChanges": [{ "pose": "waving", "expression": "happy", "at": "word:robin" }] }
+      ],
+      "props": [{ "name": "bat_signal", "at": "start", "anim": "fade", "position": "top_right", "scale": 0.9 }],
+      "sfx": [{ "name": "pop", "at": "word:hello", "volume": 0.6 }]
+    },
+    {
+      "id": "notnow",
+      "speech": "Not now, Robin.",
+      "emphasis": ["Not now"],
+      "layout": "character_center",
+      "pauseAfter": 0.7,
+      "speed": 0.8,
+      "character": {
+        "id": "bruce",
+        "pose": "facepalm",
+        "expression": "worried",
+        "poseChanges": [{ "pose": "arms_crossed", "expression": "fierce", "at": "word:robin" }]
+      },
+      "extras": [
+        { "id": "t1", "style": "joker", "pose": "idle", "x": 0.163, "knockedOutAt": "start", "fallDir": "right" },
+        { "id": "t2", "style": "penguin", "pose": "idle", "x": 0.5, "knockedOutAt": "start", "fallDir": "right" },
+        { "id": "t3", "style": "riddler", "pose": "idle", "x": 0.806, "knockedOutAt": "start", "fallDir": "left" },
+        { "id": "robin", "style": "robin", "pose": "waving", "expression": "happy", "x": 0.16, "scale": 0.72, "poseChanges": [{ "pose": "shrugging", "expression": "worried", "at": "word:robin" }] }
+      ],
+      "props": [{ "name": "bat_signal", "at": "start", "anim": "fade", "position": "top_right", "scale": 0.9 }],
+      "sfx": [{ "name": "error", "at": "word:not", "volume": 0.35 }]
     },
     {
       "id": "finale",
       "speech": "Goodnight, Gotham.",
-      "emphasis": [
-        "Gotham"
-      ],
+      "emphasis": ["Gotham"],
       "layout": "character_center",
-      "pauseAfter": 3.8,
+      "pauseAfter": 3.9,
       "speed": 0.78,
       "character": {
         "id": "bruce",
         "pose": "arms_crossed",
         "expression": "fierce",
         "poseChanges": [
-          {
-            "pose": "pointing_right",
-            "expression": "smug",
-            "at": "word:gotham+0.4"
-          },
-          {
-            "pose": "pointing_up",
-            "expression": "neutral",
-            "at": "word:gotham+1.5"
-          }
+          { "pose": "pointing_right", "expression": "smug", "at": "word:gotham+0.4" },
+          { "pose": "pointing_up", "expression": "neutral", "at": "word:gotham+1.5" }
         ],
-        "throws": [
-          {
-            "at": "word:gotham+0.5",
-            "targets": [
-              "camera"
-            ],
-            "flight": 0.45
-          }
-        ],
-        "exit": {
-          "kind": "grapple",
-          "at": "word:gotham+1.7",
-          "duration": 0.8
-        }
+        "throws": [{ "at": "word:gotham+0.5", "targets": ["camera"], "flight": 0.45 }],
+        "exit": { "kind": "grapple", "at": "word:gotham+1.7", "duration": 0.8 }
       },
       "extras": [
-        {
-          "id": "t1",
-          "pose": "idle",
-          "x": 0.42,
-          "knockedOutAt": "start"
-        },
-        {
-          "id": "t2",
-          "pose": "idle",
-          "x": 0.5,
-          "knockedOutAt": "start"
-        },
-        {
-          "id": "t3",
-          "pose": "idle",
-          "x": 0.6,
-          "knockedOutAt": "start"
-        }
+        { "id": "t1", "style": "joker", "pose": "idle", "x": 0.163, "knockedOutAt": "start", "fallDir": "right" },
+        { "id": "t2", "style": "penguin", "pose": "idle", "x": 0.5, "knockedOutAt": "start", "fallDir": "right" },
+        { "id": "t3", "style": "riddler", "pose": "idle", "x": 0.806, "knockedOutAt": "start", "fallDir": "left" },
+        { "id": "robin", "style": "robin", "pose": "idle", "expression": "worried", "x": 0.16, "scale": 0.72, "poseChanges": [{ "pose": "shocked", "expression": "surprised", "at": "word:gotham+1.7" }, { "pose": "run_right", "expression": "worried", "at": "word:gotham+2.1" }], "travel": { "fromX": 0.16, "toX": 1.35, "start": "word:gotham+2.1", "end": "word:gotham+3.4" } }
       ],
-      "props": [
-        {
-          "name": "bat_signal",
-          "at": "start",
-          "until": "word:gotham+2.6",
-          "anim": "fade",
-          "position": "top_right",
-          "scale": 0.9
-        }
-      ],
+      "props": [{ "name": "bat_signal", "at": "start", "anim": "fade", "position": "top_right", "scale": 0.9 }],
       "sfx": [
-        {
-          "name": "whoosh",
-          "at": "word:gotham+0.5",
-          "volume": 0.7
-        },
-        {
-          "name": "glitch",
-          "at": "word:gotham+0.95",
-          "volume": 0.8
-        },
-        {
-          "name": "boom",
-          "at": "word:gotham+0.95",
-          "volume": 0.7
-        },
-        {
-          "name": "zip",
-          "at": "word:gotham+1.6",
-          "volume": 0.8
-        },
-        {
-          "name": "swoosh",
-          "at": "word:gotham+1.9",
-          "volume": 0.6
-        },
-        {
-          "name": "thunder",
-          "at": "word:gotham+2.7",
-          "volume": 0.5
-        }
+        { "name": "whoosh", "at": "word:gotham+0.5", "volume": 0.7 },
+        { "name": "boom", "at": "word:gotham+0.95", "volume": 0.8 },
+        { "name": "click", "at": "word:gotham+0.95", "volume": 0.7 },
+        { "name": "zip", "at": "word:gotham+1.6", "volume": 0.8 },
+        { "name": "swoosh", "at": "word:gotham+1.9", "volume": 0.6 },
+        { "name": "pop", "at": "word:gotham+2.1", "volume": 0.5 }
       ],
+      "bubbles": [{ "text": "WAIT!", "at": "word:gotham+2.0", "until": "word:gotham+3.2", "on": "robin" }],
       "overlays": [
-        {
-          "kind": "batarang_stuck",
-          "at": "word:gotham+0.95"
-        },
-        {
-          "kind": "bat_signal",
-          "at": "word:gotham+2.7"
-        }
+        { "kind": "batarang_stuck", "at": "word:gotham+0.95" },
+        { "kind": "blackout", "at": "end-0.45" }
       ],
-      "camera": [
-        {
-          "move": "shake",
-          "at": "word:gotham+0.95"
-        }
-      ]
+      "camera": [{ "move": "shake", "at": "word:gotham+0.95" }]
     }
   ]
 }

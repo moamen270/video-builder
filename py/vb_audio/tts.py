@@ -45,17 +45,26 @@ class Synth:
         warnings.filterwarnings("ignore", category=UserWarning)
         from kokoro import KPipeline  # type: ignore
 
-        lang = _LANG_BY_VOICE_PREFIX.get(voice[0], "a")
         self.voice = voice
         self.speed = speed
-        self.pipeline = KPipeline(lang_code=lang, repo_id=REPO_ID)
+        self._KPipeline = KPipeline
+        self._pipelines: dict[str, object] = {}
+        self._pipeline_for(voice)
 
-    def synth_scene(self, scene_id: str, text: str, out_path: Path, pause_after: float = 0.0, speed: float | None = None) -> SceneAudio:
+    def _pipeline_for(self, voice: str):
+        """One KPipeline per language code (American 'a' / British 'b'); voices may differ per scene."""
+        lang = _LANG_BY_VOICE_PREFIX.get(voice[0], "a")
+        if lang not in self._pipelines:
+            self._pipelines[lang] = self._KPipeline(lang_code=lang, repo_id=REPO_ID)
+        return self._pipelines[lang]
+
+    def synth_scene(self, scene_id: str, text: str, out_path: Path, pause_after: float = 0.0, speed: float | None = None, voice: str | None = None) -> SceneAudio:
         chunks: list[np.ndarray] = []
         tokens: list[Token] = []
         offset = 0.0
 
-        for result in self.pipeline(text, voice=self.voice, speed=speed if speed is not None else self.speed, split_pattern=r"\n+"):
+        v = voice or self.voice
+        for result in self._pipeline_for(v)(text, voice=v, speed=speed if speed is not None else self.speed, split_pattern=r"\n+"):
             audio = result.audio
             if audio is None:
                 continue

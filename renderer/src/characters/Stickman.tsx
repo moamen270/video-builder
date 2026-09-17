@@ -184,12 +184,8 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const koActive = Boolean(ko && abs >= ko.frame);
   const st: PoseState = koActive ? { pose: "knocked_out", expression: "ko", since: ko!.frame, prev: st0.pose } : st0;
   const thug = style === "thug";
-  const beanie = thug ? (
-    <g>
-      <path d={`M -${HEAD_R - 2} -12 A ${HEAD_R - 2} ${HEAD_R - 2} 0 0 1 ${HEAD_R - 2} -12 Z`} fill="#3a3f52" />
-      <rect x={-HEAD_R} y={-16} width={HEAD_R * 2} height={11} rx={4} fill="#4b5168" />
-    </g>
-  ) : null;
+  const beanie = headDecorFor(style, ink);
+  const robin = style === "robin";
   if (WALK_POSES.has(st.pose)) {
     return (
       <Walker rect={rect} frame={abs} fps={fps} ink={ink} headFill={headFill} facingLeft={st.pose === "walk_left" || st.pose === "run_left"} action={walker?.action} shadow={walker?.shadow} run={RUN_POSES.has(st.pose)} headDecor={beanie} />
@@ -298,6 +294,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
         {/* shadow */}
         <ellipse cx={120} cy={404} rx={58 + Math.abs(lift) * 0.4} ry={7} fill="rgba(0,0,0,0.25)" />
         {bat && <Cape shoulder={shoulder} hip={HIP} torso={torso} frame={abs} ink={ink} />}
+        {robin && <Cape shoulder={shoulder} hip={HIP} torso={torso} frame={abs} ink={ink} fill="#f2c400" length={30} width={58} />}
         {/* legs */}
         <polyline points={`${HIP.x},${HIP.y} ${lKnee.x},${lKnee.y} ${lFoot.x},${lFoot.y}`} {...line} />
         <polyline points={`${HIP.x},${HIP.y} ${rKnee.x},${rKnee.y} ${rFoot.x},${rFoot.y}`} {...line} />
@@ -344,8 +341,8 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
                   </>
                 ) : (
                   <>
-                    <circle cx={-10} cy={-4} r={face.eyeR} fill={ink} />
-                    <circle cx={10} cy={-4} r={face.eyeR} fill={ink} />
+                    <circle cx={-10} cy={-4} r={face.eyeR} fill={robin ? "#ffffff" : ink} />
+                    <circle cx={10} cy={-4} r={face.eyeR} fill={robin ? "#ffffff" : ink} />
                   </>
                 )}
               </>
@@ -418,11 +415,11 @@ const Pistol: React.FC<{ x: number; y: number; deg: number; flash: number; big: 
  * Cape: hangs from both shoulders to below the knees, flares out, and its hem
  * ripples with a slow wave plus the torso sway. Drawn behind the body.
  */
-const Cape: React.FC<{ shoulder: { x: number; y: number }; hip: { x: number; y: number }; torso: number; frame: number; ink: string }> = ({ shoulder, hip, torso, frame, ink }) => {
+const Cape: React.FC<{ shoulder: { x: number; y: number }; hip: { x: number; y: number }; torso: number; frame: number; ink: string; fill?: string; length?: number; width?: number }> = ({ shoulder, hip, torso, frame, ink, fill = "#1e2440", length = 96, width = 78 }) => {
   const top = shoulder.y - 4;
-  const hemY = hip.y + 96;
+  const hemY = hip.y + length;
   const drift = torso * 1.6 + Math.sin(frame / 14) * 6; // whole cape leans with the body and breathes
-  const w = 78;
+  const w = width;
   const pts: string[] = [];
   const N = 7;
   for (let i = 0; i <= N; i++) {
@@ -432,8 +429,53 @@ const Cape: React.FC<{ shoulder: { x: number; y: number }; hip: { x: number; y: 
     pts.push(`${i === 0 ? "L" : "L"} ${x.toFixed(1)} ${y.toFixed(1)}`);
   }
   const d = `M ${shoulder.x - 22} ${top} Q ${shoulder.x - w - 14 + drift * 0.5} ${(top + hemY) / 2} ${(shoulder.x - w + drift).toFixed(1)} ${hemY} ${pts.slice(1).join(" ")} Q ${shoulder.x + w + 14 + drift * 0.5} ${(top + hemY) / 2} ${shoulder.x + 22} ${top} Z`;
-  return <path d={d} fill="#1e2440" stroke={ink} strokeWidth={5} strokeLinejoin="round" opacity={0.95} />;
+  return <path d={d} fill={fill} stroke={ink} strokeWidth={5} strokeLinejoin="round" opacity={0.95} />;
 };
+
+/** Costume bits drawn on the head (inside the head group, after the head circle). */
+function headDecorFor(style: CharacterStyle, ink: string): React.ReactNode {
+  switch (style) {
+    case "thug":
+      return (
+        <g>
+          <path d={`M -${HEAD_R - 2} -12 A ${HEAD_R - 2} ${HEAD_R - 2} 0 0 1 ${HEAD_R - 2} -12 Z`} fill="#3a3f52" />
+          <rect x={-HEAD_R} y={-16} width={HEAD_R * 2} height={11} rx={4} fill="#4b5168" />
+        </g>
+      );
+    case "joker":
+      return (
+        <g>
+          {/* green hair spikes */}
+          <path d="M -34 -14 L -30 -52 L -20 -30 L -12 -60 L -4 -34 L 4 -62 L 12 -34 L 20 -58 L 28 -30 L 34 -48 L 34 -12 Q 0 -30 -34 -12 Z" fill="#2fbf71" stroke={ink} strokeWidth={3} strokeLinejoin="round" />
+          {/* red painted grin, under the animated mouth */}
+          <path d="M -22 8 Q 0 34 22 8 Q 0 20 -22 8 Z" fill="#e63946" opacity={0.9} />
+        </g>
+      );
+    case "penguin":
+      return (
+        <g>
+          <rect x={-40} y={-40} width={80} height={9} rx={4} fill="#111111" stroke={ink} strokeWidth={2} />
+          <rect x={-26} y={-82} width={52} height={46} rx={3} fill="#111111" stroke={ink} strokeWidth={2} />
+          <rect x={-26} y={-48} width={52} height={7} fill="#7a1f3d" />
+          <circle cx={11} cy={-4} r={11} fill="none" stroke="#d4af37" strokeWidth={3} />
+          <line x1={20} y1={4} x2={26} y2={20} stroke="#d4af37" strokeWidth={2} />
+        </g>
+      );
+    case "riddler":
+      return (
+        <g>
+          <path d="M -30 -30 A 30 30 0 0 1 30 -30 L 30 -22 L -30 -22 Z" fill="#1f9d55" stroke={ink} strokeWidth={2} />
+          <rect x={-42} y={-24} width={84} height={8} rx={4} fill="#1f9d55" stroke={ink} strokeWidth={2} />
+          <rect x={-30} y={-30} width={60} height={7} fill="#5b2a86" />
+          <text x={0} y={-36} textAnchor="middle" fontFamily='"Arial Black", Impact, sans-serif' fontWeight={900} fontSize={26} fill="#111111">?</text>
+        </g>
+      );
+    case "robin":
+      return <rect x={-26} y={-13} width={52} height={16} rx={6} fill="#111111" />;
+    default:
+      return null;
+  }
+}
 
 /** Three adamantium claws fanning out of a hand, along the forearm direction. */
 const Claws: React.FC<{ x: number; y: number; deg: number }> = ({ x, y, deg }) => (

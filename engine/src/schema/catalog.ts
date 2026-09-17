@@ -120,7 +120,7 @@ export type SfxName = (typeof SFX)[number];
 export const THEMES = ["midnight", "paper", "sunset", "mint", "grape"] as const;
 
 /** Character costumes. `stickman` is the plain narrator; `wolverine` adds a pointed mask, claws and blue trunks. */
-export const CHARACTER_STYLES = ["stickman", "wolverine", "gunslinger", "batman", "thug"] as const; // thug: beanie + darker ink, for goons // batman: cowl ears + flowing cape, face untouched
+export const CHARACTER_STYLES = ["stickman", "wolverine", "gunslinger", "batman", "thug", "joker", "penguin", "riddler", "robin"] as const; // thug: beanie; joker: green hair + red grin; penguin: top hat + monocle; riddler: bowler with ?; robin: domino mask + short yellow cape // batman: cowl ears + flowing cape, face untouched
 export type CharacterStyle = (typeof CHARACTER_STYLES)[number];
 export type Theme = (typeof THEMES)[number];
 
@@ -143,7 +143,7 @@ export const VOICES = [
 export type Voice = (typeof VOICES)[number];
 
 /** Post-processing on the synthesized voice. `deep` = pitch down ~12% + light room; `villain` = pitch down ~20%, bass, big reverb. */
-export const VOICE_FX = ["none", "deep", "villain", "theatre", "growl"] as const; // growl: pitch down, compressed, soft-clipped rasp — Batman
+export const VOICE_FX = ["none", "deep", "villain", "theatre", "growl", "young"] as const; // young: pitch up ~12% for kids/sidekicks // growl: pitch down, compressed, soft-clipped rasp — Batman
 export type VoiceFx = (typeof VOICE_FX)[number];
 
 export const CAMERA_MOVES = ["none", "punch_in", "slow_zoom", "shake", "dolly_in"] as const; // dolly_in: fast 2.3x push toward the character (looming at the viewer)

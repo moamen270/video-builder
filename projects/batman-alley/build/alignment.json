@@ -1,7 +1,7 @@
 {
   "model": "hexgrad/Kokoro-82M",
-  "voice": "am_fenrir",
-  "speed": 0.84,
+  "voice": "bm_lewis",
+  "speed": 0.82,
   "scenes": [
     {
       "sceneId": "alley",
@@ -9,7 +9,7 @@
       "duration": 3.4,
       "sampleRate": 24000,
       "tokens": [],
-      "hash": "319be261c20b4c4e"
+      "hash": "2e42f47750904301"
     },
     {
       "sceneId": "landing",
@@ -17,97 +17,151 @@
       "duration": 1.2,
       "sampleRate": 24000,
       "tokens": [],
-      "hash": "de9fcd58b3ecd259"
+      "hash": "8f1d612b55d0c91e"
     },
     {
       "sceneId": "line",
       "file": "line.wav",
-      "duration": 1.8,
+      "duration": 2.25,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "I'm",
-          "start": 0.25,
-          "end": 0.487,
+          "start": 0.5,
+          "end": 0.875,
           "ws": " "
         },
         {
           "text": "Batman.",
-          "start": 0.487,
-          "end": 1.7,
+          "start": 0.875,
+          "end": 2.15,
           "ws": ""
         }
       ],
-      "hash": "59a752be840a41ba"
+      "hash": "5664f08e9f810937"
     },
     {
       "sceneId": "run",
       "file": "run.wav",
-      "duration": 1.775,
+      "duration": 2.3,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "Going",
-          "start": 0.225,
-          "end": 0.588,
+          "start": 0.5,
+          "end": 1.087,
           "ws": " "
         },
         {
           "text": "somewhere?",
-          "start": 0.588,
-          "end": 1.675,
+          "start": 1.087,
+          "end": 2.2,
           "ws": ""
         }
       ],
-      "hash": "542ef64d25847c81"
+      "hash": "1ffaf893c92db710"
     },
     {
       "sceneId": "count",
       "file": "count.wav",
-      "duration": 1.875,
+      "duration": 2.625,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "Three",
-          "start": 0.25,
-          "end": 0.525,
+          "start": 0.525,
+          "end": 1.075,
           "ws": " "
         },
         {
           "text": "for",
-          "start": 0.525,
-          "end": 0.725,
+          "start": 1.075,
+          "end": 1.425,
           "ws": " "
         },
         {
           "text": "three.",
-          "start": 0.725,
-          "end": 1.775,
+          "start": 1.425,
+          "end": 2.525,
           "ws": ""
         }
       ],
-      "hash": "c7b9177929c4e9ca"
+      "hash": "e7b5dacfa91a1d3f"
+    },
+    {
+      "sceneId": "robin",
+      "file": "robin.wav",
+      "duration": 1.625,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Hello!",
+          "start": 0.15,
+          "end": 0.425,
+          "ws": " "
+        },
+        {
+          "text": "Robin",
+          "start": 0.425,
+          "end": 0.75,
+          "ws": " "
+        },
+        {
+          "text": "here!",
+          "start": 0.75,
+          "end": 1.525,
+          "ws": ""
+        }
+      ],
+      "hash": "6202e603acad356f"
+    },
+    {
+      "sceneId": "notnow",
+      "file": "notnow.wav",
+      "duration": 2.575,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Not",
+          "start": 0.525,
+          "end": 0.838,
+          "ws": " "
+        },
+        {
+          "text": "now,",
+          "start": 0.838,
+          "end": 1.363,
+          "ws": " "
+        },
+        {
+          "text": "Robin.",
+          "start": 1.363,
+          "end": 2.475,
+          "ws": ""
+        }
+      ],
+      "hash": "8f20199af326a561"
     },
     {
       "sceneId": "finale",
       "file": "finale.wav",
-      "duration": 2.075,
+      "duration": 2.6,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "Goodnight,",
-          "start": 0.25,
-          "end": 0.8,
+          "start": 0.5,
+          "end": 1.337,
           "ws": " "
         },
         {
           "text": "Gotham.",
-          "start": 0.8,
-          "end": 1.975,
+          "start": 1.337,
+          "end": 2.5,
           "ws": ""
         }
       ],
-      "hash": "7588c6c05ff72d69"
+      "hash": "b9ae3009d08f78de"
     }
   ]
 }

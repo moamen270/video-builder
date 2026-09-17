@@ -81,6 +81,7 @@ export const ResolvedExtra = z.object({
   poseChanges: z.array(ResolvedPoseChange),
   /** Absolute frame the character is knocked flat (from knockedOutAt or a throw hit). */
   koFrame: z.number().int().nullable(),
+  fallDir: z.enum(["left", "right"]).nullable().default(null),
 });
 export type ResolvedExtra = z.infer<typeof ResolvedExtra>;
 

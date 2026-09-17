@@ -135,7 +135,7 @@ export const SceneView: React.FC<Props> = ({ scene, palette }) => {
             style={e.style}
             actor={e}
             walker={{ action: m.action, shadow: 1 }}
-            ko={e.koFrame !== null ? { frame: e.koFrame, dir: charRect && charRect.x + charRect.w / 2 > m.cx ? -1 : 1 } : null}
+            ko={e.koFrame !== null ? { frame: e.koFrame, dir: e.fallDir ? (e.fallDir === "right" ? 1 : -1) : m.cx < 540 ? 1 : -1 } : null}
           />
         ))}
 

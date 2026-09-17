@@ -107,6 +107,15 @@ duration }` (cable to the top-right, swings out of frame). Overlay `bat_signal`
 fills the screen. SFX duck automatically under speech, but still keep booms off the
 first word of a line.
 
+Villain looks for extras: `joker` (green spikes, red grin), `penguin` (top hat, monocle),
+`riddler` (green bowler with ?), `robin` (domino mask, short yellow cape — use `scale: 0.72`).
+Keep bodies where they fell: re-declare each KO'd extra in later scenes with the x it was
+hit at and an explicit `fallDir` (default falls toward frame centre).
+Second speaker: set `voice` (+ `voiceFx: "young"`) on that scene — e.g. Robin = `am_puck`.
+Voice pitch reference (Hz): bm_lewis 94 · am_michael 119 · am_puck 121 · am_adam 122 ·
+am_fenrir 139 · bm_george 153. Deep heroes: bm_lewis + growl (~100 Hz) or am_michael + deep.
+Avoid `thunder`/`glitch` under dialogue; they read as static.
+
 ### Clip scenes (real laughs, screams, stingers)
 
 A scene may use a pre-recorded file instead of TTS:
