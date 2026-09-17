@@ -17,7 +17,7 @@ export const Short: React.FC<ResolvedManifest> = (manifest) => {
       <Music manifest={manifest} />
       {manifest.scenes.map((s) => (
         <Sequence key={s.id} from={s.startFrame} durationInFrames={s.durationInFrames} name={s.id}>
-          <SceneView scene={s} palette={palette} />
+          <SceneView scene={s} palette={palette} brand={manifest.brand} />
         </Sequence>
       ))}
       {/* Thin progress bar at the top edge of the safe zone: a cheap retention cue. */}

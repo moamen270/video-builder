@@ -13,7 +13,7 @@
       "style": "gunslinger"
     }
   ],
-  "notes": "Theatrical, calm, precise. Every shot is a performance; the fourth is the finale. Lotuses bloom where targets die and stay on stage. The laugh is a real Bark clip, not TTS.",
+  "notes": "Theatrical, calm, precise. Every shot is a performance; the fourth is the finale. Lotuses bloom where targets die and stay on stage. The laugh is a real Bark clip, not TTS. v4: cold open already aiming (hook card 'Four shots. One masterpiece.'), CTA spoken by Jhin with the follow card. Alt hooks: 'Watch closely.' / '4 shots. 1 laugh.'",
   "social": {
     "title": "Jhin in 4 Shots — \"Perfection. In four acts.\" (League of Legends stickman)",
     "hook": "Four shots. One masterpiece.",
@@ -56,95 +56,60 @@
   },
   "scenes": [
     {
-      "id": "intro",
-      "speech": "Four shots. That is all a masterpiece requires.",
+      "id": "hook",
+      "speech": "Four shots. Watch closely.",
       "emphasis": [
         "Four",
-        "masterpiece"
-      ],
-      "layout": "character_center",
-      "pauseAfter": 0.6,
-      "character": {
-        "id": "jhin",
-        "pose": "idle",
-        "expression": "neutral",
-        "poseChanges": [
-          {
-            "pose": "pointing_up",
-            "expression": "smug",
-            "at": "word:four"
-          },
-          {
-            "pose": "presenting",
-            "expression": "neutral",
-            "at": "word:that"
-          }
-        ]
-      },
-      "props": [
-        {
-          "name": "number_4",
-          "at": "word:four",
-          "until": "word:that",
-          "anim": "stamp",
-          "position": "above_character",
-          "scale": 0.8
-        }
-      ],
-      "sfx": [
-        {
-          "name": "drum",
-          "at": "word:four",
-          "volume": 0.7
-        }
-      ],
-      "camera": [
-        {
-          "move": "slow_zoom",
-          "at": "start"
-        }
-      ]
-    },
-    {
-      "id": "prepare",
-      "speech": "Watch closely.",
-      "emphasis": [
         "closely"
       ],
       "layout": "character_center",
-      "pauseAfter": 0.7,
+      "pauseAfter": 0.5,
       "character": {
         "id": "jhin",
-        "pose": "reload",
-        "expression": "neutral",
+        "pose": "aim_right",
+        "expression": "smug",
         "position": "left",
         "poseChanges": [
           {
             "pose": "aim_right",
-            "expression": "smug",
-            "at": "word:closely+0.2"
+            "expression": "fierce",
+            "at": "word:closely"
           }
         ]
       },
       "props": [
         {
           "name": "target",
-          "at": "word:closely",
-          "anim": "drop",
+          "at": "start",
+          "anim": "pop",
           "position": "right",
           "scale": 1.3
         }
       ],
       "sfx": [
         {
-          "name": "reload",
+          "name": "click",
           "at": "start",
-          "volume": 0.8
+          "volume": 0.7
         },
         {
-          "name": "click",
-          "at": "word:closely+0.2",
+          "name": "drum",
+          "at": "word:four",
           "volume": 0.6
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "hook_card",
+          "text": "Four shots. One masterpiece.",
+          "at": "start",
+          "until": "word:closely+0.3"
+        }
+      ],
+      "camera": [
+        {
+          "move": "punch_in",
+          "at": "word:closely"
         }
       ]
     },
@@ -673,6 +638,83 @@
           "at": "start"
         }
       ]
+    },
+    {
+      "id": "cta",
+      "speech": "Follow Dummy Sticky. For more.",
+      "emphasis": [
+        "Follow",
+        "Dummy Sticky"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 1.2,
+      "speed": 0.9,
+      "character": {
+        "id": "jhin",
+        "pose": "bow",
+        "expression": "smug",
+        "poseChanges": [
+          {
+            "pose": "waving",
+            "expression": "happy",
+            "at": "word:follow"
+          },
+          {
+            "pose": "pointing_up",
+            "expression": "smug",
+            "at": "word:more"
+          }
+        ]
+      },
+      "props": [
+        {
+          "name": "lotus",
+          "at": "start",
+          "anim": "fade",
+          "position": "right",
+          "scale": 1.0
+        },
+        {
+          "name": "lotus",
+          "at": "start",
+          "anim": "fade",
+          "position": "top_right",
+          "scale": 1.0
+        },
+        {
+          "name": "lotus",
+          "at": "start",
+          "anim": "fade",
+          "position": "top",
+          "scale": 0.9
+        },
+        {
+          "name": "lotus",
+          "at": "start",
+          "anim": "fade",
+          "position": "left",
+          "scale": 1.0
+        }
+      ],
+      "sfx": [
+        {
+          "name": "chime",
+          "at": "word:follow",
+          "volume": 0.5
+        },
+        {
+          "name": "pop",
+          "at": "word:more+0.6",
+          "volume": 0.6
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "follow_card",
+          "at": "word:follow"
+        }
+      ],
+      "captions": false
     }
   ]
 }

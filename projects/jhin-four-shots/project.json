@@ -3,8 +3,8 @@
   "topic": "Jhin: four shots",
   "createdAt": "2026-09-16T03:14:04.420Z",
   "targetSeconds": 40,
-  "status": "resolved",
-  "lastRenderMs": 53184,
+  "status": "qa_passed",
+  "lastRenderMs": 62013,
   "versions": [
     {
       "n": 1,
@@ -35,6 +35,25 @@
       "manifestHash": "f4564a15528968e4",
       "note": "v3: pistol/claw rotation fixed — barrel points where he aims",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/jhin-four-shots-v3/final.mp4"
+    },
+    {
+      "n": 4,
+      "at": "2026-09-17T22:53:07.254Z",
+      "seconds": 30.4,
+      "renderMs": 60484,
+      "qaOk": true,
+      "manifestHash": "d8453105a6e8c0a1",
+      "note": "v4: cold-open hook card, spoken CTA + follow card, watermark"
+    },
+    {
+      "n": 5,
+      "at": "2026-09-17T22:58:44.613Z",
+      "seconds": 30.4,
+      "renderMs": 62013,
+      "qaOk": true,
+      "manifestHash": "a8f9e40cb88a0cec",
+      "note": "v5: cold-open hook card, Jhin speaks the CTA over the follow card (captions off), watermark",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/jhin-four-shots-v5/final.mp4"
     }
   ]
 }

@@ -149,7 +149,7 @@ export type VoiceFx = (typeof VOICE_FX)[number];
 export const CAMERA_MOVES = ["none", "punch_in", "slow_zoom", "shake", "dolly_in"] as const; // dolly_in: fast 2.3x push toward the character (looming at the viewer)
 
 /** Full-frame effects drawn on top of everything — on the "viewer's screen", not in the scene. */
-export const OVERLAYS = ["claw_marks", "flash", "blackout", "bat_signal", "batarang_stuck"] as const;
+export const OVERLAYS = ["claw_marks", "flash", "blackout", "bat_signal", "batarang_stuck", "hook_card", "follow_card"] as const; // hook_card: big text hook over the opening (needs `text`); follow_card: @handle + Follow button for the CTA line
 export type OverlayKind = (typeof OVERLAYS)[number];
 export type CameraMove = (typeof CAMERA_MOVES)[number];
 

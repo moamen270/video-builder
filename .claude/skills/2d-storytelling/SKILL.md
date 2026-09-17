@@ -29,7 +29,8 @@ iterate. Read `stickman-animation` for the visual vocabulary.
   mid-fall, the target on screen. No idle stickman, no walk-on, no "Everyone thinks…".
 - First spoken line = threat, number or payoff, ≤ 8 words. Introductions go second or nowhere.
 - Give `social.hook` (3–8 words) — it is the on-screen/caption hook and must work muted.
-- Put a strike/shot/prop/entrance/SFX inside the first second. `video_compile` warns
+- Add `overlays: [{ "kind": "hook_card", "text": "<the hook>", "at": "start", "until": "start+1.3" }]`
+  on the opening scene, and a strike/shot/prop/entrance/SFX inside the first second. `video_compile` warns
   ("weak hook") if the opening scene is > 2.5 s with nothing happening in its first second — fix it, don't ignore it.
 - Write 2–3 alternative hooks in `notes` so the next version can A/B them.
 
@@ -37,8 +38,10 @@ iterate. Read `stickman-animation` for the visual vocabulary.
 
 Last ~2 s, after the payoff, one ask: "Follow Dummy Sticky for more." / "Comment who
 he should go after next." / "Part 2 is coming — follow so you don't miss it."
-Pose `waving` or `pointing_up`, `happy`/`smug`. Never two asks. The same question goes
-in `social.pinnedComment`.
+Pose `waving` or `pointing_up`, `happy`/`smug`. Never two asks. The character speaks the
+line in his own voice (a sidekick relaying it is fine: "Batman says: follow Dummy Sticky for
+more!"); scene has `"captions": false` and `overlays: [{ "kind": "follow_card", "at": "word:follow" }]`.
+The comment question goes in `social.pinnedComment`.
 
 ## Packaging (`social` block — required)
 

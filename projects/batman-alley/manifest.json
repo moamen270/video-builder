@@ -16,10 +16,10 @@
       "style": "batman"
     }
   ],
-  "notes": "Action first, words second. Joker, Penguin and Riddler own the alley until the signal comes on. Batman drops in, says four words, throws once, leaves through the screen. Robin shows up late and chases him.",
+  "notes": "Action first, words second. Joker, Penguin and Riddler own the alley until the signal comes on. Batman drops in, says four words, throws once, leaves through the screen. Robin shows up late and chases him. v4: villains already gloating at frame 0 (hook card 'Three villains. One bat.'), signal at 1.4 s, Robin comes back to deliver the CTA in his voice. Alt hooks: 'Gotham. 1 A.M.' / 'Wrong alley.'",
   "social": {
     "title": "Batman clears an alley in 4 words (stickman) — \"Not now, Robin.\"",
-    "hook": "Joker, Penguin, Riddler. One alley. One Batman.",
+    "hook": "Three villains. One bat.",
     "description": "Joker, Penguin and Riddler own the alley — until the signal comes on.\n\nStickman Batman drops in, says four words, throws once, and leaves through the screen. Robin shows up late. Robin always shows up late.\n\nMore stickmen with too much attitude every week. Follow Dummy Sticky — Gotham has more alleys.",
     "tags": [
       "batman",
@@ -60,7 +60,7 @@
   "scenes": [
     {
       "id": "alley",
-      "silence": 3.4,
+      "silence": 2.2,
       "pauseAfter": 0.2,
       "layout": "character_center",
       "character": null,
@@ -68,50 +68,60 @@
         {
           "id": "t1",
           "style": "joker",
-          "pose": "walk_right",
+          "pose": "laughing",
+          "expression": "laughing",
           "x": 0.26,
-          "travel": {
-            "fromX": -0.18,
-            "toX": 0.26,
-            "start": "start",
-            "end": "start+2.2"
-          }
+          "poseChanges": [
+            {
+              "pose": "celebrating",
+              "expression": "happy",
+              "at": "start+1.0"
+            },
+            {
+              "pose": "shocked",
+              "expression": "surprised",
+              "at": "start+1.7"
+            }
+          ]
         },
         {
           "id": "t2",
           "style": "penguin",
-          "pose": "idle",
+          "pose": "celebrating",
+          "expression": "happy",
           "x": 0.5,
           "poseChanges": [
             {
               "pose": "shrugging",
               "expression": "smug",
-              "at": "start+1.4"
+              "at": "start+0.6"
             },
             {
               "pose": "celebrating",
               "expression": "happy",
-              "at": "start+2.4"
+              "at": "start+1.3"
             }
           ]
         },
         {
           "id": "t3",
           "style": "riddler",
-          "pose": "walk_left",
+          "pose": "thinking",
+          "expression": "smug",
           "x": 0.74,
-          "travel": {
-            "fromX": 1.18,
-            "toX": 0.74,
-            "start": "start+0.3",
-            "end": "start+2.6"
-          }
+          "poseChanges": [
+            {
+              "pose": "pointing_up",
+              "expression": "surprised",
+              "at": "start+1.5"
+            }
+          ]
         }
       ],
       "props": [
         {
           "name": "bat_signal",
-          "at": "start+1.0",
+          "at": "start+1.4",
           "anim": "fade",
           "position": "top_right",
           "scale": 0.9
@@ -119,28 +129,41 @@
       ],
       "sfx": [
         {
+          "name": "pop",
+          "at": "start",
+          "volume": 0.5
+        },
+        {
           "name": "drum",
-          "at": "start+1.0",
+          "at": "start+1.4",
           "volume": 0.5
         },
         {
           "name": "chime",
-          "at": "start+1.0",
+          "at": "start+1.4",
           "volume": 0.5
         }
       ],
       "bubbles": [
         {
           "text": "HEH",
-          "at": "start+1.6",
-          "until": "start+2.4",
-          "on": "t2"
+          "at": "start+0.3",
+          "until": "start+1.2",
+          "on": "t1"
         },
         {
           "text": "?!",
-          "at": "start+2.9",
+          "at": "start+1.6",
           "on": "t3",
           "side": "left"
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "hook_card",
+          "text": "Three villains. One bat.",
+          "at": "start",
+          "until": "start+1.3"
         }
       ]
     },
@@ -170,15 +193,10 @@
         {
           "id": "t1",
           "style": "joker",
-          "pose": "idle",
+          "pose": "shocked",
           "x": 0.26,
-          "poseChanges": [
-            {
-              "pose": "shocked",
-              "expression": "surprised",
-              "at": "start+0.7"
-            }
-          ]
+          "poseChanges": [],
+          "expression": "surprised"
         },
         {
           "id": "t2",
@@ -192,7 +210,7 @@
         {
           "id": "t3",
           "style": "riddler",
-          "pose": "idle",
+          "pose": "pointing_up",
           "x": 0.74,
           "poseChanges": [
             {
@@ -200,7 +218,8 @@
               "expression": "surprised",
               "at": "start+0.7"
             }
-          ]
+          ],
+          "expression": "surprised"
         }
       ],
       "props": [
@@ -663,7 +682,7 @@
         "Gotham"
       ],
       "layout": "character_center",
-      "pauseAfter": 3.9,
+      "pauseAfter": 3.4,
       "speed": 0.78,
       "character": {
         "id": "bruce",
@@ -801,10 +820,6 @@
         {
           "kind": "batarang_stuck",
           "at": "word:gotham+0.95"
-        },
-        {
-          "kind": "blackout",
-          "at": "end-0.45"
         }
       ],
       "camera": [
@@ -813,6 +828,105 @@
           "at": "word:gotham+0.95"
         }
       ]
+    },
+    {
+      "id": "cta",
+      "speech": "Batman says: follow Dummy Sticky for more!",
+      "emphasis": [
+        "follow",
+        "Dummy Sticky"
+      ],
+      "voice": "am_puck",
+      "voiceFx": "young",
+      "speed": 1.05,
+      "layout": "character_center",
+      "pauseAfter": 1.4,
+      "transition": "cut",
+      "character": null,
+      "extras": [
+        {
+          "id": "t1",
+          "style": "joker",
+          "pose": "idle",
+          "x": 0.163,
+          "knockedOutAt": "start",
+          "fallDir": "right"
+        },
+        {
+          "id": "t2",
+          "style": "penguin",
+          "pose": "idle",
+          "x": 0.5,
+          "knockedOutAt": "start",
+          "fallDir": "right"
+        },
+        {
+          "id": "t3",
+          "style": "riddler",
+          "pose": "idle",
+          "x": 0.806,
+          "knockedOutAt": "start",
+          "fallDir": "left"
+        },
+        {
+          "id": "robin",
+          "style": "robin",
+          "pose": "walk_left",
+          "expression": "happy",
+          "x": 0.43,
+          "scale": 0.72,
+          "travel": {
+            "fromX": 1.2,
+            "toX": 0.43,
+            "start": "start",
+            "end": "word:follow"
+          },
+          "poseChanges": [
+            {
+              "pose": "waving",
+              "expression": "happy",
+              "at": "word:follow"
+            },
+            {
+              "pose": "pointing_up",
+              "expression": "smug",
+              "at": "word:more"
+            }
+          ]
+        }
+      ],
+      "props": [
+        {
+          "name": "bat_signal",
+          "at": "start",
+          "anim": "fade",
+          "position": "top_right",
+          "scale": 0.9
+        }
+      ],
+      "sfx": [
+        {
+          "name": "pop",
+          "at": "word:batman",
+          "volume": 0.5
+        },
+        {
+          "name": "chime",
+          "at": "word:follow",
+          "volume": 0.5
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "follow_card",
+          "at": "word:follow"
+        },
+        {
+          "kind": "blackout",
+          "at": "end-0.4"
+        }
+      ],
+      "captions": false
     }
   ]
 }

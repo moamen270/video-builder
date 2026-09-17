@@ -101,6 +101,7 @@ export const ResolvedOverlay = z.object({
   kind: z.enum(OVERLAYS),
   atFrame: z.number().int(),
   untilFrame: z.number().int(),
+  text: z.string().optional(),
 });
 
 export const ResolvedShot = z.object({ atFrame: z.number().int(), big: z.boolean() });
@@ -121,6 +122,7 @@ export const ResolvedScene = z.object({
   words: z.array(Word),
   layout: z.enum(LAYOUTS),
   transition: z.enum(TRANSITIONS),
+  captions: z.boolean().default(true),
   character: z
     .object({
       id: z.string(),

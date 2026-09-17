@@ -181,6 +181,8 @@ export const OverlayCue = z.object({
   at: Anchor,
   /** Default: end of scene. */
   until: Anchor.optional(),
+  /** hook_card only: 2–8 words, shown huge at the top; must work with the sound off. */
+  text: z.string().min(2).max(60).optional(),
 });
 
 export const Scene = z.object({
@@ -217,6 +219,8 @@ export const Scene = z.object({
   voice: z.enum(VOICES).optional(),
   layout: z.enum(LAYOUTS).default("character_bottom"),
   transition: z.enum(TRANSITIONS).default("cut"),
+  /** false = no kinetic captions this scene (CTA scenes: the follow_card takes the caption slot). */
+  captions: z.boolean().default(true),
   character: CharacterState.nullable().prefault({}),
   /** Secondary characters drawn behind the hero. */
   extras: z.array(Extra).max(5).default([]),

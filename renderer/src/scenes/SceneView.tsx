@@ -13,10 +13,11 @@ import { LAYOUTS, type Palette } from "../theme";
 interface Props {
   scene: ResolvedScene;
   palette: Palette;
+  brand: { handle: string; name: string } | null;
 }
 
 /** Everything inside one scene's <Sequence>. Frame 0 here == scene.startFrame in the composition. */
-export const SceneView: React.FC<Props> = ({ scene, palette }) => {
+export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const abs = frame + scene.startFrame;
@@ -174,7 +175,7 @@ export const SceneView: React.FC<Props> = ({ scene, palette }) => {
           return <Batarang key={i} x={p.x} y={p.y} frame={abs} size={size} ink={palette.ink} />;
         })}
 
-        <KineticCaption words={scene.words} sceneStart={scene.startFrame} rect={spec.caption} palette={palette} fontPx={spec.captionFontPx} />
+        {scene.captions && <KineticCaption words={scene.words} sceneStart={scene.startFrame} rect={spec.caption} palette={palette} fontPx={spec.captionFontPx} />}
       </AbsoluteFill>
       {/* Screen-space effects: outside the camera transform, on the viewer's glass. */}
       {scene.overlays.map((o, i) => {
@@ -183,7 +184,7 @@ export const SceneView: React.FC<Props> = ({ scene, palette }) => {
         const flip = scene.character?.position === "right";
         const geom = cs && charRect ? cameraSlashGeometry(charRect, Boolean(flip)) : null;
         const cam = { scale: camScale, x: camX, y: camY, ox: 540, oy: 1920 * 0.45 };
-        return <Overlay key={i} overlay={o} abs={abs} slash={geom ? { ...geom, atFrame: cs!.atFrame } : null} camera={cam} />;
+        return <Overlay key={i} overlay={o} abs={abs} slash={geom ? { ...geom, atFrame: cs!.atFrame } : null} camera={cam} palette={palette} brand={brand} captionRect={spec.caption} />;
       })}
     </AbsoluteFill>
   );

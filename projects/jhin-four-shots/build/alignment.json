@@ -4,82 +4,37 @@
   "speed": 0.9,
   "scenes": [
     {
-      "sceneId": "intro",
-      "file": "intro.wav",
-      "duration": 4.1,
+      "sceneId": "hook",
+      "file": "hook.wav",
+      "duration": 2.825,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "Four",
           "start": 0.275,
-          "end": 0.575,
+          "end": 0.55,
           "ws": " "
         },
         {
           "text": "shots.",
-          "start": 0.575,
-          "end": 1.3,
+          "start": 0.55,
+          "end": 1.212,
           "ws": " "
         },
-        {
-          "text": "That",
-          "start": 1.3,
-          "end": 1.55,
-          "ws": " "
-        },
-        {
-          "text": "is",
-          "start": 1.55,
-          "end": 1.7,
-          "ws": " "
-        },
-        {
-          "text": "all",
-          "start": 1.7,
-          "end": 1.887,
-          "ws": " "
-        },
-        {
-          "text": "a",
-          "start": 1.887,
-          "end": 1.975,
-          "ws": " "
-        },
-        {
-          "text": "masterpiece",
-          "start": 1.975,
-          "end": 2.725,
-          "ws": " "
-        },
-        {
-          "text": "requires.",
-          "start": 2.725,
-          "end": 4,
-          "ws": ""
-        }
-      ],
-      "hash": "2ce0b7a5a17eddfd"
-    },
-    {
-      "sceneId": "prepare",
-      "file": "prepare.wav",
-      "duration": 2,
-      "sampleRate": 24000,
-      "tokens": [
         {
           "text": "Watch",
-          "start": 0.275,
-          "end": 0.637,
+          "start": 1.212,
+          "end": 1.538,
           "ws": " "
         },
         {
           "text": "closely.",
-          "start": 0.637,
-          "end": 1.9,
+          "start": 1.538,
+          "end": 2.725,
           "ws": ""
         }
       ],
-      "hash": "8a242198a8f78a6a"
+      "hash": "fba0384816e19122"
     },
     {
       "sceneId": "one",
@@ -221,6 +176,45 @@
         }
       ],
       "hash": "b61b604634c10b32"
+    },
+    {
+      "sceneId": "cta",
+      "file": "cta.wav",
+      "duration": 3.15,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Follow",
+          "start": 0.275,
+          "end": 0.675,
+          "ws": " "
+        },
+        {
+          "text": "Dummy",
+          "start": 0.675,
+          "end": 1.087,
+          "ws": " "
+        },
+        {
+          "text": "Sticky.",
+          "start": 1.087,
+          "end": 1.913,
+          "ws": " "
+        },
+        {
+          "text": "For",
+          "start": 1.913,
+          "end": 2.075,
+          "ws": " "
+        },
+        {
+          "text": "more.",
+          "start": 2.075,
+          "end": 3.05,
+          "ws": ""
+        }
+      ],
+      "hash": "0f52df1ac7663b24"
     }
   ]
 }

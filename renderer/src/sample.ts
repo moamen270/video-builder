@@ -37,6 +37,7 @@ export const SAMPLE: ResolvedManifest = {
       words,
       layout: "character_bottom",
       transition: "cut",
+      captions: true,
       character: {
         id: "narrator",
         style: "stickman",

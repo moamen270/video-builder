@@ -1,6 +1,7 @@
 import React from "react";
-import { AbsoluteFill, interpolate } from "remotion";
+import { AbsoluteFill, interpolate, spring } from "remotion";
 import type { ResolvedScene } from "@vb/engine/schema";
+import { FONT, SAFE, type Palette } from "../theme";
 
 type Cue = ResolvedScene["overlays"][number];
 
@@ -31,7 +32,7 @@ const toScreen = (cam: CameraMap, x: number, y: number) => ({ x: cam.ox + (x - c
  * claw_marks: three gashes torn along the claw-tip path over the swing, a white
  * hit-flash, then the picture behind dims and stays scarred.
  */
-export const Overlay: React.FC<{ overlay: Cue; abs: number; slash: SlashGeom | null; camera: CameraMap }> = ({ overlay, abs, slash, camera }) => {
+export const Overlay: React.FC<{ overlay: Cue; abs: number; slash: SlashGeom | null; camera: CameraMap; palette: Palette; brand: { handle: string; name: string } | null; captionRect: { x: number; y: number; w: number; h: number } }> = ({ overlay, abs, slash, camera, palette, brand, captionRect }) => {
   if (abs < overlay.atFrame || abs >= overlay.untilFrame) return null;
   const t = abs - overlay.atFrame;
   switch (overlay.kind) {
@@ -45,7 +46,97 @@ export const Overlay: React.FC<{ overlay: Cue; abs: number; slash: SlashGeom | n
       return <BatSignal t={t} />;
     case "batarang_stuck":
       return <BatarangStuck t={t} />;
+    case "hook_card":
+      return <HookCard t={t} out={overlay.untilFrame - abs} text={overlay.text ?? ""} palette={palette} />;
+    case "follow_card":
+      return <FollowCard t={t} handle={brand?.handle ?? "@DummySticky"} palette={palette} rect={captionRect} />;
   }
+};
+
+/**
+ * Text hook for the first ~1.5 s: huge, top of the safe area, slams in and
+ * pops out. Sits above the top prop slots (y 300+) so it never covers the action.
+ */
+const HookCard: React.FC<{ t: number; out: number; text: string; palette: Palette }> = ({ t, out, text, palette }) => {
+  const enter = spring({ frame: t, fps: 30, config: { damping: 12, stiffness: 260, mass: 0.7 } });
+  const leave = interpolate(out, [0, 6], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const scale = interpolate(enter, [0, 1], [1.6, 1]) * interpolate(leave, [0, 1], [0.85, 1]);
+  const size = text.length > 26 ? 84 : text.length > 16 ? 100 : 118;
+  return (
+    <AbsoluteFill style={{ pointerEvents: "none" }}>
+      <div
+        style={{
+          position: "absolute",
+          left: SAFE.left,
+          right: SAFE.right,
+          top: SAFE.top + 10,
+          textAlign: "center",
+          fontFamily: FONT,
+          fontWeight: 900,
+          fontSize: size,
+          lineHeight: 1.02,
+          letterSpacing: -1,
+          color: palette.fg,
+          textTransform: "uppercase",
+          transform: `scale(${scale}) rotate(${interpolate(enter, [0, 1], [-4, -1.5])}deg)`,
+          opacity: leave,
+          textShadow: `0 6px 0 ${palette.accent}, 0 10px 30px rgba(0,0,0,0.55)`,
+          WebkitTextStroke: `3px ${palette.stroke}`,
+        }}
+      >
+        {text}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+/** CTA card in the caption slot (turn the scene's captions off): handle + a pulsing "Follow" pill on a dark panel. */
+const FollowCard: React.FC<{ t: number; handle: string; palette: Palette; rect: { x: number; y: number; w: number; h: number } }> = ({ t, handle, palette, rect }) => {
+  const enter = spring({ frame: t, fps: 30, config: { damping: 14, stiffness: 180 } });
+  const pulse = 1 + 0.05 * Math.max(0, Math.sin(t / 4));
+  const tap = interpolate(t, [24, 28, 34], [1, 0.9, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }); // a "tap" on the button
+  const followed = t >= 28;
+  return (
+    <AbsoluteFill style={{ pointerEvents: "none" }}>
+      <div
+        style={{
+          position: "absolute",
+          left: rect.x + 60,
+          width: rect.w - 120,
+          top: rect.y - 30,
+          padding: "26px 0 30px",
+          borderRadius: 40,
+          background: "rgba(0,0,0,0.78)",
+          boxShadow: "0 12px 50px rgba(0,0,0,0.45)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 20,
+          fontFamily: FONT,
+          transform: `translateY(${interpolate(enter, [0, 1], [160, 0])}px)`,
+          opacity: enter,
+        }}
+      >
+        <div style={{ fontSize: 64, fontWeight: 900, color: palette.fg, textShadow: `0 4px 0 ${palette.stroke}` }}>{handle}</div>
+        <div
+          style={{
+            padding: "18px 64px",
+            borderRadius: 999,
+            fontSize: 54,
+            fontWeight: 900,
+            letterSpacing: 1,
+            color: followed ? palette.fg : palette.bg[0],
+            background: followed ? "transparent" : palette.accent,
+            border: `6px solid ${palette.accent}`,
+            transform: `scale(${pulse * tap})`,
+            boxShadow: followed ? "none" : `0 0 40px ${palette.accent}88`,
+          }}
+        >
+          {followed ? "✓ FOLLOWING" : "+ FOLLOW"}
+        </div>
+      </div>
+    </AbsoluteFill>
+  );
 };
 
 const BAT_PATH =

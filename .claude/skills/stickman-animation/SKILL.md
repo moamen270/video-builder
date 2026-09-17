@@ -192,7 +192,10 @@ One SFX per visual event, volume 0.5–0.8; never two on the same word.
 - `camera`: `punch_in` on the hook's key word and the payoff word (max 2 per
   video); `slow_zoom` on a calm explainer scene; `shake` with `boom`/`error`;
   `dolly_in` for a character looming at the viewer (finales).
-- `overlays` (on the viewer's screen, outside the camera): `claw_marks`, `flash`, `blackout`.
+- `overlays` (on the viewer's screen, outside the camera): `claw_marks`, `flash`, `blackout`,
+  `hook_card` (opening text hook, needs `text`, 2–8 words, `until` ~1.3 s in; sits above the top prop
+  slots), `follow_card` (CTA: @handle + Follow button in the caption slot — set the scene's
+  `"captions": false` and anchor it to `word:follow`; the character SAYS the CTA in his own voice).
 - `transition` (into the scene): `cut` default; `slide` for a change of
   subject; `wipe` before → after; `zoom` for the pattern-interrupt scene.
 

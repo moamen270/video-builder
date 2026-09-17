@@ -6,10 +6,10 @@
     {
       "sceneId": "alley",
       "file": "alley.wav",
-      "duration": 3.4,
+      "duration": 2.2,
       "sampleRate": 24000,
       "tokens": [],
-      "hash": "2e42f47750904301"
+      "hash": "f78d4ea254ec61a2"
     },
     {
       "sceneId": "landing",
@@ -161,7 +161,58 @@
           "ws": ""
         }
       ],
-      "hash": "b9ae3009d08f78de"
+      "hash": "386a69553cbcd16b"
+    },
+    {
+      "sceneId": "cta",
+      "file": "cta.wav",
+      "duration": 2.925,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Batman",
+          "start": 0.15,
+          "end": 0.55,
+          "ws": " "
+        },
+        {
+          "text": "says:",
+          "start": 0.55,
+          "end": 0.875,
+          "ws": " "
+        },
+        {
+          "text": "follow",
+          "start": 0.875,
+          "end": 1.2,
+          "ws": " "
+        },
+        {
+          "text": "Dummy",
+          "start": 1.2,
+          "end": 1.475,
+          "ws": " "
+        },
+        {
+          "text": "Sticky",
+          "start": 1.475,
+          "end": 1.8,
+          "ws": " "
+        },
+        {
+          "text": "for",
+          "start": 1.8,
+          "end": 1.925,
+          "ws": " "
+        },
+        {
+          "text": "more!",
+          "start": 1.925,
+          "end": 2.825,
+          "ws": ""
+        }
+      ],
+      "hash": "6cf3ce91daee5523"
     }
   ]
 }

@@ -3,8 +3,8 @@
   "topic": "Batman: alley",
   "createdAt": "2026-09-17T03:52:17.267Z",
   "targetSeconds": 40,
-  "status": "resolved",
-  "lastRenderMs": 49181,
+  "status": "qa_passed",
+  "lastRenderMs": 58050,
   "versions": [
     {
       "n": 1,
@@ -34,6 +34,25 @@
       "manifestHash": "58d7552249173cb8",
       "note": "v3: bm_lewis growl (102 Hz), villains Joker/Penguin/Riddler, Robin cameo + chase, consistent bodies, no thunder/glitch/bat-signal overlay, 26.7 s",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/batman-alley-v3/final.mp4"
+    },
+    {
+      "n": 4,
+      "at": "2026-09-17T22:54:06.676Z",
+      "seconds": 29.4,
+      "renderMs": 55920,
+      "qaOk": true,
+      "manifestHash": "d19ed3553ac31c63",
+      "note": "v4: villains gloating at frame 0 + hook card, Robin delivers the CTA, watermark"
+    },
+    {
+      "n": 5,
+      "at": "2026-09-17T22:59:46.145Z",
+      "seconds": 29.4,
+      "renderMs": 58050,
+      "qaOk": true,
+      "manifestHash": "235bb6d6dbf954a1",
+      "note": "v5: villains gloating at frame 0 + hook card, Robin returns to deliver the CTA, watermark",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/batman-alley-v5/final.mp4"
     }
   ]
 }

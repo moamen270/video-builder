@@ -193,7 +193,10 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
     }));
 
     const camera = s.camera.map((c, i) => ({ move: c.move, atFrame: at(c.at, `camera[${i}].at`) }));
-    const overlays = s.overlays.map((o, i) => ({ kind: o.kind, atFrame: at(o.at, `overlays[${i}].at`), untilFrame: o.until ? at(o.until, `overlays[${i}].until`) : endFrame }));
+    const overlays = s.overlays.map((o, i) => {
+      if (o.kind === "hook_card" && !o.text) throw new ResolveError(`hook_card needs "text"`, `${where}.overlays[${i}]`);
+      return { kind: o.kind, atFrame: at(o.at, `overlays[${i}].at`), untilFrame: o.until ? at(o.until, `overlays[${i}].until`) : endFrame, text: o.text };
+    });
 
     return {
       id: s.id,
@@ -207,6 +210,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
       words,
       layout: s.layout,
       transition: s.transition,
+      captions: s.captions,
       character,
       extras,
       props,
@@ -280,6 +284,7 @@ function checkHook(first: ResolvedScene, fps: number, warnings: ResolveWarning[]
     ...first.sfx.map((x) => early(x.atFrame)),
     ...first.camera.filter((x) => x.move !== "slow_zoom").map((x) => early(x.atFrame)), // a slow zoom is not a hook
     ...first.bubbles.map((x) => early(x.atFrame)),
+    ...first.overlays.filter((o) => o.kind === "hook_card").map((o) => early(o.atFrame)),
     // extras walking in is scenery, not a hook; a KO or a pose beat is.
     ...first.extras.map((e) => early(e.koFrame) || (e.poseChanges ?? []).some((pc) => early(pc.atFrame))),
   ];
