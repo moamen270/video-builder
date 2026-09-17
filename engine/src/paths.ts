@@ -53,6 +53,8 @@ export function versionPaths(p: ProjectPaths, n: number) {
     contactSheet: path.join(dir, "contact.png"),
     manifestSnapshot: path.join(dir, "manifest.json"),
     resolvedSnapshot: path.join(dir, "manifest.resolved.json"),
+    /** Ready-to-paste title/description/tags per platform. */
+    social: path.join(dir, "social.md"),
   };
 }
 export type VersionPaths = ReturnType<typeof versionPaths>;

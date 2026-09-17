@@ -206,6 +206,8 @@ One SFX per visual event, volume 0.5–0.8; never two on the same word.
   "voiceFx": "none",        // none deep villain theatre growl young
   "theme": "midnight",      // midnight paper sunset mint grape
   "music": { "track": "lofi-01", "volume": 0.16 } | null,
+  "watermark": true,          // channel handle from brand.json on every frame (omit = brand default)
+  "social": { "title": "…", "hook": "…", "description": "…", "tags": ["…"], "hashtags": ["#shorts"], "pinnedComment": "…", "coverText": "…" },
   "scenes": [{
     "id": "hook", "speech": "…", "emphasis": ["…"], "pauseAfter": 0.25,
     "speed": 0.95, "voiceFx": "villain", "voice": "am_puck",   // optional per-scene overrides (second speaker)

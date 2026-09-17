@@ -1,5 +1,7 @@
 import { copyFileSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { ensureAudio } from "./audio.js";
+import { loadBrand } from "./brand.js";
+import { socialMarkdown } from "./social.js";
 import { loadManifest, readMeta, updateMeta } from "./project.js";
 import { renderProject, type RenderOptions } from "./render.js";
 import { resolveManifest, type ResolveWarning } from "./resolver/resolve.js";
@@ -23,7 +25,8 @@ export async function compileProject(slug: string, opts: { forceAudio?: boolean;
   log(`manifest ok: ${manifest.scenes.length} scenes`);
   const alignment = await ensureAudio(manifest, paths, { force: opts.forceAudio, log });
   updateMeta(paths, { status: "audio" });
-  const { resolved, warnings } = resolveManifest(manifest, alignment, paths);
+  const { resolved, warnings } = resolveManifest(manifest, alignment, paths, { brand: loadBrand() });
+  if (!manifest.social) warnings.push({ path: "social", message: "no `social` block (title/description/tags) — add one so the upload copy is generated with the render" });
   writeFileSync(paths.resolved, JSON.stringify(resolved, null, 2));
   updateMeta(paths, { status: "resolved" });
   log(`resolved: ${resolved.durationInFrames} frames = ${(resolved.durationInFrames / resolved.fps).toFixed(1)}s`);
@@ -56,6 +59,7 @@ export async function renderVersion(compiled: CompileResult, opts: RenderOptions
   }
   copyFileSync(paths.manifest, target.manifestSnapshot);
   writeFileSync(target.resolvedSnapshot, JSON.stringify(resolved, null, 2));
+  writeFileSync(target.social, socialMarkdown(compiled.manifest, loadBrand(), { version: target.n, seconds: resolved.durationInFrames / resolved.fps }));
   updateMeta(paths, { status: "rendered", lastRenderMs: r.ms });
 
   let qa: QaReport;

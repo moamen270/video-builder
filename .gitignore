@@ -14,3 +14,8 @@ projects/*/build/assets/
 projects/*/build/render.props.json
 projects/*/build/tts.*.json
 projects/*/output/
+
+# brand/ stills are regenerable (vb brand); keep the three deliverables, drop the check image
+brand/cover-guides.png
+brand/.*.props.json
+*.tsbuildinfo

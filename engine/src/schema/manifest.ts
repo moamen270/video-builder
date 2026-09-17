@@ -235,6 +235,24 @@ export const CharacterDef = z.object({
   color: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
 });
 
+export const Social = z.object({
+  /** YouTube title. Front-load the hook; the feed shows ~40 chars. */
+  title: z.string().min(1).max(100),
+  /** 3–8 words shown as the caption/first line on TikTok/IG/FB and as the pinned hook. */
+  hook: z.string().min(1).max(80).optional(),
+  /** YouTube description; first line is what the feed shows. Plain text, no hashtags (added from `hashtags`). */
+  description: z.string().min(1).max(4000),
+  /** YouTube tags (no #), most specific first; joined with ", " and cut at 500 chars. */
+  tags: z.array(z.string().min(1).max(60)).min(3).max(40),
+  /** Hashtags with #, first three are the ones YouTube shows above the title. */
+  hashtags: z.array(z.string().regex(/^#\w+$/, "hashtag like #shorts")).max(20).default([]),
+  /** Question to pin under the video to start comments. */
+  pinnedComment: z.string().max(300).optional(),
+  /** Text for a custom cover/thumbnail if one is made. */
+  coverText: z.string().max(40).optional(),
+});
+export type Social = z.infer<typeof Social>;
+
 export const Manifest = z.object({
   version: z.literal(1),
   slug: z.string().regex(/^[a-z0-9-]+$/, "slug: lowercase letters, digits and dashes"),
@@ -258,6 +276,10 @@ export const Manifest = z.object({
   scenes: z.array(Scene).min(1).max(40),
   /** Free-form notes for humans/agents; ignored by the engine. */
   notes: z.string().optional(),
+  /** Upload copy, written with the script. `vb social` formats it per platform into output/v<N>/social.md. */
+  social: Social.optional(),
+  /** Set false to render without the channel watermark (brand.json decides the default). */
+  watermark: z.boolean().optional(),
 }).superRefine((m, ctx) => {
   const ids = new Set<string>();
   for (const [i, s] of m.scenes.entries()) {

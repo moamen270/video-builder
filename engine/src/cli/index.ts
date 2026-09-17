@@ -10,6 +10,9 @@ import { runQa } from "../qa.js";
 import { ResolveError } from "../resolver/anchors.js";
 import { catalogSummary } from "../catalog-info.js";
 import { publishAll, publishVersion } from "../publish.js";
+import { writeSocial } from "../social.js";
+import { renderBrandStills } from "../render.js";
+import { ROOT } from "../paths.js";
 
 const log = (l: string) => console.error(l);
 
@@ -168,6 +171,35 @@ program
     if (!meta) fail(new Error(`no project "${slug}"`));
     for (const v of meta!.versions) console.log(`v${v.n}  ${v.at.slice(0, 16)}  ${v.seconds.toFixed(1)}s  qa=${v.qaOk ?? "skipped"}  ${v.note ?? ""}${v.publishedUrl ? `\n      ${v.publishedUrl}` : ""}`);
     if (!meta!.versions.length) console.log("(no versions rendered yet)");
+  });
+
+program
+  .command("social")
+  .argument("<slug>")
+  .option("-v, --version <n>", "version (default: latest)")
+  .description("write output/v<N>/social.md (YouTube title/description/tags, TikTok/IG/FB captions) from manifest.social and print it")
+  .action((slug: string, o: { version?: string }) => {
+    try {
+      const r = writeSocial(slug, o.version ? Number(o.version) : undefined);
+      console.error(`wrote ${r.file}`);
+      console.log(r.text);
+    } catch (e) {
+      fail(e);
+    }
+  });
+
+program
+  .command("brand")
+  .option("--out <dir>", "output folder", path.join(ROOT, "brand"))
+  .option("--frame <n>", "frame to capture (springs settle by 60)", "60")
+  .description("render the channel stills (avatar, YouTube banner, Facebook cover) from the stickman rig into brand/")
+  .action(async (o: { out: string; frame: string }) => {
+    try {
+      const files = await renderBrandStills(o.out, { frame: Number(o.frame), log });
+      for (const f of files) console.log(f);
+    } catch (e) {
+      fail(e);
+    }
   });
 
 program

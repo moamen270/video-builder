@@ -181,6 +181,8 @@ export const ResolvedManifest = z.object({
     })
     .nullable(),
   scenes: z.array(ResolvedScene),
+  /** Channel handle drawn as a watermark on every frame; null = none. */
+  brand: z.object({ handle: z.string(), name: z.string() }).nullable().default(null),
   /** Provenance for reproducibility. */
   meta: z.object({
     resolvedAt: z.string(),

@@ -23,6 +23,7 @@ export const SAMPLE: ResolvedManifest = {
   theme: "midnight",
   voice: "af_heart",
   music: null,
+  brand: { handle: "@DummySticky", name: "Dummy Sticky" },
   scenes: [
     {
       id: "hook",

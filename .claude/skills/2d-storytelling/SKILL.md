@@ -15,6 +15,51 @@ Workflow: `video_catalog` → draft script → `video_create_project` →
 exact word list back, fix anchors) → `video_render` → look at the contact sheet →
 iterate. Read `stickman-animation` for the visual vocabulary.
 
+## Two formats
+
+- **Explainer** (database-indexes): the structure in "Structure that retains" below.
+- **Character short** (Wolverine, Jhin, Batman — the Dummy Sticky channel): one
+  character, one obsession, one payoff. Structure: **cold open on the action →
+  text hook → 3–5 escalating beats → payoff → one CTA**. The character is deadpan
+  and serious about something trivial; the joke is never in his lines.
+
+## The first 3 seconds (both formats — this is where Shorts die)
+
+- Frame 0 must already show the interesting thing: claws out, gun raised, the hero
+  mid-fall, the target on screen. No idle stickman, no walk-on, no "Everyone thinks…".
+- First spoken line = threat, number or payoff, ≤ 8 words. Introductions go second or nowhere.
+- Give `social.hook` (3–8 words) — it is the on-screen/caption hook and must work muted.
+- Put a strike/shot/prop/entrance/SFX inside the first second. `video_compile` warns
+  ("weak hook") if the opening scene is > 2.5 s with nothing happening in its first second — fix it, don't ignore it.
+- Write 2–3 alternative hooks in `notes` so the next version can A/B them.
+
+## CTA — exactly one
+
+Last ~2 s, after the payoff, one ask: "Follow Dummy Sticky for more." / "Comment who
+he should go after next." / "Part 2 is coming — follow so you don't miss it."
+Pose `waving` or `pointing_up`, `happy`/`smug`. Never two asks. The same question goes
+in `social.pinnedComment`.
+
+## Packaging (`social` block — required)
+
+Every manifest carries its upload copy so `video_render` writes `output/v<N>/social.md`:
+```jsonc
+"social": {
+  "title": "Wolverine vs Watermelons 🍉 \"They know what they did.\"",   // ≤ 100, hook first
+  "hook": "He takes watermelons personally.",                             // 3–8 words, works muted
+  "description": "First line = what the feed shows.
+
+What happens, what to wait for.
+
+Follow Dummy Sticky …",
+  "tags": ["wolverine", "stickman animation", "…"],                        // no #, specific first, 15–25
+  "hashtags": ["#shorts", "#wolverine", "#stickman", "…"],                 // first 3 show above the YouTube title
+  "pinnedComment": "Who should he go after next?",
+  "coverText": "THEY KNOW WHAT THEY DID"
+}
+```
+Compile warns when `social` is missing. Regenerate after edits with `video_social`.
+
 ## Length & pacing
 
 - Target **35–45 s**. Hard cap 60 s. Speech at `speed` 1.05–1.12 ≈ **2.8 words/s**,
@@ -85,4 +130,6 @@ e.g. `"row."`, but anchors ignore punctuation and case).
 - [ ] Every prop is anchored to the noun it depicts; every prop entrance has an SFX
 - [ ] `emphasis` covers the numbers and the key nouns
 - [ ] CTA asks for exactly one thing
-- [ ] `video_compile` total ≤ 50 s with no anchor warnings
+- [ ] `video_compile` total ≤ 50 s with no anchor warnings and no "weak hook" warning
+- [ ] `social` block present; hook works with the sound off; exactly one CTA
+- [ ] Walk `docs/PRODUCTION.md` before the video is uploaded

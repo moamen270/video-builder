@@ -113,8 +113,15 @@
             "atFrame": 39
           }
         ],
-        "shots": []
+        "shots": [],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
+        "strikes": [],
+        "travel": null,
+        "jump": null
       },
+      "extras": [],
       "props": [
         {
           "name": "number_4",
@@ -122,7 +129,8 @@
           "untilFrame": 39,
           "anim": "stamp",
           "position": "above_character",
-          "scale": 0.8
+          "scale": 0.8,
+          "exit": "fade"
         }
       ],
       "sfx": [
@@ -139,7 +147,8 @@
           "move": "slow_zoom",
           "atFrame": 0
         }
-      ]
+      ],
+      "overlays": []
     },
     {
       "id": "prepare",
@@ -185,8 +194,15 @@
             "atFrame": 166
           }
         ],
-        "shots": []
+        "shots": [],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
+        "strikes": [],
+        "travel": null,
+        "jump": null
       },
+      "extras": [],
       "props": [
         {
           "name": "target",
@@ -194,7 +210,8 @@
           "untilFrame": 222,
           "anim": "drop",
           "position": "right",
-          "scale": 1.3
+          "scale": 1.3,
+          "exit": "fade"
         }
       ],
       "sfx": [
@@ -212,7 +229,8 @@
         }
       ],
       "bubbles": [],
-      "camera": []
+      "camera": [],
+      "overlays": []
     },
     {
       "id": "one",
@@ -248,8 +266,15 @@
             "atFrame": 232,
             "big": false
           }
-        ]
+        ],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
+        "strikes": [],
+        "travel": null,
+        "jump": null
       },
+      "extras": [],
       "props": [
         {
           "name": "target",
@@ -257,7 +282,8 @@
           "untilFrame": 233,
           "anim": "fade",
           "position": "right",
-          "scale": 1.3
+          "scale": 1.3,
+          "exit": "fade"
         },
         {
           "name": "lotus",
@@ -265,7 +291,8 @@
           "untilFrame": 285,
           "anim": "bloom",
           "position": "right",
-          "scale": 1.3
+          "scale": 1.3,
+          "exit": "fade"
         }
       ],
       "sfx": [
@@ -295,7 +322,8 @@
           "move": "shake",
           "atFrame": 232
         }
-      ]
+      ],
+      "overlays": []
     },
     {
       "id": "two",
@@ -336,8 +364,15 @@
             "atFrame": 295,
             "big": false
           }
-        ]
+        ],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
+        "strikes": [],
+        "travel": null,
+        "jump": null
       },
+      "extras": [],
       "props": [
         {
           "name": "lotus",
@@ -345,7 +380,8 @@
           "untilFrame": 348,
           "anim": "fade",
           "position": "right",
-          "scale": 1.3
+          "scale": 1.3,
+          "exit": "fade"
         },
         {
           "name": "target",
@@ -353,7 +389,8 @@
           "untilFrame": 296,
           "anim": "drop",
           "position": "top_right",
-          "scale": 1.1
+          "scale": 1.1,
+          "exit": "fade"
         },
         {
           "name": "lotus",
@@ -361,7 +398,8 @@
           "untilFrame": 348,
           "anim": "bloom",
           "position": "top_right",
-          "scale": 1.1
+          "scale": 1.1,
+          "exit": "fade"
         }
       ],
       "sfx": [
@@ -397,7 +435,8 @@
           "move": "shake",
           "atFrame": 295
         }
-      ]
+      ],
+      "overlays": []
     },
     {
       "id": "three",
@@ -438,8 +477,15 @@
             "atFrame": 358,
             "big": false
           }
-        ]
+        ],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
+        "strikes": [],
+        "travel": null,
+        "jump": null
       },
+      "extras": [],
       "props": [
         {
           "name": "lotus",
@@ -447,7 +493,8 @@
           "untilFrame": 411,
           "anim": "fade",
           "position": "right",
-          "scale": 1.3
+          "scale": 1.3,
+          "exit": "fade"
         },
         {
           "name": "lotus",
@@ -455,7 +502,8 @@
           "untilFrame": 411,
           "anim": "fade",
           "position": "top_right",
-          "scale": 1.1
+          "scale": 1.1,
+          "exit": "fade"
         },
         {
           "name": "target",
@@ -463,7 +511,8 @@
           "untilFrame": 359,
           "anim": "drop",
           "position": "top",
-          "scale": 1
+          "scale": 1,
+          "exit": "fade"
         },
         {
           "name": "lotus",
@@ -471,7 +520,8 @@
           "untilFrame": 411,
           "anim": "bloom",
           "position": "top",
-          "scale": 1
+          "scale": 1,
+          "exit": "fade"
         }
       ],
       "sfx": [
@@ -507,7 +557,8 @@
           "move": "shake",
           "atFrame": 358
         }
-      ]
+      ],
+      "overlays": []
     },
     {
       "id": "pause",
@@ -571,8 +622,15 @@
             "atFrame": 446
           }
         ],
-        "shots": []
+        "shots": [],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
+        "strikes": [],
+        "travel": null,
+        "jump": null
       },
+      "extras": [],
       "props": [
         {
           "name": "lotus",
@@ -580,7 +638,8 @@
           "untilFrame": 519,
           "anim": "fade",
           "position": "right",
-          "scale": 1
+          "scale": 1,
+          "exit": "fade"
         },
         {
           "name": "lotus",
@@ -588,7 +647,8 @@
           "untilFrame": 519,
           "anim": "fade",
           "position": "top_right",
-          "scale": 1
+          "scale": 1,
+          "exit": "fade"
         },
         {
           "name": "lotus",
@@ -596,7 +656,8 @@
           "untilFrame": 519,
           "anim": "fade",
           "position": "top",
-          "scale": 0.9
+          "scale": 0.9,
+          "exit": "fade"
         },
         {
           "name": "target",
@@ -604,7 +665,8 @@
           "untilFrame": 519,
           "anim": "drop",
           "position": "left",
-          "scale": 1.3
+          "scale": 1.3,
+          "exit": "fade"
         }
       ],
       "sfx": [
@@ -627,7 +689,8 @@
           "move": "slow_zoom",
           "atFrame": 411
         }
-      ]
+      ],
+      "overlays": []
     },
     {
       "id": "four",
@@ -663,8 +726,15 @@
             "atFrame": 531,
             "big": true
           }
-        ]
+        ],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
+        "strikes": [],
+        "travel": null,
+        "jump": null
       },
+      "extras": [],
       "props": [
         {
           "name": "lotus",
@@ -672,7 +742,8 @@
           "untilFrame": 595,
           "anim": "fade",
           "position": "right",
-          "scale": 1
+          "scale": 1,
+          "exit": "fade"
         },
         {
           "name": "lotus",
@@ -680,7 +751,8 @@
           "untilFrame": 595,
           "anim": "fade",
           "position": "top_right",
-          "scale": 1
+          "scale": 1,
+          "exit": "fade"
         },
         {
           "name": "lotus",
@@ -688,7 +760,8 @@
           "untilFrame": 595,
           "anim": "fade",
           "position": "top",
-          "scale": 0.9
+          "scale": 0.9,
+          "exit": "fade"
         },
         {
           "name": "target",
@@ -696,7 +769,8 @@
           "untilFrame": 532,
           "anim": "fade",
           "position": "left",
-          "scale": 1.3
+          "scale": 1.3,
+          "exit": "fade"
         },
         {
           "name": "lotus",
@@ -704,7 +778,8 @@
           "untilFrame": 595,
           "anim": "bloom",
           "position": "left",
-          "scale": 1.5
+          "scale": 1.5,
+          "exit": "fade"
         }
       ],
       "sfx": [
@@ -738,7 +813,8 @@
           "move": "shake",
           "atFrame": 531
         }
-      ]
+      ],
+      "overlays": []
     },
     {
       "id": "laugh",
@@ -780,8 +856,15 @@
             "atFrame": 709
           }
         ],
-        "shots": []
+        "shots": [],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
+        "strikes": [],
+        "travel": null,
+        "jump": null
       },
+      "extras": [],
       "props": [
         {
           "name": "lotus",
@@ -789,7 +872,8 @@
           "untilFrame": 787,
           "anim": "fade",
           "position": "right",
-          "scale": 1
+          "scale": 1,
+          "exit": "fade"
         },
         {
           "name": "lotus",
@@ -797,7 +881,8 @@
           "untilFrame": 787,
           "anim": "fade",
           "position": "top_right",
-          "scale": 1
+          "scale": 1,
+          "exit": "fade"
         },
         {
           "name": "lotus",
@@ -805,7 +890,8 @@
           "untilFrame": 787,
           "anim": "fade",
           "position": "top",
-          "scale": 0.9
+          "scale": 0.9,
+          "exit": "fade"
         },
         {
           "name": "lotus",
@@ -813,7 +899,8 @@
           "untilFrame": 787,
           "anim": "fade",
           "position": "left",
-          "scale": 1
+          "scale": 1,
+          "exit": "fade"
         }
       ],
       "sfx": [],
@@ -827,7 +914,8 @@
           "move": "shake",
           "atFrame": 661
         }
-      ]
+      ],
+      "overlays": []
     },
     {
       "id": "outro",
@@ -891,8 +979,15 @@
             "atFrame": 820
           }
         ],
-        "shots": []
+        "shots": [],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
+        "strikes": [],
+        "travel": null,
+        "jump": null
       },
+      "extras": [],
       "props": [
         {
           "name": "lotus",
@@ -900,7 +995,8 @@
           "untilFrame": 903,
           "anim": "fade",
           "position": "right",
-          "scale": 1
+          "scale": 1,
+          "exit": "fade"
         },
         {
           "name": "lotus",
@@ -908,7 +1004,8 @@
           "untilFrame": 903,
           "anim": "fade",
           "position": "top_right",
-          "scale": 1
+          "scale": 1,
+          "exit": "fade"
         },
         {
           "name": "lotus",
@@ -916,7 +1013,8 @@
           "untilFrame": 903,
           "anim": "fade",
           "position": "top",
-          "scale": 0.9
+          "scale": 0.9,
+          "exit": "fade"
         },
         {
           "name": "lotus",
@@ -924,7 +1022,8 @@
           "untilFrame": 903,
           "anim": "fade",
           "position": "left",
-          "scale": 1
+          "scale": 1,
+          "exit": "fade"
         }
       ],
       "sfx": [
@@ -947,13 +1046,18 @@
           "move": "slow_zoom",
           "atFrame": 787
         }
-      ]
+      ],
+      "overlays": []
     }
   ],
+  "brand": {
+    "handle": "@DummySticky",
+    "name": "Dummy Sticky"
+  },
   "meta": {
-    "resolvedAt": "2026-09-16T03:36:46.537Z",
+    "resolvedAt": "2026-09-17T22:19:55.449Z",
     "engineVersion": "0.1.0",
     "ttsModel": "hexgrad/Kokoro-82M",
-    "manifestHash": "f4564a15528968e4"
+    "manifestHash": "d200cf1216ee3778"
   }
 }

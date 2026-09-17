@@ -17,6 +17,11 @@ When Moamen wants to watch a video away from this PC: `vb publish <slug>` (or
 `video_publish`) → GitHub Release URL. Never commit MP4s.
 Laughter/screams: never TTS "ha ha"; use a `clip` scene with a Bark-generated
 wav (`vb-audio laugh`) or a file the user provides.
+Every manifest carries a `social` block (title/hook/description/tags/hashtags/
+pinned comment); the render writes `output/v<N>/social.md` ready to paste, and
+`video_social` regenerates it. Channel identity (name, @handle, watermark,
+default hashtags) is `brand.json`. Before an upload, walk `docs/PRODUCTION.md`.
+The hook is the known weakness: something must happen in the first second.
 
 ## Repo rules
 - Engine/renderer internals and the reasons behind them: `docs/ARCHITECTURE.md`,

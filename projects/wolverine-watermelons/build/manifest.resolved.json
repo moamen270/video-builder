@@ -112,10 +112,14 @@
           }
         ],
         "shots": [],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
         "strikes": [],
         "travel": null,
         "jump": null
       },
+      "extras": [],
       "props": [],
       "sfx": [
         {
@@ -222,10 +226,14 @@
           }
         ],
         "shots": [],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
         "strikes": [],
         "travel": null,
         "jump": null
       },
+      "extras": [],
       "props": [],
       "sfx": [
         {
@@ -320,10 +328,14 @@
           }
         ],
         "shots": [],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
         "strikes": [],
         "travel": null,
         "jump": null
       },
+      "extras": [],
       "props": [
         {
           "name": "watermelon",
@@ -446,10 +458,14 @@
           }
         ],
         "shots": [],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
         "strikes": [],
         "travel": null,
         "jump": null
       },
+      "extras": [],
       "props": [
         {
           "name": "watermelon",
@@ -530,6 +546,9 @@
         "position": "left",
         "poseChanges": [],
         "shots": [],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
         "strikes": [
           {
             "atFrame": 467,
@@ -540,6 +559,7 @@
         "travel": null,
         "jump": null
       },
+      "extras": [],
       "props": [
         {
           "name": "watermelon",
@@ -622,6 +642,9 @@
         "position": "right",
         "poseChanges": [],
         "shots": [],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
         "strikes": [
           {
             "atFrame": 528,
@@ -632,6 +655,7 @@
         "travel": null,
         "jump": null
       },
+      "extras": [],
       "props": [
         {
           "name": "watermelon",
@@ -735,6 +759,9 @@
           }
         ],
         "shots": [],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
         "strikes": [
           {
             "atFrame": 581,
@@ -755,6 +782,7 @@
         "travel": null,
         "jump": null
       },
+      "extras": [],
       "props": [
         {
           "name": "watermelon",
@@ -899,10 +927,14 @@
           }
         ],
         "shots": [],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
         "strikes": [],
         "travel": null,
         "jump": null
       },
+      "extras": [],
       "props": [
         {
           "name": "watermelon_split",
@@ -1073,10 +1105,14 @@
           }
         ],
         "shots": [],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
         "strikes": [],
         "travel": null,
         "jump": null
       },
+      "extras": [],
       "props": [
         {
           "name": "watermelon_split",
@@ -1166,6 +1202,9 @@
         "position": "left",
         "poseChanges": [],
         "shots": [],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
         "strikes": [
           {
             "atFrame": 964,
@@ -1176,6 +1215,7 @@
         "travel": null,
         "jump": null
       },
+      "extras": [],
       "props": [],
       "sfx": [
         {
@@ -1228,10 +1268,14 @@
       ]
     }
   ],
+  "brand": {
+    "handle": "@DummySticky",
+    "name": "Dummy Sticky"
+  },
   "meta": {
-    "resolvedAt": "2026-09-16T09:16:47.563Z",
+    "resolvedAt": "2026-09-17T22:19:06.255Z",
     "engineVersion": "0.1.0",
     "ttsModel": "hexgrad/Kokoro-82M",
-    "manifestHash": "464f1a165791dcb8"
+    "manifestHash": "9d2d9f87c2bbaa36"
   }
 }

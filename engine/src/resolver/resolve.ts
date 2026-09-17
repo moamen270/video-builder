@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import type { Brand } from "../brand.js";
 import { copyFileSync, existsSync, mkdirSync, readdirSync } from "node:fs";
 import path from "node:path";
 import {
@@ -27,7 +28,7 @@ export interface ResolveResult {
  * renderer consumes. Pure apart from copying the referenced SFX/music files into
  * build/assets so the project's Remotion public dir is self-contained.
  */
-export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPaths): ResolveResult {
+export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPaths, opts: { brand?: Brand | null } = {}): ResolveResult {
   const fps = VIDEO.fps;
   const warnings: ResolveWarning[] = [];
   const byId = new Map(align.scenes.map((s) => [s.sceneId, s]));
@@ -218,6 +219,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
 
   const durationInFrames = cursor;
   const totalSec = durationInFrames / fps;
+  checkHook(scenes[0]!, fps, warnings);
   if (totalSec > VIDEO.maxDurationSec) {
     throw new ResolveError(
       `video is ${totalSec.toFixed(1)}s; platform cap is ${VIDEO.maxDurationSec}s. Cut ~${Math.ceil((totalSec - VIDEO.maxDurationSec) * 2.6)} words.`,
@@ -244,6 +246,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
     voice: m.voice,
     music,
     scenes,
+    brand: opts.brand && (m.watermark ?? opts.brand.watermark) ? { handle: opts.brand.handle, name: opts.brand.name } : null,
     meta: {
       resolvedAt: new Date().toISOString(),
       engineVersion: ENGINE_VERSION,
@@ -255,6 +258,39 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
 }
 
 const AUDIO_EXTS = [".mp3", ".wav", ".ogg"];
+
+/**
+ * Shorts are swiped away in the first 1–3 s. Warn when the opening scene is
+ * long and nothing visual happens in its first second: no strike/shot/throw/
+ * entrance/pose change, no prop appearing, no SFX, no camera punch, no extra KO'd.
+ */
+function checkHook(first: ResolvedScene, fps: number, warnings: ResolveWarning[]): void {
+  const limit = first.startFrame + fps; // first second
+  const c = first.character;
+  const early = (f: number | undefined | null) => f !== undefined && f !== null && f <= limit;
+  const events: boolean[] = [
+    ...(c?.strikes ?? []).map((x) => early(x.atFrame)),
+    ...(c?.shots ?? []).map((x) => early(x.atFrame)),
+    ...(c?.throws ?? []).map((x) => early(x.atFrame)),
+    ...(c?.poseChanges ?? []).map((x) => early(x.atFrame)),
+    early(c?.entrance?.atFrame),
+    early(c?.jump?.atFrame),
+    Boolean(c?.travel && c.travel.startFrame <= limit),
+    ...first.props.map((p) => early(p.atFrame)),
+    ...first.sfx.map((x) => early(x.atFrame)),
+    ...first.camera.filter((x) => x.move !== "slow_zoom").map((x) => early(x.atFrame)), // a slow zoom is not a hook
+    ...first.bubbles.map((x) => early(x.atFrame)),
+    // extras walking in is scenery, not a hook; a KO or a pose beat is.
+    ...first.extras.map((e) => early(e.koFrame) || (e.poseChanges ?? []).some((pc) => early(pc.atFrame))),
+  ];
+  const seconds = first.durationInFrames / fps;
+  if (seconds > 2.5 && !events.some(Boolean)) {
+    warnings.push({
+      path: `scenes[0] (${first.id})`,
+      message: `weak hook: opening scene is ${seconds.toFixed(1)}s and nothing happens in its first second. Start on the action (strike/shot/prop/entrance/SFX within 1 s) or open with a shorter punch line.`,
+    });
+  }
+}
 
 /**
  * Left edge (px) of the character rect for a travel stop. Mirrors the layout

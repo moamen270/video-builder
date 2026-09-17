@@ -18,6 +18,7 @@ import { PROJECTS_DIR, SKILLS_DIR, latestVersion, projectPaths, versionPaths } f
 import { ManifestError, createProject, loadManifest, readMeta, slugify, validateManifest } from "../project.js";
 import { runQa } from "../qa.js";
 import { publishVersion } from "../publish.js";
+import { writeSocial } from "../social.js";
 import { ResolveError } from "../resolver/anchors.js";
 import { VIDEO } from "../schema/index.js";
 
@@ -185,7 +186,7 @@ server.registerTool(
         return text({ file: r.file, renderMs: r.renderMs, note: "preview — half resolution, no QA, not a version" });
       }
       const r = await buildProject(slug, { nvenc, log, note });
-      return withContactSheet({ version: r.version?.n, file: r.file, seconds: r.resolved.durationInFrames / r.resolved.fps, renderMs: r.renderMs, qa: r.qa.checks, qaOk: r.qa.ok, warnings: r.warnings }, r.version!.contactSheet);
+      return withContactSheet({ version: r.version?.n, file: r.file, seconds: r.resolved.durationInFrames / r.resolved.fps, renderMs: r.renderMs, qa: r.qa.checks, qaOk: r.qa.ok, warnings: r.warnings, social: r.version!.social }, r.version!.contactSheet);
     } catch (e) {
       return errText(e);
     }
@@ -230,6 +231,22 @@ server.registerTool(
   async ({ slug, version }) => {
     try {
       return text(await publishVersion(slug, version, { log }));
+    } catch (e) {
+      return errText(e);
+    }
+  },
+);
+
+server.registerTool(
+  "video_social",
+  {
+    description: "Upload copy for a rendered version (default latest): YouTube title/description/tags and TikTok/Instagram/Facebook captions, formatted from manifest.social + brand.json. Also writes output/v<N>/social.md. Edit manifest.social and call again to regenerate.",
+    inputSchema: { slug: z.string(), version: z.number().int().optional() },
+  },
+  async ({ slug, version }) => {
+    try {
+      const r = writeSocial(slug, version);
+      return { content: [{ type: "text" as const, text: r.text }] };
     } catch (e) {
       return errText(e);
     }

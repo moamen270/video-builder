@@ -5,6 +5,7 @@ import { Background } from "./Background";
 import { Music } from "./audio/Music";
 import { SceneView } from "./scenes/SceneView";
 import { PALETTES, SAFE } from "./theme";
+import { Watermark } from "./Watermark";
 
 export const Short: React.FC<ResolvedManifest> = (manifest) => {
   const palette = PALETTES[manifest.theme];
@@ -23,6 +24,7 @@ export const Short: React.FC<ResolvedManifest> = (manifest) => {
       <div style={{ position: "absolute", left: SAFE.left, right: SAFE.right, top: SAFE.top - 50, height: 8, borderRadius: 4, background: "rgba(255,255,255,0.15)" }}>
         <div style={{ width: `${progress * 100}%`, height: "100%", borderRadius: 4, background: palette.accent }} />
       </div>
+      {manifest.brand && <Watermark handle={manifest.brand.handle} palette={palette} />}
     </AbsoluteFill>
   );
 };

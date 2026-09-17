@@ -42,6 +42,7 @@ be offered something the renderer can't draw (or vice-versa).
 | 6 | `.claude/skills/stickman-animation/SKILL.md` | tell the author when and how to use it, with a copy-pasteable snippet. Update the field reference at the bottom. |
 | 7 | tests | resolver behaviour in `engine/src/**/*.test.ts`; render a fixture project and look at the contact sheet. |
 | 8 | `README.md` | only if the CLI or setup changed. |
+| 9 | `renderer/src/brand/Brand.tsx` | if a new character style should appear on the channel cover, add a `Figure` and rerun `vb brand`. |
 
 Then render a **new version** of a fixture project that exercises the feature
 (`npm run vb -- build <slug>`), check `output/v<N>/contact.png` and `qa.json`.

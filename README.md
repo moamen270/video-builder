@@ -18,7 +18,8 @@ prompt ─▶ agent (Claude Code + skills) ─▶ manifest.json
 **Contributor docs:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) (pipeline, the
 stickman rig and why it is procedural), [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md)
 (setup, add-a-feature checklist, known traps), [docs/AUDIO.md](docs/AUDIO.md)
-(Kokoro alignment, voice FX, Bark laughs), [docs/DECISIONS.md](docs/DECISIONS.md).
+(Kokoro alignment, voice FX, Bark laughs), [docs/DECISIONS.md](docs/DECISIONS.md),
+[docs/PRODUCTION.md](docs/PRODUCTION.md) (per-video checklist: hook, retention, CTA, QC, platforms, metrics).
 
 ## Prerequisites (Windows)
 
@@ -50,6 +51,8 @@ npm run vb -- catalog                        # every pose/prop/sfx/voice the sch
 npm run vb -- render database-indexes --frames 0-90 --scale 0.5   # quick preview
 npm run vb -- render database-indexes --nvenc                     # GPU encode
 npm run vb -- publish  database-indexes      # upload latest version to GitHub Releases → public URL
+npm run vb -- social   database-indexes      # (re)write output/v<N>/social.md: YouTube title/description/tags, TikTok/IG/FB captions
+npm run vb -- brand                          # render brand/avatar.png, youtube-banner.png, facebook-cover.png from the rig
 npm run vb -- publish --all                  # publish every unpublished version
 npm run studio                               # Remotion Studio for the renderer
 npm test                                     # unit tests
@@ -70,11 +73,22 @@ credential git already stores for github.com.
 `video_catalog`, `video_read_skill`, `video_create_project`, `video_list_projects`,
 `video_get_project`, `video_validate_manifest`, `video_write_manifest`,
 `video_compile`, `video_render` (returns QA + contact sheet image),
-`video_qa`, `video_contact_sheet`, `video_publish`, `video_doctor`, `video_logs`.
+`video_qa`, `video_contact_sheet`, `video_publish`, `video_social`, `video_doctor`, `video_logs`.
 
 Skills in `.claude/skills/`: **2d-storytelling** (hooks, pacing, retention
 devices, script → manifest) and **stickman-animation** (pose/prop/SFX vocabulary,
 field reference). Any other MCP client (Codex, etc.) reads them via `video_read_skill`.
+
+## Channel packaging
+
+`brand.json` holds the channel identity (name, `@handle`, watermark on/off,
+default hashtags); the handle is drawn on every frame. Each manifest carries a
+`social` block (title, hook, description, tags, hashtags, pinned comment, cover
+text) and every render writes `output/v<N>/social.md` with per-platform copy.
+The pre-upload checklist is [docs/PRODUCTION.md](docs/PRODUCTION.md); results go
+in `analytics/videos.csv`. Profile picture and channel covers are rendered from
+the same stickman rig (`vb brand` → `brand/`; compositions in `renderer/src/brand/`),
+so the artwork never drifts from the videos.
 
 ## The manifest DSL
 

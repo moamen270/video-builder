@@ -3,7 +3,7 @@
   "topic": "Batman: alley",
   "createdAt": "2026-09-17T03:52:17.267Z",
   "targetSeconds": 40,
-  "status": "qa_passed",
+  "status": "resolved",
   "lastRenderMs": 49181,
   "versions": [
     {

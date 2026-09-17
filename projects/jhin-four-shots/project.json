@@ -3,7 +3,7 @@
   "topic": "Jhin: four shots",
   "createdAt": "2026-09-16T03:14:04.420Z",
   "targetSeconds": 40,
-  "status": "qa_passed",
+  "status": "resolved",
   "lastRenderMs": 53184,
   "versions": [
     {

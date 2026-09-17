@@ -86,6 +86,34 @@ export async function renderProject(resolved: ResolvedManifest, p: ProjectPaths,
   return { file: outFile, ms, frames: resolved.durationInFrames, version: isPreview ? null : target.n };
 }
 
+/** Brand stills (profile picture, channel covers) rendered from the same rig. */
+export const BRAND_STILLS: { file: string; composition: string; props?: Record<string, unknown>; note: string }[] = [
+  { file: "avatar.png", composition: "Avatar", note: "2048×2048 profile picture (all platforms)" },
+  { file: "youtube-banner.png", composition: "Cover", props: { width: 2560, height: 1440 }, note: "YouTube channel banner (safe box 1546×423 centred)" },
+  { file: "facebook-cover.png", composition: "Cover", props: { width: 1640, height: 924 }, note: "Facebook page cover" },
+  { file: "cover-guides.png", composition: "Cover", props: { width: 2560, height: 1440, guides: true }, note: "banner with the YouTube safe box drawn — for checking only" },
+];
+
+export async function renderBrandStills(outDir: string, opts: { frame?: number; log?: (l: string) => void } = {}): Promise<string[]> {
+  const log = opts.log ?? (() => {});
+  mkdirSync(outDir, { recursive: true });
+  const out: string[] = [];
+  for (const s of BRAND_STILLS) {
+    const file = path.join(outDir, s.file);
+    const args = ["npx", "remotion", "still", "src/index.ts", s.composition, file, `--frame=${opts.frame ?? 60}`, "--image-format=png", "--log=warn"];
+    if (s.props) {
+      const propsPath = path.join(outDir, `.${s.composition}.props.json`);
+      writeFileSync(propsPath, JSON.stringify(s.props));
+      args.push(`--props=${propsPath}`);
+    }
+    log(`still ${s.file} (${s.note})…`);
+    await run(args, log);
+    out.push(file);
+  }
+  for (const f of ["Cover", "Avatar"]) rmSync(path.join(outDir, `.${f}.props.json`), { force: true });
+  return out;
+}
+
 async function run(argv: string[], log: (l: string) => void) {
   const [cmd, ...args] = argv as [string, ...string[]];
   const proc = execa(cmd, args, { cwd: RENDERER_DIR, all: true, shell: process.platform === "win32" });

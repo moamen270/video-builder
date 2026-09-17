@@ -1181,10 +1181,14 @@
       ]
     }
   ],
+  "brand": {
+    "handle": "@DummySticky",
+    "name": "Dummy Sticky"
+  },
   "meta": {
-    "resolvedAt": "2026-09-17T04:31:58.941Z",
+    "resolvedAt": "2026-09-17T22:19:29.234Z",
     "engineVersion": "0.1.0",
     "ttsModel": "hexgrad/Kokoro-82M",
-    "manifestHash": "58d7552249173cb8"
+    "manifestHash": "75b0f757f21ac75a"
   }
 }
