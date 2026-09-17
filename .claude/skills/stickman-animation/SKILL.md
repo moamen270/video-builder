@@ -5,9 +5,11 @@ description: Visual vocabulary for video-builder manifests — which pose, expre
 
 # Stickman animation guide
 
-The stickman is a single narrator. It cannot walk or hold things; it *gestures*.
-Motion comes from **pose switches** (spring-animated, ~0.4 s), **props popping in
-on words**, and **camera cues**. Aim for one visible change every 1.5–2 s.
+The stickman is a narrator first: in front-facing scenes motion comes from **pose
+switches** (spring-animated, ~0.4 s), **props popping in on words**, and **camera
+cues**. Aim for one visible change every 1.5–2 s. For action it can also walk/run
+(`walk_*`/`run_*` + `travel`), jump, strike, shoot, throw, drop in and grapple out —
+see the sections below.
 
 ## Poses → meaning
 
@@ -72,7 +74,9 @@ so three gashes tear across the screen, the picture dims behind them, then
 
 ### Character styles
 
-`characters[].style`: `stickman` (plain narrator) or `wolverine` — the same
+`characters[].style`: `stickman` (plain narrator), `wolverine`, `gunslinger`, `batman`;
+extras may also be `thug`, `joker`, `penguin`, `riddler`, `robin`. Styles only add
+attachments to the same rig — never a costume over the face. `wolverine` = the
 plain stickman with three adamantium claws on each hand. No costume, no mask:
 the claws and the delivery carry the aura. Play him deadpan and serious about
 something trivial; the joke is never in his lines. Pair with `voiceFx: "deep"`,
@@ -199,12 +203,12 @@ One SFX per visual event, volume 0.5–0.8; never two on the same word.
   "version": 1, "slug": "kebab-case", "title": "…",
   "voice": "af_heart",      // af_heart af_bella af_nicole af_sarah af_sky am_adam am_michael am_fenrir am_puck bf_emma bf_isabella bm_george bm_lewis
   "speed": 1.08,            // 0.8–1.3
-  "voiceFx": "none",        // none deep villain
+  "voiceFx": "none",        // none deep villain theatre growl young
   "theme": "midnight",      // midnight paper sunset mint grape
   "music": { "track": "lofi-01", "volume": 0.16 } | null,
   "scenes": [{
     "id": "hook", "speech": "…", "emphasis": ["…"], "pauseAfter": 0.25,
-    "speed": 0.95, "voiceFx": "villain",          // optional per-scene overrides
+    "speed": 0.95, "voiceFx": "villain", "voice": "am_puck",   // optional per-scene overrides (second speaker)
     "layout": "character_bottom", "transition": "cut",
     "character": { "pose": "explaining", "expression": "neutral", "position": "center",
                    "poseChanges": [{ "pose": "shocked", "expression": "surprised", "at": "word:slow" }] } | null,

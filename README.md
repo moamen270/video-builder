@@ -15,6 +15,11 @@ prompt ─▶ agent (Claude Code + skills) ─▶ manifest.json
                        ffprobe / luminance / loudness / contact sheet ──▶ final.mp4
 ```
 
+**Contributor docs:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) (pipeline, the
+stickman rig and why it is procedural), [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md)
+(setup, add-a-feature checklist, known traps), [docs/AUDIO.md](docs/AUDIO.md)
+(Kokoro alignment, voice FX, Bark laughs), [docs/DECISIONS.md](docs/DECISIONS.md).
+
 ## Prerequisites (Windows)
 
 | tool | install | why |
@@ -118,7 +123,8 @@ projects/<slug>/
   build/alignment.json            word timings (committed)
   build/manifest.resolved.json    frame-exact compiled manifest (committed)
   build/audio/*.wav, build/assets audio staged for Remotion (ignored)
-  output/final.mp4, qa.json, contact.png
+  clips/*.wav                     Bark laughs / user-provided audio for clip scenes (committed)
+  output/v<N>/final.mp4, qa.json, contact.png, manifest snapshots   (ignored; one folder per render)
 ```
 
 ## Performance (GTX 1660 SUPER, 12-core CPU)
@@ -135,7 +141,8 @@ projects/<slug>/
 - New SFX/music: drop `name.wav|mp3` into `assets/sfx` or `assets/music` (SFX names must also be in `SFX`).
 - New voice/language: Kokoro voices in `VOICES`; other languages need a different TTS in `py/vb_audio/tts.py`.
 
-## License notes
+## Licensing notes
 
-Remotion is free for individuals and companies ≤ 3 people; larger teams need a
-company license. Bundled SFX/music are procedurally generated (no third-party rights).
+Private repo, no license file (see docs/DECISIONS.md D12). Remotion itself is
+free for individuals and companies ≤ 3 people; larger teams need a company
+license. Bundled SFX/music are procedurally generated (no third-party rights).

@@ -19,6 +19,9 @@ Laughter/screams: never TTS "ha ha"; use a `clip` scene with a Bark-generated
 wav (`vb-audio laugh`) or a file the user provides.
 
 ## Repo rules
+- Engine/renderer internals and the reasons behind them: `docs/ARCHITECTURE.md`,
+  `docs/CONTRIBUTING.md` (add-a-feature checklist + known traps), `docs/AUDIO.md`, `docs/DECISIONS.md`.
+  Update them when you change how something works, not just the code.
 - Never hand-edit `projects/*/build/manifest.resolved.json` — it is generated.
 - The LLM-facing vocabulary lives in `engine/src/schema/catalog.ts`. Adding a
   prop/pose/sfx = add it there AND implement it in `renderer/src/...`.
