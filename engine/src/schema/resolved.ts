@@ -65,6 +65,30 @@ export const ResolvedBubble = z.object({
   atFrame: z.number().int(),
   untilFrame: z.number().int(),
   side: z.enum(["left", "right"]).default("right"),
+  on: z.string().optional(),
+});
+
+export const ResolvedExtra = z.object({
+  id: z.string(),
+  style: z.enum(CHARACTER_STYLES),
+  color: z.string().optional(),
+  pose: z.enum(POSES),
+  expression: z.enum(EXPRESSIONS),
+  /** Centre x in px; travel overrides over its window. */
+  x: z.number(),
+  scale: z.number(),
+  travel: z.object({ fromX: z.number(), toX: z.number(), startFrame: z.number().int(), endFrame: z.number().int() }).nullable(),
+  poseChanges: z.array(ResolvedPoseChange),
+  /** Absolute frame the character is knocked flat (from knockedOutAt or a throw hit). */
+  koFrame: z.number().int().nullable(),
+});
+export type ResolvedExtra = z.infer<typeof ResolvedExtra>;
+
+export const ResolvedThrow = z.object({
+  atFrame: z.number().int(),
+  item: z.literal("batarang"),
+  /** One entry per hop: target id ("camera" allowed) and the frame it lands. */
+  hops: z.array(z.object({ target: z.string(), hitFrame: z.number().int() })),
 });
 
 export const ResolvedCamera = z.object({
@@ -107,6 +131,9 @@ export const ResolvedScene = z.object({
       poseChanges: z.array(ResolvedPoseChange),
       shots: z.array(ResolvedShot).default([]),
       strikes: z.array(ResolvedStrike).default([]),
+      throws: z.array(ResolvedThrow).default([]),
+      entrance: z.object({ atFrame: z.number().int(), landFrame: z.number().int() }).nullable().default(null),
+      exit: z.object({ atFrame: z.number().int(), endFrame: z.number().int() }).nullable().default(null),
       jump: z
         .object({
           atFrame: z.number().int(),
@@ -127,6 +154,7 @@ export const ResolvedScene = z.object({
         .default(null),
     })
     .nullable(),
+  extras: z.array(ResolvedExtra).default([]),
   props: z.array(ResolvedProp),
   sfx: z.array(ResolvedSfx),
   bubbles: z.array(ResolvedBubble),

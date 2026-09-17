@@ -91,6 +91,22 @@ shot. Aim poses point the barrel: `aim_right` → prop zone `right`, `aim_high`
 `reload` + SFX `reload` → aim pose → shot on the word → target swaps to `lotus`
 (`anim: bloom`) + `gunshot` + `chime` 0.2 s later + camera `shake`.
 
+### Extras, entrances, throws, exits (action scenes)
+
+`scene.extras[]` adds goons/bystanders drawn behind the hero: `{ id, style: "thug",
+x: 0.22 (fraction of width), scale: 0.85, pose, expression, travel: { fromX, toX,
+start, end }, poseChanges, knockedOutAt }`. Extras walk/run by pose (`walk_*`,
+`run_*`) + travel; a knocked-out extra rolls flat with X eyes and stays down (re-declare
+it with `knockedOutAt: "start"` in later scenes). Bubbles attach with `"on": "<id>"`.
+Hero cues: `entrance: { kind: "drop_in", at, duration }` (falls from above, squash
+on landing — set the goon he lands on to `knockedOutAt` at the landing time);
+`throws: [{ at, targets: ["t3", "t1"], flight: 0.3 }]` (spinning batarang homes onto
+each target in turn, knocks it out, comes back; target `"camera"` sticks it in the
+screen → add overlay `batarang_stuck` at the hit); `exit: { kind: "grapple", at,
+duration }` (cable to the top-right, swings out of frame). Overlay `bat_signal`
+fills the screen. SFX duck automatically under speech, but still keep booms off the
+first word of a line.
+
 ### Clip scenes (real laughs, screams, stingers)
 
 A scene may use a pre-recorded file instead of TTS:

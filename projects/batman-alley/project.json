@@ -1,0 +1,29 @@
+{
+  "slug": "batman-alley",
+  "topic": "Batman: alley",
+  "createdAt": "2026-09-17T03:52:17.267Z",
+  "targetSeconds": 40,
+  "status": "qa_passed",
+  "lastRenderMs": 34972,
+  "versions": [
+    {
+      "n": 1,
+      "at": "2026-09-17T03:59:54.732Z",
+      "seconds": 19,
+      "renderMs": 35010,
+      "qaOk": true,
+      "manifestHash": "b58de88c2eccfb83",
+      "note": "v1: alley action — 3 goons, drop-in, batarang double KO, screen hit, grapple exit, bat signal"
+    },
+    {
+      "n": 2,
+      "at": "2026-09-17T04:01:59.990Z",
+      "seconds": 19,
+      "renderMs": 34972,
+      "qaOk": true,
+      "manifestHash": "faf0b416eef00195",
+      "note": "v2: all three bodies in frame for the count and finale",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/batman-alley-v2/final.mp4"
+    }
+  ]
+}

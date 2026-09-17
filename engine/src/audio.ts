@@ -54,6 +54,8 @@ async function importClip(m: Manifest, s: Scene, p: ProjectPaths, hash: string):
 const FX_FILTERS: Record<Exclude<VoiceFx, "none">, string> = {
   deep: "asetrate=24000*0.88,aresample=24000,atempo=1/0.88,bass=g=4:f=140,aecho=0.7:0.35:28:0.18",
   theatre: "bass=g=2:f=160,aecho=0.75:0.5:55|120:0.22|0.12",
+  // Batman: lower, compressed hard, soft-clipped for rasp, highs shaved, tight room.
+  growl: "asetrate=24000*0.9,aresample=24000,atempo=1/0.9,acompressor=threshold=-20dB:ratio=6:attack=4:release=90:makeup=4,volume=4dB,aeval=tanh(1.7*val(0)),equalizer=f=2200:t=q:w=1.4:g=3,treble=g=-5,bass=g=4:f=130,aecho=0.6:0.25:16:0.12,alimiter=limit=0.92",
   villain: "asetrate=24000*0.80,aresample=24000,atempo=1/0.80,bass=g=8:f=120,aecho=0.8:0.6:45|95|170:0.42|0.28|0.16,alimiter=limit=0.95",
 };
 

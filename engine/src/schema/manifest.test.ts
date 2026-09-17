@@ -12,7 +12,7 @@ describe("Manifest schema", () => {
   it("applies defaults", () => {
     const m = Manifest.parse(base);
     expect(m.voice).toBe("af_heart");
-    expect(m.scenes[0]!.character).toEqual({ id: "narrator", pose: "explaining", expression: "neutral", position: "center", poseChanges: [], shots: [], strikes: [] });
+    expect(m.scenes[0]!.character).toEqual({ id: "narrator", pose: "explaining", expression: "neutral", position: "center", poseChanges: [], shots: [], strikes: [], throws: [] });
     expect(m.scenes[0]!.pauseAfter).toBe(0.25);
     expect(m.characters).toEqual([{ id: "narrator", style: "stickman" }]);
   });

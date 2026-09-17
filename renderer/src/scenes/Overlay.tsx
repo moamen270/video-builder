@@ -41,7 +41,76 @@ export const Overlay: React.FC<{ overlay: Cue; abs: number; slash: SlashGeom | n
       return <AbsoluteFill style={{ background: "#000000", opacity: interpolate(t, [0, 18], [0, 1], { extrapolateRight: "clamp" }) }} />;
     case "claw_marks":
       return <ClawMarks t={t} abs={abs} slash={slash} camera={camera} />;
+    case "bat_signal":
+      return <BatSignal t={t} />;
+    case "batarang_stuck":
+      return <BatarangStuck t={t} />;
   }
+};
+
+const BAT_PATH =
+  "M 0 -12 C -8 -28 -28 -34 -44 -26 C -36 -22 -32 -14 -34 -6 C -24 -10 -14 -8 -6 0 L 0 14 L 6 0 C 14 -8 24 -10 34 -6 C 32 -14 36 -22 44 -26 C 28 -34 8 -28 0 -12 Z";
+
+/** The signal on the clouds: a warm disc that fades in with a soft beam, bat silhouette in the middle. */
+const BatSignal: React.FC<{ t: number }> = ({ t }) => {
+  const k = interpolate(t, [0, 14], [0, 1], { extrapolateRight: "clamp" });
+  const pulse = 1 + 0.02 * Math.sin(t / 5);
+  return (
+    <AbsoluteFill style={{ pointerEvents: "none" }}>
+      <AbsoluteFill style={{ background: "#03040a", opacity: 0.55 * k }} />
+      <svg width={1080} height={1920} viewBox="0 0 1080 1920" style={{ position: "absolute", inset: 0, opacity: k }}>
+        <defs>
+          <radialGradient id="beam" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#fff4c2" stopOpacity={0.95} />
+            <stop offset="60%" stopColor="#ffe066" stopOpacity={0.55} />
+            <stop offset="100%" stopColor="#ffe066" stopOpacity={0} />
+          </radialGradient>
+        </defs>
+        <g transform={`translate(540 880) scale(${pulse * k})`}>
+          <circle r={520} fill="url(#beam)" />
+          <circle r={300} fill="#ffe066" />
+          <circle r={300} fill="none" stroke="#fff7d6" strokeWidth={10} />
+          <g transform="scale(6.2)">
+            <path d={BAT_PATH} fill="#0b0d14" />
+          </g>
+        </g>
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
+/** Batarang embedded in the viewer's screen with cracks radiating from the hit. */
+const BatarangStuck: React.FC<{ t: number }> = ({ t }) => {
+  const flash = interpolate(t, [0, 1, 7], [0, 0.9, 0], { extrapolateRight: "clamp" });
+  const settle = interpolate(t, [0, 4], [1.15, 1], { extrapolateRight: "clamp" });
+  const shake = t < 8 ? Math.sin(t * 2.9) * (8 - t) * 1.8 : 0;
+  const cracks = [
+    [0, -330], [250, -220], [340, 60], [200, 300], [-120, 340], [-320, 160], [-330, -140], [-170, -300],
+  ] as const;
+  return (
+    <AbsoluteFill style={{ pointerEvents: "none" }}>
+      <svg width={1080} height={1920} viewBox="0 0 1080 1920" style={{ position: "absolute", inset: 0, transform: `translate(${shake}px, ${-shake * 0.7}px)` }}>
+        <g transform={`translate(540 900) scale(${settle})`}>
+          {cracks.map(([dx, dy], i) => {
+            const grow = interpolate(t, [i * 0.4, i * 0.4 + 3], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+            const mx = dx * 0.55 + (i % 2 ? 40 : -40);
+            const my = dy * 0.55 + (i % 2 ? -30 : 30);
+            return (
+              <g key={i} opacity={0.9}>
+                <path d={`M 0 0 L ${mx * grow} ${my * grow} L ${dx * grow} ${dy * grow}`} fill="none" stroke="#050608" strokeWidth={9} strokeLinecap="round" />
+                <path d={`M 0 0 L ${mx * grow} ${my * grow} L ${dx * grow} ${dy * grow}`} fill="none" stroke="#e8edf7" strokeWidth={3} strokeLinecap="round" />
+              </g>
+            );
+          })}
+          <circle r={70} fill="#050608" opacity={0.7} />
+          <g transform="scale(6.8) rotate(-18)">
+            <path d={BAT_PATH} fill="#0b0d14" stroke="#e8edf7" strokeWidth={0.8} strokeLinejoin="round" />
+          </g>
+        </g>
+      </svg>
+      <AbsoluteFill style={{ background: "#ffffff", opacity: flash }} />
+    </AbsoluteFill>
+  );
 };
 
 /** Fallback marks when there is no camera strike in the scene. */

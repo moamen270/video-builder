@@ -72,6 +72,9 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
             .map((pc, i) => ({ pose: pc.pose, expression: pc.expression, atFrame: at(pc.at, `character.poseChanges[${i}]`) }))
             .sort((x, y) => x.atFrame - y.atFrame),
           shots: s.character.shots.map((sh, i) => ({ atFrame: at(sh.at, `character.shots[${i}]`), big: sh.big })),
+          throws: [] as { atFrame: number; item: "batarang"; hops: { target: string; hitFrame: number }[] }[],
+          entrance: null as null | { atFrame: number; landFrame: number },
+          exit: null as null | { atFrame: number; endFrame: number },
           strikes: s.character.strikes
             .map((st, i) => ({ atFrame: at(st.at, `character.strikes[${i}]`), target: st.target, big: st.big }))
             .sort((x, y) => x.atFrame - y.atFrame),
@@ -88,6 +91,50 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
           },
         }
       : null;
+    // Hero actions: entrance, throws (which also KO extras), exit.
+    const extraKo = new Map<string, number>();
+    if (character && s.character) {
+      const c = s.character;
+      if (c.entrance) {
+        const atFrame = at(c.entrance.at, "character.entrance.at");
+        character.entrance = { atFrame, landFrame: atFrame + Math.round(c.entrance.duration * fps) };
+      }
+      character.throws = c.throws.map((th, i) => {
+        const atFrame = at(th.at, `character.throws[${i}].at`);
+        const hopFrames = Math.max(3, Math.round(th.flight * fps));
+        const hops = th.targets.map((target, k) => {
+          if (target !== "camera" && !s.extras.some((e) => e.id === target)) {
+            throw new ResolveError(`throw target "${target}" is not an extra in this scene`, `${where}.character.throws[${i}].targets[${k}]`);
+          }
+          const hitFrame = atFrame + hopFrames * (k + 1);
+          if (target !== "camera" && !extraKo.has(target)) extraKo.set(target, hitFrame);
+          return { target, hitFrame };
+        });
+        return { atFrame, item: th.item, hops };
+      });
+      if (c.exit) {
+        const atFrame = at(c.exit.at, "character.exit.at");
+        character.exit = { atFrame, endFrame: atFrame + Math.round(c.exit.duration * fps) };
+      }
+    }
+    const extras = s.extras.map((e, i) => {
+      const ko = e.knockedOutAt ? at(e.knockedOutAt, `extras[${i}].knockedOutAt`) : (extraKo.get(e.id) ?? null);
+      return {
+        id: e.id,
+        style: e.style,
+        color: e.color,
+        pose: e.pose,
+        expression: e.expression,
+        x: e.x * VIDEO.width,
+        scale: e.scale,
+        travel: e.travel
+          ? { fromX: e.travel.fromX * VIDEO.width, toX: e.travel.toX * VIDEO.width, startFrame: at(e.travel.start, `extras[${i}].travel.start`), endFrame: at(e.travel.end, `extras[${i}].travel.end`) }
+          : null,
+        poseChanges: e.poseChanges.map((pc, k) => ({ pose: pc.pose, expression: pc.expression, atFrame: at(pc.at, `extras[${i}].poseChanges[${k}]`) })).sort((a, b) => a.atFrame - b.atFrame),
+        koFrame: ko,
+      };
+    });
+
     if (character && s.character?.jump) {
       const j = s.character.jump;
       const atFrame = at(j.at, "character.jump.at");
@@ -140,6 +187,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
       atFrame: at(b.at, `bubbles[${i}].at`),
       untilFrame: b.until ? at(b.until, `bubbles[${i}].until`) : endFrame,
       side: b.side,
+      on: b.on,
     }));
 
     const camera = s.camera.map((c, i) => ({ move: c.move, atFrame: at(c.at, `camera[${i}].at`) }));
@@ -158,6 +206,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
       layout: s.layout,
       transition: s.transition,
       character,
+      extras,
       props,
       sfx,
       bubbles,

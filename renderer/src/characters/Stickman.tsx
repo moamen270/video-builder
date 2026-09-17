@@ -1,7 +1,7 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import type { CharacterStyle, Expression, Pose, PropPosition, ResolvedScene, Word } from "@vb/engine/schema";
-import { LEFT_HAND_POSES, RIGS, SNAP_POSES, WALK_POSES, lerpRig, type Rig } from "./poses";
+import type { CharacterStyle, Expression, Pose, PropPosition, ResolvedExtra, ResolvedScene, Word } from "@vb/engine/schema";
+import { LEFT_HAND_POSES, RIGS, RUN_POSES, SNAP_POSES, WALK_POSES, lerpRig, type Rig } from "./poses";
 import { Walker, type WalkerAction } from "./Walker";
 import type { Rect } from "../theme";
 import { interpolate as ip } from "remotion";
@@ -34,6 +34,18 @@ interface Props {
   walker?: { action: WalkerAction; shadow: number };
   /** Prop zones of the current layout — strike targets are aimed at their centres. */
   zones?: Record<PropPosition, Rect>;
+  /** Draw a secondary character instead of the scene's hero. */
+  actor?: ResolvedExtra;
+  /** Knocked flat: the frame it happens and which way he falls (+1 = head to screen-right). */
+  ko?: { frame: number; dir: 1 | -1 } | null;
+  /** Vertical squash 0–1 (landing impact), scaled about the feet. */
+  squash?: number;
+}
+
+interface PoseSource {
+  pose: Pose;
+  expression: Expression;
+  poseChanges: { pose: Pose; expression?: Expression; atFrame: number }[];
 }
 
 /** Claw length beyond the hand, rig units (see <Claws>). */
@@ -137,11 +149,10 @@ interface PoseState {
   prev: Pose;
 }
 
-function poseAt(scene: ResolvedScene, frame: number): PoseState {
-  const c = scene.character!;
+function poseAt(c: PoseSource, sceneStart: number, frame: number): PoseState {
   let pose: Pose = c.pose;
   let expression: Expression = c.expression;
-  let since = scene.startFrame;
+  let since = sceneStart;
   let prev: Pose = c.pose;
   for (const pc of c.poseChanges) {
     if (pc.atFrame <= frame) {
@@ -163,21 +174,39 @@ const polar = (x: number, y: number, len: number, deg: number) => {
   return { x: x + Math.sin(r) * len, y: y + Math.cos(r) * len };
 };
 
-export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, style, flip, walker, zones }) => {
+export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, style, flip, walker, zones, actor, ko, squash = 0 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const abs = frame + scene.startFrame;
-  const st = poseAt(scene, abs);
+  const source: PoseSource = actor ?? scene.character!;
+  const st0 = poseAt(source, scene.startFrame, abs);
+  // Knock-out overrides everything from its frame on.
+  const koActive = Boolean(ko && abs >= ko.frame);
+  const st: PoseState = koActive ? { pose: "knocked_out", expression: "ko", since: ko!.frame, prev: st0.pose } : st0;
+  const thug = style === "thug";
+  const beanie = thug ? (
+    <g>
+      <path d={`M -${HEAD_R - 2} -12 A ${HEAD_R - 2} ${HEAD_R - 2} 0 0 1 ${HEAD_R - 2} -12 Z`} fill="#3a3f52" />
+      <rect x={-HEAD_R} y={-16} width={HEAD_R * 2} height={11} rx={4} fill="#4b5168" />
+    </g>
+  ) : null;
   if (WALK_POSES.has(st.pose)) {
-    return <Walker rect={rect} frame={abs} fps={fps} ink={ink} headFill={headFill} facingLeft={st.pose === "walk_left"} action={walker?.action} shadow={walker?.shadow} />;
+    return (
+      <Walker rect={rect} frame={abs} fps={fps} ink={ink} headFill={headFill} facingLeft={st.pose === "walk_left" || st.pose === "run_left"} action={walker?.action} shadow={walker?.shadow} run={RUN_POSES.has(st.pose)} headDecor={beanie} />
+    );
   }
 
   // Spring between previous and current pose.
   const snap = SNAP_POSES.has(st.pose);
   const t = spring({ frame: abs - st.since, fps, config: snap ? { damping: 20, stiffness: 420, mass: 0.6 } : { damping: 13, stiffness: 140, mass: 0.9 } });
+  // Fall: rotate about the feet with a little overshoot, hop up briefly at the impact.
+  // A knock-out from a previous scene (frame at/before scene start) is already on the ground: no fall animation.
+  const koT = koActive ? (ko!.frame <= scene.startFrame ? 99 : abs - ko!.frame) : -1;
+  const fallDeg = koActive ? ko!.dir * ip(koT, [0, 6, 9, 12], [0, 96, 82, 86], { extrapolateRight: "clamp" }) : 0;
+  const koHop = koActive ? ip(koT, [0, 2, 6], [0, -18, 0], { extrapolateRight: "clamp" }) : 0;
   const rigBase: Rig = lerpRig(RIGS[st.prev], RIGS[st.pose], t);
   const scale = Math.min(rect.w / RW, rect.h / RH);
-  const strike = strikeAt(scene.character?.strikes ?? [], abs, zones, rect, scale, Boolean(flip));
+  const strike = actor ? null : strikeAt(scene.character?.strikes ?? [], abs, zones, rect, scale, Boolean(flip));
   const rig: Rig = { ...rigBase };
   if (strike) {
     const k = strike.w;
@@ -193,7 +222,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   // Idle life: breathing bob, subtle arm sway, micro head motion.
   const bob = Math.sin(abs / 9) * 2.2;
   const sway = Math.sin(abs / 13) * 2.5;
-  const talking = isTalking(scene.words, abs);
+  const talking = actor ? false : isTalking(scene.words, abs);
   const nodTalk = talking ? Math.sin(abs / 2.3) * 2.5 : 0;
 
   // Waving/celebrating get an extra oscillation on the forearm.
@@ -214,13 +243,13 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const gun = style === "gunslinger";
   // "batman" = cowl ears + a cape that hangs from the shoulders and sways with the body.
   const bat = style === "batman";
-  const shots = scene.character?.shots ?? [];
+  const shots = actor ? [] : (scene.character?.shots ?? []);
   const lastShot = shots.filter((sh) => sh.atFrame <= abs).at(-1);
   const sinceShot = lastShot ? abs - lastShot.atFrame : Infinity;
   const kick = sinceShot < 7 ? (1 - sinceShot / 7) * (lastShot?.big ? 1.6 : 1) : 0;
   const gunLeft = gun && LEFT_HAND_POSES.has(st.pose);
   const flash = sinceShot < (lastShot?.big ? 6 : 4) ? 1 - sinceShot / (lastShot?.big ? 6 : 4) : 0;
-  const lift = rig.lift + bob + laughLift - kick * 4;
+  const lift = rig.lift + bob + laughLift - kick * 4 + koHop;
   const torso = rig.torso + sway * 0.4 - laughNod * 0.4;
 
   // Torso: shoulder→hip rotates around hip by torso lean.
@@ -249,7 +278,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const rKnee = polar(HIP.x, HIP.y, THIGH, rig.rThigh);
   const rFoot = polar(rKnee.x, rKnee.y, SHIN, rig.rThigh + rig.rShin);
 
-  const face = useMemo(() => faceFor(st.expression), [st.expression]);
+  const face = faceFor(st.expression); // no hooks below the Walker early-return: an actor may switch rigs mid-scene
   const mouthOpen = talking ? (laughing ? 0.7 + 0.3 * laughBeat : 0.5 + 0.5 * Math.abs(Math.sin(abs / 1.7))) : 0;
 
   const line = { stroke: ink, strokeWidth: STROKE, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, fill: "none" };
@@ -260,7 +289,11 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
         width={RW * scale}
         height={RH * scale}
         viewBox={`0 0 ${RW} ${RH}`}
-        style={{ transform: `translateY(${lift * scale}px) ${flip ? "scaleX(-1)" : ""}`, overflow: "visible" }}
+        style={{
+          transform: `translateY(${lift * scale}px) ${flip ? "scaleX(-1)" : ""} rotate(${fallDeg}deg) scaleY(${1 - squash * 0.22}) scaleX(${1 + squash * 0.12})`,
+          transformOrigin: "50% 96%",
+          overflow: "visible",
+        }}
       >
         {/* shadow */}
         <ellipse cx={120} cy={404} rx={58 + Math.abs(lift) * 0.4} ry={7} fill="rgba(0,0,0,0.25)" />
@@ -289,6 +322,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
             </g>
           )}
           <circle r={HEAD_R} fill={headFill} stroke={ink} strokeWidth={STROKE} />
+          {beanie}
           <g transform={`translate(0 ${rig.nod * 0.25 + nodTalk * 0.4})`}>
             {/* eyes */}
             {blink ? (
@@ -298,7 +332,12 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
               </>
             ) : (
               <>
-                {face.eyes === "closed" ? (
+                {face.eyes === "x" ? (
+                  <>
+                    <path d="M -15 -9 L -5 1 M -5 -9 L -15 1" stroke={ink} strokeWidth={4} strokeLinecap="round" />
+                    <path d="M 5 -9 L 15 1 M 15 -9 L 5 1" stroke={ink} strokeWidth={4} strokeLinecap="round" />
+                  </>
+                ) : face.eyes === "closed" ? (
                   <>
                     <path d="M -17 -4 Q -10 -12 -3 -4" stroke={ink} strokeWidth={4} fill="none" strokeLinecap="round" />
                     <path d="M 3 -4 Q 10 -12 17 -4" stroke={ink} strokeWidth={4} fill="none" strokeLinecap="round" />
@@ -327,7 +366,7 @@ type MouthKind = "smile" | "flat" | "o" | "frown" | "wavy" | "smirk" | "grin" | 
 
 interface Face {
   eyeR: number;
-  eyes?: "open" | "closed";
+  eyes?: "open" | "closed" | "x";
   browL: [number, number];
   browR: [number, number];
   mouth: MouthKind;
@@ -425,6 +464,8 @@ function faceFor(e: Expression): Face {
       return { eyeR: 3, eyes: "closed", browL: [-4, -6], browR: [-6, -4], mouth: "laugh" };
     case "fierce":
       return { eyeR: 3, browL: [-8, 0], browR: [0, -8], mouth: "grin" };
+    case "ko":
+      return { eyeR: 3, eyes: "x", browL: [-2, 2], browR: [2, -2], mouth: "wavy" };
     default:
       return { eyeR: 3.5, browL: [-2, -2], browR: [-2, -2], mouth: "flat" };
   }

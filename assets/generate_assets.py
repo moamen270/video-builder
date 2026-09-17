@@ -236,6 +236,29 @@ def thunder() -> np.ndarray:
     return (rumble * 1.4 + rumble2 * 2.2) * wobble + crack * 0.5
 
 
+def thud() -> np.ndarray:
+    """Body hits the ground: dull low impact with a short noise slap."""
+    rng = np.random.default_rng(41)
+    x = t(0.5)
+    n = len(x)
+    f = 120 * np.exp(-x * 30) + 45
+    body = np.sin(2 * np.pi * np.cumsum(f) / SR) * env(n, 0.001, 0.22, 2.4)
+    slap = lowpass(rng.normal(0, 1, n), 900) * env(n, 0.001, 0.05)
+    return body * 1.3 + slap * 0.8
+
+
+def zip_line() -> np.ndarray:
+    """Grapple gun: sharp click, then a rising ratchet whine."""
+    rng = np.random.default_rng(42)
+    x = t(0.9)
+    n = len(x)
+    click_ = rng.normal(0, 1, n) * env(n, 0.0005, 0.02)
+    f = 700 + 1900 * (x / 0.9) ** 1.4
+    whine = np.sin(2 * np.pi * np.cumsum(f) / SR) * env(n, 0.03, 0.9, 1.4) * 0.6
+    ratchet = (np.sin(2 * np.pi * 38 * x) > 0.6).astype(float) * rng.normal(0, 0.3, n) * env(n, 0.02, 0.9, 1.2)
+    return click_ + whine + lowpass(ratchet, 3000)
+
+
 def lofi_loop(name: str = "lofi-01", bpm: float = 78, bars: int = 8, seed: int = 7) -> np.ndarray:
     """Warm lo-fi chord loop with soft kick/hat. Loops cleanly (bar-aligned)."""
     rng = np.random.default_rng(seed)
@@ -299,6 +322,8 @@ def main() -> None:
     write("reload", reload())
     write("chime", chime())
     write("thunder", thunder())
+    write("thud", thud())
+    write("zip", zip_line())
     print("music:")
     write("lofi-01", lofi_loop("lofi-01", 78, 8, 7), MUSIC)
     write("lofi-02", lofi_loop("lofi-02", 88, 8, 11), MUSIC)

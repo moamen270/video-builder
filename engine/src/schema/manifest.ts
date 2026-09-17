@@ -37,6 +37,32 @@ export const PoseChange = z.object({
   at: Anchor,
 });
 
+/** Where a secondary character stands: fraction of frame width for its centre (0 = left edge, 1 = right edge). */
+export const ExtraTravel = z.object({
+  fromX: z.number().min(-0.4).max(1.4),
+  toX: z.number().min(-0.4).max(1.4),
+  start: Anchor.default("start"),
+  end: Anchor.default("end"),
+});
+
+/**
+ * A secondary character (goons, bystanders). Positioned by `x` (fraction of width),
+ * moved with `travel`, knocked flat at `knockedOutAt` or when a hero `throw` hits it.
+ */
+export const Extra = z.object({
+  id: z.string().min(1),
+  style: z.enum(CHARACTER_STYLES).default("thug"),
+  color: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
+  pose: z.enum(POSES).default("idle"),
+  expression: z.enum(EXPRESSIONS).default("neutral"),
+  x: z.number().min(-0.4).max(1.4).default(0.5),
+  /** 0.5–1.2 relative to the hero's size. */
+  scale: z.number().min(0.5).max(1.2).default(0.85),
+  travel: ExtraTravel.optional(),
+  poseChanges: z.array(PoseChange).default([]),
+  knockedOutAt: Anchor.optional(),
+});
+
 export const CharacterState = z.object({
   id: z.string().default("narrator"),
   pose: z.enum(POSES).default("explaining"),
@@ -67,6 +93,38 @@ export const CharacterState = z.object({
       height: z.number().min(0).max(600).default(0),
       /** Seconds in the air. */
       air: z.number().min(0.3).max(1.2).default(0.55),
+    })
+    .optional(),
+  /** Hero drops in from above the frame and lands (squash + cape flare) at `at + duration`. */
+  entrance: z
+    .object({
+      kind: z.literal("drop_in"),
+      at: Anchor,
+      duration: z.number().min(0.3).max(1.2).default(0.55),
+    })
+    .optional(),
+  /**
+   * Throw a spinning item that homes onto each target in turn (an extra id, or
+   * "camera" to stick it in the viewer's screen). Each hit knocks the extra out.
+   */
+  throws: z
+    .array(
+      z.object({
+        at: Anchor,
+        item: z.literal("batarang").default("batarang"),
+        targets: z.array(z.string().min(1)).min(1).max(4),
+        /** Seconds per hop. */
+        flight: z.number().min(0.15).max(0.8).default(0.35),
+      }),
+    )
+    .max(4)
+    .default([]),
+  /** Hero fires a grapple line to the top corner and swings up out of frame. */
+  exit: z
+    .object({
+      kind: z.literal("grapple"),
+      at: Anchor,
+      duration: z.number().min(0.4).max(1.5).default(0.8),
     })
     .optional(),
   /** Move the character horizontally between two stops. Use with walk_* poses. Defaults: whole scene. */
@@ -106,6 +164,8 @@ export const Bubble = z.object({
   until: Anchor.optional(),
   /** Which side of the head. Use "left" when the right arm is raised (aim_high, pointing_up). */
   side: z.enum(["left", "right"]).default("right"),
+  /** Attach to an extra (by id) instead of the hero. */
+  on: z.string().optional(),
 });
 
 export const CameraCue = z.object({
@@ -154,6 +214,8 @@ export const Scene = z.object({
   layout: z.enum(LAYOUTS).default("character_bottom"),
   transition: z.enum(TRANSITIONS).default("cut"),
   character: CharacterState.nullable().prefault({}),
+  /** Secondary characters drawn behind the hero. */
+  extras: z.array(Extra).max(5).default([]),
   props: z.array(PropCue).max(8).default([]),
   sfx: z.array(SfxCue).max(8).default([]),
   bubbles: z.array(Bubble).max(2).default([]),

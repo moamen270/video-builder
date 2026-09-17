@@ -51,6 +51,10 @@ interface Props {
   action?: WalkerAction;
   /** Skip the ground shadow (e.g. mid-air). */
   shadow?: number;
+  /** Sprint: faster cadence, longer stride, forward lean. */
+  run?: boolean;
+  /** Extra decoration drawn on the head (e.g. a thug's beanie). */
+  headDecor?: React.ReactNode;
 }
 
 /** Joint angles for one side. thigh/shin absolute-ish (shin relative to thigh), arm upper + forearm (relative). */
@@ -89,23 +93,24 @@ const ABSORB: Limbs = { thighN: 48, shinN: -98, thighF: 44, shinF: -94, armN: 70
 // Half-recovered after the absorb.
 const RECOVER: Limbs = { thighN: 20, shinN: -40, thighF: 16, shinF: -34, armN: 35, foreN: 25, armF: 28, foreF: 25, lean: 12, nod: 4 };
 
-function limbsFor(action: WalkerAction, ph: number): Limbs {
+function limbsFor(action: WalkerAction, ph: number, run = false): Limbs {
   switch (action.kind) {
     case "walk": {
-      const legN = 32 * Math.sin(ph);
-      const legF = 32 * Math.sin(ph + Math.PI);
-      const bendN = 58 * Math.max(0, Math.cos(ph)) * (0.35 + 0.65 * (1 - Math.sin(ph)) * 0.5);
-      const bendF = 58 * Math.max(0, Math.cos(ph + Math.PI)) * (0.35 + 0.65 * (1 - Math.sin(ph + Math.PI)) * 0.5);
+      const stride = run ? 44 : 32;
+      const legN = stride * Math.sin(ph);
+      const legF = stride * Math.sin(ph + Math.PI);
+      const bendN = (run ? 78 : 58) * Math.max(0, Math.cos(ph)) * (0.35 + 0.65 * (1 - Math.sin(ph)) * 0.5);
+      const bendF = (run ? 78 : 58) * Math.max(0, Math.cos(ph + Math.PI)) * (0.35 + 0.65 * (1 - Math.sin(ph + Math.PI)) * 0.5);
       return {
         thighN: legN,
         shinN: -bendN,
         thighF: legF,
         shinF: -bendF,
-        armN: -26 * Math.sin(ph + Math.PI),
-        foreN: 28,
-        armF: -26 * Math.sin(ph),
-        foreF: 28,
-        lean: 6,
+        armN: (run ? -40 : -26) * Math.sin(ph + Math.PI),
+        foreN: run ? 70 : 28,
+        armF: (run ? -40 : -26) * Math.sin(ph),
+        foreF: run ? 70 : 28,
+        lean: run ? 16 : 6,
         nod: 0,
       };
     }
@@ -145,9 +150,10 @@ function limbsFor(action: WalkerAction, ph: number): Limbs {
   }
 }
 
-export const Walker: React.FC<Props> = ({ rect, frame, fps, ink, headFill, facingLeft, cadence = 1.9, action = { kind: "walk" }, shadow = 1 }) => {
-  const ph = (frame / fps) * cadence * Math.PI; // one full cycle = two steps
-  const L = limbsFor(action, ph);
+export const Walker: React.FC<Props> = ({ rect, frame, fps, ink, headFill, facingLeft, cadence, action = { kind: "walk" }, shadow = 1, run = false, headDecor }) => {
+  const cad = cadence ?? (run ? 3.4 : 1.9);
+  const ph = (frame / fps) * cad * Math.PI; // one full cycle = two steps
+  const L = limbsFor(action, ph, run);
 
   const kneeN = polar(HIP.x, HIP.y, THIGH, L.thighN);
   const footN = polar(kneeN.x, kneeN.y, SHIN, L.thighN + L.shinN);
@@ -158,7 +164,7 @@ export const Walker: React.FC<Props> = ({ rect, frame, fps, ink, headFill, facin
   const lowest = Math.max(footN.y, footF.y);
   const drop = action.kind === "air" ? 0 : GROUND_Y - lowest;
   // Walking bob on top of the planted-foot rule.
-  const bob = action.kind === "walk" ? -4 * Math.abs(Math.cos(ph)) : action.kind === "stand" ? -1.5 * Math.sin(frame / 12) : 0;
+  const bob = action.kind === "walk" ? -(run ? 7 : 4) * Math.abs(Math.cos(ph)) : action.kind === "stand" ? -1.5 * Math.sin(frame / 12) : 0;
 
   // 180° is straight up; subtracting the lean tips the torso FORWARD (+x, toward where he's going).
   const shoulder = polar(HIP.x, HIP.y, HIP.y - SHOULDER_Y, 180 - L.lean);
@@ -190,6 +196,7 @@ export const Walker: React.FC<Props> = ({ rect, frame, fps, ink, headFill, facin
           <circle cx={handN.x} cy={handN.y} r={7} fill={ink} />
           <g transform={`translate(${head.x} ${head.y}) rotate(${L.nod * 0.8})`}>
             <circle r={HEAD_R} fill={headFill} stroke={ink} strokeWidth={STROKE} />
+            {headDecor}
             <path d={`M ${HEAD_R - 4} -4 q 10 4 0 12`} stroke={ink} strokeWidth={5} fill="none" strokeLinecap="round" />
             <circle cx={14} cy={-8} r={3.5} fill={ink} />
           </g>

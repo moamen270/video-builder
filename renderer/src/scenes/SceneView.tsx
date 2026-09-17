@@ -2,7 +2,8 @@ import React from "react";
 import { AbsoluteFill, Audio, Sequence, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import type { ResolvedScene } from "@vb/engine/schema";
 import { Stickman, cameraSlashGeometry } from "../characters/Stickman";
-import { motionAt, type MotionState } from "../characters/motion";
+import { extraMotionAt, heroEntranceExit, motionAt, type MotionState } from "../characters/motion";
+import { Batarang, alongHop, type HopPath } from "./Batarang";
 import { KineticCaption } from "../captions/KineticCaption";
 import { Prop } from "../props/Prop";
 import { Bubble } from "./Bubble";
@@ -52,18 +53,65 @@ export const SceneView: React.FC<Props> = ({ scene, palette }) => {
   const zoneSeen = new Map<string, number>();
 
   let charRect = scene.character && spec.character ? spec.character[scene.character.position] : null;
+  const groundRect = charRect;
   let motion: MotionState | null = null;
   if (charRect && scene.character && (scene.character.travel || scene.character.jump)) {
     motion = motionAt(scene, charRect.x, abs);
     charRect = { ...charRect, x: motion.x, y: charRect.y - motion.lift };
   }
+  let heroSquash = 0;
+  let heroHidden = false;
+  let cable: { x: number; y: number } | null = null;
+  if (charRect && scene.character && (scene.character.entrance || scene.character.exit)) {
+    const ee = heroEntranceExit(scene, abs, charRect);
+    charRect = { ...charRect, x: charRect.x + ee.dx, y: charRect.y - ee.lift };
+    heroSquash = ee.squash;
+    heroHidden = ee.hidden;
+    cable = ee.cable;
+  }
+
+  // Extras: same rig, smaller, placed by centre x on the hero's ground line.
+  const extraRects = scene.extras.map((e) => {
+    const base = spec.character?.center ?? { x: 320, y: 1080, w: 440, h: 700 };
+    const m = extraMotionAt(e, abs);
+    const w = base.w * e.scale;
+    const h = base.h * e.scale;
+    return { e, m, rect: { x: m.cx - w / 2, y: base.y + base.h - h, w, h } };
+  });
+  const extraCenter = (id: string) => {
+    const r = extraRects.find((x) => x.e.id === id);
+    return r ? { x: r.rect.x + r.rect.w / 2, y: r.rect.y + r.rect.h * 0.45 } : null;
+  };
+
+  // Throws: build hop paths hero-hand → target → target …; last hop returns to the hero unless it hit the camera.
+  const hops: { path: HopPath; toCamera: boolean }[] = [];
+  if (scene.character && charRect) {
+    const hand = { x: charRect.x + charRect.w * 0.68, y: charRect.y + charRect.h * 0.42 };
+    for (const th of scene.character.throws) {
+      let from = hand;
+      let start = th.atFrame;
+      for (const hop of th.hops) {
+        const toCamera = hop.target === "camera";
+        const to = toCamera ? { x: 540, y: 900 } : (extraCenter(hop.target) ?? hand);
+        hops.push({ path: { from, to, startFrame: start, endFrame: hop.hitFrame }, toCamera });
+        from = to;
+        start = hop.hitFrame;
+      }
+      const last = th.hops[th.hops.length - 1];
+      if (last && last.target !== "camera") {
+        hops.push({ path: { from, to: hand, startFrame: last.hitFrame, endFrame: last.hitFrame + Math.round(fps * 0.3) }, toCamera: false });
+      }
+    }
+  }
+  const speakingNear = (f: number) => scene.words.some((w) => f >= w.startFrame - 3 && f < w.endFrame + 3);
 
   return (
     <AbsoluteFill style={trans}>
       {scene.audioSrc && <Audio src={staticFile(scene.audioSrc)} volume={scene.clipVolume} />}
       {scene.sfx.map((fx, i) => (
         <Sequence key={i} from={fx.atFrame - scene.startFrame} durationInFrames={Math.max(1, scene.startFrame + scene.durationInFrames - fx.atFrame)}>
-          <Audio src={staticFile(fx.src)} volume={fx.volume} />
+          {/* Effects duck under the voice so a boom never buries a line. */}
+          <Audio src={staticFile(fx.src)} volume={(f) => fx.volume * (speakingNear(fx.atFrame + f) ? 0.38 : 1)} />
         </Sequence>
       ))}
 
@@ -75,7 +123,29 @@ export const SceneView: React.FC<Props> = ({ scene, palette }) => {
           return <Prop key={i} prop={p} sceneStart={scene.startFrame} zone={spec.props[p.position]} palette={palette} slot={slot} slots={zoneCounts.get(p.position) ?? 1} />;
         })}
 
-        {scene.character && charRect && (
+        {extraRects.map(({ e, m, rect }) => (
+          <Stickman
+            key={e.id}
+            scene={scene}
+            sceneStart={scene.startFrame}
+            rect={rect}
+            ink={e.color ?? (e.style === "thug" ? "#b9c0d4" : palette.ink)}
+            accent={palette.accent}
+            headFill={palette.propFill}
+            style={e.style}
+            actor={e}
+            walker={{ action: m.action, shadow: 1 }}
+            ko={e.koFrame !== null ? { frame: e.koFrame, dir: charRect && charRect.x + charRect.w / 2 > m.cx ? -1 : 1 } : null}
+          />
+        ))}
+
+        {cable && charRect && (
+          <svg width={1080} height={1920} style={{ position: "absolute", inset: 0, overflow: "visible" }}>
+            <line x1={charRect.x + charRect.w * 0.7} y1={charRect.y + charRect.h * 0.3} x2={cable.x} y2={cable.y} stroke={palette.ink} strokeWidth={5} strokeLinecap="round" />
+          </svg>
+        )}
+
+        {scene.character && charRect && !heroHidden && (
           <Stickman
             scene={scene}
             sceneStart={scene.startFrame}
@@ -87,10 +157,22 @@ export const SceneView: React.FC<Props> = ({ scene, palette }) => {
             flip={scene.character.position === "right"}
             walker={motion ? { action: motion.action, shadow: motion.shadow } : undefined}
             zones={spec.props}
+            squash={heroSquash}
           />
         )}
 
-        {scene.character && charRect && scene.bubbles.map((b, i) => <Bubble key={i} bubble={b} sceneStart={scene.startFrame} anchor={charRect} palette={palette} />)}
+        {charRect &&
+          scene.bubbles.map((b, i) => {
+            const anchor = b.on ? extraRects.find((x) => x.e.id === b.on)?.rect : charRect;
+            return anchor ? <Bubble key={i} bubble={b} sceneStart={scene.startFrame} anchor={anchor} palette={palette} /> : null;
+          })}
+
+        {hops.map(({ path, toCamera }, i) => {
+          const p = alongHop(path, abs);
+          if (!p) return null;
+          const size = toCamera ? interpolate(p.t, [0, 1], [130, 900]) : 130;
+          return <Batarang key={i} x={p.x} y={p.y} frame={abs} size={size} ink={palette.ink} />;
+        })}
 
         <KineticCaption words={scene.words} sceneStart={scene.startFrame} rect={spec.caption} palette={palette} fontPx={spec.captionFontPx} />
       </AbsoluteFill>

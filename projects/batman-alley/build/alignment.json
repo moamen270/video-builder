@@ -1,0 +1,113 @@
+{
+  "model": "hexgrad/Kokoro-82M",
+  "voice": "am_fenrir",
+  "speed": 0.84,
+  "scenes": [
+    {
+      "sceneId": "alley",
+      "file": "alley.wav",
+      "duration": 3.4,
+      "sampleRate": 24000,
+      "tokens": [],
+      "hash": "319be261c20b4c4e"
+    },
+    {
+      "sceneId": "landing",
+      "file": "landing.wav",
+      "duration": 1.2,
+      "sampleRate": 24000,
+      "tokens": [],
+      "hash": "de9fcd58b3ecd259"
+    },
+    {
+      "sceneId": "line",
+      "file": "line.wav",
+      "duration": 1.8,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "I'm",
+          "start": 0.25,
+          "end": 0.487,
+          "ws": " "
+        },
+        {
+          "text": "Batman.",
+          "start": 0.487,
+          "end": 1.7,
+          "ws": ""
+        }
+      ],
+      "hash": "59a752be840a41ba"
+    },
+    {
+      "sceneId": "run",
+      "file": "run.wav",
+      "duration": 1.775,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Going",
+          "start": 0.225,
+          "end": 0.588,
+          "ws": " "
+        },
+        {
+          "text": "somewhere?",
+          "start": 0.588,
+          "end": 1.675,
+          "ws": ""
+        }
+      ],
+      "hash": "542ef64d25847c81"
+    },
+    {
+      "sceneId": "count",
+      "file": "count.wav",
+      "duration": 1.875,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Three",
+          "start": 0.25,
+          "end": 0.525,
+          "ws": " "
+        },
+        {
+          "text": "for",
+          "start": 0.525,
+          "end": 0.725,
+          "ws": " "
+        },
+        {
+          "text": "three.",
+          "start": 0.725,
+          "end": 1.775,
+          "ws": ""
+        }
+      ],
+      "hash": "c7b9177929c4e9ca"
+    },
+    {
+      "sceneId": "finale",
+      "file": "finale.wav",
+      "duration": 2.075,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Goodnight,",
+          "start": 0.25,
+          "end": 0.8,
+          "ws": " "
+        },
+        {
+          "text": "Gotham.",
+          "start": 0.8,
+          "end": 1.975,
+          "ws": ""
+        }
+      ],
+      "hash": "7588c6c05ff72d69"
+    }
+  ]
+}

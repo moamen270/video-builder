@@ -32,10 +32,13 @@ export const POSES = [
   "walk_right", // side view, procedural gait, facing screen-right — pair with character.travel
   "walk_left",
   "arms_crossed", // brooding, immovable
+  "run_right", // side view sprint (faster cadence, forward lean)
+  "run_left",
+  "knocked_out", // lying flat on the ground, X eyes
 ] as const;
 export type Pose = (typeof POSES)[number];
 
-export const EXPRESSIONS = ["neutral", "happy", "surprised", "worried", "confused", "smug", "laughing", "fierce"] as const;
+export const EXPRESSIONS = ["neutral", "happy", "surprised", "worried", "confused", "smug", "laughing", "fierce", "ko"] as const;
 export type Expression = (typeof EXPRESSIONS)[number];
 
 export const POSITIONS = ["left", "center", "right"] as const;
@@ -111,13 +114,13 @@ export const PROP_POSITIONS = [
 ] as const;
 export type PropPosition = (typeof PROP_POSITIONS)[number];
 
-export const SFX = ["pop", "whoosh", "click", "ding", "boom", "error", "swoosh", "tick", "cash", "glitch", "drum", "slash", "splat", "snikt", "gunshot", "gunshot_big", "reload", "chime", "thunder"] as const;
+export const SFX = ["pop", "whoosh", "click", "ding", "boom", "error", "swoosh", "tick", "cash", "glitch", "drum", "slash", "splat", "snikt", "gunshot", "gunshot_big", "reload", "chime", "thunder", "thud", "zip"] as const;
 export type SfxName = (typeof SFX)[number];
 
 export const THEMES = ["midnight", "paper", "sunset", "mint", "grape"] as const;
 
 /** Character costumes. `stickman` is the plain narrator; `wolverine` adds a pointed mask, claws and blue trunks. */
-export const CHARACTER_STYLES = ["stickman", "wolverine", "gunslinger", "batman"] as const; // batman: cowl ears + flowing cape, face untouched
+export const CHARACTER_STYLES = ["stickman", "wolverine", "gunslinger", "batman", "thug"] as const; // thug: beanie + darker ink, for goons // batman: cowl ears + flowing cape, face untouched
 export type CharacterStyle = (typeof CHARACTER_STYLES)[number];
 export type Theme = (typeof THEMES)[number];
 
@@ -140,13 +143,13 @@ export const VOICES = [
 export type Voice = (typeof VOICES)[number];
 
 /** Post-processing on the synthesized voice. `deep` = pitch down ~12% + light room; `villain` = pitch down ~20%, bass, big reverb. */
-export const VOICE_FX = ["none", "deep", "villain", "theatre"] as const;
+export const VOICE_FX = ["none", "deep", "villain", "theatre", "growl"] as const; // growl: pitch down, compressed, soft-clipped rasp — Batman
 export type VoiceFx = (typeof VOICE_FX)[number];
 
 export const CAMERA_MOVES = ["none", "punch_in", "slow_zoom", "shake", "dolly_in"] as const; // dolly_in: fast 2.3x push toward the character (looming at the viewer)
 
 /** Full-frame effects drawn on top of everything — on the "viewer's screen", not in the scene. */
-export const OVERLAYS = ["claw_marks", "flash", "blackout"] as const;
+export const OVERLAYS = ["claw_marks", "flash", "blackout", "bat_signal", "batarang_stuck"] as const;
 export type OverlayKind = (typeof OVERLAYS)[number];
 export type CameraMove = (typeof CAMERA_MOVES)[number];
 
