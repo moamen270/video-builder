@@ -150,6 +150,7 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
             headFill={palette.propFill}
             style={e.style}
             actor={e}
+            speaking={scene.speaker === e.id}
             walker={{ action: m.action, shadow: 1 }}
             ko={e.koFrame !== null ? { frame: e.koFrame, dir: e.fallDir ? (e.fallDir === "right" ? 1 : -1) : m.cx < 540 ? 1 : -1 } : null}
           />
@@ -174,6 +175,7 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
             walker={motion ? { action: motion.action, shadow: motion.shadow } : undefined}
             zones={spec.props}
             squash={heroSquash}
+            speaking={scene.speaker === null || scene.speaker === scene.character.id}
           />
         )}
 

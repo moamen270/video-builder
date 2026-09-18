@@ -227,6 +227,8 @@ export const Scene = z.object({
   transition: z.enum(TRANSITIONS).default("cut"),
   /** false = no kinetic captions this scene (CTA scenes: the follow_card takes the caption slot). */
   captions: z.boolean().default(true),
+  /** Who is talking this scene: an extra's id (Robin) or the hero's id. Default: the hero. Drives the mouth animation. */
+  speaker: z.string().optional(),
   /** beat: every word is a hit — the active word grows big in the accent colour, the rest dim (laughs, counts). */
   captionStyle: z.enum(["normal", "beat"]).default("normal"),
   /** true = no progress bar / watermark: the standard opening (character alone + title). */

@@ -4,6 +4,27 @@
   "speed": 0.82,
   "scenes": [
     {
+      "sceneId": "open",
+      "file": "open.wav",
+      "duration": 2.3,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "I'm",
+          "start": 0.525,
+          "end": 0.9,
+          "ws": " "
+        },
+        {
+          "text": "Batman.",
+          "start": 0.9,
+          "end": 2.2,
+          "ws": ""
+        }
+      ],
+      "hash": "e64df0c5325c1364"
+    },
+    {
       "sceneId": "alley",
       "file": "alley.wav",
       "duration": 2.2,
@@ -22,23 +43,23 @@
     {
       "sceneId": "line",
       "file": "line.wav",
-      "duration": 2.25,
+      "duration": 2.1,
       "sampleRate": 24000,
       "tokens": [
         {
-          "text": "I'm",
-          "start": 0.5,
-          "end": 0.875,
+          "text": "Wrong",
+          "start": 0.55,
+          "end": 0.975,
           "ws": " "
         },
         {
-          "text": "Batman.",
-          "start": 0.875,
-          "end": 2.15,
+          "text": "alley.",
+          "start": 0.975,
+          "end": 2,
           "ws": ""
         }
       ],
-      "hash": "5664f08e9f810937"
+      "hash": "589693bc9ccec169"
     },
     {
       "sceneId": "run",
@@ -161,7 +182,40 @@
           "ws": ""
         }
       ],
-      "hash": "386a69553cbcd16b"
+      "hash": "7986b8d2854eeb08"
+    },
+    {
+      "sceneId": "wait",
+      "file": "wait.wav",
+      "duration": 1.425,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Wait!",
+          "start": 0.15,
+          "end": 0.362,
+          "ws": " "
+        },
+        {
+          "text": "Wait",
+          "start": 0.362,
+          "end": 0.537,
+          "ws": " "
+        },
+        {
+          "text": "for",
+          "start": 0.537,
+          "end": 0.637,
+          "ws": " "
+        },
+        {
+          "text": "me!",
+          "start": 0.637,
+          "end": 1.325,
+          "ws": ""
+        }
+      ],
+      "hash": "f4b97a6ac3dcb601"
     },
     {
       "sceneId": "cta",

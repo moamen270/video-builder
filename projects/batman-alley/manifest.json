@@ -16,7 +16,7 @@
       "style": "batman"
     }
   ],
-  "notes": "Action first, words second. Joker, Penguin and Riddler own the alley until the signal comes on. Batman drops in, says four words, throws once, leaves through the screen. Robin shows up late and chases him. v4: villains already gloating at frame 0 (hook card 'Three villains. One bat.'), signal at 1.4 s, Robin comes back to deliver the CTA in his voice. Alt hooks: 'Gotham. 1 A.M.' / 'Wrong alley.'",
+  "notes": "Action first, words second. v6: standard bare opening ('I'm Batman.' under the spotlight + title), landing line is now 'Wrong alley.', everyone smaller for throw distance, Robin actually speaks (speaker) and his 'Wait!' is voiced in its own scene, the Joker looks like the Joker. Ending kept: Robin returns with 'Batman says: follow Dummy Sticky for more!'",
   "social": {
     "title": "Batman clears an alley in 4 words (stickman) — \"Not now, Robin.\"",
     "hook": "Three villains. One bat.",
@@ -59,6 +59,55 @@
   },
   "scenes": [
     {
+      "id": "open",
+      "speech": "I'm Batman.",
+      "emphasis": [
+        "Batman"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 0.7,
+      "speed": 0.76,
+      "bare": true,
+      "captions": false,
+      "character": {
+        "id": "bruce",
+        "pose": "arms_crossed",
+        "expression": "fierce",
+        "poseChanges": [
+          {
+            "pose": "pointing_up",
+            "expression": "fierce",
+            "at": "word:batman+0.2"
+          }
+        ]
+      },
+      "sfx": [
+        {
+          "name": "drum",
+          "at": "word:batman",
+          "volume": 0.6
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "spotlight",
+          "at": "start"
+        },
+        {
+          "kind": "hook_card",
+          "text": "Three villains. One bat.",
+          "at": "start+0.2",
+          "until": "end-0.1"
+        }
+      ],
+      "camera": [
+        {
+          "move": "slow_zoom",
+          "at": "start"
+        }
+      ]
+    },
+    {
       "id": "alley",
       "silence": 2.2,
       "pauseAfter": 0.2,
@@ -82,7 +131,8 @@
               "expression": "surprised",
               "at": "start+1.7"
             }
-          ]
+          ],
+          "scale": 0.75
         },
         {
           "id": "t2",
@@ -101,7 +151,8 @@
               "expression": "happy",
               "at": "start+1.3"
             }
-          ]
+          ],
+          "scale": 0.75
         },
         {
           "id": "t3",
@@ -115,7 +166,8 @@
               "expression": "surprised",
               "at": "start+1.5"
             }
-          ]
+          ],
+          "scale": 0.75
         }
       ],
       "props": [
@@ -158,14 +210,7 @@
           "side": "left"
         }
       ],
-      "overlays": [
-        {
-          "kind": "hook_card",
-          "text": "Three villains. One bat.",
-          "at": "start",
-          "until": "start+1.3"
-        }
-      ]
+      "overlays": []
     },
     {
       "id": "landing",
@@ -187,7 +232,8 @@
             "expression": "fierce",
             "at": "start+0.95"
           }
-        ]
+        ],
+        "scale": 0.85
       },
       "extras": [
         {
@@ -196,7 +242,8 @@
           "pose": "shocked",
           "x": 0.26,
           "poseChanges": [],
-          "expression": "surprised"
+          "expression": "surprised",
+          "scale": 0.75
         },
         {
           "id": "t2",
@@ -205,7 +252,8 @@
           "expression": "happy",
           "x": 0.5,
           "knockedOutAt": "start+0.6",
-          "fallDir": "right"
+          "fallDir": "right",
+          "scale": 0.75
         },
         {
           "id": "t3",
@@ -219,7 +267,8 @@
               "at": "start+0.7"
             }
           ],
-          "expression": "surprised"
+          "expression": "surprised",
+          "scale": 0.75
         }
       ],
       "props": [
@@ -257,9 +306,9 @@
     },
     {
       "id": "line",
-      "speech": "I'm Batman.",
+      "speech": "Wrong alley.",
       "emphasis": [
-        "Batman"
+        "Wrong"
       ],
       "layout": "character_center",
       "pauseAfter": 0.8,
@@ -267,7 +316,8 @@
       "character": {
         "id": "bruce",
         "pose": "arms_crossed",
-        "expression": "fierce"
+        "expression": "fierce",
+        "scale": 0.85
       },
       "extras": [
         {
@@ -275,7 +325,8 @@
           "style": "joker",
           "pose": "shocked",
           "expression": "surprised",
-          "x": 0.26
+          "x": 0.26,
+          "scale": 0.75
         },
         {
           "id": "t2",
@@ -283,14 +334,16 @@
           "pose": "idle",
           "x": 0.5,
           "knockedOutAt": "start",
-          "fallDir": "right"
+          "fallDir": "right",
+          "scale": 0.75
         },
         {
           "id": "t3",
           "style": "riddler",
           "pose": "shocked",
           "expression": "surprised",
-          "x": 0.74
+          "x": 0.74,
+          "scale": 0.75
         }
       ],
       "props": [
@@ -305,21 +358,21 @@
       "sfx": [
         {
           "name": "boom",
-          "at": "word:batman+0.35",
+          "at": "word:alley+0.3",
           "volume": 0.35
         }
       ],
       "bubbles": [
         {
           "text": "?!",
-          "at": "word:batman+0.3",
+          "at": "word:alley+0.3",
           "on": "t1"
         }
       ],
       "camera": [
         {
           "move": "punch_in",
-          "at": "word:batman"
+          "at": "word:alley"
         }
       ]
     },
@@ -360,7 +413,8 @@
             ],
             "flight": 0.28
           }
-        ]
+        ],
+        "scale": 0.85
       },
       "extras": [
         {
@@ -374,7 +428,8 @@
             "toX": 0.0,
             "start": "start+0.1",
             "end": "start+2.4"
-          }
+          },
+          "scale": 0.75
         },
         {
           "id": "t2",
@@ -382,7 +437,8 @@
           "pose": "idle",
           "x": 0.5,
           "knockedOutAt": "start",
-          "fallDir": "right"
+          "fallDir": "right",
+          "scale": 0.75
         },
         {
           "id": "t3",
@@ -395,7 +451,8 @@
             "toX": 1.0,
             "start": "start+0.1",
             "end": "start+2.4"
-          }
+          },
+          "scale": 0.75
         }
       ],
       "props": [
@@ -464,7 +521,8 @@
             "expression": "smug",
             "at": "word:three#2+0.3"
           }
-        ]
+        ],
+        "scale": 0.85
       },
       "extras": [
         {
@@ -473,7 +531,8 @@
           "pose": "idle",
           "x": 0.163,
           "knockedOutAt": "start",
-          "fallDir": "right"
+          "fallDir": "right",
+          "scale": 0.75
         },
         {
           "id": "t2",
@@ -481,7 +540,8 @@
           "pose": "idle",
           "x": 0.5,
           "knockedOutAt": "start",
-          "fallDir": "right"
+          "fallDir": "right",
+          "scale": 0.75
         },
         {
           "id": "t3",
@@ -489,7 +549,8 @@
           "pose": "idle",
           "x": 0.806,
           "knockedOutAt": "start",
-          "fallDir": "left"
+          "fallDir": "left",
+          "scale": 0.75
         }
       ],
       "props": [
@@ -530,7 +591,8 @@
       "character": {
         "id": "bruce",
         "pose": "arms_crossed",
-        "expression": "neutral"
+        "expression": "neutral",
+        "scale": 0.85
       },
       "extras": [
         {
@@ -539,7 +601,8 @@
           "pose": "idle",
           "x": 0.163,
           "knockedOutAt": "start",
-          "fallDir": "right"
+          "fallDir": "right",
+          "scale": 0.75
         },
         {
           "id": "t2",
@@ -547,7 +610,8 @@
           "pose": "idle",
           "x": 0.5,
           "knockedOutAt": "start",
-          "fallDir": "right"
+          "fallDir": "right",
+          "scale": 0.75
         },
         {
           "id": "t3",
@@ -555,7 +619,8 @@
           "pose": "idle",
           "x": 0.806,
           "knockedOutAt": "start",
-          "fallDir": "left"
+          "fallDir": "left",
+          "scale": 0.75
         },
         {
           "id": "robin",
@@ -563,7 +628,7 @@
           "pose": "walk_right",
           "expression": "happy",
           "x": 0.16,
-          "scale": 0.72,
+          "scale": 0.62,
           "travel": {
             "fromX": -0.15,
             "toX": 0.16,
@@ -594,7 +659,8 @@
           "at": "word:hello",
           "volume": 0.6
         }
-      ]
+      ],
+      "speaker": "robin"
     },
     {
       "id": "notnow",
@@ -615,7 +681,8 @@
             "expression": "fierce",
             "at": "word:robin"
           }
-        ]
+        ],
+        "scale": 0.85
       },
       "extras": [
         {
@@ -624,7 +691,8 @@
           "pose": "idle",
           "x": 0.163,
           "knockedOutAt": "start",
-          "fallDir": "right"
+          "fallDir": "right",
+          "scale": 0.75
         },
         {
           "id": "t2",
@@ -632,7 +700,8 @@
           "pose": "idle",
           "x": 0.5,
           "knockedOutAt": "start",
-          "fallDir": "right"
+          "fallDir": "right",
+          "scale": 0.75
         },
         {
           "id": "t3",
@@ -640,7 +709,8 @@
           "pose": "idle",
           "x": 0.806,
           "knockedOutAt": "start",
-          "fallDir": "left"
+          "fallDir": "left",
+          "scale": 0.75
         },
         {
           "id": "robin",
@@ -648,7 +718,7 @@
           "pose": "waving",
           "expression": "happy",
           "x": 0.16,
-          "scale": 0.72,
+          "scale": 0.62,
           "poseChanges": [
             {
               "pose": "shrugging",
@@ -682,7 +752,7 @@
         "Gotham"
       ],
       "layout": "character_center",
-      "pauseAfter": 3.4,
+      "pauseAfter": 2.5,
       "speed": 0.78,
       "character": {
         "id": "bruce",
@@ -713,7 +783,8 @@
           "kind": "grapple",
           "at": "word:gotham+1.7",
           "duration": 0.8
-        }
+        },
+        "scale": 0.85
       },
       "extras": [
         {
@@ -722,7 +793,8 @@
           "pose": "idle",
           "x": 0.163,
           "knockedOutAt": "start",
-          "fallDir": "right"
+          "fallDir": "right",
+          "scale": 0.75
         },
         {
           "id": "t2",
@@ -730,7 +802,8 @@
           "pose": "idle",
           "x": 0.5,
           "knockedOutAt": "start",
-          "fallDir": "right"
+          "fallDir": "right",
+          "scale": 0.75
         },
         {
           "id": "t3",
@@ -738,7 +811,8 @@
           "pose": "idle",
           "x": 0.806,
           "knockedOutAt": "start",
-          "fallDir": "left"
+          "fallDir": "left",
+          "scale": 0.75
         },
         {
           "id": "robin",
@@ -746,25 +820,14 @@
           "pose": "idle",
           "expression": "worried",
           "x": 0.16,
-          "scale": 0.72,
+          "scale": 0.62,
           "poseChanges": [
             {
               "pose": "shocked",
               "expression": "surprised",
               "at": "word:gotham+1.7"
-            },
-            {
-              "pose": "run_right",
-              "expression": "worried",
-              "at": "word:gotham+2.1"
             }
-          ],
-          "travel": {
-            "fromX": 0.16,
-            "toX": 1.35,
-            "start": "word:gotham+2.1",
-            "end": "word:gotham+3.4"
-          }
+          ]
         }
       ],
       "props": [
@@ -801,21 +864,9 @@
           "name": "swoosh",
           "at": "word:gotham+1.9",
           "volume": 0.6
-        },
-        {
-          "name": "pop",
-          "at": "word:gotham+2.1",
-          "volume": 0.5
         }
       ],
-      "bubbles": [
-        {
-          "text": "WAIT!",
-          "at": "word:gotham+2.0",
-          "until": "word:gotham+3.2",
-          "on": "robin"
-        }
-      ],
+      "bubbles": [],
       "overlays": [
         {
           "kind": "batarang_stuck",
@@ -826,6 +877,94 @@
         {
           "move": "shake",
           "at": "word:gotham+0.95"
+        }
+      ]
+    },
+    {
+      "id": "wait",
+      "speech": "Wait! Wait for me!",
+      "emphasis": [
+        "Wait"
+      ],
+      "voice": "am_puck",
+      "voiceFx": "young",
+      "speed": 1.12,
+      "speaker": "robin",
+      "layout": "character_center",
+      "pauseAfter": 0.5,
+      "transition": "cut",
+      "character": null,
+      "extras": [
+        {
+          "id": "t1",
+          "style": "joker",
+          "pose": "idle",
+          "x": 0.163,
+          "scale": 0.75,
+          "knockedOutAt": "start",
+          "fallDir": "right"
+        },
+        {
+          "id": "t2",
+          "style": "penguin",
+          "pose": "idle",
+          "x": 0.5,
+          "scale": 0.75,
+          "knockedOutAt": "start",
+          "fallDir": "right"
+        },
+        {
+          "id": "t3",
+          "style": "riddler",
+          "pose": "idle",
+          "x": 0.806,
+          "scale": 0.75,
+          "knockedOutAt": "start",
+          "fallDir": "left"
+        },
+        {
+          "id": "robin",
+          "style": "robin",
+          "pose": "run_right",
+          "expression": "worried",
+          "x": 0.16,
+          "scale": 0.62,
+          "travel": {
+            "fromX": 0.16,
+            "toX": 1.35,
+            "start": "start",
+            "end": "end"
+          }
+        }
+      ],
+      "props": [
+        {
+          "name": "bat_signal",
+          "at": "start",
+          "anim": "fade",
+          "position": "top_right",
+          "scale": 0.9
+        }
+      ],
+      "sfx": [
+        {
+          "name": "swoosh",
+          "at": "start",
+          "volume": 0.5
+        }
+      ],
+      "bubbles": [
+        {
+          "text": "WAIT!",
+          "at": "word:wait",
+          "until": "word:for",
+          "on": "robin"
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "batarang_stuck",
+          "at": "start"
         }
       ]
     },
@@ -850,7 +989,8 @@
           "pose": "idle",
           "x": 0.163,
           "knockedOutAt": "start",
-          "fallDir": "right"
+          "fallDir": "right",
+          "scale": 0.75
         },
         {
           "id": "t2",
@@ -858,7 +998,8 @@
           "pose": "idle",
           "x": 0.5,
           "knockedOutAt": "start",
-          "fallDir": "right"
+          "fallDir": "right",
+          "scale": 0.75
         },
         {
           "id": "t3",
@@ -866,7 +1007,8 @@
           "pose": "idle",
           "x": 0.806,
           "knockedOutAt": "start",
-          "fallDir": "left"
+          "fallDir": "left",
+          "scale": 0.75
         },
         {
           "id": "robin",
@@ -874,7 +1016,7 @@
           "pose": "walk_left",
           "expression": "happy",
           "x": 0.43,
-          "scale": 0.72,
+          "scale": 0.62,
           "travel": {
             "fromX": 1.2,
             "toX": 0.43,
@@ -918,6 +1060,10 @@
       ],
       "overlays": [
         {
+          "kind": "batarang_stuck",
+          "at": "start"
+        },
+        {
           "kind": "follow_card",
           "at": "word:follow"
         },
@@ -926,7 +1072,8 @@
           "at": "end-0.4"
         }
       ],
-      "captions": false
+      "captions": false,
+      "speaker": "robin"
     }
   ]
 }

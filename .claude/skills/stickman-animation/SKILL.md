@@ -131,7 +131,9 @@ Villain looks for extras: `joker` (green spikes, red grin), `penguin` (top hat, 
 `riddler` (green bowler with ?), `robin` (domino mask, short yellow cape — use `scale: 0.72`).
 Keep bodies where they fell: re-declare each KO'd extra in later scenes with the x it was
 hit at and an explicit `fallDir` (default falls toward frame centre).
-Second speaker: set `voice` (+ `voiceFx: "young"`) on that scene — e.g. Robin = `am_puck`.
+Second speaker: set `voice` (+ `voiceFx: "young"`) AND `"speaker": "<extra id>"` on that scene — e.g. Robin = `am_puck`;
+`speaker` decides whose mouth moves (default: the hero). A line for an extra while the hero is off-screen = `character: null` + `speaker`.
+A bubble is silent: if the line should be HEARD ("WAIT!"), give it its own short speech scene with the extra as speaker.
 Voice pitch reference (Hz): bm_lewis 94 · am_michael 119 · am_puck 121 · am_adam 122 ·
 am_fenrir 139 · bm_george 153. Deep heroes: bm_lewis + growl (~100 Hz) or am_michael + deep.
 Avoid `thunder`/`glitch` under dialogue; they read as static.

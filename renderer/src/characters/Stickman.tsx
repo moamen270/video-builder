@@ -40,6 +40,8 @@ interface Props {
   ko?: { frame: number; dir: 1 | -1 } | null;
   /** Vertical squash 0–1 (landing impact), scaled about the feet. */
   squash?: number;
+  /** This figure is the one speaking (mouth moves with the words). Default: the hero, not extras. */
+  speaking?: boolean;
 }
 
 interface PoseSource {
@@ -174,7 +176,7 @@ const polar = (x: number, y: number, len: number, deg: number) => {
   return { x: x + Math.sin(r) * len, y: y + Math.cos(r) * len };
 };
 
-export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, style, flip, walker, zones, actor, ko, squash = 0 }) => {
+export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, style, flip, walker, zones, actor, ko, squash = 0, speaking }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const abs = frame + scene.startFrame;
@@ -218,7 +220,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   // Idle life: breathing bob, subtle arm sway, micro head motion.
   const bob = Math.sin(abs / 9) * 2.2;
   const sway = Math.sin(abs / 13) * 2.5;
-  const talking = actor ? false : isTalking(scene.words, abs);
+  const talking = (speaking ?? !actor) && isTalking(scene.words, abs);
   const nodTalk = talking ? Math.sin(abs / 2.3) * 2.5 : 0;
 
   // Waving/celebrating get an extra oscillation on the forearm.
@@ -549,10 +551,18 @@ function headDecorFor(style: CharacterStyle, ink: string): React.ReactNode {
     case "joker":
       return (
         <g>
-          {/* green hair spikes */}
-          <path d="M -34 -14 L -30 -52 L -20 -30 L -12 -60 L -4 -34 L 4 -62 L 12 -34 L 20 -58 L 28 -30 L 34 -48 L 34 -12 Q 0 -30 -34 -12 Z" fill="#2fbf71" stroke={ink} strokeWidth={3} strokeLinejoin="round" />
-          {/* red painted grin, under the animated mouth */}
-          <path d="M -22 8 Q 0 34 22 8 Q 0 20 -22 8 Z" fill="#e63946" opacity={0.9} />
+          {/* chalk-white face paint */}
+          <circle r={HEAD_R - 5} fill="#f3f0ea" />
+          {/* slicked-back green hair: a swept cap with a widow's peak and strands trailing behind */}
+          <path d="M -33 -12 Q -34 -40 -8 -42 Q 0 -30 8 -42 Q 34 -40 33 -12 Q 30 -26 18 -30 Q 6 -22 0 -26 Q -6 -22 -18 -30 Q -30 -26 -33 -12 Z" fill="#1f9d55" stroke={ink} strokeWidth={2.5} strokeLinejoin="round" />
+          <path d="M 26 -30 Q 44 -34 46 -18 Q 40 -26 30 -20 Z" fill="#1f9d55" stroke={ink} strokeWidth={2} />
+          <path d="M -26 -30 Q -44 -34 -46 -18 Q -40 -26 -30 -20 Z" fill="#1f9d55" stroke={ink} strokeWidth={2} />
+          {/* dark eye sockets */}
+          <ellipse cx={-10} cy={-4} rx={9} ry={7} fill="#2a1436" opacity={0.85} />
+          <ellipse cx={10} cy={-4} rx={9} ry={7} fill="#2a1436" opacity={0.85} />
+          {/* red painted grin, ear to ear, with the upturned scar corners */}
+          <path d="M -26 6 Q 0 32 26 6 Q 0 18 -26 6 Z" fill="#c1121f" />
+          <path d="M -26 6 Q -30 0 -24 -2 M 26 6 Q 30 0 24 -2" stroke="#c1121f" strokeWidth={4} fill="none" strokeLinecap="round" />
         </g>
       );
     case "penguin":

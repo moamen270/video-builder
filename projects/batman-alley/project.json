@@ -4,7 +4,7 @@
   "createdAt": "2026-09-17T03:52:17.267Z",
   "targetSeconds": 40,
   "status": "qa_passed",
-  "lastRenderMs": 58050,
+  "lastRenderMs": 59799,
   "versions": [
     {
       "n": 1,
@@ -53,6 +53,16 @@
       "manifestHash": "235bb6d6dbf954a1",
       "note": "v5: villains gloating at frame 0 + hook card, Robin returns to deliver the CTA, watermark",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/batman-alley-v5/final.mp4"
+    },
+    {
+      "n": 6,
+      "at": "2026-09-18T14:31:35.027Z",
+      "seconds": 33.3,
+      "renderMs": 59799,
+      "qaOk": true,
+      "manifestHash": "e680fd8b5571c9c3",
+      "note": "v6: bare spotlight opening ('I'm Batman.' + title), landing line 'Wrong alley.', everyone smaller, Joker redesigned, Robin's mouth moves when he speaks (speaker), voiced 'Wait! Wait for me!' scene",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/batman-alley-v6/final.mp4"
     }
   ]
 }

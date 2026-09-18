@@ -123,6 +123,7 @@ export const ResolvedScene = z.object({
   layout: z.enum(LAYOUTS),
   transition: z.enum(TRANSITIONS),
   captions: z.boolean().default(true),
+  speaker: z.string().nullable().default(null),
   captionStyle: z.enum(["normal", "beat"]).default("normal"),
   bare: z.boolean().default(false),
   character: z

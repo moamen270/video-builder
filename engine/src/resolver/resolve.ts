@@ -212,6 +212,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
       layout: s.layout,
       transition: s.transition,
       captions: s.captions,
+      speaker: s.speaker ?? null,
       captionStyle: s.captionStyle,
       bare: s.bare,
       character,
