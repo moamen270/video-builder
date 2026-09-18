@@ -50,6 +50,7 @@ export const ResolvedProp = z.object({
   position: z.enum(PROP_POSITIONS),
   scale: z.number(),
   exit: z.enum(["fade", "cut", "burst"]).default("fade"),
+  on: z.string().nullable().default(null),
 });
 
 export const ResolvedSfx = z.object({
@@ -85,6 +86,9 @@ export const ResolvedExtra = z.object({
   label: z.string().nullable().default(null),
   held: z.enum(["frying_pan", "ball"]).nullable().default(null),
   heldFrame: z.number().int().default(0),
+  hat: z.enum(["fedora"]).nullable().default(null),
+  hatFrame: z.number().int().default(0),
+  hatUntilFrame: z.number().int().default(0),
 });
 export type ResolvedExtra = z.infer<typeof ResolvedExtra>;
 
@@ -108,6 +112,7 @@ export const ResolvedThrow = z.object({
 export const ResolvedCamera = z.object({
   move: z.enum(CAMERA_MOVES),
   atFrame: z.number().int(),
+  on: z.string().nullable().default(null),
 });
 
 export const ResolvedOverlay = z.object({

@@ -138,6 +138,23 @@ Voice pitch reference (Hz): bm_lewis 94 · am_michael 119 · am_puck 121 · am_a
 am_fenrir 139 · bm_george 153. Deep heroes: bm_lewis + growl (~100 Hz) or am_michael + deep.
 Avoid `thunder`/`glitch` under dialogue; they read as static.
 
+### Duels, sports, slapstick (dodgeball-duel is the reference)
+
+Cast = extras only (`character: null`), narrated by a commentator voice (`am_michael`, speed 1.15,
+`theatre`). Each extra can carry `label` (name tag), `held: "ball" | "frying_pan"` (+ `heldAt`),
+`hat: "fedora"` (+ `hatAt`/`hatUntil` — appears for the move, vanishes after). Styles: `kid` (scale 0.5).
+**Projectiles** — `projectiles: [{ from, to, at, flight, outcome, count, every }]`: a ball on an arc from
+the thrower's hand; `miss` sails over the head (dodge with `mj_lean` / `mj_toe` / `dodge_jump` /
+`dodge_split`, or moonwalk = `walk_left` pose + travel to the right), `deflect` bounces off a held pan
+(pose `spin`), `hit` stops on the target (set his `knockedOutAt`), `roll` drops from the hand and
+bounces along the ground to the target's foot, `to: "camera"` throws at the viewer (+ `screen_crack`).
+Barrage: `count: 12, every: 0.1`. Thrower poses: `windup` → `throw` on the word.
+**Anger**: `expression: "angry"` = red head + ear steam. **Camera**: `{ "move": "focus", "on": "<id>" }`
+zooms onto that figure and centres him (use it on whoever owns the beat — the dodger, the angry one,
+the champion); `pan_left/right`, `zoom_out` for wide duels. Captions stay fixed under any camera move.
+**Props on a character**: `{ "name": "crown", "on": "pebble", "position": "above_character" }`
+(head), `center` (chest — medal), `right`/`left` (in that hand — trophy).
+
 ### Clip scenes (real laughs, screams, stingers)
 
 A scene may use a pre-recorded file instead of TTS:

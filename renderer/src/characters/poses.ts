@@ -53,6 +53,9 @@ export const RIGS: Record<Pose, Rig> = {
   knocked_out: { lUpper: -14, lLower: -10, rUpper: 18, rLower: 12, lThigh: -8, lShin: 0, rThigh: 10, rShin: -6, head: 8, torso: 0, lift: 0, nod: 0 },
   aim_camera: { lUpper: -26, lLower: -30, rUpper: 110, rLower: -138, lThigh: -14, lShin: 4, rThigh: 14, rShin: -4, head: 0, torso: 0, lift: 0, nod: 6 },
   // Dodgeball: dodges lean AWAY from a ball coming from screen-left (torso + = tilt right).
+  mj_lean: { lUpper: -10, lLower: -4, rUpper: 10, rLower: 4, lThigh: -6, lShin: 0, rThigh: 6, rShin: 0, head: 0, torso: -44, lift: 0, nod: 4 },
+  mj_toe: { lUpper: -100, lLower: -10, rUpper: 150, rLower: 80, lThigh: -3, lShin: 0, rThigh: 3, rShin: 0, head: 6, torso: 0, lift: -14, nod: 6 },
+  dodge_jump: { lUpper: -120, lLower: -30, rUpper: 120, rLower: 30, lThigh: -40, lShin: 110, rThigh: 40, rShin: -110, head: 0, torso: 0, lift: -230, nod: 8 },
   dodge_lean: { lUpper: -140, lLower: -20, rUpper: 40, rLower: 30, lThigh: -34, lShin: 0, rThigh: 26, rShin: -60, head: 18, torso: 38, lift: 6, nod: -10 },
   dodge_limbo: { lUpper: -150, lLower: -10, rUpper: 20, rLower: 60, lThigh: -44, lShin: 0, rThigh: 40, rShin: -95, head: 22, torso: 62, lift: 30, nod: -14 },
   dodge_split: { lUpper: -95, lLower: 0, rUpper: 95, rLower: 0, lThigh: -82, lShin: 0, rThigh: 82, rShin: 0, head: 0, torso: 0, lift: 130, nod: 6 },
@@ -73,7 +76,7 @@ export const RUN_POSES: ReadonlySet<Pose> = new Set<Pose>(["run_right", "run_lef
 export const LEFT_HAND_POSES: ReadonlySet<Pose> = new Set<Pose>(["aim_left", "pointing_left", "slash_left"]);
 
 /** Poses that should snap rather than ease (attacks). */
-export const SNAP_POSES: ReadonlySet<Pose> = new Set<Pose>(["slash_left", "slash_right", "claws_out", "aim_right", "aim_left", "aim_high", "aim_up", "aim_camera", "throw", "dodge_lean", "dodge_limbo", "dodge_split"]);
+export const SNAP_POSES: ReadonlySet<Pose> = new Set<Pose>(["slash_left", "slash_right", "claws_out", "aim_right", "aim_left", "aim_high", "aim_up", "aim_camera", "throw", "dodge_lean", "dodge_limbo", "dodge_split", "dodge_jump", "mj_lean"]);
 
 export const RIG_KEYS = Object.keys(RIGS.idle) as (keyof Rig)[];
 

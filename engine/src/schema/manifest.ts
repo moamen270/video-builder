@@ -68,6 +68,10 @@ export const Extra = z.object({
   /** Item in the right hand from `heldAt` (default scene start): frying_pan deflects balls; ball = about to throw. */
   held: z.enum(["frying_pan", "ball"]).optional(),
   heldAt: Anchor.optional(),
+  /** Hat that appears at `hatAt` and vanishes at `hatUntil` (fedora: the MJ move). */
+  hat: z.enum(["fedora"]).optional(),
+  hatAt: Anchor.optional(),
+  hatUntil: Anchor.optional(),
 });
 
 /**
@@ -176,6 +180,8 @@ export const PropCue = z.object({
   position: z.enum(PROP_POSITIONS).default("top"),
   /** 0.5–2, relative to the default prop size. */
   scale: z.number().min(0.4).max(2.5).default(1),
+  /** Attach to an extra instead of a layout zone: position above_character = on the head, center = chest, right/left = in that hand. */
+  on: z.string().optional(),
   /** How the prop leaves at `until`: short fade (default) or an instant cut (use when it gets struck/replaced). */
   /** burst: petals fly apart and vanish (lotus) — Jhin's trap detonating; use to clear the stage. */
   exit: z.enum(["fade", "cut", "burst"]).default("fade"),
@@ -201,6 +207,8 @@ export const Bubble = z.object({
 export const CameraCue = z.object({
   move: z.enum(CAMERA_MOVES),
   at: Anchor,
+  /** focus only: the extra id to zoom onto. */
+  on: z.string().optional(),
 });
 
 export const OverlayCue = z.object({

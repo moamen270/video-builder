@@ -4,7 +4,7 @@
   "createdAt": "2026-09-19T00:00:00.000Z",
   "targetSeconds": 45,
   "status": "qa_passed",
-  "lastRenderMs": 77606,
+  "lastRenderMs": 84285,
   "versions": [
     {
       "n": 1,
@@ -45,6 +45,26 @@
       "manifestHash": "132b28289df1c13a",
       "note": "v4: review pass 2 — barrage moved to the last attempt (escalation), two balls truly airborne, ball-at-foot wobble before the KO, no pan in react1, trimmed",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/dodgeball-duel-v4/final.mp4"
+    },
+    {
+      "n": 5,
+      "at": "2026-09-18T21:48:52.280Z",
+      "seconds": 45.36666666666667,
+      "renderMs": 77929,
+      "qaOk": true,
+      "manifestHash": "2a849f62064a9f2d",
+      "note": "v5: MJ dodges with fedora, jump dodge, angry Brick (red + steam), camera focus per beat, coronation props on Pebble, bouncing drop, misses clear the head, captions outside the camera",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/dodgeball-duel-v5/final.mp4"
+    },
+    {
+      "n": 6,
+      "at": "2026-09-18T21:52:15.070Z",
+      "seconds": 45.36666666666667,
+      "renderMs": 84285,
+      "qaOk": true,
+      "manifestHash": "94e822e4bca3f158",
+      "note": "v6: adaptive focus zoom (closer on small figures), bigger coronation props, name tag lifts above the crown",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/dodgeball-duel-v6/final.mp4"
     }
   ]
 }

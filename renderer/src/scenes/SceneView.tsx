@@ -33,6 +33,15 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
   const abs = frame + scene.startFrame;
   const spec = LAYOUTS[scene.layout];
 
+  // Extras: same rig, smaller, placed by centre x on the hero's ground line.
+  const extraRects = scene.extras.map((e) => {
+    const base = spec.character?.center ?? { x: 320, y: 1080, w: 440, h: 700 };
+    const m = extraMotionAt(e, abs);
+    const w = base.w * e.scale;
+    const h = base.h * e.scale;
+    return { e, m, rect: { x: m.cx - w / 2, y: base.y + base.h - h, w, h } };
+  });
+
   // --- camera -------------------------------------------------------------
   let camScale = 1;
   let camX = 0;
@@ -43,7 +52,21 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
     if (c.move === "punch_in") camScale *= interpolate(spring({ frame: t, fps, config: { damping: 14, stiffness: 200 } }), [0, 1], [1, 1.09]);
     else if (c.move === "dolly_in") camScale *= interpolate(spring({ frame: t, fps, config: { damping: 18, stiffness: 90 } }), [0, 1], [1, 1.45]);
     else if (c.move === "slow_zoom") camScale *= interpolate(t, [0, scene.durationInFrames], [1, 1.06], { extrapolateRight: "clamp" });
-    else if (c.move === "pan_left") camX += interpolate(spring({ frame: t, fps, config: { damping: 16, stiffness: 240 } }), [0, 1], [0, 130]);
+    else if (c.move === "focus" && c.on) {
+      // Zoom onto one figure and slide him to the middle: scale about the frame origin, then translate.
+      const r = extraRects.find((x) => x.e.id === c.on)?.rect;
+      if (r) {
+        // Zoom so the figure fills ~55 % of the frame height (small kid → closer), capped so nothing important leaves the frame.
+        const target = Math.min(2.2, Math.max(1.25, (0.55 * 1920) / r.h));
+        const k = interpolate(spring({ frame: t, fps, config: { damping: 16, stiffness: 140 } }), [0, 1], [1, target]);
+        const cx = r.x + r.w / 2;
+        const cy = r.y + r.h * 0.45;
+        camScale *= k;
+        // origin is (540, 864); after scaling about it, the figure sits at origin + (cx-origin)*k → shift so it lands at the origin
+        camX += -(cx - 540) * k;
+        camY += -(cy - 864) * k * 0.6;
+      }
+    } else if (c.move === "pan_left") camX += interpolate(spring({ frame: t, fps, config: { damping: 16, stiffness: 240 } }), [0, 1], [0, 130]);
     else if (c.move === "pan_right") camX -= interpolate(spring({ frame: t, fps, config: { damping: 16, stiffness: 240 } }), [0, 1], [0, 130]);
     else if (c.move === "zoom_out") camScale *= interpolate(spring({ frame: t, fps, config: { damping: 18, stiffness: 120 } }), [0, 1], [1, 0.9]);
     else if (c.move === "shake" && t < 12) {
@@ -89,14 +112,6 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
     cable = ee.cable;
   }
 
-  // Extras: same rig, smaller, placed by centre x on the hero's ground line.
-  const extraRects = scene.extras.map((e) => {
-    const base = spec.character?.center ?? { x: 320, y: 1080, w: 440, h: 700 };
-    const m = extraMotionAt(e, abs);
-    const w = base.w * e.scale;
-    const h = base.h * e.scale;
-    return { e, m, rect: { x: m.cx - w / 2, y: base.y + base.h - h, w, h } };
-  });
   const extraCenter = (id: string) => {
     const r = extraRects.find((x) => x.e.id === id);
     return r ? { x: r.rect.x + r.rect.w / 2, y: r.rect.y + r.rect.h * 0.45 } : null;
@@ -138,6 +153,19 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
       <AbsoluteFill style={{ transform: `translate(${camX}px, ${camY}px) scale(${camScale})`, transformOrigin: "50% 45%" }}>
         {scene.props.map((p, i) => {
           if (abs < p.atFrame || abs >= p.untilFrame) return null;
+          if (p.on) {
+            const r = extraRects.find((x) => x.e.id === p.on)?.rect;
+            if (!r) return null;
+            const size = r.h * 0.26;
+            const head = { x: r.x + r.w / 2, y: r.y + r.h * 0.12 };
+            const zone =
+              p.position === "above_character"
+                ? { x: head.x - size / 2, y: head.y - size * 0.95, w: size, h: size }
+                : p.position === "center"
+                  ? { x: head.x - size / 2, y: r.y + r.h * 0.36, w: size, h: size }
+                  : { x: (p.position === "left" ? r.x - size * 0.45 : r.x + r.w - size * 0.55), y: r.y + r.h * 0.28, w: size, h: size };
+            return <Prop key={i} prop={{ ...p, position: "center" }} sceneStart={scene.startFrame} zone={zone} palette={palette} slot={0} slots={1} />;
+          }
           const slot = zoneSeen.get(p.position) ?? 0;
           zoneSeen.set(p.position, slot + 1);
           return <Prop key={i} prop={p} sceneStart={scene.startFrame} zone={spec.props[p.position]} palette={palette} slot={slot} slots={zoneCounts.get(p.position) ?? 1} />;
@@ -157,6 +185,8 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
             speaking={scene.speaker === e.id}
             held={abs >= e.heldFrame && !(e.held === "ball" && scene.projectiles.some((p) => p.from === e.id && p.atFrame <= abs)) ? e.held : null}
             label={e.label}
+            hat={abs >= e.hatFrame && abs < e.hatUntilFrame ? e.hat : null}
+            labelUp={scene.props.some((p) => p.on === e.id && p.position === "above_character" && abs >= p.atFrame && abs < p.untilFrame)}
             walker={{ action: m.action, shadow: 1 }}
             ko={e.koFrame !== null ? { frame: e.koFrame, dir: e.fallDir ? (e.fallDir === "right" ? 1 : -1) : m.cx < 540 ? 1 : -1 } : null}
           />
@@ -204,8 +234,10 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
           return <Batarang key={i} x={p.x} y={p.y} frame={abs} size={size} ink={palette.ink} />;
         })}
 
-        {scene.captions && <KineticCaption words={scene.words} sceneStart={scene.startFrame} rect={spec.caption} palette={palette} fontPx={spec.captionFontPx} beat={scene.captionStyle === "beat"} chunkSize={scene.captionStyle === "beat" ? 6 : undefined} />}
       </AbsoluteFill>
+
+      {/* Captions sit OUTSIDE the camera so zooms, pans and focus never crop or scale the text. */}
+      {scene.captions && <KineticCaption words={scene.words} sceneStart={scene.startFrame} rect={spec.caption} palette={palette} fontPx={spec.captionFontPx} beat={scene.captionStyle === "beat"} chunkSize={scene.captionStyle === "beat" ? 6 : undefined} />}
       {/* Screen-space effects: outside the camera transform, on the viewer's glass. */}
       {scene.overlays.map((o, i) => {
         // Claw marks follow the claws: take the camera-strike geometry and map it through the camera.

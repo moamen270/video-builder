@@ -31,6 +31,9 @@ export const POSES = [
   "bow", // theatrical bow, one arm sweeping
   "walk_right",
   "aim_camera", // gun pointed straight at the viewer (front view of the pistol)
+  "mj_lean", // the anti-gravity lean: body straight as a plank, tilted toward the thrower, heels planted — the ball sails over
+  "mj_toe", // toe-stand, knees together, one hand on the hat brim, other arm out
+  "dodge_jump", // tucked jump straight up — the ball passes under
   "dodge_lean", // Matrix lean-back away from a ball: torso way back, arms flung, front leg straight
   "dodge_limbo", // even further back, knees bent, almost horizontal
   "dodge_split", // drops into a split under a ball
@@ -48,7 +51,7 @@ export const POSES = [
 ] as const;
 export type Pose = (typeof POSES)[number];
 
-export const EXPRESSIONS = ["neutral", "happy", "surprised", "worried", "confused", "smug", "laughing", "fierce", "ko"] as const;
+export const EXPRESSIONS = ["neutral", "happy", "surprised", "worried", "confused", "smug", "laughing", "fierce", "ko", "angry"] as const; // angry: head flushes red, brows down, steam puffs from the ears
 export type Expression = (typeof EXPRESSIONS)[number];
 
 export const POSITIONS = ["left", "center", "right"] as const;
@@ -161,7 +164,7 @@ export type Voice = (typeof VOICES)[number];
 export const VOICE_FX = ["none", "deep", "villain", "theatre", "growl", "young", "mask"] as const; // mask: slight lift, hollow porcelain resonance, stage room — Jhin // young: pitch up ~12% for kids/sidekicks // growl: pitch down, compressed, soft-clipped rasp — Batman
 export type VoiceFx = (typeof VOICE_FX)[number];
 
-export const CAMERA_MOVES = ["none", "punch_in", "slow_zoom", "shake", "dolly_in", "pan_left", "pan_right", "zoom_out"] as const; // pan_*: whip the camera ~260 px toward that side and stay; zoom_out: pull back to 0.8× and stay (fits a wide duel) // dolly_in: fast 2.3x push toward the character (looming at the viewer)
+export const CAMERA_MOVES = ["none", "punch_in", "slow_zoom", "shake", "dolly_in", "pan_left", "pan_right", "zoom_out", "focus"] as const; // focus: zoom 1.5× onto the extra named in `on` and centre him // pan_*: whip the camera ~260 px toward that side and stay; zoom_out: pull back to 0.8× and stay (fits a wide duel) // dolly_in: fast 2.3x push toward the character (looming at the viewer)
 
 /** Full-frame effects drawn on top of everything — on the "viewer's screen", not in the scene. */
 export const OVERLAYS = ["claw_marks", "flash", "blackout", "bat_signal", "batarang_stuck", "hook_card", "follow_card", "screen_crack", "spotlight", "flourish"] as const; // flourish: Jhin W — thin white line with a blue-violet halo across the screen + brief cool wash // screen_crack: glass shatter at the impact point (standard ending); spotlight: dark stage, cone of light on the character (standard opening) // hook_card: big text hook over the opening (needs `text`); follow_card: @handle + Follow button for the CTA line

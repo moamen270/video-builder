@@ -46,6 +46,10 @@ interface Props {
   held?: "frying_pan" | "ball" | null;
   /** Name tag above the head. */
   label?: string | null;
+  /** Hat currently worn. */
+  hat?: "fedora" | null;
+  /** Raise the name tag (something sits on the head, e.g. a crown prop). */
+  labelUp?: boolean;
 }
 
 interface PoseSource {
@@ -180,7 +184,7 @@ const polar = (x: number, y: number, len: number, deg: number) => {
   return { x: x + Math.sin(r) * len, y: y + Math.cos(r) * len };
 };
 
-export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, style, flip, walker, zones, actor, ko, squash = 0, speaking, held = null, label = null }) => {
+export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, style, flip, walker, zones, actor, ko, squash = 0, speaking, held = null, label = null, hat = null, labelUp = false }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const abs = frame + scene.startFrame;
@@ -194,7 +198,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const robin = style === "robin";
   if (WALK_POSES.has(st.pose)) {
     return (
-      <Walker rect={rect} frame={abs} fps={fps} ink={ink} headFill={headFill} facingLeft={st.pose === "walk_left" || st.pose === "run_left"} action={walker?.action} shadow={walker?.shadow} run={RUN_POSES.has(st.pose)} headDecor={style === "jhin" ? <JhinMaskProfile /> : beanie} faceless={style === "jhin"} />
+      <Walker rect={rect} frame={abs} fps={fps} ink={ink} headFill={headFill} facingLeft={st.pose === "walk_left" || st.pose === "run_left"} action={walker?.action} shadow={walker?.shadow} run={RUN_POSES.has(st.pose)} headDecor={hat === "fedora" ? <Fedora ink={ink} /> : style === "jhin" ? <JhinMaskProfile /> : beanie} faceless={style === "jhin"} />
     );
   }
 
@@ -333,7 +337,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
           </g>
         )}
         {label && (
-          <g transform={`translate(${headC.x} ${headC.y - HEAD_R - 34})`}>
+          <g transform={`translate(${headC.x} ${headC.y - HEAD_R - (hat || labelUp ? 72 : 34)})`}>
             <rect x={-46} y={-16} width={92} height={30} rx={15} fill={ink} />
             <text x={0} y={6} textAnchor="middle" fontFamily='"Segoe UI Black", "Arial Black", Impact, sans-serif' fontWeight={900} fontSize={19} fill={headFill}>
               {label.toUpperCase()}
@@ -349,7 +353,23 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
             </g>
           )}
           <circle r={HEAD_R} fill={headFill} stroke={ink} strokeWidth={STROKE} />
+          {st.expression === "angry" && (
+            <g>
+              <circle r={HEAD_R - 4} fill="#e63946" opacity={0.55 + 0.15 * Math.sin(abs / 3)} />
+              {/* steam from both ears: three puffs each, rising and fading on a 24-frame loop */}
+              {[0, 1, 2].map((k) => {
+                const ph = ((abs + k * 8) % 24) / 24;
+                return (
+                  <g key={k} opacity={(1 - ph) * 0.8}>
+                    <circle cx={-HEAD_R - 8 - ph * 22} cy={-6 - ph * 34} r={5 + ph * 8} fill="#ffffff" />
+                    <circle cx={HEAD_R + 8 + ph * 22} cy={-6 - ph * 34} r={5 + ph * 8} fill="#ffffff" />
+                  </g>
+                );
+              })}
+            </g>
+          )}
           {beanie}
+          {hat === "fedora" && <Fedora ink={ink} />}
           {masked && <JhinMask talking={mouthOpen} />}
           {kid && (
             <g>
@@ -539,6 +559,15 @@ const JhinMask: React.FC<{ talking: number }> = ({ talking }) => {
   );
 };
 
+/** Black fedora with a white band — the MJ move. Drawn on the head group of either rig. */
+const Fedora: React.FC<{ ink: string }> = ({ ink }) => (
+  <g transform="translate(0 -6)">
+    <ellipse cx={0} cy={-HEAD_R + 6} rx={HEAD_R + 14} ry={7} fill="#111111" stroke={ink} strokeWidth={2} />
+    <path d={`M -${HEAD_R - 6} -${HEAD_R + 2} Q -${HEAD_R - 2} -${HEAD_R + 40} 0 -${HEAD_R + 42} Q ${HEAD_R - 2} -${HEAD_R + 40} ${HEAD_R - 6} -${HEAD_R + 2} Z`} fill="#111111" stroke={ink} strokeWidth={2} />
+    <rect x={-(HEAD_R - 6)} y={-HEAD_R - 8} width={(HEAD_R - 6) * 2} height={7} fill="#f5f5f5" />
+  </g>
+);
+
 /** Frying pan held along the forearm: the handle continues the arm, the pan faces the way the arm points. */
 const FryingPan: React.FC<{ x: number; y: number; deg: number; ink: string }> = ({ x, y, deg, ink }) => (
   <g transform={`translate(${x} ${y}) rotate(${-deg})`}>
@@ -670,6 +699,8 @@ function faceFor(e: Expression): Face {
       return { eyeR: 3, browL: [-8, 0], browR: [0, -8], mouth: "grin" };
     case "ko":
       return { eyeR: 3, eyes: "x", browL: [-2, 2], browR: [2, -2], mouth: "wavy" };
+    case "angry":
+      return { eyeR: 3, browL: [-10, 2], browR: [2, -10], mouth: "frown" };
     default:
       return { eyeR: 3.5, browL: [-2, -2], browR: [-2, -2], mouth: "flat" };
   }

@@ -67,7 +67,7 @@ export interface PropSpec {
 }
 
 export const StillProp: React.FC<PropSpec & { palette: Palette }> = ({ name, x, y, size, palette }) => {
-  const prop: ResolvedProp = { name, atFrame: 0, untilFrame: 9999, anim: "pop", position: "center", scale: 1, exit: "fade" };
+  const prop: ResolvedProp = { name, atFrame: 0, untilFrame: 9999, anim: "pop", position: "center", scale: 1, exit: "fade", on: null };
   // Prop sizes itself as min(zone.w/0.78, zone.h) * 0.86 for a single slot; invert that so `size` is the drawn size.
   const zone: Rect = { x: x - size / 2 / 0.86, y: y - size / 2 / 0.86, w: size / 0.86, h: size / 0.86 };
   return <Prop prop={prop} sceneStart={0} zone={zone} palette={palette} slot={0} slots={1} />;

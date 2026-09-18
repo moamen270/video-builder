@@ -84,7 +84,10 @@
           "fallDir": null,
           "label": "Noodle",
           "held": null,
-          "heldFrame": 0
+          "heldFrame": 0,
+          "hat": null,
+          "hatFrame": 0,
+          "hatUntilFrame": 117
         }
       ],
       "props": [],
@@ -112,7 +115,8 @@
       "camera": [
         {
           "move": "slow_zoom",
-          "atFrame": 0
+          "atFrame": 0,
+          "on": null
         }
       ],
       "overlays": [
@@ -195,7 +199,10 @@
           "fallDir": null,
           "label": "Brick",
           "held": "ball",
-          "heldFrame": 117
+          "heldFrame": 117,
+          "hat": null,
+          "hatFrame": 117,
+          "hatUntilFrame": 195
         },
         {
           "id": "noodle",
@@ -216,7 +223,10 @@
           "fallDir": null,
           "label": "Noodle",
           "held": null,
-          "heldFrame": 117
+          "heldFrame": 117,
+          "hat": null,
+          "hatFrame": 117,
+          "hatUntilFrame": 195
         }
       ],
       "props": [],
@@ -244,7 +254,8 @@
       "camera": [
         {
           "move": "zoom_out",
-          "atFrame": 117
+          "atFrame": 117,
+          "on": null
         }
       ],
       "overlays": [],
@@ -328,7 +339,10 @@
           "fallDir": null,
           "label": "Brick",
           "held": "ball",
-          "heldFrame": 195
+          "heldFrame": 195,
+          "hat": null,
+          "hatFrame": 195,
+          "hatUntilFrame": 290
         },
         {
           "id": "noodle",
@@ -341,26 +355,29 @@
           "travel": null,
           "poseChanges": [
             {
-              "pose": "dodge_lean",
-              "expression": "surprised",
-              "atFrame": 249
+              "pose": "mj_toe",
+              "expression": "smug",
+              "atFrame": 243
             },
             {
-              "pose": "dodge_limbo",
+              "pose": "mj_lean",
               "expression": "smug",
-              "atFrame": 261
+              "atFrame": 253
             },
             {
               "pose": "idle",
               "expression": "smug",
-              "atFrame": 283
+              "atFrame": 285
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": "Noodle",
           "held": null,
-          "heldFrame": 195
+          "heldFrame": 195,
+          "hat": "fedora",
+          "hatFrame": 243,
+          "hatUntilFrame": 285
         }
       ],
       "props": [],
@@ -372,6 +389,12 @@
           "src": "assets/sfx/whoosh.wav"
         },
         {
+          "name": "pop",
+          "atFrame": 243,
+          "volume": 0.4,
+          "src": "assets/sfx/pop.wav"
+        },
+        {
           "name": "bounce",
           "atFrame": 289,
           "volume": 0.6,
@@ -380,8 +403,8 @@
       ],
       "bubbles": [
         {
-          "text": "WHOA",
-          "atFrame": 259,
+          "text": "HEE HEE",
+          "atFrame": 256,
           "untilFrame": 280,
           "side": "left",
           "on": "noodle"
@@ -389,8 +412,9 @@
       ],
       "camera": [
         {
-          "move": "punch_in",
-          "atFrame": 247
+          "move": "focus",
+          "atFrame": 244,
+          "on": "noodle"
         }
       ],
       "overlays": [],
@@ -464,14 +488,14 @@
           "id": "brick",
           "style": "stickman",
           "pose": "facepalm",
-          "expression": "worried",
+          "expression": "angry",
           "x": 162,
           "scale": 0.85,
           "travel": null,
           "poseChanges": [
             {
               "pose": "arms_crossed",
-              "expression": "fierce",
+              "expression": "angry",
               "atFrame": 319
             }
           ],
@@ -479,13 +503,16 @@
           "fallDir": null,
           "label": "Brick",
           "held": null,
-          "heldFrame": 290
+          "heldFrame": 290,
+          "hat": null,
+          "hatFrame": 290,
+          "hatUntilFrame": 366
         },
         {
           "id": "noodle",
           "style": "stickman",
           "color": "#fff1b8",
-          "pose": "bow",
+          "pose": "mj_toe",
           "expression": "happy",
           "x": 842.4,
           "scale": 0.85,
@@ -501,7 +528,10 @@
           "fallDir": null,
           "label": "Noodle",
           "held": null,
-          "heldFrame": 290
+          "heldFrame": 290,
+          "hat": "fedora",
+          "hatFrame": 290,
+          "hatUntilFrame": 319
         }
       ],
       "props": [],
@@ -514,7 +544,13 @@
         }
       ],
       "bubbles": [],
-      "camera": [],
+      "camera": [
+        {
+          "move": "focus",
+          "atFrame": 290,
+          "on": "brick"
+        }
+      ],
       "overlays": [],
       "projectiles": []
     },
@@ -568,7 +604,7 @@
           "id": "brick",
           "style": "stickman",
           "pose": "windup",
-          "expression": "fierce",
+          "expression": "angry",
           "x": 162,
           "scale": 0.85,
           "travel": null,
@@ -582,7 +618,10 @@
           "fallDir": null,
           "label": "Brick",
           "held": "ball",
-          "heldFrame": 366
+          "heldFrame": 366,
+          "hat": null,
+          "hatFrame": 366,
+          "hatUntilFrame": 453
         },
         {
           "id": "noodle",
@@ -595,21 +634,24 @@
           "travel": null,
           "poseChanges": [
             {
-              "pose": "dodge_split",
+              "pose": "dodge_jump",
               "expression": "happy",
-              "atFrame": 397
+              "atFrame": 396
             },
             {
               "pose": "idle",
               "expression": "smug",
-              "atFrame": 420
+              "atFrame": 414
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": "Noodle",
           "held": null,
-          "heldFrame": 366
+          "heldFrame": 366,
+          "hat": null,
+          "hatFrame": 366,
+          "hatUntilFrame": 453
         }
       ],
       "props": [],
@@ -631,7 +673,8 @@
       "camera": [
         {
           "move": "shake",
-          "atFrame": 402
+          "atFrame": 402,
+          "on": null
         }
       ],
       "overlays": [],
@@ -640,7 +683,7 @@
           "from": "brick",
           "to": "noodle",
           "atFrame": 394,
-          "hitFrame": 402,
+          "hitFrame": 403,
           "outcome": "miss",
           "n": 0
         }
@@ -714,7 +757,7 @@
           "id": "brick",
           "style": "stickman",
           "pose": "windup",
-          "expression": "fierce",
+          "expression": "angry",
           "x": 162,
           "scale": 0.85,
           "travel": null,
@@ -736,27 +779,30 @@
           "fallDir": null,
           "label": "Brick",
           "held": "ball",
-          "heldFrame": 453
+          "heldFrame": 453,
+          "hat": null,
+          "hatFrame": 453,
+          "hatUntilFrame": 548
         },
         {
           "id": "noodle",
           "style": "stickman",
           "color": "#fff1b8",
-          "pose": "idle",
+          "pose": "walk_left",
           "expression": "smug",
           "x": 842.4,
           "scale": 0.85,
-          "travel": null,
+          "travel": {
+            "fromX": 842.4,
+            "toX": 972,
+            "startFrame": 480,
+            "endFrame": 509
+          },
           "poseChanges": [
             {
-              "pose": "dodge_limbo",
+              "pose": "dodge_lean",
               "expression": "happy",
-              "atFrame": 484
-            },
-            {
-              "pose": "dodge_split",
-              "expression": "happy",
-              "atFrame": 489
+              "atFrame": 497
             },
             {
               "pose": "celebrating",
@@ -768,7 +814,10 @@
           "fallDir": null,
           "label": "Noodle",
           "held": null,
-          "heldFrame": 453
+          "heldFrame": 453,
+          "hat": "fedora",
+          "hatFrame": 480,
+          "hatUntilFrame": 515
         }
       ],
       "props": [],
@@ -798,11 +847,20 @@
           "src": "assets/sfx/bounce.wav"
         }
       ],
-      "bubbles": [],
+      "bubbles": [
+        {
+          "text": "SHAMONE",
+          "atFrame": 489,
+          "untilFrame": 512,
+          "side": "left",
+          "on": "noodle"
+        }
+      ],
       "camera": [
         {
           "move": "zoom_out",
-          "atFrame": 453
+          "atFrame": 453,
+          "on": null
         }
       ],
       "overlays": [],
@@ -902,7 +960,7 @@
           "id": "brick",
           "style": "stickman",
           "pose": "windup",
-          "expression": "fierce",
+          "expression": "angry",
           "x": 162,
           "scale": 0.85,
           "travel": null,
@@ -916,17 +974,25 @@
           "fallDir": null,
           "label": "Brick",
           "held": "ball",
-          "heldFrame": 548
+          "heldFrame": 548,
+          "hat": null,
+          "hatFrame": 548,
+          "hatUntilFrame": 663
         },
         {
           "id": "noodle",
           "style": "stickman",
           "color": "#fff1b8",
-          "pose": "idle",
+          "pose": "walk_left",
           "expression": "surprised",
           "x": 842.4,
           "scale": 0.85,
-          "travel": null,
+          "travel": {
+            "fromX": 972,
+            "toX": 842.4,
+            "startFrame": 548,
+            "endFrame": 564
+          },
           "poseChanges": [
             {
               "pose": "spin",
@@ -943,7 +1009,10 @@
           "fallDir": null,
           "label": "Noodle",
           "held": "frying_pan",
-          "heldFrame": 566
+          "heldFrame": 566,
+          "hat": null,
+          "hatFrame": 548,
+          "hatUntilFrame": 663
         }
       ],
       "props": [],
@@ -1001,11 +1070,13 @@
       "camera": [
         {
           "move": "zoom_out",
-          "atFrame": 548
+          "atFrame": 548,
+          "on": null
         },
         {
           "move": "shake",
-          "atFrame": 582
+          "atFrame": 582,
+          "on": null
         }
       ],
       "overlays": [],
@@ -1176,7 +1247,7 @@
           "id": "brick",
           "style": "stickman",
           "pose": "shocked",
-          "expression": "surprised",
+          "expression": "angry",
           "x": 162,
           "scale": 0.85,
           "travel": null,
@@ -1185,7 +1256,10 @@
           "fallDir": null,
           "label": "Brick",
           "held": null,
-          "heldFrame": 663
+          "heldFrame": 663,
+          "hat": null,
+          "hatFrame": 663,
+          "hatUntilFrame": 744
         },
         {
           "id": "noodle",
@@ -1207,7 +1281,10 @@
           "fallDir": null,
           "label": "Noodle",
           "held": "frying_pan",
-          "heldFrame": 663
+          "heldFrame": 663,
+          "hat": null,
+          "hatFrame": 663,
+          "hatUntilFrame": 744
         }
       ],
       "props": [],
@@ -1230,8 +1307,9 @@
       ],
       "camera": [
         {
-          "move": "pan_right",
-          "atFrame": 663
+          "move": "focus",
+          "atFrame": 690,
+          "on": "noodle"
         }
       ],
       "overlays": [],
@@ -1323,14 +1401,14 @@
           "id": "brick",
           "style": "stickman",
           "pose": "shrugging",
-          "expression": "worried",
+          "expression": "angry",
           "x": 162,
           "scale": 0.85,
           "travel": null,
           "poseChanges": [
             {
               "pose": "facepalm",
-              "expression": "worried",
+              "expression": "angry",
               "atFrame": 799
             }
           ],
@@ -1338,7 +1416,10 @@
           "fallDir": null,
           "label": "Brick",
           "held": null,
-          "heldFrame": 744
+          "heldFrame": 744,
+          "hat": null,
+          "hatFrame": 744,
+          "hatUntilFrame": 840
         },
         {
           "id": "noodle",
@@ -1360,7 +1441,10 @@
           "fallDir": null,
           "label": "Noodle",
           "held": null,
-          "heldFrame": 744
+          "heldFrame": 744,
+          "hat": null,
+          "hatFrame": 744,
+          "hatUntilFrame": 840
         }
       ],
       "props": [],
@@ -1375,8 +1459,9 @@
       "bubbles": [],
       "camera": [
         {
-          "move": "pan_left",
-          "atFrame": 744
+          "move": "focus",
+          "atFrame": 744,
+          "on": "brick"
         }
       ],
       "overlays": [],
@@ -1432,7 +1517,7 @@
           "id": "brick",
           "style": "stickman",
           "pose": "facepalm",
-          "expression": "worried",
+          "expression": "angry",
           "x": 162,
           "scale": 0.85,
           "travel": null,
@@ -1447,7 +1532,10 @@
           "fallDir": null,
           "label": "Brick",
           "held": null,
-          "heldFrame": 840
+          "heldFrame": 840,
+          "hat": null,
+          "hatFrame": 840,
+          "hatUntilFrame": 909
         },
         {
           "id": "noodle",
@@ -1469,7 +1557,10 @@
           "fallDir": null,
           "label": "Noodle",
           "held": null,
-          "heldFrame": 840
+          "heldFrame": 840,
+          "hat": null,
+          "hatFrame": 840,
+          "hatUntilFrame": 909
         },
         {
           "id": "pebble",
@@ -1495,7 +1586,10 @@
           "fallDir": null,
           "label": "Pebble",
           "held": "ball",
-          "heldFrame": 840
+          "heldFrame": 840,
+          "hat": null,
+          "hatFrame": 840,
+          "hatUntilFrame": 909
         }
       ],
       "props": [],
@@ -1522,7 +1616,13 @@
           "on": "pebble"
         }
       ],
-      "camera": [],
+      "camera": [
+        {
+          "move": "focus",
+          "atFrame": 866,
+          "on": "pebble"
+        }
+      ],
       "overlays": [],
       "projectiles": []
     },
@@ -1585,7 +1685,10 @@
           "fallDir": null,
           "label": "Brick",
           "held": null,
-          "heldFrame": 909
+          "heldFrame": 909,
+          "hat": null,
+          "hatFrame": 909,
+          "hatUntilFrame": 1008
         },
         {
           "id": "noodle",
@@ -1612,7 +1715,10 @@
           "fallDir": "left",
           "label": "Noodle",
           "held": null,
-          "heldFrame": 909
+          "heldFrame": 909,
+          "hat": null,
+          "hatFrame": 909,
+          "hatUntilFrame": 1008
         },
         {
           "id": "pebble",
@@ -1638,7 +1744,10 @@
           "fallDir": null,
           "label": "Pebble",
           "held": "ball",
-          "heldFrame": 909
+          "heldFrame": 909,
+          "hat": null,
+          "hatFrame": 909,
+          "hatUntilFrame": 1008
         }
       ],
       "props": [],
@@ -1677,12 +1786,14 @@
       "bubbles": [],
       "camera": [
         {
-          "move": "punch_in",
-          "atFrame": 933
+          "move": "focus",
+          "atFrame": 960,
+          "on": "noodle"
         },
         {
           "move": "shake",
-          "atFrame": 978
+          "atFrame": 978,
+          "on": null
         }
       ],
       "overlays": [],
@@ -1756,7 +1867,10 @@
           "fallDir": null,
           "label": "Brick",
           "held": null,
-          "heldFrame": 1008
+          "heldFrame": 1008,
+          "hat": null,
+          "hatFrame": 1008,
+          "hatUntilFrame": 1075
         },
         {
           "id": "noodle",
@@ -1772,7 +1886,10 @@
           "fallDir": "left",
           "label": "Noodle",
           "held": null,
-          "heldFrame": 1008
+          "heldFrame": 1008,
+          "hat": null,
+          "hatFrame": 1008,
+          "hatUntilFrame": 1075
         },
         {
           "id": "pebble",
@@ -1787,7 +1904,10 @@
           "fallDir": null,
           "label": "Pebble",
           "held": null,
-          "heldFrame": 1008
+          "heldFrame": 1008,
+          "hat": null,
+          "hatFrame": 1008,
+          "hatUntilFrame": 1075
         }
       ],
       "props": [],
@@ -1811,7 +1931,8 @@
       "camera": [
         {
           "move": "zoom_out",
-          "atFrame": 1008
+          "atFrame": 1008,
+          "on": null
         }
       ],
       "overlays": [],
@@ -1867,7 +1988,7 @@
           "id": "brick",
           "style": "stickman",
           "pose": "shocked",
-          "expression": "surprised",
+          "expression": "angry",
           "x": 162,
           "scale": 0.85,
           "travel": null,
@@ -1882,7 +2003,10 @@
           "fallDir": null,
           "label": "Brick",
           "held": null,
-          "heldFrame": 1075
+          "heldFrame": 1075,
+          "hat": null,
+          "hatFrame": 1075,
+          "hatUntilFrame": 1157
         },
         {
           "id": "noodle",
@@ -1898,7 +2022,10 @@
           "fallDir": "left",
           "label": "Noodle",
           "held": null,
-          "heldFrame": 1075
+          "heldFrame": 1075,
+          "hat": null,
+          "hatFrame": 1075,
+          "hatUntilFrame": 1157
         },
         {
           "id": "pebble",
@@ -1919,7 +2046,10 @@
           "fallDir": null,
           "label": "Pebble",
           "held": null,
-          "heldFrame": 1075
+          "heldFrame": 1075,
+          "hat": null,
+          "hatFrame": 1075,
+          "hatUntilFrame": 1157
         }
       ],
       "props": [
@@ -1928,27 +2058,30 @@
           "atFrame": 1106,
           "untilFrame": 1157,
           "anim": "stamp",
-          "position": "top_right",
-          "scale": 0.7,
-          "exit": "fade"
+          "position": "above_character",
+          "scale": 1.5,
+          "exit": "fade",
+          "on": "pebble"
         },
         {
           "name": "medal",
           "atFrame": 1114,
           "untilFrame": 1157,
           "anim": "drop",
-          "position": "top",
-          "scale": 0.6,
-          "exit": "fade"
+          "position": "center",
+          "scale": 1,
+          "exit": "fade",
+          "on": "pebble"
         },
         {
           "name": "trophy",
           "atFrame": 1121,
           "untilFrame": 1157,
           "anim": "pop",
-          "position": "top_left",
-          "scale": 0.6,
-          "exit": "fade"
+          "position": "right",
+          "scale": 1.3,
+          "exit": "fade",
+          "on": "pebble"
         }
       ],
       "sfx": [
@@ -1980,8 +2113,9 @@
       "bubbles": [],
       "camera": [
         {
-          "move": "punch_in",
-          "atFrame": 1106
+          "move": "focus",
+          "atFrame": 1075,
+          "on": "pebble"
         }
       ],
       "overlays": [],
@@ -2055,19 +2189,19 @@
           "id": "brick",
           "style": "stickman",
           "pose": "facepalm",
-          "expression": "worried",
+          "expression": "angry",
           "x": 162,
           "scale": 0.85,
           "travel": null,
           "poseChanges": [
             {
               "pose": "windup",
-              "expression": "fierce",
+              "expression": "angry",
               "atFrame": 1181
             },
             {
               "pose": "throw",
-              "expression": "fierce",
+              "expression": "angry",
               "atFrame": 1205
             }
           ],
@@ -2075,7 +2209,10 @@
           "fallDir": null,
           "label": "Brick",
           "held": "ball",
-          "heldFrame": 1181
+          "heldFrame": 1181,
+          "hat": null,
+          "hatFrame": 1157,
+          "hatUntilFrame": 1255
         },
         {
           "id": "noodle",
@@ -2091,7 +2228,10 @@
           "fallDir": "left",
           "label": "Noodle",
           "held": null,
-          "heldFrame": 1157
+          "heldFrame": 1157,
+          "hat": null,
+          "hatFrame": 1157,
+          "hatUntilFrame": 1255
         },
         {
           "id": "pebble",
@@ -2106,7 +2246,10 @@
           "fallDir": null,
           "label": "Pebble",
           "held": null,
-          "heldFrame": 1157
+          "heldFrame": 1157,
+          "hat": null,
+          "hatFrame": 1157,
+          "hatUntilFrame": 1255
         }
       ],
       "props": [],
@@ -2133,8 +2276,14 @@
       "bubbles": [],
       "camera": [
         {
+          "move": "focus",
+          "atFrame": 1157,
+          "on": "brick"
+        },
+        {
           "move": "shake",
-          "atFrame": 1215
+          "atFrame": 1215,
+          "on": null
         }
       ],
       "overlays": [
@@ -2255,9 +2404,9 @@
     "name": "Dummy Sticky"
   },
   "meta": {
-    "resolvedAt": "2026-09-18T21:19:45.476Z",
+    "resolvedAt": "2026-09-18T21:50:47.636Z",
     "engineVersion": "0.1.0",
     "ttsModel": "hexgrad/Kokoro-82M",
-    "manifestHash": "132b28289df1c13a"
+    "manifestHash": "94e822e4bca3f158"
   }
 }

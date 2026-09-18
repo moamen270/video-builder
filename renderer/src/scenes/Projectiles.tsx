@@ -55,7 +55,8 @@ export const Projectiles: React.FC<{ scene: ResolvedScene; abs: number; rects: {
     const r = R * scale;
     const dir = to.x > from.x ? 1 : -1;
     const hand = { x: from.x + from.w * (dir > 0 ? 0.78 : 0.22), y: from.y + from.h * 0.36 };
-    const chest = { x: to.x + to.w / 2, y: to.y + to.h * 0.42 };
+    // Misses are aimed at head height of the STANDING figure so a lean/duck/jump visibly clears the ball.
+    const chest = { x: to.x + to.w / 2, y: to.y + to.h * (p.outcome === "miss" ? 0.1 : 0.42) };
     const ground = to.y + to.h - r;
     const flight = Math.max(1, p.hitFrame - p.atFrame);
     const t = abs - p.atFrame;
@@ -69,7 +70,7 @@ export const Projectiles: React.FC<{ scene: ResolvedScene; abs: number; rects: {
         if (f < flight * 0.35) return { x: hand.x, y: y0 + (ground - y0) * drop * drop, rot: 0, sq: 0 };
         const k = Math.min(1, (f - flight * 0.35) / (flight * 0.65));
         const ease = 1 - (1 - k) * (1 - k);
-        const bounce = Math.max(0, Math.sin(k * Math.PI * 3)) * 26 * (1 - k);
+        const bounce = Math.abs(Math.sin(k * Math.PI * 3)) * 110 * Math.pow(1 - k, 1.3); // three real bounces, each lower
         if (k >= 1 && f > flight + 40) return null;
         return { x: hand.x + (to.x + to.w * (dir > 0 ? 0.42 : 0.58) - hand.x) * ease, y: ground - bounce, rot: k * 720 * dir, sq: 0 };
       }

@@ -138,6 +138,9 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
         label: e.label ?? null,
         held: e.held ?? null,
         heldFrame: e.heldAt ? at(e.heldAt, `extras[${i}].heldAt`) : startFrame,
+        hat: e.hat ?? null,
+        hatFrame: e.hatAt ? at(e.hatAt, `extras[${i}].hatAt`) : startFrame,
+        hatUntilFrame: e.hatUntil ? at(e.hatUntil, `extras[${i}].hatUntil`) : endFrame,
       };
     });
 
@@ -192,7 +195,8 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
       const atFrame = at(pr.at, `props[${i}].at`);
       const untilFrame = pr.until ? at(pr.until, `props[${i}].until`) : endFrame;
       if (untilFrame <= atFrame) warnings.push({ path: `${where}.props[${i}]`, message: `"until" is not after "at"; prop never visible` });
-      return { name: pr.name, atFrame, untilFrame, anim: pr.anim, position: pr.position, scale: pr.scale, exit: pr.exit };
+      if (pr.on && !s.extras.some((e) => e.id === pr.on)) throw new ResolveError(`prop on "${pr.on}": not an extra in this scene`, `${where}.props[${i}]`);
+      return { name: pr.name, atFrame, untilFrame, anim: pr.anim, position: pr.position, scale: pr.scale, exit: pr.exit, on: pr.on ?? null };
     });
 
     const sfx = s.sfx.map((fx, i) => ({
@@ -210,7 +214,10 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
       on: b.on,
     }));
 
-    const camera = s.camera.map((c, i) => ({ move: c.move, atFrame: at(c.at, `camera[${i}].at`) }));
+    const camera = s.camera.map((c, i) => {
+      if (c.move === "focus" && !(c.on && s.extras.some((e) => e.id === c.on))) throw new ResolveError(`camera focus needs "on": <extra id>`, `${where}.camera[${i}]`);
+      return { move: c.move, atFrame: at(c.at, `camera[${i}].at`), on: c.on ?? null };
+    });
     const overlays = s.overlays.map((o, i) => {
       if (o.kind === "hook_card" && !o.text) throw new ResolveError(`hook_card needs "text"`, `${where}.overlays[${i}]`);
       return { kind: o.kind, atFrame: at(o.at, `overlays[${i}].at`), untilFrame: o.until ? at(o.until, `overlays[${i}].until`) : endFrame, text: o.text };

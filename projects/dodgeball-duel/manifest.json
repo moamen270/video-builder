@@ -16,7 +16,7 @@
       "style": "stickman"
     }
   ],
-  "notes": "Sports-commentator narration (am_michael, fast, stadium). Brick (big, no patience) vs Noodle (unhittable, insufferable), Pebble the kid wins by dropping a ball. Escalation (v4, after review): slow pitch → Matrix dodge → faster → two at once → Gatling barrage vs frying pan → gives up → the kid. Ending: Brick throws his last ball at the camera. v1: no bullet-time yet. Alt hooks: 'Nobody hits Noodle.' / 'One ball. One kid.'",
+  "notes": "Sports-commentator narration (am_michael, fast, stadium). Brick (big, no patience) vs Noodle (unhittable, insufferable), Pebble the kid wins by dropping a ball. Escalation (v4, after review): slow pitch → Matrix dodge → faster → two at once → Gatling barrage vs frying pan → gives up → the kid. Ending: Brick throws his last ball at the camera. v1: no bullet-time yet. Alt hooks: 'Nobody hits Noodle.' / 'One ball. One kid.' v5: MJ moves (mj_toe/mj_lean/moonwalk) with a fedora that appears and vanishes, jump dodge, Brick goes red with ear steam, camera `focus` on the actor of each beat, coronation props attached to Pebble.",
   "social": {
     "title": "The Ultimate Dodgeball Match — nobody can hit Noodle (stickman)",
     "hook": "Nobody can hit Noodle.",
@@ -236,21 +236,24 @@
           "scale": 0.85,
           "poseChanges": [
             {
-              "pose": "dodge_lean",
-              "expression": "surprised",
-              "at": "word:pitch+0.55"
+              "pose": "mj_toe",
+              "expression": "smug",
+              "at": "word:pitch+0.35"
             },
             {
-              "pose": "dodge_limbo",
+              "pose": "mj_lean",
               "expression": "smug",
-              "at": "word:pitch+0.95"
+              "at": "word:pitch+0.7"
             },
             {
               "pose": "idle",
               "expression": "smug",
-              "at": "word:pitch+1.7"
+              "at": "word:pitch+1.75"
             }
-          ]
+          ],
+          "hat": "fedora",
+          "hatAt": "word:pitch+0.35",
+          "hatUntil": "word:pitch+1.75"
         }
       ],
       "projectiles": [
@@ -269,6 +272,11 @@
           "volume": 0.5
         },
         {
+          "name": "pop",
+          "at": "word:pitch+0.35",
+          "volume": 0.4
+        },
+        {
           "name": "bounce",
           "at": "word:pitch+1.9",
           "volume": 0.6
@@ -276,8 +284,8 @@
       ],
       "bubbles": [
         {
-          "text": "WHOA",
-          "at": "word:pitch+0.9",
+          "text": "HEE HEE",
+          "at": "word:pitch+0.8",
           "until": "word:pitch+1.6",
           "on": "noodle",
           "side": "left"
@@ -285,8 +293,9 @@
       ],
       "camera": [
         {
-          "move": "punch_in",
-          "at": "word:pitch+0.5"
+          "move": "focus",
+          "on": "noodle",
+          "at": "word:pitch+0.4"
         }
       ]
     },
@@ -305,13 +314,13 @@
           "style": "stickman",
           "label": "Brick",
           "pose": "facepalm",
-          "expression": "worried",
+          "expression": "angry",
           "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
             {
               "pose": "arms_crossed",
-              "expression": "fierce",
+              "expression": "angry",
               "at": "word:amused"
             }
           ]
@@ -321,7 +330,7 @@
           "style": "stickman",
           "label": "Noodle",
           "color": "#fff1b8",
-          "pose": "bow",
+          "pose": "mj_toe",
           "expression": "happy",
           "x": 0.78,
           "scale": 0.85,
@@ -331,7 +340,9 @@
               "expression": "smug",
               "at": "word:amused"
             }
-          ]
+          ],
+          "hat": "fedora",
+          "hatUntil": "word:amused"
         }
       ],
       "sfx": [
@@ -341,7 +352,13 @@
           "volume": 0.4
         }
       ],
-      "camera": []
+      "camera": [
+        {
+          "move": "focus",
+          "on": "brick",
+          "at": "start"
+        }
+      ]
     },
     {
       "id": "try2",
@@ -358,7 +375,7 @@
           "style": "stickman",
           "label": "Brick",
           "pose": "windup",
-          "expression": "fierce",
+          "expression": "angry",
           "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
@@ -380,14 +397,14 @@
           "scale": 0.85,
           "poseChanges": [
             {
-              "pose": "dodge_split",
+              "pose": "dodge_jump",
               "expression": "happy",
-              "at": "word:faster+0.12"
+              "at": "word:faster+0.1"
             },
             {
               "pose": "idle",
               "expression": "smug",
-              "at": "word:faster+0.9"
+              "at": "word:faster+0.7"
             }
           ]
         }
@@ -397,7 +414,7 @@
           "from": "brick",
           "to": "noodle",
           "at": "word:faster+0.02",
-          "flight": 0.28,
+          "flight": 0.3,
           "outcome": "miss"
         }
       ],
@@ -435,7 +452,7 @@
           "style": "stickman",
           "label": "Brick",
           "pose": "windup",
-          "expression": "fierce",
+          "expression": "angry",
           "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
@@ -459,27 +476,31 @@
           "style": "stickman",
           "label": "Noodle",
           "color": "#fff1b8",
-          "pose": "idle",
+          "pose": "walk_left",
           "expression": "smug",
           "x": 0.78,
           "scale": 0.85,
           "poseChanges": [
             {
-              "pose": "dodge_limbo",
+              "pose": "dodge_lean",
               "expression": "happy",
-              "at": "word:two+0.14"
-            },
-            {
-              "pose": "dodge_split",
-              "expression": "happy",
-              "at": "word:two+0.3"
+              "at": "word:once+0.2"
             },
             {
               "pose": "celebrating",
               "expression": "happy",
               "at": "word:once+0.8"
             }
-          ]
+          ],
+          "travel": {
+            "fromX": 0.78,
+            "toX": 0.9,
+            "start": "word:two",
+            "end": "word:once+0.6"
+          },
+          "hat": "fedora",
+          "hatAt": "word:two",
+          "hatUntil": "word:once+0.8"
         }
       ],
       "projectiles": [
@@ -520,6 +541,15 @@
           "move": "zoom_out",
           "at": "start"
         }
+      ],
+      "bubbles": [
+        {
+          "text": "SHAMONE",
+          "at": "word:two+0.3",
+          "until": "word:once+0.7",
+          "on": "noodle",
+          "side": "left"
+        }
       ]
     },
     {
@@ -537,7 +567,7 @@
           "style": "stickman",
           "label": "Brick",
           "pose": "windup",
-          "expression": "fierce",
+          "expression": "angry",
           "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
@@ -553,7 +583,7 @@
           "style": "stickman",
           "label": "Noodle",
           "color": "#fff1b8",
-          "pose": "idle",
+          "pose": "walk_left",
           "expression": "surprised",
           "x": 0.78,
           "scale": 0.85,
@@ -570,7 +600,13 @@
             }
           ],
           "held": "frying_pan",
-          "heldAt": "word:gatling-0.25"
+          "heldAt": "word:gatling-0.25",
+          "travel": {
+            "fromX": 0.9,
+            "toX": 0.78,
+            "start": "start",
+            "end": "word:gatling-0.3"
+          }
         }
       ],
       "projectiles": [
@@ -652,7 +688,7 @@
           "style": "stickman",
           "label": "Brick",
           "pose": "shocked",
-          "expression": "surprised",
+          "expression": "angry",
           "x": 0.15,
           "scale": 0.85
         },
@@ -692,8 +728,9 @@
       ],
       "camera": [
         {
-          "move": "pan_right",
-          "at": "start"
+          "move": "focus",
+          "on": "noodle",
+          "at": "word:frying"
         }
       ]
     },
@@ -712,13 +749,13 @@
           "style": "stickman",
           "label": "Brick",
           "pose": "shrugging",
-          "expression": "worried",
+          "expression": "angry",
           "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
             {
               "pose": "facepalm",
-              "expression": "worried",
+              "expression": "angry",
               "at": "word:patience"
             }
           ]
@@ -750,7 +787,8 @@
       ],
       "camera": [
         {
-          "move": "pan_left",
+          "move": "focus",
+          "on": "brick",
           "at": "start"
         }
       ]
@@ -770,7 +808,7 @@
           "style": "stickman",
           "label": "Brick",
           "pose": "facepalm",
-          "expression": "worried",
+          "expression": "angry",
           "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
@@ -840,6 +878,13 @@
           "at": "word:this+0.4",
           "until": "end-0.1",
           "on": "pebble"
+        }
+      ],
+      "camera": [
+        {
+          "move": "focus",
+          "on": "pebble",
+          "at": "word:this"
         }
       ]
     },
@@ -947,8 +992,9 @@
       ],
       "camera": [
         {
-          "move": "punch_in",
-          "at": "word:dropped+0.3"
+          "move": "focus",
+          "on": "noodle",
+          "at": "word:dropped+1.2"
         },
         {
           "move": "shake",
@@ -1034,7 +1080,7 @@
           "style": "stickman",
           "label": "Brick",
           "pose": "shocked",
-          "expression": "surprised",
+          "expression": "angry",
           "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
@@ -1079,22 +1125,25 @@
           "name": "crown",
           "at": "word:pebble",
           "anim": "stamp",
-          "position": "top_right",
-          "scale": 0.7
+          "position": "above_character",
+          "scale": 1.5,
+          "on": "pebble"
         },
         {
           "name": "medal",
           "at": "word:pebble+0.25",
           "anim": "drop",
-          "position": "top",
-          "scale": 0.6
+          "position": "center",
+          "scale": 1.0,
+          "on": "pebble"
         },
         {
           "name": "trophy",
           "at": "word:pebble+0.5",
           "anim": "pop",
-          "position": "top_left",
-          "scale": 0.6
+          "position": "right",
+          "scale": 1.3,
+          "on": "pebble"
         }
       ],
       "sfx": [
@@ -1121,8 +1170,9 @@
       ],
       "camera": [
         {
-          "move": "punch_in",
-          "at": "word:pebble"
+          "move": "focus",
+          "on": "pebble",
+          "at": "start"
         }
       ]
     },
@@ -1142,18 +1192,18 @@
           "style": "stickman",
           "label": "Brick",
           "pose": "facepalm",
-          "expression": "worried",
+          "expression": "angry",
           "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
             {
               "pose": "windup",
-              "expression": "fierce",
+              "expression": "angry",
               "at": "word:one"
             },
             {
               "pose": "throw",
-              "expression": "fierce",
+              "expression": "angry",
               "at": "word:left+0.25"
             }
           ],
@@ -1214,6 +1264,11 @@
         }
       ],
       "camera": [
+        {
+          "move": "focus",
+          "on": "brick",
+          "at": "start"
+        },
         {
           "move": "shake",
           "at": "word:left+0.6"
