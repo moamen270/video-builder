@@ -20,8 +20,10 @@ the pack, not from memory of building the video.
    - `checklist.md` — the checks as a table: **auto** rows decided, **👁️ check** rows point at strips,
      **ear** rows are for a human
 2. **Run the reviewer** — `Agent` tool, `subagent_type: "video-reviewer"`, prompt:
-   `Review projects/<slug>/output/v<N>/review/ and write report.md from docs/REVIEW_TEMPLATE.md.`
-   Run it in the background; do not pre-judge the result.
+   `Review projects/<slug>/output/v<N>/review/ and return the report from docs/REVIEW_TEMPLATE.md.`
+   The subagent cannot write files: **save its returned report verbatim to `review/report.md`**.
+   Do not pre-judge the result; if the `video-reviewer` type is not registered yet (new session
+   needed), run `general-purpose` with `.claude/agents/video-reviewer.md` pasted as instructions.
 3. **Relay the report** to the user: verdict, scores, the ranked fixes, and the `ear` items — quote
    the report, don't paraphrase the verdict. Then, if asked, apply the fixes as a **new version**
    and review again.

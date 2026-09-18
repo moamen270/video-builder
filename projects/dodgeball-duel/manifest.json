@@ -71,11 +71,16 @@
           "style": "stickman",
           "label": "Noodle",
           "color": "#fff1b8",
-          "pose": "arms_crossed",
+          "pose": "idle",
           "expression": "smug",
           "x": 0.5,
           "scale": 0.85,
           "poseChanges": [
+            {
+              "pose": "arms_crossed",
+              "expression": "smug",
+              "at": "word:undefeated"
+            },
             {
               "pose": "bow",
               "expression": "happy",
@@ -85,6 +90,11 @@
         }
       ],
       "sfx": [
+        {
+          "name": "tick",
+          "at": "word:undefeated",
+          "volume": 0.5
+        },
         {
           "name": "tick",
           "at": "word:unhittable",
@@ -132,7 +142,7 @@
           "label": "Brick",
           "pose": "idle",
           "expression": "fierce",
-          "x": 0.2,
+          "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
             {
@@ -200,7 +210,7 @@
           "label": "Brick",
           "pose": "windup",
           "expression": "fierce",
-          "x": 0.2,
+          "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
             {
@@ -296,7 +306,7 @@
           "label": "Brick",
           "pose": "facepalm",
           "expression": "worried",
-          "x": 0.2,
+          "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
             {
@@ -354,7 +364,7 @@
           "label": "Brick",
           "pose": "windup",
           "expression": "fierce",
-          "x": 0.2,
+          "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
             {
@@ -460,7 +470,7 @@
         "frying pan"
       ],
       "layout": "character_center",
-      "pauseAfter": 0.6,
+      "pauseAfter": 0.5,
       "character": null,
       "extras": [
         {
@@ -469,7 +479,7 @@
           "label": "Brick",
           "pose": "shocked",
           "expression": "surprised",
-          "x": 0.2,
+          "x": 0.15,
           "scale": 0.85
         },
         {
@@ -529,7 +539,7 @@
           "label": "Brick",
           "pose": "windup",
           "expression": "fierce",
-          "x": 0.2,
+          "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
             {
@@ -606,7 +616,7 @@
           "label": "Brick",
           "pose": "windup",
           "expression": "fierce",
-          "x": 0.2,
+          "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
             {
@@ -694,12 +704,12 @@
     },
     {
       "id": "rage",
-      "speech": "Brick is out of balls. And patience.",
+      "speech": "Brick is out of ideas. And patience.",
       "emphasis": [
         "patience"
       ],
       "layout": "character_center",
-      "pauseAfter": 0.5,
+      "pauseAfter": 0.4,
       "character": null,
       "extras": [
         {
@@ -708,7 +718,7 @@
           "label": "Brick",
           "pose": "shrugging",
           "expression": "worried",
-          "x": 0.2,
+          "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
             {
@@ -766,7 +776,7 @@
           "label": "Brick",
           "pose": "facepalm",
           "expression": "worried",
-          "x": 0.2,
+          "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
             {
@@ -797,9 +807,9 @@
           "id": "pebble",
           "style": "kid",
           "label": "Pebble",
-          "pose": "walk_right",
+          "pose": "walk_left",
           "expression": "happy",
-          "x": 0.5,
+          "x": 0.9,
           "scale": 0.5,
           "poseChanges": [
             {
@@ -809,8 +819,8 @@
             }
           ],
           "travel": {
-            "fromX": -0.12,
-            "toX": 0.5,
+            "fromX": 1.15,
+            "toX": 0.9,
             "start": "start",
             "end": "word:this+0.3"
           },
@@ -845,7 +855,7 @@
         "dropped"
       ],
       "layout": "character_center",
-      "pauseAfter": 1.8,
+      "pauseAfter": 1.5,
       "character": null,
       "extras": [
         {
@@ -854,7 +864,7 @@
           "label": "Brick",
           "pose": "thinking",
           "expression": "confused",
-          "x": 0.2,
+          "x": 0.15,
           "scale": 0.85
         },
         {
@@ -870,10 +880,10 @@
             {
               "pose": "shocked",
               "expression": "surprised",
-              "at": "word:dropped+1.35"
+              "at": "word:dropped+1.0"
             }
           ],
-          "knockedOutAt": "word:dropped+1.75",
+          "knockedOutAt": "word:dropped+1.35",
           "fallDir": "left"
         },
         {
@@ -882,7 +892,7 @@
           "label": "Pebble",
           "pose": "idle",
           "expression": "happy",
-          "x": 0.5,
+          "x": 0.9,
           "scale": 0.5,
           "poseChanges": [
             {
@@ -904,45 +914,40 @@
           "from": "pebble",
           "to": "noodle",
           "at": "word:dropped",
-          "flight": 1.7,
+          "flight": 1.3,
           "outcome": "roll"
         }
       ],
       "sfx": [
         {
           "name": "bounce",
-          "at": "word:dropped+0.6",
+          "at": "word:dropped+0.45",
           "volume": 0.6
         },
         {
           "name": "bounce",
-          "at": "word:dropped+1.0",
+          "at": "word:dropped+0.8",
           "volume": 0.4
         },
         {
-          "name": "bounce",
-          "at": "word:dropped+1.35",
-          "volume": 0.3
-        },
-        {
           "name": "thud",
-          "at": "word:dropped+1.85",
+          "at": "word:dropped+1.45",
           "volume": 1.0
         },
         {
           "name": "boom",
-          "at": "word:dropped+1.85",
+          "at": "word:dropped+1.45",
           "volume": 0.5
         }
       ],
       "camera": [
         {
           "move": "punch_in",
-          "at": "word:dropped+0.4"
+          "at": "word:dropped+0.3"
         },
         {
           "move": "shake",
-          "at": "word:dropped+1.85"
+          "at": "word:dropped+1.45"
         }
       ]
     },
@@ -953,7 +958,7 @@
         "DOWN"
       ],
       "layout": "character_center",
-      "pauseAfter": 0.6,
+      "pauseAfter": 0.5,
       "character": null,
       "extras": [
         {
@@ -962,7 +967,7 @@
           "label": "Brick",
           "pose": "shocked",
           "expression": "surprised",
-          "x": 0.2,
+          "x": 0.15,
           "scale": 0.85
         },
         {
@@ -983,7 +988,7 @@
           "label": "Pebble",
           "pose": "shrugging",
           "expression": "happy",
-          "x": 0.5,
+          "x": 0.9,
           "scale": 0.5
         }
       ],
@@ -1025,7 +1030,7 @@
           "label": "Brick",
           "pose": "shocked",
           "expression": "surprised",
-          "x": 0.2,
+          "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
             {
@@ -1053,7 +1058,7 @@
           "label": "Pebble",
           "pose": "idle",
           "expression": "happy",
-          "x": 0.5,
+          "x": 0.9,
           "scale": 0.5,
           "poseChanges": [
             {
@@ -1069,21 +1074,21 @@
           "name": "crown",
           "at": "word:pebble",
           "anim": "stamp",
-          "position": "above_character",
+          "position": "top_right",
           "scale": 0.7
         },
         {
           "name": "medal",
           "at": "word:pebble+0.25",
           "anim": "drop",
-          "position": "top_left",
+          "position": "top",
           "scale": 0.6
         },
         {
           "name": "trophy",
           "at": "word:pebble+0.5",
-          "anim": "bounce",
-          "position": "top_right",
+          "anim": "pop",
+          "position": "top_left",
           "scale": 0.6
         }
       ],
@@ -1123,7 +1128,7 @@
         "one ball"
       ],
       "layout": "character_center",
-      "pauseAfter": 1.1,
+      "pauseAfter": 1.0,
       "speed": 1.05,
       "character": null,
       "extras": [
@@ -1133,7 +1138,7 @@
           "label": "Brick",
           "pose": "facepalm",
           "expression": "worried",
-          "x": 0.2,
+          "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
             {
@@ -1168,7 +1173,7 @@
           "label": "Pebble",
           "pose": "victory",
           "expression": "happy",
-          "x": 0.5,
+          "x": 0.9,
           "scale": 0.5
         }
       ],

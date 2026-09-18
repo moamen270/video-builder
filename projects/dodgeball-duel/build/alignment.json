@@ -211,7 +211,7 @@
           "ws": ""
         }
       ],
-      "hash": "3713f9252752af15"
+      "hash": "b4b37a97e9ce8702"
     },
     {
       "sceneId": "try2",
@@ -282,7 +282,7 @@
     {
       "sceneId": "rage",
       "file": "rage.wav",
-      "duration": 2.8,
+      "duration": 2.875,
       "sampleRate": 24000,
       "tokens": [
         {
@@ -306,29 +306,29 @@
         {
           "text": "of",
           "start": 0.838,
-          "end": 0.95,
+          "end": 0.938,
           "ws": " "
         },
         {
-          "text": "balls.",
-          "start": 0.95,
-          "end": 1.575,
+          "text": "ideas.",
+          "start": 0.938,
+          "end": 1.65,
           "ws": " "
         },
         {
           "text": "And",
-          "start": 1.575,
-          "end": 1.75,
+          "start": 1.65,
+          "end": 1.825,
           "ws": " "
         },
         {
           "text": "patience.",
-          "start": 1.75,
-          "end": 2.7,
+          "start": 1.825,
+          "end": 2.775,
           "ws": ""
         }
       ],
-      "hash": "ab80a937c4b0c5d1"
+      "hash": "d1513094a53de317"
     },
     {
       "sceneId": "kid",
@@ -382,7 +382,7 @@
           "ws": ""
         }
       ],
-      "hash": "61b07354ec5f3cb0"
+      "hash": "874117423cc2e46d"
     },
     {
       "sceneId": "down",
@@ -409,7 +409,7 @@
           "ws": ""
         }
       ],
-      "hash": "bbf74f8d610355c9"
+      "hash": "d9816d3faa18f844"
     },
     {
       "sceneId": "champion",
@@ -475,7 +475,7 @@
           "ws": ""
         }
       ],
-      "hash": "b774bdc07c8dc259"
+      "hash": "90e54ff2caf17fc6"
     },
     {
       "sceneId": "cta",

@@ -50,7 +50,7 @@ export const RIGS: Record<Pose, Rig> = {
   arms_crossed: { lUpper: -34, lLower: 122, rUpper: 34, rLower: -122, lThigh: -10, lShin: 0, rThigh: 10, rShin: 0, head: 0, torso: 0, lift: 0, nod: 5 },
   run_right: { lUpper: -8, lLower: -6, rUpper: 8, rLower: 6, lThigh: -7, lShin: 0, rThigh: 7, rShin: 0, head: 0, torso: 0, lift: 0, nod: 0 },
   run_left: { lUpper: -8, lLower: -6, rUpper: 8, rLower: 6, lThigh: -7, lShin: 0, rThigh: 7, rShin: 0, head: 0, torso: 0, lift: 0, nod: 0 },
-  knocked_out: { lUpper: -30, lLower: -20, rUpper: 40, rLower: 30, lThigh: -12, lShin: 0, rThigh: 16, rShin: -10, head: 8, torso: 0, lift: 0, nod: 0 },
+  knocked_out: { lUpper: -14, lLower: -10, rUpper: 18, rLower: 12, lThigh: -8, lShin: 0, rThigh: 10, rShin: -6, head: 8, torso: 0, lift: 0, nod: 0 },
   aim_camera: { lUpper: -26, lLower: -30, rUpper: 110, rLower: -138, lThigh: -14, lShin: 4, rThigh: 14, rShin: -4, head: 0, torso: 0, lift: 0, nod: 6 },
   // Dodgeball: dodges lean AWAY from a ball coming from screen-left (torso + = tilt right).
   dodge_lean: { lUpper: -140, lLower: -20, rUpper: 40, rLower: 30, lThigh: -34, lShin: 0, rThigh: 26, rShin: -60, head: 18, torso: 38, lift: 6, nod: -10 },

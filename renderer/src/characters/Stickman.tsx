@@ -325,7 +325,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
         <circle cx={lHand.x} cy={lHand.y} r={wolv ? 9 : 7} fill={ink} />
         <circle cx={rHand.x} cy={rHand.y} r={wolv ? 9 : 7} fill={ink} />
         {held === "frying_pan" && <FryingPan x={rHand.x} y={rHand.y} deg={rForeDeg} ink={ink} />}
-        {held === "ball" && <circle cx={rHand.x + 14} cy={rHand.y + 6} r={22} fill="#d62828" stroke={ink} strokeWidth={3} />}
+
         {st.pose === "spin" && (
           <g opacity={0.5} fill="none" stroke={ink} strokeWidth={4} strokeLinecap="round">
             <path d={`M ${HIP.x - 110} ${HIP.y - 60} A 110 40 0 0 1 ${HIP.x + 110} ${HIP.y - 60}`} strokeDasharray="30 22" />
@@ -392,6 +392,14 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
             <Mouth kind={face.mouth} open={mouthOpen} ink={ink} accent={accent} />
           </g>}
         </g>
+        {/* held ball: drawn after the head so a wind-up behind the head still shows it */}
+        {held === "ball" && (
+          <g transform={`translate(${rHand.x + 22} ${rHand.y})`}>
+            <circle r={30} fill="#d62828" stroke={ink} strokeWidth={3} />
+            <path d="M -24 -6 Q 0 10 24 -6" stroke="#f4d6c5" strokeWidth={5} fill="none" />
+            <circle cx={-10} cy={-12} r={5} fill="#ffffff" opacity={0.55} />
+          </g>
+        )}
       </svg>
     </div>
   );
@@ -534,10 +542,10 @@ const JhinMask: React.FC<{ talking: number }> = ({ talking }) => {
 /** Frying pan held along the forearm: the handle continues the arm, the pan faces the way the arm points. */
 const FryingPan: React.FC<{ x: number; y: number; deg: number; ink: string }> = ({ x, y, deg, ink }) => (
   <g transform={`translate(${x} ${y}) rotate(${-deg})`}>
-    <rect x={-6} y={0} width={12} height={40} rx={5} fill="#5b3a1a" stroke={ink} strokeWidth={2} />
-    <circle cx={0} cy={66} r={30} fill="#3a3f52" stroke={ink} strokeWidth={3} />
-    <circle cx={0} cy={66} r={21} fill="#2a2e3e" />
-    <circle cx={-8} cy={56} r={5} fill="#ffffff" opacity={0.35} />
+    <rect x={-6} y={0} width={12} height={44} rx={5} fill="#7a4a1e" stroke={ink} strokeWidth={2} />
+    <circle cx={0} cy={74} r={34} fill="#aab3c8" stroke={ink} strokeWidth={3} />
+    <circle cx={0} cy={74} r={24} fill="#6b7590" />
+    <circle cx={-9} cy={62} r={6} fill="#ffffff" opacity={0.6} />
   </g>
 );
 
