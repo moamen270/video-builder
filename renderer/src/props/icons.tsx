@@ -281,6 +281,40 @@ export const ICONS: Record<PropName, Icon> = {
       ))}
     </g>
   ),
+  ball: ({ line }) => (
+    <g {...base(line)}>
+      <circle cx={50} cy={50} r={40} fill="#d62828" />
+      <path d="M 14 40 Q 50 62 86 40" stroke="#f4d6c5" strokeWidth={7} fill="none" />
+      <path d="M 14 60 Q 50 82 86 60" stroke="#f4d6c5" strokeWidth={5} fill="none" opacity={0.7} />
+      <circle cx={34} cy={30} r={7} fill="#ffffff" opacity={0.55} stroke="none" />
+    </g>
+  ),
+  frying_pan: ({ line }) => (
+    <g {...base(line)}>
+      <circle cx={40} cy={56} r={30} fill="#3a3f52" />
+      <circle cx={40} cy={56} r={22} fill="#2a2e3e" stroke="none" />
+      <rect x={66} y={50} width={30} height={12} rx={6} fill="#5b3a1a" />
+      <circle cx={34} cy={48} r={5} fill="#ffffff" opacity={0.4} stroke="none" />
+    </g>
+  ),
+  crown: ({ line, accent }) => (
+    <g {...base(line)}>
+      <path d="M 14 70 L 14 34 L 32 50 L 50 22 L 68 50 L 86 34 L 86 70 Z" fill={accent} />
+      <rect x={14} y={66} width={72} height={12} fill={accent} />
+      <circle cx={50} cy={22} r={5} fill="#e63946" />
+      <circle cx={14} cy={34} r={4} fill="#4cc9f0" />
+      <circle cx={86} cy={34} r={4} fill="#4cc9f0" />
+    </g>
+  ),
+  medal: ({ line, accent }) => (
+    <g {...base(line)}>
+      <path d="M 34 6 L 50 40 L 66 6" fill="#c1121f" />
+      <path d="M 40 6 L 50 28 L 60 6" fill="#1d3557" stroke="none" />
+      <circle cx={50} cy={62} r={26} fill={accent} />
+      <circle cx={50} cy={62} r={18} fill="none" stroke="#b07d00" strokeWidth={3} />
+      <text x={50} y={71} textAnchor="middle" fontFamily='"Arial Black", Impact, sans-serif' fontWeight={900} fontSize={24} fill="#5a3e00" stroke="none">1</text>
+    </g>
+  ),
   watermelon: ({ line }) => (
     <g {...base(line)}>
       <ellipse cx={50} cy={54} rx={42} ry={36} fill="#2f9e44" />

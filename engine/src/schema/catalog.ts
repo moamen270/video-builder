@@ -31,6 +31,13 @@ export const POSES = [
   "bow", // theatrical bow, one arm sweeping
   "walk_right",
   "aim_camera", // gun pointed straight at the viewer (front view of the pistol)
+  "dodge_lean", // Matrix lean-back away from a ball: torso way back, arms flung, front leg straight
+  "dodge_limbo", // even further back, knees bent, almost horizontal
+  "dodge_split", // drops into a split under a ball
+  "spin", // hurricane: body whirls about its axis (scaleX oscillates), arms out — with a held pan it deflects
+  "windup", // ball arm cocked far back over the shoulder, other arm forward, weight on the back foot
+  "throw", // arm snapped forward after the release, body leaning into it
+  "victory", // both arms up, chest out, chin up — champion
   "twirl", // gun spinning in cycles in the raised hand (gunslinger flourish before the finale)
   "admire", // gun lowered, other hand to the chin, head tilted: appreciating the work // side view, procedural gait, facing screen-right — pair with character.travel
   "walk_left",
@@ -96,7 +103,12 @@ export const PROPS = [
   "crate", // wooden box that sits on the ground — a landing surface for `jump`
   "milk", // carton
   "bat_signal", // spotlight disc with a bat silhouette
-  "moon", // crescent
+  "moon",
+  "ball", // red rubber dodgeball with a pale stripe
+  "frying_pan",
+  "crown",
+  "medal",
+  "trophy", // crescent
 ] as const;
 export type PropName = (typeof PROPS)[number];
 
@@ -117,13 +129,13 @@ export const PROP_POSITIONS = [
 ] as const;
 export type PropPosition = (typeof PROP_POSITIONS)[number];
 
-export const SFX = ["pop", "whoosh", "click", "ding", "boom", "error", "swoosh", "tick", "cash", "glitch", "drum", "slash", "splat", "snikt", "gunshot", "gunshot_big", "reload", "chime", "thunder", "thud", "zip"] as const;
+export const SFX = ["pop", "whoosh", "click", "ding", "boom", "error", "swoosh", "tick", "cash", "glitch", "drum", "slash", "splat", "snikt", "gunshot", "gunshot_big", "reload", "chime", "thunder", "thud", "zip", "bounce", "clang", "whistle", "cheer"] as const; // bounce: rubber ball; clang: pan; whistle: referee; cheer: crowd stinger
 export type SfxName = (typeof SFX)[number];
 
 export const THEMES = ["midnight", "paper", "sunset", "mint", "grape"] as const;
 
 /** Character costumes. `stickman` is the plain narrator; `wolverine` adds a pointed mask, claws and blue trunks. */
-export const CHARACTER_STYLES = ["stickman", "wolverine", "gunslinger", "batman", "thug", "joker", "penguin", "riddler", "robin", "jhin"] as const; // jhin: gunslinger with the porcelain mask and magenta shots // thug: beanie; joker: green hair + red grin; penguin: top hat + monocle; riddler: bowler with ?; robin: domino mask + short yellow cape // batman: cowl ears + flowing cape, face untouched
+export const CHARACTER_STYLES = ["stickman", "wolverine", "gunslinger", "batman", "thug", "joker", "penguin", "riddler", "robin", "jhin", "kid"] as const; // kid: tiny (scale 0.5), hair tuft, rosy cheeks // jhin: gunslinger with the porcelain mask and magenta shots // thug: beanie; joker: green hair + red grin; penguin: top hat + monocle; riddler: bowler with ?; robin: domino mask + short yellow cape // batman: cowl ears + flowing cape, face untouched
 export type CharacterStyle = (typeof CHARACTER_STYLES)[number];
 export type Theme = (typeof THEMES)[number];
 
@@ -149,7 +161,7 @@ export type Voice = (typeof VOICES)[number];
 export const VOICE_FX = ["none", "deep", "villain", "theatre", "growl", "young", "mask"] as const; // mask: slight lift, hollow porcelain resonance, stage room — Jhin // young: pitch up ~12% for kids/sidekicks // growl: pitch down, compressed, soft-clipped rasp — Batman
 export type VoiceFx = (typeof VOICE_FX)[number];
 
-export const CAMERA_MOVES = ["none", "punch_in", "slow_zoom", "shake", "dolly_in"] as const; // dolly_in: fast 2.3x push toward the character (looming at the viewer)
+export const CAMERA_MOVES = ["none", "punch_in", "slow_zoom", "shake", "dolly_in", "pan_left", "pan_right", "zoom_out"] as const; // pan_*: whip the camera ~260 px toward that side and stay; zoom_out: pull back to 0.8× and stay (fits a wide duel) // dolly_in: fast 2.3x push toward the character (looming at the viewer)
 
 /** Full-frame effects drawn on top of everything — on the "viewer's screen", not in the scene. */
 export const OVERLAYS = ["claw_marks", "flash", "blackout", "bat_signal", "batarang_stuck", "hook_card", "follow_card", "screen_crack", "spotlight", "flourish"] as const; // flourish: Jhin W — thin white line with a blue-violet halo across the screen + brief cool wash // screen_crack: glass shatter at the impact point (standard ending); spotlight: dark stage, cone of light on the character (standard opening) // hook_card: big text hook over the opening (needs `text`); follow_card: @handle + Follow button for the CTA line

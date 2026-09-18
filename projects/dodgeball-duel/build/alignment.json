@@ -1,0 +1,520 @@
+{
+  "model": "hexgrad/Kokoro-82M",
+  "voice": "am_michael",
+  "speed": 1.15,
+  "scenes": [
+    {
+      "sceneId": "open",
+      "file": "open.wav",
+      "duration": 3.275,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Undefeated.",
+          "start": 0.375,
+          "end": 1.225,
+          "ws": " "
+        },
+        {
+          "text": "Unhittable.",
+          "start": 1.225,
+          "end": 1.95,
+          "ws": " "
+        },
+        {
+          "text": "Unbearable.",
+          "start": 1.95,
+          "end": 3.175,
+          "ws": ""
+        }
+      ],
+      "hash": "3f5d366f4a40de87"
+    },
+    {
+      "sceneId": "intro",
+      "file": "intro.wav",
+      "duration": 2.2,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Brick.",
+          "start": 0.325,
+          "end": 0.625,
+          "ws": " "
+        },
+        {
+          "text": "Versus.",
+          "start": 0.625,
+          "end": 1.288,
+          "ws": " "
+        },
+        {
+          "text": "Noodle.",
+          "start": 1.288,
+          "end": 2.1,
+          "ws": ""
+        }
+      ],
+      "hash": "7bda3a874d1b1944"
+    },
+    {
+      "sceneId": "pitch",
+      "file": "pitch.wav",
+      "duration": 2.05,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "A",
+          "start": 0.325,
+          "end": 0.412,
+          "ws": " "
+        },
+        {
+          "text": "gentle",
+          "start": 0.412,
+          "end": 0.825,
+          "ws": " "
+        },
+        {
+          "text": "warm-up",
+          "start": 0.825,
+          "end": 1.225,
+          "ws": " "
+        },
+        {
+          "text": "pitch.",
+          "start": 1.225,
+          "end": 1.95,
+          "ws": ""
+        }
+      ],
+      "hash": "4fbe4047cc3f4507"
+    },
+    {
+      "sceneId": "react1",
+      "file": "react1.wav",
+      "duration": 2.025,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Brick",
+          "start": 0.325,
+          "end": 0.575,
+          "ws": " "
+        },
+        {
+          "text": "is",
+          "start": 0.575,
+          "end": 0.725,
+          "ws": " "
+        },
+        {
+          "text": "not",
+          "start": 0.725,
+          "end": 0.975,
+          "ws": " "
+        },
+        {
+          "text": "amused.",
+          "start": 0.975,
+          "end": 1.925,
+          "ws": ""
+        }
+      ],
+      "hash": "ed969280e993679b"
+    },
+    {
+      "sceneId": "barrage",
+      "file": "barrage.wav",
+      "duration": 2.8,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Here",
+          "start": 0.3,
+          "end": 0.5,
+          "ws": " "
+        },
+        {
+          "text": "comes",
+          "start": 0.5,
+          "end": 0.787,
+          "ws": " "
+        },
+        {
+          "text": "the",
+          "start": 0.787,
+          "end": 0.912,
+          "ws": " "
+        },
+        {
+          "text": "Gatling",
+          "start": 0.912,
+          "end": 1.4,
+          "ws": " "
+        },
+        {
+          "text": "gun",
+          "start": 1.4,
+          "end": 1.663,
+          "ws": " "
+        },
+        {
+          "text": "of",
+          "start": 1.663,
+          "end": 1.775,
+          "ws": " "
+        },
+        {
+          "text": "balls!",
+          "start": 1.775,
+          "end": 2.7,
+          "ws": ""
+        }
+      ],
+      "hash": "e9eea91d2ee404a2"
+    },
+    {
+      "sceneId": "react2",
+      "file": "react2.wav",
+      "duration": 2.275,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Is",
+          "start": 0.3,
+          "end": 0.475,
+          "ws": " "
+        },
+        {
+          "text": "that...",
+          "start": 0.475,
+          "end": 0.812,
+          "ws": " "
+        },
+        {
+          "text": "a",
+          "start": 0.812,
+          "end": 0.887,
+          "ws": " "
+        },
+        {
+          "text": "frying",
+          "start": 0.887,
+          "end": 1.3,
+          "ws": " "
+        },
+        {
+          "text": "pan?!",
+          "start": 1.3,
+          "end": 2.175,
+          "ws": ""
+        }
+      ],
+      "hash": "3713f9252752af15"
+    },
+    {
+      "sceneId": "try2",
+      "file": "try2.wav",
+      "duration": 2,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Try",
+          "start": 0.3,
+          "end": 0.562,
+          "ws": " "
+        },
+        {
+          "text": "two.",
+          "start": 0.562,
+          "end": 0.912,
+          "ws": " "
+        },
+        {
+          "text": "Faster.",
+          "start": 0.912,
+          "end": 1.9,
+          "ws": ""
+        }
+      ],
+      "hash": "7906dc4ad0a87d59"
+    },
+    {
+      "sceneId": "try3",
+      "file": "try3.wav",
+      "duration": 2.15,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Try",
+          "start": 0.3,
+          "end": 0.537,
+          "ws": " "
+        },
+        {
+          "text": "three.",
+          "start": 0.537,
+          "end": 0.9,
+          "ws": " "
+        },
+        {
+          "text": "Two",
+          "start": 0.9,
+          "end": 1.125,
+          "ws": " "
+        },
+        {
+          "text": "at",
+          "start": 1.125,
+          "end": 1.25,
+          "ws": " "
+        },
+        {
+          "text": "once!",
+          "start": 1.25,
+          "end": 2.05,
+          "ws": ""
+        }
+      ],
+      "hash": "351816eff8611780"
+    },
+    {
+      "sceneId": "rage",
+      "file": "rage.wav",
+      "duration": 2.8,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Brick",
+          "start": 0.325,
+          "end": 0.575,
+          "ws": " "
+        },
+        {
+          "text": "is",
+          "start": 0.575,
+          "end": 0.7,
+          "ws": " "
+        },
+        {
+          "text": "out",
+          "start": 0.7,
+          "end": 0.838,
+          "ws": " "
+        },
+        {
+          "text": "of",
+          "start": 0.838,
+          "end": 0.95,
+          "ws": " "
+        },
+        {
+          "text": "balls.",
+          "start": 0.95,
+          "end": 1.575,
+          "ws": " "
+        },
+        {
+          "text": "And",
+          "start": 1.575,
+          "end": 1.75,
+          "ws": " "
+        },
+        {
+          "text": "patience.",
+          "start": 1.75,
+          "end": 2.7,
+          "ws": ""
+        }
+      ],
+      "hash": "ab80a937c4b0c5d1"
+    },
+    {
+      "sceneId": "kid",
+      "file": "kid.wav",
+      "duration": 1.675,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Wait.",
+          "start": 0.35,
+          "end": 0.6,
+          "ws": " "
+        },
+        {
+          "text": "Who's",
+          "start": 0.6,
+          "end": 0.85,
+          "ws": " "
+        },
+        {
+          "text": "this?",
+          "start": 0.85,
+          "end": 1.575,
+          "ws": ""
+        }
+      ],
+      "hash": "fb18ded9b197a52d"
+    },
+    {
+      "sceneId": "drop",
+      "file": "drop.wav",
+      "duration": 1.575,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "He",
+          "start": 0.3,
+          "end": 0.487,
+          "ws": " "
+        },
+        {
+          "text": "dropped",
+          "start": 0.487,
+          "end": 0.925,
+          "ws": " "
+        },
+        {
+          "text": "it.",
+          "start": 0.925,
+          "end": 1.475,
+          "ws": ""
+        }
+      ],
+      "hash": "61b07354ec5f3cb0"
+    },
+    {
+      "sceneId": "down",
+      "file": "down.wav",
+      "duration": 1.725,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Noodle",
+          "start": 0.35,
+          "end": 0.675,
+          "ws": " "
+        },
+        {
+          "text": "is",
+          "start": 0.675,
+          "end": 0.838,
+          "ws": " "
+        },
+        {
+          "text": "DOWN.",
+          "start": 0.838,
+          "end": 1.625,
+          "ws": ""
+        }
+      ],
+      "hash": "bbf74f8d610355c9"
+    },
+    {
+      "sceneId": "champion",
+      "file": "champion.wav",
+      "duration": 1.925,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Your",
+          "start": 0.3,
+          "end": 0.463,
+          "ws": " "
+        },
+        {
+          "text": "champion:",
+          "start": 0.463,
+          "end": 1.025,
+          "ws": " "
+        },
+        {
+          "text": "Pebble.",
+          "start": 1.025,
+          "end": 1.825,
+          "ws": ""
+        }
+      ],
+      "hash": "70e49e72574a8d1c"
+    },
+    {
+      "sceneId": "last",
+      "file": "last.wav",
+      "duration": 2.25,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Brick",
+          "start": 0.35,
+          "end": 0.6,
+          "ws": " "
+        },
+        {
+          "text": "had",
+          "start": 0.6,
+          "end": 0.8,
+          "ws": " "
+        },
+        {
+          "text": "one",
+          "start": 0.8,
+          "end": 1.025,
+          "ws": " "
+        },
+        {
+          "text": "ball",
+          "start": 1.025,
+          "end": 1.325,
+          "ws": " "
+        },
+        {
+          "text": "left.",
+          "start": 1.325,
+          "end": 2.15,
+          "ws": ""
+        }
+      ],
+      "hash": "b774bdc07c8dc259"
+    },
+    {
+      "sceneId": "cta",
+      "file": "cta.wav",
+      "duration": 2.225,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Follow",
+          "start": 0.3,
+          "end": 0.637,
+          "ws": " "
+        },
+        {
+          "text": "Dummy",
+          "start": 0.637,
+          "end": 0.975,
+          "ws": " "
+        },
+        {
+          "text": "Sticky",
+          "start": 0.975,
+          "end": 1.3,
+          "ws": " "
+        },
+        {
+          "text": "for",
+          "start": 1.3,
+          "end": 1.425,
+          "ws": " "
+        },
+        {
+          "text": "more.",
+          "start": 1.425,
+          "end": 2.125,
+          "ws": ""
+        }
+      ],
+      "hash": "8686510987cdafbb"
+    }
+  ]
+}

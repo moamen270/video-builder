@@ -52,6 +52,14 @@ export const RIGS: Record<Pose, Rig> = {
   run_left: { lUpper: -8, lLower: -6, rUpper: 8, rLower: 6, lThigh: -7, lShin: 0, rThigh: 7, rShin: 0, head: 0, torso: 0, lift: 0, nod: 0 },
   knocked_out: { lUpper: -30, lLower: -20, rUpper: 40, rLower: 30, lThigh: -12, lShin: 0, rThigh: 16, rShin: -10, head: 8, torso: 0, lift: 0, nod: 0 },
   aim_camera: { lUpper: -26, lLower: -30, rUpper: 110, rLower: -138, lThigh: -14, lShin: 4, rThigh: 14, rShin: -4, head: 0, torso: 0, lift: 0, nod: 6 },
+  // Dodgeball: dodges lean AWAY from a ball coming from screen-left (torso + = tilt right).
+  dodge_lean: { lUpper: -140, lLower: -20, rUpper: 40, rLower: 30, lThigh: -34, lShin: 0, rThigh: 26, rShin: -60, head: 18, torso: 38, lift: 6, nod: -10 },
+  dodge_limbo: { lUpper: -150, lLower: -10, rUpper: 20, rLower: 60, lThigh: -44, lShin: 0, rThigh: 40, rShin: -95, head: 22, torso: 62, lift: 30, nod: -14 },
+  dodge_split: { lUpper: -95, lLower: 0, rUpper: 95, rLower: 0, lThigh: -82, lShin: 0, rThigh: 82, rShin: 0, head: 0, torso: 0, lift: 130, nod: 6 },
+  spin: { lUpper: -92, lLower: -10, rUpper: 92, rLower: 10, lThigh: -10, lShin: 0, rThigh: 10, rShin: 0, head: 0, torso: 0, lift: -6, nod: 0 },
+  windup: { lUpper: -70, lLower: -20, rUpper: 150, rLower: 80, lThigh: -6, lShin: 0, rThigh: 26, rShin: -20, head: -6, torso: -12, lift: 0, nod: 4 },
+  throw: { lUpper: -30, lLower: -20, rUpper: 88, rLower: -6, lThigh: -30, lShin: 6, rThigh: 8, rShin: 0, head: 8, torso: 16, lift: 2, nod: 8 },
+  victory: { lUpper: -160, lLower: -8, rUpper: 160, rLower: 8, lThigh: -10, lShin: 0, rThigh: 10, rShin: 0, head: 0, torso: 0, lift: -14, nod: -16 },
   twirl: { lUpper: -22, lLower: -20, rUpper: 74, rLower: -30, lThigh: -10, lShin: 0, rThigh: 10, rShin: 0, head: -4, torso: 0, lift: 0, nod: 2 },
   admire: { lUpper: -34, lLower: -128, rUpper: 22, rLower: 12, lThigh: -8, lShin: 0, rThigh: 8, rShin: 0, head: -9, torso: -2, lift: 0, nod: 4 },
   walk_right: { lUpper: -8, lLower: -6, rUpper: 8, rLower: 6, lThigh: -7, lShin: 0, rThigh: 7, rShin: 0, head: 0, torso: 0, lift: 0, nod: 0 },
@@ -65,7 +73,7 @@ export const RUN_POSES: ReadonlySet<Pose> = new Set<Pose>(["run_right", "run_lef
 export const LEFT_HAND_POSES: ReadonlySet<Pose> = new Set<Pose>(["aim_left", "pointing_left", "slash_left"]);
 
 /** Poses that should snap rather than ease (attacks). */
-export const SNAP_POSES: ReadonlySet<Pose> = new Set<Pose>(["slash_left", "slash_right", "claws_out", "aim_right", "aim_left", "aim_high", "aim_up", "aim_camera"]);
+export const SNAP_POSES: ReadonlySet<Pose> = new Set<Pose>(["slash_left", "slash_right", "claws_out", "aim_right", "aim_left", "aim_high", "aim_up", "aim_camera", "throw", "dodge_lean", "dodge_limbo", "dodge_split"]);
 
 export const RIG_KEYS = Object.keys(RIGS.idle) as (keyof Rig)[];
 

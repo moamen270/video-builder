@@ -1,0 +1,30 @@
+{
+  "slug": "dodgeball-duel",
+  "topic": "The Ultimate Dodgeball Match",
+  "createdAt": "2026-09-19T00:00:00.000Z",
+  "targetSeconds": 45,
+  "status": "qa_passed",
+  "lastRenderMs": 80596,
+  "versions": [
+    {
+      "n": 1,
+      "at": "2026-09-18T20:50:00.215Z",
+      "seconds": 47.03333333333333,
+      "renderMs": 87644,
+      "qaOk": true,
+      "manifestHash": "0b9c366947fc44d6",
+      "note": "v1: commentator narration, projectiles (miss/deflect/roll/camera), dodge + spin poses, kid, frying pan, labels, crown/medal/trophy, standard opening/ending",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/dodgeball-duel-v1/final.mp4"
+    },
+    {
+      "n": 2,
+      "at": "2026-09-18T20:53:06.486Z",
+      "seconds": 46.43333333333333,
+      "renderMs": 80596,
+      "qaOk": true,
+      "manifestHash": "b05cb2225cd7a827",
+      "note": "v2: Pebble centred so Noodle's body lies behind him; crown above Pebble; tighter pauses",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/dodgeball-duel-v2/final.mp4"
+    }
+  ]
+}

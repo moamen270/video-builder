@@ -63,6 +63,30 @@ export const Extra = z.object({
   knockedOutAt: Anchor.optional(),
   /** Which way he falls when knocked out. Default: toward the centre of the frame. */
   fallDir: z.enum(["left", "right"]).optional(),
+  /** Name tag drawn above the head (duels, sports). ≤ 10 chars. */
+  label: z.string().max(10).optional(),
+  /** Item in the right hand from `heldAt` (default scene start): frying_pan deflects balls; ball = about to throw. */
+  held: z.enum(["frying_pan", "ball"]).optional(),
+  heldAt: Anchor.optional(),
+});
+
+/**
+ * A thrown ball between two figures (extra ids). Drawn on a parabola from the
+ * thrower's hand to the target's chest; what happens on arrival is `outcome`.
+ * `count`/`every` turn one entry into a barrage.
+ */
+export const Projectile = z.object({
+  from: z.string().min(1),
+  /** An extra id, or "camera" to throw at the viewer (pair with overlay screen_crack at at+flight). */
+  to: z.string().min(1),
+  at: Anchor,
+  /** Seconds in the air. 0.35 fast pitch, 1.4 slow-motion. */
+  flight: z.number().min(0.15).max(3).default(0.45),
+  /** hit: stops on the target. miss: sails past and off-frame. deflect: bounces off (needs a pan). roll: dropped from the hand, rolls along the ground to the target's foot. */
+  outcome: z.enum(["hit", "miss", "deflect", "roll"]).default("hit"),
+  count: z.number().int().min(1).max(24).default(1),
+  /** Seconds between balls in a barrage. */
+  every: z.number().min(0.05).max(1).default(0.12),
 });
 
 export const CharacterState = z.object({
@@ -241,6 +265,7 @@ export const Scene = z.object({
   bubbles: z.array(Bubble).max(2).default([]),
   camera: z.array(CameraCue).max(2).default([]),
   overlays: z.array(OverlayCue).max(3).default([]),
+  projectiles: z.array(Projectile).max(6).default([]),
 });
 export type Scene = z.infer<typeof Scene>;
 

@@ -42,6 +42,10 @@ interface Props {
   squash?: number;
   /** This figure is the one speaking (mouth moves with the words). Default: the hero, not extras. */
   speaking?: boolean;
+  /** Item in the right hand (frying pan, ball) — from extras.held. */
+  held?: "frying_pan" | "ball" | null;
+  /** Name tag above the head. */
+  label?: string | null;
 }
 
 interface PoseSource {
@@ -176,7 +180,7 @@ const polar = (x: number, y: number, len: number, deg: number) => {
   return { x: x + Math.sin(r) * len, y: y + Math.cos(r) * len };
 };
 
-export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, style, flip, walker, zones, actor, ko, squash = 0, speaking }) => {
+export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, style, flip, walker, zones, actor, ko, squash = 0, speaking, held = null, label = null }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const abs = frame + scene.startFrame;
@@ -244,6 +248,9 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const frontGun = gun && st.pose === "aim_camera";
   // twirl: the pistol spins about the hand, two turns a second, then settles into the next pose.
   const spin = gun && st.pose === "twirl" ? (abs - st.since) * 24 : 0;
+  // spin pose: the whole body whirls about its axis — scaleX runs through a cosine, ~2.5 turns a second.
+  const whirl = st.pose === "spin" ? Math.cos((abs - st.since) * 0.52) : 1;
+  const kid = style === "kid";
   // "batman" = cowl ears + a cape that hangs from the shoulders and sways with the body.
   const bat = style === "batman";
   const shots = actor ? [] : (scene.character?.shots ?? []);
@@ -293,7 +300,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
         height={RH * scale}
         viewBox={`0 0 ${RW} ${RH}`}
         style={{
-          transform: `translateY(${lift * scale}px) ${flip ? "scaleX(-1)" : ""} rotate(${fallDeg}deg) scaleY(${1 - squash * 0.22}) scaleX(${1 + squash * 0.12})`,
+          transform: `translateY(${lift * scale}px) ${flip ? "scaleX(-1)" : ""} rotate(${fallDeg}deg) scaleY(${1 - squash * 0.22}) scaleX(${(1 + squash * 0.12) * whirl})`,
           transformOrigin: "50% 96%",
           overflow: "visible",
         }}
@@ -317,6 +324,22 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
         {gun && gunLeft && <Pistol x={lHand.x} y={lHand.y} deg={lForeDeg} flash={flash} big={Boolean(lastShot?.big)} accent={gunColor} front={frontGun} />}
         <circle cx={lHand.x} cy={lHand.y} r={wolv ? 9 : 7} fill={ink} />
         <circle cx={rHand.x} cy={rHand.y} r={wolv ? 9 : 7} fill={ink} />
+        {held === "frying_pan" && <FryingPan x={rHand.x} y={rHand.y} deg={rForeDeg} ink={ink} />}
+        {held === "ball" && <circle cx={rHand.x + 14} cy={rHand.y + 6} r={22} fill="#d62828" stroke={ink} strokeWidth={3} />}
+        {st.pose === "spin" && (
+          <g opacity={0.5} fill="none" stroke={ink} strokeWidth={4} strokeLinecap="round">
+            <path d={`M ${HIP.x - 110} ${HIP.y - 60} A 110 40 0 0 1 ${HIP.x + 110} ${HIP.y - 60}`} strokeDasharray="30 22" />
+            <path d={`M ${HIP.x + 120} ${HIP.y + 20} A 120 44 0 0 1 ${HIP.x - 120} ${HIP.y + 20}`} strokeDasharray="26 30" />
+          </g>
+        )}
+        {label && (
+          <g transform={`translate(${headC.x} ${headC.y - HEAD_R - 34})`}>
+            <rect x={-46} y={-16} width={92} height={30} rx={15} fill={ink} />
+            <text x={0} y={6} textAnchor="middle" fontFamily='"Segoe UI Black", "Arial Black", Impact, sans-serif' fontWeight={900} fontSize={19} fill={headFill}>
+              {label.toUpperCase()}
+            </text>
+          </g>
+        )}
         {/* head */}
         <g transform={`translate(${headC.x} ${headC.y}) rotate(${rig.head + torso * 0.5 + nodTalk * 0.3})`}>
           {bat && (
@@ -328,6 +351,13 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
           <circle r={HEAD_R} fill={headFill} stroke={ink} strokeWidth={STROKE} />
           {beanie}
           {masked && <JhinMask talking={mouthOpen} />}
+          {kid && (
+            <g>
+              <path d={`M -6 -${HEAD_R} q -6 -22 4 -26 M 0 -${HEAD_R + 2} q 2 -24 12 -22 M 6 -${HEAD_R} q 10 -14 18 -8`} stroke={ink} strokeWidth={4} fill="none" strokeLinecap="round" />
+              <circle cx={-18} cy={8} r={5} fill="#ff8fa3" opacity={0.7} />
+              <circle cx={18} cy={8} r={5} fill="#ff8fa3" opacity={0.7} />
+            </g>
+          )}
           {!masked && <g transform={`translate(0 ${rig.nod * 0.25 + nodTalk * 0.4})`}>
             {/* eyes */}
             {blink ? (
@@ -500,6 +530,16 @@ const JhinMask: React.FC<{ talking: number }> = ({ talking }) => {
     </g>
   );
 };
+
+/** Frying pan held along the forearm: the handle continues the arm, the pan faces the way the arm points. */
+const FryingPan: React.FC<{ x: number; y: number; deg: number; ink: string }> = ({ x, y, deg, ink }) => (
+  <g transform={`translate(${x} ${y}) rotate(${-deg})`}>
+    <rect x={-6} y={0} width={12} height={40} rx={5} fill="#5b3a1a" stroke={ink} strokeWidth={2} />
+    <circle cx={0} cy={66} r={30} fill="#3a3f52" stroke={ink} strokeWidth={3} />
+    <circle cx={0} cy={66} r={21} fill="#2a2e3e" />
+    <circle cx={-8} cy={56} r={5} fill="#ffffff" opacity={0.35} />
+  </g>
+);
 
 /** The same mask seen from the side (Walker): covers the front half of the head, nose ridge protruding. */
 const JhinMaskProfile: React.FC = () => {

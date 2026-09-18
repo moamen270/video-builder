@@ -135,7 +135,24 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
         poseChanges: e.poseChanges.map((pc, k) => ({ pose: pc.pose, expression: pc.expression, atFrame: at(pc.at, `extras[${i}].poseChanges[${k}]`) })).sort((a, b) => a.atFrame - b.atFrame),
         koFrame: ko,
         fallDir: e.fallDir ?? null,
+        label: e.label ?? null,
+        held: e.held ?? null,
+        heldFrame: e.heldAt ? at(e.heldAt, `extras[${i}].heldAt`) : startFrame,
       };
+    });
+
+    // Projectiles: expand barrages, validate ids, compute arrival frames.
+    const projectiles = s.projectiles.flatMap((pr, i) => {
+      for (const id of [pr.from, pr.to]) {
+        if (id === "camera" && pr.to === id) continue; // thrown at the viewer
+        if (!s.extras.some((e) => e.id === id)) throw new ResolveError(`projectile ${pr.from}→${pr.to}: "${id}" is not an extra in this scene`, `${where}.projectiles[${i}]`);
+      }
+      const at0 = at(pr.at, `projectiles[${i}].at`);
+      const flight = Math.max(3, Math.round(pr.flight * fps));
+      return Array.from({ length: pr.count }, (_, n) => {
+        const atFrame = at0 + Math.round(n * pr.every * fps);
+        return { from: pr.from, to: pr.to, atFrame, hitFrame: atFrame + flight, outcome: pr.outcome, n };
+      });
     });
 
     if (character && s.character?.jump) {
@@ -222,6 +239,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
       bubbles,
       camera,
       overlays,
+      projectiles,
     };
   });
 

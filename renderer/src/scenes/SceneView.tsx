@@ -3,6 +3,7 @@ import { AbsoluteFill, Audio, Sequence, interpolate, spring, staticFile, useCurr
 import type { ResolvedScene } from "@vb/engine/schema";
 import { Stickman, cameraSlashGeometry, muzzlePoint } from "../characters/Stickman";
 import { Shots } from "./Shots";
+import { Projectiles } from "./Projectiles";
 import { extraMotionAt, heroEntranceExit, motionAt, type MotionState } from "../characters/motion";
 import { Batarang, alongHop, type HopPath } from "./Batarang";
 import { KineticCaption } from "../captions/KineticCaption";
@@ -42,6 +43,9 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
     if (c.move === "punch_in") camScale *= interpolate(spring({ frame: t, fps, config: { damping: 14, stiffness: 200 } }), [0, 1], [1, 1.09]);
     else if (c.move === "dolly_in") camScale *= interpolate(spring({ frame: t, fps, config: { damping: 18, stiffness: 90 } }), [0, 1], [1, 1.45]);
     else if (c.move === "slow_zoom") camScale *= interpolate(t, [0, scene.durationInFrames], [1, 1.06], { extrapolateRight: "clamp" });
+    else if (c.move === "pan_left") camX += interpolate(spring({ frame: t, fps, config: { damping: 16, stiffness: 240 } }), [0, 1], [0, 260]);
+    else if (c.move === "pan_right") camX -= interpolate(spring({ frame: t, fps, config: { damping: 16, stiffness: 240 } }), [0, 1], [0, 260]);
+    else if (c.move === "zoom_out") camScale *= interpolate(spring({ frame: t, fps, config: { damping: 18, stiffness: 120 } }), [0, 1], [1, 0.9]);
     else if (c.move === "shake" && t < 12) {
       const k = interpolate(t, [0, 12], [1, 0]);
       camX += Math.sin(t * 2.9) * 14 * k;
@@ -151,6 +155,8 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
             style={e.style}
             actor={e}
             speaking={scene.speaker === e.id}
+            held={abs >= e.heldFrame && !(e.held === "ball" && scene.projectiles.some((p) => p.from === e.id && p.atFrame <= abs)) ? e.held : null}
+            label={e.label}
             walker={{ action: m.action, shadow: 1 }}
             ko={e.koFrame !== null ? { frame: e.koFrame, dir: e.fallDir ? (e.fallDir === "right" ? 1 : -1) : m.cx < 540 ? 1 : -1 } : null}
           />
@@ -178,6 +184,8 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
             speaking={scene.speaker === null || scene.speaker === scene.character.id}
           />
         )}
+
+        {scene.projectiles.length > 0 && <Projectiles scene={scene} abs={abs} rects={extraRects.map(({ e, rect }) => ({ id: e.id, rect, flip: false }))} palette={palette} />}
 
         {scene.character && charRect && !heroHidden && scene.character.shots.length > 0 && (
           <Shots shots={scene.character.shots} abs={abs} poseAt={(f) => poseAtFrame(scene, f)} rect={charRect} flip={scene.character.position === "right"} zones={spec.props} magenta={scene.character.style === "jhin"} palette={palette} />

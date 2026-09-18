@@ -1,0 +1,1250 @@
+{
+  "version": 1,
+  "slug": "dodgeball-duel",
+  "title": "The Ultimate Dodgeball Match",
+  "voice": "am_michael",
+  "speed": 1.15,
+  "voiceFx": "theatre",
+  "theme": "mint",
+  "music": {
+    "track": "lofi-01",
+    "volume": 0.08
+  },
+  "characters": [
+    {
+      "id": "narrator",
+      "style": "stickman"
+    }
+  ],
+  "notes": "Sports-commentator narration (am_michael, fast, stadium). Brick (big, no patience) vs Noodle (unhittable, insufferable), Pebble the kid wins by dropping a ball. Escalation: slow pitch → Matrix dodge → Gatling barrage vs frying pan → faster → two at once → the kid. Ending: Brick throws his last ball at the camera. v1: no bullet-time yet. Alt hooks: 'Nobody hits Noodle.' / 'One ball. One kid.'",
+  "social": {
+    "title": "The Ultimate Dodgeball Match — nobody can hit Noodle (stickman)",
+    "hook": "Nobody can hit Noodle.",
+    "description": "Brick has a lot of dodgeballs. Noodle has a frying pan and zero respect.\n\nA stickman dodgeball duel that escalates from a warm-up pitch to a Gatling gun of balls — and ends the only way it could.\n\nMore stickmen with too much attitude every week. Follow Dummy Sticky for the rematch.",
+    "tags": [
+      "dodgeball",
+      "stickman",
+      "stickman animation",
+      "stick figure animation",
+      "matrix dodge",
+      "frying pan",
+      "funny animation",
+      "2d animation",
+      "animated shorts",
+      "slapstick",
+      "sports comedy",
+      "dodgeball match",
+      "comedy shorts",
+      "cartoon fight",
+      "dummy sticky"
+    ],
+    "hashtags": [
+      "#shorts",
+      "#dodgeball",
+      "#stickman",
+      "#animation",
+      "#funny",
+      "#slapstick",
+      "#matrix",
+      "#2danimation",
+      "#comedy"
+    ],
+    "pinnedComment": "Who should Pebble fight next? 🏆",
+    "coverText": "NOBODY HITS NOODLE"
+  },
+  "scenes": [
+    {
+      "id": "open",
+      "speech": "Undefeated. Unhittable. Unbearable.",
+      "emphasis": [
+        "Unbearable"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 0.6,
+      "speed": 0.98,
+      "bare": true,
+      "captions": false,
+      "character": null,
+      "extras": [
+        {
+          "id": "noodle",
+          "style": "stickman",
+          "label": "Noodle",
+          "color": "#fff1b8",
+          "pose": "arms_crossed",
+          "expression": "smug",
+          "x": 0.5,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "bow",
+              "expression": "happy",
+              "at": "word:unbearable"
+            }
+          ]
+        }
+      ],
+      "sfx": [
+        {
+          "name": "tick",
+          "at": "word:unhittable",
+          "volume": 0.5
+        },
+        {
+          "name": "drum",
+          "at": "word:unbearable",
+          "volume": 0.6
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "spotlight",
+          "at": "start"
+        },
+        {
+          "kind": "hook_card",
+          "text": "The Ultimate Dodgeball Match",
+          "at": "start+0.2",
+          "until": "end-0.1"
+        }
+      ],
+      "camera": [
+        {
+          "move": "slow_zoom",
+          "at": "start"
+        }
+      ]
+    },
+    {
+      "id": "intro",
+      "speech": "Brick. Versus. Noodle.",
+      "emphasis": [
+        "Brick",
+        "Noodle"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 0.5,
+      "character": null,
+      "extras": [
+        {
+          "id": "brick",
+          "style": "stickman",
+          "label": "Brick",
+          "pose": "idle",
+          "expression": "fierce",
+          "x": 0.2,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "windup",
+              "expression": "fierce",
+              "at": "word:versus"
+            }
+          ],
+          "held": "ball"
+        },
+        {
+          "id": "noodle",
+          "style": "stickman",
+          "label": "Noodle",
+          "color": "#fff1b8",
+          "pose": "idle",
+          "expression": "smug",
+          "x": 0.78,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "leaning",
+              "at": "word:noodle"
+            }
+          ]
+        }
+      ],
+      "sfx": [
+        {
+          "name": "whistle",
+          "at": "start",
+          "volume": 0.7
+        },
+        {
+          "name": "drum",
+          "at": "word:brick",
+          "volume": 0.5
+        },
+        {
+          "name": "drum",
+          "at": "word:noodle",
+          "volume": 0.5
+        }
+      ],
+      "camera": [
+        {
+          "move": "zoom_out",
+          "at": "start"
+        }
+      ]
+    },
+    {
+      "id": "pitch",
+      "speech": "A gentle warm-up pitch.",
+      "emphasis": [
+        "gentle"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 1.1,
+      "character": null,
+      "extras": [
+        {
+          "id": "brick",
+          "style": "stickman",
+          "label": "Brick",
+          "pose": "windup",
+          "expression": "fierce",
+          "x": 0.2,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "throw",
+              "at": "word:pitch"
+            },
+            {
+              "pose": "idle",
+              "expression": "neutral",
+              "at": "word:pitch+1.2"
+            }
+          ],
+          "held": "ball"
+        },
+        {
+          "id": "noodle",
+          "style": "stickman",
+          "label": "Noodle",
+          "color": "#fff1b8",
+          "pose": "idle",
+          "expression": "smug",
+          "x": 0.78,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "dodge_lean",
+              "expression": "surprised",
+              "at": "word:pitch+0.55"
+            },
+            {
+              "pose": "dodge_limbo",
+              "expression": "smug",
+              "at": "word:pitch+0.95"
+            },
+            {
+              "pose": "idle",
+              "expression": "smug",
+              "at": "word:pitch+1.7"
+            }
+          ]
+        }
+      ],
+      "projectiles": [
+        {
+          "from": "brick",
+          "to": "noodle",
+          "at": "word:pitch+0.05",
+          "flight": 1.5,
+          "outcome": "miss"
+        }
+      ],
+      "sfx": [
+        {
+          "name": "whoosh",
+          "at": "word:pitch",
+          "volume": 0.5
+        },
+        {
+          "name": "bounce",
+          "at": "word:pitch+1.9",
+          "volume": 0.6
+        }
+      ],
+      "bubbles": [
+        {
+          "text": "WHOA",
+          "at": "word:pitch+0.9",
+          "until": "word:pitch+1.6",
+          "on": "noodle",
+          "side": "left"
+        }
+      ],
+      "camera": [
+        {
+          "move": "punch_in",
+          "at": "word:pitch+0.5"
+        }
+      ]
+    },
+    {
+      "id": "react1",
+      "speech": "Brick is not amused.",
+      "emphasis": [
+        "not amused"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 0.5,
+      "character": null,
+      "extras": [
+        {
+          "id": "brick",
+          "style": "stickman",
+          "label": "Brick",
+          "pose": "facepalm",
+          "expression": "worried",
+          "x": 0.2,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "arms_crossed",
+              "expression": "fierce",
+              "at": "word:amused"
+            }
+          ]
+        },
+        {
+          "id": "noodle",
+          "style": "stickman",
+          "label": "Noodle",
+          "color": "#fff1b8",
+          "pose": "bow",
+          "expression": "happy",
+          "x": 0.78,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "leaning",
+              "expression": "smug",
+              "at": "word:amused"
+            }
+          ]
+        }
+      ],
+      "sfx": [
+        {
+          "name": "error",
+          "at": "word:not",
+          "volume": 0.4
+        }
+      ],
+      "camera": [
+        {
+          "move": "pan_left",
+          "at": "start"
+        }
+      ]
+    },
+    {
+      "id": "barrage",
+      "speech": "Here comes the Gatling gun of balls!",
+      "emphasis": [
+        "Gatling gun"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 1.2,
+      "character": null,
+      "extras": [
+        {
+          "id": "brick",
+          "style": "stickman",
+          "label": "Brick",
+          "pose": "windup",
+          "expression": "fierce",
+          "x": 0.2,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "throw",
+              "at": "word:gatling"
+            }
+          ],
+          "held": "ball"
+        },
+        {
+          "id": "noodle",
+          "style": "stickman",
+          "label": "Noodle",
+          "color": "#fff1b8",
+          "pose": "idle",
+          "expression": "surprised",
+          "x": 0.78,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "spin",
+              "expression": "smug",
+              "at": "word:gatling-0.05"
+            },
+            {
+              "pose": "idle",
+              "expression": "smug",
+              "at": "word:balls+1.35"
+            }
+          ],
+          "held": "frying_pan",
+          "heldAt": "word:gatling-0.25"
+        }
+      ],
+      "projectiles": [
+        {
+          "from": "brick",
+          "to": "noodle",
+          "at": "word:gatling",
+          "flight": 0.3,
+          "outcome": "deflect",
+          "count": 12,
+          "every": 0.1
+        }
+      ],
+      "sfx": [
+        {
+          "name": "whoosh",
+          "at": "word:here",
+          "volume": 0.4
+        },
+        {
+          "name": "clang",
+          "at": "word:gatling+0.3",
+          "volume": 0.6
+        },
+        {
+          "name": "clang",
+          "at": "word:gatling+0.5",
+          "volume": 0.6
+        },
+        {
+          "name": "clang",
+          "at": "word:gatling+0.7",
+          "volume": 0.6
+        },
+        {
+          "name": "clang",
+          "at": "word:gatling+0.9",
+          "volume": 0.6
+        },
+        {
+          "name": "clang",
+          "at": "word:gatling+1.1",
+          "volume": 0.6
+        },
+        {
+          "name": "clang",
+          "at": "word:gatling+1.3",
+          "volume": 0.6
+        },
+        {
+          "name": "drum",
+          "at": "word:balls",
+          "volume": 0.5
+        }
+      ],
+      "camera": [
+        {
+          "move": "zoom_out",
+          "at": "start"
+        },
+        {
+          "move": "shake",
+          "at": "word:gatling+0.3"
+        }
+      ]
+    },
+    {
+      "id": "react2",
+      "speech": "Is that... a frying pan?!",
+      "emphasis": [
+        "frying pan"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 0.6,
+      "character": null,
+      "extras": [
+        {
+          "id": "brick",
+          "style": "stickman",
+          "label": "Brick",
+          "pose": "shocked",
+          "expression": "surprised",
+          "x": 0.2,
+          "scale": 0.85
+        },
+        {
+          "id": "noodle",
+          "style": "stickman",
+          "label": "Noodle",
+          "color": "#fff1b8",
+          "pose": "idle",
+          "expression": "smug",
+          "x": 0.78,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "presenting",
+              "expression": "happy",
+              "at": "word:frying"
+            }
+          ],
+          "held": "frying_pan"
+        }
+      ],
+      "sfx": [
+        {
+          "name": "pop",
+          "at": "word:frying",
+          "volume": 0.5
+        }
+      ],
+      "bubbles": [
+        {
+          "text": "?!",
+          "at": "word:that",
+          "until": "end-0.2",
+          "on": "brick"
+        }
+      ],
+      "camera": [
+        {
+          "move": "pan_right",
+          "at": "start"
+        }
+      ]
+    },
+    {
+      "id": "try2",
+      "speech": "Try two. Faster.",
+      "emphasis": [
+        "Faster"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 0.9,
+      "character": null,
+      "extras": [
+        {
+          "id": "brick",
+          "style": "stickman",
+          "label": "Brick",
+          "pose": "windup",
+          "expression": "fierce",
+          "x": 0.2,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "throw",
+              "at": "word:faster"
+            }
+          ],
+          "held": "ball"
+        },
+        {
+          "id": "noodle",
+          "style": "stickman",
+          "label": "Noodle",
+          "color": "#fff1b8",
+          "pose": "idle",
+          "expression": "smug",
+          "x": 0.78,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "dodge_split",
+              "expression": "happy",
+              "at": "word:faster+0.12"
+            },
+            {
+              "pose": "idle",
+              "expression": "smug",
+              "at": "word:faster+0.9"
+            }
+          ]
+        }
+      ],
+      "projectiles": [
+        {
+          "from": "brick",
+          "to": "noodle",
+          "at": "word:faster+0.02",
+          "flight": 0.28,
+          "outcome": "miss"
+        }
+      ],
+      "sfx": [
+        {
+          "name": "whoosh",
+          "at": "word:faster",
+          "volume": 0.6
+        },
+        {
+          "name": "bounce",
+          "at": "word:faster+0.7",
+          "volume": 0.6
+        }
+      ],
+      "camera": [
+        {
+          "move": "shake",
+          "at": "word:faster+0.3"
+        }
+      ]
+    },
+    {
+      "id": "try3",
+      "speech": "Try three. Two at once!",
+      "emphasis": [
+        "Two at once"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 1.0,
+      "character": null,
+      "extras": [
+        {
+          "id": "brick",
+          "style": "stickman",
+          "label": "Brick",
+          "pose": "windup",
+          "expression": "fierce",
+          "x": 0.2,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "throw",
+              "at": "word:two"
+            },
+            {
+              "pose": "windup",
+              "at": "word:two+0.2"
+            },
+            {
+              "pose": "throw",
+              "at": "word:once"
+            }
+          ],
+          "held": "ball"
+        },
+        {
+          "id": "noodle",
+          "style": "stickman",
+          "label": "Noodle",
+          "color": "#fff1b8",
+          "pose": "idle",
+          "expression": "smug",
+          "x": 0.78,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "dodge_limbo",
+              "expression": "happy",
+              "at": "word:two+0.12"
+            },
+            {
+              "pose": "dodge_lean",
+              "expression": "happy",
+              "at": "word:once+0.1"
+            },
+            {
+              "pose": "celebrating",
+              "expression": "happy",
+              "at": "word:once+0.8"
+            }
+          ]
+        }
+      ],
+      "projectiles": [
+        {
+          "from": "brick",
+          "to": "noodle",
+          "at": "word:two+0.02",
+          "flight": 0.3,
+          "outcome": "miss",
+          "count": 2,
+          "every": 0.35
+        }
+      ],
+      "sfx": [
+        {
+          "name": "whoosh",
+          "at": "word:two",
+          "volume": 0.5
+        },
+        {
+          "name": "whoosh",
+          "at": "word:once",
+          "volume": 0.5
+        },
+        {
+          "name": "bounce",
+          "at": "word:once+0.6",
+          "volume": 0.5
+        },
+        {
+          "name": "bounce",
+          "at": "word:once+0.95",
+          "volume": 0.5
+        }
+      ],
+      "camera": [
+        {
+          "move": "zoom_out",
+          "at": "start"
+        }
+      ]
+    },
+    {
+      "id": "rage",
+      "speech": "Brick is out of balls. And patience.",
+      "emphasis": [
+        "patience"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 0.5,
+      "character": null,
+      "extras": [
+        {
+          "id": "brick",
+          "style": "stickman",
+          "label": "Brick",
+          "pose": "shrugging",
+          "expression": "worried",
+          "x": 0.2,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "facepalm",
+              "expression": "worried",
+              "at": "word:patience"
+            }
+          ]
+        },
+        {
+          "id": "noodle",
+          "style": "stickman",
+          "label": "Noodle",
+          "color": "#fff1b8",
+          "pose": "celebrating",
+          "expression": "happy",
+          "x": 0.78,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "bow",
+              "expression": "smug",
+              "at": "word:and"
+            }
+          ]
+        }
+      ],
+      "sfx": [
+        {
+          "name": "error",
+          "at": "word:patience",
+          "volume": 0.4
+        }
+      ],
+      "camera": [
+        {
+          "move": "pan_left",
+          "at": "start"
+        }
+      ]
+    },
+    {
+      "id": "kid",
+      "speech": "Wait. Who's this?",
+      "emphasis": [
+        "this"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 0.6,
+      "character": null,
+      "extras": [
+        {
+          "id": "brick",
+          "style": "stickman",
+          "label": "Brick",
+          "pose": "facepalm",
+          "expression": "worried",
+          "x": 0.2,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "thinking",
+              "expression": "confused",
+              "at": "word:who's"
+            }
+          ]
+        },
+        {
+          "id": "noodle",
+          "style": "stickman",
+          "label": "Noodle",
+          "color": "#fff1b8",
+          "pose": "bow",
+          "expression": "smug",
+          "x": 0.78,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "leaning",
+              "expression": "smug",
+              "at": "word:who's"
+            }
+          ]
+        },
+        {
+          "id": "pebble",
+          "style": "kid",
+          "label": "Pebble",
+          "pose": "walk_right",
+          "expression": "happy",
+          "x": 0.5,
+          "scale": 0.5,
+          "poseChanges": [
+            {
+              "pose": "idle",
+              "expression": "happy",
+              "at": "word:this+0.3"
+            }
+          ],
+          "travel": {
+            "fromX": -0.12,
+            "toX": 0.5,
+            "start": "start",
+            "end": "word:this+0.3"
+          },
+          "held": "ball"
+        }
+      ],
+      "sfx": [
+        {
+          "name": "tick",
+          "at": "word:who's",
+          "volume": 0.4
+        },
+        {
+          "name": "pop",
+          "at": "word:this+0.3",
+          "volume": 0.5
+        }
+      ],
+      "bubbles": [
+        {
+          "text": "HI",
+          "at": "word:this+0.4",
+          "until": "end-0.1",
+          "on": "pebble"
+        }
+      ]
+    },
+    {
+      "id": "drop",
+      "speech": "He dropped it.",
+      "emphasis": [
+        "dropped"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 1.8,
+      "character": null,
+      "extras": [
+        {
+          "id": "brick",
+          "style": "stickman",
+          "label": "Brick",
+          "pose": "thinking",
+          "expression": "confused",
+          "x": 0.2,
+          "scale": 0.85
+        },
+        {
+          "id": "noodle",
+          "style": "stickman",
+          "label": "Noodle",
+          "color": "#fff1b8",
+          "pose": "leaning",
+          "expression": "smug",
+          "x": 0.78,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "shocked",
+              "expression": "surprised",
+              "at": "word:dropped+1.35"
+            }
+          ],
+          "knockedOutAt": "word:dropped+1.75",
+          "fallDir": "left"
+        },
+        {
+          "id": "pebble",
+          "style": "kid",
+          "label": "Pebble",
+          "pose": "idle",
+          "expression": "happy",
+          "x": 0.5,
+          "scale": 0.5,
+          "poseChanges": [
+            {
+              "pose": "shocked",
+              "expression": "surprised",
+              "at": "word:dropped+0.2"
+            },
+            {
+              "pose": "idle",
+              "expression": "worried",
+              "at": "word:dropped+1.0"
+            }
+          ],
+          "held": "ball"
+        }
+      ],
+      "projectiles": [
+        {
+          "from": "pebble",
+          "to": "noodle",
+          "at": "word:dropped",
+          "flight": 1.7,
+          "outcome": "roll"
+        }
+      ],
+      "sfx": [
+        {
+          "name": "bounce",
+          "at": "word:dropped+0.6",
+          "volume": 0.6
+        },
+        {
+          "name": "bounce",
+          "at": "word:dropped+1.0",
+          "volume": 0.4
+        },
+        {
+          "name": "bounce",
+          "at": "word:dropped+1.35",
+          "volume": 0.3
+        },
+        {
+          "name": "thud",
+          "at": "word:dropped+1.85",
+          "volume": 1.0
+        },
+        {
+          "name": "boom",
+          "at": "word:dropped+1.85",
+          "volume": 0.5
+        }
+      ],
+      "camera": [
+        {
+          "move": "punch_in",
+          "at": "word:dropped+0.4"
+        },
+        {
+          "move": "shake",
+          "at": "word:dropped+1.85"
+        }
+      ]
+    },
+    {
+      "id": "down",
+      "speech": "Noodle is DOWN.",
+      "emphasis": [
+        "DOWN"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 0.6,
+      "character": null,
+      "extras": [
+        {
+          "id": "brick",
+          "style": "stickman",
+          "label": "Brick",
+          "pose": "shocked",
+          "expression": "surprised",
+          "x": 0.2,
+          "scale": 0.85
+        },
+        {
+          "id": "noodle",
+          "style": "stickman",
+          "label": "Noodle",
+          "color": "#fff1b8",
+          "pose": "idle",
+          "expression": "ko",
+          "x": 0.78,
+          "scale": 0.85,
+          "knockedOutAt": "start",
+          "fallDir": "left"
+        },
+        {
+          "id": "pebble",
+          "style": "kid",
+          "label": "Pebble",
+          "pose": "shrugging",
+          "expression": "happy",
+          "x": 0.5,
+          "scale": 0.5
+        }
+      ],
+      "sfx": [
+        {
+          "name": "whistle",
+          "at": "word:down",
+          "volume": 0.7
+        }
+      ],
+      "bubbles": [
+        {
+          "text": "?!",
+          "at": "word:noodle",
+          "until": "end-0.1",
+          "on": "brick"
+        }
+      ],
+      "camera": [
+        {
+          "move": "zoom_out",
+          "at": "start"
+        }
+      ]
+    },
+    {
+      "id": "champion",
+      "speech": "Your champion: Pebble.",
+      "emphasis": [
+        "Pebble"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 1.0,
+      "character": null,
+      "extras": [
+        {
+          "id": "brick",
+          "style": "stickman",
+          "label": "Brick",
+          "pose": "shocked",
+          "expression": "surprised",
+          "x": 0.2,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "facepalm",
+              "expression": "worried",
+              "at": "word:pebble+0.6"
+            }
+          ]
+        },
+        {
+          "id": "noodle",
+          "style": "stickman",
+          "label": "Noodle",
+          "color": "#fff1b8",
+          "pose": "idle",
+          "expression": "ko",
+          "x": 0.78,
+          "scale": 0.85,
+          "knockedOutAt": "start",
+          "fallDir": "left"
+        },
+        {
+          "id": "pebble",
+          "style": "kid",
+          "label": "Pebble",
+          "pose": "idle",
+          "expression": "happy",
+          "x": 0.5,
+          "scale": 0.5,
+          "poseChanges": [
+            {
+              "pose": "victory",
+              "expression": "happy",
+              "at": "word:pebble"
+            }
+          ]
+        }
+      ],
+      "props": [
+        {
+          "name": "crown",
+          "at": "word:pebble",
+          "anim": "stamp",
+          "position": "above_character",
+          "scale": 0.7
+        },
+        {
+          "name": "medal",
+          "at": "word:pebble+0.25",
+          "anim": "drop",
+          "position": "top_left",
+          "scale": 0.6
+        },
+        {
+          "name": "trophy",
+          "at": "word:pebble+0.5",
+          "anim": "bounce",
+          "position": "top_right",
+          "scale": 0.6
+        }
+      ],
+      "sfx": [
+        {
+          "name": "cheer",
+          "at": "word:champion",
+          "volume": 0.7
+        },
+        {
+          "name": "chime",
+          "at": "word:pebble",
+          "volume": 0.6
+        },
+        {
+          "name": "ding",
+          "at": "word:pebble+0.25",
+          "volume": 0.5
+        },
+        {
+          "name": "ding",
+          "at": "word:pebble+0.5",
+          "volume": 0.5
+        }
+      ],
+      "camera": [
+        {
+          "move": "punch_in",
+          "at": "word:pebble"
+        }
+      ]
+    },
+    {
+      "id": "last",
+      "speech": "Brick had one ball left.",
+      "emphasis": [
+        "one ball"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 1.1,
+      "speed": 1.05,
+      "character": null,
+      "extras": [
+        {
+          "id": "brick",
+          "style": "stickman",
+          "label": "Brick",
+          "pose": "facepalm",
+          "expression": "worried",
+          "x": 0.2,
+          "scale": 0.85,
+          "poseChanges": [
+            {
+              "pose": "windup",
+              "expression": "fierce",
+              "at": "word:one"
+            },
+            {
+              "pose": "throw",
+              "expression": "fierce",
+              "at": "word:left+0.25"
+            }
+          ],
+          "held": "ball",
+          "heldAt": "word:one"
+        },
+        {
+          "id": "noodle",
+          "style": "stickman",
+          "label": "Noodle",
+          "color": "#fff1b8",
+          "pose": "idle",
+          "expression": "ko",
+          "x": 0.78,
+          "scale": 0.85,
+          "knockedOutAt": "start",
+          "fallDir": "left"
+        },
+        {
+          "id": "pebble",
+          "style": "kid",
+          "label": "Pebble",
+          "pose": "victory",
+          "expression": "happy",
+          "x": 0.5,
+          "scale": 0.5
+        }
+      ],
+      "projectiles": [
+        {
+          "from": "brick",
+          "to": "camera",
+          "at": "word:left+0.27",
+          "flight": 0.32
+        }
+      ],
+      "sfx": [
+        {
+          "name": "whoosh",
+          "at": "word:left+0.25",
+          "volume": 0.7
+        },
+        {
+          "name": "boom",
+          "at": "word:left+0.6",
+          "volume": 0.9
+        },
+        {
+          "name": "click",
+          "at": "word:left+0.6",
+          "volume": 0.7
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "screen_crack",
+          "at": "word:left+0.6"
+        }
+      ],
+      "camera": [
+        {
+          "move": "shake",
+          "at": "word:left+0.6"
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "speech": "Follow Dummy Sticky for more.",
+      "emphasis": [
+        "Follow",
+        "Dummy Sticky"
+      ],
+      "voice": "af_heart",
+      "voiceFx": "none",
+      "speed": 1.0,
+      "layout": "character_center",
+      "pauseAfter": 1.3,
+      "captions": false,
+      "character": null,
+      "sfx": [
+        {
+          "name": "pop",
+          "at": "word:follow",
+          "volume": 0.6
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "blackout",
+          "at": "start"
+        },
+        {
+          "kind": "screen_crack",
+          "at": "start"
+        },
+        {
+          "kind": "follow_card",
+          "at": "word:follow"
+        }
+      ]
+    }
+  ]
+}

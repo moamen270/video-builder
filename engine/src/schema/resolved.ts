@@ -82,8 +82,21 @@ export const ResolvedExtra = z.object({
   /** Absolute frame the character is knocked flat (from knockedOutAt or a throw hit). */
   koFrame: z.number().int().nullable(),
   fallDir: z.enum(["left", "right"]).nullable().default(null),
+  label: z.string().nullable().default(null),
+  held: z.enum(["frying_pan", "ball"]).nullable().default(null),
+  heldFrame: z.number().int().default(0),
 });
 export type ResolvedExtra = z.infer<typeof ResolvedExtra>;
+
+export const ResolvedProjectile = z.object({
+  from: z.string(),
+  to: z.string(),
+  atFrame: z.number().int(),
+  hitFrame: z.number().int(),
+  outcome: z.enum(["hit", "miss", "deflect", "roll"]),
+  /** Barrage index, for deterministic variation. */
+  n: z.number().int(),
+});
 
 export const ResolvedThrow = z.object({
   atFrame: z.number().int(),
@@ -167,6 +180,7 @@ export const ResolvedScene = z.object({
   bubbles: z.array(ResolvedBubble),
   camera: z.array(ResolvedCamera),
   overlays: z.array(ResolvedOverlay).default([]),
+  projectiles: z.array(ResolvedProjectile).default([]),
 });
 export type ResolvedScene = z.infer<typeof ResolvedScene>;
 

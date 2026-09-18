@@ -260,6 +260,56 @@ def zip_line() -> np.ndarray:
     return click_ + whine + lowpass(ratchet, 3000)
 
 
+def bounce() -> np.ndarray:
+    """Rubber dodgeball: hollow thump, pitch dropping fast, a hint of ring."""
+    x = t(0.32)
+    n = len(x)
+    f = 260 * np.exp(-x * 28) + 90
+    body = np.sin(2 * np.pi * np.cumsum(f) / SR) * env(n, 0.001, 0.14, 2.6)
+    ring = np.sin(2 * np.pi * 520 * x) * env(n, 0.001, 0.05) * 0.3
+    return body * 1.2 + ring
+
+
+def clang() -> np.ndarray:
+    """Frying pan: bright inharmonic metallic partials with a long ring."""
+    x = t(0.9)
+    n = len(x)
+    out = np.zeros(n)
+    for k, (f, a, d) in enumerate([(1180, 1.0, 0.5), (1890, 0.6, 0.4), (2740, 0.45, 0.3), (3610, 0.3, 0.22), (640, 0.5, 0.35)]):
+        out += a * np.sin(2 * np.pi * f * x + k) * env(n, 0.0005, d, 2.2)
+    rng = np.random.default_rng(43)
+    strike = rng.normal(0, 1, n) * env(n, 0.0005, 0.012)
+    return out + strike * 0.7
+
+
+def whistle() -> np.ndarray:
+    """Referee whistle: two-tone shrill with a fast tremolo."""
+    x = t(0.55)
+    n = len(x)
+    trem = 0.6 + 0.4 * np.sin(2 * np.pi * 42 * x)
+    tone = (np.sin(2 * np.pi * 2450 * x) + 0.6 * np.sin(2 * np.pi * 2950 * x)) * trem
+    return tone * env(n, 0.01, 0.5, 1.6)
+
+
+def cheer() -> np.ndarray:
+    """Crowd stinger: a swell of many detuned voices (filtered noise + hum cluster) with claps on top."""
+    rng = np.random.default_rng(44)
+    x = t(1.6)
+    n = len(x)
+    swell = np.clip(x / 0.25, 0, 1) * np.exp(-np.clip(x - 0.6, 0, None) * 2.2)
+    roar = lowpass(rng.normal(0, 1, n), 1400) * swell
+    hum = np.zeros(n)
+    for f in (180, 214, 262, 311, 349, 415):
+        hum += np.sin(2 * np.pi * (f + rng.normal(0, 2)) * x + rng.uniform(0, 6))
+    hum = hum / 6 * swell * 0.6
+    claps = np.zeros(n)
+    for _ in range(26):
+        i = int(rng.uniform(0.05, 1.3) * SR)
+        m = min(n - i, int(0.03 * SR))
+        claps[i : i + m] += rng.normal(0, 1, m) * env(m, 0.0005, 0.02)
+    return roar * 1.1 + hum + lowpass(claps, 4000) * 0.5
+
+
 def lofi_loop(name: str = "lofi-01", bpm: float = 78, bars: int = 8, seed: int = 7) -> np.ndarray:
     """Warm lo-fi chord loop with soft kick/hat. Loops cleanly (bar-aligned)."""
     rng = np.random.default_rng(seed)
@@ -325,6 +375,10 @@ def main() -> None:
     write("thunder", thunder())
     write("thud", thud())
     write("zip", zip_line())
+    write("bounce", bounce())
+    write("clang", clang())
+    write("whistle", whistle())
+    write("cheer", cheer())
     print("music:")
     write("lofi-01", lofi_loop("lofi-01", 78, 8, 7), MUSIC)
     write("lofi-02", lofi_loop("lofi-02", 88, 8, 11), MUSIC)
