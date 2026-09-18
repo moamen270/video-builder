@@ -210,8 +210,8 @@ One SFX per visual event, volume 0.5–0.8; never two on the same word.
   `dolly_in` for a character looming at the viewer (finales).
 - `overlays` (on the viewer's screen, outside the camera): `claw_marks`, `flash`, `blackout`,
   `hook_card` (opening text hook, needs `text`, 2–8 words; sits above the top prop slots),
-  `spotlight` (dark stage, cone of light — the standard `bare` opening), `flourish` (Jhin W: wide magenta beam
-  across the screen + pink wash, on a line like "Hold still." before the finale shot), `screen_crack`
+  `spotlight` (dark stage, cone of light — the standard `bare` opening), `flourish` (Jhin W as in the game: a thin white line
+  with a blue-violet halo across the screen + a brief cool wash, on a line like "Hold still." before the finale shot), `screen_crack`
   (glass shatter at frame centre — the standard ending after a camera shot/strike/throw; re-add at `start`
   on every later scene so the screen stays broken), `follow_card` (CTA: @handle + Follow button in the caption slot — set the scene's
   `"captions": false` and anchor it to `word:follow`; the character SAYS the CTA in his own voice).

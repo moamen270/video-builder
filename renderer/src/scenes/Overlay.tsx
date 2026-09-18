@@ -144,30 +144,41 @@ const ScreenCrack: React.FC<{ t: number; accent: string }> = ({ t, accent }) => 
 };
 
 /**
- * Jhin's W (Deadly Flourish) fired at the viewer: a wide magenta beam crosses the
- * frame at the impact height, the whole picture washes pink for a moment and a
- * rooted-vignette breathes at the edges. Pure overlay: nothing is destroyed yet.
+ * Jhin's W (Deadly Flourish) fired at the viewer — matched to the game: a long,
+ * thin white line with a pale blue-violet halo, a soft flare where it lands and
+ * a brief cool wash over the picture. Pure overlay: nothing is destroyed yet.
  */
 const Flourish: React.FC<{ t: number }> = ({ t }) => {
-  const beamIn = interpolate(t, [0, 3], [0, 1], { extrapolateRight: "clamp" });
-  const beamOut = interpolate(t, [8, 16], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const wash = interpolate(t, [0, 4, 30], [0, 0.32, 0], { extrapolateRight: "clamp" });
-  const edge = interpolate(t, [0, 6, 40], [0, 0.55, 0], { extrapolateRight: "clamp" });
+  const beamIn = interpolate(t, [0, 2], [0, 1], { extrapolateRight: "clamp" });
+  const beamOut = interpolate(t, [10, 20], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const wash = interpolate(t, [0, 3, 26], [0, 0.18, 0], { extrapolateRight: "clamp" });
+  const edge = interpolate(t, [0, 5, 36], [0, 0.45, 0], { extrapolateRight: "clamp" });
   const y = 860;
-  const h = 110 * beamIn;
+  const halo = "#9fb4ff";
+  const violet = "#c9a7ff";
+  // the line runs edge to edge, tilted like the in-game shot
+  const x1 = -60;
+  const x2 = 1140;
+  const y1 = y + 120;
+  const y2 = y - 120;
+  const reach = interpolate(t, [0, 2], [0, 1], { extrapolateRight: "clamp" }); // draws from left to right
+  const ex = x1 + (x2 - x1) * reach;
+  const ey = y1 + (y2 - y1) * reach;
+  const flare = interpolate(t, [1, 4, 14], [0, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   return (
     <AbsoluteFill style={{ pointerEvents: "none" }}>
-      <AbsoluteFill style={{ background: "#ff2bd6", opacity: wash, mixBlendMode: "screen" }} />
-      <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 45%, rgba(255,43,214,0) 45%, rgba(255,43,214,0.9) 100%)", opacity: edge }} />
+      <AbsoluteFill style={{ background: halo, opacity: wash, mixBlendMode: "screen" }} />
+      <AbsoluteFill style={{ background: `radial-gradient(ellipse at 50% 45%, rgba(159,180,255,0) 50%, rgba(159,180,255,0.9) 100%)`, opacity: edge }} />
       <svg width={1080} height={1920} style={{ position: "absolute", inset: 0 }}>
-        <g opacity={beamOut}>
-          <rect x={-40} y={y - h} width={1160} height={h * 2} fill="#ff2bd6" opacity={0.35} />
-          <rect x={-40} y={y - h * 0.45} width={1160} height={h * 0.9} fill="#ff2bd6" opacity={0.85} />
-          <rect x={-40} y={y - h * 0.16} width={1160} height={h * 0.32} fill="#ffffff" />
-          {/* four notches along the beam — his number */}
-          {[0.2, 0.4, 0.6, 0.8].map((k, i) => (
-            <circle key={i} cx={1080 * k} cy={y} r={14 * beamIn} fill="#ffffff" opacity={0.9} />
-          ))}
+        <g opacity={beamOut} strokeLinecap="round">
+          <line x1={x1} y1={y1} x2={ex} y2={ey} stroke={violet} strokeWidth={54 * beamIn} opacity={0.22} />
+          <line x1={x1} y1={y1} x2={ex} y2={ey} stroke={halo} strokeWidth={26 * beamIn} opacity={0.5} />
+          <line x1={x1} y1={y1} x2={ex} y2={ey} stroke="#ffffff" strokeWidth={9 * beamIn} />
+          {/* flare where the line crosses the centre of the screen */}
+          <circle cx={540} cy={y} r={120 * flare} fill={halo} opacity={0.35 * flare} />
+          <circle cx={540} cy={y} r={46 * flare} fill="#ffffff" opacity={0.95 * flare} />
+          <path d={`M 540 ${y - 170 * flare} L 552 ${y - 20} L 540 ${y + 170 * flare} L 528 ${y - 20} Z`} fill="#ffffff" opacity={0.85 * flare} />
+          <path d={`M ${540 - 240 * flare} ${y} L 552 ${y - 10} L ${540 + 240 * flare} ${y} L 552 ${y + 10} Z`} fill="#ffffff" opacity={0.7 * flare} />
         </g>
       </svg>
     </AbsoluteFill>

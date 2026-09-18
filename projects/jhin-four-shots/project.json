@@ -4,7 +4,7 @@
   "createdAt": "2026-09-16T03:14:04.420Z",
   "targetSeconds": 40,
   "status": "qa_passed",
-  "lastRenderMs": 58487,
+  "lastRenderMs": 63692,
   "versions": [
     {
       "n": 1,
@@ -84,6 +84,16 @@
       "manifestHash": "a3d9f2e6f0290403",
       "note": "v8: no laugh; W flourish beam + pink wash on 'Hold still', gun twirl on 'Everything must be perfect', 4th shot cracks the screen, 'Perfection', black, follow card",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/jhin-four-shots-v8/final.mp4"
+    },
+    {
+      "n": 9,
+      "at": "2026-09-18T10:43:43.269Z",
+      "seconds": 35.8,
+      "renderMs": 63692,
+      "qaOk": true,
+      "manifestHash": "a3d9f2e6f0290403",
+      "note": "v9: W flourish matched to the game — thin white line, blue-violet halo, cool wash",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/jhin-four-shots-v9/final.mp4"
     }
   ]
 }

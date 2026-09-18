@@ -152,7 +152,7 @@ export type VoiceFx = (typeof VOICE_FX)[number];
 export const CAMERA_MOVES = ["none", "punch_in", "slow_zoom", "shake", "dolly_in"] as const; // dolly_in: fast 2.3x push toward the character (looming at the viewer)
 
 /** Full-frame effects drawn on top of everything — on the "viewer's screen", not in the scene. */
-export const OVERLAYS = ["claw_marks", "flash", "blackout", "bat_signal", "batarang_stuck", "hook_card", "follow_card", "screen_crack", "spotlight", "flourish"] as const; // flourish: Jhin W — a wide magenta beam across the screen + brief colour wash // screen_crack: glass shatter at the impact point (standard ending); spotlight: dark stage, cone of light on the character (standard opening) // hook_card: big text hook over the opening (needs `text`); follow_card: @handle + Follow button for the CTA line
+export const OVERLAYS = ["claw_marks", "flash", "blackout", "bat_signal", "batarang_stuck", "hook_card", "follow_card", "screen_crack", "spotlight", "flourish"] as const; // flourish: Jhin W — thin white line with a blue-violet halo across the screen + brief cool wash // screen_crack: glass shatter at the impact point (standard ending); spotlight: dark stage, cone of light on the character (standard opening) // hook_card: big text hook over the opening (needs `text`); follow_card: @handle + Follow button for the CTA line
 export type OverlayKind = (typeof OVERLAYS)[number];
 export type CameraMove = (typeof CAMERA_MOVES)[number];
 
