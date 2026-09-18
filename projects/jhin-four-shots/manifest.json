@@ -13,7 +13,7 @@
       "style": "jhin"
     }
   ],
-  "notes": "Theatrical, calm, precise. Every shot is a performance; the fourth is the finale. v7: slower opening line; hero at 0.8 scale with smaller targets for distance; walks right to shoot the third target on the left; shot → impact glow → lotus blooms → lotus detonates (exit burst) to clear the stage; laugh is Kokoro in HIS voice with beat captions; ending: cracked screen goes black, then the narrator follow card.",
+  "notes": "Theatrical, calm, precise. Every shot is a performance; the fourth is the finale. v8: no laugh. Finale build-up: W (flourish beam + pink wash) on 'Hold still', gun twirl on 'Everything must be perfect', 4th shot cracks the screen, 'Perfection. In four acts.', black, narrator follow card.",
   "social": {
     "title": "Jhin in 4 Shots — \"Perfection. In four acts.\" (League of Legends stickman)",
     "hook": "Four shots. One masterpiece.",
@@ -533,10 +533,97 @@
         {
           "move": "slow_zoom",
           "at": "start"
+        }
+      ]
+    },
+    {
+      "id": "flourish",
+      "speech": "Hold still.",
+      "emphasis": [
+        "still"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 0.7,
+      "speed": 0.86,
+      "character": {
+        "id": "jhin",
+        "pose": "aim_camera",
+        "expression": "fierce",
+        "position": "right"
+      },
+      "sfx": [
+        {
+          "name": "gunshot",
+          "at": "word:still+0.1",
+          "volume": 0.7
         },
         {
-          "move": "dolly_in",
-          "at": "word:finale"
+          "name": "chime",
+          "at": "word:still+0.25",
+          "volume": 0.6
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "flourish",
+          "at": "word:still+0.1"
+        }
+      ],
+      "camera": [
+        {
+          "move": "shake",
+          "at": "word:still+0.1"
+        }
+      ]
+    },
+    {
+      "id": "twirl",
+      "speech": "Everything... must be perfect.",
+      "emphasis": [
+        "perfect"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 0.5,
+      "speed": 0.84,
+      "character": {
+        "id": "jhin",
+        "pose": "twirl",
+        "expression": "smug",
+        "position": "right",
+        "poseChanges": [
+          {
+            "pose": "aim_camera",
+            "expression": "fierce",
+            "at": "word:perfect"
+          }
+        ]
+      },
+      "sfx": [
+        {
+          "name": "tick",
+          "at": "start",
+          "volume": 0.4
+        },
+        {
+          "name": "tick",
+          "at": "start+0.5",
+          "volume": 0.4
+        },
+        {
+          "name": "tick",
+          "at": "start+1.0",
+          "volume": 0.4
+        },
+        {
+          "name": "click",
+          "at": "word:perfect",
+          "volume": 0.7
+        }
+      ],
+      "camera": [
+        {
+          "move": "slow_zoom",
+          "at": "start"
         }
       ]
     },
@@ -547,7 +634,7 @@
         "Four"
       ],
       "layout": "character_center",
-      "pauseAfter": 1.3,
+      "pauseAfter": 1.0,
       "speed": 0.8,
       "character": {
         "id": "jhin",
@@ -595,47 +682,12 @@
       ],
       "camera": [
         {
+          "move": "dolly_in",
+          "at": "start"
+        },
+        {
           "move": "shake",
           "at": "word:four+0.35"
-        }
-      ]
-    },
-    {
-      "id": "laugh",
-      "speech": "Ha ha ha! Ha ha ha ha ha! Ha, ha, ha!",
-      "layout": "character_center",
-      "pauseAfter": 0.5,
-      "speed": 1.08,
-      "captionStyle": "beat",
-      "transition": "cut",
-      "character": {
-        "id": "jhin",
-        "pose": "laughing",
-        "expression": "laughing",
-        "position": "right",
-        "poseChanges": [
-          {
-            "pose": "celebrating",
-            "expression": "laughing",
-            "at": "word:ha#4"
-          },
-          {
-            "pose": "laughing",
-            "expression": "laughing",
-            "at": "word:ha#9"
-          }
-        ]
-      },
-      "overlays": [
-        {
-          "kind": "screen_crack",
-          "at": "start"
-        }
-      ],
-      "camera": [
-        {
-          "move": "punch_in",
-          "at": "start"
         }
       ]
     },
@@ -647,7 +699,7 @@
         "four acts"
       ],
       "layout": "character_center",
-      "pauseAfter": 0.7,
+      "pauseAfter": 0.9,
       "speed": 0.88,
       "character": {
         "id": "jhin",

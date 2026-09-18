@@ -52,6 +52,8 @@ export const Overlay: React.FC<{ overlay: Cue; abs: number; slash: SlashGeom | n
       return <ScreenCrack t={t} accent={palette.accent} />;
     case "spotlight":
       return <Spotlight t={t} />;
+    case "flourish":
+      return <Flourish t={t} />;
     case "follow_card":
       return <FollowCard t={t} handle={brand?.handle ?? "@DummySticky"} palette={palette} rect={captionRect} />;
   }
@@ -137,6 +139,37 @@ const ScreenCrack: React.FC<{ t: number; accent: string }> = ({ t, accent }) => 
       </svg>
       {/* the picture behind dims a little, like a cracked phone */}
       <AbsoluteFill style={{ background: "rgba(0,0,0,0.18)" }} />
+    </AbsoluteFill>
+  );
+};
+
+/**
+ * Jhin's W (Deadly Flourish) fired at the viewer: a wide magenta beam crosses the
+ * frame at the impact height, the whole picture washes pink for a moment and a
+ * rooted-vignette breathes at the edges. Pure overlay: nothing is destroyed yet.
+ */
+const Flourish: React.FC<{ t: number }> = ({ t }) => {
+  const beamIn = interpolate(t, [0, 3], [0, 1], { extrapolateRight: "clamp" });
+  const beamOut = interpolate(t, [8, 16], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const wash = interpolate(t, [0, 4, 30], [0, 0.32, 0], { extrapolateRight: "clamp" });
+  const edge = interpolate(t, [0, 6, 40], [0, 0.55, 0], { extrapolateRight: "clamp" });
+  const y = 860;
+  const h = 110 * beamIn;
+  return (
+    <AbsoluteFill style={{ pointerEvents: "none" }}>
+      <AbsoluteFill style={{ background: "#ff2bd6", opacity: wash, mixBlendMode: "screen" }} />
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 45%, rgba(255,43,214,0) 45%, rgba(255,43,214,0.9) 100%)", opacity: edge }} />
+      <svg width={1080} height={1920} style={{ position: "absolute", inset: 0 }}>
+        <g opacity={beamOut}>
+          <rect x={-40} y={y - h} width={1160} height={h * 2} fill="#ff2bd6" opacity={0.35} />
+          <rect x={-40} y={y - h * 0.45} width={1160} height={h * 0.9} fill="#ff2bd6" opacity={0.85} />
+          <rect x={-40} y={y - h * 0.16} width={1160} height={h * 0.32} fill="#ffffff" />
+          {/* four notches along the beam — his number */}
+          {[0.2, 0.4, 0.6, 0.8].map((k, i) => (
+            <circle key={i} cx={1080 * k} cy={y} r={14 * beamIn} fill="#ffffff" opacity={0.9} />
+          ))}
+        </g>
+      </svg>
     </AbsoluteFill>
   );
 };

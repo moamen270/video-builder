@@ -52,6 +52,7 @@ export const RIGS: Record<Pose, Rig> = {
   run_left: { lUpper: -8, lLower: -6, rUpper: 8, rLower: 6, lThigh: -7, lShin: 0, rThigh: 7, rShin: 0, head: 0, torso: 0, lift: 0, nod: 0 },
   knocked_out: { lUpper: -30, lLower: -20, rUpper: 40, rLower: 30, lThigh: -12, lShin: 0, rThigh: 16, rShin: -10, head: 8, torso: 0, lift: 0, nod: 0 },
   aim_camera: { lUpper: -26, lLower: -30, rUpper: 110, rLower: -138, lThigh: -14, lShin: 4, rThigh: 14, rShin: -4, head: 0, torso: 0, lift: 0, nod: 6 },
+  twirl: { lUpper: -22, lLower: -20, rUpper: 74, rLower: -30, lThigh: -10, lShin: 0, rThigh: 10, rShin: 0, head: -4, torso: 0, lift: 0, nod: 2 },
   admire: { lUpper: -34, lLower: -128, rUpper: 22, rLower: 12, lThigh: -8, lShin: 0, rThigh: 8, rShin: 0, head: -9, torso: -2, lift: 0, nod: 4 },
   walk_right: { lUpper: -8, lLower: -6, rUpper: 8, rLower: 6, lThigh: -7, lShin: 0, rThigh: 7, rShin: 0, head: 0, torso: 0, lift: 0, nod: 0 },
   walk_left: { lUpper: -8, lLower: -6, rUpper: 8, rLower: 6, lThigh: -7, lShin: 0, rThigh: 7, rShin: 0, head: 0, torso: 0, lift: 0, nod: 0 },

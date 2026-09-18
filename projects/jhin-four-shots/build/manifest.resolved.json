@@ -5,7 +5,7 @@
   "fps": 30,
   "width": 1080,
   "height": 1920,
-  "durationInFrames": 1011,
+  "durationInFrames": 1074,
   "theme": "grape",
   "voice": "bm_george",
   "music": null,
@@ -810,10 +810,198 @@
         {
           "move": "slow_zoom",
           "atFrame": 496
+        }
+      ],
+      "overlays": []
+    },
+    {
+      "id": "flourish",
+      "speech": "Hold still.",
+      "isClip": false,
+      "clipVolume": 1,
+      "startFrame": 599,
+      "durationInFrames": 77,
+      "speechFrames": 56,
+      "audioSrc": "audio/flourish.wav",
+      "words": [
+        {
+          "text": "Hold",
+          "i": 0,
+          "start": 0.275,
+          "end": 0.662,
+          "startFrame": 607,
+          "endFrame": 619,
+          "emphasis": false
         },
         {
-          "move": "dolly_in",
-          "atFrame": 530
+          "text": "still.",
+          "i": 1,
+          "start": 0.662,
+          "end": 1.75,
+          "startFrame": 619,
+          "endFrame": 652,
+          "emphasis": true
+        }
+      ],
+      "layout": "character_center",
+      "transition": "cut",
+      "captions": true,
+      "captionStyle": "normal",
+      "bare": false,
+      "character": {
+        "id": "jhin",
+        "style": "jhin",
+        "pose": "aim_camera",
+        "expression": "fierce",
+        "position": "right",
+        "scale": 1,
+        "poseChanges": [],
+        "shots": [],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
+        "strikes": [],
+        "travel": null,
+        "jump": null
+      },
+      "extras": [],
+      "props": [],
+      "sfx": [
+        {
+          "name": "gunshot",
+          "atFrame": 622,
+          "volume": 0.7,
+          "src": "assets/sfx/gunshot.wav"
+        },
+        {
+          "name": "chime",
+          "atFrame": 627,
+          "volume": 0.6,
+          "src": "assets/sfx/chime.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": [
+        {
+          "move": "shake",
+          "atFrame": 622
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "flourish",
+          "atFrame": 622,
+          "untilFrame": 676
+        }
+      ]
+    },
+    {
+      "id": "twirl",
+      "speech": "Everything... must be perfect.",
+      "isClip": false,
+      "clipVolume": 1,
+      "startFrame": 676,
+      "durationInFrames": 103,
+      "speechFrames": 88,
+      "audioSrc": "audio/twirl.wav",
+      "words": [
+        {
+          "text": "Everything...",
+          "i": 0,
+          "start": 0.275,
+          "end": 1.125,
+          "startFrame": 684,
+          "endFrame": 710,
+          "emphasis": false
+        },
+        {
+          "text": "must",
+          "i": 1,
+          "start": 1.125,
+          "end": 1.375,
+          "startFrame": 710,
+          "endFrame": 717,
+          "emphasis": false
+        },
+        {
+          "text": "be",
+          "i": 2,
+          "start": 1.375,
+          "end": 1.562,
+          "startFrame": 717,
+          "endFrame": 723,
+          "emphasis": false
+        },
+        {
+          "text": "perfect.",
+          "i": 3,
+          "start": 1.562,
+          "end": 2.825,
+          "startFrame": 723,
+          "endFrame": 761,
+          "emphasis": true
+        }
+      ],
+      "layout": "character_center",
+      "transition": "cut",
+      "captions": true,
+      "captionStyle": "normal",
+      "bare": false,
+      "character": {
+        "id": "jhin",
+        "style": "jhin",
+        "pose": "twirl",
+        "expression": "smug",
+        "position": "right",
+        "scale": 1,
+        "poseChanges": [
+          {
+            "pose": "aim_camera",
+            "expression": "fierce",
+            "atFrame": 723
+          }
+        ],
+        "shots": [],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
+        "strikes": [],
+        "travel": null,
+        "jump": null
+      },
+      "extras": [],
+      "props": [],
+      "sfx": [
+        {
+          "name": "tick",
+          "atFrame": 676,
+          "volume": 0.4,
+          "src": "assets/sfx/tick.wav"
+        },
+        {
+          "name": "tick",
+          "atFrame": 691,
+          "volume": 0.4,
+          "src": "assets/sfx/tick.wav"
+        },
+        {
+          "name": "tick",
+          "atFrame": 706,
+          "volume": 0.4,
+          "src": "assets/sfx/tick.wav"
+        },
+        {
+          "name": "click",
+          "atFrame": 723,
+          "volume": 0.7,
+          "src": "assets/sfx/click.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": [
+        {
+          "move": "slow_zoom",
+          "atFrame": 676
         }
       ],
       "overlays": []
@@ -823,8 +1011,8 @@
       "speech": "Four.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 599,
-      "durationInFrames": 85,
+      "startFrame": 779,
+      "durationInFrames": 76,
       "speechFrames": 46,
       "audioSrc": "audio/four.wav",
       "words": [
@@ -833,8 +1021,8 @@
           "i": 0,
           "start": 0.325,
           "end": 1.35,
-          "startFrame": 609,
-          "endFrame": 640,
+          "startFrame": 789,
+          "endFrame": 820,
           "emphasis": true
         }
       ],
@@ -854,12 +1042,12 @@
           {
             "pose": "bow",
             "expression": "smug",
-            "atFrame": 636
+            "atFrame": 816
           }
         ],
         "shots": [
           {
-            "atFrame": 611,
+            "atFrame": 791,
             "big": true,
             "camera": true
           }
@@ -876,19 +1064,19 @@
       "sfx": [
         {
           "name": "gunshot_big",
-          "atFrame": 611,
+          "atFrame": 791,
           "volume": 1,
           "src": "assets/sfx/gunshot_big.wav"
         },
         {
           "name": "boom",
-          "atFrame": 620,
+          "atFrame": 800,
           "volume": 0.9,
           "src": "assets/sfx/boom.wav"
         },
         {
           "name": "chime",
-          "atFrame": 627,
+          "atFrame": 807,
           "volume": 0.7,
           "src": "assets/sfx/chime.wav"
         }
@@ -896,175 +1084,19 @@
       "bubbles": [],
       "camera": [
         {
+          "move": "dolly_in",
+          "atFrame": 779
+        },
+        {
           "move": "shake",
-          "atFrame": 620
+          "atFrame": 800
         }
       ],
       "overlays": [
         {
           "kind": "screen_crack",
-          "atFrame": 620,
-          "untilFrame": 684
-        }
-      ]
-    },
-    {
-      "id": "laugh",
-      "speech": "Ha ha ha! Ha ha ha ha ha! Ha, ha, ha!",
-      "isClip": false,
-      "clipVolume": 1,
-      "startFrame": 684,
-      "durationInFrames": 114,
-      "speechFrames": 99,
-      "audioSrc": "audio/laugh.wav",
-      "words": [
-        {
-          "text": "Ha",
-          "i": 0,
-          "start": 0.2,
-          "end": 0.35,
-          "startFrame": 690,
-          "endFrame": 695,
-          "emphasis": false
-        },
-        {
-          "text": "ha",
-          "i": 1,
-          "start": 0.35,
-          "end": 0.525,
-          "startFrame": 695,
-          "endFrame": 700,
-          "emphasis": false
-        },
-        {
-          "text": "ha!",
-          "i": 2,
-          "start": 0.525,
-          "end": 0.85,
-          "startFrame": 700,
-          "endFrame": 710,
-          "emphasis": false
-        },
-        {
-          "text": "Ha",
-          "i": 3,
-          "start": 0.85,
-          "end": 1.025,
-          "startFrame": 710,
-          "endFrame": 715,
-          "emphasis": false
-        },
-        {
-          "text": "ha",
-          "i": 4,
-          "start": 1.025,
-          "end": 1.2,
-          "startFrame": 715,
-          "endFrame": 720,
-          "emphasis": false
-        },
-        {
-          "text": "ha",
-          "i": 5,
-          "start": 1.2,
-          "end": 1.375,
-          "startFrame": 720,
-          "endFrame": 725,
-          "emphasis": false
-        },
-        {
-          "text": "ha",
-          "i": 6,
-          "start": 1.375,
-          "end": 1.55,
-          "startFrame": 725,
-          "endFrame": 731,
-          "emphasis": false
-        },
-        {
-          "text": "ha!",
-          "i": 7,
-          "start": 1.55,
-          "end": 1.9,
-          "startFrame": 731,
-          "endFrame": 741,
-          "emphasis": false
-        },
-        {
-          "text": "Ha,",
-          "i": 8,
-          "start": 1.9,
-          "end": 2.175,
-          "startFrame": 741,
-          "endFrame": 749,
-          "emphasis": false
-        },
-        {
-          "text": "ha,",
-          "i": 9,
-          "start": 2.175,
-          "end": 2.45,
-          "startFrame": 749,
-          "endFrame": 758,
-          "emphasis": false
-        },
-        {
-          "text": "ha!",
-          "i": 10,
-          "start": 2.45,
-          "end": 3.2,
-          "startFrame": 758,
-          "endFrame": 780,
-          "emphasis": false
-        }
-      ],
-      "layout": "character_center",
-      "transition": "cut",
-      "captions": true,
-      "captionStyle": "beat",
-      "bare": false,
-      "character": {
-        "id": "jhin",
-        "style": "jhin",
-        "pose": "laughing",
-        "expression": "laughing",
-        "position": "right",
-        "scale": 1,
-        "poseChanges": [
-          {
-            "pose": "celebrating",
-            "expression": "laughing",
-            "atFrame": 710
-          },
-          {
-            "pose": "laughing",
-            "expression": "laughing",
-            "atFrame": 741
-          }
-        ],
-        "shots": [],
-        "throws": [],
-        "entrance": null,
-        "exit": null,
-        "strikes": [],
-        "travel": null,
-        "jump": null
-      },
-      "extras": [],
-      "props": [],
-      "sfx": [],
-      "bubbles": [],
-      "camera": [
-        {
-          "move": "punch_in",
-          "atFrame": 684
-        }
-      ],
-      "overlays": [
-        {
-          "kind": "screen_crack",
-          "atFrame": 684,
-          "untilFrame": 798
+          "atFrame": 800,
+          "untilFrame": 855
         }
       ]
     },
@@ -1073,8 +1105,8 @@
       "speech": "Perfection. In four acts.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 798,
-      "durationInFrames": 107,
+      "startFrame": 855,
+      "durationInFrames": 113,
       "speechFrames": 86,
       "audioSrc": "audio/outro.wav",
       "words": [
@@ -1083,8 +1115,8 @@
           "i": 0,
           "start": 0.25,
           "end": 1.087,
-          "startFrame": 806,
-          "endFrame": 831,
+          "startFrame": 863,
+          "endFrame": 888,
           "emphasis": true
         },
         {
@@ -1092,8 +1124,8 @@
           "i": 1,
           "start": 1.087,
           "end": 1.312,
-          "startFrame": 831,
-          "endFrame": 837,
+          "startFrame": 888,
+          "endFrame": 894,
           "emphasis": false
         },
         {
@@ -1101,8 +1133,8 @@
           "i": 2,
           "start": 1.312,
           "end": 1.7,
-          "startFrame": 837,
-          "endFrame": 849,
+          "startFrame": 894,
+          "endFrame": 906,
           "emphasis": true
         },
         {
@@ -1110,8 +1142,8 @@
           "i": 3,
           "start": 1.7,
           "end": 2.75,
-          "startFrame": 849,
-          "endFrame": 881,
+          "startFrame": 906,
+          "endFrame": 938,
           "emphasis": true
         }
       ],
@@ -1131,7 +1163,7 @@
           {
             "pose": "bow",
             "expression": "happy",
-            "atFrame": 831
+            "atFrame": 888
           }
         ],
         "shots": [],
@@ -1147,7 +1179,7 @@
       "sfx": [
         {
           "name": "chime",
-          "atFrame": 806,
+          "atFrame": 863,
           "volume": 0.6,
           "src": "assets/sfx/chime.wav"
         }
@@ -1157,8 +1189,8 @@
       "overlays": [
         {
           "kind": "screen_crack",
-          "atFrame": 798,
-          "untilFrame": 905
+          "atFrame": 855,
+          "untilFrame": 968
         }
       ]
     },
@@ -1167,7 +1199,7 @@
       "speech": "Follow Dummy Sticky for more.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 905,
+      "startFrame": 968,
       "durationInFrames": 106,
       "speechFrames": 67,
       "audioSrc": "audio/cta.wav",
@@ -1177,8 +1209,8 @@
           "i": 0,
           "start": 0.3,
           "end": 0.637,
-          "startFrame": 914,
-          "endFrame": 924,
+          "startFrame": 977,
+          "endFrame": 987,
           "emphasis": true
         },
         {
@@ -1186,8 +1218,8 @@
           "i": 1,
           "start": 0.637,
           "end": 0.975,
-          "startFrame": 924,
-          "endFrame": 934,
+          "startFrame": 987,
+          "endFrame": 997,
           "emphasis": true
         },
         {
@@ -1195,8 +1227,8 @@
           "i": 2,
           "start": 0.975,
           "end": 1.3,
-          "startFrame": 934,
-          "endFrame": 944,
+          "startFrame": 997,
+          "endFrame": 1007,
           "emphasis": true
         },
         {
@@ -1204,8 +1236,8 @@
           "i": 3,
           "start": 1.3,
           "end": 1.425,
-          "startFrame": 944,
-          "endFrame": 948,
+          "startFrame": 1007,
+          "endFrame": 1011,
           "emphasis": false
         },
         {
@@ -1213,8 +1245,8 @@
           "i": 4,
           "start": 1.425,
           "end": 2.125,
-          "startFrame": 948,
-          "endFrame": 969,
+          "startFrame": 1011,
+          "endFrame": 1032,
           "emphasis": false
         }
       ],
@@ -1229,7 +1261,7 @@
       "sfx": [
         {
           "name": "pop",
-          "atFrame": 914,
+          "atFrame": 977,
           "volume": 0.6,
           "src": "assets/sfx/pop.wav"
         }
@@ -1239,18 +1271,18 @@
       "overlays": [
         {
           "kind": "blackout",
-          "atFrame": 905,
-          "untilFrame": 1011
+          "atFrame": 968,
+          "untilFrame": 1074
         },
         {
           "kind": "screen_crack",
-          "atFrame": 905,
-          "untilFrame": 1011
+          "atFrame": 968,
+          "untilFrame": 1074
         },
         {
           "kind": "follow_card",
-          "atFrame": 914,
-          "untilFrame": 1011
+          "atFrame": 977,
+          "untilFrame": 1074
         }
       ]
     }
@@ -1260,9 +1292,9 @@
     "name": "Dummy Sticky"
   },
   "meta": {
-    "resolvedAt": "2026-09-18T00:38:55.433Z",
+    "resolvedAt": "2026-09-18T10:35:01.896Z",
     "engineVersion": "0.1.0",
     "ttsModel": "hexgrad/Kokoro-82M",
-    "manifestHash": "88edb87422667133"
+    "manifestHash": "a3d9f2e6f0290403"
   }
 }

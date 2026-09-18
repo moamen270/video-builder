@@ -4,7 +4,7 @@
   "createdAt": "2026-09-16T03:14:04.420Z",
   "targetSeconds": 40,
   "status": "qa_passed",
-  "lastRenderMs": 56699,
+  "lastRenderMs": 58487,
   "versions": [
     {
       "n": 1,
@@ -74,6 +74,16 @@
       "manifestHash": "88edb87422667133",
       "note": "v7: slower opening, 0.8-scale hero + far targets, walk right for the 3rd shot, impact glow -> lotus -> detonation, Kokoro laugh in his voice with beat captions, black cracked-screen ending",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/jhin-four-shots-v7/final.mp4"
+    },
+    {
+      "n": 8,
+      "at": "2026-09-18T10:36:02.850Z",
+      "seconds": 35.8,
+      "renderMs": 58487,
+      "qaOk": true,
+      "manifestHash": "a3d9f2e6f0290403",
+      "note": "v8: no laugh; W flourish beam + pink wash on 'Hold still', gun twirl on 'Everything must be perfect', 4th shot cracks the screen, 'Perfection', black, follow card",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/jhin-four-shots-v8/final.mp4"
     }
   ]
 }

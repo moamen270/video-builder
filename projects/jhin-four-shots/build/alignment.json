@@ -168,6 +168,60 @@
       "hash": "7613a502847560e2"
     },
     {
+      "sceneId": "flourish",
+      "file": "flourish.wav",
+      "duration": 1.85,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Hold",
+          "start": 0.275,
+          "end": 0.662,
+          "ws": " "
+        },
+        {
+          "text": "still.",
+          "start": 0.662,
+          "end": 1.75,
+          "ws": ""
+        }
+      ],
+      "hash": "dfe6ce9bcd330754"
+    },
+    {
+      "sceneId": "twirl",
+      "file": "twirl.wav",
+      "duration": 2.925,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Everything...",
+          "start": 0.275,
+          "end": 1.125,
+          "ws": " "
+        },
+        {
+          "text": "must",
+          "start": 1.125,
+          "end": 1.375,
+          "ws": " "
+        },
+        {
+          "text": "be",
+          "start": 1.375,
+          "end": 1.562,
+          "ws": " "
+        },
+        {
+          "text": "perfect.",
+          "start": 1.562,
+          "end": 2.825,
+          "ws": ""
+        }
+      ],
+      "hash": "de89b0dcaac1365a"
+    },
+    {
       "sceneId": "four",
       "file": "four.wav",
       "duration": 1.525,
@@ -180,82 +234,7 @@
           "ws": ""
         }
       ],
-      "hash": "c035043994cc76ab"
-    },
-    {
-      "sceneId": "laugh",
-      "file": "laugh.wav",
-      "duration": 3.3,
-      "sampleRate": 24000,
-      "tokens": [
-        {
-          "text": "Ha",
-          "start": 0.2,
-          "end": 0.35,
-          "ws": " "
-        },
-        {
-          "text": "ha",
-          "start": 0.35,
-          "end": 0.525,
-          "ws": " "
-        },
-        {
-          "text": "ha!",
-          "start": 0.525,
-          "end": 0.85,
-          "ws": " "
-        },
-        {
-          "text": "Ha",
-          "start": 0.85,
-          "end": 1.025,
-          "ws": " "
-        },
-        {
-          "text": "ha",
-          "start": 1.025,
-          "end": 1.2,
-          "ws": " "
-        },
-        {
-          "text": "ha",
-          "start": 1.2,
-          "end": 1.375,
-          "ws": " "
-        },
-        {
-          "text": "ha",
-          "start": 1.375,
-          "end": 1.55,
-          "ws": " "
-        },
-        {
-          "text": "ha!",
-          "start": 1.55,
-          "end": 1.9,
-          "ws": " "
-        },
-        {
-          "text": "Ha,",
-          "start": 1.9,
-          "end": 2.175,
-          "ws": " "
-        },
-        {
-          "text": "ha,",
-          "start": 2.175,
-          "end": 2.45,
-          "ws": " "
-        },
-        {
-          "text": "ha!",
-          "start": 2.45,
-          "end": 3.2,
-          "ws": ""
-        }
-      ],
-      "hash": "6ad26c88d8618145"
+      "hash": "c0cd7c508b533e12"
     },
     {
       "sceneId": "outro",
@@ -288,7 +267,7 @@
           "ws": ""
         }
       ],
-      "hash": "c7c8782863867ca2"
+      "hash": "d968974799381b75"
     },
     {
       "sceneId": "cta",

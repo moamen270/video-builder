@@ -240,6 +240,8 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const masked = style === "jhin";
   const gunColor = masked ? "#ff2bd6" : accent;
   const frontGun = gun && st.pose === "aim_camera";
+  // twirl: the pistol spins about the hand, two turns a second, then settles into the next pose.
+  const spin = gun && st.pose === "twirl" ? (abs - st.since) * 24 : 0;
   // "batman" = cowl ears + a cape that hangs from the shoulders and sways with the body.
   const bat = style === "batman";
   const shots = actor ? [] : (scene.character?.shots ?? []);
@@ -309,7 +311,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
         {/* hands */}
         {wolv && <Claws x={lHand.x} y={lHand.y} deg={lForeDeg} />}
         {wolv && <Claws x={rHand.x} y={rHand.y} deg={rForeDeg} />}
-        {gun && !gunLeft && <Pistol x={rHand.x} y={rHand.y} deg={rForeDeg} flash={flash} big={Boolean(lastShot?.big)} accent={gunColor} front={frontGun} />}
+        {gun && !gunLeft && <Pistol x={rHand.x} y={rHand.y} deg={rForeDeg + spin} flash={flash} big={Boolean(lastShot?.big)} accent={gunColor} front={frontGun} />}
         {gun && gunLeft && <Pistol x={lHand.x} y={lHand.y} deg={lForeDeg} flash={flash} big={Boolean(lastShot?.big)} accent={gunColor} front={frontGun} />}
         <circle cx={lHand.x} cy={lHand.y} r={wolv ? 9 : 7} fill={ink} />
         <circle cx={rHand.x} cy={rHand.y} r={wolv ? 9 : 7} fill={ink} />
