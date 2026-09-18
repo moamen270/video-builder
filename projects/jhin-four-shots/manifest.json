@@ -3,17 +3,17 @@
   "slug": "jhin-four-shots",
   "title": "Jhin: four shots",
   "voice": "bm_george",
-  "speed": 0.9,
-  "voiceFx": "theatre",
+  "speed": 0.92,
+  "voiceFx": "mask",
   "theme": "grape",
   "music": null,
   "characters": [
     {
       "id": "jhin",
-      "style": "gunslinger"
+      "style": "jhin"
     }
   ],
-  "notes": "Theatrical, calm, precise. Every shot is a performance; the fourth is the finale. Lotuses bloom where targets die and stay on stage. The laugh is a real Bark clip, not TTS. v4: cold open already aiming (hook card 'Four shots. One masterpiece.'), CTA spoken by Jhin with the follow card. Alt hooks: 'Watch closely.' / '4 shots. 1 laugh.'",
+  "notes": "Theatrical, calm, precise. Every shot is a performance; the fourth is the finale. v6: porcelain mask, magenta tracers, standard opening (bare spotlight + title + his counting line) and standard ending (4th shot into the screen → screen_crack → narrator CTA). Laugh = Bark clip (theatrical, high). Laugh: Bark v2/en_speaker_3 seed 12 (146 Hz raw) pitched x1.22 -> ~185 Hz; alt = laugh_v6_alt.wav (seed 11).",
   "social": {
     "title": "Jhin in 4 Shots — \"Perfection. In four acts.\" (League of Legends stickman)",
     "hook": "Four shots. One masterpiece.",
@@ -56,60 +56,123 @@
   },
   "scenes": [
     {
-      "id": "hook",
-      "speech": "Four shots. Watch closely.",
+      "id": "open",
+      "speech": "One, two, three, four. Two, two, three, four.",
       "emphasis": [
-        "Four",
+        "four"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 0.6,
+      "bare": true,
+      "captions": false,
+      "character": {
+        "id": "jhin",
+        "pose": "idle",
+        "expression": "neutral",
+        "poseChanges": [
+          {
+            "pose": "pointing_up",
+            "expression": "smug",
+            "at": "word:one"
+          },
+          {
+            "pose": "presenting",
+            "expression": "smug",
+            "at": "word:two#2"
+          },
+          {
+            "pose": "aim_up",
+            "expression": "smug",
+            "at": "word:four#2"
+          }
+        ]
+      },
+      "sfx": [
+        {
+          "name": "tick",
+          "at": "word:one",
+          "volume": 0.5
+        },
+        {
+          "name": "tick",
+          "at": "word:two",
+          "volume": 0.5
+        },
+        {
+          "name": "tick",
+          "at": "word:three",
+          "volume": 0.5
+        },
+        {
+          "name": "tick",
+          "at": "word:four",
+          "volume": 0.7
+        },
+        {
+          "name": "click",
+          "at": "word:four#2",
+          "volume": 0.7
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "spotlight",
+          "at": "start"
+        },
+        {
+          "kind": "hook_card",
+          "text": "Four shots. One masterpiece.",
+          "at": "start+0.2",
+          "until": "end-0.1"
+        }
+      ],
+      "camera": [
+        {
+          "move": "slow_zoom",
+          "at": "start"
+        }
+      ]
+    },
+    {
+      "id": "stage",
+      "speech": "Watch closely.",
+      "emphasis": [
         "closely"
       ],
       "layout": "character_center",
-      "pauseAfter": 0.5,
+      "pauseAfter": 0.6,
       "character": {
         "id": "jhin",
-        "pose": "aim_right",
-        "expression": "smug",
+        "pose": "reload",
+        "expression": "neutral",
         "position": "left",
         "poseChanges": [
           {
             "pose": "aim_right",
-            "expression": "fierce",
-            "at": "word:closely"
+            "expression": "smug",
+            "at": "word:closely+0.15"
           }
         ]
       },
       "props": [
         {
           "name": "target",
-          "at": "start",
-          "anim": "pop",
+          "at": "word:watch",
+          "anim": "drop",
           "position": "right",
-          "scale": 1.3
+          "scale": 0.9
         }
       ],
       "sfx": [
         {
-          "name": "click",
+          "name": "reload",
           "at": "start",
-          "volume": 0.7
+          "volume": 0.8
         },
         {
-          "name": "drum",
-          "at": "word:four",
+          "name": "click",
+          "at": "word:closely+0.15",
           "volume": 0.6
-        }
-      ],
-      "overlays": [
-        {
-          "kind": "hook_card",
-          "text": "Four shots. One masterpiece.",
-          "at": "start",
-          "until": "word:closely+0.3"
-        }
-      ],
-      "camera": [
-        {
-          "move": "punch_in",
-          "at": "word:closely"
         }
       ]
     },
@@ -120,12 +183,19 @@
         "One"
       ],
       "layout": "character_center",
-      "pauseAfter": 0.75,
+      "pauseAfter": 0.85,
       "character": {
         "id": "jhin",
         "pose": "aim_right",
         "expression": "smug",
         "position": "left",
+        "poseChanges": [
+          {
+            "pose": "admire",
+            "expression": "smug",
+            "at": "word:one+0.55"
+          }
+        ],
         "shots": [
           {
             "at": "word:one+0.05"
@@ -136,17 +206,17 @@
         {
           "name": "target",
           "at": "start",
-          "until": "word:one+0.1",
+          "until": "word:one+0.22",
           "anim": "fade",
           "position": "right",
-          "scale": 1.3
+          "scale": 0.9
         },
         {
           "name": "lotus",
-          "at": "word:one+0.1",
+          "at": "word:one+0.22",
           "anim": "bloom",
           "position": "right",
-          "scale": 1.3
+          "scale": 1.0
         }
       ],
       "sfx": [
@@ -157,14 +227,14 @@
         },
         {
           "name": "chime",
-          "at": "word:one+0.25",
+          "at": "word:one+0.3",
           "volume": 0.5
         }
       ],
       "bubbles": [
         {
           "text": "1",
-          "at": "word:one+0.1"
+          "at": "word:one+0.2"
         }
       ],
       "camera": [
@@ -181,16 +251,21 @@
         "Two"
       ],
       "layout": "character_center",
-      "pauseAfter": 0.75,
+      "pauseAfter": 0.85,
       "character": {
         "id": "jhin",
-        "pose": "aim_right",
+        "pose": "admire",
         "expression": "smug",
         "position": "left",
         "poseChanges": [
           {
             "pose": "aim_high",
             "at": "start+0.1"
+          },
+          {
+            "pose": "admire",
+            "expression": "smug",
+            "at": "word:two+0.55"
           }
         ],
         "shots": [
@@ -205,29 +280,29 @@
           "at": "start",
           "anim": "fade",
           "position": "right",
-          "scale": 1.3
+          "scale": 1.0
         },
         {
           "name": "target",
           "at": "start",
-          "until": "word:two+0.1",
+          "until": "word:two+0.22",
           "anim": "drop",
           "position": "top_right",
-          "scale": 1.1
+          "scale": 0.85
         },
         {
           "name": "lotus",
-          "at": "word:two+0.1",
+          "at": "word:two+0.22",
           "anim": "bloom",
           "position": "top_right",
-          "scale": 1.1
+          "scale": 0.95
         }
       ],
       "sfx": [
         {
           "name": "whoosh",
           "at": "start",
-          "volume": 0.35
+          "volume": 0.3
         },
         {
           "name": "gunshot",
@@ -236,14 +311,14 @@
         },
         {
           "name": "chime",
-          "at": "word:two+0.25",
+          "at": "word:two+0.3",
           "volume": 0.5
         }
       ],
       "bubbles": [
         {
           "text": "2",
-          "at": "word:two+0.1",
+          "at": "word:two+0.2",
           "side": "left"
         }
       ],
@@ -261,16 +336,21 @@
         "Three"
       ],
       "layout": "character_center",
-      "pauseAfter": 0.75,
+      "pauseAfter": 0.85,
       "character": {
         "id": "jhin",
-        "pose": "aim_high",
+        "pose": "admire",
         "expression": "smug",
         "position": "left",
         "poseChanges": [
           {
             "pose": "aim_up",
             "at": "start+0.1"
+          },
+          {
+            "pose": "admire",
+            "expression": "smug",
+            "at": "word:three+0.55"
           }
         ],
         "shots": [
@@ -285,36 +365,36 @@
           "at": "start",
           "anim": "fade",
           "position": "right",
-          "scale": 1.3
+          "scale": 1.0
         },
         {
           "name": "lotus",
           "at": "start",
           "anim": "fade",
           "position": "top_right",
-          "scale": 1.1
+          "scale": 0.95
         },
         {
           "name": "target",
           "at": "start",
-          "until": "word:three+0.1",
+          "until": "word:three+0.22",
           "anim": "drop",
           "position": "top",
-          "scale": 1.0
+          "scale": 0.8
         },
         {
           "name": "lotus",
-          "at": "word:three+0.1",
+          "at": "word:three+0.22",
           "anim": "bloom",
           "position": "top",
-          "scale": 1.0
+          "scale": 0.9
         }
       ],
       "sfx": [
         {
           "name": "whoosh",
           "at": "start",
-          "volume": 0.35
+          "volume": 0.3
         },
         {
           "name": "gunshot",
@@ -323,14 +403,14 @@
         },
         {
           "name": "chime",
-          "at": "word:three+0.25",
+          "at": "word:three+0.3",
           "volume": 0.5
         }
       ],
       "bubbles": [
         {
           "text": "3",
-          "at": "word:three+0.1",
+          "at": "word:three+0.2",
           "side": "left"
         }
       ],
@@ -348,15 +428,19 @@
         "finale"
       ],
       "layout": "character_center",
-      "pauseAfter": 0.9,
-      "speed": 0.85,
+      "pauseAfter": 0.8,
+      "speed": 0.86,
       "character": {
         "id": "jhin",
-        "pose": "reload",
-        "expression": "neutral",
+        "pose": "admire",
+        "expression": "smug",
         "poseChanges": [
           {
-            "pose": "aim_left",
+            "pose": "reload",
+            "at": "word:now"
+          },
+          {
+            "pose": "aim_camera",
             "expression": "fierce",
             "at": "word:finale"
           }
@@ -375,7 +459,7 @@
           "at": "start",
           "anim": "fade",
           "position": "top_right",
-          "scale": 1.0
+          "scale": 0.95
         },
         {
           "name": "lotus",
@@ -383,13 +467,6 @@
           "anim": "fade",
           "position": "top",
           "scale": 0.9
-        },
-        {
-          "name": "target",
-          "at": "word:finale",
-          "anim": "drop",
-          "position": "left",
-          "scale": 1.3
         }
       ],
       "sfx": [
@@ -408,6 +485,10 @@
         {
           "move": "slow_zoom",
           "at": "start"
+        },
+        {
+          "move": "dolly_in",
+          "at": "word:finale"
         }
       ]
     },
@@ -418,16 +499,24 @@
         "Four"
       ],
       "layout": "character_center",
-      "pauseAfter": 1.0,
+      "pauseAfter": 1.3,
       "speed": 0.8,
       "character": {
         "id": "jhin",
-        "pose": "aim_left",
+        "pose": "aim_camera",
         "expression": "fierce",
         "shots": [
           {
             "at": "word:four+0.05",
-            "big": true
+            "big": true,
+            "camera": true
+          }
+        ],
+        "poseChanges": [
+          {
+            "pose": "bow",
+            "expression": "smug",
+            "at": "word:four+0.9"
           }
         ]
       },
@@ -444,7 +533,7 @@
           "at": "start",
           "anim": "fade",
           "position": "top_right",
-          "scale": 1.0
+          "scale": 0.95
         },
         {
           "name": "lotus",
@@ -452,21 +541,6 @@
           "anim": "fade",
           "position": "top",
           "scale": 0.9
-        },
-        {
-          "name": "target",
-          "at": "start",
-          "until": "word:four+0.1",
-          "anim": "fade",
-          "position": "left",
-          "scale": 1.3
-        },
-        {
-          "name": "lotus",
-          "at": "word:four+0.1",
-          "anim": "bloom",
-          "position": "left",
-          "scale": 1.5
         }
       ],
       "sfx": [
@@ -476,40 +550,42 @@
           "volume": 1.0
         },
         {
+          "name": "boom",
+          "at": "word:four+0.35",
+          "volume": 0.9
+        },
+        {
           "name": "chime",
-          "at": "word:four+0.4",
+          "at": "word:four+0.6",
           "volume": 0.7
         }
       ],
-      "bubbles": [
+      "overlays": [
         {
-          "text": "4",
-          "at": "word:four+0.1"
+          "kind": "screen_crack",
+          "at": "word:four+0.35"
         }
       ],
       "camera": [
         {
-          "move": "punch_in",
-          "at": "word:four"
-        },
-        {
           "move": "shake",
-          "at": "word:four+0.05"
+          "at": "word:four+0.35"
         }
       ]
     },
     {
       "id": "laugh",
       "clip": {
-        "file": "laugh.wav",
+        "file": "laugh_v6.wav",
         "caption": "HAHAHAHA",
-        "maxSeconds": 6,
-        "volume": 1.1
+        "maxSeconds": 5,
+        "volume": 1.15,
+        "pitch": 1.22
       },
       "layout": "character_center",
       "pauseAfter": 0.4,
-      "voiceFx": "theatre",
-      "transition": "zoom",
+      "voiceFx": "mask",
+      "transition": "cut",
       "character": {
         "id": "jhin",
         "pose": "laughing",
@@ -518,12 +594,12 @@
           {
             "pose": "celebrating",
             "expression": "laughing",
-            "at": "start+2.2"
+            "at": "start+1.8"
           },
           {
             "pose": "laughing",
             "expression": "laughing",
-            "at": "start+3.8"
+            "at": "start+3.2"
           }
         ]
       },
@@ -540,7 +616,7 @@
           "at": "start",
           "anim": "fade",
           "position": "top_right",
-          "scale": 1.0
+          "scale": 0.95
         },
         {
           "name": "lotus",
@@ -548,23 +624,18 @@
           "anim": "fade",
           "position": "top",
           "scale": 0.9
-        },
-        {
-          "name": "lotus",
-          "at": "start",
-          "anim": "fade",
-          "position": "left",
-          "scale": 1.0
         }
       ],
       "camera": [
         {
           "move": "punch_in",
           "at": "start"
-        },
+        }
+      ],
+      "overlays": [
         {
-          "move": "shake",
-          "at": "start+2.2"
+          "kind": "screen_crack",
+          "at": "start"
         }
       ]
     },
@@ -576,11 +647,11 @@
         "four acts"
       ],
       "layout": "character_center",
-      "pauseAfter": 1.0,
+      "pauseAfter": 0.7,
       "speed": 0.88,
       "character": {
         "id": "jhin",
-        "pose": "presenting",
+        "pose": "admire",
         "expression": "smug",
         "poseChanges": [
           {
@@ -603,7 +674,7 @@
           "at": "start",
           "anim": "fade",
           "position": "top_right",
-          "scale": 1.0
+          "scale": 0.95
         },
         {
           "name": "lotus",
@@ -611,13 +682,6 @@
           "anim": "fade",
           "position": "top",
           "scale": 0.9
-        },
-        {
-          "name": "lotus",
-          "at": "start",
-          "anim": "fade",
-          "position": "left",
-          "scale": 1.0
         }
       ],
       "sfx": [
@@ -625,47 +689,29 @@
           "name": "chime",
           "at": "word:perfection",
           "volume": 0.6
-        },
-        {
-          "name": "drum",
-          "at": "word:four",
-          "volume": 0.6
         }
       ],
-      "camera": [
+      "overlays": [
         {
-          "move": "slow_zoom",
+          "kind": "screen_crack",
           "at": "start"
         }
       ]
     },
     {
       "id": "cta",
-      "speech": "Follow Dummy Sticky. For more.",
+      "speech": "Follow Dummy Sticky for more.",
       "emphasis": [
         "Follow",
         "Dummy Sticky"
       ],
+      "voice": "af_heart",
+      "voiceFx": "none",
+      "speed": 1.0,
       "layout": "character_center",
-      "pauseAfter": 1.2,
-      "speed": 0.9,
-      "character": {
-        "id": "jhin",
-        "pose": "bow",
-        "expression": "smug",
-        "poseChanges": [
-          {
-            "pose": "waving",
-            "expression": "happy",
-            "at": "word:follow"
-          },
-          {
-            "pose": "pointing_up",
-            "expression": "smug",
-            "at": "word:more"
-          }
-        ]
-      },
+      "pauseAfter": 1.3,
+      "captions": false,
+      "character": null,
       "props": [
         {
           "name": "lotus",
@@ -679,7 +725,7 @@
           "at": "start",
           "anim": "fade",
           "position": "top_right",
-          "scale": 1.0
+          "scale": 0.95
         },
         {
           "name": "lotus",
@@ -687,34 +733,29 @@
           "anim": "fade",
           "position": "top",
           "scale": 0.9
-        },
-        {
-          "name": "lotus",
-          "at": "start",
-          "anim": "fade",
-          "position": "left",
-          "scale": 1.0
         }
       ],
       "sfx": [
         {
-          "name": "chime",
-          "at": "word:follow",
-          "volume": 0.5
-        },
-        {
           "name": "pop",
-          "at": "word:more+0.6",
+          "at": "word:follow",
           "volume": 0.6
         }
       ],
       "overlays": [
         {
+          "kind": "screen_crack",
+          "at": "start"
+        },
+        {
           "kind": "follow_card",
           "at": "word:follow"
+        },
+        {
+          "kind": "blackout",
+          "at": "end-0.35"
         }
-      ],
-      "captions": false
+      ]
     }
   ]
 }

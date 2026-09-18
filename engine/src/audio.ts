@@ -17,7 +17,7 @@ export function sceneHash(m: Manifest, s: Scene, p: ProjectPaths): string {
   if (s.clip) {
     const f = path.join(p.clipsDir, s.clip.file);
     const st = existsSync(f) ? statSync(f) : null;
-    parts.push("clip", s.clip.file, st?.size ?? 0, st?.mtimeMs ?? 0, s.clip.caption ?? "", s.clip.maxSeconds ?? 0);
+    parts.push("clip", s.clip.file, st?.size ?? 0, st?.mtimeMs ?? 0, s.clip.caption ?? "", s.clip.maxSeconds ?? 0, s.clip.pitch);
   }
   return createHash("sha256").update(parts.join("|")).digest("hex").slice(0, 16);
 }
@@ -42,7 +42,8 @@ async function importClip(m: Manifest, s: Scene, p: ProjectPaths, hash: string):
   const raw = Number(probe.stdout.trim());
   const duration = clip.maxSeconds ? Math.min(raw, clip.maxSeconds) : raw;
   const fx = sceneFx(m, s);
-  const filters = ["aresample=24000", fx !== "none" ? FX_FILTERS[fx] : "", "apad"].filter(Boolean).join(",");
+  const pitch = clip.pitch !== 1 ? `asetrate=24000*${clip.pitch},aresample=24000,atempo=1/${clip.pitch}` : "";
+  const filters = ["aresample=24000", pitch, fx !== "none" ? FX_FILTERS[fx] : "", "apad"].filter(Boolean).join(",");
   await execa("ffmpeg", ["-y", "-v", "error", ...trim, "-i", src, "-af", filters, "-t", (duration + s.pauseAfter).toFixed(4), "-ar", "24000", "-ac", "1", dest]);
   const tokens = clip.caption ? [{ text: clip.caption, start: 0, end: Number(duration.toFixed(3)), ws: "" }] : [];
   return { sceneId: s.id, file: path.basename(dest), duration: Number(duration.toFixed(4)), sampleRate: 24000, tokens, hash };
@@ -55,6 +56,8 @@ async function importClip(m: Manifest, s: Scene, p: ProjectPaths, hash: string):
 const FX_FILTERS: Record<Exclude<VoiceFx, "none">, string> = {
   deep: "asetrate=24000*0.88,aresample=24000,atempo=1/0.88,bass=g=4:f=140,aecho=0.7:0.35:28:0.18",
   theatre: "bass=g=2:f=160,aecho=0.75:0.5:55|120:0.22|0.12",
+  // Jhin: refined, slightly lifted, speaking from behind porcelain — short metallic reflections + stage room.
+  mask: "asetrate=24000*1.04,aresample=24000,atempo=1/1.04,highpass=f=110,equalizer=f=1900:t=q:w=1.3:g=4,equalizer=f=350:t=q:w=1.5:g=-2,aecho=0.8:0.45:9|17:0.3|0.18,aecho=0.7:0.4:70|140:0.2|0.1,alimiter=limit=0.95",
   // Batman: lower, compressed hard, soft-clipped for rasp, highs shaved, tight room.
   young: "asetrate=24000*1.12,aresample=24000,atempo=1/1.12,treble=g=2,aecho=0.6:0.2:14:0.08",
   growl: "asetrate=24000*0.88,aresample=24000,atempo=1/0.88,acompressor=threshold=-20dB:ratio=6:attack=4:release=90:makeup=4,volume=4dB,aeval=tanh(1.7*val(0)),equalizer=f=2200:t=q:w=1.4:g=3,treble=g=-5,bass=g=4:f=130,aecho=0.6:0.25:16:0.12,alimiter=limit=0.92",

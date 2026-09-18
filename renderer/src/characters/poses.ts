@@ -51,6 +51,8 @@ export const RIGS: Record<Pose, Rig> = {
   run_right: { lUpper: -8, lLower: -6, rUpper: 8, rLower: 6, lThigh: -7, lShin: 0, rThigh: 7, rShin: 0, head: 0, torso: 0, lift: 0, nod: 0 },
   run_left: { lUpper: -8, lLower: -6, rUpper: 8, rLower: 6, lThigh: -7, lShin: 0, rThigh: 7, rShin: 0, head: 0, torso: 0, lift: 0, nod: 0 },
   knocked_out: { lUpper: -30, lLower: -20, rUpper: 40, rLower: 30, lThigh: -12, lShin: 0, rThigh: 16, rShin: -10, head: 8, torso: 0, lift: 0, nod: 0 },
+  aim_camera: { lUpper: -26, lLower: -30, rUpper: 110, rLower: -138, lThigh: -14, lShin: 4, rThigh: 14, rShin: -4, head: 0, torso: 0, lift: 0, nod: 6 },
+  admire: { lUpper: -34, lLower: -128, rUpper: 22, rLower: 12, lThigh: -8, lShin: 0, rThigh: 8, rShin: 0, head: -9, torso: -2, lift: 0, nod: 4 },
   walk_right: { lUpper: -8, lLower: -6, rUpper: 8, rLower: 6, lThigh: -7, lShin: 0, rThigh: 7, rShin: 0, head: 0, torso: 0, lift: 0, nod: 0 },
   walk_left: { lUpper: -8, lLower: -6, rUpper: 8, rLower: 6, lThigh: -7, lShin: 0, rThigh: 7, rShin: 0, head: 0, torso: 0, lift: 0, nod: 0 },
 };
@@ -62,7 +64,7 @@ export const RUN_POSES: ReadonlySet<Pose> = new Set<Pose>(["run_right", "run_lef
 export const LEFT_HAND_POSES: ReadonlySet<Pose> = new Set<Pose>(["aim_left", "pointing_left", "slash_left"]);
 
 /** Poses that should snap rather than ease (attacks). */
-export const SNAP_POSES: ReadonlySet<Pose> = new Set<Pose>(["slash_left", "slash_right", "claws_out", "aim_right", "aim_left", "aim_high", "aim_up"]);
+export const SNAP_POSES: ReadonlySet<Pose> = new Set<Pose>(["slash_left", "slash_right", "claws_out", "aim_right", "aim_left", "aim_high", "aim_up", "aim_camera"]);
 
 export const RIG_KEYS = Object.keys(RIGS.idle) as (keyof Rig)[];
 

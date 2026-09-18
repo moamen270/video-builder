@@ -236,7 +236,10 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   // "wolverine" = the plain stickman with claws. No costume: the claws carry the aura.
   const wolv = style === "wolverine";
   // "gunslinger" = pistol in the right hand; `shots` add a muzzle flash + recoil.
-  const gun = style === "gunslinger";
+  const gun = style === "gunslinger" || style === "jhin";
+  const masked = style === "jhin";
+  const gunColor = masked ? "#ff2bd6" : accent;
+  const frontGun = gun && st.pose === "aim_camera";
   // "batman" = cowl ears + a cape that hangs from the shoulders and sways with the body.
   const bat = style === "batman";
   const shots = actor ? [] : (scene.character?.shots ?? []);
@@ -246,7 +249,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const gunLeft = gun && LEFT_HAND_POSES.has(st.pose);
   const flash = sinceShot < (lastShot?.big ? 6 : 4) ? 1 - sinceShot / (lastShot?.big ? 6 : 4) : 0;
   const lift = rig.lift + bob + laughLift - kick * 4 + koHop;
-  const torso = rig.torso + sway * 0.4 - laughNod * 0.4;
+  const torso = rig.torso + sway * 0.4 - laughNod * 0.4 - kick * (gunLeft ? -5 : 5) * (lastShot?.camera ? 0 : 1);
 
   // Torso: shoulder→hip rotates around hip by torso lean.
   const shoulder = polar(HIP.x, HIP.y, HIP.y - SHOULDER.y, 180 + torso);
@@ -306,8 +309,8 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
         {/* hands */}
         {wolv && <Claws x={lHand.x} y={lHand.y} deg={lForeDeg} />}
         {wolv && <Claws x={rHand.x} y={rHand.y} deg={rForeDeg} />}
-        {gun && !gunLeft && <Pistol x={rHand.x} y={rHand.y} deg={rForeDeg} flash={flash} big={Boolean(lastShot?.big)} accent={accent} />}
-        {gun && gunLeft && <Pistol x={lHand.x} y={lHand.y} deg={lForeDeg} flash={flash} big={Boolean(lastShot?.big)} accent={accent} />}
+        {gun && !gunLeft && <Pistol x={rHand.x} y={rHand.y} deg={rForeDeg} flash={flash} big={Boolean(lastShot?.big)} accent={gunColor} front={frontGun} />}
+        {gun && gunLeft && <Pistol x={lHand.x} y={lHand.y} deg={lForeDeg} flash={flash} big={Boolean(lastShot?.big)} accent={gunColor} front={frontGun} />}
         <circle cx={lHand.x} cy={lHand.y} r={wolv ? 9 : 7} fill={ink} />
         <circle cx={rHand.x} cy={rHand.y} r={wolv ? 9 : 7} fill={ink} />
         {/* head */}
@@ -320,7 +323,8 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
           )}
           <circle r={HEAD_R} fill={headFill} stroke={ink} strokeWidth={STROKE} />
           {beanie}
-          <g transform={`translate(0 ${rig.nod * 0.25 + nodTalk * 0.4})`}>
+          {masked && <JhinMask talking={mouthOpen} />}
+          {!masked && <g transform={`translate(0 ${rig.nod * 0.25 + nodTalk * 0.4})`}>
             {/* eyes */}
             {blink ? (
               <>
@@ -352,7 +356,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
             <line x1={4} y1={-16 + face.browR[0]} x2={17} y2={-16 + face.browR[1]} {...line} strokeWidth={4} />
             {/* mouth */}
             <Mouth kind={face.mouth} open={mouthOpen} ink={ink} accent={accent} />
-          </g>
+          </g>}
         </g>
       </svg>
     </div>
@@ -375,8 +379,28 @@ interface Face {
  * silhouette stays upright whether he aims left or right. `flash` 0–1 draws
  * the muzzle flash at the tip.
  */
-const Pistol: React.FC<{ x: number; y: number; deg: number; flash: number; big: boolean; accent: string }> = ({ x, y, deg, flash, big, accent }) => {
+const Pistol: React.FC<{ x: number; y: number; deg: number; flash: number; big: boolean; accent: string; front?: boolean }> = ({ x, y, deg, flash, big, accent, front }) => {
   const L = 74; // barrel length in rig units
+  if (front) {
+    // Pointed at the viewer: the barrel is a circle, the frame sits behind it, the flash blooms toward us.
+    const k = 1.6;
+    return (
+      <g transform={`translate(${x} ${y}) scale(${k})`}>
+        <rect x={-16} y={-10} width={32} height={30} rx={7} fill="#171a26" />
+        <rect x={-12} y={-6} width={24} height={22} rx={5} fill="#2c3145" />
+        <circle cx={0} cy={4} r={15} fill="#3a4157" />
+        <circle cx={0} cy={4} r={10} fill="#9aa3b8" />
+        <circle cx={0} cy={4} r={6} fill="#0b0d14" />
+        <circle cx={0} cy={4} r={2.5} fill={accent} />
+        {flash > 0 && (
+          <g opacity={flash}>
+            <circle cx={0} cy={4} r={(big ? 60 : 34) * flash} fill={accent} opacity={0.55} />
+            <circle cx={0} cy={4} r={(big ? 30 : 16) * flash} fill="#ffffff" />
+          </g>
+        )}
+      </g>
+    );
+  }
   // Rig angles are 0 = down, positive = screen-right (x = sin, y = cos). SVG rotate() is
   // clockwise, so rotate(-deg) maps local +y onto that direction.
   const d = ((deg % 360) + 540) % 360 - 180; // -180..180
@@ -402,7 +426,7 @@ const Pistol: React.FC<{ x: number; y: number; deg: number; flash: number; big: 
         <g transform={`translate(0 ${L + 8})`} opacity={flash}>
           <path
             d={`M 0 ${-8 * flash} L ${10 * flash} ${8 * flash} L ${28 * flash * (big ? 1.6 : 1)} ${16 * flash} L ${8 * flash} ${24 * flash} L 0 ${46 * flash * (big ? 1.8 : 1)} L ${-8 * flash} ${24 * flash} L ${-28 * flash * (big ? 1.6 : 1)} ${16 * flash} L ${-10 * flash} ${8 * flash} Z`}
-            fill="#ffd166"
+            fill={accent}
           />
           <circle r={9 * flash * (big ? 1.5 : 1)} cy={10} fill="#ffffff" />
         </g>
@@ -433,6 +457,67 @@ const Cape: React.FC<{ shoulder: { x: number; y: number }; hip: { x: number; y: 
 };
 
 /** Costume bits drawn on the head (inside the head group, after the head circle). */
+/**
+ * Jhin's porcelain mask (ref: the cosplay mask — ivory bone, flat top with a dark
+ * slot at the forehead and the chin, hard angular eye holes, a straight nose
+ * ridge, three scratches beside the left eye, faint swirl engravings). Covers the
+ * face entirely; "expression" is head tilt. A faint magenta breath pulses in the
+ * mouth seam while he talks so the line still reads as his.
+ */
+const JhinMask: React.FC<{ talking: number }> = ({ talking }) => {
+  const ivory = "#d9d0b8";
+  const shade = "#a99f86";
+  const dark = "#0b0b10";
+  return (
+    <g>
+      {/* mask body: slightly taller than the head, squared jaw */}
+      <path d="M -31 -42 L 31 -42 L 34 -20 L 33 18 Q 30 36 18 44 L -18 44 Q -30 36 -33 18 L -34 -20 Z" fill={ivory} stroke={shade} strokeWidth={2.5} strokeLinejoin="round" />
+      {/* forehead + chin slots */}
+      <rect x={-9} y={-42} width={18} height={9} fill={dark} />
+      <rect x={-8} y={35} width={16} height={9} fill={dark} />
+      {/* brow ridge shading */}
+      <path d="M -30 -18 L -6 -12 L 0 -16 L 6 -12 L 30 -18 L 31 -12 L 6 -6 L 0 -9 L -6 -6 L -31 -12 Z" fill={shade} opacity={0.55} />
+      {/* eye holes: angular, inner corners lower */}
+      <path d="M -27 -10 L -8 -6 L -9 3 L -26 0 Z" fill={dark} />
+      <path d="M 27 -10 L 8 -6 L 9 3 L 26 0 Z" fill={dark} />
+      {/* nose ridge */}
+      <path d="M -4 -6 L 4 -6 L 8 18 L 0 22 L -8 18 Z" fill={ivory} stroke={shade} strokeWidth={2} strokeLinejoin="round" />
+      <path d="M 0 -6 L 0 20" stroke={shade} strokeWidth={1.5} opacity={0.6} />
+      {/* mouth seam (closed lips) + magenta breath while talking */}
+      <path d="M -11 30 Q 0 34 11 30" stroke={shade} strokeWidth={2.5} fill="none" strokeLinecap="round" />
+      {talking > 0 && <path d="M -11 30 Q 0 34 11 30" stroke="#ff2bd6" strokeWidth={3} fill="none" strokeLinecap="round" opacity={0.35 + 0.5 * talking} />}
+      {/* three scratches beside the left eye */}
+      <path d="M -33 -4 L -29 -2 M -33 2 L -29 3 M -33 8 L -29 8" stroke={dark} strokeWidth={2} strokeLinecap="round" />
+      {/* swirl engravings */}
+      <path d="M 12 -30 Q 22 -34 20 -24 Q 18 -18 26 -20" stroke={shade} strokeWidth={1.4} fill="none" opacity={0.7} />
+      <path d="M -24 -30 Q -14 -36 -12 -26" stroke={shade} strokeWidth={1.4} fill="none" opacity={0.7} />
+      <path d="M 14 24 Q 24 20 22 12 Q 20 6 26 8" stroke={shade} strokeWidth={1.4} fill="none" opacity={0.6} />
+      <path d="M -18 26 Q -26 22 -24 14" stroke={shade} strokeWidth={1.4} fill="none" opacity={0.6} />
+    </g>
+  );
+};
+
+/**
+ * Scene-pixel position of the pistol muzzle for a static aim pose (ignores the
+ * breathing sway) plus the direction the barrel points, so SceneView can draw
+ * tracers and smoke from the right spot. `camera` poses return the hand itself.
+ */
+export function muzzlePoint(rect: Rect, pose: Pose, flip: boolean): { x: number; y: number; deg: number } {
+  const scale = Math.min(rect.w / RW, rect.h / RH);
+  const svgTop = rect.y + rect.h - RH * scale;
+  const rig = RIGS[pose];
+  const left = LEFT_HAND_POSES.has(pose);
+  const upper = left ? rig.lUpper : rig.rUpper;
+  const fore = upper + (left ? rig.lLower : rig.rLower);
+  const shoulder = polar(HIP.x, HIP.y, HIP.y - SHOULDER.y, 180 + rig.torso);
+  const elbow = polar(shoulder.x, shoulder.y, UPPER_ARM, upper);
+  const hand = polar(elbow.x, elbow.y, FORE_ARM, fore);
+  const tip = pose === "aim_camera" ? hand : polar(hand.x, hand.y, 82, fore);
+  const dir = flip ? -1 : 1;
+  const cx = rect.x + rect.w / 2;
+  return { x: cx + (tip.x - RW / 2) * scale * dir, y: svgTop + tip.y * scale, deg: flip ? -fore : fore };
+}
+
 function headDecorFor(style: CharacterStyle, ink: string): React.ReactNode {
   switch (style) {
     case "thug":

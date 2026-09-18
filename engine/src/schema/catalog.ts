@@ -29,7 +29,9 @@ export const POSES = [
   "aim_up", // arm at ~150°, for targets straight above
   "reload", // both hands in front at chest height
   "bow", // theatrical bow, one arm sweeping
-  "walk_right", // side view, procedural gait, facing screen-right — pair with character.travel
+  "walk_right",
+  "aim_camera", // gun pointed straight at the viewer (front view of the pistol)
+  "admire", // gun lowered, other hand to the chin, head tilted: appreciating the work // side view, procedural gait, facing screen-right — pair with character.travel
   "walk_left",
   "arms_crossed", // brooding, immovable
   "run_right", // side view sprint (faster cadence, forward lean)
@@ -120,7 +122,7 @@ export type SfxName = (typeof SFX)[number];
 export const THEMES = ["midnight", "paper", "sunset", "mint", "grape"] as const;
 
 /** Character costumes. `stickman` is the plain narrator; `wolverine` adds a pointed mask, claws and blue trunks. */
-export const CHARACTER_STYLES = ["stickman", "wolverine", "gunslinger", "batman", "thug", "joker", "penguin", "riddler", "robin"] as const; // thug: beanie; joker: green hair + red grin; penguin: top hat + monocle; riddler: bowler with ?; robin: domino mask + short yellow cape // batman: cowl ears + flowing cape, face untouched
+export const CHARACTER_STYLES = ["stickman", "wolverine", "gunslinger", "batman", "thug", "joker", "penguin", "riddler", "robin", "jhin"] as const; // jhin: gunslinger with the porcelain mask and magenta shots // thug: beanie; joker: green hair + red grin; penguin: top hat + monocle; riddler: bowler with ?; robin: domino mask + short yellow cape // batman: cowl ears + flowing cape, face untouched
 export type CharacterStyle = (typeof CHARACTER_STYLES)[number];
 export type Theme = (typeof THEMES)[number];
 
@@ -143,13 +145,13 @@ export const VOICES = [
 export type Voice = (typeof VOICES)[number];
 
 /** Post-processing on the synthesized voice. `deep` = pitch down ~12% + light room; `villain` = pitch down ~20%, bass, big reverb. */
-export const VOICE_FX = ["none", "deep", "villain", "theatre", "growl", "young"] as const; // young: pitch up ~12% for kids/sidekicks // growl: pitch down, compressed, soft-clipped rasp — Batman
+export const VOICE_FX = ["none", "deep", "villain", "theatre", "growl", "young", "mask"] as const; // mask: slight lift, hollow porcelain resonance, stage room — Jhin // young: pitch up ~12% for kids/sidekicks // growl: pitch down, compressed, soft-clipped rasp — Batman
 export type VoiceFx = (typeof VOICE_FX)[number];
 
 export const CAMERA_MOVES = ["none", "punch_in", "slow_zoom", "shake", "dolly_in"] as const; // dolly_in: fast 2.3x push toward the character (looming at the viewer)
 
 /** Full-frame effects drawn on top of everything — on the "viewer's screen", not in the scene. */
-export const OVERLAYS = ["claw_marks", "flash", "blackout", "bat_signal", "batarang_stuck", "hook_card", "follow_card"] as const; // hook_card: big text hook over the opening (needs `text`); follow_card: @handle + Follow button for the CTA line
+export const OVERLAYS = ["claw_marks", "flash", "blackout", "bat_signal", "batarang_stuck", "hook_card", "follow_card", "screen_crack", "spotlight"] as const; // screen_crack: glass shatter at the impact point (standard ending); spotlight: dark stage, cone of light on the character (standard opening) // hook_card: big text hook over the opening (needs `text`); follow_card: @handle + Follow button for the CTA line
 export type OverlayKind = (typeof OVERLAYS)[number];
 export type CameraMove = (typeof CAMERA_MOVES)[number];
 

@@ -5,72 +5,228 @@
   "fps": 30,
   "width": 1080,
   "height": 1920,
-  "durationInFrames": 912,
+  "durationInFrames": 972,
   "theme": "grape",
   "voice": "bm_george",
   "music": null,
   "scenes": [
     {
-      "id": "hook",
-      "speech": "Four shots. Watch closely.",
+      "id": "open",
+      "speech": "One, two, three, four. Two, two, three, four.",
       "isClip": false,
       "clipVolume": 1,
       "startFrame": 0,
-      "durationInFrames": 100,
-      "speechFrames": 85,
-      "audioSrc": "audio/hook.wav",
+      "durationInFrames": 133,
+      "speechFrames": 115,
+      "audioSrc": "audio/open.wav",
       "words": [
         {
-          "text": "Four",
+          "text": "One,",
           "i": 0,
           "start": 0.275,
-          "end": 0.55,
+          "end": 0.537,
           "startFrame": 8,
-          "endFrame": 17,
-          "emphasis": true
+          "endFrame": 16,
+          "emphasis": false
         },
         {
-          "text": "shots.",
+          "text": "two,",
           "i": 1,
-          "start": 0.55,
-          "end": 1.212,
-          "startFrame": 17,
+          "start": 0.537,
+          "end": 0.85,
+          "startFrame": 16,
+          "endFrame": 26,
+          "emphasis": false
+        },
+        {
+          "text": "three,",
+          "i": 2,
+          "start": 0.85,
+          "end": 1.188,
+          "startFrame": 26,
           "endFrame": 36,
           "emphasis": false
         },
         {
-          "text": "Watch",
-          "i": 2,
-          "start": 1.212,
-          "end": 1.538,
+          "text": "four.",
+          "i": 3,
+          "start": 1.188,
+          "end": 1.837,
           "startFrame": 36,
-          "endFrame": 46,
+          "endFrame": 55,
+          "emphasis": true
+        },
+        {
+          "text": "Two,",
+          "i": 4,
+          "start": 1.837,
+          "end": 2.125,
+          "startFrame": 55,
+          "endFrame": 64,
+          "emphasis": false
+        },
+        {
+          "text": "two,",
+          "i": 5,
+          "start": 2.125,
+          "end": 2.425,
+          "startFrame": 64,
+          "endFrame": 73,
+          "emphasis": false
+        },
+        {
+          "text": "three,",
+          "i": 6,
+          "start": 2.425,
+          "end": 2.763,
+          "startFrame": 73,
+          "endFrame": 83,
+          "emphasis": false
+        },
+        {
+          "text": "four.",
+          "i": 7,
+          "start": 2.763,
+          "end": 3.725,
+          "startFrame": 83,
+          "endFrame": 112,
+          "emphasis": true
+        }
+      ],
+      "layout": "character_center",
+      "transition": "cut",
+      "captions": false,
+      "bare": true,
+      "character": {
+        "id": "jhin",
+        "style": "jhin",
+        "pose": "idle",
+        "expression": "neutral",
+        "position": "center",
+        "poseChanges": [
+          {
+            "pose": "pointing_up",
+            "expression": "smug",
+            "atFrame": 8
+          },
+          {
+            "pose": "presenting",
+            "expression": "smug",
+            "atFrame": 55
+          },
+          {
+            "pose": "aim_up",
+            "expression": "smug",
+            "atFrame": 83
+          }
+        ],
+        "shots": [],
+        "throws": [],
+        "entrance": null,
+        "exit": null,
+        "strikes": [],
+        "travel": null,
+        "jump": null
+      },
+      "extras": [],
+      "props": [],
+      "sfx": [
+        {
+          "name": "tick",
+          "atFrame": 8,
+          "volume": 0.5,
+          "src": "assets/sfx/tick.wav"
+        },
+        {
+          "name": "tick",
+          "atFrame": 16,
+          "volume": 0.5,
+          "src": "assets/sfx/tick.wav"
+        },
+        {
+          "name": "tick",
+          "atFrame": 26,
+          "volume": 0.5,
+          "src": "assets/sfx/tick.wav"
+        },
+        {
+          "name": "tick",
+          "atFrame": 36,
+          "volume": 0.7,
+          "src": "assets/sfx/tick.wav"
+        },
+        {
+          "name": "click",
+          "atFrame": 83,
+          "volume": 0.7,
+          "src": "assets/sfx/click.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": [
+        {
+          "move": "slow_zoom",
+          "atFrame": 0
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "spotlight",
+          "atFrame": 0,
+          "untilFrame": 133
+        },
+        {
+          "kind": "hook_card",
+          "atFrame": 6,
+          "untilFrame": 130,
+          "text": "Four shots. One masterpiece."
+        }
+      ]
+    },
+    {
+      "id": "stage",
+      "speech": "Watch closely.",
+      "isClip": false,
+      "clipVolume": 1,
+      "startFrame": 133,
+      "durationInFrames": 78,
+      "speechFrames": 60,
+      "audioSrc": "audio/stage.wav",
+      "words": [
+        {
+          "text": "Watch",
+          "i": 0,
+          "start": 0.275,
+          "end": 0.637,
+          "startFrame": 141,
+          "endFrame": 152,
           "emphasis": false
         },
         {
           "text": "closely.",
-          "i": 3,
-          "start": 1.538,
-          "end": 2.725,
-          "startFrame": 46,
-          "endFrame": 82,
+          "i": 1,
+          "start": 0.637,
+          "end": 1.9,
+          "startFrame": 152,
+          "endFrame": 190,
           "emphasis": true
         }
       ],
       "layout": "character_center",
       "transition": "cut",
       "captions": true,
+      "bare": false,
       "character": {
         "id": "jhin",
-        "style": "gunslinger",
-        "pose": "aim_right",
-        "expression": "smug",
+        "style": "jhin",
+        "pose": "reload",
+        "expression": "neutral",
         "position": "left",
         "poseChanges": [
           {
             "pose": "aim_right",
-            "expression": "fierce",
-            "atFrame": 46
+            "expression": "smug",
+            "atFrame": 157
           }
         ],
         "shots": [],
@@ -85,51 +241,39 @@
       "props": [
         {
           "name": "target",
-          "atFrame": 0,
-          "untilFrame": 100,
-          "anim": "pop",
+          "atFrame": 141,
+          "untilFrame": 211,
+          "anim": "drop",
           "position": "right",
-          "scale": 1.3,
+          "scale": 0.9,
           "exit": "fade"
         }
       ],
       "sfx": [
         {
-          "name": "click",
-          "atFrame": 0,
-          "volume": 0.7,
-          "src": "assets/sfx/click.wav"
+          "name": "reload",
+          "atFrame": 133,
+          "volume": 0.8,
+          "src": "assets/sfx/reload.wav"
         },
         {
-          "name": "drum",
-          "atFrame": 8,
+          "name": "click",
+          "atFrame": 157,
           "volume": 0.6,
-          "src": "assets/sfx/drum.wav"
+          "src": "assets/sfx/click.wav"
         }
       ],
       "bubbles": [],
-      "camera": [
-        {
-          "move": "punch_in",
-          "atFrame": 46
-        }
-      ],
-      "overlays": [
-        {
-          "kind": "hook_card",
-          "atFrame": 0,
-          "untilFrame": 55,
-          "text": "Four shots. One masterpiece."
-        }
-      ]
+      "camera": [],
+      "overlays": []
     },
     {
       "id": "one",
       "speech": "One.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 100,
-      "durationInFrames": 63,
+      "startFrame": 211,
+      "durationInFrames": 66,
       "speechFrames": 40,
       "audioSrc": "audio/one.wav",
       "words": [
@@ -138,25 +282,33 @@
           "i": 0,
           "start": 0.275,
           "end": 1.225,
-          "startFrame": 108,
-          "endFrame": 137,
+          "startFrame": 219,
+          "endFrame": 248,
           "emphasis": true
         }
       ],
       "layout": "character_center",
       "transition": "cut",
       "captions": true,
+      "bare": false,
       "character": {
         "id": "jhin",
-        "style": "gunslinger",
+        "style": "jhin",
         "pose": "aim_right",
         "expression": "smug",
         "position": "left",
-        "poseChanges": [],
+        "poseChanges": [
+          {
+            "pose": "admire",
+            "expression": "smug",
+            "atFrame": 236
+          }
+        ],
         "shots": [
           {
-            "atFrame": 110,
-            "big": false
+            "atFrame": 221,
+            "big": false,
+            "camera": false
           }
         ],
         "throws": [],
@@ -170,33 +322,33 @@
       "props": [
         {
           "name": "target",
-          "atFrame": 100,
-          "untilFrame": 111,
+          "atFrame": 211,
+          "untilFrame": 226,
           "anim": "fade",
           "position": "right",
-          "scale": 1.3,
+          "scale": 0.9,
           "exit": "fade"
         },
         {
           "name": "lotus",
-          "atFrame": 111,
-          "untilFrame": 163,
+          "atFrame": 226,
+          "untilFrame": 277,
           "anim": "bloom",
           "position": "right",
-          "scale": 1.3,
+          "scale": 1,
           "exit": "fade"
         }
       ],
       "sfx": [
         {
           "name": "gunshot",
-          "atFrame": 110,
+          "atFrame": 221,
           "volume": 0.9,
           "src": "assets/sfx/gunshot.wav"
         },
         {
           "name": "chime",
-          "atFrame": 116,
+          "atFrame": 228,
           "volume": 0.5,
           "src": "assets/sfx/chime.wav"
         }
@@ -204,15 +356,15 @@
       "bubbles": [
         {
           "text": "1",
-          "atFrame": 111,
-          "untilFrame": 163,
+          "atFrame": 225,
+          "untilFrame": 277,
           "side": "right"
         }
       ],
       "camera": [
         {
           "move": "shake",
-          "atFrame": 110
+          "atFrame": 221
         }
       ],
       "overlays": []
@@ -222,40 +374,47 @@
       "speech": "Two.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 163,
-      "durationInFrames": 63,
-      "speechFrames": 41,
+      "startFrame": 277,
+      "durationInFrames": 66,
+      "speechFrames": 40,
       "audioSrc": "audio/two.wav",
       "words": [
         {
           "text": "Two.",
           "i": 0,
           "start": 0.275,
-          "end": 1.175,
-          "startFrame": 171,
-          "endFrame": 198,
+          "end": 1.15,
+          "startFrame": 285,
+          "endFrame": 312,
           "emphasis": true
         }
       ],
       "layout": "character_center",
       "transition": "cut",
       "captions": true,
+      "bare": false,
       "character": {
         "id": "jhin",
-        "style": "gunslinger",
-        "pose": "aim_right",
+        "style": "jhin",
+        "pose": "admire",
         "expression": "smug",
         "position": "left",
         "poseChanges": [
           {
             "pose": "aim_high",
-            "atFrame": 166
+            "atFrame": 280
+          },
+          {
+            "pose": "admire",
+            "expression": "smug",
+            "atFrame": 302
           }
         ],
         "shots": [
           {
-            "atFrame": 173,
-            "big": false
+            "atFrame": 287,
+            "big": false,
+            "camera": false
           }
         ],
         "throws": [],
@@ -269,48 +428,48 @@
       "props": [
         {
           "name": "lotus",
-          "atFrame": 163,
-          "untilFrame": 226,
+          "atFrame": 277,
+          "untilFrame": 343,
           "anim": "fade",
           "position": "right",
-          "scale": 1.3,
+          "scale": 1,
           "exit": "fade"
         },
         {
           "name": "target",
-          "atFrame": 163,
-          "untilFrame": 174,
+          "atFrame": 277,
+          "untilFrame": 292,
           "anim": "drop",
           "position": "top_right",
-          "scale": 1.1,
+          "scale": 0.85,
           "exit": "fade"
         },
         {
           "name": "lotus",
-          "atFrame": 174,
-          "untilFrame": 226,
+          "atFrame": 292,
+          "untilFrame": 343,
           "anim": "bloom",
           "position": "top_right",
-          "scale": 1.1,
+          "scale": 0.95,
           "exit": "fade"
         }
       ],
       "sfx": [
         {
           "name": "whoosh",
-          "atFrame": 163,
-          "volume": 0.35,
+          "atFrame": 277,
+          "volume": 0.3,
           "src": "assets/sfx/whoosh.wav"
         },
         {
           "name": "gunshot",
-          "atFrame": 173,
+          "atFrame": 287,
           "volume": 0.9,
           "src": "assets/sfx/gunshot.wav"
         },
         {
           "name": "chime",
-          "atFrame": 179,
+          "atFrame": 294,
           "volume": 0.5,
           "src": "assets/sfx/chime.wav"
         }
@@ -318,15 +477,15 @@
       "bubbles": [
         {
           "text": "2",
-          "atFrame": 174,
-          "untilFrame": 226,
+          "atFrame": 291,
+          "untilFrame": 343,
           "side": "left"
         }
       ],
       "camera": [
         {
           "move": "shake",
-          "atFrame": 173
+          "atFrame": 287
         }
       ],
       "overlays": []
@@ -336,8 +495,8 @@
       "speech": "Three.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 226,
-      "durationInFrames": 63,
+      "startFrame": 343,
+      "durationInFrames": 66,
       "speechFrames": 41,
       "audioSrc": "audio/three.wav",
       "words": [
@@ -346,30 +505,37 @@
           "i": 0,
           "start": 0.275,
           "end": 1.25,
-          "startFrame": 234,
-          "endFrame": 264,
+          "startFrame": 351,
+          "endFrame": 381,
           "emphasis": true
         }
       ],
       "layout": "character_center",
       "transition": "cut",
       "captions": true,
+      "bare": false,
       "character": {
         "id": "jhin",
-        "style": "gunslinger",
-        "pose": "aim_high",
+        "style": "jhin",
+        "pose": "admire",
         "expression": "smug",
         "position": "left",
         "poseChanges": [
           {
             "pose": "aim_up",
-            "atFrame": 229
+            "atFrame": 346
+          },
+          {
+            "pose": "admire",
+            "expression": "smug",
+            "atFrame": 368
           }
         ],
         "shots": [
           {
-            "atFrame": 236,
-            "big": false
+            "atFrame": 353,
+            "big": false,
+            "camera": false
           }
         ],
         "throws": [],
@@ -383,57 +549,57 @@
       "props": [
         {
           "name": "lotus",
-          "atFrame": 226,
-          "untilFrame": 289,
+          "atFrame": 343,
+          "untilFrame": 409,
           "anim": "fade",
           "position": "right",
-          "scale": 1.3,
+          "scale": 1,
           "exit": "fade"
         },
         {
           "name": "lotus",
-          "atFrame": 226,
-          "untilFrame": 289,
+          "atFrame": 343,
+          "untilFrame": 409,
           "anim": "fade",
           "position": "top_right",
-          "scale": 1.1,
+          "scale": 0.95,
           "exit": "fade"
         },
         {
           "name": "target",
-          "atFrame": 226,
-          "untilFrame": 237,
+          "atFrame": 343,
+          "untilFrame": 358,
           "anim": "drop",
           "position": "top",
-          "scale": 1,
+          "scale": 0.8,
           "exit": "fade"
         },
         {
           "name": "lotus",
-          "atFrame": 237,
-          "untilFrame": 289,
+          "atFrame": 358,
+          "untilFrame": 409,
           "anim": "bloom",
           "position": "top",
-          "scale": 1,
+          "scale": 0.9,
           "exit": "fade"
         }
       ],
       "sfx": [
         {
           "name": "whoosh",
-          "atFrame": 226,
-          "volume": 0.35,
+          "atFrame": 343,
+          "volume": 0.3,
           "src": "assets/sfx/whoosh.wav"
         },
         {
           "name": "gunshot",
-          "atFrame": 236,
+          "atFrame": 353,
           "volume": 0.9,
           "src": "assets/sfx/gunshot.wav"
         },
         {
           "name": "chime",
-          "atFrame": 242,
+          "atFrame": 360,
           "volume": 0.5,
           "src": "assets/sfx/chime.wav"
         }
@@ -441,15 +607,15 @@
       "bubbles": [
         {
           "text": "3",
-          "atFrame": 237,
-          "untilFrame": 289,
+          "atFrame": 357,
+          "untilFrame": 409,
           "side": "left"
         }
       ],
       "camera": [
         {
           "move": "shake",
-          "atFrame": 236
+          "atFrame": 353
         }
       ],
       "overlays": []
@@ -459,62 +625,67 @@
       "speech": "And now... the finale.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 289,
-      "durationInFrames": 108,
-      "speechFrames": 81,
+      "startFrame": 409,
+      "durationInFrames": 103,
+      "speechFrames": 78,
       "audioSrc": "audio/pause.wav",
       "words": [
         {
           "text": "And",
           "i": 0,
-          "start": 0.275,
-          "end": 0.45,
-          "startFrame": 297,
-          "endFrame": 303,
+          "start": 0.25,
+          "end": 0.425,
+          "startFrame": 417,
+          "endFrame": 422,
           "emphasis": false
         },
         {
           "text": "now...",
           "i": 1,
-          "start": 0.45,
-          "end": 1.025,
-          "startFrame": 303,
-          "endFrame": 320,
+          "start": 0.425,
+          "end": 1,
+          "startFrame": 422,
+          "endFrame": 439,
           "emphasis": false
         },
         {
           "text": "the",
           "i": 2,
-          "start": 1.025,
-          "end": 1.175,
-          "startFrame": 320,
-          "endFrame": 324,
+          "start": 1,
+          "end": 1.137,
+          "startFrame": 439,
+          "endFrame": 443,
           "emphasis": false
         },
         {
           "text": "finale.",
           "i": 3,
-          "start": 1.175,
-          "end": 2.575,
-          "startFrame": 324,
-          "endFrame": 366,
+          "start": 1.137,
+          "end": 2.5,
+          "startFrame": 443,
+          "endFrame": 484,
           "emphasis": true
         }
       ],
       "layout": "character_center",
       "transition": "cut",
       "captions": true,
+      "bare": false,
       "character": {
         "id": "jhin",
-        "style": "gunslinger",
-        "pose": "reload",
-        "expression": "neutral",
+        "style": "jhin",
+        "pose": "admire",
+        "expression": "smug",
         "position": "center",
         "poseChanges": [
           {
-            "pose": "aim_left",
+            "pose": "reload",
+            "atFrame": 422
+          },
+          {
+            "pose": "aim_camera",
             "expression": "fierce",
-            "atFrame": 324
+            "atFrame": 443
           }
         ],
         "shots": [],
@@ -529,8 +700,8 @@
       "props": [
         {
           "name": "lotus",
-          "atFrame": 289,
-          "untilFrame": 397,
+          "atFrame": 409,
+          "untilFrame": 512,
           "anim": "fade",
           "position": "right",
           "scale": 1,
@@ -538,42 +709,33 @@
         },
         {
           "name": "lotus",
-          "atFrame": 289,
-          "untilFrame": 397,
+          "atFrame": 409,
+          "untilFrame": 512,
           "anim": "fade",
           "position": "top_right",
-          "scale": 1,
+          "scale": 0.95,
           "exit": "fade"
         },
         {
           "name": "lotus",
-          "atFrame": 289,
-          "untilFrame": 397,
+          "atFrame": 409,
+          "untilFrame": 512,
           "anim": "fade",
           "position": "top",
           "scale": 0.9,
-          "exit": "fade"
-        },
-        {
-          "name": "target",
-          "atFrame": 324,
-          "untilFrame": 397,
-          "anim": "drop",
-          "position": "left",
-          "scale": 1.3,
           "exit": "fade"
         }
       ],
       "sfx": [
         {
           "name": "reload",
-          "atFrame": 303,
+          "atFrame": 422,
           "volume": 0.8,
           "src": "assets/sfx/reload.wav"
         },
         {
           "name": "drum",
-          "atFrame": 324,
+          "atFrame": 443,
           "volume": 0.8,
           "src": "assets/sfx/drum.wav"
         }
@@ -582,7 +744,11 @@
       "camera": [
         {
           "move": "slow_zoom",
-          "atFrame": 289
+          "atFrame": 409
+        },
+        {
+          "move": "dolly_in",
+          "atFrame": 443
         }
       ],
       "overlays": []
@@ -592,8 +758,8 @@
       "speech": "Four.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 397,
-      "durationInFrames": 76,
+      "startFrame": 512,
+      "durationInFrames": 85,
       "speechFrames": 46,
       "audioSrc": "audio/four.wav",
       "words": [
@@ -602,25 +768,33 @@
           "i": 0,
           "start": 0.325,
           "end": 1.35,
-          "startFrame": 407,
-          "endFrame": 438,
+          "startFrame": 522,
+          "endFrame": 553,
           "emphasis": true
         }
       ],
       "layout": "character_center",
       "transition": "cut",
       "captions": true,
+      "bare": false,
       "character": {
         "id": "jhin",
-        "style": "gunslinger",
-        "pose": "aim_left",
+        "style": "jhin",
+        "pose": "aim_camera",
         "expression": "fierce",
         "position": "center",
-        "poseChanges": [],
+        "poseChanges": [
+          {
+            "pose": "bow",
+            "expression": "smug",
+            "atFrame": 549
+          }
+        ],
         "shots": [
           {
-            "atFrame": 409,
-            "big": true
+            "atFrame": 524,
+            "big": true,
+            "camera": true
           }
         ],
         "throws": [],
@@ -634,8 +808,8 @@
       "props": [
         {
           "name": "lotus",
-          "atFrame": 397,
-          "untilFrame": 473,
+          "atFrame": 512,
+          "untilFrame": 597,
           "anim": "fade",
           "position": "right",
           "scale": 1,
@@ -643,101 +817,85 @@
         },
         {
           "name": "lotus",
-          "atFrame": 397,
-          "untilFrame": 473,
+          "atFrame": 512,
+          "untilFrame": 597,
           "anim": "fade",
           "position": "top_right",
-          "scale": 1,
+          "scale": 0.95,
           "exit": "fade"
         },
         {
           "name": "lotus",
-          "atFrame": 397,
-          "untilFrame": 473,
+          "atFrame": 512,
+          "untilFrame": 597,
           "anim": "fade",
           "position": "top",
           "scale": 0.9,
-          "exit": "fade"
-        },
-        {
-          "name": "target",
-          "atFrame": 397,
-          "untilFrame": 410,
-          "anim": "fade",
-          "position": "left",
-          "scale": 1.3,
-          "exit": "fade"
-        },
-        {
-          "name": "lotus",
-          "atFrame": 410,
-          "untilFrame": 473,
-          "anim": "bloom",
-          "position": "left",
-          "scale": 1.5,
           "exit": "fade"
         }
       ],
       "sfx": [
         {
           "name": "gunshot_big",
-          "atFrame": 409,
+          "atFrame": 524,
           "volume": 1,
           "src": "assets/sfx/gunshot_big.wav"
         },
         {
+          "name": "boom",
+          "atFrame": 533,
+          "volume": 0.9,
+          "src": "assets/sfx/boom.wav"
+        },
+        {
           "name": "chime",
-          "atFrame": 419,
+          "atFrame": 540,
           "volume": 0.7,
           "src": "assets/sfx/chime.wav"
         }
       ],
-      "bubbles": [
-        {
-          "text": "4",
-          "atFrame": 410,
-          "untilFrame": 473,
-          "side": "right"
-        }
-      ],
+      "bubbles": [],
       "camera": [
         {
-          "move": "punch_in",
-          "atFrame": 407
-        },
-        {
           "move": "shake",
-          "atFrame": 409
+          "atFrame": 533
         }
       ],
-      "overlays": []
+      "overlays": [
+        {
+          "kind": "screen_crack",
+          "atFrame": 533,
+          "untilFrame": 597
+        }
+      ]
     },
     {
       "id": "laugh",
       "speech": "HAHAHAHA",
       "isClip": true,
-      "clipVolume": 1.1,
-      "startFrame": 473,
-      "durationInFrames": 192,
-      "speechFrames": 180,
+      "clipVolume": 1.15,
+      "startFrame": 597,
+      "durationInFrames": 162,
+      "speechFrames": 150,
       "audioSrc": "audio/laugh.wav",
       "words": [
         {
           "text": "HAHAHAHA",
           "i": 0,
           "start": 0,
-          "end": 6,
-          "startFrame": 473,
-          "endFrame": 653,
+          "end": 5,
+          "startFrame": 597,
+          "endFrame": 747,
           "emphasis": false
         }
       ],
       "layout": "character_center",
-      "transition": "zoom",
+      "transition": "cut",
       "captions": true,
+      "bare": false,
       "character": {
         "id": "jhin",
-        "style": "gunslinger",
+        "style": "jhin",
         "pose": "laughing",
         "expression": "laughing",
         "position": "center",
@@ -745,12 +903,12 @@
           {
             "pose": "celebrating",
             "expression": "laughing",
-            "atFrame": 539
+            "atFrame": 651
           },
           {
             "pose": "laughing",
             "expression": "laughing",
-            "atFrame": 587
+            "atFrame": 693
           }
         ],
         "shots": [],
@@ -765,8 +923,8 @@
       "props": [
         {
           "name": "lotus",
-          "atFrame": 473,
-          "untilFrame": 665,
+          "atFrame": 597,
+          "untilFrame": 759,
           "anim": "fade",
           "position": "right",
           "scale": 1,
@@ -774,29 +932,20 @@
         },
         {
           "name": "lotus",
-          "atFrame": 473,
-          "untilFrame": 665,
+          "atFrame": 597,
+          "untilFrame": 759,
           "anim": "fade",
           "position": "top_right",
-          "scale": 1,
+          "scale": 0.95,
           "exit": "fade"
         },
         {
           "name": "lotus",
-          "atFrame": 473,
-          "untilFrame": 665,
+          "atFrame": 597,
+          "untilFrame": 759,
           "anim": "fade",
           "position": "top",
           "scale": 0.9,
-          "exit": "fade"
-        },
-        {
-          "name": "lotus",
-          "atFrame": 473,
-          "untilFrame": 665,
-          "anim": "fade",
-          "position": "left",
-          "scale": 1,
           "exit": "fade"
         }
       ],
@@ -805,22 +954,24 @@
       "camera": [
         {
           "move": "punch_in",
-          "atFrame": 473
-        },
-        {
-          "move": "shake",
-          "atFrame": 539
+          "atFrame": 597
         }
       ],
-      "overlays": []
+      "overlays": [
+        {
+          "kind": "screen_crack",
+          "atFrame": 597,
+          "untilFrame": 759
+        }
+      ]
     },
     {
       "id": "outro",
       "speech": "Perfection. In four acts.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 665,
-      "durationInFrames": 116,
+      "startFrame": 759,
+      "durationInFrames": 107,
       "speechFrames": 86,
       "audioSrc": "audio/outro.wav",
       "words": [
@@ -829,8 +980,8 @@
           "i": 0,
           "start": 0.25,
           "end": 1.087,
-          "startFrame": 673,
-          "endFrame": 698,
+          "startFrame": 767,
+          "endFrame": 792,
           "emphasis": true
         },
         {
@@ -838,8 +989,8 @@
           "i": 1,
           "start": 1.087,
           "end": 1.312,
-          "startFrame": 698,
-          "endFrame": 704,
+          "startFrame": 792,
+          "endFrame": 798,
           "emphasis": false
         },
         {
@@ -847,8 +998,8 @@
           "i": 2,
           "start": 1.312,
           "end": 1.7,
-          "startFrame": 704,
-          "endFrame": 716,
+          "startFrame": 798,
+          "endFrame": 810,
           "emphasis": true
         },
         {
@@ -856,25 +1007,26 @@
           "i": 3,
           "start": 1.7,
           "end": 2.75,
-          "startFrame": 716,
-          "endFrame": 748,
+          "startFrame": 810,
+          "endFrame": 842,
           "emphasis": true
         }
       ],
       "layout": "character_center",
       "transition": "cut",
       "captions": true,
+      "bare": false,
       "character": {
         "id": "jhin",
-        "style": "gunslinger",
-        "pose": "presenting",
+        "style": "jhin",
+        "pose": "admire",
         "expression": "smug",
         "position": "center",
         "poseChanges": [
           {
             "pose": "bow",
             "expression": "happy",
-            "atFrame": 698
+            "atFrame": 792
           }
         ],
         "shots": [],
@@ -889,8 +1041,8 @@
       "props": [
         {
           "name": "lotus",
-          "atFrame": 665,
-          "untilFrame": 781,
+          "atFrame": 759,
+          "untilFrame": 866,
           "anim": "fade",
           "position": "right",
           "scale": 1,
@@ -898,146 +1050,108 @@
         },
         {
           "name": "lotus",
-          "atFrame": 665,
-          "untilFrame": 781,
+          "atFrame": 759,
+          "untilFrame": 866,
           "anim": "fade",
           "position": "top_right",
-          "scale": 1,
+          "scale": 0.95,
           "exit": "fade"
         },
         {
           "name": "lotus",
-          "atFrame": 665,
-          "untilFrame": 781,
+          "atFrame": 759,
+          "untilFrame": 866,
           "anim": "fade",
           "position": "top",
           "scale": 0.9,
-          "exit": "fade"
-        },
-        {
-          "name": "lotus",
-          "atFrame": 665,
-          "untilFrame": 781,
-          "anim": "fade",
-          "position": "left",
-          "scale": 1,
           "exit": "fade"
         }
       ],
       "sfx": [
         {
           "name": "chime",
-          "atFrame": 673,
+          "atFrame": 767,
           "volume": 0.6,
           "src": "assets/sfx/chime.wav"
-        },
-        {
-          "name": "drum",
-          "atFrame": 704,
-          "volume": 0.6,
-          "src": "assets/sfx/drum.wav"
         }
       ],
       "bubbles": [],
-      "camera": [
+      "camera": [],
+      "overlays": [
         {
-          "move": "slow_zoom",
-          "atFrame": 665
+          "kind": "screen_crack",
+          "atFrame": 759,
+          "untilFrame": 866
         }
-      ],
-      "overlays": []
+      ]
     },
     {
       "id": "cta",
-      "speech": "Follow Dummy Sticky. For more.",
+      "speech": "Follow Dummy Sticky for more.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 781,
-      "durationInFrames": 131,
-      "speechFrames": 95,
+      "startFrame": 866,
+      "durationInFrames": 106,
+      "speechFrames": 67,
       "audioSrc": "audio/cta.wav",
       "words": [
         {
           "text": "Follow",
           "i": 0,
-          "start": 0.275,
-          "end": 0.675,
-          "startFrame": 789,
-          "endFrame": 801,
+          "start": 0.3,
+          "end": 0.637,
+          "startFrame": 875,
+          "endFrame": 885,
           "emphasis": true
         },
         {
           "text": "Dummy",
           "i": 1,
-          "start": 0.675,
-          "end": 1.087,
-          "startFrame": 801,
-          "endFrame": 814,
+          "start": 0.637,
+          "end": 0.975,
+          "startFrame": 885,
+          "endFrame": 895,
           "emphasis": true
         },
         {
-          "text": "Sticky.",
+          "text": "Sticky",
           "i": 2,
-          "start": 1.087,
-          "end": 1.913,
-          "startFrame": 814,
-          "endFrame": 838,
+          "start": 0.975,
+          "end": 1.3,
+          "startFrame": 895,
+          "endFrame": 905,
           "emphasis": true
         },
         {
-          "text": "For",
+          "text": "for",
           "i": 3,
-          "start": 1.913,
-          "end": 2.075,
-          "startFrame": 838,
-          "endFrame": 843,
+          "start": 1.3,
+          "end": 1.425,
+          "startFrame": 905,
+          "endFrame": 909,
           "emphasis": false
         },
         {
           "text": "more.",
           "i": 4,
-          "start": 2.075,
-          "end": 3.05,
-          "startFrame": 843,
-          "endFrame": 873,
+          "start": 1.425,
+          "end": 2.125,
+          "startFrame": 909,
+          "endFrame": 930,
           "emphasis": false
         }
       ],
       "layout": "character_center",
       "transition": "cut",
       "captions": false,
-      "character": {
-        "id": "jhin",
-        "style": "gunslinger",
-        "pose": "bow",
-        "expression": "smug",
-        "position": "center",
-        "poseChanges": [
-          {
-            "pose": "waving",
-            "expression": "happy",
-            "atFrame": 789
-          },
-          {
-            "pose": "pointing_up",
-            "expression": "smug",
-            "atFrame": 843
-          }
-        ],
-        "shots": [],
-        "throws": [],
-        "entrance": null,
-        "exit": null,
-        "strikes": [],
-        "travel": null,
-        "jump": null
-      },
+      "bare": false,
+      "character": null,
       "extras": [],
       "props": [
         {
           "name": "lotus",
-          "atFrame": 781,
-          "untilFrame": 912,
+          "atFrame": 866,
+          "untilFrame": 972,
           "anim": "fade",
           "position": "right",
           "scale": 1,
@@ -1045,42 +1159,27 @@
         },
         {
           "name": "lotus",
-          "atFrame": 781,
-          "untilFrame": 912,
+          "atFrame": 866,
+          "untilFrame": 972,
           "anim": "fade",
           "position": "top_right",
-          "scale": 1,
+          "scale": 0.95,
           "exit": "fade"
         },
         {
           "name": "lotus",
-          "atFrame": 781,
-          "untilFrame": 912,
+          "atFrame": 866,
+          "untilFrame": 972,
           "anim": "fade",
           "position": "top",
           "scale": 0.9,
-          "exit": "fade"
-        },
-        {
-          "name": "lotus",
-          "atFrame": 781,
-          "untilFrame": 912,
-          "anim": "fade",
-          "position": "left",
-          "scale": 1,
           "exit": "fade"
         }
       ],
       "sfx": [
         {
-          "name": "chime",
-          "atFrame": 789,
-          "volume": 0.5,
-          "src": "assets/sfx/chime.wav"
-        },
-        {
           "name": "pop",
-          "atFrame": 861,
+          "atFrame": 875,
           "volume": 0.6,
           "src": "assets/sfx/pop.wav"
         }
@@ -1089,9 +1188,19 @@
       "camera": [],
       "overlays": [
         {
+          "kind": "screen_crack",
+          "atFrame": 866,
+          "untilFrame": 972
+        },
+        {
           "kind": "follow_card",
-          "atFrame": 789,
-          "untilFrame": 912
+          "atFrame": 875,
+          "untilFrame": 972
+        },
+        {
+          "kind": "blackout",
+          "atFrame": 962,
+          "untilFrame": 972
         }
       ]
     }
@@ -1101,9 +1210,9 @@
     "name": "Dummy Sticky"
   },
   "meta": {
-    "resolvedAt": "2026-09-17T22:57:40.092Z",
+    "resolvedAt": "2026-09-18T00:09:10.108Z",
     "engineVersion": "0.1.0",
     "ttsModel": "hexgrad/Kokoro-82M",
-    "manifestHash": "a8f9e40cb88a0cec"
+    "manifestHash": "d5a18f4496bac31e"
   }
 }

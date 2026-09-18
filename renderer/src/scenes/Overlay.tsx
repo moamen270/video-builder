@@ -48,9 +48,108 @@ export const Overlay: React.FC<{ overlay: Cue; abs: number; slash: SlashGeom | n
       return <BatarangStuck t={t} />;
     case "hook_card":
       return <HookCard t={t} out={overlay.untilFrame - abs} text={overlay.text ?? ""} palette={palette} />;
+    case "screen_crack":
+      return <ScreenCrack t={t} accent={palette.accent} />;
+    case "spotlight":
+      return <Spotlight t={t} />;
     case "follow_card":
       return <FollowCard t={t} handle={brand?.handle ?? "@DummySticky"} palette={palette} rect={captionRect} />;
   }
+};
+
+/** Deterministic 0–1 noise from integers (no Math.random in the renderer). */
+const hash = (a: number, b: number) => {
+  const x = Math.sin(a * 127.1 + b * 311.7) * 43758.5453;
+  return x - Math.floor(x);
+};
+
+/**
+ * The standard ending: something hits the viewer's screen and the glass
+ * shatters. Cracks grow out from the impact over 5 frames — long jagged radials
+ * with short branches and a ring of small fractures — then a lit rim stays on
+ * the shards. A flash and a colour bloom sell the hit on frame 0–8.
+ */
+const ScreenCrack: React.FC<{ t: number; accent: string }> = ({ t, accent }) => {
+  const cx = 540;
+  const cy = 860;
+  const grow = interpolate(t, [0, 5], [0.15, 1], { extrapolateRight: "clamp" });
+  const rays = 14;
+  const paths: string[] = [];
+  const branches: string[] = [];
+  for (let i = 0; i < rays; i++) {
+    const a0 = (i / rays) * Math.PI * 2 + hash(i, 1) * 0.35;
+    const len = (620 + hash(i, 2) * 520) * grow;
+    let x = cx;
+    let y = cy;
+    let a = a0;
+    let d = `M ${x} ${y}`;
+    const segs = 7;
+    for (let s = 1; s <= segs; s++) {
+      a += (hash(i, s + 10) - 0.5) * 0.5;
+      const r = len / segs;
+      x += Math.cos(a) * r;
+      y += Math.sin(a) * r;
+      d += ` L ${x.toFixed(1)} ${y.toFixed(1)}`;
+      if (s === 3 || s === 5) {
+        const ba = a + (hash(i, s + 40) > 0.5 ? 0.9 : -0.9);
+        const bl = r * (1.2 + hash(i, s + 50));
+        branches.push(`M ${x.toFixed(1)} ${y.toFixed(1)} L ${(x + Math.cos(ba) * bl).toFixed(1)} ${(y + Math.sin(ba) * bl).toFixed(1)}`);
+      }
+    }
+    paths.push(d);
+  }
+  // concentric fracture rings near the impact
+  const rings = [70, 130, 210].map((r, k) => {
+    let d = "";
+    const n = 18 + k * 6;
+    for (let j = 0; j <= n; j++) {
+      const a = (j / n) * Math.PI * 2;
+      const rr = r * grow * (0.92 + hash(j, k + 70) * 0.16);
+      d += `${j ? "L" : "M"} ${(cx + Math.cos(a) * rr).toFixed(1)} ${(cy + Math.sin(a) * rr).toFixed(1)} `;
+    }
+    return d;
+  });
+  const flash = interpolate(t, [0, 1, 7], [0.9, 0.7, 0], { extrapolateRight: "clamp" });
+  const bloom = interpolate(t, [0, 10], [0, 1], { extrapolateRight: "clamp" });
+  return (
+    <AbsoluteFill style={{ pointerEvents: "none" }}>
+      {/* impact bloom in the accent colour */}
+      {t < 14 && <div style={{ position: "absolute", left: cx - 700, top: cy - 700, width: 1400, height: 1400, borderRadius: "50%", background: `radial-gradient(circle, ${accent} 0%, transparent 60%)`, opacity: 0.55 * (1 - bloom), transform: `scale(${0.3 + bloom * 1.1})` }} />}
+      <AbsoluteFill style={{ background: "#ffffff", opacity: flash }} />
+      <svg width={1080} height={1920} style={{ position: "absolute", inset: 0 }}>
+        <g strokeLinecap="round" strokeLinejoin="round" fill="none">
+          {paths.map((d, i) => (
+            <path key={`s${i}`} d={d} stroke="rgba(0,0,0,0.6)" strokeWidth={12} />
+          ))}
+          {paths.map((d, i) => (
+            <path key={`w${i}`} d={d} stroke="rgba(255,255,255,0.95)" strokeWidth={5.5} />
+          ))}
+          {branches.map((d, i) => (
+            <path key={`b${i}`} d={d} stroke="rgba(255,255,255,0.8)" strokeWidth={2.5} />
+          ))}
+          {rings.map((d, i) => (
+            <path key={`r${i}`} d={d} stroke="rgba(255,255,255,0.7)" strokeWidth={2.5} />
+          ))}
+        </g>
+        {/* punched hole at the impact */}
+        <circle cx={cx} cy={cy} r={34 * grow} fill="#050609" />
+        <circle cx={cx} cy={cy} r={34 * grow} fill="none" stroke="#ffffff" strokeWidth={3} opacity={0.9} />
+      </svg>
+      {/* the picture behind dims a little, like a cracked phone */}
+      <AbsoluteFill style={{ background: "rgba(0,0,0,0.18)" }} />
+    </AbsoluteFill>
+  );
+};
+
+/** The standard opening: a dark stage with one cone of light on the character. */
+const Spotlight: React.FC<{ t: number }> = ({ t }) => {
+  const k = interpolate(t, [0, 10], [0, 1], { extrapolateRight: "clamp" });
+  return (
+    <AbsoluteFill style={{ pointerEvents: "none", background: `radial-gradient(ellipse 560px 900px at 50% 58%, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 45%, rgba(0,0,0,${0.86 * k}) 100%)` }}>
+      {/* beam from the top */}
+      <div style={{ position: "absolute", left: 540 - 380, top: -40, width: 760, height: 1200, background: "linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0) 100%)", clipPath: "polygon(40% 0, 60% 0, 100% 100%, 0 100%)", opacity: k }} />
+    </AbsoluteFill>
+  );
 };
 
 /**

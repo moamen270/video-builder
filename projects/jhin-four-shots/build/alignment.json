@@ -1,40 +1,85 @@
 {
   "model": "hexgrad/Kokoro-82M",
   "voice": "bm_george",
-  "speed": 0.9,
+  "speed": 0.92,
   "scenes": [
     {
-      "sceneId": "hook",
-      "file": "hook.wav",
-      "duration": 2.825,
+      "sceneId": "open",
+      "file": "open.wav",
+      "duration": 3.825,
       "sampleRate": 24000,
       "tokens": [
         {
-          "text": "Four",
+          "text": "One,",
           "start": 0.275,
-          "end": 0.55,
+          "end": 0.537,
           "ws": " "
         },
         {
-          "text": "shots.",
-          "start": 0.55,
-          "end": 1.212,
+          "text": "two,",
+          "start": 0.537,
+          "end": 0.85,
           "ws": " "
         },
+        {
+          "text": "three,",
+          "start": 0.85,
+          "end": 1.188,
+          "ws": " "
+        },
+        {
+          "text": "four.",
+          "start": 1.188,
+          "end": 1.837,
+          "ws": " "
+        },
+        {
+          "text": "Two,",
+          "start": 1.837,
+          "end": 2.125,
+          "ws": " "
+        },
+        {
+          "text": "two,",
+          "start": 2.125,
+          "end": 2.425,
+          "ws": " "
+        },
+        {
+          "text": "three,",
+          "start": 2.425,
+          "end": 2.763,
+          "ws": " "
+        },
+        {
+          "text": "four.",
+          "start": 2.763,
+          "end": 3.725,
+          "ws": ""
+        }
+      ],
+      "hash": "ff9287a55b01aaa9"
+    },
+    {
+      "sceneId": "stage",
+      "file": "stage.wav",
+      "duration": 2,
+      "sampleRate": 24000,
+      "tokens": [
         {
           "text": "Watch",
-          "start": 1.212,
-          "end": 1.538,
+          "start": 0.275,
+          "end": 0.637,
           "ws": " "
         },
         {
           "text": "closely.",
-          "start": 1.538,
-          "end": 2.725,
+          "start": 0.637,
+          "end": 1.9,
           "ws": ""
         }
       ],
-      "hash": "fba0384816e19122"
+      "hash": "66669431e1eb4895"
     },
     {
       "sceneId": "one",
@@ -49,22 +94,22 @@
           "ws": ""
         }
       ],
-      "hash": "50ff9b5347c1bf38"
+      "hash": "dfd636f19510bb53"
     },
     {
       "sceneId": "two",
       "file": "two.wav",
-      "duration": 1.35,
+      "duration": 1.325,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "Two.",
           "start": 0.275,
-          "end": 1.175,
+          "end": 1.15,
           "ws": ""
         }
       ],
-      "hash": "5792da683bed9d77"
+      "hash": "1ba941024ffddb01"
     },
     {
       "sceneId": "three",
@@ -79,40 +124,40 @@
           "ws": ""
         }
       ],
-      "hash": "ef2c570c73a497b4"
+      "hash": "44028714ec4afd81"
     },
     {
       "sceneId": "pause",
       "file": "pause.wav",
-      "duration": 2.675,
+      "duration": 2.6,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "And",
-          "start": 0.275,
-          "end": 0.45,
+          "start": 0.25,
+          "end": 0.425,
           "ws": " "
         },
         {
           "text": "now...",
-          "start": 0.45,
-          "end": 1.025,
+          "start": 0.425,
+          "end": 1,
           "ws": " "
         },
         {
           "text": "the",
-          "start": 1.025,
-          "end": 1.175,
+          "start": 1,
+          "end": 1.137,
           "ws": " "
         },
         {
           "text": "finale.",
-          "start": 1.175,
-          "end": 2.575,
+          "start": 1.137,
+          "end": 2.5,
           "ws": ""
         }
       ],
-      "hash": "cd0bbba9eba88da4"
+      "hash": "7613a502847560e2"
     },
     {
       "sceneId": "four",
@@ -127,22 +172,22 @@
           "ws": ""
         }
       ],
-      "hash": "e21fccdc75d53cf9"
+      "hash": "c035043994cc76ab"
     },
     {
       "sceneId": "laugh",
       "file": "laugh.wav",
-      "duration": 6,
+      "duration": 5,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "HAHAHAHA",
           "start": 0,
-          "end": 6,
+          "end": 5,
           "ws": ""
         }
       ],
-      "hash": "fb3a90ca1e8499c0"
+      "hash": "197ce60bf8cdb792"
     },
     {
       "sceneId": "outro",
@@ -175,46 +220,46 @@
           "ws": ""
         }
       ],
-      "hash": "b61b604634c10b32"
+      "hash": "c7c8782863867ca2"
     },
     {
       "sceneId": "cta",
       "file": "cta.wav",
-      "duration": 3.15,
+      "duration": 2.225,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "Follow",
-          "start": 0.275,
-          "end": 0.675,
+          "start": 0.3,
+          "end": 0.637,
           "ws": " "
         },
         {
           "text": "Dummy",
-          "start": 0.675,
-          "end": 1.087,
+          "start": 0.637,
+          "end": 0.975,
           "ws": " "
         },
         {
-          "text": "Sticky.",
-          "start": 1.087,
-          "end": 1.913,
+          "text": "Sticky",
+          "start": 0.975,
+          "end": 1.3,
           "ws": " "
         },
         {
-          "text": "For",
-          "start": 1.913,
-          "end": 2.075,
+          "text": "for",
+          "start": 1.3,
+          "end": 1.425,
           "ws": " "
         },
         {
           "text": "more.",
-          "start": 2.075,
-          "end": 3.05,
+          "start": 1.425,
+          "end": 2.125,
           "ws": ""
         }
       ],
-      "hash": "0f52df1ac7663b24"
+      "hash": "8686510987cdafbb"
     }
   ]
 }

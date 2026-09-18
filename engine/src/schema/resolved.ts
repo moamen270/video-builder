@@ -104,7 +104,7 @@ export const ResolvedOverlay = z.object({
   text: z.string().optional(),
 });
 
-export const ResolvedShot = z.object({ atFrame: z.number().int(), big: z.boolean() });
+export const ResolvedShot = z.object({ atFrame: z.number().int(), big: z.boolean(), camera: z.boolean().default(false) });
 export const ResolvedStrike = z.object({ atFrame: z.number().int(), target: z.enum([...PROP_POSITIONS, "camera"]), big: z.boolean() });
 
 export const ResolvedScene = z.object({
@@ -123,6 +123,7 @@ export const ResolvedScene = z.object({
   layout: z.enum(LAYOUTS),
   transition: z.enum(TRANSITIONS),
   captions: z.boolean().default(true),
+  bare: z.boolean().default(false),
   character: z
     .object({
       id: z.string(),

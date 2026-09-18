@@ -23,6 +23,24 @@ iterate. Read `stickman-animation` for the visual vocabulary.
   text hook → 3–5 escalating beats → payoff → one CTA**. The character is deadpan
   and serious about something trivial; the joke is never in his lines.
 
+## Standard opening and ending (Dummy Sticky character shorts)
+
+Every character short opens and closes the same way, so the channel is recognisable:
+
+**Opening** — one `bare: true` scene (no progress bar, no watermark, `captions: false`):
+the character alone under a `spotlight` overlay, the video title as a `hook_card`
+(`at: "start+0.2"`, `until: "end-0.1"`), and the character says ONE of his famous lines
+in his own voice (Jhin: the counting; Batman: "I'm Batman."; Wolverine: a "bub" line).
+1.5–4 s. A pose change on the key word; ticks/clicks as the only SFX.
+
+**Ending** — the character hits the viewer's screen with his signature move
+(Wolverine: `strikes` target `camera` + `claw_marks`; Batman: `throws` target `camera` +
+`batarang_stuck`; Jhin/gunslingers: pose `aim_camera`, `shots: [{ camera: true, big: true }]`
++ overlay `screen_crack` at `+0.35`). The broken screen stays on every following scene
+(`screen_crack` at `start`). Then a final `cta` scene: `character: null`, `captions: false`,
+**narrator voice** `voice: "af_heart", voiceFx: "none"` (never the character's voice) saying
+"Follow Dummy Sticky for more.", overlays `follow_card` at `word:follow` and `blackout` at `end-0.35`.
+
 ## The first 3 seconds (both formats — this is where Shorts die)
 
 - Frame 0 must already show the interesting thing: claws out, gun raised, the hero

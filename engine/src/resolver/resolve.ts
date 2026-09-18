@@ -72,7 +72,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
           poseChanges: s.character.poseChanges
             .map((pc, i) => ({ pose: pc.pose, expression: pc.expression, atFrame: at(pc.at, `character.poseChanges[${i}]`) }))
             .sort((x, y) => x.atFrame - y.atFrame),
-          shots: s.character.shots.map((sh, i) => ({ atFrame: at(sh.at, `character.shots[${i}]`), big: sh.big })),
+          shots: s.character.shots.map((sh, i) => ({ atFrame: at(sh.at, `character.shots[${i}]`), big: sh.big, camera: sh.camera })),
           throws: [] as { atFrame: number; item: "batarang"; hops: { target: string; hitFrame: number }[] }[],
           entrance: null as null | { atFrame: number; landFrame: number },
           exit: null as null | { atFrame: number; endFrame: number },
@@ -159,7 +159,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
       };
       if (!character.pose.startsWith("walk_")) warnings.push({ path: where, message: `jump only animates on walk_* poses (pose is "${character.pose}")` });
     }
-    if (character && character.shots.length && character.style !== "gunslinger") {
+    if (character && character.shots.length && character.style !== "gunslinger" && character.style !== "jhin") {
       warnings.push({ path: where, message: `shots only render for style "gunslinger" (character is "${character.style}")` });
     }
 
@@ -211,6 +211,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
       layout: s.layout,
       transition: s.transition,
       captions: s.captions,
+      bare: s.bare,
       character,
       extras,
       props,

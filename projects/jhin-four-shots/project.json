@@ -4,7 +4,7 @@
   "createdAt": "2026-09-16T03:14:04.420Z",
   "targetSeconds": 40,
   "status": "qa_passed",
-  "lastRenderMs": 62013,
+  "lastRenderMs": 58425,
   "versions": [
     {
       "n": 1,
@@ -54,6 +54,16 @@
       "manifestHash": "a8f9e40cb88a0cec",
       "note": "v5: cold-open hook card, Jhin speaks the CTA over the follow card (captions off), watermark",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/jhin-four-shots-v5/final.mp4"
+    },
+    {
+      "n": 6,
+      "at": "2026-09-18T00:10:10.789Z",
+      "seconds": 32.4,
+      "renderMs": 58425,
+      "qaOk": true,
+      "manifestHash": "d5a18f4496bac31e",
+      "note": "v6: porcelain mask, magenta tracers + recoil + smoke, standard opening (spotlight, title, counting line), 4th shot cracks the screen, narrator CTA, new theatrical laugh",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/jhin-four-shots-v6/final.mp4"
     }
   ]
 }

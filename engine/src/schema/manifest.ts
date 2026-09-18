@@ -82,7 +82,8 @@ export const CharacterState = z.object({
     .max(8)
     .default([]),
   /** Gunslinger only: muzzle flash + recoil at these anchors. `big` = the dramatic final shot. */
-  shots: z.array(z.object({ at: Anchor, big: z.boolean().default(false) })).max(8).default([]),
+  /** camera: true fires at the viewer (pair with pose aim_camera and overlay screen_crack at at+0.3). */
+  shots: z.array(z.object({ at: Anchor, big: z.boolean().default(false), camera: z.boolean().default(false) })).max(8).default([]),
   /**
    * Side-view jump (walk_* poses): crouch → flight → landing absorb → rebound/balance → stand.
    * `to` is the landing stop; `height` is the landing surface above ground in px
@@ -203,6 +204,8 @@ export const Scene = z.object({
       /** Trim the clip to this many seconds. */
       maxSeconds: z.number().min(0.5).max(20).optional(),
       volume: z.number().min(0).max(2).default(1),
+      /** Pitch factor applied to the clip (1.2 = up ~3 semitones, duration kept). Match a laugh to the voice. */
+      pitch: z.number().min(0.6).max(1.6).default(1),
     })
     .optional(),
   /** A silent scene of this many seconds (music only, no captions). Third alternative to speech/clip. */
@@ -221,6 +224,8 @@ export const Scene = z.object({
   transition: z.enum(TRANSITIONS).default("cut"),
   /** false = no kinetic captions this scene (CTA scenes: the follow_card takes the caption slot). */
   captions: z.boolean().default(true),
+  /** true = no progress bar / watermark: the standard opening (character alone + title). */
+  bare: z.boolean().default(false),
   character: CharacterState.nullable().prefault({}),
   /** Secondary characters drawn behind the hero. */
   extras: z.array(Extra).max(5).default([]),

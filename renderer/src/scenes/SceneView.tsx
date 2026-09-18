@@ -1,7 +1,8 @@
 import React from "react";
 import { AbsoluteFill, Audio, Sequence, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import type { ResolvedScene } from "@vb/engine/schema";
-import { Stickman, cameraSlashGeometry } from "../characters/Stickman";
+import { Stickman, cameraSlashGeometry, muzzlePoint } from "../characters/Stickman";
+import { Shots } from "./Shots";
 import { extraMotionAt, heroEntranceExit, motionAt, type MotionState } from "../characters/motion";
 import { Batarang, alongHop, type HopPath } from "./Batarang";
 import { KineticCaption } from "../captions/KineticCaption";
@@ -14,6 +15,14 @@ interface Props {
   scene: ResolvedScene;
   palette: Palette;
   brand: { handle: string; name: string } | null;
+}
+
+/** Pose the hero holds at an absolute frame (for aiming tracers from the right arm). */
+function poseAtFrame(scene: ResolvedScene, frame: number) {
+  const c = scene.character!;
+  let pose = c.pose;
+  for (const pc of c.poseChanges) if (pc.atFrame <= frame) pose = pc.pose;
+  return pose;
 }
 
 /** Everything inside one scene's <Sequence>. Frame 0 here == scene.startFrame in the composition. */
@@ -108,7 +117,8 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
 
   return (
     <AbsoluteFill style={trans}>
-      {scene.audioSrc && <Audio src={staticFile(scene.audioSrc)} volume={scene.clipVolume} />}
+      {/* Clips (laughs) fade in/out over a few frames so the cut from TTS to a recording is not a click. */}
+      {scene.audioSrc && <Audio src={staticFile(scene.audioSrc)} volume={(f) => (scene.isClip ? scene.clipVolume * Math.min(1, f / 5, Math.max(0, (scene.speechFrames - f) / 8)) : scene.clipVolume)} />}
       {scene.sfx.map((fx, i) => (
         <Sequence key={i} from={fx.atFrame - scene.startFrame} durationInFrames={Math.max(1, scene.startFrame + scene.durationInFrames - fx.atFrame)}>
           {/* Effects duck under the voice so a boom never buries a line. */}
@@ -160,6 +170,10 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
             zones={spec.props}
             squash={heroSquash}
           />
+        )}
+
+        {scene.character && charRect && !heroHidden && scene.character.shots.length > 0 && (
+          <Shots shots={scene.character.shots} abs={abs} poseAt={(f) => poseAtFrame(scene, f)} rect={charRect} flip={scene.character.position === "right"} zones={spec.props} magenta={scene.character.style === "jhin"} palette={palette} />
         )}
 
         {charRect &&

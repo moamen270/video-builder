@@ -59,6 +59,7 @@ duration).
 | `villain` | pitch ×0.80, bass +8, triple echo, limiter | one threat line / evil laugh |
 | `theatre` | no pitch, stage reverb | showmen, Jhin |
 | `young` | pitch ×1.12, treble +2, short echo | kids, sidekicks |
+| `mask` | pitch ×1.04, highpass, presence +4 dB @1.9 kHz, two short metallic echoes (9/17 ms) + stage room | Jhin — refined voice behind porcelain |
 
 ## 3. Clip scenes and laughter (Bark)
 

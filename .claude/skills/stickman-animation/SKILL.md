@@ -35,11 +35,14 @@ see the sections below.
 | `aim_high` / `aim_up` | gunslinger: arm at ~120° / ~150° for targets in `top_right` / `top` | `shots` |
 | `reload` | hands together at chest — the beat before the shot | SFX `reload` |
 | `bow` | theatrical bow, one arm sweeping — finales, "thank you" | `happy`, `smug` |
+| `aim_camera` | gun pointed at the viewer (front view of the pistol) — the finale shot: `shots: [{ camera: true, big: true }]` + `screen_crack` | `fierce` |
+| `admire` | gun lowered, other hand to the chin, head tilted — after a shot, admiring the bloom | `smug` |
 | `walk_right` / `walk_left` | side view, procedural gait, no face to camera — pair with `character.travel` | — |
 
 Locomotion: `"travel": { "from": "offscreen_left", "to": "offscreen_right", "start": "start", "end": "end" }`
 moves the character rect between stops (`offscreen_left left center right offscreen_right`).
 Silent visual scenes: `"silence": 9` (seconds) instead of `speech`/`clip` — music only, no captions.
+Scene flags: `"captions": false` (no kinetic captions), `"bare": true` (no progress bar/watermark — the standard opening).
 Jumping (walk_* poses): `"jump": { "at": "start+5", "to": "right", "height": 300, "air": 0.6 }` —
 crouch 0.3 s → flight → landing absorb → damped rebound/balance 1.1 s → stand. Walking stops at `at`.
 `height` = landing surface above ground in px; a `crate` in a `ground_*` slot is 300 px × scale.
@@ -82,6 +85,12 @@ the claws and the delivery carry the aura. Play him deadpan and serious about
 something trivial; the joke is never in his lines. Pair with `voiceFx: "deep"`,
 `speed` 0.9–0.98, `am_michael`/`am_fenrir`, `snikt` on the reveal, and a
 `voiceFx: "villain"` scene for the evil laugh (`"Muahahahaha! Hahahahaha!"`).
+
+`jhin` = gunslinger wearing the porcelain mask (ivory, forehead/chin slots, angular eye
+holes, three scratches by the left eye). No face: expression is head tilt. Shots are
+**magenta** tracers with muzzle smoke and a torso recoil; `admire` after each shot (gun
+lowered, hand to the mask) reads as artistic appreciation. Voice `bm_george`, speed
+0.9–0.94, `voiceFx: mask`. Count the shots; the 4th is the finale at the camera.
 
 `batman` = plain stickman with cowl ears and a rippling cape (face untouched). Pair
 with `arms_crossed`, `voiceFx: deep`, speed ≤ 0.86, `thunder`, `moon`/`bat_signal`
@@ -193,8 +202,10 @@ One SFX per visual event, volume 0.5–0.8; never two on the same word.
   video); `slow_zoom` on a calm explainer scene; `shake` with `boom`/`error`;
   `dolly_in` for a character looming at the viewer (finales).
 - `overlays` (on the viewer's screen, outside the camera): `claw_marks`, `flash`, `blackout`,
-  `hook_card` (opening text hook, needs `text`, 2–8 words, `until` ~1.3 s in; sits above the top prop
-  slots), `follow_card` (CTA: @handle + Follow button in the caption slot — set the scene's
+  `hook_card` (opening text hook, needs `text`, 2–8 words; sits above the top prop slots),
+  `spotlight` (dark stage, cone of light — the standard `bare` opening), `screen_crack`
+  (glass shatter at frame centre — the standard ending after a camera shot/strike/throw; re-add at `start`
+  on every later scene so the screen stays broken), `follow_card` (CTA: @handle + Follow button in the caption slot — set the scene's
   `"captions": false` and anchor it to `word:follow`; the character SAYS the CTA in his own voice).
 - `transition` (into the scene): `cut` default; `slide` for a change of
   subject; `wipe` before → after; `zoom` for the pattern-interrupt scene.
@@ -206,7 +217,7 @@ One SFX per visual event, volume 0.5–0.8; never two on the same word.
   "version": 1, "slug": "kebab-case", "title": "…",
   "voice": "af_heart",      // af_heart af_bella af_nicole af_sarah af_sky am_adam am_michael am_fenrir am_puck bf_emma bf_isabella bm_george bm_lewis
   "speed": 1.08,            // 0.8–1.3
-  "voiceFx": "none",        // none deep villain theatre growl young
+  "voiceFx": "none",        // none deep villain theatre growl young mask
   "theme": "midnight",      // midnight paper sunset mint grape
   "music": { "track": "lofi-01", "volume": 0.16 } | null,
   "watermark": true,          // channel handle from brand.json on every frame (omit = brand default)

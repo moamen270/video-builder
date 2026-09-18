@@ -10,6 +10,13 @@ the manual ones because the automated ones passed.
       last 10 videos — no format changes until the metrics sheet says so.
 - [ ] Target 25–40 s. Hard cap 60 s (**auto**: compile warns > 45 s).
 
+## Standard shape (every character short)
+
+`bare` opening: character alone in a `spotlight`, the title as `hook_card`, one famous line in
+his voice, no progress bar/watermark → the story → the character hits the **screen** with his
+signature move and it shatters (`screen_crack`, stays broken) → `cta` scene in the **narrator**
+voice (`af_heart`): "Follow Dummy Sticky for more." + `follow_card`. Reference: `jhin-four-shots` v6.
+
 ## 1. Hook — first 1–3 seconds
 
 - [ ] Frame 0 already shows the interesting thing: claws out, gun raised,
