@@ -19,6 +19,7 @@ import { ManifestError, createProject, loadManifest, readMeta, slugify, validate
 import { runQa } from "../qa.js";
 import { publishVersion } from "../publish.js";
 import { writeSocial } from "../social.js";
+import { buildReviewPack } from "../review.js";
 import { ResolveError } from "../resolver/anchors.js";
 import { VIDEO } from "../schema/index.js";
 
@@ -247,6 +248,26 @@ server.registerTool(
     try {
       const r = writeSocial(slug, version);
       return { content: [{ type: "text" as const, text: r.text }] };
+    } catch (e) {
+      return errText(e);
+    }
+  },
+);
+
+server.registerTool(
+  "video_review_pack",
+  {
+    description:
+      "Build the review pack for a rendered version (default latest): output/v<N>/review/ with a 5-frame strip per scene (scenes/NN-<id>.png), summary.json (every scene's facts) and checklist.md (unit-style checks: automatic ones decided, visual/ear ones pointing at strips). Returns the checklist. Use before asking the video-reviewer agent to write report.md.",
+    inputSchema: { slug: z.string(), version: z.number().int().optional() },
+  },
+  async ({ slug, version }) => {
+    try {
+      const pack = await buildReviewPack(slug, version, { log });
+      return { content: [{ type: "text" as const, text: readFileSync(pack.files.checklist, "utf8") + `
+
+Pack: ${pack.files.dir}
+Strips: ${pack.scenes.map((s) => s.strip).join(", ")}` }] };
     } catch (e) {
       return errText(e);
     }

@@ -10,6 +10,8 @@ manifests; the engine does TTS, timing, rendering and QA. Read
 2. `video_create_project` → `video_write_manifest` (validate first).
 3. `video_compile` → read back exact words + per-scene seconds; fix anchors.
 4. `video_render` → inspect QA checks and the contact-sheet image; iterate.
+5. `video_review_pack` → then the `video-reviewer` subagent writes `output/v<N>/review/report.md`
+   (skill `video-review`). Fix from the report as a NEW version. Never grade your own render.
 Only changed scenes are re-synthesized; a full render is ~1 min per 40 s.
 Every render is a NEW `output/v<N>/` (mp4, qa, contact sheet, manifest
 snapshot). Never delete or overwrite a version — Moamen compares them.

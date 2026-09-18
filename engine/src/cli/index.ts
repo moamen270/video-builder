@@ -11,6 +11,7 @@ import { ResolveError } from "../resolver/anchors.js";
 import { catalogSummary } from "../catalog-info.js";
 import { publishAll, publishVersion } from "../publish.js";
 import { writeSocial } from "../social.js";
+import { buildReviewPack } from "../review.js";
 import { renderBrandStills } from "../render.js";
 import { ROOT } from "../paths.js";
 
@@ -183,6 +184,22 @@ program
       const r = writeSocial(slug, o.version ? Number(o.version) : undefined);
       console.error(`wrote ${r.file}`);
       console.log(r.text);
+    } catch (e) {
+      fail(e);
+    }
+  });
+
+program
+  .command("review")
+  .argument("<slug>")
+  .option("-v, --version <n>", "version (default: latest)")
+  .description("build the review pack for a rendered version: output/v<N>/review/ (scene frame strips, summary.json, checklist.md)")
+  .action(async (slug: string, o: { version?: string }) => {
+    try {
+      const pack = await buildReviewPack(slug, o.version ? Number(o.version) : undefined, { log });
+      const counts = pack.checks.reduce((acc, c) => ((acc[c.result] = (acc[c.result] ?? 0) + 1), acc), {} as Record<string, number>);
+      console.error(`review pack v${pack.version}: ${pack.scenes.length} scenes, checks ${JSON.stringify(counts)}`);
+      console.log(pack.files.dir);
     } catch (e) {
       fail(e);
     }

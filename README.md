@@ -53,6 +53,7 @@ npm run vb -- render database-indexes --frames 0-90 --scale 0.5   # quick previe
 npm run vb -- render database-indexes --nvenc                     # GPU encode
 npm run vb -- publish  database-indexes      # upload latest version to GitHub Releases → public URL
 npm run vb -- social   database-indexes      # (re)write output/v<N>/social.md: YouTube title/description/tags, TikTok/IG/FB captions
+npm run vb -- review   database-indexes      # review pack: output/v<N>/review/ (scene strips, summary.json, checklist.md)
 npm run vb -- brand                          # render brand/avatar.png, youtube-banner.png, facebook-cover.png from the rig
 npm run vb -- publish --all                  # publish every unpublished version
 npm run studio                               # Remotion Studio for the renderer
@@ -74,11 +75,12 @@ credential git already stores for github.com.
 `video_catalog`, `video_read_skill`, `video_create_project`, `video_list_projects`,
 `video_get_project`, `video_validate_manifest`, `video_write_manifest`,
 `video_compile`, `video_render` (returns QA + contact sheet image),
-`video_qa`, `video_contact_sheet`, `video_publish`, `video_social`, `video_doctor`, `video_logs`.
+`video_qa`, `video_contact_sheet`, `video_publish`, `video_social`, `video_review_pack`, `video_doctor`, `video_logs`.
 
 Skills in `.claude/skills/`: **2d-storytelling** (hooks, pacing, retention
-devices, script → manifest) and **stickman-animation** (pose/prop/SFX vocabulary,
-field reference). Any other MCP client (Codex, etc.) reads them via `video_read_skill`.
+devices, script → manifest), **stickman-animation** (pose/prop/SFX vocabulary,
+field reference) and **video-review** (independent review: pack → `video-reviewer`
+subagent → `report.md` from `docs/REVIEW_TEMPLATE.md`). Any other MCP client (Codex, etc.) reads them via `video_read_skill`.
 
 ## Channel packaging
 

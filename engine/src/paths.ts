@@ -55,6 +55,8 @@ export function versionPaths(p: ProjectPaths, n: number) {
     resolvedSnapshot: path.join(dir, "manifest.resolved.json"),
     /** Ready-to-paste title/description/tags per platform. */
     social: path.join(dir, "social.md"),
+    /** Reviewer pack: frame strips per scene, facts, checklist, report. */
+    reviewDir: path.join(dir, "review"),
   };
 }
 export type VersionPaths = ReturnType<typeof versionPaths>;
