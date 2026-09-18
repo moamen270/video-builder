@@ -25,6 +25,8 @@ default hashtags) is `brand.json`. Before an upload, walk `docs/PRODUCTION.md`.
 The hook is the known weakness: something must happen in the first second.
 
 ## Repo rules
+- `docs/LESSONS.md` is the owner's feedback log — read it before writing a manifest, and
+  append to it whenever Moamen corrects something (date, what, why, which version).
 - Engine/renderer internals and the reasons behind them: `docs/ARCHITECTURE.md`,
   `docs/CONTRIBUTING.md` (add-a-feature checklist + known traps), `docs/AUDIO.md`, `docs/DECISIONS.md`.
   Update them when you change how something works, not just the code.

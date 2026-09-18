@@ -19,7 +19,8 @@ prompt ─▶ agent (Claude Code + skills) ─▶ manifest.json
 stickman rig and why it is procedural), [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md)
 (setup, add-a-feature checklist, known traps), [docs/AUDIO.md](docs/AUDIO.md)
 (Kokoro alignment, voice FX, Bark laughs), [docs/DECISIONS.md](docs/DECISIONS.md),
-[docs/PRODUCTION.md](docs/PRODUCTION.md) (per-video checklist: hook, retention, CTA, QC, platforms, metrics).
+[docs/PRODUCTION.md](docs/PRODUCTION.md) (per-video checklist: hook, retention, CTA, QC, platforms, metrics),
+[docs/LESSONS.md](docs/LESSONS.md) (the owner's feedback log — what went wrong once and the rule that came out of it).
 
 ## Prerequisites (Windows)
 
