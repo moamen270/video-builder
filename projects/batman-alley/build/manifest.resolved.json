@@ -1607,11 +1607,6 @@
       "camera": [],
       "overlays": [
         {
-          "kind": "batarang_stuck",
-          "atFrame": 869,
-          "untilFrame": 999
-        },
-        {
           "kind": "follow_card",
           "atFrame": 895,
           "untilFrame": 999
@@ -1629,9 +1624,9 @@
     "name": "Dummy Sticky"
   },
   "meta": {
-    "resolvedAt": "2026-09-18T14:30:32.924Z",
+    "resolvedAt": "2026-09-18T14:42:08.704Z",
     "engineVersion": "0.1.0",
     "ttsModel": "hexgrad/Kokoro-82M",
-    "manifestHash": "e680fd8b5571c9c3"
+    "manifestHash": "dbb3f51fd0ab02b0"
   }
 }

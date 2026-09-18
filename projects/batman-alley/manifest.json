@@ -1060,10 +1060,6 @@
       ],
       "overlays": [
         {
-          "kind": "batarang_stuck",
-          "at": "start"
-        },
-        {
           "kind": "follow_card",
           "at": "word:follow"
         },
