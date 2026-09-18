@@ -12,6 +12,9 @@ const SMOKE = 26; // frames the muzzle smoke lingers
 
 /** Which prop zone an aim pose points at. */
 const ZONE_FOR: Partial<Record<Pose, PropPosition>> = { aim_right: "right", aim_left: "left", aim_high: "top_right", aim_up: "top" };
+/** A hero at `position: right` is mirrored, so his aim_right points screen-left. */
+const MIRROR: Partial<Record<PropPosition, PropPosition>> = { right: "left", left: "right", top_right: "top_left", top_left: "top_right" };
+const GLOW = 9; // frames of impact glow after the hit
 
 /**
  * Per-shot FX drawn in scene space over the character: a glowing tracer that
@@ -45,7 +48,21 @@ export const Shots: React.FC<{ shots: Shot[]; abs: number; poseAt: (frame: numbe
         );
       }
     } else {
-      const zone = ZONE_FOR[pose] ? zones[ZONE_FOR[pose]!] : null;
+      const zoneName = ZONE_FOR[pose] ? (flip ? (MIRROR[ZONE_FOR[pose]!] ?? ZONE_FOR[pose]!) : ZONE_FOR[pose]!) : null;
+      const zone = zoneName ? zones[zoneName] : null;
+      if (zone && t >= TRAVEL && t <= TRAVEL + GLOW) {
+        // Impact: a hot core and an expanding ring at the target centre — the target only swaps after this starts.
+        const g = (t - TRAVEL) / GLOW;
+        const tx = zone.x + zone.w / 2;
+        const ty = zone.y + zone.h / 2;
+        els.push(
+          <g key={`g${i}`}>
+            <circle cx={tx} cy={ty} r={interpolate(g, [0, 1], [30, 190]) * (big ? 1.4 : 1)} fill="none" stroke={color} strokeWidth={interpolate(g, [0, 1], [16, 1])} opacity={1 - g} />
+            <circle cx={tx} cy={ty} r={interpolate(g, [0, 0.4, 1], [40, 70, 0]) * (big ? 1.4 : 1)} fill={glow} opacity={0.9 * (1 - g)} />
+            <circle cx={tx} cy={ty} r={interpolate(g, [0, 0.4, 1], [18, 34, 0])} fill="#ffffff" opacity={1 - g} />
+          </g>,
+        );
+      }
       if (zone && t <= TRAVEL + 2) {
         const tx = zone.x + zone.w / 2;
         const ty = zone.y + zone.h / 2;

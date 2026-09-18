@@ -188,7 +188,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const robin = style === "robin";
   if (WALK_POSES.has(st.pose)) {
     return (
-      <Walker rect={rect} frame={abs} fps={fps} ink={ink} headFill={headFill} facingLeft={st.pose === "walk_left" || st.pose === "run_left"} action={walker?.action} shadow={walker?.shadow} run={RUN_POSES.has(st.pose)} headDecor={beanie} />
+      <Walker rect={rect} frame={abs} fps={fps} ink={ink} headFill={headFill} facingLeft={st.pose === "walk_left" || st.pose === "run_left"} action={walker?.action} shadow={walker?.shadow} run={RUN_POSES.has(st.pose)} headDecor={style === "jhin" ? <JhinMaskProfile /> : beanie} faceless={style === "jhin"} />
     );
   }
 
@@ -493,6 +493,23 @@ const JhinMask: React.FC<{ talking: number }> = ({ talking }) => {
       <path d="M -24 -30 Q -14 -36 -12 -26" stroke={shade} strokeWidth={1.4} fill="none" opacity={0.7} />
       <path d="M 14 24 Q 24 20 22 12 Q 20 6 26 8" stroke={shade} strokeWidth={1.4} fill="none" opacity={0.6} />
       <path d="M -18 26 Q -26 22 -24 14" stroke={shade} strokeWidth={1.4} fill="none" opacity={0.6} />
+    </g>
+  );
+};
+
+/** The same mask seen from the side (Walker): covers the front half of the head, nose ridge protruding. */
+const JhinMaskProfile: React.FC = () => {
+  const ivory = "#d9d0b8";
+  const shade = "#a99f86";
+  const dark = "#0b0b10";
+  return (
+    <g>
+      <path d="M -2 -42 L 20 -42 L 33 -22 L 36 -4 L 44 8 L 40 20 L 34 24 L 30 36 L 18 44 L -2 44 Z" fill={ivory} stroke={shade} strokeWidth={2.5} strokeLinejoin="round" />
+      <rect x={4} y={-42} width={14} height={9} fill={dark} />
+      <rect x={4} y={35} width={12} height={9} fill={dark} />
+      <path d="M 12 -10 L 30 -8 L 30 2 L 13 1 Z" fill={dark} />
+      <path d="M 30 26 Q 22 30 14 28" stroke={shade} strokeWidth={2.5} fill="none" strokeLinecap="round" />
+      <path d="M 6 -30 Q 16 -34 14 -24" stroke={shade} strokeWidth={1.4} fill="none" opacity={0.7} />
     </g>
   );
 };

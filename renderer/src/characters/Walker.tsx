@@ -55,6 +55,8 @@ interface Props {
   run?: boolean;
   /** Extra decoration drawn on the head (e.g. a thug's beanie). */
   headDecor?: React.ReactNode;
+  /** Skip the eye + nose bump (a mask covers the face). */
+  faceless?: boolean;
 }
 
 /** Joint angles for one side. thigh/shin absolute-ish (shin relative to thigh), arm upper + forearm (relative). */
@@ -150,7 +152,7 @@ function limbsFor(action: WalkerAction, ph: number, run = false): Limbs {
   }
 }
 
-export const Walker: React.FC<Props> = ({ rect, frame, fps, ink, headFill, facingLeft, cadence, action = { kind: "walk" }, shadow = 1, run = false, headDecor }) => {
+export const Walker: React.FC<Props> = ({ rect, frame, fps, ink, headFill, facingLeft, cadence, action = { kind: "walk" }, shadow = 1, run = false, headDecor, faceless = false }) => {
   const cad = cadence ?? (run ? 3.4 : 1.9);
   const ph = (frame / fps) * cad * Math.PI; // one full cycle = two steps
   const L = limbsFor(action, ph, run);
@@ -197,8 +199,8 @@ export const Walker: React.FC<Props> = ({ rect, frame, fps, ink, headFill, facin
           <g transform={`translate(${head.x} ${head.y}) rotate(${L.nod * 0.8})`}>
             <circle r={HEAD_R} fill={headFill} stroke={ink} strokeWidth={STROKE} />
             {headDecor}
-            <path d={`M ${HEAD_R - 4} -4 q 10 4 0 12`} stroke={ink} strokeWidth={5} fill="none" strokeLinecap="round" />
-            <circle cx={14} cy={-8} r={3.5} fill={ink} />
+            {!faceless && <path d={`M ${HEAD_R - 4} -4 q 10 4 0 12`} stroke={ink} strokeWidth={5} fill="none" strokeLinecap="round" />}
+            {!faceless && <circle cx={14} cy={-8} r={3.5} fill={ink} />}
           </g>
         </g>
       </svg>

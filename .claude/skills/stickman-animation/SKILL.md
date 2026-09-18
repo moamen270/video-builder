@@ -42,7 +42,13 @@ see the sections below.
 Locomotion: `"travel": { "from": "offscreen_left", "to": "offscreen_right", "start": "start", "end": "end" }`
 moves the character rect between stops (`offscreen_left left center right offscreen_right`).
 Silent visual scenes: `"silence": 9` (seconds) instead of `speech`/`clip` — music only, no captions.
-Scene flags: `"captions": false` (no kinetic captions), `"bare": true` (no progress bar/watermark — the standard opening).
+Scene flags: `"captions": false` (no kinetic captions), `"captionStyle": "beat"` (every word is a hit — laughs, counts),
+`"bare": true` (no progress bar/watermark — the standard opening). `character.scale` 0.5–1.2 shrinks the hero about his feet
+(smaller hero + `target` at scale 0.7 reads as distance). A hero at `position: right` is mirrored: his `aim_right` points screen-LEFT.
+Shot → target: give the target `"exit": "cut"` and `until: word+0.34` (the tracer lands at +0.22, then an impact glow), lotus `at: word+0.36`
+with `anim: bloom`; let a lotus detonate later with `"exit": "burst"` (+ `splat`) to clear the stage.
+Laughs in the character's OWN voice: a speech scene `"Ha ha ha! Ha ha ha ha ha! Ha, ha, ha!"`, `speed` 1.05–1.1, `captionStyle: beat` —
+not a Bark clip when the character has a distinctive voice (two voices read as two people).
 Jumping (walk_* poses): `"jump": { "at": "start+5", "to": "right", "height": 300, "air": 0.6 }` —
 crouch 0.3 s → flight → landing absorb → damped rebound/balance 1.1 s → stand. Walking stops at `at`.
 `height` = landing surface above ground in px; a `crate` in a `ground_*` slot is 300 px × scale.

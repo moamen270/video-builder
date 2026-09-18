@@ -17,6 +17,7 @@ interface Props {
 }
 
 const EXIT_FRAMES = 6;
+const BURST_FRAMES = 16;
 
 export const Prop: React.FC<Props> = ({ prop, sceneStart, zone, palette, slot, slots }) => {
   const frame = useCurrentFrame();
@@ -33,7 +34,9 @@ export const Prop: React.FC<Props> = ({ prop, sceneStart, zone, palette, slot, s
   const cy = ground ? zone.y + zone.h - size / 2 : zone.y + zone.h / 2;
 
   const enter = spring({ frame: local, fps, config: { damping: 11, stiffness: 190, mass: 0.8 } });
-  const exit = prop.exit === "cut" ? 1 : interpolate(abs, [prop.untilFrame - EXIT_FRAMES, prop.untilFrame], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const bursting = prop.exit === "burst" && abs >= prop.untilFrame - BURST_FRAMES;
+  const burstT = bursting ? (abs - (prop.untilFrame - BURST_FRAMES)) / BURST_FRAMES : 0;
+  const exit = prop.exit === "cut" || prop.exit === "burst" ? 1 : interpolate(abs, [prop.untilFrame - EXIT_FRAMES, prop.untilFrame], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
   let tx = 0;
   let ty = 0;
@@ -89,6 +92,37 @@ export const Prop: React.FC<Props> = ({ prop, sceneStart, zone, palette, slot, s
   }
 
   const Icon = ICONS[prop.name];
+  if (bursting) {
+    // Detonation: a flash ring, then petals (or shards) thrown outward, spinning and fading.
+    const k = burstT;
+    const petals = 8;
+    return (
+      <div style={{ position: "absolute", left: cx - size / 2, top: cy - size / 2, width: size, height: size, pointerEvents: "none" }}>
+        <svg viewBox="-100 -100 200 200" width={size} height={size} style={{ overflow: "visible" }}>
+          <circle r={interpolate(k, [0, 1], [20, 150])} fill="none" stroke={palette.accent2} strokeWidth={interpolate(k, [0, 1], [14, 1])} opacity={1 - k} />
+          <circle r={interpolate(k, [0, 0.35, 1], [0, 70, 0], { extrapolateRight: "clamp" })} fill="#ffffff" opacity={0.8 * (1 - k)} />
+          {Array.from({ length: petals }).map((_, i) => {
+            const a = (i / petals) * Math.PI * 2 + 0.3;
+            const r = interpolate(k, [0, 1], [10, 130 + (i % 3) * 25]);
+            return (
+              <ellipse
+                key={i}
+                cx={Math.cos(a) * r}
+                cy={Math.sin(a) * r - k * k * 40}
+                rx={22 * (1 - k * 0.5)}
+                ry={11 * (1 - k * 0.5)}
+                fill={i % 2 ? "#ff2bd6" : "#ff8fe8"}
+                stroke={palette.ink}
+                strokeWidth={2}
+                opacity={1 - k}
+                transform={`rotate(${(a * 180) / Math.PI + k * 240} ${Math.cos(a) * r} ${Math.sin(a) * r - k * k * 40})`}
+              />
+            );
+          })}
+        </svg>
+      </div>
+    );
+  }
   return (
     <div
       style={{

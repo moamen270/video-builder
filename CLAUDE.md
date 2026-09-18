@@ -15,8 +15,9 @@ Every render is a NEW `output/v<N>/` (mp4, qa, contact sheet, manifest
 snapshot). Never delete or overwrite a version — Moamen compares them.
 When Moamen wants to watch a video away from this PC: `vb publish <slug>` (or
 `video_publish`) → GitHub Release URL. Never commit MP4s.
-Laughter/screams: never TTS "ha ha"; use a `clip` scene with a Bark-generated
-wav (`vb-audio laugh`) or a file the user provides.
+Laughter: for a character with his own voice, TTS the laugh in THAT voice (`"Ha ha ha! …"`,
+`captionStyle: beat`) — a Bark clip sounds like a second person. Bark clips (`vb-audio laugh`)
+only when the narrator has no strong identity or the user provides a file.
 Every manifest carries a `social` block (title/hook/description/tags/hashtags/
 pinned comment); the render writes `output/v<N>/social.md` ready to paste, and
 `video_social` regenerates it. Channel identity (name, @handle, watermark,

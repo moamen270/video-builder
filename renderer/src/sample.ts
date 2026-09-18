@@ -38,6 +38,7 @@ export const SAMPLE: ResolvedManifest = {
       layout: "character_bottom",
       transition: "cut",
       captions: true,
+      captionStyle: "normal",
       bare: false,
       character: {
         id: "narrator",
@@ -45,6 +46,7 @@ export const SAMPLE: ResolvedManifest = {
         pose: "explaining",
         expression: "neutral",
         position: "center",
+      scale: 1,
         poseChanges: [
           { pose: "shocked", expression: "surprised", atFrame: 30 },
           { pose: "pointing_up", atFrame: 66 },

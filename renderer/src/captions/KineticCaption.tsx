@@ -11,6 +11,8 @@ interface Props {
   fontPx: number;
   /** Max words shown at once. */
   chunkSize?: number;
+  /** Every word is a beat: the active one jumps to 1.45× in the accent colour, others sit dim. */
+  beat?: boolean;
 }
 
 interface Chunk {
@@ -44,7 +46,7 @@ function chunk(words: Word[], size: number, maxChars: number): Chunk[] {
   return out;
 }
 
-export const KineticCaption: React.FC<Props> = ({ words, sceneStart, rect, palette, fontPx, chunkSize = 4 }) => {
+export const KineticCaption: React.FC<Props> = ({ words, sceneStart, rect, palette, fontPx, chunkSize = 4, beat = false }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const abs = frame + sceneStart;
@@ -90,15 +92,15 @@ export const KineticCaption: React.FC<Props> = ({ words, sceneStart, rect, palet
           const active = abs >= w.startFrame && abs < w.endFrame;
           const past = abs >= w.endFrame;
           const pop = spring({ frame: abs - w.startFrame, fps, config: { damping: 12, stiffness: 260 } });
-          const scale = active ? interpolate(pop, [0, 1], [1, 1.09]) : 1;
-          const color = w.emphasis ? palette.accent : active ? palette.accent2 : past ? palette.fgDim : palette.fg;
+          const scale = beat ? (active ? interpolate(pop, [0, 1], [1, 1.45]) : 1) : active ? interpolate(pop, [0, 1], [1, 1.09]) : 1;
+          const color = beat ? (active ? palette.accent : palette.fgDim) : w.emphasis ? palette.accent : active ? palette.accent2 : past ? palette.fgDim : palette.fg;
           return (
             <span
               key={w.i}
               style={{
                 display: "inline-block",
                 color,
-                transform: `scale(${scale}) translateY(${active ? -fontPx * 0.04 : 0}px)`,
+                transform: `scale(${scale}) translateY(${active ? -fontPx * (beat ? 0.12 : 0.04) : 0}px) rotate(${beat && active ? (w.i % 2 ? 6 : -6) : 0}deg)`,
                 WebkitTextStroke: `${Math.max(2, fontPx * 0.09)}px ${palette.stroke}`,
                 paintOrder: "stroke fill",
                 textShadow: `0 ${fontPx * 0.06}px ${fontPx * 0.12}px rgba(0,0,0,0.45)`,

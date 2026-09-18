@@ -69,6 +69,11 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
     motion = motionAt(scene, charRect.x, abs);
     charRect = { ...charRect, x: motion.x, y: charRect.y - motion.lift };
   }
+  // Hero scale: shrink about the feet centre AFTER travel so walks and static scenes line up.
+  if (charRect && scene.character && scene.character.scale !== 1) {
+    const k = scene.character.scale;
+    charRect = { x: charRect.x + (charRect.w * (1 - k)) / 2, y: charRect.y + charRect.h * (1 - k), w: charRect.w * k, h: charRect.h * k };
+  }
   let heroSquash = 0;
   let heroHidden = false;
   let cable: { x: number; y: number } | null = null;
@@ -189,7 +194,7 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
           return <Batarang key={i} x={p.x} y={p.y} frame={abs} size={size} ink={palette.ink} />;
         })}
 
-        {scene.captions && <KineticCaption words={scene.words} sceneStart={scene.startFrame} rect={spec.caption} palette={palette} fontPx={spec.captionFontPx} />}
+        {scene.captions && <KineticCaption words={scene.words} sceneStart={scene.startFrame} rect={spec.caption} palette={palette} fontPx={spec.captionFontPx} beat={scene.captionStyle === "beat"} chunkSize={scene.captionStyle === "beat" ? 6 : undefined} />}
       </AbsoluteFill>
       {/* Screen-space effects: outside the camera transform, on the viewer's glass. */}
       {scene.overlays.map((o, i) => {

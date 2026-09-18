@@ -70,6 +70,8 @@ export const CharacterState = z.object({
   pose: z.enum(POSES).default("explaining"),
   expression: z.enum(EXPRESSIONS).default("neutral"),
   position: z.enum(POSITIONS).default("center"),
+  /** Draw the hero smaller (0.5–1.2) — more room between him and far targets. Feet stay on the ground line. */
+  scale: z.number().min(0.5).max(1.2).default(1),
   /** Mid-scene pose switches. Storytelling rule of thumb: one every ~1.5 s. */
   poseChanges: z.array(PoseChange).default([]),
   /**
@@ -151,7 +153,8 @@ export const PropCue = z.object({
   /** 0.5–2, relative to the default prop size. */
   scale: z.number().min(0.4).max(2.5).default(1),
   /** How the prop leaves at `until`: short fade (default) or an instant cut (use when it gets struck/replaced). */
-  exit: z.enum(["fade", "cut"]).default("fade"),
+  /** burst: petals fly apart and vanish (lotus) — Jhin's trap detonating; use to clear the stage. */
+  exit: z.enum(["fade", "cut", "burst"]).default("fade"),
 });
 
 export const SfxCue = z.object({
@@ -224,6 +227,8 @@ export const Scene = z.object({
   transition: z.enum(TRANSITIONS).default("cut"),
   /** false = no kinetic captions this scene (CTA scenes: the follow_card takes the caption slot). */
   captions: z.boolean().default(true),
+  /** beat: every word is a hit — the active word grows big in the accent colour, the rest dim (laughs, counts). */
+  captionStyle: z.enum(["normal", "beat"]).default("normal"),
   /** true = no progress bar / watermark: the standard opening (character alone + title). */
   bare: z.boolean().default(false),
   character: CharacterState.nullable().prefault({}),

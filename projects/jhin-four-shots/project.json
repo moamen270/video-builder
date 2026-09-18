@@ -4,7 +4,7 @@
   "createdAt": "2026-09-16T03:14:04.420Z",
   "targetSeconds": 40,
   "status": "qa_passed",
-  "lastRenderMs": 58425,
+  "lastRenderMs": 56699,
   "versions": [
     {
       "n": 1,
@@ -64,6 +64,16 @@
       "manifestHash": "d5a18f4496bac31e",
       "note": "v6: porcelain mask, magenta tracers + recoil + smoke, standard opening (spotlight, title, counting line), 4th shot cracks the screen, narrator CTA, new theatrical laugh",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/jhin-four-shots-v6/final.mp4"
+    },
+    {
+      "n": 7,
+      "at": "2026-09-18T00:39:54.402Z",
+      "seconds": 33.7,
+      "renderMs": 56699,
+      "qaOk": true,
+      "manifestHash": "88edb87422667133",
+      "note": "v7: slower opening, 0.8-scale hero + far targets, walk right for the 3rd shot, impact glow -> lotus -> detonation, Kokoro laugh in his voice with beat captions, black cracked-screen ending",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/jhin-four-shots-v7/final.mp4"
     }
   ]
 }

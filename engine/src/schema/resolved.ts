@@ -49,7 +49,7 @@ export const ResolvedProp = z.object({
   anim: z.enum(PROP_ANIMS),
   position: z.enum(PROP_POSITIONS),
   scale: z.number(),
-  exit: z.enum(["fade", "cut"]).default("fade"),
+  exit: z.enum(["fade", "cut", "burst"]).default("fade"),
 });
 
 export const ResolvedSfx = z.object({
@@ -123,6 +123,7 @@ export const ResolvedScene = z.object({
   layout: z.enum(LAYOUTS),
   transition: z.enum(TRANSITIONS),
   captions: z.boolean().default(true),
+  captionStyle: z.enum(["normal", "beat"]).default("normal"),
   bare: z.boolean().default(false),
   character: z
     .object({
@@ -132,6 +133,7 @@ export const ResolvedScene = z.object({
       pose: z.enum(POSES),
       expression: z.enum(EXPRESSIONS),
       position: z.enum(POSITIONS),
+      scale: z.number().default(1),
       poseChanges: z.array(ResolvedPoseChange),
       shots: z.array(ResolvedShot).default([]),
       strikes: z.array(ResolvedStrike).default([]),

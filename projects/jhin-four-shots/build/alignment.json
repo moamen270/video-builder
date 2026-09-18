@@ -6,59 +6,59 @@
     {
       "sceneId": "open",
       "file": "open.wav",
-      "duration": 3.825,
+      "duration": 4.8,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "One,",
-          "start": 0.275,
-          "end": 0.537,
+          "start": 0.325,
+          "end": 0.688,
           "ws": " "
         },
         {
           "text": "two,",
-          "start": 0.537,
-          "end": 0.85,
+          "start": 0.688,
+          "end": 1.113,
           "ws": " "
         },
         {
           "text": "three,",
-          "start": 0.85,
-          "end": 1.188,
+          "start": 1.113,
+          "end": 1.55,
           "ws": " "
         },
         {
           "text": "four.",
-          "start": 1.188,
-          "end": 1.837,
+          "start": 1.55,
+          "end": 2.325,
           "ws": " "
         },
         {
           "text": "Two,",
-          "start": 1.837,
-          "end": 2.125,
-          "ws": " "
-        },
-        {
-          "text": "two,",
-          "start": 2.125,
-          "end": 2.425,
-          "ws": " "
-        },
-        {
-          "text": "three,",
-          "start": 2.425,
+          "start": 2.325,
           "end": 2.763,
           "ws": " "
         },
         {
-          "text": "four.",
+          "text": "two,",
           "start": 2.763,
-          "end": 3.725,
+          "end": 3.138,
+          "ws": " "
+        },
+        {
+          "text": "three,",
+          "start": 3.138,
+          "end": 3.575,
+          "ws": " "
+        },
+        {
+          "text": "four.",
+          "start": 3.575,
+          "end": 4.7,
           "ws": ""
         }
       ],
-      "hash": "ff9287a55b01aaa9"
+      "hash": "d6fb829e4985acfe"
     },
     {
       "sceneId": "stage",
@@ -94,7 +94,7 @@
           "ws": ""
         }
       ],
-      "hash": "dfd636f19510bb53"
+      "hash": "effc8616e1be3e7d"
     },
     {
       "sceneId": "two",
@@ -109,7 +109,15 @@
           "ws": ""
         }
       ],
-      "hash": "1ba941024ffddb01"
+      "hash": "f40888f8e70d8457"
+    },
+    {
+      "sceneId": "reposition",
+      "file": "reposition.wav",
+      "duration": 1.4,
+      "sampleRate": 24000,
+      "tokens": [],
+      "hash": "6bfd1eda69824f74"
     },
     {
       "sceneId": "three",
@@ -124,7 +132,7 @@
           "ws": ""
         }
       ],
-      "hash": "44028714ec4afd81"
+      "hash": "97090248cf13eb28"
     },
     {
       "sceneId": "pause",
@@ -177,17 +185,77 @@
     {
       "sceneId": "laugh",
       "file": "laugh.wav",
-      "duration": 5,
+      "duration": 3.3,
       "sampleRate": 24000,
       "tokens": [
         {
-          "text": "HAHAHAHA",
-          "start": 0,
-          "end": 5,
+          "text": "Ha",
+          "start": 0.2,
+          "end": 0.35,
+          "ws": " "
+        },
+        {
+          "text": "ha",
+          "start": 0.35,
+          "end": 0.525,
+          "ws": " "
+        },
+        {
+          "text": "ha!",
+          "start": 0.525,
+          "end": 0.85,
+          "ws": " "
+        },
+        {
+          "text": "Ha",
+          "start": 0.85,
+          "end": 1.025,
+          "ws": " "
+        },
+        {
+          "text": "ha",
+          "start": 1.025,
+          "end": 1.2,
+          "ws": " "
+        },
+        {
+          "text": "ha",
+          "start": 1.2,
+          "end": 1.375,
+          "ws": " "
+        },
+        {
+          "text": "ha",
+          "start": 1.375,
+          "end": 1.55,
+          "ws": " "
+        },
+        {
+          "text": "ha!",
+          "start": 1.55,
+          "end": 1.9,
+          "ws": " "
+        },
+        {
+          "text": "Ha,",
+          "start": 1.9,
+          "end": 2.175,
+          "ws": " "
+        },
+        {
+          "text": "ha,",
+          "start": 2.175,
+          "end": 2.45,
+          "ws": " "
+        },
+        {
+          "text": "ha!",
+          "start": 2.45,
+          "end": 3.2,
           "ws": ""
         }
       ],
-      "hash": "197ce60bf8cdb792"
+      "hash": "6ad26c88d8618145"
     },
     {
       "sceneId": "outro",
