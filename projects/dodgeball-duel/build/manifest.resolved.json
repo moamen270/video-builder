@@ -5,7 +5,7 @@
   "fps": 30,
   "width": 1080,
   "height": 1920,
-  "durationInFrames": 1375,
+  "durationInFrames": 1361,
   "theme": "mint",
   "voice": "am_michael",
   "music": {
@@ -136,7 +136,7 @@
       "isClip": false,
       "clipVolume": 1,
       "startFrame": 117,
-      "durationInFrames": 81,
+      "durationInFrames": 78,
       "speechFrames": 66,
       "audioSrc": "audio/intro.wav",
       "words": [
@@ -255,7 +255,7 @@
       "speech": "A gentle warm-up pitch.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 198,
+      "startFrame": 195,
       "durationInFrames": 95,
       "speechFrames": 62,
       "audioSrc": "audio/pitch.wav",
@@ -265,8 +265,8 @@
           "i": 0,
           "start": 0.325,
           "end": 0.412,
-          "startFrame": 208,
-          "endFrame": 210,
+          "startFrame": 205,
+          "endFrame": 207,
           "emphasis": false
         },
         {
@@ -274,8 +274,8 @@
           "i": 1,
           "start": 0.412,
           "end": 0.825,
-          "startFrame": 210,
-          "endFrame": 223,
+          "startFrame": 207,
+          "endFrame": 220,
           "emphasis": true
         },
         {
@@ -283,8 +283,8 @@
           "i": 2,
           "start": 0.825,
           "end": 1.225,
-          "startFrame": 223,
-          "endFrame": 235,
+          "startFrame": 220,
+          "endFrame": 232,
           "emphasis": false
         },
         {
@@ -292,8 +292,8 @@
           "i": 3,
           "start": 1.225,
           "end": 1.95,
-          "startFrame": 235,
-          "endFrame": 257,
+          "startFrame": 232,
+          "endFrame": 254,
           "emphasis": false
         }
       ],
@@ -316,19 +316,19 @@
           "poseChanges": [
             {
               "pose": "throw",
-              "atFrame": 235
+              "atFrame": 232
             },
             {
               "pose": "idle",
               "expression": "neutral",
-              "atFrame": 271
+              "atFrame": 268
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": "Brick",
           "held": "ball",
-          "heldFrame": 198
+          "heldFrame": 195
         },
         {
           "id": "noodle",
@@ -343,37 +343,37 @@
             {
               "pose": "dodge_lean",
               "expression": "surprised",
-              "atFrame": 252
+              "atFrame": 249
             },
             {
               "pose": "dodge_limbo",
               "expression": "smug",
-              "atFrame": 264
+              "atFrame": 261
             },
             {
               "pose": "idle",
               "expression": "smug",
-              "atFrame": 286
+              "atFrame": 283
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": "Noodle",
           "held": null,
-          "heldFrame": 198
+          "heldFrame": 195
         }
       ],
       "props": [],
       "sfx": [
         {
           "name": "whoosh",
-          "atFrame": 235,
+          "atFrame": 232,
           "volume": 0.5,
           "src": "assets/sfx/whoosh.wav"
         },
         {
           "name": "bounce",
-          "atFrame": 292,
+          "atFrame": 289,
           "volume": 0.6,
           "src": "assets/sfx/bounce.wav"
         }
@@ -381,8 +381,8 @@
       "bubbles": [
         {
           "text": "WHOA",
-          "atFrame": 262,
-          "untilFrame": 283,
+          "atFrame": 259,
+          "untilFrame": 280,
           "side": "left",
           "on": "noodle"
         }
@@ -390,7 +390,7 @@
       "camera": [
         {
           "move": "punch_in",
-          "atFrame": 250
+          "atFrame": 247
         }
       ],
       "overlays": [],
@@ -398,8 +398,8 @@
         {
           "from": "brick",
           "to": "noodle",
-          "atFrame": 237,
-          "hitFrame": 282,
+          "atFrame": 234,
+          "hitFrame": 279,
           "outcome": "miss",
           "n": 0
         }
@@ -410,7 +410,7 @@
       "speech": "Brick is not amused.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 293,
+      "startFrame": 290,
       "durationInFrames": 76,
       "speechFrames": 61,
       "audioSrc": "audio/react1.wav",
@@ -420,8 +420,8 @@
           "i": 0,
           "start": 0.325,
           "end": 0.575,
-          "startFrame": 303,
-          "endFrame": 310,
+          "startFrame": 300,
+          "endFrame": 307,
           "emphasis": false
         },
         {
@@ -429,8 +429,8 @@
           "i": 1,
           "start": 0.575,
           "end": 0.725,
-          "startFrame": 310,
-          "endFrame": 315,
+          "startFrame": 307,
+          "endFrame": 312,
           "emphasis": false
         },
         {
@@ -438,8 +438,8 @@
           "i": 2,
           "start": 0.725,
           "end": 0.975,
-          "startFrame": 315,
-          "endFrame": 322,
+          "startFrame": 312,
+          "endFrame": 319,
           "emphasis": true
         },
         {
@@ -447,8 +447,8 @@
           "i": 3,
           "start": 0.975,
           "end": 1.925,
-          "startFrame": 322,
-          "endFrame": 351,
+          "startFrame": 319,
+          "endFrame": 348,
           "emphasis": true
         }
       ],
@@ -472,14 +472,14 @@
             {
               "pose": "arms_crossed",
               "expression": "fierce",
-              "atFrame": 322
+              "atFrame": 319
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": "Brick",
           "held": null,
-          "heldFrame": 293
+          "heldFrame": 290
         },
         {
           "id": "noodle",
@@ -494,106 +494,399 @@
             {
               "pose": "leaning",
               "expression": "smug",
-              "atFrame": 322
+              "atFrame": 319
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": "Noodle",
           "held": null,
-          "heldFrame": 293
+          "heldFrame": 290
         }
       ],
       "props": [],
       "sfx": [
         {
           "name": "error",
-          "atFrame": 315,
+          "atFrame": 312,
           "volume": 0.4,
           "src": "assets/sfx/error.wav"
         }
       ],
       "bubbles": [],
-      "camera": [
-        {
-          "move": "pan_left",
-          "atFrame": 293
-        }
-      ],
+      "camera": [],
       "overlays": [],
       "projectiles": []
     },
     {
-      "id": "barrage",
-      "speech": "Here comes the Gatling gun of balls!",
+      "id": "try2",
+      "speech": "Try two. Faster.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 369,
-      "durationInFrames": 120,
-      "speechFrames": 84,
-      "audioSrc": "audio/barrage.wav",
+      "startFrame": 366,
+      "durationInFrames": 87,
+      "speechFrames": 60,
+      "audioSrc": "audio/try2.wav",
       "words": [
         {
-          "text": "Here",
+          "text": "Try",
           "i": 0,
           "start": 0.3,
-          "end": 0.5,
-          "startFrame": 378,
-          "endFrame": 384,
+          "end": 0.562,
+          "startFrame": 375,
+          "endFrame": 383,
           "emphasis": false
         },
         {
-          "text": "comes",
+          "text": "two.",
           "i": 1,
-          "start": 0.5,
-          "end": 0.787,
-          "startFrame": 384,
+          "start": 0.562,
+          "end": 0.912,
+          "startFrame": 383,
           "endFrame": 393,
           "emphasis": false
         },
         {
-          "text": "the",
+          "text": "Faster.",
           "i": 2,
-          "start": 0.787,
-          "end": 0.912,
+          "start": 0.912,
+          "end": 1.9,
           "startFrame": 393,
-          "endFrame": 396,
+          "endFrame": 423,
+          "emphasis": true
+        }
+      ],
+      "layout": "character_center",
+      "transition": "cut",
+      "captions": true,
+      "speaker": null,
+      "captionStyle": "normal",
+      "bare": false,
+      "character": null,
+      "extras": [
+        {
+          "id": "brick",
+          "style": "stickman",
+          "pose": "windup",
+          "expression": "fierce",
+          "x": 162,
+          "scale": 0.85,
+          "travel": null,
+          "poseChanges": [
+            {
+              "pose": "throw",
+              "atFrame": 393
+            }
+          ],
+          "koFrame": null,
+          "fallDir": null,
+          "label": "Brick",
+          "held": "ball",
+          "heldFrame": 366
+        },
+        {
+          "id": "noodle",
+          "style": "stickman",
+          "color": "#fff1b8",
+          "pose": "idle",
+          "expression": "smug",
+          "x": 842.4,
+          "scale": 0.85,
+          "travel": null,
+          "poseChanges": [
+            {
+              "pose": "dodge_split",
+              "expression": "happy",
+              "atFrame": 397
+            },
+            {
+              "pose": "idle",
+              "expression": "smug",
+              "atFrame": 420
+            }
+          ],
+          "koFrame": null,
+          "fallDir": null,
+          "label": "Noodle",
+          "held": null,
+          "heldFrame": 366
+        }
+      ],
+      "props": [],
+      "sfx": [
+        {
+          "name": "whoosh",
+          "atFrame": 393,
+          "volume": 0.6,
+          "src": "assets/sfx/whoosh.wav"
+        },
+        {
+          "name": "bounce",
+          "atFrame": 414,
+          "volume": 0.6,
+          "src": "assets/sfx/bounce.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": [
+        {
+          "move": "shake",
+          "atFrame": 402
+        }
+      ],
+      "overlays": [],
+      "projectiles": [
+        {
+          "from": "brick",
+          "to": "noodle",
+          "atFrame": 394,
+          "hitFrame": 402,
+          "outcome": "miss",
+          "n": 0
+        }
+      ]
+    },
+    {
+      "id": "try3",
+      "speech": "Try three. Two at once!",
+      "isClip": false,
+      "clipVolume": 1,
+      "startFrame": 453,
+      "durationInFrames": 95,
+      "speechFrames": 65,
+      "audioSrc": "audio/try3.wav",
+      "words": [
+        {
+          "text": "Try",
+          "i": 0,
+          "start": 0.3,
+          "end": 0.537,
+          "startFrame": 462,
+          "endFrame": 469,
+          "emphasis": false
+        },
+        {
+          "text": "three.",
+          "i": 1,
+          "start": 0.537,
+          "end": 0.9,
+          "startFrame": 469,
+          "endFrame": 480,
+          "emphasis": false
+        },
+        {
+          "text": "Two",
+          "i": 2,
+          "start": 0.9,
+          "end": 1.125,
+          "startFrame": 480,
+          "endFrame": 487,
+          "emphasis": true
+        },
+        {
+          "text": "at",
+          "i": 3,
+          "start": 1.125,
+          "end": 1.25,
+          "startFrame": 487,
+          "endFrame": 491,
+          "emphasis": true
+        },
+        {
+          "text": "once!",
+          "i": 4,
+          "start": 1.25,
+          "end": 2.05,
+          "startFrame": 491,
+          "endFrame": 514,
+          "emphasis": true
+        }
+      ],
+      "layout": "character_center",
+      "transition": "cut",
+      "captions": true,
+      "speaker": null,
+      "captionStyle": "normal",
+      "bare": false,
+      "character": null,
+      "extras": [
+        {
+          "id": "brick",
+          "style": "stickman",
+          "pose": "windup",
+          "expression": "fierce",
+          "x": 162,
+          "scale": 0.85,
+          "travel": null,
+          "poseChanges": [
+            {
+              "pose": "throw",
+              "atFrame": 480
+            },
+            {
+              "pose": "windup",
+              "atFrame": 482
+            },
+            {
+              "pose": "throw",
+              "atFrame": 484
+            }
+          ],
+          "koFrame": null,
+          "fallDir": null,
+          "label": "Brick",
+          "held": "ball",
+          "heldFrame": 453
+        },
+        {
+          "id": "noodle",
+          "style": "stickman",
+          "color": "#fff1b8",
+          "pose": "idle",
+          "expression": "smug",
+          "x": 842.4,
+          "scale": 0.85,
+          "travel": null,
+          "poseChanges": [
+            {
+              "pose": "dodge_limbo",
+              "expression": "happy",
+              "atFrame": 484
+            },
+            {
+              "pose": "dodge_split",
+              "expression": "happy",
+              "atFrame": 489
+            },
+            {
+              "pose": "celebrating",
+              "expression": "happy",
+              "atFrame": 515
+            }
+          ],
+          "koFrame": null,
+          "fallDir": null,
+          "label": "Noodle",
+          "held": null,
+          "heldFrame": 453
+        }
+      ],
+      "props": [],
+      "sfx": [
+        {
+          "name": "whoosh",
+          "atFrame": 480,
+          "volume": 0.5,
+          "src": "assets/sfx/whoosh.wav"
+        },
+        {
+          "name": "whoosh",
+          "atFrame": 484,
+          "volume": 0.5,
+          "src": "assets/sfx/whoosh.wav"
+        },
+        {
+          "name": "bounce",
+          "atFrame": 497,
+          "volume": 0.5,
+          "src": "assets/sfx/bounce.wav"
+        },
+        {
+          "name": "bounce",
+          "atFrame": 501,
+          "volume": 0.5,
+          "src": "assets/sfx/bounce.wav"
+        }
+      ],
+      "bubbles": [],
+      "camera": [
+        {
+          "move": "zoom_out",
+          "atFrame": 453
+        }
+      ],
+      "overlays": [],
+      "projectiles": [
+        {
+          "from": "brick",
+          "to": "noodle",
+          "atFrame": 481,
+          "hitFrame": 490,
+          "outcome": "miss",
+          "n": 0
+        },
+        {
+          "from": "brick",
+          "to": "noodle",
+          "atFrame": 485,
+          "hitFrame": 494,
+          "outcome": "miss",
+          "n": 1
+        }
+      ]
+    },
+    {
+      "id": "barrage",
+      "speech": "Fine. The Gatling gun of balls!",
+      "isClip": false,
+      "clipVolume": 1,
+      "startFrame": 548,
+      "durationInFrames": 115,
+      "speechFrames": 79,
+      "audioSrc": "audio/barrage.wav",
+      "words": [
+        {
+          "text": "Fine.",
+          "i": 0,
+          "start": 0.35,
+          "end": 0.725,
+          "startFrame": 559,
+          "endFrame": 570,
+          "emphasis": false
+        },
+        {
+          "text": "The",
+          "i": 1,
+          "start": 0.725,
+          "end": 0.825,
+          "startFrame": 570,
+          "endFrame": 573,
           "emphasis": false
         },
         {
           "text": "Gatling",
-          "i": 3,
-          "start": 0.912,
-          "end": 1.4,
-          "startFrame": 396,
-          "endFrame": 411,
+          "i": 2,
+          "start": 0.825,
+          "end": 1.3,
+          "startFrame": 573,
+          "endFrame": 587,
           "emphasis": true
         },
         {
           "text": "gun",
-          "i": 4,
-          "start": 1.4,
-          "end": 1.663,
-          "startFrame": 411,
-          "endFrame": 419,
+          "i": 3,
+          "start": 1.3,
+          "end": 1.512,
+          "startFrame": 587,
+          "endFrame": 593,
           "emphasis": true
         },
         {
           "text": "of",
-          "i": 5,
-          "start": 1.663,
-          "end": 1.775,
-          "startFrame": 419,
-          "endFrame": 422,
+          "i": 4,
+          "start": 1.512,
+          "end": 1.625,
+          "startFrame": 593,
+          "endFrame": 597,
           "emphasis": false
         },
         {
           "text": "balls!",
-          "i": 6,
-          "start": 1.775,
-          "end": 2.7,
-          "startFrame": 422,
-          "endFrame": 450,
+          "i": 5,
+          "start": 1.625,
+          "end": 2.525,
+          "startFrame": 597,
+          "endFrame": 624,
           "emphasis": false
         }
       ],
@@ -616,14 +909,14 @@
           "poseChanges": [
             {
               "pose": "throw",
-              "atFrame": 396
+              "atFrame": 573
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": "Brick",
           "held": "ball",
-          "heldFrame": 369
+          "heldFrame": 548
         },
         {
           "id": "noodle",
@@ -638,68 +931,68 @@
             {
               "pose": "spin",
               "expression": "smug",
-              "atFrame": 395
+              "atFrame": 572
             },
             {
               "pose": "idle",
               "expression": "smug",
-              "atFrame": 463
+              "atFrame": 638
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": "Noodle",
           "held": "frying_pan",
-          "heldFrame": 389
+          "heldFrame": 566
         }
       ],
       "props": [],
       "sfx": [
         {
           "name": "whoosh",
-          "atFrame": 378,
+          "atFrame": 559,
           "volume": 0.4,
           "src": "assets/sfx/whoosh.wav"
         },
         {
           "name": "clang",
-          "atFrame": 405,
+          "atFrame": 582,
           "volume": 0.6,
           "src": "assets/sfx/clang.wav"
         },
         {
           "name": "clang",
-          "atFrame": 411,
+          "atFrame": 588,
           "volume": 0.6,
           "src": "assets/sfx/clang.wav"
         },
         {
           "name": "clang",
-          "atFrame": 417,
+          "atFrame": 594,
           "volume": 0.6,
           "src": "assets/sfx/clang.wav"
         },
         {
           "name": "clang",
-          "atFrame": 423,
+          "atFrame": 600,
           "volume": 0.6,
           "src": "assets/sfx/clang.wav"
         },
         {
           "name": "clang",
-          "atFrame": 429,
+          "atFrame": 606,
           "volume": 0.6,
           "src": "assets/sfx/clang.wav"
         },
         {
           "name": "clang",
-          "atFrame": 435,
+          "atFrame": 612,
           "volume": 0.6,
           "src": "assets/sfx/clang.wav"
         },
         {
           "name": "drum",
-          "atFrame": 422,
+          "atFrame": 597,
           "volume": 0.5,
           "src": "assets/sfx/drum.wav"
         }
@@ -708,11 +1001,11 @@
       "camera": [
         {
           "move": "zoom_out",
-          "atFrame": 369
+          "atFrame": 548
         },
         {
           "move": "shake",
-          "atFrame": 405
+          "atFrame": 582
         }
       ],
       "overlays": [],
@@ -720,96 +1013,96 @@
         {
           "from": "brick",
           "to": "noodle",
-          "atFrame": 396,
-          "hitFrame": 405,
+          "atFrame": 573,
+          "hitFrame": 582,
           "outcome": "deflect",
           "n": 0
         },
         {
           "from": "brick",
           "to": "noodle",
-          "atFrame": 399,
-          "hitFrame": 408,
+          "atFrame": 576,
+          "hitFrame": 585,
           "outcome": "deflect",
           "n": 1
         },
         {
           "from": "brick",
           "to": "noodle",
-          "atFrame": 402,
-          "hitFrame": 411,
+          "atFrame": 579,
+          "hitFrame": 588,
           "outcome": "deflect",
           "n": 2
         },
         {
           "from": "brick",
           "to": "noodle",
-          "atFrame": 405,
-          "hitFrame": 414,
+          "atFrame": 582,
+          "hitFrame": 591,
           "outcome": "deflect",
           "n": 3
         },
         {
           "from": "brick",
           "to": "noodle",
-          "atFrame": 408,
-          "hitFrame": 417,
+          "atFrame": 585,
+          "hitFrame": 594,
           "outcome": "deflect",
           "n": 4
         },
         {
           "from": "brick",
           "to": "noodle",
-          "atFrame": 411,
-          "hitFrame": 420,
+          "atFrame": 588,
+          "hitFrame": 597,
           "outcome": "deflect",
           "n": 5
         },
         {
           "from": "brick",
           "to": "noodle",
-          "atFrame": 414,
-          "hitFrame": 423,
+          "atFrame": 591,
+          "hitFrame": 600,
           "outcome": "deflect",
           "n": 6
         },
         {
           "from": "brick",
           "to": "noodle",
-          "atFrame": 417,
-          "hitFrame": 426,
+          "atFrame": 594,
+          "hitFrame": 603,
           "outcome": "deflect",
           "n": 7
         },
         {
           "from": "brick",
           "to": "noodle",
-          "atFrame": 420,
-          "hitFrame": 429,
+          "atFrame": 597,
+          "hitFrame": 606,
           "outcome": "deflect",
           "n": 8
         },
         {
           "from": "brick",
           "to": "noodle",
-          "atFrame": 423,
-          "hitFrame": 432,
+          "atFrame": 600,
+          "hitFrame": 609,
           "outcome": "deflect",
           "n": 9
         },
         {
           "from": "brick",
           "to": "noodle",
-          "atFrame": 426,
-          "hitFrame": 435,
+          "atFrame": 603,
+          "hitFrame": 612,
           "outcome": "deflect",
           "n": 10
         },
         {
           "from": "brick",
           "to": "noodle",
-          "atFrame": 429,
-          "hitFrame": 438,
+          "atFrame": 606,
+          "hitFrame": 615,
           "outcome": "deflect",
           "n": 11
         }
@@ -820,8 +1113,8 @@
       "speech": "Is that... a frying pan?!",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 489,
-      "durationInFrames": 84,
+      "startFrame": 663,
+      "durationInFrames": 81,
       "speechFrames": 69,
       "audioSrc": "audio/react2.wav",
       "words": [
@@ -830,8 +1123,8 @@
           "i": 0,
           "start": 0.3,
           "end": 0.475,
-          "startFrame": 498,
-          "endFrame": 503,
+          "startFrame": 672,
+          "endFrame": 677,
           "emphasis": false
         },
         {
@@ -839,8 +1132,8 @@
           "i": 1,
           "start": 0.475,
           "end": 0.812,
-          "startFrame": 503,
-          "endFrame": 513,
+          "startFrame": 677,
+          "endFrame": 687,
           "emphasis": false
         },
         {
@@ -848,8 +1141,8 @@
           "i": 2,
           "start": 0.812,
           "end": 0.887,
-          "startFrame": 513,
-          "endFrame": 516,
+          "startFrame": 687,
+          "endFrame": 690,
           "emphasis": false
         },
         {
@@ -857,8 +1150,8 @@
           "i": 3,
           "start": 0.887,
           "end": 1.3,
-          "startFrame": 516,
-          "endFrame": 528,
+          "startFrame": 690,
+          "endFrame": 702,
           "emphasis": true
         },
         {
@@ -866,8 +1159,8 @@
           "i": 4,
           "start": 1.3,
           "end": 2.175,
-          "startFrame": 528,
-          "endFrame": 554,
+          "startFrame": 702,
+          "endFrame": 728,
           "emphasis": true
         }
       ],
@@ -892,7 +1185,7 @@
           "fallDir": null,
           "label": "Brick",
           "held": null,
-          "heldFrame": 489
+          "heldFrame": 663
         },
         {
           "id": "noodle",
@@ -907,21 +1200,21 @@
             {
               "pose": "presenting",
               "expression": "happy",
-              "atFrame": 516
+              "atFrame": 690
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": "Noodle",
           "held": "frying_pan",
-          "heldFrame": 489
+          "heldFrame": 663
         }
       ],
       "props": [],
       "sfx": [
         {
           "name": "pop",
-          "atFrame": 516,
+          "atFrame": 690,
           "volume": 0.5,
           "src": "assets/sfx/pop.wav"
         }
@@ -929,8 +1222,8 @@
       "bubbles": [
         {
           "text": "?!",
-          "atFrame": 503,
-          "untilFrame": 567,
+          "atFrame": 677,
+          "untilFrame": 738,
           "side": "right",
           "on": "brick"
         }
@@ -938,326 +1231,19 @@
       "camera": [
         {
           "move": "pan_right",
-          "atFrame": 489
+          "atFrame": 663
         }
       ],
       "overlays": [],
       "projectiles": []
     },
     {
-      "id": "try2",
-      "speech": "Try two. Faster.",
-      "isClip": false,
-      "clipVolume": 1,
-      "startFrame": 573,
-      "durationInFrames": 87,
-      "speechFrames": 60,
-      "audioSrc": "audio/try2.wav",
-      "words": [
-        {
-          "text": "Try",
-          "i": 0,
-          "start": 0.3,
-          "end": 0.562,
-          "startFrame": 582,
-          "endFrame": 590,
-          "emphasis": false
-        },
-        {
-          "text": "two.",
-          "i": 1,
-          "start": 0.562,
-          "end": 0.912,
-          "startFrame": 590,
-          "endFrame": 600,
-          "emphasis": false
-        },
-        {
-          "text": "Faster.",
-          "i": 2,
-          "start": 0.912,
-          "end": 1.9,
-          "startFrame": 600,
-          "endFrame": 630,
-          "emphasis": true
-        }
-      ],
-      "layout": "character_center",
-      "transition": "cut",
-      "captions": true,
-      "speaker": null,
-      "captionStyle": "normal",
-      "bare": false,
-      "character": null,
-      "extras": [
-        {
-          "id": "brick",
-          "style": "stickman",
-          "pose": "windup",
-          "expression": "fierce",
-          "x": 162,
-          "scale": 0.85,
-          "travel": null,
-          "poseChanges": [
-            {
-              "pose": "throw",
-              "atFrame": 600
-            }
-          ],
-          "koFrame": null,
-          "fallDir": null,
-          "label": "Brick",
-          "held": "ball",
-          "heldFrame": 573
-        },
-        {
-          "id": "noodle",
-          "style": "stickman",
-          "color": "#fff1b8",
-          "pose": "idle",
-          "expression": "smug",
-          "x": 842.4,
-          "scale": 0.85,
-          "travel": null,
-          "poseChanges": [
-            {
-              "pose": "dodge_split",
-              "expression": "happy",
-              "atFrame": 604
-            },
-            {
-              "pose": "idle",
-              "expression": "smug",
-              "atFrame": 627
-            }
-          ],
-          "koFrame": null,
-          "fallDir": null,
-          "label": "Noodle",
-          "held": null,
-          "heldFrame": 573
-        }
-      ],
-      "props": [],
-      "sfx": [
-        {
-          "name": "whoosh",
-          "atFrame": 600,
-          "volume": 0.6,
-          "src": "assets/sfx/whoosh.wav"
-        },
-        {
-          "name": "bounce",
-          "atFrame": 621,
-          "volume": 0.6,
-          "src": "assets/sfx/bounce.wav"
-        }
-      ],
-      "bubbles": [],
-      "camera": [
-        {
-          "move": "shake",
-          "atFrame": 609
-        }
-      ],
-      "overlays": [],
-      "projectiles": [
-        {
-          "from": "brick",
-          "to": "noodle",
-          "atFrame": 601,
-          "hitFrame": 609,
-          "outcome": "miss",
-          "n": 0
-        }
-      ]
-    },
-    {
-      "id": "try3",
-      "speech": "Try three. Two at once!",
-      "isClip": false,
-      "clipVolume": 1,
-      "startFrame": 660,
-      "durationInFrames": 95,
-      "speechFrames": 65,
-      "audioSrc": "audio/try3.wav",
-      "words": [
-        {
-          "text": "Try",
-          "i": 0,
-          "start": 0.3,
-          "end": 0.537,
-          "startFrame": 669,
-          "endFrame": 676,
-          "emphasis": false
-        },
-        {
-          "text": "three.",
-          "i": 1,
-          "start": 0.537,
-          "end": 0.9,
-          "startFrame": 676,
-          "endFrame": 687,
-          "emphasis": false
-        },
-        {
-          "text": "Two",
-          "i": 2,
-          "start": 0.9,
-          "end": 1.125,
-          "startFrame": 687,
-          "endFrame": 694,
-          "emphasis": true
-        },
-        {
-          "text": "at",
-          "i": 3,
-          "start": 1.125,
-          "end": 1.25,
-          "startFrame": 694,
-          "endFrame": 698,
-          "emphasis": true
-        },
-        {
-          "text": "once!",
-          "i": 4,
-          "start": 1.25,
-          "end": 2.05,
-          "startFrame": 698,
-          "endFrame": 721,
-          "emphasis": true
-        }
-      ],
-      "layout": "character_center",
-      "transition": "cut",
-      "captions": true,
-      "speaker": null,
-      "captionStyle": "normal",
-      "bare": false,
-      "character": null,
-      "extras": [
-        {
-          "id": "brick",
-          "style": "stickman",
-          "pose": "windup",
-          "expression": "fierce",
-          "x": 162,
-          "scale": 0.85,
-          "travel": null,
-          "poseChanges": [
-            {
-              "pose": "throw",
-              "atFrame": 687
-            },
-            {
-              "pose": "windup",
-              "atFrame": 693
-            },
-            {
-              "pose": "throw",
-              "atFrame": 698
-            }
-          ],
-          "koFrame": null,
-          "fallDir": null,
-          "label": "Brick",
-          "held": "ball",
-          "heldFrame": 660
-        },
-        {
-          "id": "noodle",
-          "style": "stickman",
-          "color": "#fff1b8",
-          "pose": "idle",
-          "expression": "smug",
-          "x": 842.4,
-          "scale": 0.85,
-          "travel": null,
-          "poseChanges": [
-            {
-              "pose": "dodge_limbo",
-              "expression": "happy",
-              "atFrame": 691
-            },
-            {
-              "pose": "dodge_lean",
-              "expression": "happy",
-              "atFrame": 701
-            },
-            {
-              "pose": "celebrating",
-              "expression": "happy",
-              "atFrame": 722
-            }
-          ],
-          "koFrame": null,
-          "fallDir": null,
-          "label": "Noodle",
-          "held": null,
-          "heldFrame": 660
-        }
-      ],
-      "props": [],
-      "sfx": [
-        {
-          "name": "whoosh",
-          "atFrame": 687,
-          "volume": 0.5,
-          "src": "assets/sfx/whoosh.wav"
-        },
-        {
-          "name": "whoosh",
-          "atFrame": 698,
-          "volume": 0.5,
-          "src": "assets/sfx/whoosh.wav"
-        },
-        {
-          "name": "bounce",
-          "atFrame": 716,
-          "volume": 0.5,
-          "src": "assets/sfx/bounce.wav"
-        },
-        {
-          "name": "bounce",
-          "atFrame": 727,
-          "volume": 0.5,
-          "src": "assets/sfx/bounce.wav"
-        }
-      ],
-      "bubbles": [],
-      "camera": [
-        {
-          "move": "zoom_out",
-          "atFrame": 660
-        }
-      ],
-      "overlays": [],
-      "projectiles": [
-        {
-          "from": "brick",
-          "to": "noodle",
-          "atFrame": 688,
-          "hitFrame": 697,
-          "outcome": "miss",
-          "n": 0
-        },
-        {
-          "from": "brick",
-          "to": "noodle",
-          "atFrame": 699,
-          "hitFrame": 708,
-          "outcome": "miss",
-          "n": 1
-        }
-      ]
-    },
-    {
       "id": "rage",
       "speech": "Brick is out of ideas. And patience.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 755,
-      "durationInFrames": 99,
+      "startFrame": 744,
+      "durationInFrames": 96,
       "speechFrames": 87,
       "audioSrc": "audio/rage.wav",
       "words": [
@@ -1266,8 +1252,8 @@
           "i": 0,
           "start": 0.325,
           "end": 0.575,
-          "startFrame": 765,
-          "endFrame": 772,
+          "startFrame": 754,
+          "endFrame": 761,
           "emphasis": false
         },
         {
@@ -1275,8 +1261,8 @@
           "i": 1,
           "start": 0.575,
           "end": 0.7,
-          "startFrame": 772,
-          "endFrame": 776,
+          "startFrame": 761,
+          "endFrame": 765,
           "emphasis": false
         },
         {
@@ -1284,8 +1270,8 @@
           "i": 2,
           "start": 0.7,
           "end": 0.838,
-          "startFrame": 776,
-          "endFrame": 780,
+          "startFrame": 765,
+          "endFrame": 769,
           "emphasis": false
         },
         {
@@ -1293,8 +1279,8 @@
           "i": 3,
           "start": 0.838,
           "end": 0.938,
-          "startFrame": 780,
-          "endFrame": 783,
+          "startFrame": 769,
+          "endFrame": 772,
           "emphasis": false
         },
         {
@@ -1302,8 +1288,8 @@
           "i": 4,
           "start": 0.938,
           "end": 1.65,
-          "startFrame": 783,
-          "endFrame": 805,
+          "startFrame": 772,
+          "endFrame": 794,
           "emphasis": false
         },
         {
@@ -1311,8 +1297,8 @@
           "i": 5,
           "start": 1.65,
           "end": 1.825,
-          "startFrame": 805,
-          "endFrame": 810,
+          "startFrame": 794,
+          "endFrame": 799,
           "emphasis": false
         },
         {
@@ -1320,8 +1306,8 @@
           "i": 6,
           "start": 1.825,
           "end": 2.775,
-          "startFrame": 810,
-          "endFrame": 838,
+          "startFrame": 799,
+          "endFrame": 827,
           "emphasis": true
         }
       ],
@@ -1345,14 +1331,14 @@
             {
               "pose": "facepalm",
               "expression": "worried",
-              "atFrame": 810
+              "atFrame": 799
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": "Brick",
           "held": null,
-          "heldFrame": 755
+          "heldFrame": 744
         },
         {
           "id": "noodle",
@@ -1367,21 +1353,21 @@
             {
               "pose": "bow",
               "expression": "smug",
-              "atFrame": 805
+              "atFrame": 794
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": "Noodle",
           "held": null,
-          "heldFrame": 755
+          "heldFrame": 744
         }
       ],
       "props": [],
       "sfx": [
         {
           "name": "error",
-          "atFrame": 810,
+          "atFrame": 799,
           "volume": 0.4,
           "src": "assets/sfx/error.wav"
         }
@@ -1390,7 +1376,7 @@
       "camera": [
         {
           "move": "pan_left",
-          "atFrame": 755
+          "atFrame": 744
         }
       ],
       "overlays": [],
@@ -1401,7 +1387,7 @@
       "speech": "Wait. Who's this?",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 854,
+      "startFrame": 840,
       "durationInFrames": 69,
       "speechFrames": 51,
       "audioSrc": "audio/kid.wav",
@@ -1411,8 +1397,8 @@
           "i": 0,
           "start": 0.35,
           "end": 0.6,
-          "startFrame": 865,
-          "endFrame": 872,
+          "startFrame": 851,
+          "endFrame": 858,
           "emphasis": false
         },
         {
@@ -1420,8 +1406,8 @@
           "i": 1,
           "start": 0.6,
           "end": 0.85,
-          "startFrame": 872,
-          "endFrame": 880,
+          "startFrame": 858,
+          "endFrame": 866,
           "emphasis": false
         },
         {
@@ -1429,8 +1415,8 @@
           "i": 2,
           "start": 0.85,
           "end": 1.575,
-          "startFrame": 880,
-          "endFrame": 901,
+          "startFrame": 866,
+          "endFrame": 887,
           "emphasis": true
         }
       ],
@@ -1454,14 +1440,14 @@
             {
               "pose": "thinking",
               "expression": "confused",
-              "atFrame": 872
+              "atFrame": 858
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": "Brick",
           "held": null,
-          "heldFrame": 854
+          "heldFrame": 840
         },
         {
           "id": "noodle",
@@ -1476,14 +1462,14 @@
             {
               "pose": "leaning",
               "expression": "smug",
-              "atFrame": 872
+              "atFrame": 858
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": "Noodle",
           "held": null,
-          "heldFrame": 854
+          "heldFrame": 840
         },
         {
           "id": "pebble",
@@ -1495,34 +1481,34 @@
           "travel": {
             "fromX": 1242,
             "toX": 972,
-            "startFrame": 854,
-            "endFrame": 889
+            "startFrame": 840,
+            "endFrame": 875
           },
           "poseChanges": [
             {
               "pose": "idle",
               "expression": "happy",
-              "atFrame": 889
+              "atFrame": 875
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": "Pebble",
           "held": "ball",
-          "heldFrame": 854
+          "heldFrame": 840
         }
       ],
       "props": [],
       "sfx": [
         {
           "name": "tick",
-          "atFrame": 872,
+          "atFrame": 858,
           "volume": 0.4,
           "src": "assets/sfx/tick.wav"
         },
         {
           "name": "pop",
-          "atFrame": 889,
+          "atFrame": 875,
           "volume": 0.5,
           "src": "assets/sfx/pop.wav"
         }
@@ -1530,8 +1516,8 @@
       "bubbles": [
         {
           "text": "HI",
-          "atFrame": 892,
-          "untilFrame": 920,
+          "atFrame": 878,
+          "untilFrame": 906,
           "side": "right",
           "on": "pebble"
         }
@@ -1545,8 +1531,8 @@
       "speech": "He dropped it.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 923,
-      "durationInFrames": 93,
+      "startFrame": 909,
+      "durationInFrames": 99,
       "speechFrames": 48,
       "audioSrc": "audio/drop.wav",
       "words": [
@@ -1555,8 +1541,8 @@
           "i": 0,
           "start": 0.3,
           "end": 0.487,
-          "startFrame": 932,
-          "endFrame": 938,
+          "startFrame": 918,
+          "endFrame": 924,
           "emphasis": false
         },
         {
@@ -1564,8 +1550,8 @@
           "i": 1,
           "start": 0.487,
           "end": 0.925,
-          "startFrame": 938,
-          "endFrame": 951,
+          "startFrame": 924,
+          "endFrame": 937,
           "emphasis": true
         },
         {
@@ -1573,8 +1559,8 @@
           "i": 2,
           "start": 0.925,
           "end": 1.475,
-          "startFrame": 951,
-          "endFrame": 967,
+          "startFrame": 937,
+          "endFrame": 953,
           "emphasis": false
         }
       ],
@@ -1599,7 +1585,7 @@
           "fallDir": null,
           "label": "Brick",
           "held": null,
-          "heldFrame": 923
+          "heldFrame": 909
         },
         {
           "id": "noodle",
@@ -1614,14 +1600,19 @@
             {
               "pose": "shocked",
               "expression": "surprised",
-              "atFrame": 968
+              "atFrame": 963
+            },
+            {
+              "pose": "dodge_lean",
+              "expression": "worried",
+              "atFrame": 969
             }
           ],
-          "koFrame": 979,
+          "koFrame": 975,
           "fallDir": "left",
           "label": "Noodle",
           "held": null,
-          "heldFrame": 923
+          "heldFrame": 909
         },
         {
           "id": "pebble",
@@ -1635,44 +1626,50 @@
             {
               "pose": "shocked",
               "expression": "surprised",
-              "atFrame": 944
+              "atFrame": 930
             },
             {
               "pose": "idle",
               "expression": "worried",
-              "atFrame": 968
+              "atFrame": 954
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": "Pebble",
           "held": "ball",
-          "heldFrame": 923
+          "heldFrame": 909
         }
       ],
       "props": [],
       "sfx": [
         {
           "name": "bounce",
-          "atFrame": 952,
+          "atFrame": 938,
           "volume": 0.6,
           "src": "assets/sfx/bounce.wav"
         },
         {
           "name": "bounce",
-          "atFrame": 962,
+          "atFrame": 948,
           "volume": 0.4,
           "src": "assets/sfx/bounce.wav"
         },
         {
+          "name": "tick",
+          "atFrame": 963,
+          "volume": 0.5,
+          "src": "assets/sfx/tick.wav"
+        },
+        {
           "name": "thud",
-          "atFrame": 982,
+          "atFrame": 978,
           "volume": 1,
           "src": "assets/sfx/thud.wav"
         },
         {
           "name": "boom",
-          "atFrame": 982,
+          "atFrame": 978,
           "volume": 0.5,
           "src": "assets/sfx/boom.wav"
         }
@@ -1681,11 +1678,11 @@
       "camera": [
         {
           "move": "punch_in",
-          "atFrame": 947
+          "atFrame": 933
         },
         {
           "move": "shake",
-          "atFrame": 982
+          "atFrame": 978
         }
       ],
       "overlays": [],
@@ -1693,8 +1690,8 @@
         {
           "from": "pebble",
           "to": "noodle",
-          "atFrame": 938,
-          "hitFrame": 977,
+          "atFrame": 924,
+          "hitFrame": 963,
           "outcome": "roll",
           "n": 0
         }
@@ -1705,7 +1702,7 @@
       "speech": "Noodle is DOWN.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 1016,
+      "startFrame": 1008,
       "durationInFrames": 67,
       "speechFrames": 52,
       "audioSrc": "audio/down.wav",
@@ -1715,8 +1712,8 @@
           "i": 0,
           "start": 0.35,
           "end": 0.675,
-          "startFrame": 1027,
-          "endFrame": 1036,
+          "startFrame": 1019,
+          "endFrame": 1028,
           "emphasis": false
         },
         {
@@ -1724,8 +1721,8 @@
           "i": 1,
           "start": 0.675,
           "end": 0.838,
-          "startFrame": 1036,
-          "endFrame": 1041,
+          "startFrame": 1028,
+          "endFrame": 1033,
           "emphasis": false
         },
         {
@@ -1733,8 +1730,8 @@
           "i": 2,
           "start": 0.838,
           "end": 1.625,
-          "startFrame": 1041,
-          "endFrame": 1065,
+          "startFrame": 1033,
+          "endFrame": 1057,
           "emphasis": true
         }
       ],
@@ -1759,7 +1756,7 @@
           "fallDir": null,
           "label": "Brick",
           "held": null,
-          "heldFrame": 1016
+          "heldFrame": 1008
         },
         {
           "id": "noodle",
@@ -1771,11 +1768,11 @@
           "scale": 0.85,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 1016,
+          "koFrame": 1008,
           "fallDir": "left",
           "label": "Noodle",
           "held": null,
-          "heldFrame": 1016
+          "heldFrame": 1008
         },
         {
           "id": "pebble",
@@ -1790,14 +1787,14 @@
           "fallDir": null,
           "label": "Pebble",
           "held": null,
-          "heldFrame": 1016
+          "heldFrame": 1008
         }
       ],
       "props": [],
       "sfx": [
         {
           "name": "whistle",
-          "atFrame": 1041,
+          "atFrame": 1033,
           "volume": 0.7,
           "src": "assets/sfx/whistle.wav"
         }
@@ -1805,8 +1802,8 @@
       "bubbles": [
         {
           "text": "?!",
-          "atFrame": 1027,
-          "untilFrame": 1080,
+          "atFrame": 1019,
+          "untilFrame": 1072,
           "side": "right",
           "on": "brick"
         }
@@ -1814,7 +1811,7 @@
       "camera": [
         {
           "move": "zoom_out",
-          "atFrame": 1016
+          "atFrame": 1008
         }
       ],
       "overlays": [],
@@ -1825,8 +1822,8 @@
       "speech": "Your champion: Pebble.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 1083,
-      "durationInFrames": 88,
+      "startFrame": 1075,
+      "durationInFrames": 82,
       "speechFrames": 58,
       "audioSrc": "audio/champion.wav",
       "words": [
@@ -1835,8 +1832,8 @@
           "i": 0,
           "start": 0.3,
           "end": 0.463,
-          "startFrame": 1092,
-          "endFrame": 1097,
+          "startFrame": 1084,
+          "endFrame": 1089,
           "emphasis": false
         },
         {
@@ -1844,8 +1841,8 @@
           "i": 1,
           "start": 0.463,
           "end": 1.025,
-          "startFrame": 1097,
-          "endFrame": 1114,
+          "startFrame": 1089,
+          "endFrame": 1106,
           "emphasis": false
         },
         {
@@ -1853,8 +1850,8 @@
           "i": 2,
           "start": 1.025,
           "end": 1.825,
-          "startFrame": 1114,
-          "endFrame": 1138,
+          "startFrame": 1106,
+          "endFrame": 1130,
           "emphasis": true
         }
       ],
@@ -1878,14 +1875,14 @@
             {
               "pose": "facepalm",
               "expression": "worried",
-              "atFrame": 1132
+              "atFrame": 1124
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": "Brick",
           "held": null,
-          "heldFrame": 1083
+          "heldFrame": 1075
         },
         {
           "id": "noodle",
@@ -1897,11 +1894,11 @@
           "scale": 0.85,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 1083,
+          "koFrame": 1075,
           "fallDir": "left",
           "label": "Noodle",
           "held": null,
-          "heldFrame": 1083
+          "heldFrame": 1075
         },
         {
           "id": "pebble",
@@ -1915,21 +1912,21 @@
             {
               "pose": "victory",
               "expression": "happy",
-              "atFrame": 1114
+              "atFrame": 1106
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": "Pebble",
           "held": null,
-          "heldFrame": 1083
+          "heldFrame": 1075
         }
       ],
       "props": [
         {
           "name": "crown",
-          "atFrame": 1114,
-          "untilFrame": 1171,
+          "atFrame": 1106,
+          "untilFrame": 1157,
           "anim": "stamp",
           "position": "top_right",
           "scale": 0.7,
@@ -1937,8 +1934,8 @@
         },
         {
           "name": "medal",
-          "atFrame": 1122,
-          "untilFrame": 1171,
+          "atFrame": 1114,
+          "untilFrame": 1157,
           "anim": "drop",
           "position": "top",
           "scale": 0.6,
@@ -1946,8 +1943,8 @@
         },
         {
           "name": "trophy",
-          "atFrame": 1129,
-          "untilFrame": 1171,
+          "atFrame": 1121,
+          "untilFrame": 1157,
           "anim": "pop",
           "position": "top_left",
           "scale": 0.6,
@@ -1957,25 +1954,25 @@
       "sfx": [
         {
           "name": "cheer",
-          "atFrame": 1097,
+          "atFrame": 1089,
           "volume": 0.7,
           "src": "assets/sfx/cheer.wav"
         },
         {
           "name": "chime",
-          "atFrame": 1114,
+          "atFrame": 1106,
           "volume": 0.6,
           "src": "assets/sfx/chime.wav"
         },
         {
           "name": "ding",
-          "atFrame": 1122,
+          "atFrame": 1114,
           "volume": 0.5,
           "src": "assets/sfx/ding.wav"
         },
         {
           "name": "ding",
-          "atFrame": 1129,
+          "atFrame": 1121,
           "volume": 0.5,
           "src": "assets/sfx/ding.wav"
         }
@@ -1984,7 +1981,7 @@
       "camera": [
         {
           "move": "punch_in",
-          "atFrame": 1114
+          "atFrame": 1106
         }
       ],
       "overlays": [],
@@ -1995,7 +1992,7 @@
       "speech": "Brick had one ball left.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 1171,
+      "startFrame": 1157,
       "durationInFrames": 98,
       "speechFrames": 68,
       "audioSrc": "audio/last.wav",
@@ -2005,8 +2002,8 @@
           "i": 0,
           "start": 0.35,
           "end": 0.6,
-          "startFrame": 1182,
-          "endFrame": 1189,
+          "startFrame": 1168,
+          "endFrame": 1175,
           "emphasis": false
         },
         {
@@ -2014,8 +2011,8 @@
           "i": 1,
           "start": 0.6,
           "end": 0.8,
-          "startFrame": 1189,
-          "endFrame": 1195,
+          "startFrame": 1175,
+          "endFrame": 1181,
           "emphasis": false
         },
         {
@@ -2023,8 +2020,8 @@
           "i": 2,
           "start": 0.8,
           "end": 1.025,
-          "startFrame": 1195,
-          "endFrame": 1202,
+          "startFrame": 1181,
+          "endFrame": 1188,
           "emphasis": true
         },
         {
@@ -2032,8 +2029,8 @@
           "i": 3,
           "start": 1.025,
           "end": 1.325,
-          "startFrame": 1202,
-          "endFrame": 1211,
+          "startFrame": 1188,
+          "endFrame": 1197,
           "emphasis": true
         },
         {
@@ -2041,8 +2038,8 @@
           "i": 4,
           "start": 1.325,
           "end": 2.15,
-          "startFrame": 1211,
-          "endFrame": 1236,
+          "startFrame": 1197,
+          "endFrame": 1222,
           "emphasis": false
         }
       ],
@@ -2066,19 +2063,19 @@
             {
               "pose": "windup",
               "expression": "fierce",
-              "atFrame": 1195
+              "atFrame": 1181
             },
             {
               "pose": "throw",
               "expression": "fierce",
-              "atFrame": 1219
+              "atFrame": 1205
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": "Brick",
           "held": "ball",
-          "heldFrame": 1195
+          "heldFrame": 1181
         },
         {
           "id": "noodle",
@@ -2090,11 +2087,11 @@
           "scale": 0.85,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 1171,
+          "koFrame": 1157,
           "fallDir": "left",
           "label": "Noodle",
           "held": null,
-          "heldFrame": 1171
+          "heldFrame": 1157
         },
         {
           "id": "pebble",
@@ -2109,26 +2106,26 @@
           "fallDir": null,
           "label": "Pebble",
           "held": null,
-          "heldFrame": 1171
+          "heldFrame": 1157
         }
       ],
       "props": [],
       "sfx": [
         {
           "name": "whoosh",
-          "atFrame": 1219,
+          "atFrame": 1205,
           "volume": 0.7,
           "src": "assets/sfx/whoosh.wav"
         },
         {
           "name": "boom",
-          "atFrame": 1229,
+          "atFrame": 1215,
           "volume": 0.9,
           "src": "assets/sfx/boom.wav"
         },
         {
           "name": "click",
-          "atFrame": 1229,
+          "atFrame": 1215,
           "volume": 0.7,
           "src": "assets/sfx/click.wav"
         }
@@ -2137,22 +2134,22 @@
       "camera": [
         {
           "move": "shake",
-          "atFrame": 1229
+          "atFrame": 1215
         }
       ],
       "overlays": [
         {
           "kind": "screen_crack",
-          "atFrame": 1229,
-          "untilFrame": 1269
+          "atFrame": 1215,
+          "untilFrame": 1255
         }
       ],
       "projectiles": [
         {
           "from": "brick",
           "to": "camera",
-          "atFrame": 1219,
-          "hitFrame": 1229,
+          "atFrame": 1205,
+          "hitFrame": 1215,
           "outcome": "hit",
           "n": 0
         }
@@ -2163,7 +2160,7 @@
       "speech": "Follow Dummy Sticky for more.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 1269,
+      "startFrame": 1255,
       "durationInFrames": 106,
       "speechFrames": 67,
       "audioSrc": "audio/cta.wav",
@@ -2173,8 +2170,8 @@
           "i": 0,
           "start": 0.3,
           "end": 0.637,
-          "startFrame": 1278,
-          "endFrame": 1288,
+          "startFrame": 1264,
+          "endFrame": 1274,
           "emphasis": true
         },
         {
@@ -2182,8 +2179,8 @@
           "i": 1,
           "start": 0.637,
           "end": 0.975,
-          "startFrame": 1288,
-          "endFrame": 1298,
+          "startFrame": 1274,
+          "endFrame": 1284,
           "emphasis": true
         },
         {
@@ -2191,8 +2188,8 @@
           "i": 2,
           "start": 0.975,
           "end": 1.3,
-          "startFrame": 1298,
-          "endFrame": 1308,
+          "startFrame": 1284,
+          "endFrame": 1294,
           "emphasis": true
         },
         {
@@ -2200,8 +2197,8 @@
           "i": 3,
           "start": 1.3,
           "end": 1.425,
-          "startFrame": 1308,
-          "endFrame": 1312,
+          "startFrame": 1294,
+          "endFrame": 1298,
           "emphasis": false
         },
         {
@@ -2209,8 +2206,8 @@
           "i": 4,
           "start": 1.425,
           "end": 2.125,
-          "startFrame": 1312,
-          "endFrame": 1333,
+          "startFrame": 1298,
+          "endFrame": 1319,
           "emphasis": false
         }
       ],
@@ -2226,7 +2223,7 @@
       "sfx": [
         {
           "name": "pop",
-          "atFrame": 1278,
+          "atFrame": 1264,
           "volume": 0.6,
           "src": "assets/sfx/pop.wav"
         }
@@ -2236,18 +2233,18 @@
       "overlays": [
         {
           "kind": "blackout",
-          "atFrame": 1269,
-          "untilFrame": 1375
+          "atFrame": 1255,
+          "untilFrame": 1361
         },
         {
           "kind": "screen_crack",
-          "atFrame": 1269,
-          "untilFrame": 1375
+          "atFrame": 1255,
+          "untilFrame": 1361
         },
         {
           "kind": "follow_card",
-          "atFrame": 1278,
-          "untilFrame": 1375
+          "atFrame": 1264,
+          "untilFrame": 1361
         }
       ],
       "projectiles": []
@@ -2258,9 +2255,9 @@
     "name": "Dummy Sticky"
   },
   "meta": {
-    "resolvedAt": "2026-09-18T21:08:20.660Z",
+    "resolvedAt": "2026-09-18T21:19:45.476Z",
     "engineVersion": "0.1.0",
     "ttsModel": "hexgrad/Kokoro-82M",
-    "manifestHash": "3dea8c9b309af8fe"
+    "manifestHash": "132b28289df1c13a"
   }
 }

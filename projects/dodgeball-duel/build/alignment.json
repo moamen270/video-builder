@@ -55,7 +55,7 @@
           "ws": ""
         }
       ],
-      "hash": "7bda3a874d1b1944"
+      "hash": "e65654bbbbe1febf"
     },
     {
       "sceneId": "pitch",
@@ -124,96 +124,6 @@
       "hash": "ed969280e993679b"
     },
     {
-      "sceneId": "barrage",
-      "file": "barrage.wav",
-      "duration": 2.8,
-      "sampleRate": 24000,
-      "tokens": [
-        {
-          "text": "Here",
-          "start": 0.3,
-          "end": 0.5,
-          "ws": " "
-        },
-        {
-          "text": "comes",
-          "start": 0.5,
-          "end": 0.787,
-          "ws": " "
-        },
-        {
-          "text": "the",
-          "start": 0.787,
-          "end": 0.912,
-          "ws": " "
-        },
-        {
-          "text": "Gatling",
-          "start": 0.912,
-          "end": 1.4,
-          "ws": " "
-        },
-        {
-          "text": "gun",
-          "start": 1.4,
-          "end": 1.663,
-          "ws": " "
-        },
-        {
-          "text": "of",
-          "start": 1.663,
-          "end": 1.775,
-          "ws": " "
-        },
-        {
-          "text": "balls!",
-          "start": 1.775,
-          "end": 2.7,
-          "ws": ""
-        }
-      ],
-      "hash": "e9eea91d2ee404a2"
-    },
-    {
-      "sceneId": "react2",
-      "file": "react2.wav",
-      "duration": 2.275,
-      "sampleRate": 24000,
-      "tokens": [
-        {
-          "text": "Is",
-          "start": 0.3,
-          "end": 0.475,
-          "ws": " "
-        },
-        {
-          "text": "that...",
-          "start": 0.475,
-          "end": 0.812,
-          "ws": " "
-        },
-        {
-          "text": "a",
-          "start": 0.812,
-          "end": 0.887,
-          "ws": " "
-        },
-        {
-          "text": "frying",
-          "start": 0.887,
-          "end": 1.3,
-          "ws": " "
-        },
-        {
-          "text": "pan?!",
-          "start": 1.3,
-          "end": 2.175,
-          "ws": ""
-        }
-      ],
-      "hash": "b4b37a97e9ce8702"
-    },
-    {
       "sceneId": "try2",
       "file": "try2.wav",
       "duration": 2,
@@ -280,6 +190,90 @@
       "hash": "351816eff8611780"
     },
     {
+      "sceneId": "barrage",
+      "file": "barrage.wav",
+      "duration": 2.625,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Fine.",
+          "start": 0.35,
+          "end": 0.725,
+          "ws": " "
+        },
+        {
+          "text": "The",
+          "start": 0.725,
+          "end": 0.825,
+          "ws": " "
+        },
+        {
+          "text": "Gatling",
+          "start": 0.825,
+          "end": 1.3,
+          "ws": " "
+        },
+        {
+          "text": "gun",
+          "start": 1.3,
+          "end": 1.512,
+          "ws": " "
+        },
+        {
+          "text": "of",
+          "start": 1.512,
+          "end": 1.625,
+          "ws": " "
+        },
+        {
+          "text": "balls!",
+          "start": 1.625,
+          "end": 2.525,
+          "ws": ""
+        }
+      ],
+      "hash": "9fda355af4c35eb6"
+    },
+    {
+      "sceneId": "react2",
+      "file": "react2.wav",
+      "duration": 2.275,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Is",
+          "start": 0.3,
+          "end": 0.475,
+          "ws": " "
+        },
+        {
+          "text": "that...",
+          "start": 0.475,
+          "end": 0.812,
+          "ws": " "
+        },
+        {
+          "text": "a",
+          "start": 0.812,
+          "end": 0.887,
+          "ws": " "
+        },
+        {
+          "text": "frying",
+          "start": 0.887,
+          "end": 1.3,
+          "ws": " "
+        },
+        {
+          "text": "pan?!",
+          "start": 1.3,
+          "end": 2.175,
+          "ws": ""
+        }
+      ],
+      "hash": "beb695ee6a7d5476"
+    },
+    {
       "sceneId": "rage",
       "file": "rage.wav",
       "duration": 2.875,
@@ -328,7 +322,7 @@
           "ws": ""
         }
       ],
-      "hash": "d1513094a53de317"
+      "hash": "18c60fafff7753dc"
     },
     {
       "sceneId": "kid",
@@ -382,7 +376,7 @@
           "ws": ""
         }
       ],
-      "hash": "874117423cc2e46d"
+      "hash": "19f50624fe0a83d5"
     },
     {
       "sceneId": "down",
@@ -436,7 +430,7 @@
           "ws": ""
         }
       ],
-      "hash": "70e49e72574a8d1c"
+      "hash": "003d66a2b47fab1a"
     },
     {
       "sceneId": "last",
