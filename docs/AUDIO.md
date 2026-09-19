@@ -105,3 +105,10 @@ luminance never drops out except inside declared `blackout`/`flash` windows.
   `Packages/...` bin folders to `PATH`.
 - Kokoro downloads `hexgrad/Kokoro-82M` on first use; Bark downloads
   `suno/bark-small`. Both run on CPU (torch CPU index in `py/pyproject.toml`).
+
+## 7. Voice research
+
+Options beyond Kokoro (directable engines, voice design, RVC, paid APIs), their cost and how they would plug into
+`alignment.json` are researched in the sibling repo `F:/PoCs/audios` (`docs/06-decision-matrix.md` for the current
+recommendation, `experiments/001-kokoro-limits/index.html` to hear Kokoro's measured limits). Measured there:
+punctuation/casing do not change Kokoro's pitch contour, and voice-tensor blending yields new consistent speakers.
