@@ -4,7 +4,7 @@
   "createdAt": "2026-09-19T00:00:00.000Z",
   "targetSeconds": 45,
   "status": "qa_passed",
-  "lastRenderMs": 83273,
+  "lastRenderMs": 79319,
   "versions": [
     {
       "n": 1,
@@ -134,6 +134,23 @@
       "manifestHash": "949064e973d8b43b",
       "note": "v13: balls deflect at the pan's reach, not at the body",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/dodgeball-duel-v13/final.mp4"
+    },
+    {
+      "n": 14,
+      "at": "2026-09-19T18:42:17.606Z",
+      "seconds": 47.63333333333333,
+      "renderMs": 78776,
+      "qaOk": true,
+      "manifestHash": "6e073c22b89186bb"
+    },
+    {
+      "n": 15,
+      "at": "2026-09-19T18:46:17.799Z",
+      "seconds": 48.03333333333333,
+      "renderMs": 79319,
+      "qaOk": true,
+      "manifestHash": "f67275f712276cc4",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/dodgeball-duel-v15/final.mp4"
     }
   ]
 }
