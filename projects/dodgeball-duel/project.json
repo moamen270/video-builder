@@ -4,7 +4,7 @@
   "createdAt": "2026-09-19T00:00:00.000Z",
   "targetSeconds": 45,
   "status": "qa_passed",
-  "lastRenderMs": 77535,
+  "lastRenderMs": 84779,
   "versions": [
     {
       "n": 1,
@@ -105,6 +105,25 @@
       "manifestHash": "cbaf3e51ae09e4b1",
       "note": "v10: through-misses land a step short of the old position; review pack now dumps every 0.5 s + dense event strips",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/dodgeball-duel-v10/final.mp4"
+    },
+    {
+      "n": 11,
+      "at": "2026-09-19T07:55:29.597Z",
+      "seconds": 49.666666666666664,
+      "renderMs": 84721,
+      "qaOk": true,
+      "manifestHash": "16d5e66416a00437",
+      "note": "v11: one continuous gravity parabola per ball (no invisible floor), lean toward the thrower, flat miss arcs, hard cut to close-ups, moonwalk called out"
+    },
+    {
+      "n": 12,
+      "at": "2026-09-19T07:59:19.536Z",
+      "seconds": 49.666666666666664,
+      "renderMs": 84779,
+      "qaOk": true,
+      "manifestHash": "949064e973d8b43b",
+      "note": "v12: dropped ball hops up into Noodle's hip and bounces back off him",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/dodgeball-duel-v12/final.mp4"
     }
   ]
 }

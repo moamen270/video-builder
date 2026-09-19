@@ -69,37 +69,56 @@ export const Projectiles: React.FC<{ scene: ResolvedScene; abs: number; rects: {
 
     const ballAt = (f: number): { x: number; y: number; rot: number; sq: number } | null => {
       if (p.outcome === "roll") {
-        // fall from the hand (gravity), bounce once, roll to the target's foot
-        const drop = Math.min(1, f / (flight * 0.35));
+        // Dropped from the hand: falls, hops toward the target and the LAST hop rises into his hip — a visible
+        // touch above the ground — then bounces back off him and dies out.
+        const f1 = flight * 0.3;
         const y0 = hand.y + 40;
-        if (f < flight * 0.35) return { x: hand.x, y: y0 + (ground - y0) * drop * drop, rot: 0, sq: 0 };
-        const k = Math.min(1, (f - flight * 0.35) / (flight * 0.65));
-        const ease = 1 - (1 - k) * (1 - k);
-        const bounce = Math.abs(Math.sin(k * Math.PI * 3)) * 110 * Math.pow(1 - k, 1.3); // three real bounces, each lower
-        if (k >= 1 && f > flight + 40) return null;
-        return { x: hand.x + (to.x + to.w * (dir > 0 ? 0.42 : 0.58) - hand.x) * ease, y: ground - bounce, rot: k * 720 * dir, sq: 0 };
+        if (f < f1) {
+          const drop = f / f1;
+          return { x: hand.x, y: y0 + (ground - y0) * drop * drop, rot: 0, sq: f > f1 - 1 ? 0.3 : 0 };
+        }
+        const hitX = to.x + to.w / 2 - dir * r * 1.1;
+        const hipY = to.y + to.h * 0.62;
+        const H = ground - hipY; // hop height = exactly hip height, so the 2.5th hop peaks ON him
+        if (f <= flight) {
+          const k = (f - f1) / (flight - f1);
+          return { x: hand.x + (hitX - hand.x) * k, y: ground - Math.abs(Math.sin(k * Math.PI * 2.5)) * H, rot: k * 900 * dir, sq: 0 };
+        }
+        const bf = f - flight;
+        if (bf > 30) return null;
+        const decay = Math.pow(1 - bf / 30, 1.3);
+        return { x: hitX - dir * bf * 7, y: hipY + (ground - hipY) * Math.min(1, bf / 6) - Math.abs(Math.sin(bf * 0.35)) * H * 0.7 * decay, rot: 900 * dir - bf * 40 * dir, sq: bf < 2 ? 0.4 : 0 };
       }
+      // One gravity parabola from the hand THROUGH the aim point and onward — no change of law at the target,
+      // so a miss keeps falling naturally instead of "bouncing on air". vx is constant; vy chosen so y(flight) = aim.
+      // misses fly flatter (a shallow descent past the head); hits and deflects keep the fuller arc
+      const arcH = Math.min(320, 90 + flight * 4) * scale * (p.outcome === "miss" && p.path !== "through" ? 0.35 : 1);
+      const g = (8 * arcH) / (flight * flight); // px/frame², gives an apex ~arcH above the chord
+      const vy = (chest.y - hand.y - 0.5 * g * flight * flight) / flight;
+      const vx = (chest.x - hand.x) / flight;
+      const pos = (ff: number) => ({ x: hand.x + vx * ff, y: hand.y + vy * ff + 0.5 * g * ff * ff });
       const k = f / flight;
-      const arcH = Math.min(320, 90 + flight * 4) * scale;
-      const along = (kk: number) => ({ x: hand.x + (chest.x - hand.x) * kk, y: hand.y + (chest.y - hand.y) * kk - Math.sin(Math.PI * Math.min(1, Math.max(0, kk)) * 0.9 + 0.1) * arcH * (kk < 1 ? 1 : 0) });
-      if (k <= 1) return { ...along(k), rot: k * 540 * dir, sq: 0 };
+      if (k <= 1) return { ...pos(f), rot: k * 540 * dir, sq: 0 };
       const after = f - flight;
       if (p.outcome === "hit") {
         if (after > 6) return null;
         return { x: chest.x - dir * r * 0.6, y: chest.y, rot: 540 * dir, sq: interpolate(after, [0, 2, 6], [0.5, 0.25, 0]) };
       }
-      if (p.outcome === "miss" && p.path === "through") {
-        // bounce on the spot, each bounce lower, drifting a little further
-        if (after > 34) return null;
-        const decay = Math.pow(1 - after / 34, 1.4);
-        return { x: chest.x + dir * after * 1.5, y: chest.y - Math.abs(Math.sin(after * 0.33)) * 150 * decay, rot: 540 * dir + after * 30 * dir, sq: after < 2 ? 0.35 : 0 };
-      }
       if (p.outcome === "miss") {
-        // keep going past the target, dropping, until off-frame
-        const x = chest.x + dir * (after / flight) * Math.abs(chest.x - hand.x) * 1.2;
-        const y = chest.y + after * after * (p.path === "under" ? 0.15 : 0.5);
-        if (x < -100 || x > 1180 || y > 2000) return null;
-        return { x, y, rot: (1 + after / flight) * 540 * dir, sq: 0 };
+        // keep flying on the same parabola; when it meets the ground, bounce there (each bounce lower) and stop.
+        const q = pos(f);
+        if (q.y < ground) {
+          if (q.x < -120 || q.x > 1200) return null;
+          return { x: q.x, y: q.y, rot: k * 540 * dir, sq: 0 };
+        }
+        // find the landing frame (first f where y >= ground) by stepping — cheap, flight is small
+        let landF = flight;
+        while (pos(landF).y < ground && landF < flight + 400) landF += 1;
+        const land = pos(landF);
+        const bf = f - landF;
+        if (bf > 34) return null;
+        const decay = Math.pow(1 - bf / 34, 1.4);
+        return { x: land.x + dir * bf * 1.5, y: ground - Math.abs(Math.sin(bf * 0.33)) * 150 * decay, rot: 540 * dir + bf * 30 * dir, sq: bf < 2 ? 0.35 : 0 };
       }
       // deflect: bounce back and up, a different angle per ball
       const ang = -Math.PI * (0.55 + hash(i, p.n) * 0.5); // between straight up and back-over-the-shoulder
@@ -121,8 +140,8 @@ export const Projectiles: React.FC<{ scene: ResolvedScene; abs: number; rects: {
         els.push(<circle key={`g${i}-${p.n}-${g}`} cx={prev.x} cy={prev.y} r={r * (1 - g * 0.12)} fill="#d62828" opacity={0.28 - g * 0.07} />);
       }
     }
-    // deflect spark
-    if (p.outcome === "deflect" && t >= flight && t <= flight + 5) {
+    // impact ring: pan deflection, and the dropped ball touching the target
+    if ((p.outcome === "deflect" || p.outcome === "roll") && t >= flight && t <= flight + 5) {
       const k = (t - flight) / 5;
       els.push(<circle key={`sp${i}-${p.n}`} cx={chest.x - dir * r} cy={chest.y} r={interpolate(k, [0, 1], [14, 70]) * scale} fill="none" stroke="#ffffff" strokeWidth={interpolate(k, [0, 1], [10, 1])} opacity={1 - k} />);
     }

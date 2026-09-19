@@ -60,7 +60,8 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
       if (r) {
         // Zoom so the figure fills ~55 % of the frame height (small kid → closer), capped so nothing important leaves the frame.
         const target = Math.min(2.2, Math.max(1.25, (0.55 * 1920) / r.h));
-        const k = interpolate(spring({ frame: t, fps, config: { damping: 16, stiffness: 140 } }), [0, 1], [1, target]);
+        // At scene start the focus is a hard cut to the close-up; mid-scene it eases in.
+        const k = c.atFrame <= scene.startFrame ? target : interpolate(spring({ frame: t, fps, config: { damping: 16, stiffness: 140 } }), [0, 1], [1, target]);
         const cx = r.x + r.w / 2;
         const cy = r.y + r.h * 0.45;
         camScale *= k;

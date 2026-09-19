@@ -153,41 +153,65 @@
     {
       "sceneId": "try3",
       "file": "try3.wav",
-      "duration": 2.15,
+      "duration": 3.3,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "Try",
           "start": 0.3,
-          "end": 0.537,
+          "end": 0.512,
           "ws": " "
         },
         {
           "text": "three.",
-          "start": 0.537,
-          "end": 0.9,
+          "start": 0.512,
+          "end": 0.85,
           "ws": " "
         },
         {
           "text": "Two",
-          "start": 0.9,
-          "end": 1.125,
+          "start": 0.85,
+          "end": 1.05,
           "ws": " "
         },
         {
           "text": "at",
-          "start": 1.125,
-          "end": 1.25,
+          "start": 1.05,
+          "end": 1.15,
           "ws": " "
         },
         {
           "text": "once!",
-          "start": 1.25,
-          "end": 2.05,
+          "start": 1.15,
+          "end": 1.575,
+          "ws": " "
+        },
+        {
+          "text": "And...",
+          "start": 1.575,
+          "end": 1.837,
+          "ws": " "
+        },
+        {
+          "text": "a",
+          "start": 1.837,
+          "end": 1.925,
+          "ws": " "
+        },
+        {
+          "text": "moonwalk",
+          "start": 1.925,
+          "end": 2.375,
+          "ws": " "
+        },
+        {
+          "text": "dodge.",
+          "start": 2.375,
+          "end": 3.2,
           "ws": ""
         }
       ],
-      "hash": "12da3ca6cec7a36b"
+      "hash": "8ca796f477291f07"
     },
     {
       "sceneId": "barrage",

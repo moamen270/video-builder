@@ -55,6 +55,13 @@ becomes a rule, it also goes into the skills; this file keeps the *why*.
   the dodge starts BEFORE the ball arrives, never after. The path must match the dodge: over a lean,
   under a jump, and a sidestep only works if the ball LANDS where he stood (a ball flying on at chest
   height hits whoever is downstream). *(dodgeball v4 → v9)*
+- **One law of motion per ball.** Switching equations at the target ("arc in, then drift") looks like the
+  ball bounced on an invisible floor at hat height. A ball is one gravity parabola from the hand until it
+  meets the ground; misses are just parabolas that pass the body. A lean must be TOWARD the thrower so the
+  head sits under the higher part of the arc. Verify contacts in `review/events/` frame by frame, never from
+  one picked frame. *(dodgeball v10 → v11)*
+- **A touch must be visible.** A ball that stops at someone's foot on the ground doesn't read as a hit; make
+  it rise into the hip, ring on impact, and bounce back off him. *(dodgeball v12)*
 - **Worn things are drawn on top.** A medal "behind" the character reads as a sticker on the wall;
   props attached to a figure render after him. Gold is gold (#f2c200), not the theme accent. *(dodgeball v7 → v8)*
 - **Anger ramps.** A character at maximum red from the first setback has nowhere to go; escalate the
