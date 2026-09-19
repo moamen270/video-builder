@@ -134,6 +134,12 @@ export type PropPosition = (typeof PROP_POSITIONS)[number];
 
 export const SFX = ["pop", "whoosh", "click", "ding", "boom", "error", "swoosh", "tick", "cash", "glitch", "drum", "slash", "splat", "snikt", "gunshot", "gunshot_big", "reload", "chime", "thunder", "thud", "zip", "bounce", "clang", "whistle", "cheer"] as const; // bounce: rubber ball; clang: pan; whistle: referee; cheer: crowd stinger
 export type SfxName = (typeof SFX)[number];
+/**
+ * Global trim applied to every SFX cue's `volume` by the resolver. All files in assets/sfx are normalised to the same
+ * loudness (-20 dBFS active RMS, piercing ones a few dB lower — see assets/generate_assets.py), and the owner's
+ * review after the first uploads was "the sound is a bit annoying": effects sit under the voice, never on top of it.
+ */
+export const SFX_GAIN = 0.8;
 
 export const THEMES = ["midnight", "paper", "sunset", "mint", "grape"] as const;
 

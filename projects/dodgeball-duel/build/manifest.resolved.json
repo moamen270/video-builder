@@ -95,19 +95,19 @@
         {
           "name": "tick",
           "atFrame": 2,
-          "volume": 0.5,
+          "volume": 0.4,
           "src": "assets/sfx/tick.wav"
         },
         {
           "name": "tick",
           "atFrame": 43,
-          "volume": 0.5,
+          "volume": 0.4,
           "src": "assets/sfx/tick.wav"
         },
         {
           "name": "drum",
           "atFrame": 80,
-          "volume": 0.6,
+          "volume": 0.48,
           "src": "assets/sfx/drum.wav"
         }
       ],
@@ -234,19 +234,19 @@
         {
           "name": "whistle",
           "atFrame": 123,
-          "volume": 0.7,
+          "volume": 0.56,
           "src": "assets/sfx/whistle.wav"
         },
         {
           "name": "drum",
           "atFrame": 123,
-          "volume": 0.5,
+          "volume": 0.4,
           "src": "assets/sfx/drum.wav"
         },
         {
           "name": "drum",
           "atFrame": 182,
-          "volume": 0.5,
+          "volume": 0.4,
           "src": "assets/sfx/drum.wav"
         }
       ],
@@ -385,19 +385,19 @@
         {
           "name": "whoosh",
           "atFrame": 248,
-          "volume": 0.5,
+          "volume": 0.4,
           "src": "assets/sfx/whoosh.wav"
         },
         {
           "name": "pop",
           "atFrame": 259,
-          "volume": 0.4,
+          "volume": 0.32,
           "src": "assets/sfx/pop.wav"
         },
         {
           "name": "bounce",
           "atFrame": 303,
-          "volume": 0.6,
+          "volume": 0.48,
           "src": "assets/sfx/bounce.wav"
         }
       ],
@@ -540,7 +540,7 @@
         {
           "name": "error",
           "atFrame": 323,
-          "volume": 0.4,
+          "volume": 0.32,
           "src": "assets/sfx/error.wav"
         }
       ],
@@ -660,13 +660,13 @@
         {
           "name": "whoosh",
           "atFrame": 393,
-          "volume": 0.6,
+          "volume": 0.48,
           "src": "assets/sfx/whoosh.wav"
         },
         {
           "name": "bounce",
           "atFrame": 414,
-          "volume": 0.6,
+          "volume": 0.48,
           "src": "assets/sfx/bounce.wav"
         }
       ],
@@ -858,31 +858,31 @@
         {
           "name": "whoosh",
           "atFrame": 466,
-          "volume": 0.5,
+          "volume": 0.4,
           "src": "assets/sfx/whoosh.wav"
         },
         {
           "name": "whoosh",
           "atFrame": 470,
-          "volume": 0.5,
+          "volume": 0.4,
           "src": "assets/sfx/whoosh.wav"
         },
         {
           "name": "bounce",
           "atFrame": 476,
-          "volume": 0.6,
+          "volume": 0.48,
           "src": "assets/sfx/bounce.wav"
         },
         {
           "name": "bounce",
           "atFrame": 480,
-          "volume": 0.5,
+          "volume": 0.4,
           "src": "assets/sfx/bounce.wav"
         },
         {
           "name": "bounce",
           "atFrame": 487,
-          "volume": 0.35,
+          "volume": 0.28,
           "src": "assets/sfx/bounce.wav"
         }
       ],
@@ -1061,49 +1061,49 @@
         {
           "name": "whoosh",
           "atFrame": 570,
-          "volume": 0.4,
+          "volume": 0.32,
           "src": "assets/sfx/whoosh.wav"
         },
         {
           "name": "clang",
           "atFrame": 605,
-          "volume": 0.6,
+          "volume": 0.48,
           "src": "assets/sfx/clang.wav"
         },
         {
           "name": "clang",
           "atFrame": 611,
-          "volume": 0.6,
+          "volume": 0.48,
           "src": "assets/sfx/clang.wav"
         },
         {
           "name": "clang",
           "atFrame": 617,
-          "volume": 0.6,
+          "volume": 0.48,
           "src": "assets/sfx/clang.wav"
         },
         {
           "name": "clang",
           "atFrame": 623,
-          "volume": 0.6,
+          "volume": 0.48,
           "src": "assets/sfx/clang.wav"
         },
         {
           "name": "clang",
           "atFrame": 629,
-          "volume": 0.6,
+          "volume": 0.48,
           "src": "assets/sfx/clang.wav"
         },
         {
           "name": "clang",
           "atFrame": 635,
-          "volume": 0.6,
+          "volume": 0.48,
           "src": "assets/sfx/clang.wav"
         },
         {
           "name": "drum",
           "atFrame": 620,
-          "volume": 0.5,
+          "volume": 0.4,
           "src": "assets/sfx/drum.wav"
         }
       ],
@@ -1345,7 +1345,7 @@
         {
           "name": "pop",
           "atFrame": 704,
-          "volume": 0.5,
+          "volume": 0.4,
           "src": "assets/sfx/pop.wav"
         }
       ],
@@ -1505,7 +1505,7 @@
         {
           "name": "error",
           "atFrame": 825,
-          "volume": 0.4,
+          "volume": 0.32,
           "src": "assets/sfx/error.wav"
         }
       ],
@@ -1650,13 +1650,13 @@
         {
           "name": "tick",
           "atFrame": 896,
-          "volume": 0.4,
+          "volume": 0.32,
           "src": "assets/sfx/tick.wav"
         },
         {
           "name": "pop",
           "atFrame": 915,
-          "volume": 0.5,
+          "volume": 0.4,
           "src": "assets/sfx/pop.wav"
         }
       ],
@@ -1808,43 +1808,43 @@
         {
           "name": "bounce",
           "atFrame": 957,
-          "volume": 0.6,
+          "volume": 0.48,
           "src": "assets/sfx/bounce.wav"
         },
         {
           "name": "bounce",
           "atFrame": 968,
-          "volume": 0.5,
+          "volume": 0.4,
           "src": "assets/sfx/bounce.wav"
         },
         {
           "name": "bounce",
           "atFrame": 977,
-          "volume": 0.45,
+          "volume": 0.36,
           "src": "assets/sfx/bounce.wav"
         },
         {
           "name": "thud",
           "atFrame": 984,
-          "volume": 0.6,
+          "volume": 0.48,
           "src": "assets/sfx/thud.wav"
         },
         {
           "name": "bounce",
           "atFrame": 989,
-          "volume": 0.4,
+          "volume": 0.32,
           "src": "assets/sfx/bounce.wav"
         },
         {
           "name": "thud",
           "atFrame": 1001,
-          "volume": 1,
+          "volume": 0.8,
           "src": "assets/sfx/thud.wav"
         },
         {
           "name": "boom",
           "atFrame": 1001,
-          "volume": 0.5,
+          "volume": 0.4,
           "src": "assets/sfx/boom.wav"
         }
       ],
@@ -1981,7 +1981,7 @@
         {
           "name": "whistle",
           "atFrame": 1028,
-          "volume": 0.7,
+          "volume": 0.56,
           "src": "assets/sfx/whistle.wav"
         }
       ],
@@ -2144,19 +2144,19 @@
         {
           "name": "cheer",
           "atFrame": 1070,
-          "volume": 0.7,
+          "volume": 0.56,
           "src": "assets/sfx/cheer.wav"
         },
         {
           "name": "ding",
           "atFrame": 1091,
-          "volume": 0.6,
+          "volume": 0.48,
           "src": "assets/sfx/ding.wav"
         },
         {
           "name": "chime",
           "atFrame": 1102,
-          "volume": 0.6,
+          "volume": 0.48,
           "src": "assets/sfx/chime.wav"
         }
       ],
@@ -2307,19 +2307,19 @@
         {
           "name": "whoosh",
           "atFrame": 1164,
-          "volume": 0.7,
+          "volume": 0.56,
           "src": "assets/sfx/whoosh.wav"
         },
         {
           "name": "boom",
           "atFrame": 1174,
-          "volume": 0.9,
+          "volume": 0.72,
           "src": "assets/sfx/boom.wav"
         },
         {
           "name": "click",
           "atFrame": 1174,
-          "volume": 0.7,
+          "volume": 0.56,
           "src": "assets/sfx/click.wav"
         }
       ],
@@ -2556,13 +2556,13 @@
         {
           "name": "pop",
           "atFrame": 1201,
-          "volume": 0.5,
+          "volume": 0.4,
           "src": "assets/sfx/pop.wav"
         },
         {
           "name": "ding",
           "atFrame": 1248,
-          "volume": 0.6,
+          "volume": 0.48,
           "src": "assets/sfx/ding.wav"
         }
       ],
@@ -2715,7 +2715,7 @@
         {
           "name": "pop",
           "atFrame": 1347,
-          "volume": 0.6,
+          "volume": 0.48,
           "src": "assets/sfx/pop.wav"
         }
       ],
@@ -2752,7 +2752,7 @@
     "name": "Dummy Sticky"
   },
   "meta": {
-    "resolvedAt": "2026-09-19T18:44:55.657Z",
+    "resolvedAt": "2026-09-19T19:10:51.959Z",
     "engineVersion": "0.1.0",
     "ttsModel": "ResembleAI/chatterbox",
     "manifestHash": "f67275f712276cc4"

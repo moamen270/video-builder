@@ -33,6 +33,10 @@ becomes a rule, it also goes into the skills; this file keeps the *why*.
   instantly → `speaker`. *(batman v6)*
 - **Sustained noisy SFX under dialogue sound like a broken radio** (thunder, glitch). Use
   drum / boom / chime hits. *(batman v3)*
+- **White noise is radio static at phone volume.** `cheer` and `whoosh` were low-passed white noise
+  and were called "100 % noise, trash"; the music's vinyl crackle read as noise too. Noise-based
+  effects must be band-limited (pink source + resonant band-pass) and all SFX normalised to one
+  loudness with a global trim — a viewer wrote that the sound was "a bit annoying". *(dodgeball v15 review, 2026-09-19)*
 - **Opening lines slower than the body** (speed ~0.78): the first line is a performance,
   not narration. *(jhin v7)*
 - **Kokoro cannot act; stop asking it to.** Punctuation, CAPS and `?!` leave its pitch contour

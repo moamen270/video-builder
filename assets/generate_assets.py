@@ -46,10 +46,69 @@ def lowpass(x: np.ndarray, cutoff: float) -> np.ndarray:
     return y
 
 
+def pink(rng: np.random.Generator, n: int) -> np.ndarray:
+    """1/f noise (Voss-McCartney): the hiss of white noise is what reads as 'radio static' at phone volume."""
+    rows = 16
+    out = np.zeros(n)
+    for r in range(rows):
+        step = 2**r
+        vals = rng.normal(0, 1, n // step + 2)
+        out += np.repeat(vals, step)[:n]
+    out += rng.normal(0, 1, n) * 0.3
+    return out / (rows**0.5)
+
+
+def bandpass(x: np.ndarray, lo: float, hi: float, order: int = 2) -> np.ndarray:
+    from scipy.signal import butter, sosfilt
+
+    lo, hi = max(20.0, lo), min(SR / 2 - 100, hi)
+    sos = butter(order, [lo, hi], btype="band", fs=SR, output="sos")
+    return sosfilt(sos, x)
+
+
+def swept_band(noise: np.ndarray, f_from: float, f_to: float, q: float = 1.8, step: int = 256) -> np.ndarray:
+    """Noise through a resonant band-pass whose centre glides f_from -> f_to (the body of a whoosh)."""
+    n = len(noise)
+    centres = np.geomspace(f_from, f_to, n)
+    out = np.zeros(n)
+    for i in range(0, n, step):
+        fc = float(centres[min(i, n - 1)])
+        seg = noise[max(0, i - step) : i + step]  # overlap so the filter state does not click
+        y = bandpass(seg, fc / (1 + 0.5 / q), fc * (1 + 0.5 / q))
+        out[i : i + step] = y[-len(noise[i : i + step]) :]
+    return out
+
+
+# Target loudness for every SFX, measured as RMS over the active part. One number so a `volume: 0.8`
+# in a manifest means the same thing for a tick and for a thunderclap; peaks are capped afterwards.
+TARGET_RMS_DB = -20.0
+# Piercing or noisy effects sit a little lower than the rest (owner feedback: "the sound is a bit annoying").
+TRIM_DB = {"glitch": -5, "error": -4, "whistle": -4, "ding": -3, "thunder": -4, "cheer": -2, "gunshot_big": -2, "boom": -2}
+
+
+def active_rms(x: np.ndarray) -> float:
+    frames = x[: len(x) // 1024 * 1024].reshape(-1, 1024) if len(x) >= 1024 else x[None, :]
+    r = np.sqrt((frames**2).mean(axis=1))
+    act = r[r > r.max() * 0.1]
+    return float(act.mean()) if act.size else float(r.max() or 1e-6)
+
+
+def loudnorm(x: np.ndarray, name: str, target_db: float = TARGET_RMS_DB, peak: float = 0.95) -> np.ndarray:
+    x = x.astype(np.float64) - x.mean()
+    target = target_db + TRIM_DB.get(name, 0)
+    g = 10 ** (target / 20) / max(active_rms(x), 1e-9)
+    y = x * g
+    m = np.max(np.abs(y))
+    if m > peak:
+        y *= peak / m
+    return y.astype(np.float32)
+
+
 def write(name: str, x: np.ndarray, folder: Path = SFX) -> None:
     folder.mkdir(parents=True, exist_ok=True)
-    sf.write(str(folder / f"{name}.wav"), norm(x), SR, subtype="PCM_16")
-    print(f"  {folder.name}/{name}.wav  {len(x) / SR:.2f}s")
+    y = loudnorm(x, name) if folder == SFX else norm(x, 0.8)
+    sf.write(str(folder / f"{name}.wav"), y, SR, subtype="PCM_16")
+    print(f"  {folder.name}/{name}.wav  {len(x) / SR:.2f}s  rms {20 * np.log10(active_rms(y) + 1e-9):.1f} dB")
 
 
 def pop() -> np.ndarray:
@@ -69,17 +128,15 @@ def tick() -> np.ndarray:
 
 
 def whoosh(dur: float = 0.45, rising: bool = True) -> np.ndarray:
+    """Air moving past: pink noise through a gliding resonant band (no broadband hiss), soft edges, a low 'air' tone."""
     rng = np.random.default_rng(2)
     n = int(SR * dur)
-    noise = rng.normal(0, 1, n)
-    sweep = np.linspace(300, 3500, n) if rising else np.linspace(3500, 300, n)
-    out = np.zeros(n)
-    # band-ish filter via modulated lowpass: chunked cutoff
-    step = 512
-    for i in range(0, n, step):
-        out[i : i + step] = lowpass(noise[i : i + step], float(sweep[min(i, n - 1)]))
-    shape = np.sin(np.pi * np.arange(n) / n) ** 1.5
-    return out * shape
+    body = swept_band(pink(rng, n), 220 if rising else 1400, 1400 if rising else 220, q=2.2)
+    body = lowpass(body, 2600)
+    x = t(dur)
+    air = np.sin(2 * np.pi * (90 + (60 if rising else -40) * x / dur) * x) * 0.15
+    shape = np.sin(np.pi * np.arange(n) / n) ** 2.2
+    return (body + air) * shape
 
 
 def ding() -> np.ndarray:
@@ -123,8 +180,8 @@ def glitch() -> np.ndarray:
     for _ in range(9):
         s = rng.integers(0, n - 800)
         ln = rng.integers(200, 800)
-        out[s : s + ln] += np.sign(np.sin(2 * np.pi * rng.uniform(300, 2500) * x[:ln])) * rng.uniform(0.3, 1)
-    return out * env(n, 0.001, 0.5, 1.2)
+        out[s : s + ln] += np.sign(np.sin(2 * np.pi * rng.uniform(300, 1800) * x[:ln])) * rng.uniform(0.3, 1)
+    return lowpass(out, 2400) * env(n, 0.001, 0.5, 1.2)
 
 
 def drum() -> np.ndarray:
@@ -230,8 +287,8 @@ def thunder() -> np.ndarray:
     x = t(2.6)
     n = len(x)
     # Steep low-pass (three poles) so no hiss survives; slow swell, long tail, sub layer.
-    r1 = lowpass(lowpass(lowpass(rng.normal(0, 1, n), 110), 110), 110) * env(n, 0.35, 1.9, 1.8)
-    r2 = lowpass(lowpass(lowpass(rng.normal(0, 1, n), 55), 55), 55) * env(n, 0.5, 2.3, 1.5)
+    r1 = lowpass(lowpass(pink(rng, n), 110), 110) * env(n, 0.35, 1.9, 1.8)
+    r2 = lowpass(lowpass(pink(rng, n), 55), 55) * env(n, 0.5, 2.3, 1.5)
     sub = np.sin(2 * np.pi * 42 * x + 3 * np.sin(2 * np.pi * 0.6 * x)) * env(n, 0.4, 2.2, 1.6) * 0.5
     wobble = 1 + 0.25 * np.sin(2 * np.pi * 1.3 * x) * np.exp(-x * 0.8)
     return (r1 * 2.0 + r2 * 3.0 + sub) * wobble
@@ -292,22 +349,31 @@ def whistle() -> np.ndarray:
 
 
 def cheer() -> np.ndarray:
-    """Crowd stinger: a swell of many detuned voices (filtered noise + hum cluster) with claps on top."""
+    """Crowd stinger: ~40 'aah' voices (formant-filtered pulses, random pitch/onset/vibrato) swelling, claps on top.
+    No noise bed at all — the old version's low-passed white noise is what sounded like radio static."""
     rng = np.random.default_rng(44)
-    x = t(1.6)
+    x = t(1.7)
     n = len(x)
-    swell = np.clip(x / 0.25, 0, 1) * np.exp(-np.clip(x - 0.6, 0, None) * 2.2)
-    roar = lowpass(rng.normal(0, 1, n), 1400) * swell
-    hum = np.zeros(n)
-    for f in (180, 214, 262, 311, 349, 415):
-        hum += np.sin(2 * np.pi * (f + rng.normal(0, 2)) * x + rng.uniform(0, 6))
-    hum = hum / 6 * swell * 0.6
+    voices = np.zeros(n)
+    for _ in range(40):
+        f0 = rng.uniform(140, 330)
+        onset = rng.uniform(0.0, 0.35)
+        vib = 1 + 0.012 * np.sin(2 * np.pi * rng.uniform(4.5, 6.5) * x + rng.uniform(0, 6))
+        glide = 1 + 0.06 * np.clip((x - onset) / 0.5, 0, 1)  # voices rise as they get excited
+        phase = 2 * np.pi * np.cumsum(f0 * vib * glide) / SR
+        # pulse-ish source: a few harmonics with 1/k rolloff
+        src = sum(np.sin(k * phase) / k for k in range(1, 9))
+        e = np.clip((x - onset) / 0.18, 0, 1) * np.exp(-np.clip(x - onset - 0.55, 0, None) * 2.4)
+        voices += src * e * rng.uniform(0.6, 1.0)
+    # 'aah' formants
+    vowel = bandpass(voices, 600, 950) * 1.0 + bandpass(voices, 1000, 1500) * 0.6 + bandpass(voices, 2300, 3000) * 0.2
     claps = np.zeros(n)
-    for _ in range(26):
-        i = int(rng.uniform(0.05, 1.3) * SR)
+    for _ in range(30):
+        i = int(rng.uniform(0.1, 1.4) * SR)
         m = min(n - i, int(0.03 * SR))
-        claps[i : i + m] += rng.normal(0, 1, m) * env(m, 0.0005, 0.02)
-    return roar * 1.1 + hum + lowpass(claps, 4000) * 0.5
+        claps[i : i + m] += bandpass(rng.normal(0, 1, m), 900, 3500) * env(m, 0.0005, 0.02)
+    tail = np.exp(-np.clip(x - 1.15, 0, None) * 5)
+    return (vowel * 1.0 + claps * 0.35) * tail
 
 
 def lofi_loop(name: str = "lofi-01", bpm: float = 78, bars: int = 8, seed: int = 7) -> np.ndarray:
@@ -335,9 +401,11 @@ def lofi_loop(name: str = "lofi-01", bpm: float = 78, bars: int = 8, seed: int =
         pad *= np.minimum(1, seg / 0.3) * np.exp(-seg * 0.35)
         wobble = 1 + 0.004 * np.sin(2 * np.pi * 0.7 * seg)  # tape flutter
         out[s : s + len(seg)] += lowpass(pad * wobble, 1800)
-    # drums
-    kick = drum()[: int(SR * 0.3)] * 0.55
-    hat = tick() * 0.25
+    # drums: pure sine kick (the snare-noise of drum() was audible as hiss under the pad), soft hat
+    kx = t(0.3)
+    kf = 150 * np.exp(-kx * 20) + 48
+    kick = np.sin(2 * np.pi * np.cumsum(kf) / SR) * env(len(kx), 0.001, 0.22) * 0.5
+    hat = lowpass(tick(), 6000) * 0.12
     for b in range(bars):
         for k in (0, 2.5):
             i = int((b * bar + k * beat) * SR)
@@ -346,10 +414,8 @@ def lofi_loop(name: str = "lofi-01", bpm: float = 78, bars: int = 8, seed: int =
             i = int((b * bar + h * beat / 2) * SR)
             if h % 2 == 1:
                 out[i : i + len(hat)] += hat[: max(0, min(len(hat), n - i))]
-    # vinyl crackle
-    crackle = rng.normal(0, 1, n) * (rng.uniform(0, 1, n) > 0.9985) * 0.4
-    out += lowpass(crackle, 3000)
-    return out
+    # (no vinyl crackle: at Shorts playback levels it read as noise, not warmth)
+    return lowpass(out, 6500)
 
 
 def main() -> None:

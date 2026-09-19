@@ -1,8 +1,9 @@
 import { createHash } from "node:crypto";
 import type { Brand } from "../brand.js";
-import { copyFileSync, existsSync, mkdirSync, readdirSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import {
+  SFX_GAIN,
   VIDEO,
   type AlignmentFile,
   type Manifest,
@@ -203,7 +204,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
     const sfx = s.sfx.map((fx, i) => ({
       name: fx.name,
       atFrame: at(fx.at, `sfx[${i}].at`),
-      volume: fx.volume,
+      volume: Number((fx.volume * SFX_GAIN).toFixed(3)),
       src: stageAsset("sfx", fx.name, p, `${where}.sfx[${i}]`),
     }));
 
@@ -365,6 +366,9 @@ function stageAsset(kind: "sfx" | "music", name: string, p: ProjectPaths, where:
   const destDir = path.join(p.buildAssets, kind);
   mkdirSync(destDir, { recursive: true });
   const dest = path.join(destDir, file);
-  if (!existsSync(dest)) copyFileSync(path.join(dir, file), dest);
+  const src = path.join(dir, file);
+  // Re-copy when the library file changed (regenerated SFX/music must reach the next render, not stay stale forever).
+  const stale = !existsSync(dest) || statSync(dest).size !== statSync(src).size || statSync(dest).mtimeMs < statSync(src).mtimeMs;
+  if (stale) copyFileSync(src, dest);
   return `assets/${kind}/${file}`;
 }
