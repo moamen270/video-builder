@@ -153,19 +153,7 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
       <AbsoluteFill style={{ transform: `translate(${camX}px, ${camY}px) scale(${camScale})`, transformOrigin: "50% 45%" }}>
         {scene.props.map((p, i) => {
           if (abs < p.atFrame || abs >= p.untilFrame) return null;
-          if (p.on) {
-            const r = extraRects.find((x) => x.e.id === p.on)?.rect;
-            if (!r) return null;
-            const size = r.h * 0.26;
-            const head = { x: r.x + r.w / 2, y: r.y + r.h * 0.12 };
-            const zone =
-              p.position === "above_character"
-                ? { x: head.x - size / 2, y: head.y - size * 0.95, w: size, h: size }
-                : p.position === "center"
-                  ? { x: head.x - size / 2, y: r.y + r.h * 0.36, w: size, h: size }
-                  : { x: (p.position === "left" ? r.x - size * 0.45 : r.x + r.w - size * 0.55), y: r.y + r.h * 0.28, w: size, h: size };
-            return <Prop key={i} prop={{ ...p, position: "center" }} sceneStart={scene.startFrame} zone={zone} palette={palette} slot={0} slots={1} />;
-          }
+          if (p.on) return null; // attached props are drawn after the figures
           const slot = zoneSeen.get(p.position) ?? 0;
           zoneSeen.set(p.position, slot + 1);
           return <Prop key={i} prop={p} sceneStart={scene.startFrame} zone={spec.props[p.position]} palette={palette} slot={slot} slots={zoneCounts.get(p.position) ?? 1} />;
@@ -220,6 +208,22 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
         {scene.character && charRect && !heroHidden && scene.character.shots.length > 0 && (
           <Shots shots={scene.character.shots} abs={abs} poseAt={(f) => poseAtFrame(scene, f)} rect={charRect} flip={scene.character.position === "right"} zones={spec.props} magenta={scene.character.style === "jhin"} palette={palette} />
         )}
+
+        {/* Props worn/held by an extra: on top of him (medal on the chest, trophy in the hand). */}
+        {scene.props.map((p, i) => {
+          if (!p.on || abs < p.atFrame || abs >= p.untilFrame) return null;
+            const r = extraRects.find((x) => x.e.id === p.on)?.rect;
+            if (!r) return null;
+            const size = r.h * 0.26;
+            const head = { x: r.x + r.w / 2, y: r.y + r.h * 0.12 };
+            const zone =
+              p.position === "above_character"
+                ? { x: head.x - size / 2, y: head.y - size * 0.95, w: size, h: size }
+                : p.position === "center"
+                  ? { x: head.x - size / 2, y: r.y + r.h * 0.36, w: size, h: size }
+                  : { x: (p.position === "left" ? r.x - size * 0.45 : r.x + r.w - size * 0.55), y: r.y + r.h * 0.28, w: size, h: size };
+            return <Prop key={i} prop={{ ...p, position: "center" }} sceneStart={scene.startFrame} zone={zone} palette={palette} slot={0} slots={1} />;
+        })}
 
         {charRect &&
           scene.bubbles.map((b, i) => {

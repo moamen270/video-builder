@@ -56,7 +56,7 @@ export const Projectiles: React.FC<{ scene: ResolvedScene; abs: number; rects: {
     const dir = to.x > from.x ? 1 : -1;
     const hand = { x: from.x + from.w * (dir > 0 ? 0.78 : 0.22), y: from.y + from.h * 0.36 };
     // Misses are aimed at head height of the STANDING figure so a lean/duck/jump visibly clears the ball.
-    const chest = { x: to.x + to.w / 2, y: to.y + to.h * (p.outcome === "miss" ? 0.1 : 0.42) };
+    const chest = { x: to.x + to.w / 2, y: p.outcome === "miss" ? to.y - r * 1.6 : to.y + to.h * 0.42 };
     const ground = to.y + to.h - r;
     const flight = Math.max(1, p.hitFrame - p.atFrame);
     const t = abs - p.atFrame;
@@ -86,7 +86,7 @@ export const Projectiles: React.FC<{ scene: ResolvedScene; abs: number; rects: {
       if (p.outcome === "miss") {
         // keep going past the target, dropping, until off-frame
         const x = chest.x + dir * (after / flight) * Math.abs(chest.x - hand.x) * 1.2;
-        const y = chest.y + after * after * 1.6;
+        const y = chest.y + after * after * 0.5;
         if (x < -100 || x > 1180 || y > 2000) return null;
         return { x, y, rot: (1 + after / flight) * 540 * dir, sq: 0 };
       }

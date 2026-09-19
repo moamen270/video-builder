@@ -185,9 +185,9 @@ export const ICONS: Record<PropName, Icon> = {
       <path d="M50 6l13 27 30 4-22 21 6 30-27-15-27 15 6-30L8 37l30-4z" fill={accent} />
     </g>
   ),
-  trophy: ({ line, fill, accent }) => (
+  trophy: ({ line, fill }) => (
     <g {...base(line)}>
-      <path d="M30 10h40v24a20 20 0 0 1-40 0z" fill={accent} />
+      <path d="M30 10h40v24a20 20 0 0 1-40 0z" fill="#f2c200" />
       <path d="M30 18H16c0 12 6 18 14 18M70 18h14c0 12-6 18-14 18" />
       <path d="M44 54h12v14H44zM30 68h40v16H30z" fill={fill} />
     </g>
@@ -306,11 +306,11 @@ export const ICONS: Record<PropName, Icon> = {
       <circle cx={86} cy={34} r={4} fill="#4cc9f0" />
     </g>
   ),
-  medal: ({ line, accent }) => (
+  medal: ({ line }) => (
     <g {...base(line)}>
       <path d="M 34 6 L 50 40 L 66 6" fill="#c1121f" />
       <path d="M 40 6 L 50 28 L 60 6" fill="#1d3557" stroke="none" />
-      <circle cx={50} cy={62} r={26} fill={accent} />
+      <circle cx={50} cy={62} r={26} fill="#f2c200" />
       <circle cx={50} cy={62} r={18} fill="none" stroke="#b07d00" strokeWidth={3} />
       <text x={50} y={71} textAnchor="middle" fontFamily='"Arial Black", Impact, sans-serif' fontWeight={900} fontSize={24} fill="#5a3e00" stroke="none">1</text>
     </g>

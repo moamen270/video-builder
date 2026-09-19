@@ -50,6 +50,16 @@ becomes a rule, it also goes into the skills; this file keeps the *why*.
 - **Keep the hero's exit inside its scene.** A grapple that spans scenes breaks when the
   next scene needs a different speaker. Split: exit scene → reaction scene. *(batman v6)*
 
+- **A "miss" must miss by a visible margin.** Aiming a dodgeball at head height and having the target
+  lean is not a miss — the ball lands on the head. Misses fly above the standing head and stay flat;
+  the dodge starts BEFORE the ball arrives, never after. *(dodgeball v4 → v8)*
+- **Worn things are drawn on top.** A medal "behind" the character reads as a sticker on the wall;
+  props attached to a figure render after him. Gold is gold (#f2c200), not the theme accent. *(dodgeball v7 → v8)*
+- **Anger ramps.** A character at maximum red from the first setback has nowhere to go; escalate the
+  expression with the beats (worried → fierce → angry). *(dodgeball v6 review)*
+- **Camera should be on whoever owns the beat** (`focus`); captions stay fixed to the frame under
+  any camera move. *(dodgeball v4 → v5)*
+
 ## Structure
 
 - **First 3 seconds decide everything.** Talking intros lost viewers; open on the action

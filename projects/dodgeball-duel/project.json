@@ -4,7 +4,7 @@
   "createdAt": "2026-09-19T00:00:00.000Z",
   "targetSeconds": 45,
   "status": "qa_passed",
-  "lastRenderMs": 106173,
+  "lastRenderMs": 77188,
   "versions": [
     {
       "n": 1,
@@ -75,6 +75,16 @@
       "manifestHash": "36130b8fff2d1039",
       "note": "v7: review pass 3 — anger ramp, lean held past the ball, no tag on KO bodies, kid focus after arrival, higher jump",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/dodgeball-duel-v7/final.mp4"
+    },
+    {
+      "n": 8,
+      "at": "2026-09-19T07:09:01.314Z",
+      "seconds": 48.833333333333336,
+      "renderMs": 77188,
+      "qaOk": true,
+      "manifestHash": "c1e4a25479b5510a",
+      "note": "v8: misses fly over the head, dodge before the two balls, gold medal worn + gold cup (no crown), Pebble ending: like ask + follow",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/dodgeball-duel-v8/final.mp4"
     }
   ]
 }
