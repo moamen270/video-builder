@@ -55,7 +55,7 @@ export const RIGS: Record<Pose, Rig> = {
   // Dodgeball: dodges lean AWAY from a ball coming from screen-left (torso + = tilt right).
   mj_lean: { lUpper: -10, lLower: -4, rUpper: 10, rLower: 4, lThigh: -6, lShin: 0, rThigh: 6, rShin: 0, head: 0, torso: -44, lift: 0, nod: 4 },
   mj_toe: { lUpper: -100, lLower: -10, rUpper: 150, rLower: 80, lThigh: -3, lShin: 0, rThigh: 3, rShin: 0, head: 6, torso: 0, lift: -14, nod: 6 },
-  dodge_jump: { lUpper: -120, lLower: -30, rUpper: 120, rLower: 30, lThigh: -40, lShin: 110, rThigh: 40, rShin: -110, head: 0, torso: 0, lift: -230, nod: 8 },
+  dodge_jump: { lUpper: -120, lLower: -30, rUpper: 120, rLower: 30, lThigh: -40, lShin: 110, rThigh: 40, rShin: -110, head: 0, torso: 0, lift: -300, nod: 8 },
   dodge_lean: { lUpper: -140, lLower: -20, rUpper: 40, rLower: 30, lThigh: -34, lShin: 0, rThigh: 26, rShin: -60, head: 18, torso: 38, lift: 6, nod: -10 },
   dodge_limbo: { lUpper: -150, lLower: -10, rUpper: 20, rLower: 60, lThigh: -44, lShin: 0, rThigh: 40, rShin: -95, head: 22, torso: 62, lift: 30, nod: -14 },
   dodge_split: { lUpper: -95, lLower: 0, rUpper: 95, rLower: 0, lThigh: -82, lShin: 0, rThigh: 82, rShin: 0, head: 0, torso: 0, lift: 130, nod: 6 },

@@ -367,7 +367,7 @@
             {
               "pose": "idle",
               "expression": "smug",
-              "atFrame": 285
+              "atFrame": 290
             }
           ],
           "koFrame": null,
@@ -377,7 +377,7 @@
           "heldFrame": 195,
           "hat": "fedora",
           "hatFrame": 243,
-          "hatUntilFrame": 285
+          "hatUntilFrame": 290
         }
       ],
       "props": [],
@@ -488,14 +488,14 @@
           "id": "brick",
           "style": "stickman",
           "pose": "facepalm",
-          "expression": "angry",
+          "expression": "worried",
           "x": 162,
           "scale": 0.85,
           "travel": null,
           "poseChanges": [
             {
               "pose": "arms_crossed",
-              "expression": "angry",
+              "expression": "fierce",
               "atFrame": 319
             }
           ],
@@ -604,7 +604,7 @@
           "id": "brick",
           "style": "stickman",
           "pose": "windup",
-          "expression": "angry",
+          "expression": "fierce",
           "x": 162,
           "scale": 0.85,
           "travel": null,
@@ -757,7 +757,7 @@
           "id": "brick",
           "style": "stickman",
           "pose": "windup",
-          "expression": "angry",
+          "expression": "fierce",
           "x": 162,
           "scale": 0.85,
           "travel": null,
@@ -1517,7 +1517,7 @@
           "id": "brick",
           "style": "stickman",
           "pose": "facepalm",
-          "expression": "angry",
+          "expression": "confused",
           "x": 162,
           "scale": 0.85,
           "travel": null,
@@ -1619,7 +1619,7 @@
       "camera": [
         {
           "move": "focus",
-          "atFrame": 866,
+          "atFrame": 877,
           "on": "pebble"
         }
       ],
@@ -1988,14 +1988,14 @@
           "id": "brick",
           "style": "stickman",
           "pose": "shocked",
-          "expression": "angry",
+          "expression": "surprised",
           "x": 162,
           "scale": 0.85,
           "travel": null,
           "poseChanges": [
             {
               "pose": "facepalm",
-              "expression": "worried",
+              "expression": "surprised",
               "atFrame": 1124
             }
           ],
@@ -2404,9 +2404,9 @@
     "name": "Dummy Sticky"
   },
   "meta": {
-    "resolvedAt": "2026-09-18T21:50:47.636Z",
+    "resolvedAt": "2026-09-19T01:13:39.707Z",
     "engineVersion": "0.1.0",
     "ttsModel": "hexgrad/Kokoro-82M",
-    "manifestHash": "94e822e4bca3f158"
+    "manifestHash": "36130b8fff2d1039"
   }
 }

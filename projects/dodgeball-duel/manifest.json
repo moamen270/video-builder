@@ -16,7 +16,7 @@
       "style": "stickman"
     }
   ],
-  "notes": "Sports-commentator narration (am_michael, fast, stadium). Brick (big, no patience) vs Noodle (unhittable, insufferable), Pebble the kid wins by dropping a ball. Escalation (v4, after review): slow pitch → Matrix dodge → faster → two at once → Gatling barrage vs frying pan → gives up → the kid. Ending: Brick throws his last ball at the camera. v1: no bullet-time yet. Alt hooks: 'Nobody hits Noodle.' / 'One ball. One kid.' v5: MJ moves (mj_toe/mj_lean/moonwalk) with a fedora that appears and vanishes, jump dodge, Brick goes red with ear steam, camera `focus` on the actor of each beat, coronation props attached to Pebble.",
+  "notes": "Sports-commentator narration (am_michael, fast, stadium). Brick (big, no patience) vs Noodle (unhittable, insufferable), Pebble the kid wins by dropping a ball. Escalation (v4, after review): slow pitch → Matrix dodge → faster → two at once → Gatling barrage vs frying pan → gives up → the kid. Ending: Brick throws his last ball at the camera. v1: no bullet-time yet. Alt hooks: 'Nobody hits Noodle.' / 'One ball. One kid.' v5: MJ moves (mj_toe/mj_lean/moonwalk) with a fedora that appears and vanishes, jump dodge, Brick goes red with ear steam, camera `focus` on the actor of each beat, coronation props attached to Pebble. v7: anger ramps (worried → fierce → angry → shocked → angry), lean held until the ball clears, no tag on KO bodies, focus on Pebble after arrival, higher jump.",
   "social": {
     "title": "The Ultimate Dodgeball Match — nobody can hit Noodle (stickman)",
     "hook": "Nobody can hit Noodle.",
@@ -248,12 +248,12 @@
             {
               "pose": "idle",
               "expression": "smug",
-              "at": "word:pitch+1.75"
+              "at": "word:pitch+2.15"
             }
           ],
           "hat": "fedora",
           "hatAt": "word:pitch+0.35",
-          "hatUntil": "word:pitch+1.75"
+          "hatUntil": "word:pitch+2.15"
         }
       ],
       "projectiles": [
@@ -314,13 +314,13 @@
           "style": "stickman",
           "label": "Brick",
           "pose": "facepalm",
-          "expression": "angry",
+          "expression": "worried",
           "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
             {
               "pose": "arms_crossed",
-              "expression": "angry",
+              "expression": "fierce",
               "at": "word:amused"
             }
           ]
@@ -375,7 +375,7 @@
           "style": "stickman",
           "label": "Brick",
           "pose": "windup",
-          "expression": "angry",
+          "expression": "fierce",
           "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
@@ -452,7 +452,7 @@
           "style": "stickman",
           "label": "Brick",
           "pose": "windup",
-          "expression": "angry",
+          "expression": "fierce",
           "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
@@ -808,7 +808,7 @@
           "style": "stickman",
           "label": "Brick",
           "pose": "facepalm",
-          "expression": "angry",
+          "expression": "confused",
           "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
@@ -884,7 +884,7 @@
         {
           "move": "focus",
           "on": "pebble",
-          "at": "word:this"
+          "at": "word:this+0.35"
         }
       ]
     },
@@ -1080,13 +1080,13 @@
           "style": "stickman",
           "label": "Brick",
           "pose": "shocked",
-          "expression": "angry",
+          "expression": "surprised",
           "x": 0.15,
           "scale": 0.85,
           "poseChanges": [
             {
               "pose": "facepalm",
-              "expression": "worried",
+              "expression": "surprised",
               "at": "word:pebble+0.6"
             }
           ]

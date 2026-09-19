@@ -336,7 +336,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
             <path d={`M ${HIP.x + 120} ${HIP.y + 20} A 120 44 0 0 1 ${HIP.x - 120} ${HIP.y + 20}`} strokeDasharray="26 30" />
           </g>
         )}
-        {label && (
+        {label && !koActive && (
           <g transform={`translate(${headC.x} ${headC.y - HEAD_R - (hat || labelUp ? 72 : 34)})`}>
             <rect x={-46} y={-16} width={92} height={30} rx={15} fill={ink} />
             <text x={0} y={6} textAnchor="middle" fontFamily='"Segoe UI Black", "Arial Black", Impact, sans-serif' fontWeight={900} fontSize={19} fill={headFill}>

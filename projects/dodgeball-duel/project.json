@@ -4,7 +4,7 @@
   "createdAt": "2026-09-19T00:00:00.000Z",
   "targetSeconds": 45,
   "status": "qa_passed",
-  "lastRenderMs": 84285,
+  "lastRenderMs": 106173,
   "versions": [
     {
       "n": 1,
@@ -65,6 +65,16 @@
       "manifestHash": "94e822e4bca3f158",
       "note": "v6: adaptive focus zoom (closer on small figures), bigger coronation props, name tag lifts above the crown",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/dodgeball-duel-v6/final.mp4"
+    },
+    {
+      "n": 7,
+      "at": "2026-09-19T01:15:28.807Z",
+      "seconds": 45.36666666666667,
+      "renderMs": 106173,
+      "qaOk": true,
+      "manifestHash": "36130b8fff2d1039",
+      "note": "v7: review pass 3 — anger ramp, lean held past the ball, no tag on KO bodies, kid focus after arrival, higher jump",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/dodgeball-duel-v7/final.mp4"
     }
   ]
 }
