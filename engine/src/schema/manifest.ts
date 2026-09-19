@@ -88,6 +88,8 @@ export const Projectile = z.object({
   flight: z.number().min(0.15).max(3).default(0.45),
   /** hit: stops on the target. miss: sails past and off-frame. deflect: bounces off (needs a pan). roll: dropped from the hand, rolls along the ground to the target's foot. */
   outcome: z.enum(["hit", "miss", "deflect", "roll"]).default("hit"),
+  /** For misses: over = sails above the standing head (lean/duck under it); under = shin height (jump over it); through = lands and bounces where the target stood when thrown (he steps/moonwalks away first). */
+  path: z.enum(["over", "under", "through"]).default("over"),
   count: z.number().int().min(1).max(24).default(1),
   /** Seconds between balls in a barrage. */
   every: z.number().min(0.05).max(1).default(0.12),

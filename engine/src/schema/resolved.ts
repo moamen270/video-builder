@@ -98,6 +98,7 @@ export const ResolvedProjectile = z.object({
   atFrame: z.number().int(),
   hitFrame: z.number().int(),
   outcome: z.enum(["hit", "miss", "deflect", "roll"]),
+  path: z.enum(["over", "under", "through"]).default("over"),
   /** Barrage index, for deterministic variation. */
   n: z.number().int(),
 });

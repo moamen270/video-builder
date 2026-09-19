@@ -4,7 +4,7 @@
   "createdAt": "2026-09-19T00:00:00.000Z",
   "targetSeconds": 45,
   "status": "qa_passed",
-  "lastRenderMs": 77188,
+  "lastRenderMs": 88224,
   "versions": [
     {
       "n": 1,
@@ -85,6 +85,16 @@
       "manifestHash": "c1e4a25479b5510a",
       "note": "v8: misses fly over the head, dodge before the two balls, gold medal worn + gold cup (no crown), Pebble ending: like ask + follow",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/dodgeball-duel-v8/final.mp4"
+    },
+    {
+      "n": 9,
+      "at": "2026-09-19T07:32:06.180Z",
+      "seconds": 48.833333333333336,
+      "renderMs": 88224,
+      "qaOk": true,
+      "manifestHash": "cbaf3e51ae09e4b1",
+      "note": "v9: projectile paths — lean under (over), jump over (under), moonwalk away from a ball that lands and bounces where he stood (through)",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/dodgeball-duel-v9/final.mp4"
     }
   ]
 }

@@ -52,7 +52,9 @@ becomes a rule, it also goes into the skills; this file keeps the *why*.
 
 - **A "miss" must miss by a visible margin.** Aiming a dodgeball at head height and having the target
   lean is not a miss — the ball lands on the head. Misses fly above the standing head and stay flat;
-  the dodge starts BEFORE the ball arrives, never after. *(dodgeball v4 → v8)*
+  the dodge starts BEFORE the ball arrives, never after. The path must match the dodge: over a lean,
+  under a jump, and a sidestep only works if the ball LANDS where he stood (a ball flying on at chest
+  height hits whoever is downstream). *(dodgeball v4 → v9)*
 - **Worn things are drawn on top.** A medal "behind" the character reads as a sticker on the wall;
   props attached to a figure render after him. Gold is gold (#f2c200), not the theme accent. *(dodgeball v7 → v8)*
 - **Anger ramps.** A character at maximum red from the first setback has nowhere to go; escalate the

@@ -34,13 +34,15 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
   const spec = LAYOUTS[scene.layout];
 
   // Extras: same rig, smaller, placed by centre x on the hero's ground line.
-  const extraRects = scene.extras.map((e) => {
-    const base = spec.character?.center ?? { x: 320, y: 1080, w: 440, h: 700 };
-    const m = extraMotionAt(e, abs);
-    const w = base.w * e.scale;
-    const h = base.h * e.scale;
-    return { e, m, rect: { x: m.cx - w / 2, y: base.y + base.h - h, w, h } };
-  });
+  const extraRectsAt = (frame: number) =>
+    scene.extras.map((e) => {
+      const base = spec.character?.center ?? { x: 320, y: 1080, w: 440, h: 700 };
+      const m = extraMotionAt(e, frame);
+      const w = base.w * e.scale;
+      const h = base.h * e.scale;
+      return { e, m, rect: { x: m.cx - w / 2, y: base.y + base.h - h, w, h } };
+    });
+  const extraRects = extraRectsAt(abs);
 
   // --- camera -------------------------------------------------------------
   let camScale = 1;
@@ -203,7 +205,7 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
           />
         )}
 
-        {scene.projectiles.length > 0 && <Projectiles scene={scene} abs={abs} rects={extraRects.map(({ e, rect }) => ({ id: e.id, rect, flip: false }))} palette={palette} />}
+        {scene.projectiles.length > 0 && <Projectiles scene={scene} abs={abs} rects={extraRects.map(({ e, rect }) => ({ id: e.id, rect, flip: false }))} rectAt={(id, frame) => extraRectsAt(frame).find((x) => x.e.id === id)?.rect ?? null} palette={palette} />}
 
         {scene.character && charRect && !heroHidden && scene.character.shots.length > 0 && (
           <Shots shots={scene.character.shots} abs={abs} poseAt={(f) => poseAtFrame(scene, f)} rect={charRect} flip={scene.character.position === "right"} zones={spec.props} magenta={scene.character.style === "jhin"} palette={palette} />

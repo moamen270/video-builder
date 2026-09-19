@@ -23,7 +23,7 @@ const hash = (a: number, b: number) => {
  *   roll    — dropped from the hand, falls to the ground, rolls to the target's foot
  * Fast balls draw fading ghost copies behind them (motion blur).
  */
-export const Projectiles: React.FC<{ scene: ResolvedScene; abs: number; rects: { id: string; rect: Rect; flip: boolean }[]; palette: Palette }> = ({ scene, abs, rects, palette }) => {
+export const Projectiles: React.FC<{ scene: ResolvedScene; abs: number; rects: { id: string; rect: Rect; flip: boolean }[]; rectAt: (id: string, frame: number) => Rect | null; palette: Palette }> = ({ scene, abs, rects, rectAt, palette }) => {
   const els: React.ReactNode[] = [];
   const rectOf = (id: string) => rects.find((r) => r.id === id)?.rect ?? null;
 
@@ -49,14 +49,17 @@ export const Projectiles: React.FC<{ scene: ResolvedScene; abs: number; rects: {
       );
       return;
     }
-    const to = rectOf(p.to);
+    // The thrower aims at where the target STOOD when the ball left the hand; a sidestep after that is a dodge.
+    const to = (p.outcome === "miss" && p.path === "through" ? rectAt(p.to, scene.startFrame) : rectAt(p.to, p.atFrame)) ?? rectOf(p.to);
     if (!to) return;
     const scale = Math.max(0.5, from.h / 700);
     const r = R * scale;
     const dir = to.x > from.x ? 1 : -1;
     const hand = { x: from.x + from.w * (dir > 0 ? 0.78 : 0.22), y: from.y + from.h * 0.36 };
     // Misses are aimed at head height of the STANDING figure so a lean/duck/jump visibly clears the ball.
-    const chest = { x: to.x + to.w / 2, y: p.outcome === "miss" ? to.y - r * 1.6 : to.y + to.h * 0.42 };
+    // through: a real throw that LANDS where he stood — arcs to the ground at that x and bounces there.
+    const aimY = p.outcome !== "miss" ? to.y + to.h * 0.42 : p.path === "through" ? to.y + to.h - r : p.path === "under" ? to.y + to.h * 0.86 : to.y - r * 2.6;
+    const chest = { x: to.x + to.w / 2, y: aimY };
     const ground = to.y + to.h - r;
     const flight = Math.max(1, p.hitFrame - p.atFrame);
     const t = abs - p.atFrame;
@@ -83,10 +86,16 @@ export const Projectiles: React.FC<{ scene: ResolvedScene; abs: number; rects: {
         if (after > 6) return null;
         return { x: chest.x - dir * r * 0.6, y: chest.y, rot: 540 * dir, sq: interpolate(after, [0, 2, 6], [0.5, 0.25, 0]) };
       }
+      if (p.outcome === "miss" && p.path === "through") {
+        // bounce on the spot, each bounce lower, drifting a little further
+        if (after > 34) return null;
+        const decay = Math.pow(1 - after / 34, 1.4);
+        return { x: chest.x + dir * after * 1.5, y: chest.y - Math.abs(Math.sin(after * 0.33)) * 150 * decay, rot: 540 * dir + after * 30 * dir, sq: after < 2 ? 0.35 : 0 };
+      }
       if (p.outcome === "miss") {
         // keep going past the target, dropping, until off-frame
         const x = chest.x + dir * (after / flight) * Math.abs(chest.x - hand.x) * 1.2;
-        const y = chest.y + after * after * 0.5;
+        const y = chest.y + after * after * (p.path === "under" ? 0.15 : 0.5);
         if (x < -100 || x > 1180 || y > 2000) return null;
         return { x, y, rot: (1 + after / flight) * 540 * dir, sq: 0 };
       }

@@ -154,7 +154,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
       const flight = Math.max(3, Math.round(pr.flight * fps));
       return Array.from({ length: pr.count }, (_, n) => {
         const atFrame = at0 + Math.round(n * pr.every * fps);
-        return { from: pr.from, to: pr.to, atFrame, hitFrame: atFrame + flight, outcome: pr.outcome, n };
+        return { from: pr.from, to: pr.to, atFrame, hitFrame: atFrame + flight, outcome: pr.outcome, path: pr.path, n };
       });
     });
 

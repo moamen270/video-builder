@@ -16,7 +16,7 @@
       "style": "stickman"
     }
   ],
-  "notes": "Sports-commentator narration (am_michael, fast, stadium). Brick (big, no patience) vs Noodle (unhittable, insufferable), Pebble the kid wins by dropping a ball. Escalation (v4, after review): slow pitch → Matrix dodge → faster → two at once → Gatling barrage vs frying pan → gives up → the kid. Ending: Brick throws his last ball at the camera. v1: no bullet-time yet. Alt hooks: 'Nobody hits Noodle.' / 'One ball. One kid.' v5: MJ moves (mj_toe/mj_lean/moonwalk) with a fedora that appears and vanishes, jump dodge, Brick goes red with ear steam, camera `focus` on the actor of each beat, coronation props attached to Pebble. v7: anger ramps (worried → fierce → angry → shocked → angry), lean held until the ball clears, no tag on KO bodies, focus on Pebble after arrival, higher jump. v8: misses fly over the head; gold medal worn + gold cup; ending = Pebble in the spotlight, commentator asks for the like, then the follow line.",
+  "notes": "Sports-commentator narration (am_michael, fast, stadium). Brick (big, no patience) vs Noodle (unhittable, insufferable), Pebble the kid wins by dropping a ball. Escalation (v4, after review): slow pitch → Matrix dodge → faster → two at once → Gatling barrage vs frying pan → gives up → the kid. Ending: Brick throws his last ball at the camera. v1: no bullet-time yet. Alt hooks: 'Nobody hits Noodle.' / 'One ball. One kid.' v5: MJ moves (mj_toe/mj_lean/moonwalk) with a fedora that appears and vanishes, jump dodge, Brick goes red with ear steam, camera `focus` on the actor of each beat, coronation props attached to Pebble. v7: anger ramps (worried → fierce → angry → shocked → angry), lean held until the ball clears, no tag on KO bodies, focus on Pebble after arrival, higher jump. v8: misses fly over the head; gold medal worn + gold cup; ending = Pebble in the spotlight, commentator asks for the like, then the follow line. v9: projectile `path` — over (lean), under (jump), through (moonwalk sidestep: aimed where he stood).",
   "social": {
     "title": "The Ultimate Dodgeball Match — nobody can hit Noodle (stickman)",
     "hook": "Nobody can hit Noodle.",
@@ -262,7 +262,8 @@
           "to": "noodle",
           "at": "word:pitch+0.05",
           "flight": 1.5,
-          "outcome": "miss"
+          "outcome": "miss",
+          "path": "over"
         }
       ],
       "sfx": [
@@ -415,7 +416,8 @@
           "to": "noodle",
           "at": "word:faster+0.02",
           "flight": 0.3,
-          "outcome": "miss"
+          "outcome": "miss",
+          "path": "under"
         }
       ],
       "sfx": [
@@ -482,29 +484,19 @@
           "scale": 0.85,
           "poseChanges": [
             {
-              "pose": "dodge_lean",
-              "expression": "happy",
-              "at": "word:two+0.12"
-            },
-            {
-              "pose": "walk_left",
-              "expression": "smug",
-              "at": "word:two+0.75"
-            },
-            {
               "pose": "celebrating",
               "expression": "happy",
-              "at": "word:once+0.8"
+              "at": "word:once+0.7"
             }
           ],
           "travel": {
             "fromX": 0.78,
-            "toX": 0.9,
-            "start": "word:two+0.75",
-            "end": "word:once+0.75"
+            "toX": 0.94,
+            "start": "word:two-0.35",
+            "end": "word:two+0.25"
           },
           "hat": "fedora",
-          "hatAt": "word:two",
+          "hatAt": "word:two-0.35",
           "hatUntil": "word:once+0.8"
         }
       ],
@@ -516,7 +508,8 @@
           "flight": 0.3,
           "outcome": "miss",
           "count": 2,
-          "every": 0.12
+          "every": 0.12,
+          "path": "through"
         }
       ],
       "sfx": [
@@ -532,13 +525,18 @@
         },
         {
           "name": "bounce",
-          "at": "word:two+0.55",
+          "at": "word:two+0.32",
+          "volume": 0.6
+        },
+        {
+          "name": "bounce",
+          "at": "word:two+0.45",
           "volume": 0.5
         },
         {
           "name": "bounce",
           "at": "word:two+0.7",
-          "volume": 0.5
+          "volume": 0.35
         }
       ],
       "camera": [
@@ -607,7 +605,7 @@
           "held": "frying_pan",
           "heldAt": "word:gatling-0.25",
           "travel": {
-            "fromX": 0.9,
+            "fromX": 0.94,
             "toX": 0.78,
             "start": "start",
             "end": "word:gatling-0.3"

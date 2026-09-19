@@ -425,6 +425,7 @@
           "atFrame": 234,
           "hitFrame": 279,
           "outcome": "miss",
+          "path": "over",
           "n": 0
         }
       ]
@@ -685,6 +686,7 @@
           "atFrame": 385,
           "hitFrame": 394,
           "outcome": "miss",
+          "path": "under",
           "n": 0
         }
       ]
@@ -794,25 +796,15 @@
           "scale": 0.85,
           "travel": {
             "fromX": 842.4,
-            "toX": 972,
-            "startFrame": 491,
-            "endFrame": 502
+            "toX": 1015.1999999999999,
+            "startFrame": 458,
+            "endFrame": 476
           },
           "poseChanges": [
             {
-              "pose": "dodge_lean",
-              "expression": "happy",
-              "atFrame": 472
-            },
-            {
-              "pose": "walk_left",
-              "expression": "smug",
-              "atFrame": 491
-            },
-            {
               "pose": "celebrating",
               "expression": "happy",
-              "atFrame": 503
+              "atFrame": 500
             }
           ],
           "koFrame": null,
@@ -821,7 +813,7 @@
           "held": null,
           "heldFrame": 441,
           "hat": "fedora",
-          "hatFrame": 468,
+          "hatFrame": 458,
           "hatUntilFrame": 503
         }
       ],
@@ -841,14 +833,20 @@
         },
         {
           "name": "bounce",
-          "atFrame": 485,
+          "atFrame": 478,
+          "volume": 0.6,
+          "src": "assets/sfx/bounce.wav"
+        },
+        {
+          "name": "bounce",
+          "atFrame": 482,
           "volume": 0.5,
           "src": "assets/sfx/bounce.wav"
         },
         {
           "name": "bounce",
           "atFrame": 489,
-          "volume": 0.5,
+          "volume": 0.35,
           "src": "assets/sfx/bounce.wav"
         }
       ],
@@ -876,6 +874,7 @@
           "atFrame": 469,
           "hitFrame": 478,
           "outcome": "miss",
+          "path": "through",
           "n": 0
         },
         {
@@ -884,6 +883,7 @@
           "atFrame": 473,
           "hitFrame": 482,
           "outcome": "miss",
+          "path": "through",
           "n": 1
         }
       ]
@@ -993,7 +993,7 @@
           "x": 842.4,
           "scale": 0.85,
           "travel": {
-            "fromX": 972,
+            "fromX": 1015.1999999999999,
             "toX": 842.4,
             "startFrame": 530,
             "endFrame": 546
@@ -1092,6 +1092,7 @@
           "atFrame": 555,
           "hitFrame": 564,
           "outcome": "deflect",
+          "path": "over",
           "n": 0
         },
         {
@@ -1100,6 +1101,7 @@
           "atFrame": 558,
           "hitFrame": 567,
           "outcome": "deflect",
+          "path": "over",
           "n": 1
         },
         {
@@ -1108,6 +1110,7 @@
           "atFrame": 561,
           "hitFrame": 570,
           "outcome": "deflect",
+          "path": "over",
           "n": 2
         },
         {
@@ -1116,6 +1119,7 @@
           "atFrame": 564,
           "hitFrame": 573,
           "outcome": "deflect",
+          "path": "over",
           "n": 3
         },
         {
@@ -1124,6 +1128,7 @@
           "atFrame": 567,
           "hitFrame": 576,
           "outcome": "deflect",
+          "path": "over",
           "n": 4
         },
         {
@@ -1132,6 +1137,7 @@
           "atFrame": 570,
           "hitFrame": 579,
           "outcome": "deflect",
+          "path": "over",
           "n": 5
         },
         {
@@ -1140,6 +1146,7 @@
           "atFrame": 573,
           "hitFrame": 582,
           "outcome": "deflect",
+          "path": "over",
           "n": 6
         },
         {
@@ -1148,6 +1155,7 @@
           "atFrame": 576,
           "hitFrame": 585,
           "outcome": "deflect",
+          "path": "over",
           "n": 7
         },
         {
@@ -1156,6 +1164,7 @@
           "atFrame": 579,
           "hitFrame": 588,
           "outcome": "deflect",
+          "path": "over",
           "n": 8
         },
         {
@@ -1164,6 +1173,7 @@
           "atFrame": 582,
           "hitFrame": 591,
           "outcome": "deflect",
+          "path": "over",
           "n": 9
         },
         {
@@ -1172,6 +1182,7 @@
           "atFrame": 585,
           "hitFrame": 594,
           "outcome": "deflect",
+          "path": "over",
           "n": 10
         },
         {
@@ -1180,6 +1191,7 @@
           "atFrame": 588,
           "hitFrame": 597,
           "outcome": "deflect",
+          "path": "over",
           "n": 11
         }
       ]
@@ -1809,6 +1821,7 @@
           "atFrame": 897,
           "hitFrame": 936,
           "outcome": "roll",
+          "path": "over",
           "n": 0
         }
       ]
@@ -2294,6 +2307,7 @@
           "atFrame": 1166,
           "hitFrame": 1176,
           "outcome": "hit",
+          "path": "over",
           "n": 0
         }
       ]
@@ -2690,9 +2704,9 @@
     "name": "Dummy Sticky"
   },
   "meta": {
-    "resolvedAt": "2026-09-19T07:07:41.262Z",
+    "resolvedAt": "2026-09-19T07:30:34.839Z",
     "engineVersion": "0.1.0",
     "ttsModel": "hexgrad/Kokoro-82M",
-    "manifestHash": "c1e4a25479b5510a"
+    "manifestHash": "cbaf3e51ae09e4b1"
   }
 }

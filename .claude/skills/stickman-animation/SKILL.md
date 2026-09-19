@@ -144,8 +144,11 @@ Cast = extras only (`character: null`), narrated by a commentator voice (`am_mic
 `theatre`). Each extra can carry `label` (name tag), `held: "ball" | "frying_pan"` (+ `heldAt`),
 `hat: "fedora"` (+ `hatAt`/`hatUntil` — appears for the move, vanishes after). Styles: `kid` (scale 0.5).
 **Projectiles** — `projectiles: [{ from, to, at, flight, outcome, count, every }]`: a ball on an arc from
-the thrower's hand; `miss` sails over the head (dodge with `mj_lean` / `mj_toe` / `dodge_jump` /
-`dodge_split`, or moonwalk = `walk_left` pose + travel to the right), `deflect` bounces off a held pan
+the thrower's hand; `miss` needs a `path` that matches the dodge: `over` (ball sails above the head — `mj_lean`,
+`mj_toe`, `dodge_lean`), `under` (shin height — `dodge_jump`), `through` (lands and bounces where he stood at scene
+start — he must already be moving away: moonwalk = `walk_left` + travel right starting ~0.35 s before the throw). Players
+move freely in dodgeball, so sidesteps are legal dodges. Never let a chest-height ball keep flying past a figure —
+someone downstream gets hit. `deflect` bounces off a held pan
 (pose `spin`), `hit` stops on the target (set his `knockedOutAt`), `roll` drops from the hand and
 bounces along the ground to the target's foot, `to: "camera"` throws at the viewer (+ `screen_crack`).
 Barrage: `count: 12, every: 0.1`. Thrower poses: `windup` → `throw` on the word.
