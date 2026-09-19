@@ -19,6 +19,8 @@ the pack, not from memory of building the video.
      props, SFX, bubbles, camera, overlays, projectiles; plus the checks and QA
    - `events/NN-<id>-<event>.png` — 7 frames at 2-frame spacing around every contact (hit/miss/strike/shot/throw)
    - `frames/tSSS.S.png` — every 0.5 s of the whole video as single images (for debugging by eye)
+   - `frames.png` — ALL of those frames in one image, 10 per row in time order (index = row·10 + col, t = index / 2 s)
+   The pack is built automatically by every `video_render`/`vb build`; `vb review` only rebuilds it.
    - `checklist.md` — the checks as a table: **auto** rows decided, **👁️ check** rows point at strips,
      **ear** rows are for a human
 2. **Run the reviewer** — `Agent` tool, `subagent_type: "video-reviewer"`, prompt:

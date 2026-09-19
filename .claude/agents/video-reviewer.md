@@ -21,7 +21,8 @@ too kind is the failure mode; a review with zero fixes is almost always wrong.
    left→right in time: first frame, up to three event frames, last frame. For each strip write
    down (privately) what you see, then compare with what `summary.json` says should happen in
    that scene (poses, props appearing, projectiles landing, who speaks, camera). Mismatch = finding.
-4. Look at `../contact.png` once for the whole-video read.
+4. Look at `frames.png` (every 0.5 s of the video in one image, 10 per row, time = index/2) for the whole-video read;
+   `../contact.png` is the coarser 4×3 version.
 5. Fill `docs/REVIEW_TEMPLATE.md` completely and RETURN it as your final message (subagents cannot
    write files here; the caller saves it to `review/report.md`). Every 👁️ row in
    the checklist gets a verdict with evidence (strip name + frame position + what you saw).

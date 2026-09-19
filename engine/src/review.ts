@@ -70,7 +70,7 @@ export interface ReviewPack {
   scenes: SceneFacts[];
   checks: ReviewCheck[];
   qa: unknown;
-  files: { dir: string; summary: string; checklist: string; contact: string; report: string; frames: string };
+  files: { dir: string; summary: string; checklist: string; contact: string; report: string; frames: string; framesSheet: string };
 }
 
 const sec = (frame: number, fps: number) => Math.round((frame / fps) * 100) / 100;
@@ -95,6 +95,18 @@ export async function buildReviewPack(slug: string, version?: number, opts: { lo
   for (const name of readdirSync(path.join(dir, "frames"))) {
     const mm = /^f(\d{4})\.png$/.exec(name);
     if (mm) renameSync(path.join(dir, "frames", name), path.join(dir, "frames", `t${((Number(mm[1]) - 1) / 2).toFixed(1).padStart(5, "0")}.png`));
+  }
+  // …and the same frames as ONE image: 10 per row, reading order = time (row r, col c → t = (10r + c) / 2 s).
+  const total = Math.ceil((resolved.durationInFrames / fps) * 2);
+  const rows = Math.max(1, Math.ceil(total / 10));
+  const framesSheet = path.join(dir, "frames.png");
+  const stamp = "drawtext=text='%{n}':x=6:y=6:fontsize=26:fontcolor=white:box=1:boxcolor=black@0.6:boxborderw=4"; // n = half-seconds (n/2 = time)
+  const sheetVf = (withStamp: boolean) => `fps=2,scale=216:-1,${withStamp ? stamp + "," : ""}tile=10x${rows}:padding=4:color=black`;
+  try {
+    await execa("ffmpeg", ["-y", "-v", "error", "-i", v.finalMp4, "-vf", sheetVf(true), "-frames:v", "1", framesSheet]);
+  } catch {
+    // drawtext needs a font; fall back to an unstamped sheet (index = row*10 + col, time = index / 2)
+    await execa("ffmpeg", ["-y", "-v", "error", "-i", v.finalMp4, "-vf", sheetVf(false), "-frames:v", "1", framesSheet]);
   }
 
   const scenes: SceneFacts[] = [];
@@ -211,7 +223,7 @@ export async function buildReviewPack(slug: string, version?: number, opts: { lo
     scenes,
     checks,
     qa,
-    files: { dir, summary: path.join(dir, "summary.json"), checklist: path.join(dir, "checklist.md"), contact: v.contactSheet, report: path.join(dir, "report.md"), frames: path.join(dir, "frames") },
+    files: { dir, summary: path.join(dir, "summary.json"), checklist: path.join(dir, "checklist.md"), contact: v.contactSheet, report: path.join(dir, "report.md"), frames: path.join(dir, "frames"), framesSheet },
   };
   writeFileSync(pack.files.summary, JSON.stringify(pack, null, 2));
   writeFileSync(pack.files.checklist, checklistMarkdown(pack));
@@ -344,6 +356,7 @@ function readme(p: ReviewPack): string {
 - \`scenes/NN-<id>.png\` — 5 frames per scene, left→right in time: first frame, up to three event frames, last frame.
 - \`events/NN-<id>-<event>.png\` — 7 frames at 2-frame spacing around every contact (ball hit/miss, strike, shot, throw): verify touches and misses HERE, frame by frame.
 - \`frames/tSSS.S.png\` — the whole video every 0.5 s as single images (t012.5.png = 12.5 s).
+- \`frames.png\` — all of those frames in ONE image, 10 per row in time order; the corner number n is half-seconds (t = n / 2).
 - \`../contact.png\` — 4×3 overview of the whole video.
 - \`../final.mp4\` — the render (for a human; models review from the strips).
 

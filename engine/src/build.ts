@@ -2,6 +2,7 @@ import { copyFileSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { ensureAudio } from "./audio.js";
 import { loadBrand } from "./brand.js";
 import { socialMarkdown } from "./social.js";
+import { buildReviewPack } from "./review.js";
 import { loadManifest, readMeta, updateMeta } from "./project.js";
 import { renderProject, type RenderOptions } from "./render.js";
 import { resolveManifest, type ResolveWarning } from "./resolver/resolve.js";
@@ -78,6 +79,13 @@ export async function renderVersion(compiled: CompileResult, opts: RenderOptions
     ],
   });
   log(`version v${target.n} recorded`);
+  // Review pack (2 Hz frame dump, one-image frame sheet, per-scene strips, contact event strips, checklist) for every render.
+  try {
+    const pack = await buildReviewPack(compiled.manifest.slug, target.n, { log });
+    log(`review pack: ${pack.files.dir}`);
+  } catch (e) {
+    log(`review pack failed: ${(e as Error).message}`);
+  }
   return { ...compiled, renderMs: r.ms, qa, version: target, file: r.file };
 }
 
