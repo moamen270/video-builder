@@ -106,9 +106,34 @@ luminance never drops out except inside declared `blackout`/`flash` windows.
 - Kokoro downloads `hexgrad/Kokoro-82M` on first use; Bark downloads
   `suno/bark-small`. Both run on CPU (torch CPU index in `py/pyproject.toml`).
 
-## 7. Voice research
+## 7. Second engine: Chatterbox (trial — D13)
 
-Options beyond Kokoro (directable engines, voice design, RVC, paid APIs), their cost and how they would plug into
-`alignment.json` are researched in the sibling repo `F:/PoCs/audios` (`docs/06-decision-matrix.md` for the current
-recommendation, `experiments/001-kokoro-limits/index.html` to hear Kokoro's measured limits). Measured there:
-punctuation/casing do not change Kokoro's pitch contour, and voice-tensor blending yields new consistent speakers.
+`"engine": "chatterbox"` on the manifest or a scene routes that scene to `py-chatterbox/`
+(`vb_chatterbox`, its own uv env: chatterbox pins torch 2.6 CUDA). Everything downstream
+reads the same `alignment.json`.
+
+| field | where | meaning |
+|---|---|---|
+| `engine` | manifest / scene | `kokoro` (default) or `chatterbox` |
+| `voiceRef` | manifest / scene | reference clip > 5 s: a file in `assets/voices/` (shared, with a card in its README) or the project's `clips/`. Required when the text has tags; optional otherwise (built-in voice) |
+| `emotion` | manifest / scene | 0..1 acting intensity → `exaggeration` (0.5 if omitted). ≥ 0.7 also raises pitch and speeds up (we lower `cfg_weight` to 0.3 to compensate). Deep voices: ≤ 0.5 |
+| `speech` tags | scene | `[laugh] [chuckle] [cough]` → the **Turbo** model performs them (needs `voiceRef`; ignores `emotion`). Stripped from captions/alignment; rejected when the engine is Kokoro |
+| `speed` | manifest / scene | applied as ffmpeg `atempo` after synthesis, before alignment. Chatterbox paces itself — use ~0.9–1.05, not Kokoro's 0.78 |
+| `voiceFx` | manifest / scene | unchanged; applied after alignment (length-preserving) |
+
+Pipeline per scene: generate (Turbo if tagged, else original) → resample 24 kHz → `atempo` →
+trim padding → **forced alignment** (`vb_chatterbox/align.py`: torchaudio wav2vec2 CTC on the
+known text, CTC bias −75 ms/−20 ms measured against Kokoro) → cut everything before the first
+word (Chatterbox opens with a click or up to 1 s of air) → `pauseAfter` → PCM16 wav → `voiceFx`.
+
+Facts (GTX 1660 SUPER): model load 14 s; first generation ~45 s (CUDA warm-up); then 3–5 s per
+line (rtf ~1.5 original, ~0.7 Turbo); `batman-alley` (9 lines) compiles in ~1.5 min cold, seconds
+warm (cache key includes engine, emotion, and the reference file's size+mtime). Models: ~3 GB each,
+downloaded once to `HF_HOME` (`F:\caches\hf`). Output carries Resemble's inaudible Perth watermark.
+
+Non-verbal quality control: a tagged take is not guaranteed to contain the laugh (3 of 4 in the
+experiments). If a `[laugh]` line sounds like plain speech, change `seed` by editing the text
+trivially or re-run with `--force-audio` — and listen before shipping.
+
+Research, measurements and the alternatives (Qwen3-TTS VoiceDesign, RVC, ElevenLabs…) live in
+the sibling repo `F:/PoCs/audios` (`docs/06-decision-matrix.md`).

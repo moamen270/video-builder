@@ -5,7 +5,7 @@
   "fps": 30,
   "width": 1080,
   "height": 1920,
-  "durationInFrames": 999,
+  "durationInFrames": 806,
   "theme": "midnight",
   "voice": "bm_lewis",
   "music": {
@@ -19,26 +19,26 @@
       "isClip": false,
       "clipVolume": 1,
       "startFrame": 0,
-      "durationInFrames": 90,
-      "speechFrames": 69,
+      "durationInFrames": 48,
+      "speechFrames": 27,
       "audioSrc": "audio/open.wav",
       "words": [
         {
           "text": "I'm",
           "i": 0,
-          "start": 0.525,
-          "end": 0.9,
-          "startFrame": 16,
-          "endFrame": 27,
+          "start": 0.068,
+          "end": 0.225,
+          "startFrame": 2,
+          "endFrame": 7,
           "emphasis": false
         },
         {
           "text": "Batman.",
           "i": 1,
-          "start": 0.9,
-          "end": 2.2,
-          "startFrame": 27,
-          "endFrame": 66,
+          "start": 0.231,
+          "end": 0.693,
+          "startFrame": 7,
+          "endFrame": 21,
           "emphasis": true
         }
       ],
@@ -59,7 +59,7 @@
           {
             "pose": "pointing_up",
             "expression": "fierce",
-            "atFrame": 33
+            "atFrame": 13
           }
         ],
         "shots": [],
@@ -75,7 +75,7 @@
       "sfx": [
         {
           "name": "drum",
-          "atFrame": 27,
+          "atFrame": 7,
           "volume": 0.6,
           "src": "assets/sfx/drum.wav"
         }
@@ -84,29 +84,31 @@
       "camera": [
         {
           "move": "slow_zoom",
-          "atFrame": 0
+          "atFrame": 0,
+          "on": null
         }
       ],
       "overlays": [
         {
           "kind": "spotlight",
           "atFrame": 0,
-          "untilFrame": 90
+          "untilFrame": 48
         },
         {
           "kind": "hook_card",
           "atFrame": 6,
-          "untilFrame": 87,
+          "untilFrame": 45,
           "text": "Three villains. One bat."
         }
-      ]
+      ],
+      "projectiles": []
     },
     {
       "id": "alley",
       "speech": "",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 90,
+      "startFrame": 48,
       "durationInFrames": 73,
       "speechFrames": 66,
       "audioSrc": "audio/alley.wav",
@@ -131,16 +133,22 @@
             {
               "pose": "celebrating",
               "expression": "happy",
-              "atFrame": 120
+              "atFrame": 78
             },
             {
               "pose": "shocked",
               "expression": "surprised",
-              "atFrame": 141
+              "atFrame": 99
             }
           ],
           "koFrame": null,
-          "fallDir": null
+          "fallDir": null,
+          "label": null,
+          "held": null,
+          "heldFrame": 48,
+          "hat": null,
+          "hatFrame": 48,
+          "hatUntilFrame": 121
         },
         {
           "id": "t2",
@@ -154,16 +162,22 @@
             {
               "pose": "shrugging",
               "expression": "smug",
-              "atFrame": 108
+              "atFrame": 66
             },
             {
               "pose": "celebrating",
               "expression": "happy",
-              "atFrame": 129
+              "atFrame": 87
             }
           ],
           "koFrame": null,
-          "fallDir": null
+          "fallDir": null,
+          "label": null,
+          "held": null,
+          "heldFrame": 48,
+          "hat": null,
+          "hatFrame": 48,
+          "hatUntilFrame": 121
         },
         {
           "id": "t3",
@@ -177,40 +191,47 @@
             {
               "pose": "pointing_up",
               "expression": "surprised",
-              "atFrame": 135
+              "atFrame": 93
             }
           ],
           "koFrame": null,
-          "fallDir": null
+          "fallDir": null,
+          "label": null,
+          "held": null,
+          "heldFrame": 48,
+          "hat": null,
+          "hatFrame": 48,
+          "hatUntilFrame": 121
         }
       ],
       "props": [
         {
           "name": "bat_signal",
-          "atFrame": 132,
-          "untilFrame": 163,
+          "atFrame": 90,
+          "untilFrame": 121,
           "anim": "fade",
           "position": "top_right",
           "scale": 0.9,
-          "exit": "fade"
+          "exit": "fade",
+          "on": null
         }
       ],
       "sfx": [
         {
           "name": "pop",
-          "atFrame": 90,
+          "atFrame": 48,
           "volume": 0.5,
           "src": "assets/sfx/pop.wav"
         },
         {
           "name": "drum",
-          "atFrame": 132,
+          "atFrame": 90,
           "volume": 0.5,
           "src": "assets/sfx/drum.wav"
         },
         {
           "name": "chime",
-          "atFrame": 132,
+          "atFrame": 90,
           "volume": 0.5,
           "src": "assets/sfx/chime.wav"
         }
@@ -218,28 +239,29 @@
       "bubbles": [
         {
           "text": "HEH",
-          "atFrame": 99,
-          "untilFrame": 126,
+          "atFrame": 57,
+          "untilFrame": 84,
           "side": "right",
           "on": "t1"
         },
         {
           "text": "?!",
-          "atFrame": 138,
-          "untilFrame": 163,
+          "atFrame": 96,
+          "untilFrame": 121,
           "side": "left",
           "on": "t3"
         }
       ],
       "camera": [],
-      "overlays": []
+      "overlays": [],
+      "projectiles": []
     },
     {
       "id": "landing",
       "speech": "",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 163,
+      "startFrame": 121,
       "durationInFrames": 39,
       "speechFrames": 36,
       "audioSrc": "audio/landing.wav",
@@ -261,14 +283,14 @@
           {
             "pose": "arms_crossed",
             "expression": "fierce",
-            "atFrame": 192
+            "atFrame": 150
           }
         ],
         "shots": [],
         "throws": [],
         "entrance": {
-          "atFrame": 165,
-          "landFrame": 182
+          "atFrame": 123,
+          "landFrame": 140
         },
         "exit": null,
         "strikes": [],
@@ -286,7 +308,13 @@
           "travel": null,
           "poseChanges": [],
           "koFrame": null,
-          "fallDir": null
+          "fallDir": null,
+          "label": null,
+          "held": null,
+          "heldFrame": 121,
+          "hat": null,
+          "hatFrame": 121,
+          "hatUntilFrame": 160
         },
         {
           "id": "t2",
@@ -297,8 +325,14 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 181,
-          "fallDir": "right"
+          "koFrame": 139,
+          "fallDir": "right",
+          "label": null,
+          "held": null,
+          "heldFrame": 121,
+          "hat": null,
+          "hatFrame": 121,
+          "hatUntilFrame": 160
         },
         {
           "id": "t3",
@@ -312,40 +346,47 @@
             {
               "pose": "shocked",
               "expression": "surprised",
-              "atFrame": 184
+              "atFrame": 142
             }
           ],
           "koFrame": null,
-          "fallDir": null
+          "fallDir": null,
+          "label": null,
+          "held": null,
+          "heldFrame": 121,
+          "hat": null,
+          "hatFrame": 121,
+          "hatUntilFrame": 160
         }
       ],
       "props": [
         {
           "name": "bat_signal",
-          "atFrame": 163,
-          "untilFrame": 202,
+          "atFrame": 121,
+          "untilFrame": 160,
           "anim": "fade",
           "position": "top_right",
           "scale": 0.9,
-          "exit": "fade"
+          "exit": "fade",
+          "on": null
         }
       ],
       "sfx": [
         {
           "name": "whoosh",
-          "atFrame": 166,
+          "atFrame": 124,
           "volume": 0.6,
           "src": "assets/sfx/whoosh.wav"
         },
         {
           "name": "thud",
-          "atFrame": 181,
+          "atFrame": 139,
           "volume": 1,
           "src": "assets/sfx/thud.wav"
         },
         {
           "name": "boom",
-          "atFrame": 181,
+          "atFrame": 139,
           "volume": 0.6,
           "src": "assets/sfx/boom.wav"
         }
@@ -354,37 +395,39 @@
       "camera": [
         {
           "move": "shake",
-          "atFrame": 181
+          "atFrame": 139,
+          "on": null
         }
       ],
-      "overlays": []
+      "overlays": [],
+      "projectiles": []
     },
     {
       "id": "line",
       "speech": "Wrong alley.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 202,
-      "durationInFrames": 88,
-      "speechFrames": 63,
+      "startFrame": 160,
+      "durationInFrames": 65,
+      "speechFrames": 41,
       "audioSrc": "audio/line.wav",
       "words": [
         {
           "text": "Wrong",
           "i": 0,
-          "start": 0.55,
-          "end": 0.975,
-          "startFrame": 219,
-          "endFrame": 231,
+          "start": 0.08,
+          "end": 0.496,
+          "startFrame": 162,
+          "endFrame": 175,
           "emphasis": true
         },
         {
           "text": "alley.",
           "i": 1,
-          "start": 0.975,
-          "end": 2,
-          "startFrame": 231,
-          "endFrame": 262,
+          "start": 0.822,
+          "end": 1.098,
+          "startFrame": 185,
+          "endFrame": 193,
           "emphasis": false
         }
       ],
@@ -421,7 +464,13 @@
           "travel": null,
           "poseChanges": [],
           "koFrame": null,
-          "fallDir": null
+          "fallDir": null,
+          "label": null,
+          "held": null,
+          "heldFrame": 160,
+          "hat": null,
+          "hatFrame": 160,
+          "hatUntilFrame": 225
         },
         {
           "id": "t2",
@@ -432,8 +481,14 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 202,
-          "fallDir": "right"
+          "koFrame": 160,
+          "fallDir": "right",
+          "label": null,
+          "held": null,
+          "heldFrame": 160,
+          "hat": null,
+          "hatFrame": 160,
+          "hatUntilFrame": 225
         },
         {
           "id": "t3",
@@ -445,24 +500,31 @@
           "travel": null,
           "poseChanges": [],
           "koFrame": null,
-          "fallDir": null
+          "fallDir": null,
+          "label": null,
+          "held": null,
+          "heldFrame": 160,
+          "hat": null,
+          "hatFrame": 160,
+          "hatUntilFrame": 225
         }
       ],
       "props": [
         {
           "name": "bat_signal",
-          "atFrame": 202,
-          "untilFrame": 290,
+          "atFrame": 160,
+          "untilFrame": 225,
           "anim": "fade",
           "position": "top_right",
           "scale": 0.9,
-          "exit": "fade"
+          "exit": "fade",
+          "on": null
         }
       ],
       "sfx": [
         {
           "name": "boom",
-          "atFrame": 240,
+          "atFrame": 194,
           "volume": 0.35,
           "src": "assets/sfx/boom.wav"
         }
@@ -470,8 +532,8 @@
       "bubbles": [
         {
           "text": "?!",
-          "atFrame": 240,
-          "untilFrame": 290,
+          "atFrame": 194,
+          "untilFrame": 225,
           "side": "right",
           "on": "t1"
         }
@@ -479,37 +541,39 @@
       "camera": [
         {
           "move": "punch_in",
-          "atFrame": 231
+          "atFrame": 185,
+          "on": null
         }
       ],
-      "overlays": []
+      "overlays": [],
+      "projectiles": []
     },
     {
       "id": "run",
       "speech": "Going somewhere?",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 290,
-      "durationInFrames": 99,
-      "speechFrames": 69,
+      "startFrame": 225,
+      "durationInFrames": 61,
+      "speechFrames": 31,
       "audioSrc": "audio/run.wav",
       "words": [
         {
           "text": "Going",
           "i": 0,
-          "start": 0.5,
-          "end": 1.087,
-          "startFrame": 305,
-          "endFrame": 323,
+          "start": 0.007,
+          "end": 0.349,
+          "startFrame": 225,
+          "endFrame": 235,
           "emphasis": false
         },
         {
           "text": "somewhere?",
           "i": 1,
-          "start": 1.087,
-          "end": 2.2,
-          "startFrame": 323,
-          "endFrame": 356,
+          "start": 0.376,
+          "end": 0.881,
+          "startFrame": 236,
+          "endFrame": 251,
           "emphasis": true
         }
       ],
@@ -530,31 +594,31 @@
           {
             "pose": "pointing_right",
             "expression": "fierce",
-            "atFrame": 301
+            "atFrame": 236
           },
           {
             "pose": "pointing_left",
-            "atFrame": 313
+            "atFrame": 248
           },
           {
             "pose": "arms_crossed",
             "expression": "smug",
-            "atFrame": 332
+            "atFrame": 267
           }
         ],
         "shots": [],
         "throws": [
           {
-            "atFrame": 302,
+            "atFrame": 237,
             "item": "batarang",
             "hops": [
               {
                 "target": "t3",
-                "hitFrame": 310
+                "hitFrame": 245
               },
               {
                 "target": "t1",
-                "hitFrame": 318
+                "hitFrame": 253
               }
             ]
           }
@@ -576,12 +640,18 @@
           "travel": {
             "fromX": 280.8,
             "toX": 0,
-            "startFrame": 293,
-            "endFrame": 362
+            "startFrame": 228,
+            "endFrame": 286
           },
           "poseChanges": [],
-          "koFrame": 318,
-          "fallDir": null
+          "koFrame": 253,
+          "fallDir": null,
+          "label": null,
+          "held": null,
+          "heldFrame": 225,
+          "hat": null,
+          "hatFrame": 225,
+          "hatUntilFrame": 286
         },
         {
           "id": "t2",
@@ -592,8 +662,14 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 290,
-          "fallDir": "right"
+          "koFrame": 225,
+          "fallDir": "right",
+          "label": null,
+          "held": null,
+          "heldFrame": 225,
+          "hat": null,
+          "hatFrame": 225,
+          "hatUntilFrame": 286
         },
         {
           "id": "t3",
@@ -605,47 +681,54 @@
           "travel": {
             "fromX": 799.2,
             "toX": 1080,
-            "startFrame": 293,
-            "endFrame": 362
+            "startFrame": 228,
+            "endFrame": 286
           },
           "poseChanges": [],
-          "koFrame": 310,
-          "fallDir": null
+          "koFrame": 245,
+          "fallDir": null,
+          "label": null,
+          "held": null,
+          "heldFrame": 225,
+          "hat": null,
+          "hatFrame": 225,
+          "hatUntilFrame": 286
         }
       ],
       "props": [
         {
           "name": "bat_signal",
-          "atFrame": 290,
-          "untilFrame": 389,
+          "atFrame": 225,
+          "untilFrame": 286,
           "anim": "fade",
           "position": "top_right",
           "scale": 0.9,
-          "exit": "fade"
+          "exit": "fade",
+          "on": null
         }
       ],
       "sfx": [
         {
           "name": "whoosh",
-          "atFrame": 302,
+          "atFrame": 237,
           "volume": 0.7,
           "src": "assets/sfx/whoosh.wav"
         },
         {
           "name": "thud",
-          "atFrame": 310,
+          "atFrame": 245,
           "volume": 0.9,
           "src": "assets/sfx/thud.wav"
         },
         {
           "name": "thud",
-          "atFrame": 319,
+          "atFrame": 254,
           "volume": 0.9,
           "src": "assets/sfx/thud.wav"
         },
         {
           "name": "swoosh",
-          "atFrame": 319,
+          "atFrame": 254,
           "volume": 0.5,
           "src": "assets/sfx/swoosh.wav"
         }
@@ -654,50 +737,53 @@
       "camera": [
         {
           "move": "shake",
-          "atFrame": 310
+          "atFrame": 245,
+          "on": null
         },
         {
           "move": "shake",
-          "atFrame": 319
+          "atFrame": 254,
+          "on": null
         }
       ],
-      "overlays": []
+      "overlays": [],
+      "projectiles": []
     },
     {
       "id": "count",
       "speech": "Three for three.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 389,
-      "durationInFrames": 103,
-      "speechFrames": 79,
+      "startFrame": 286,
+      "durationInFrames": 89,
+      "speechFrames": 65,
       "audioSrc": "audio/count.wav",
       "words": [
         {
           "text": "Three",
           "i": 0,
-          "start": 0.525,
-          "end": 1.075,
-          "startFrame": 405,
-          "endFrame": 421,
+          "start": 0.08,
+          "end": 1.14,
+          "startFrame": 288,
+          "endFrame": 320,
           "emphasis": true
         },
         {
           "text": "for",
           "i": 1,
-          "start": 1.075,
-          "end": 1.425,
-          "startFrame": 421,
-          "endFrame": 432,
+          "start": 1.386,
+          "end": 1.561,
+          "startFrame": 328,
+          "endFrame": 333,
           "emphasis": false
         },
         {
           "text": "three.",
           "i": 2,
-          "start": 1.425,
-          "end": 2.525,
-          "startFrame": 432,
-          "endFrame": 465,
+          "start": 1.567,
+          "end": 1.963,
+          "startFrame": 333,
+          "endFrame": 345,
           "emphasis": true
         }
       ],
@@ -717,12 +803,12 @@
         "poseChanges": [
           {
             "pose": "pointing_right",
-            "atFrame": 421
+            "atFrame": 328
           },
           {
             "pose": "arms_crossed",
             "expression": "smug",
-            "atFrame": 441
+            "atFrame": 342
           }
         ],
         "shots": [],
@@ -743,8 +829,14 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 389,
-          "fallDir": "right"
+          "koFrame": 286,
+          "fallDir": "right",
+          "label": null,
+          "held": null,
+          "heldFrame": 286,
+          "hat": null,
+          "hatFrame": 286,
+          "hatUntilFrame": 375
         },
         {
           "id": "t2",
@@ -755,8 +847,14 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 389,
-          "fallDir": "right"
+          "koFrame": 286,
+          "fallDir": "right",
+          "label": null,
+          "held": null,
+          "heldFrame": 286,
+          "hat": null,
+          "hatFrame": 286,
+          "hatUntilFrame": 375
         },
         {
           "id": "t3",
@@ -767,80 +865,88 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 389,
-          "fallDir": "left"
+          "koFrame": 286,
+          "fallDir": "left",
+          "label": null,
+          "held": null,
+          "heldFrame": 286,
+          "hat": null,
+          "hatFrame": 286,
+          "hatUntilFrame": 375
         }
       ],
       "props": [
         {
           "name": "bat_signal",
-          "atFrame": 389,
-          "untilFrame": 492,
+          "atFrame": 286,
+          "untilFrame": 375,
           "anim": "fade",
           "position": "top_right",
           "scale": 0.9,
-          "exit": "fade"
+          "exit": "fade",
+          "on": null
         }
       ],
       "sfx": [
         {
           "name": "tick",
-          "atFrame": 405,
+          "atFrame": 288,
           "volume": 0.8,
           "src": "assets/sfx/tick.wav"
         },
         {
           "name": "tick",
-          "atFrame": 421,
+          "atFrame": 328,
           "volume": 0.8,
           "src": "assets/sfx/tick.wav"
         },
         {
           "name": "tick",
-          "atFrame": 432,
+          "atFrame": 333,
           "volume": 0.8,
           "src": "assets/sfx/tick.wav"
         }
       ],
       "bubbles": [],
       "camera": [],
-      "overlays": []
+      "overlays": [],
+      "projectiles": []
     },
     {
       "id": "robin",
       "speech": "Hello! Robin here!",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 492,
-      "durationInFrames": 67,
-      "speechFrames": 49,
+      "startFrame": 375,
+      "durationInFrames": 76,
+      "speechFrames": 58,
       "audioSrc": "audio/robin.wav",
       "words": [
         {
           "text": "Hello!",
           "i": 0,
-          "start": 0.15,
-          "end": 0.425,
-          "startFrame": 497,
-          "endFrame": 505,
+          "start": 0.005,
+          "end": 0.381,
+          "startFrame": 375,
+          "endFrame": 386,
           "emphasis": false
         },
         {
           "text": "Robin",
           "i": 1,
-          "start": 0.425,
-          "end": 0.75,
-          "startFrame": 505,
-          "endFrame": 515,
+          "start": 0.969,
+          "end": 1.325,
+          "startFrame": 404,
+          "endFrame": 415,
           "emphasis": true
         },
         {
           "text": "here!",
           "i": 2,
-          "start": 0.75,
-          "end": 1.525,
-          "startFrame": 515,
-          "endFrame": 538,
+          "start": 1.31,
+          "end": 1.726,
+          "startFrame": 414,
+          "endFrame": 427,
           "emphasis": false
         }
       ],
@@ -876,8 +982,14 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 492,
-          "fallDir": "right"
+          "koFrame": 375,
+          "fallDir": "right",
+          "label": null,
+          "held": null,
+          "heldFrame": 375,
+          "hat": null,
+          "hatFrame": 375,
+          "hatUntilFrame": 451
         },
         {
           "id": "t2",
@@ -888,8 +1000,14 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 492,
-          "fallDir": "right"
+          "koFrame": 375,
+          "fallDir": "right",
+          "label": null,
+          "held": null,
+          "heldFrame": 375,
+          "hat": null,
+          "hatFrame": 375,
+          "hatUntilFrame": 451
         },
         {
           "id": "t3",
@@ -900,8 +1018,14 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 492,
-          "fallDir": "left"
+          "koFrame": 375,
+          "fallDir": "left",
+          "label": null,
+          "held": null,
+          "heldFrame": 375,
+          "hat": null,
+          "hatFrame": 375,
+          "hatUntilFrame": 451
         },
         {
           "id": "robin",
@@ -913,78 +1037,86 @@
           "travel": {
             "fromX": -162,
             "toX": 172.8,
-            "startFrame": 492,
-            "endFrame": 505
+            "startFrame": 375,
+            "endFrame": 404
           },
           "poseChanges": [
             {
               "pose": "waving",
               "expression": "happy",
-              "atFrame": 505
+              "atFrame": 404
             }
           ],
           "koFrame": null,
-          "fallDir": null
+          "fallDir": null,
+          "label": null,
+          "held": null,
+          "heldFrame": 375,
+          "hat": null,
+          "hatFrame": 375,
+          "hatUntilFrame": 451
         }
       ],
       "props": [
         {
           "name": "bat_signal",
-          "atFrame": 492,
-          "untilFrame": 559,
+          "atFrame": 375,
+          "untilFrame": 451,
           "anim": "fade",
           "position": "top_right",
           "scale": 0.9,
-          "exit": "fade"
+          "exit": "fade",
+          "on": null
         }
       ],
       "sfx": [
         {
           "name": "pop",
-          "atFrame": 497,
+          "atFrame": 375,
           "volume": 0.6,
           "src": "assets/sfx/pop.wav"
         }
       ],
       "bubbles": [],
       "camera": [],
-      "overlays": []
+      "overlays": [],
+      "projectiles": []
     },
     {
       "id": "notnow",
       "speech": "Not now, Robin.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 559,
-      "durationInFrames": 99,
-      "speechFrames": 78,
+      "startFrame": 451,
+      "durationInFrames": 61,
+      "speechFrames": 40,
       "audioSrc": "audio/notnow.wav",
       "words": [
         {
           "text": "Not",
           "i": 0,
-          "start": 0.525,
-          "end": 0.838,
-          "startFrame": 575,
-          "endFrame": 584,
+          "start": 0.08,
+          "end": 0.338,
+          "startFrame": 453,
+          "endFrame": 461,
           "emphasis": true
         },
         {
           "text": "now,",
           "i": 1,
-          "start": 0.838,
-          "end": 1.363,
-          "startFrame": 584,
-          "endFrame": 600,
+          "start": 0.384,
+          "end": 0.662,
+          "startFrame": 463,
+          "endFrame": 471,
           "emphasis": true
         },
         {
           "text": "Robin.",
           "i": 2,
-          "start": 1.363,
-          "end": 2.475,
-          "startFrame": 600,
-          "endFrame": 633,
+          "start": 0.769,
+          "end": 1.188,
+          "startFrame": 474,
+          "endFrame": 487,
           "emphasis": false
         }
       ],
@@ -1005,7 +1137,7 @@
           {
             "pose": "arms_crossed",
             "expression": "fierce",
-            "atFrame": 600
+            "atFrame": 474
           }
         ],
         "shots": [],
@@ -1026,8 +1158,14 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 559,
-          "fallDir": "right"
+          "koFrame": 451,
+          "fallDir": "right",
+          "label": null,
+          "held": null,
+          "heldFrame": 451,
+          "hat": null,
+          "hatFrame": 451,
+          "hatUntilFrame": 512
         },
         {
           "id": "t2",
@@ -1038,8 +1176,14 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 559,
-          "fallDir": "right"
+          "koFrame": 451,
+          "fallDir": "right",
+          "label": null,
+          "held": null,
+          "heldFrame": 451,
+          "hat": null,
+          "hatFrame": 451,
+          "hatUntilFrame": 512
         },
         {
           "id": "t3",
@@ -1050,8 +1194,14 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 559,
-          "fallDir": "left"
+          "koFrame": 451,
+          "fallDir": "left",
+          "label": null,
+          "held": null,
+          "heldFrame": 451,
+          "hat": null,
+          "hatFrame": 451,
+          "hatUntilFrame": 512
         },
         {
           "id": "robin",
@@ -1065,62 +1215,70 @@
             {
               "pose": "shrugging",
               "expression": "worried",
-              "atFrame": 600
+              "atFrame": 474
             }
           ],
           "koFrame": null,
-          "fallDir": null
+          "fallDir": null,
+          "label": null,
+          "held": null,
+          "heldFrame": 451,
+          "hat": null,
+          "hatFrame": 451,
+          "hatUntilFrame": 512
         }
       ],
       "props": [
         {
           "name": "bat_signal",
-          "atFrame": 559,
-          "untilFrame": 658,
+          "atFrame": 451,
+          "untilFrame": 512,
           "anim": "fade",
           "position": "top_right",
           "scale": 0.9,
-          "exit": "fade"
+          "exit": "fade",
+          "on": null
         }
       ],
       "sfx": [
         {
           "name": "error",
-          "atFrame": 575,
+          "atFrame": 453,
           "volume": 0.35,
           "src": "assets/sfx/error.wav"
         }
       ],
       "bubbles": [],
       "camera": [],
-      "overlays": []
+      "overlays": [],
+      "projectiles": []
     },
     {
       "id": "finale",
       "speech": "Goodnight, Gotham.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 658,
-      "durationInFrames": 153,
-      "speechFrames": 78,
+      "startFrame": 512,
+      "durationInFrames": 109,
+      "speechFrames": 34,
       "audioSrc": "audio/finale.wav",
       "words": [
         {
           "text": "Goodnight,",
           "i": 0,
-          "start": 0.5,
-          "end": 1.337,
-          "startFrame": 673,
-          "endFrame": 698,
+          "start": 0.087,
+          "end": 0.526,
+          "startFrame": 515,
+          "endFrame": 528,
           "emphasis": false
         },
         {
           "text": "Gotham.",
           "i": 1,
-          "start": 1.337,
-          "end": 2.5,
-          "startFrame": 698,
-          "endFrame": 733,
+          "start": 0.491,
+          "end": 0.93,
+          "startFrame": 527,
+          "endFrame": 540,
           "emphasis": true
         }
       ],
@@ -1141,31 +1299,31 @@
           {
             "pose": "pointing_right",
             "expression": "smug",
-            "atFrame": 710
+            "atFrame": 539
           },
           {
             "pose": "pointing_up",
             "expression": "neutral",
-            "atFrame": 743
+            "atFrame": 572
           }
         ],
         "shots": [],
         "throws": [
           {
-            "atFrame": 713,
+            "atFrame": 542,
             "item": "batarang",
             "hops": [
               {
                 "target": "camera",
-                "hitFrame": 727
+                "hitFrame": 556
               }
             ]
           }
         ],
         "entrance": null,
         "exit": {
-          "atFrame": 749,
-          "endFrame": 773
+          "atFrame": 578,
+          "endFrame": 602
         },
         "strikes": [],
         "travel": null,
@@ -1181,8 +1339,14 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 658,
-          "fallDir": "right"
+          "koFrame": 512,
+          "fallDir": "right",
+          "label": null,
+          "held": null,
+          "heldFrame": 512,
+          "hat": null,
+          "hatFrame": 512,
+          "hatUntilFrame": 621
         },
         {
           "id": "t2",
@@ -1193,8 +1357,14 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 658,
-          "fallDir": "right"
+          "koFrame": 512,
+          "fallDir": "right",
+          "label": null,
+          "held": null,
+          "heldFrame": 512,
+          "hat": null,
+          "hatFrame": 512,
+          "hatUntilFrame": 621
         },
         {
           "id": "t3",
@@ -1205,8 +1375,14 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 658,
-          "fallDir": "left"
+          "koFrame": 512,
+          "fallDir": "left",
+          "label": null,
+          "held": null,
+          "heldFrame": 512,
+          "hat": null,
+          "hatFrame": 512,
+          "hatUntilFrame": 621
         },
         {
           "id": "robin",
@@ -1220,52 +1396,59 @@
             {
               "pose": "shocked",
               "expression": "surprised",
-              "atFrame": 749
+              "atFrame": 578
             }
           ],
           "koFrame": null,
-          "fallDir": null
+          "fallDir": null,
+          "label": null,
+          "held": null,
+          "heldFrame": 512,
+          "hat": null,
+          "hatFrame": 512,
+          "hatUntilFrame": 621
         }
       ],
       "props": [
         {
           "name": "bat_signal",
-          "atFrame": 658,
-          "untilFrame": 811,
+          "atFrame": 512,
+          "untilFrame": 621,
           "anim": "fade",
           "position": "top_right",
           "scale": 0.9,
-          "exit": "fade"
+          "exit": "fade",
+          "on": null
         }
       ],
       "sfx": [
         {
           "name": "whoosh",
-          "atFrame": 713,
+          "atFrame": 542,
           "volume": 0.7,
           "src": "assets/sfx/whoosh.wav"
         },
         {
           "name": "boom",
-          "atFrame": 727,
+          "atFrame": 556,
           "volume": 0.8,
           "src": "assets/sfx/boom.wav"
         },
         {
           "name": "click",
-          "atFrame": 727,
+          "atFrame": 556,
           "volume": 0.7,
           "src": "assets/sfx/click.wav"
         },
         {
           "name": "zip",
-          "atFrame": 746,
+          "atFrame": 575,
           "volume": 0.8,
           "src": "assets/sfx/zip.wav"
         },
         {
           "name": "swoosh",
-          "atFrame": 755,
+          "atFrame": 584,
           "volume": 0.6,
           "src": "assets/sfx/swoosh.wav"
         }
@@ -1274,61 +1457,63 @@
       "camera": [
         {
           "move": "shake",
-          "atFrame": 727
+          "atFrame": 556,
+          "on": null
         }
       ],
       "overlays": [
         {
           "kind": "batarang_stuck",
-          "atFrame": 727,
-          "untilFrame": 811
+          "atFrame": 556,
+          "untilFrame": 621
         }
-      ]
+      ],
+      "projectiles": []
     },
     {
       "id": "wait",
       "speech": "Wait! Wait for me!",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 811,
-      "durationInFrames": 58,
-      "speechFrames": 43,
+      "startFrame": 621,
+      "durationInFrames": 56,
+      "speechFrames": 41,
       "audioSrc": "audio/wait.wav",
       "words": [
         {
           "text": "Wait!",
           "i": 0,
-          "start": 0.15,
-          "end": 0.362,
-          "startFrame": 816,
-          "endFrame": 822,
+          "start": 0.067,
+          "end": 0.345,
+          "startFrame": 623,
+          "endFrame": 631,
           "emphasis": true
         },
         {
           "text": "Wait",
           "i": 1,
-          "start": 0.362,
-          "end": 0.537,
-          "startFrame": 822,
-          "endFrame": 827,
+          "start": 0.594,
+          "end": 0.831,
+          "startFrame": 639,
+          "endFrame": 646,
           "emphasis": true
         },
         {
           "text": "for",
           "i": 2,
-          "start": 0.537,
-          "end": 0.637,
-          "startFrame": 827,
-          "endFrame": 830,
+          "start": 0.817,
+          "end": 0.994,
+          "startFrame": 646,
+          "endFrame": 651,
           "emphasis": false
         },
         {
           "text": "me!",
           "i": 3,
-          "start": 0.637,
-          "end": 1.325,
-          "startFrame": 830,
-          "endFrame": 851,
+          "start": 0.979,
+          "end": 1.156,
+          "startFrame": 650,
+          "endFrame": 656,
           "emphasis": false
         }
       ],
@@ -1349,8 +1534,14 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 811,
-          "fallDir": "right"
+          "koFrame": 621,
+          "fallDir": "right",
+          "label": null,
+          "held": null,
+          "heldFrame": 621,
+          "hat": null,
+          "hatFrame": 621,
+          "hatUntilFrame": 677
         },
         {
           "id": "t2",
@@ -1361,8 +1552,14 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 811,
-          "fallDir": "right"
+          "koFrame": 621,
+          "fallDir": "right",
+          "label": null,
+          "held": null,
+          "heldFrame": 621,
+          "hat": null,
+          "hatFrame": 621,
+          "hatUntilFrame": 677
         },
         {
           "id": "t3",
@@ -1373,8 +1570,14 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 811,
-          "fallDir": "left"
+          "koFrame": 621,
+          "fallDir": "left",
+          "label": null,
+          "held": null,
+          "heldFrame": 621,
+          "hat": null,
+          "hatFrame": 621,
+          "hatUntilFrame": 677
         },
         {
           "id": "robin",
@@ -1386,29 +1589,36 @@
           "travel": {
             "fromX": 172.8,
             "toX": 1458,
-            "startFrame": 811,
-            "endFrame": 869
+            "startFrame": 621,
+            "endFrame": 677
           },
           "poseChanges": [],
           "koFrame": null,
-          "fallDir": null
+          "fallDir": null,
+          "label": null,
+          "held": null,
+          "heldFrame": 621,
+          "hat": null,
+          "hatFrame": 621,
+          "hatUntilFrame": 677
         }
       ],
       "props": [
         {
           "name": "bat_signal",
-          "atFrame": 811,
-          "untilFrame": 869,
+          "atFrame": 621,
+          "untilFrame": 677,
           "anim": "fade",
           "position": "top_right",
           "scale": 0.9,
-          "exit": "fade"
+          "exit": "fade",
+          "on": null
         }
       ],
       "sfx": [
         {
           "name": "swoosh",
-          "atFrame": 811,
+          "atFrame": 621,
           "volume": 0.5,
           "src": "assets/sfx/swoosh.wav"
         }
@@ -1416,8 +1626,8 @@
       "bubbles": [
         {
           "text": "WAIT!",
-          "atFrame": 816,
-          "untilFrame": 827,
+          "atFrame": 623,
+          "untilFrame": 646,
           "side": "right",
           "on": "robin"
         }
@@ -1426,82 +1636,83 @@
       "overlays": [
         {
           "kind": "batarang_stuck",
-          "atFrame": 811,
-          "untilFrame": 869
+          "atFrame": 621,
+          "untilFrame": 677
         }
-      ]
+      ],
+      "projectiles": []
     },
     {
       "id": "cta",
       "speech": "Batman says: follow Dummy Sticky for more!",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 869,
-      "durationInFrames": 130,
-      "speechFrames": 88,
+      "startFrame": 677,
+      "durationInFrames": 129,
+      "speechFrames": 87,
       "audioSrc": "audio/cta.wav",
       "words": [
         {
           "text": "Batman",
           "i": 0,
-          "start": 0.15,
-          "end": 0.55,
-          "startFrame": 874,
-          "endFrame": 886,
+          "start": 0.005,
+          "end": 0.442,
+          "startFrame": 677,
+          "endFrame": 690,
           "emphasis": false
         },
         {
           "text": "says:",
           "i": 1,
-          "start": 0.55,
-          "end": 0.875,
-          "startFrame": 886,
-          "endFrame": 895,
+          "start": 0.467,
+          "end": 0.743,
+          "startFrame": 691,
+          "endFrame": 699,
           "emphasis": false
         },
         {
           "text": "follow",
           "i": 2,
-          "start": 0.875,
-          "end": 1.2,
-          "startFrame": 895,
-          "endFrame": 905,
+          "start": 1.07,
+          "end": 1.426,
+          "startFrame": 709,
+          "endFrame": 720,
           "emphasis": true
         },
         {
           "text": "Dummy",
           "i": 3,
-          "start": 1.2,
-          "end": 1.475,
-          "startFrame": 905,
-          "endFrame": 913,
+          "start": 1.452,
+          "end": 1.768,
+          "startFrame": 721,
+          "endFrame": 730,
           "emphasis": true
         },
         {
           "text": "Sticky",
           "i": 4,
-          "start": 1.475,
-          "end": 1.8,
-          "startFrame": 913,
-          "endFrame": 923,
+          "start": 1.773,
+          "end": 2.129,
+          "startFrame": 730,
+          "endFrame": 741,
           "emphasis": true
         },
         {
           "text": "for",
           "i": 5,
-          "start": 1.8,
-          "end": 1.925,
-          "startFrame": 923,
-          "endFrame": 927,
+          "start": 2.135,
+          "end": 2.31,
+          "startFrame": 741,
+          "endFrame": 746,
           "emphasis": false
         },
         {
           "text": "more!",
           "i": 6,
-          "start": 1.925,
-          "end": 2.825,
-          "startFrame": 927,
-          "endFrame": 954,
+          "start": 2.315,
+          "end": 2.732,
+          "startFrame": 746,
+          "endFrame": 759,
           "emphasis": false
         }
       ],
@@ -1522,8 +1733,14 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 869,
-          "fallDir": "right"
+          "koFrame": 677,
+          "fallDir": "right",
+          "label": null,
+          "held": null,
+          "heldFrame": 677,
+          "hat": null,
+          "hatFrame": 677,
+          "hatUntilFrame": 806
         },
         {
           "id": "t2",
@@ -1534,8 +1751,14 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 869,
-          "fallDir": "right"
+          "koFrame": 677,
+          "fallDir": "right",
+          "label": null,
+          "held": null,
+          "heldFrame": 677,
+          "hat": null,
+          "hatFrame": 677,
+          "hatUntilFrame": 806
         },
         {
           "id": "t3",
@@ -1546,8 +1769,14 @@
           "scale": 0.75,
           "travel": null,
           "poseChanges": [],
-          "koFrame": 869,
-          "fallDir": "left"
+          "koFrame": 677,
+          "fallDir": "left",
+          "label": null,
+          "held": null,
+          "heldFrame": 677,
+          "hat": null,
+          "hatFrame": 677,
+          "hatUntilFrame": 806
         },
         {
           "id": "robin",
@@ -1559,46 +1788,53 @@
           "travel": {
             "fromX": 1296,
             "toX": 464.4,
-            "startFrame": 869,
-            "endFrame": 895
+            "startFrame": 677,
+            "endFrame": 709
           },
           "poseChanges": [
             {
               "pose": "waving",
               "expression": "happy",
-              "atFrame": 895
+              "atFrame": 709
             },
             {
               "pose": "pointing_up",
               "expression": "smug",
-              "atFrame": 927
+              "atFrame": 746
             }
           ],
           "koFrame": null,
-          "fallDir": null
+          "fallDir": null,
+          "label": null,
+          "held": null,
+          "heldFrame": 677,
+          "hat": null,
+          "hatFrame": 677,
+          "hatUntilFrame": 806
         }
       ],
       "props": [
         {
           "name": "bat_signal",
-          "atFrame": 869,
-          "untilFrame": 999,
+          "atFrame": 677,
+          "untilFrame": 806,
           "anim": "fade",
           "position": "top_right",
           "scale": 0.9,
-          "exit": "fade"
+          "exit": "fade",
+          "on": null
         }
       ],
       "sfx": [
         {
           "name": "pop",
-          "atFrame": 874,
+          "atFrame": 677,
           "volume": 0.5,
           "src": "assets/sfx/pop.wav"
         },
         {
           "name": "chime",
-          "atFrame": 895,
+          "atFrame": 709,
           "volume": 0.5,
           "src": "assets/sfx/chime.wav"
         }
@@ -1608,15 +1844,16 @@
       "overlays": [
         {
           "kind": "follow_card",
-          "atFrame": 895,
-          "untilFrame": 999
+          "atFrame": 709,
+          "untilFrame": 806
         },
         {
           "kind": "blackout",
-          "atFrame": 987,
-          "untilFrame": 999
+          "atFrame": 794,
+          "untilFrame": 806
         }
-      ]
+      ],
+      "projectiles": []
     }
   ],
   "brand": {
@@ -1624,9 +1861,9 @@
     "name": "Dummy Sticky"
   },
   "meta": {
-    "resolvedAt": "2026-09-18T14:42:08.704Z",
+    "resolvedAt": "2026-09-19T18:19:47.254Z",
     "engineVersion": "0.1.0",
-    "ttsModel": "hexgrad/Kokoro-82M",
-    "manifestHash": "dbb3f51fd0ab02b0"
+    "ttsModel": "ResembleAI/chatterbox",
+    "manifestHash": "d2609caf5ad03b38"
   }
 }

@@ -92,3 +92,29 @@ them, without changing the single-narrator path.
 
 The repo is private and personal; no LICENSE is added. Revisit if it is ever
 opened up (Remotion's own license terms still apply to the renderer).
+
+## D13 — Chatterbox is the second voice engine, on a one-week trial (from 2026-09-19)
+
+**Why** Kokoro cannot be directed: punctuation, casing and speed change nothing in
+its pitch contour, and it reads laughs as syllables (measured in
+`F:/PoCs/audios/experiments/001-kokoro-limits`). Character voices therefore never
+matched the personality. Chatterbox (Resemble AI, MIT, 350 M/500 M) runs on the
+GTX 1660 at ~0.7–1.5× real time, has an `exaggeration` knob that measurably moves
+prosody, performs `[laugh] [chuckle] [cough]` in the same voice, and clones a
+reference clip — so a Kokoro voice we already published can stay the character's
+identity (`assets/voices/*.wav`). Its missing word timestamps are recovered by
+forced alignment within 12 ms median (`audios/experiments/003-alignment`).
+
+**How** a second uv project `py-chatterbox/` (torch 2.6 CUDA cannot share `py/`'s
+env); manifest fields `engine`, `voiceRef`, `emotion` at manifest and scene level;
+`speech` may carry tags when the engine is chatterbox; the aligner writes the same
+`alignment.json`, so the resolver, renderer, QA and review pack are untouched.
+Kokoro stays the default. First like-for-like: `batman-alley` v7 (Kokoro) vs v8 (Chatterbox).
+
+**Exit criteria (decide ~2026-09-26)** Moamen's ear on the week's videos: does the
+character match improve, do laughs land, is the voice stable across scenes and
+videos? Keep → make it the default for character lines and log the choice here.
+Drop → remove the engine fields' default docs but keep the engine abstraction for the
+next candidate (Qwen3-TTS VoiceDesign or a paid API, see `audios/docs/06`).
+D10 (laughs are Bark clips) is suspended for Chatterbox scenes: tag the laugh instead.
+

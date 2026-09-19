@@ -20,9 +20,13 @@ Every render is a NEW `output/v<N>/` (mp4, qa, contact sheet, manifest
 snapshot). Never delete or overwrite a version — Moamen compares them.
 When Moamen wants to watch a video away from this PC: `vb publish <slug>` (or
 `video_publish`) → GitHub Release URL. Never commit MP4s.
-Laughter: for a character with his own voice, TTS the laugh in THAT voice (`"Ha ha ha! …"`,
-`captionStyle: beat`) — a Bark clip sounds like a second person. Bark clips (`vb-audio laugh`)
-only when the narrator has no strong identity or the user provides a file.
+Voices (trial week from 2026-09-19, docs/DECISIONS.md D13): character lines may use
+`"engine": "chatterbox"` with `voiceRef` (assets/voices/*.wav) and `emotion` 0..1; laughs are
+`[laugh]`/`[chuckle]` tags inside `speech` on a chatterbox scene (same voice, no Bark). Kokoro stays
+the default and the narrator CTA voice. Chatterbox scenes: `speed` ~0.9–1.05, `emotion` ≤ 0.5 for
+deep voices. First cold compile downloads nothing but warms CUDA (~1 min). Read docs/AUDIO.md §7.
+Laughter with Kokoro: TTS "Ha ha ha!" in the character's voice with `captionStyle: beat`, never a
+Bark clip next to a Kokoro voice (two different people).
 Every manifest carries a `social` block (title/hook/description/tags/hashtags/
 pinned comment); the render writes `output/v<N>/social.md` ready to paste, and
 `video_social` regenerates it. Channel identity (name, @handle, watermark,

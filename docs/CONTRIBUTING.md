@@ -91,6 +91,7 @@ Then render a **new version** of a fixture project that exercises the feature
 | `ffmpeg`/`uv` not found in a shell | shell predates the winget install. Open a new one or prepend the winget package bin dirs to `PATH`. |
 | render output slightly longer, 96 kHz | `loudnorm` resamples; `render.ts` forces `-ar 48000 -shortest`. |
 | voice-FX scene drifts vs captions | pitch shift changed length; `applyVoiceFx` pads/trims to exact seconds (`apad`, `-t`). Keep that. |
+| `engine: chatterbox` says "unavailable" | `cd py-chatterbox && uv sync`, then force CUDA torch: `uv pip install --python .venv/Scripts/python.exe --reinstall --no-deps torch==2.6.0+cu126 torchaudio==2.6.0+cu126 --index-url https://download.pytorch.org/whl/cu126`. `setuptools<81` is pinned because `resemble-perth` imports `pkg_resources`. Caches: `HF_HOME`/`UV_CACHE_DIR`/`TORCH_HOME` point at `F:\caches` (C: is small). |
 | NVENC fails | driver < 610 lacks the needed API; `doctor` does a real test encode and `render.ts` falls back to libx264. |
 | claws/pistol point back up the arm | `rotate(deg)` instead of `rotate(-deg)`. |
 | arm swings but claws don't follow | claws must use the *aimed* forearm angle (`lForeDeg/rForeDeg`), not the pose's. |

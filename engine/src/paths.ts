@@ -8,6 +8,8 @@ export const PROJECTS_DIR = path.join(ROOT, "projects");
 export const ASSETS_DIR = path.join(ROOT, "assets");
 export const RENDERER_DIR = path.join(ROOT, "renderer");
 export const PY_DIR = path.join(ROOT, "py");
+/** Second Python project: Chatterbox pins torch 2.6 (CUDA), so it cannot share py/'s env. */
+export const PY_CHATTERBOX_DIR = path.join(ROOT, "py-chatterbox");
 export const SKILLS_DIR = path.join(ROOT, ".claude", "skills");
 
 export const ENGINE_VERSION: string = JSON.parse(

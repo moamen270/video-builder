@@ -2,8 +2,8 @@ import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { execa } from "execa";
-import { AlignmentFile, type Manifest, type SceneAlignment, type VoiceFx } from "./schema/index.js";
-import { PY_DIR, type ProjectPaths } from "./paths.js";
+import { AlignmentFile, type Engine, type Manifest, type SceneAlignment, type VoiceFx } from "./schema/index.js";
+import { ASSETS_DIR, PY_CHATTERBOX_DIR, PY_DIR, type ProjectPaths } from "./paths.js";
 
 export type AudioProgress = (msg: string) => void;
 
@@ -11,9 +11,31 @@ type Scene = Manifest["scenes"][number];
 const sceneSpeed = (m: Manifest, s: Scene) => s.speed ?? m.speed;
 const sceneVoice = (m: Manifest, s: Scene) => s.voice ?? m.voice;
 const sceneFx = (m: Manifest, s: Scene): VoiceFx => s.voiceFx ?? m.voiceFx;
+const sceneEngine = (m: Manifest, s: Scene): Engine => s.engine ?? m.engine;
+const sceneEmotion = (m: Manifest, s: Scene): number => s.emotion ?? m.emotion ?? 0.5;
+
+/**
+ * Chatterbox reference clip: a file name looked up in the project's clips/ first, then the shared assets/voices/.
+ * Returns the absolute path, or null when the scene has no voiceRef.
+ */
+export function resolveVoiceRef(m: Manifest, s: Scene, p: ProjectPaths): string | null {
+  const ref = s.voiceRef ?? m.voiceRef;
+  if (!ref) return null;
+  const candidates = [path.join(p.clipsDir, ref), path.join(ASSETS_DIR, "voices", ref), ref];
+  const hit = candidates.find((c) => existsSync(c));
+  if (!hit) throw new Error(`scene "${s.id}": voiceRef "${ref}" not found in ${p.clipsDir} or ${path.join(ASSETS_DIR, "voices")}`);
+  return path.resolve(hit);
+}
 
 export function sceneHash(m: Manifest, s: Scene, p: ProjectPaths): string {
   const parts: unknown[] = [sceneVoice(m, s), sceneSpeed(m, s), sceneFx(m, s), s.speech ?? "", s.pauseAfter, s.silence ?? "", "v4"];
+  const engine = sceneEngine(m, s);
+  if (engine !== "kokoro") {
+    // Engine, acting intensity and the reference clip (by size+mtime) all change the audio.
+    const ref = s.speech !== undefined ? resolveVoiceRef(m, s, p) : null;
+    const st = ref && existsSync(ref) ? statSync(ref) : null;
+    parts.push("engine", engine, "cb3", sceneEmotion(m, s), ref ?? "", st?.size ?? 0, st?.mtimeMs ?? 0);
+  }
   if (s.clip) {
     const f = path.join(p.clipsDir, s.clip.file);
     const st = existsSync(f) ? statSync(f) : null;
@@ -97,9 +119,13 @@ export async function ensureAudio(
   const pending = m.scenes.filter((s) => !reusable.has(`${s.id}:${sceneHash(m, s, p)}`));
   const clipScenes = pending.filter((s) => s.clip);
   const silentScenes = pending.filter((s) => s.silence !== undefined);
-  const todo = pending
-    .filter((s) => !s.clip && s.silence === undefined)
+  const spoken = pending.filter((s) => !s.clip && s.silence === undefined);
+  const todo = spoken
+    .filter((s) => sceneEngine(m, s) === "kokoro")
     .map((s) => ({ id: s.id, speech: s.speech!, pauseAfter: s.pauseAfter, speed: sceneSpeed(m, s), voice: sceneVoice(m, s), fx: sceneFx(m, s), hash: sceneHash(m, s, p) }));
+  const todoChatterbox = spoken
+    .filter((s) => sceneEngine(m, s) === "chatterbox")
+    .map((s) => ({ id: s.id, speech: s.speech!, pauseAfter: s.pauseAfter, speed: sceneSpeed(m, s), voiceRef: resolveVoiceRef(m, s, p), emotion: sceneEmotion(m, s), seed: 0, fx: sceneFx(m, s), hash: sceneHash(m, s, p) }));
 
   let fresh: (SceneAlignment & { hash: string })[] = [];
   for (const s of clipScenes) {
@@ -135,7 +161,34 @@ export async function ensureAudio(
     }
     rmSync(reqPath, { force: true });
     rmSync(outPath, { force: true });
-  } else if (clipScenes.length === 0 && silentScenes.length === 0) {
+  }
+  if (todoChatterbox.length > 0) {
+    log(`chatterbox: synthesizing ${todoChatterbox.length} scene(s) (GPU model load ~15 s, then ~1 s per second of speech)`);
+    const reqPath = path.join(p.build, "chatterbox.request.json");
+    const outPath = path.join(p.build, "chatterbox.result.json");
+    writeFileSync(reqPath, JSON.stringify({ scenes: todoChatterbox }));
+    const proc = execa("uv", ["run", "vb-chatterbox", "synth", "--request", reqPath, "--out-dir", p.audioDir, "--out", outPath], {
+      cwd: PY_CHATTERBOX_DIR,
+      env: { ...process.env, PYTHONIOENCODING: "utf-8", HF_HUB_DISABLE_PROGRESS_BARS: "1", PYTHONWARNINGS: "ignore" },
+      all: true,
+    });
+    proc.all?.on("data", (chunk: Buffer) => {
+      for (const line of chunk.toString().split(/\r?\n/)) if (line.trim() && !/it\/s\]|Inference\.\.\./.test(line)) log(line.trim());
+    });
+    await proc;
+    const result = AlignmentFile.pick({ scenes: true }).parse(JSON.parse(readFileSync(outPath, "utf8")));
+    fresh.push(...result.scenes);
+    for (const sc of todoChatterbox) {
+      if (sc.fx !== "none") {
+        const dur = fresh.find((f) => f.sceneId === sc.id)?.duration ?? 0;
+        log(`voice fx "${sc.fx}" on ${sc.id}`);
+        await applyVoiceFx(path.join(p.audioDir, `${sc.id}.wav`), sc.fx, dur + sc.pauseAfter);
+      }
+    }
+    rmSync(reqPath, { force: true });
+    rmSync(outPath, { force: true });
+  }
+  if (todo.length === 0 && todoChatterbox.length === 0 && clipScenes.length === 0 && silentScenes.length === 0) {
     log("audio up to date, nothing to synthesize");
   }
 
@@ -150,8 +203,10 @@ export async function ensureAudio(
     return a;
   });
 
+  const engines = new Set(m.scenes.filter((s) => s.speech !== undefined).map((s) => sceneEngine(m, s)));
+  const modelName = [engines.has("kokoro") ? "hexgrad/Kokoro-82M" : "", engines.has("chatterbox") ? "ResembleAI/chatterbox" : ""].filter(Boolean).join("+") || "hexgrad/Kokoro-82M";
   const alignment: AlignmentFile = {
-    model: fresh.length > 0 ? "hexgrad/Kokoro-82M" : (previous?.model ?? "hexgrad/Kokoro-82M"),
+    model: modelName,
     voice: m.voice,
     speed: m.speed,
     scenes,

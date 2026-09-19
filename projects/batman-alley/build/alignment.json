@@ -1,28 +1,28 @@
 {
-  "model": "hexgrad/Kokoro-82M",
+  "model": "ResembleAI/chatterbox",
   "voice": "bm_lewis",
-  "speed": 0.82,
+  "speed": 0.92,
   "scenes": [
     {
       "sceneId": "open",
       "file": "open.wav",
-      "duration": 2.3,
+      "duration": 0.8969,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "I'm",
-          "start": 0.525,
-          "end": 0.9,
+          "start": 0.068,
+          "end": 0.225,
           "ws": " "
         },
         {
           "text": "Batman.",
-          "start": 0.9,
-          "end": 2.2,
-          "ws": ""
+          "start": 0.231,
+          "end": 0.693,
+          "ws": " "
         }
       ],
-      "hash": "e64df0c5325c1364"
+      "hash": "416ff904fa03d59a"
     },
     {
       "sceneId": "alley",
@@ -30,7 +30,7 @@
       "duration": 2.2,
       "sampleRate": 24000,
       "tokens": [],
-      "hash": "f78d4ea254ec61a2"
+      "hash": "c200b3655e0ba4f4"
     },
     {
       "sceneId": "landing",
@@ -38,235 +38,235 @@
       "duration": 1.2,
       "sampleRate": 24000,
       "tokens": [],
-      "hash": "8f1d612b55d0c91e"
+      "hash": "1bc0655560dacb8e"
     },
     {
       "sceneId": "line",
       "file": "line.wav",
-      "duration": 2.1,
+      "duration": 1.3382,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "Wrong",
-          "start": 0.55,
-          "end": 0.975,
+          "start": 0.08,
+          "end": 0.496,
           "ws": " "
         },
         {
           "text": "alley.",
-          "start": 0.975,
-          "end": 2,
-          "ws": ""
+          "start": 0.822,
+          "end": 1.098,
+          "ws": " "
         }
       ],
-      "hash": "589693bc9ccec169"
+      "hash": "ac3e8cdf5d53778f"
     },
     {
       "sceneId": "run",
       "file": "run.wav",
-      "duration": 2.3,
+      "duration": 1.0038,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "Going",
-          "start": 0.5,
-          "end": 1.087,
+          "start": 0.007,
+          "end": 0.349,
           "ws": " "
         },
         {
           "text": "somewhere?",
-          "start": 1.087,
-          "end": 2.2,
-          "ws": ""
+          "start": 0.376,
+          "end": 0.881,
+          "ws": " "
         }
       ],
-      "hash": "1ffaf893c92db710"
+      "hash": "e27069e99c5336e9"
     },
     {
       "sceneId": "count",
       "file": "count.wav",
-      "duration": 2.625,
+      "duration": 2.144,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "Three",
-          "start": 0.525,
-          "end": 1.075,
+          "start": 0.08,
+          "end": 1.14,
           "ws": " "
         },
         {
           "text": "for",
-          "start": 1.075,
-          "end": 1.425,
+          "start": 1.386,
+          "end": 1.561,
           "ws": " "
         },
         {
           "text": "three.",
-          "start": 1.425,
-          "end": 2.525,
-          "ws": ""
+          "start": 1.567,
+          "end": 1.963,
+          "ws": " "
         }
       ],
-      "hash": "e7b5dacfa91a1d3f"
+      "hash": "947f07642058c1ae"
     },
     {
       "sceneId": "robin",
       "file": "robin.wav",
-      "duration": 1.625,
+      "duration": 1.9067,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "Hello!",
-          "start": 0.15,
-          "end": 0.425,
+          "start": 0.005,
+          "end": 0.381,
           "ws": " "
         },
         {
           "text": "Robin",
-          "start": 0.425,
-          "end": 0.75,
+          "start": 0.969,
+          "end": 1.325,
           "ws": " "
         },
         {
           "text": "here!",
-          "start": 0.75,
-          "end": 1.525,
-          "ws": ""
+          "start": 1.31,
+          "end": 1.726,
+          "ws": " "
         }
       ],
-      "hash": "6202e603acad356f"
+      "hash": "75790a2a0226178a"
     },
     {
       "sceneId": "notnow",
       "file": "notnow.wav",
-      "duration": 2.575,
+      "duration": 1.3297,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "Not",
-          "start": 0.525,
-          "end": 0.838,
+          "start": 0.08,
+          "end": 0.338,
           "ws": " "
         },
         {
           "text": "now,",
-          "start": 0.838,
-          "end": 1.363,
+          "start": 0.384,
+          "end": 0.662,
           "ws": " "
         },
         {
           "text": "Robin.",
-          "start": 1.363,
-          "end": 2.475,
-          "ws": ""
+          "start": 0.769,
+          "end": 1.188,
+          "ws": " "
         }
       ],
-      "hash": "8f20199af326a561"
+      "hash": "885b7ca186f33ba5"
     },
     {
       "sceneId": "finale",
       "file": "finale.wav",
-      "duration": 2.6,
+      "duration": 1.1315,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "Goodnight,",
-          "start": 0.5,
-          "end": 1.337,
+          "start": 0.087,
+          "end": 0.526,
           "ws": " "
         },
         {
           "text": "Gotham.",
-          "start": 1.337,
-          "end": 2.5,
-          "ws": ""
+          "start": 0.491,
+          "end": 0.93,
+          "ws": " "
         }
       ],
-      "hash": "7986b8d2854eeb08"
+      "hash": "804e90f8ea631aa3"
     },
     {
       "sceneId": "wait",
       "file": "wait.wav",
-      "duration": 1.425,
+      "duration": 1.3582,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "Wait!",
-          "start": 0.15,
-          "end": 0.362,
+          "start": 0.067,
+          "end": 0.345,
           "ws": " "
         },
         {
           "text": "Wait",
-          "start": 0.362,
-          "end": 0.537,
+          "start": 0.594,
+          "end": 0.831,
           "ws": " "
         },
         {
           "text": "for",
-          "start": 0.537,
-          "end": 0.637,
+          "start": 0.817,
+          "end": 0.994,
           "ws": " "
         },
         {
           "text": "me!",
-          "start": 0.637,
-          "end": 1.325,
-          "ws": ""
+          "start": 0.979,
+          "end": 1.156,
+          "ws": " "
         }
       ],
-      "hash": "f4b97a6ac3dcb601"
+      "hash": "e616ac0d5a54ce17"
     },
     {
       "sceneId": "cta",
       "file": "cta.wav",
-      "duration": 2.925,
+      "duration": 2.8724,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "Batman",
-          "start": 0.15,
-          "end": 0.55,
+          "start": 0.005,
+          "end": 0.442,
           "ws": " "
         },
         {
           "text": "says:",
-          "start": 0.55,
-          "end": 0.875,
+          "start": 0.467,
+          "end": 0.743,
           "ws": " "
         },
         {
           "text": "follow",
-          "start": 0.875,
-          "end": 1.2,
+          "start": 1.07,
+          "end": 1.426,
           "ws": " "
         },
         {
           "text": "Dummy",
-          "start": 1.2,
-          "end": 1.475,
+          "start": 1.452,
+          "end": 1.768,
           "ws": " "
         },
         {
           "text": "Sticky",
-          "start": 1.475,
-          "end": 1.8,
+          "start": 1.773,
+          "end": 2.129,
           "ws": " "
         },
         {
           "text": "for",
-          "start": 1.8,
-          "end": 1.925,
+          "start": 2.135,
+          "end": 2.31,
           "ws": " "
         },
         {
           "text": "more!",
-          "start": 1.925,
-          "end": 2.825,
-          "ws": ""
+          "start": 2.315,
+          "end": 2.732,
+          "ws": " "
         }
       ],
-      "hash": "6cf3ce91daee5523"
+      "hash": "d407329dd670a722"
     }
   ]
 }

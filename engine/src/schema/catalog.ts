@@ -160,6 +160,20 @@ export const VOICES = [
 ] as const;
 export type Voice = (typeof VOICES)[number];
 
+/**
+ * Voice engines. `kokoro` (default): fast, exact word timings, no emotion control. `chatterbox` (Resemble AI, MIT, local GPU):
+ * directable — `emotion` 0..1 sets how acted the line is, `[laugh] [chuckle] [cough]` tags in `speech` are performed (needs a
+ * `voiceRef` clip > 5 s); word timings come from forced alignment (±12 ms). Trial engine since 2026-09-19 (docs/DECISIONS.md D13).
+ */
+export const ENGINES = ["kokoro", "chatterbox"] as const;
+export type Engine = (typeof ENGINES)[number];
+/** Performance tags Chatterbox Turbo performs. Stripped from captions and alignment; read aloud as words by Kokoro (so rejected there). */
+export const VOICE_TAGS = ["laugh", "chuckle", "cough"] as const;
+export const VOICE_TAG_RE = /\[(?:laugh|chuckle|cough)\]/i;
+export const hasVoiceTags = (text: string) => VOICE_TAG_RE.test(text);
+/** Remove performance tags and the double spaces they leave. */
+export const stripVoiceTags = (text: string) => text.replace(new RegExp(VOICE_TAG_RE.source, "gi"), " ").replace(/\s{2,}/g, " ").trim();
+
 /** Post-processing on the synthesized voice. `deep` = pitch down ~12% + light room; `villain` = pitch down ~20%, bass, big reverb. */
 export const VOICE_FX = ["none", "deep", "villain", "theatre", "growl", "young", "mask"] as const; // mask: slight lift, hollow porcelain resonance, stage room — Jhin // young: pitch up ~12% for kids/sidekicks // growl: pitch down, compressed, soft-clipped rasp — Batman
 export type VoiceFx = (typeof VOICE_FX)[number];

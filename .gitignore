@@ -19,3 +19,5 @@ projects/*/output/
 brand/cover-guides.png
 brand/.*.props.json
 *.tsbuildinfo
+py-chatterbox/.venv/
+projects/*/build/chatterbox.*.json

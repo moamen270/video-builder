@@ -41,6 +41,26 @@ in his own voice (Jhin: the counting; Batman: "I'm Batman."; Wolverine: a "bub" 
 **narrator voice** `voice: "af_heart", voiceFx: "none"` (never the character's voice) saying
 "Follow Dummy Sticky for more.", overlays `follow_card` at `word:follow` and `blackout` at `end-0.35`.
 
+## Voice direction (engine `chatterbox`, trial — D13)
+
+Kokoro gives one melody per voice and cannot laugh. For lines that must be *acted* — the famous
+opening line, a threat, a laugh, an excited commentator — put the scene (or the whole manifest) on
+`"engine": "chatterbox"`:
+
+```jsonc
+{ "id": "open", "speech": "I'm Batman.", "engine": "chatterbox", "voiceRef": "lewis.wav", "emotion": 0.4, "voiceFx": "growl", "speed": 0.92 }
+{ "id": "gloat", "speech": "[laugh] Nobody runs.", "engine": "chatterbox", "voiceRef": "george.wav", "voiceFx": "mask" }
+```
+
+- `voiceRef` = a clip in `assets/voices/` (see its README: lewis = Batman base, george = Jhin, puck = kid/sidekick, heart = narrator)
+  or the project's `clips/`. Same ref on every scene of a character = same voice across the video and across videos.
+- `emotion` 0..1: 0.3 flat, 0.5 normal, 0.7 excited (commentator), 0.9 shouting. Above 0.7 the voice rises — keep deep
+  characters ≤ 0.5 and let `voiceFx` carry the depth.
+- Tags `[laugh] [chuckle] [cough]` go inline where the sound happens; they never reach captions. Tags need `voiceRef`.
+- `speed` is a post-stretch here: 0.9–1.05. Kokoro's 0.78 "slow opening" becomes 0.92 on Chatterbox.
+- The CTA narrator stays Kokoro `af_heart` unless the whole video is Chatterbox (then `voiceRef: "heart.wav"`).
+- Listen to the compiled `build/audio/<scene>.wav` for every tagged line before rendering: a tag is performed ~3 times in 4.
+
 ## The first 3 seconds (both formats — this is where Shorts die)
 
 - Frame 0 must already show the interesting thing: claws out, gun raised, the hero

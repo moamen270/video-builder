@@ -35,6 +35,10 @@ becomes a rule, it also goes into the skills; this file keeps the *why*.
   drum / boom / chime hits. *(batman v3)*
 - **Opening lines slower than the body** (speed ~0.78): the first line is a performance,
   not narration. *(jhin v7)*
+- **Kokoro cannot act; stop asking it to.** Punctuation, CAPS and `?!` leave its pitch contour
+  unchanged (±2 Hz), so "make it sound excited" never worked. Owner heard the Chatterbox samples and
+  chose a one-week trial (D13): direct with `engine: chatterbox` + `emotion`, laughs as `[laugh]` tags.
+  *(audios exp 001/002, 2026-09-19)*
 
 ## Action and timing
 

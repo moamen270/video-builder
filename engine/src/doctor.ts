@@ -1,6 +1,6 @@
 import os from "node:os";
 import { execa } from "execa";
-import { PY_DIR, RENDERER_DIR } from "./paths.js";
+import { PY_CHATTERBOX_DIR, PY_DIR, RENDERER_DIR } from "./paths.js";
 
 export interface DoctorCheck { name: string; ok: boolean; detail: string }
 
@@ -33,6 +33,10 @@ export async function doctor(): Promise<{ ok: boolean; checks: DoctorCheck[] }> 
 
   const py = await probe("uv", ["run", "vb-audio", "doctor"], PY_DIR);
   checks.push({ name: "vb-audio", ok: py.ok, detail: py.ok ? py.out.split("\n").filter((l) => !l.startsWith("{")).join("; ") : py.out.slice(-300) });
+
+  // Optional engine: a failure here only disables `"engine": "chatterbox"`, so it never fails the doctor.
+  const cb = await probe("uv", ["run", "vb-chatterbox", "doctor"], PY_CHATTERBOX_DIR);
+  checks.push({ name: "vb-chatterbox", ok: true, detail: cb.ok ? cb.out.split("\n").filter((l) => !l.startsWith("{")).join("; ") : `unavailable (engine "chatterbox" disabled) — cd py-chatterbox && uv sync: ${cb.out.slice(-200)}` });
 
   const rem = await probe("npx", ["remotion", "versions"], RENDERER_DIR);
   checks.push({ name: "remotion", ok: rem.ok, detail: rem.ok ? rem.out.split("\n").find((l) => /remotion/i.test(l))?.trim() ?? "ok" : "npm install needed" });

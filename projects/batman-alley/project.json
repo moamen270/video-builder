@@ -3,8 +3,8 @@
   "topic": "Batman: alley",
   "createdAt": "2026-09-17T03:52:17.267Z",
   "targetSeconds": 40,
-  "status": "qa_passed",
-  "lastRenderMs": 59667,
+  "status": "qa_failed",
+  "lastRenderMs": 90236,
   "versions": [
     {
       "n": 1,
@@ -73,6 +73,15 @@
       "manifestHash": "dbb3f51fd0ab02b0",
       "note": "v7: CTA scene without the batarang overlay (it hid Robin) — ending as in v5",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/batman-alley-v7/final.mp4"
+    },
+    {
+      "n": 8,
+      "at": "2026-09-19T18:21:19.588Z",
+      "seconds": 26.866666666666667,
+      "renderMs": 90236,
+      "qaOk": false,
+      "manifestHash": "d2609caf5ad03b38",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/batman-alley-v8/final.mp4"
     }
   ]
 }

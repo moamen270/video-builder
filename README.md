@@ -137,6 +137,8 @@ Schema: `engine/src/schema/manifest.ts`. Compiled form the renderer reads:
 engine/      CLI, Zod schemas, TTS bridge, resolver, render driver, QA, MCP server
 renderer/    Remotion app: Short composition, stickman rig, captions, props, audio
 py/          uv project: vb-audio (Kokoro synth + forced word timestamps)
+py-chatterbox/  uv project: vb-chatterbox (Chatterbox directable TTS + forced alignment; engine "chatterbox", D13 trial)
+assets/voices/  reference clips for `voiceRef` (> 5 s each, card in README.md)
 assets/      sfx/ music/ (+ generate_assets.py to regenerate the built-in set)
 .claude/     skills/ for Claude Code
 projects/<slug>/
@@ -162,6 +164,9 @@ projects/<slug>/
 - New pose: add to `POSES` and a rig in `renderer/src/characters/poses.ts`.
 - New SFX/music: drop `name.wav|mp3` into `assets/sfx` or `assets/music` (SFX names must also be in `SFX`).
 - New voice/language: Kokoro voices in `VOICES`; other languages need a different TTS in `py/vb_audio/tts.py`.
+- New voice engine: follow `py-chatterbox/` — a uv project with a `synth --request --out-dir --out` CLI that writes the
+  same result JSON as `vb-audio` (tokens via `vb_chatterbox/align.py` if the model has none), then dispatch it in
+  `engine/src/audio.ts::ensureAudio` and add it to `ENGINES` in the catalog.
 
 ## Licensing notes
 

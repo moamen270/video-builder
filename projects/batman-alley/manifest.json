@@ -3,7 +3,7 @@
   "slug": "batman-alley",
   "title": "Batman: alley",
   "voice": "bm_lewis",
-  "speed": 0.82,
+  "speed": 0.92,
   "voiceFx": "growl",
   "theme": "midnight",
   "music": {
@@ -16,7 +16,7 @@
       "style": "batman"
     }
   ],
-  "notes": "Action first, words second. v6: standard bare opening ('I'm Batman.' under the spotlight + title), landing line is now 'Wrong alley.', everyone smaller for throw distance, Robin actually speaks (speaker) and his 'Wait!' is voiced in its own scene, the Joker looks like the Joker. Ending kept: Robin returns with 'Batman says: follow Dummy Sticky for more!'",
+  "notes": "Action first, words second. v6: standard bare opening ('I'm Batman.' under the spotlight + title), landing line is now 'Wrong alley.', everyone smaller for throw distance, Robin actually speaks (speaker) and his 'Wait!' is voiced in its own scene, the Joker looks like the Joker. Ending kept: Robin returns with 'Batman says: follow Dummy Sticky for more!' v8: SAME video, voices re-done with engine chatterbox (trial week, DECISIONS D13): Batman = lewis.wav ref + growl, emotion 0.4; Robin = puck.wav ref + young, emotion 0.7. Speeds ~1.0 because Chatterbox paces itself; compare with v7 (Kokoro).",
   "social": {
     "title": "Batman clears an alley in 4 words (stickman) — \"Not now, Robin.\"",
     "hook": "Three villains. One bat.",
@@ -66,7 +66,7 @@
       ],
       "layout": "character_center",
       "pauseAfter": 0.7,
-      "speed": 0.76,
+      "speed": 0.92,
       "bare": true,
       "captions": false,
       "character": {
@@ -312,7 +312,7 @@
       ],
       "layout": "character_center",
       "pauseAfter": 0.8,
-      "speed": 0.78,
+      "speed": 0.92,
       "character": {
         "id": "bruce",
         "pose": "arms_crossed",
@@ -495,7 +495,8 @@
           "move": "shake",
           "at": "start+0.96"
         }
-      ]
+      ],
+      "speed": 0.92
     },
     {
       "id": "count",
@@ -506,7 +507,7 @@
       ],
       "layout": "character_center",
       "pauseAfter": 0.8,
-      "speed": 0.8,
+      "speed": 0.92,
       "character": {
         "id": "bruce",
         "pose": "pointing_left",
@@ -585,7 +586,7 @@
       ],
       "voice": "am_puck",
       "voiceFx": "young",
-      "speed": 1.05,
+      "speed": 1.0,
       "layout": "character_center",
       "pauseAfter": 0.6,
       "character": {
@@ -660,7 +661,9 @@
           "volume": 0.6
         }
       ],
-      "speaker": "robin"
+      "speaker": "robin",
+      "voiceRef": "puck.wav",
+      "emotion": 0.7
     },
     {
       "id": "notnow",
@@ -670,7 +673,7 @@
       ],
       "layout": "character_center",
       "pauseAfter": 0.7,
-      "speed": 0.8,
+      "speed": 0.92,
       "character": {
         "id": "bruce",
         "pose": "facepalm",
@@ -753,7 +756,7 @@
       ],
       "layout": "character_center",
       "pauseAfter": 2.5,
-      "speed": 0.78,
+      "speed": 0.92,
       "character": {
         "id": "bruce",
         "pose": "arms_crossed",
@@ -888,7 +891,7 @@
       ],
       "voice": "am_puck",
       "voiceFx": "young",
-      "speed": 1.12,
+      "speed": 1.0,
       "speaker": "robin",
       "layout": "character_center",
       "pauseAfter": 0.5,
@@ -966,7 +969,9 @@
           "kind": "batarang_stuck",
           "at": "start"
         }
-      ]
+      ],
+      "voiceRef": "puck.wav",
+      "emotion": 0.7
     },
     {
       "id": "cta",
@@ -977,7 +982,7 @@
       ],
       "voice": "am_puck",
       "voiceFx": "young",
-      "speed": 1.05,
+      "speed": 1.0,
       "layout": "character_center",
       "pauseAfter": 1.4,
       "transition": "cut",
@@ -1069,7 +1074,12 @@
         }
       ],
       "captions": false,
-      "speaker": "robin"
+      "speaker": "robin",
+      "voiceRef": "puck.wav",
+      "emotion": 0.7
     }
-  ]
+  ],
+  "engine": "chatterbox",
+  "voiceRef": "lewis.wav",
+  "emotion": 0.4
 }

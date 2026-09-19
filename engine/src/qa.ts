@@ -66,8 +66,15 @@ export async function runQa(resolved: ResolvedManifest, p: VersionPaths): Promis
   checks.push({ name: "file_size_sane", ok: sizeBytes > 200_000, detail: `${(sizeBytes / 1e6).toFixed(2)} MB` });
 
   const luminance = await sampleLuminance(file);
-  // Two samples per second; samples inside an intentional blackout/flash may be blank.
-  const allowed = resolved.scenes.flatMap((sc) => sc.overlays.filter((o) => o.kind === "blackout" || o.kind === "flash").map((o) => [o.atFrame / resolved.fps, o.untilFrame / resolved.fps] as const));
+  // Two samples per second; samples inside an intentional blackout/flash may be blank. Screen hits (batarang_stuck,
+  // screen_crack) open with a white flash frame, so the half-second around their impact is allowed too.
+  const allowed = resolved.scenes.flatMap((sc) =>
+    sc.overlays.flatMap((o) => {
+      if (o.kind === "blackout" || o.kind === "flash") return [[o.atFrame / resolved.fps, o.untilFrame / resolved.fps] as const];
+      if (o.kind === "batarang_stuck" || o.kind === "screen_crack") return [[o.atFrame / resolved.fps, o.atFrame / resolved.fps] as const];
+      return [];
+    }),
+  );
   const dead = luminance.filter((l, i) => (l < 8 || l > 247) && !allowed.some(([a, b]) => i / 2 >= a - 0.7 && i / 2 <= b + 0.7)).length;
   checks.push({ name: "no_blank_frames", ok: dead === 0, detail: `${dead}/${luminance.length} unexpected black/white samples` });
 

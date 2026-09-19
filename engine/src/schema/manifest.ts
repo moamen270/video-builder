@@ -2,6 +2,7 @@ import { z } from "zod";
 import {
   CAMERA_MOVES,
   CHARACTER_STYLES,
+  ENGINES,
   EXPRESSIONS,
   LAYOUTS,
   POSES,
@@ -17,6 +18,7 @@ import {
   VIDEO,
   VOICES,
   VOICE_FX,
+  hasVoiceTags,
 } from "./catalog.js";
 
 /**
@@ -257,6 +259,12 @@ export const Scene = z.object({
   voiceFx: z.enum(VOICE_FX).optional(),
   /** Override the narrator voice for this scene — a second character speaking. */
   voice: z.enum(VOICES).optional(),
+  /** Override the voice engine for this scene (e.g. `chatterbox` for the one line that must be acted). */
+  engine: z.enum(ENGINES).optional(),
+  /** Chatterbox only: reference clip (> 5 s) that fixes the speaker — a file in `assets/voices/` or the project's `clips/`. */
+  voiceRef: z.string().min(1).optional(),
+  /** Chatterbox only: how acted the delivery is, 0 = flat read, 1 = maximum. ≥ 0.7 also speeds up and raises the voice. */
+  emotion: z.number().min(0).max(1).optional(),
   layout: z.enum(LAYOUTS).default("character_bottom"),
   transition: z.enum(TRANSITIONS).default("cut"),
   /** false = no kinetic captions this scene (CTA scenes: the follow_card takes the caption slot). */
@@ -315,6 +323,12 @@ export const Manifest = z.object({
   speed: z.number().min(0.8).max(1.3).default(1.05),
   /** Voice post-processing applied to every scene unless the scene overrides it. */
   voiceFx: z.enum(VOICE_FX).default("none"),
+  /** Voice engine for every scene unless the scene overrides it. See ENGINES in the catalog. */
+  engine: z.enum(ENGINES).default("kokoro"),
+  /** Chatterbox: default reference clip for the narrator (file name in `assets/voices/` or `clips/`). */
+  voiceRef: z.string().min(1).optional(),
+  /** Chatterbox: default acting intensity 0..1 (0.5 if omitted). */
+  emotion: z.number().min(0).max(1).optional(),
   theme: z.enum(THEMES).default("midnight"),
   music: z
     .object({
@@ -358,6 +372,12 @@ export const Manifest = z.object({
       });
     }
   }
+  // Performance tags are only performed by Chatterbox; Kokoro would read "laugh" aloud.
+  m.scenes.forEach((s, i) => {
+    if (s.speech && hasVoiceTags(s.speech) && (s.engine ?? m.engine) === "kokoro") {
+      ctx.addIssue({ code: "custom", path: ["scenes", i, "speech"], message: `[laugh]/[chuckle]/[cough] tags need "engine": "chatterbox" (Kokoro reads them as words)` });
+    }
+  });
   // Rough pre-TTS length check: ~2.6 words/sec at speed 1.0 for Kokoro.
   const words = m.scenes.reduce((n, s) => n + (s.speech?.split(/\s+/).length ?? 0), 0);
   const pauses = m.scenes.reduce((n, s) => n + s.pauseAfter, 0);

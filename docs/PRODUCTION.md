@@ -62,6 +62,7 @@ voice (`af_heart`): "Follow Dummy Sticky for more." + `follow_card`. Reference: 
 | inconsistent objects | props/bodies keep position across cuts (re-declare extras with same `x` + `fallDir`) |
 | text / grammar | captions are the script — proofread `speech`; check emphasis words exist |
 | audio glitches | clicks at scene joins, FX clipping (growl/villain), laugh clip level vs voice |
+| chatterbox scenes | every `[laugh]`/`[chuckle]` actually performed (not read or skipped); same speaker across all scenes with the same `voiceRef`; no swallowed first word (the line starts on the cut) |
 | pronunciation | listen to every name (Jhin, Riddler); respell phonetically in `speech` if wrong |
 | narration ↔ visual timing | each anchored event within ~0.1 s of its word |
 | continuity | same theme, character colour, prop scale between scenes |

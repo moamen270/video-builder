@@ -12,7 +12,8 @@ describe("Manifest schema", () => {
   it("applies defaults", () => {
     const m = Manifest.parse(base);
     expect(m.voice).toBe("af_heart");
-    expect(m.scenes[0]!.character).toEqual({ id: "narrator", pose: "explaining", expression: "neutral", position: "center", poseChanges: [], shots: [], strikes: [], throws: [] });
+    expect(m.scenes[0]!.character).toEqual({ id: "narrator", pose: "explaining", expression: "neutral", position: "center", scale: 1, poseChanges: [], shots: [], strikes: [], throws: [] });
+    expect(m.engine).toBe("kokoro");
     expect(m.scenes[0]!.pauseAfter).toBe(0.25);
     expect(m.characters).toEqual([{ id: "narrator", style: "stickman" }]);
   });
@@ -34,6 +35,28 @@ describe("Manifest schema", () => {
     const r = Manifest.safeParse({ ...base, scenes: [{ id: "a", speech: "fast queries", emphasis: ["slow"] }] });
     expect(r.success).toBe(false);
     expect(JSON.stringify(r.error?.issues)).toMatch(/not a substring/);
+  });
+
+  it("voice engines: tags need chatterbox, fields are per scene", () => {
+    const tagged = { ...base, scenes: [{ id: "a", speech: "[laugh] Nobody runs." }] };
+    const r = Manifest.safeParse(tagged);
+    expect(r.success).toBe(false);
+    expect(JSON.stringify(r.error?.issues)).toMatch(/chatterbox/);
+    const ok = Manifest.parse({ ...tagged, engine: "chatterbox", voiceRef: "lewis.wav", emotion: 0.7 });
+    expect(ok.engine).toBe("chatterbox");
+    expect(ok.emotion).toBe(0.7);
+    const perScene = Manifest.parse({ ...base, scenes: [{ id: "a", speech: "[chuckle] Perfection.", engine: "chatterbox", voiceRef: "george.wav" }, { id: "b", speech: "Plain." }] });
+    expect(perScene.scenes[0]!.engine).toBe("chatterbox");
+    expect(perScene.scenes[1]!.engine).toBeUndefined();
+    expect(Manifest.safeParse({ ...base, engine: "elevenlabs" }).success).toBe(false);
+  });
+
+  it("stripVoiceTags removes only the known tags", async () => {
+    const { stripVoiceTags, hasVoiceTags } = await import("./catalog.js");
+    expect(stripVoiceTags("[laugh] Nobody [chuckle] runs. [cough]")).toBe("Nobody runs.");
+    expect(stripVoiceTags("Keep [brackets] like these")).toBe("Keep [brackets] like these");
+    expect(hasVoiceTags("Ha [LAUGH]")).toBe(true);
+    expect(hasVoiceTags("no tags")).toBe(false);
   });
 
   it("duplicate scene ids fail", () => {

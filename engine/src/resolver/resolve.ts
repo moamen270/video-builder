@@ -9,6 +9,7 @@ import {
   type ResolvedManifest,
   type ResolvedScene,
   type Word,
+  stripVoiceTags,
 } from "../schema/index.js";
 import { ASSETS_DIR, ENGINE_VERSION, type ProjectPaths } from "../paths.js";
 import { ResolveError, applyEmphasis, resolveAnchor, type SceneTimeline } from "./anchors.js";
@@ -225,7 +226,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
 
     return {
       id: s.id,
-      speech: s.speech ?? s.clip?.caption ?? "",
+      speech: stripVoiceTags(s.speech ?? s.clip?.caption ?? ""),
       isClip: Boolean(s.clip),
       clipVolume: s.clip?.volume ?? 1,
       startFrame,
