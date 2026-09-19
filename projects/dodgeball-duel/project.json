@@ -4,7 +4,7 @@
   "createdAt": "2026-09-19T00:00:00.000Z",
   "targetSeconds": 45,
   "status": "qa_passed",
-  "lastRenderMs": 84779,
+  "lastRenderMs": 83273,
   "versions": [
     {
       "n": 1,
@@ -124,6 +124,16 @@
       "manifestHash": "949064e973d8b43b",
       "note": "v12: dropped ball hops up into Noodle's hip and bounces back off him",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/dodgeball-duel-v12/final.mp4"
+    },
+    {
+      "n": 13,
+      "at": "2026-09-19T08:02:12.548Z",
+      "seconds": 49.666666666666664,
+      "renderMs": 83273,
+      "qaOk": true,
+      "manifestHash": "949064e973d8b43b",
+      "note": "v13: balls deflect at the pan's reach, not at the body",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/dodgeball-duel-v13/final.mp4"
     }
   ]
 }
