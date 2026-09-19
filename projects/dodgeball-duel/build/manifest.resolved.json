@@ -2704,7 +2704,7 @@
     "name": "Dummy Sticky"
   },
   "meta": {
-    "resolvedAt": "2026-09-19T07:30:34.839Z",
+    "resolvedAt": "2026-09-19T07:37:33.041Z",
     "engineVersion": "0.1.0",
     "ttsModel": "hexgrad/Kokoro-82M",
     "manifestHash": "cbaf3e51ae09e4b1"

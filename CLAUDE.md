@@ -12,6 +12,8 @@ manifests; the engine does TTS, timing, rendering and QA. Read
 4. `video_render` → inspect QA checks and the contact-sheet image; iterate.
 5. `video_review_pack` → then the `video-reviewer` subagent writes `output/v<N>/review/report.md`
    (skill `video-review`). Fix from the report as a NEW version. Never grade your own render.
+   Before claiming a hit connects or a miss misses, LOOK at `review/events/*.png` (dense frames around
+   the contact) — not at a single hand-picked frame.
 Only changed scenes are re-synthesized; a full render is ~1 min per 40 s.
 Every render is a NEW `output/v<N>/` (mp4, qa, contact sheet, manifest
 snapshot). Never delete or overwrite a version — Moamen compares them.

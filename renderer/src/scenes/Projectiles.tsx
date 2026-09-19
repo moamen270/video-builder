@@ -59,7 +59,9 @@ export const Projectiles: React.FC<{ scene: ResolvedScene; abs: number; rects: {
     // Misses are aimed at head height of the STANDING figure so a lean/duck/jump visibly clears the ball.
     // through: a real throw that LANDS where he stood — arcs to the ground at that x and bounces there.
     const aimY = p.outcome !== "miss" ? to.y + to.h * 0.42 : p.path === "through" ? to.y + to.h - r : p.path === "under" ? to.y + to.h * 0.86 : to.y - r * 2.6;
-    const chest = { x: to.x + to.w / 2, y: aimY };
+    // through-misses land a step SHORT of where he stood (the near side), so the bounce stays clear of where he moved to
+    const aimX = p.outcome === "miss" && p.path === "through" ? to.x + to.w * (dir > 0 ? 0.25 : 0.75) : to.x + to.w / 2;
+    const chest = { x: aimX, y: aimY };
     const ground = to.y + to.h - r;
     const flight = Math.max(1, p.hitFrame - p.atFrame);
     const t = abs - p.atFrame;

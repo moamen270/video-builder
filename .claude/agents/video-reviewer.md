@@ -32,8 +32,9 @@ too kind is the failure mode; a review with zero fixes is almost always wrong.
 ## What to look for (in priority order)
 
 - **Hook:** frame 1 of the opening — is the interesting thing already there? Title readable? Character alone?
-- **Contact:** does the weapon/ball reach the target? Does the target react AFTER, not before? Is anything
-  passing through a body it should hit?
+- **Contact:** open `events/NN-<scene>-<event>.png` (7 frames at 2-frame spacing around every hit/miss) — never judge a
+  contact from the 5-frame scene strip. A miss needs visible air between ball and body in EVERY frame; a hit needs the
+  ball on the body before the reaction. `frames/tSSS.S.png` has the whole video every 0.5 s if you need context.
 - **Wrong-mouth / wrong-speaker:** the facts say who speaks; check the mouth (open = speaking) on the right figure.
 - **Continuity:** same x, scale, colour, held item, standing/lying between consecutive scenes.
 - **Frame limit:** figures clipped by the edge; captions over faces; card over a character; watermark missing.

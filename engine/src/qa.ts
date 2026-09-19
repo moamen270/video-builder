@@ -19,7 +19,7 @@ export interface QaReport {
   expectedSec: number;
   fps: number;
   hasAudio: boolean;
-  /** Mean luminance (0–255) sampled once per second; flags black/white frames. */
+  /** Mean luminance (0–255) sampled every 0.5 s; flags black/white frames. */
   luminance: number[];
   contactSheet: string | null;
   checks: QaCheck[];
@@ -66,9 +66,9 @@ export async function runQa(resolved: ResolvedManifest, p: VersionPaths): Promis
   checks.push({ name: "file_size_sane", ok: sizeBytes > 200_000, detail: `${(sizeBytes / 1e6).toFixed(2)} MB` });
 
   const luminance = await sampleLuminance(file);
-  // One sample per second (±1 s jitter from the fps filter); samples inside an intentional blackout/flash may be blank.
+  // Two samples per second; samples inside an intentional blackout/flash may be blank.
   const allowed = resolved.scenes.flatMap((sc) => sc.overlays.filter((o) => o.kind === "blackout" || o.kind === "flash").map((o) => [o.atFrame / resolved.fps, o.untilFrame / resolved.fps] as const));
-  const dead = luminance.filter((l, i) => (l < 8 || l > 247) && !allowed.some(([a, b]) => i >= a - 1.2 && i <= b + 1.2)).length;
+  const dead = luminance.filter((l, i) => (l < 8 || l > 247) && !allowed.some(([a, b]) => i / 2 >= a - 0.7 && i / 2 <= b + 0.7)).length;
   checks.push({ name: "no_blank_frames", ok: dead === 0, detail: `${dead}/${luminance.length} unexpected black/white samples` });
 
   const loud = await measureLoudness(file);
@@ -115,11 +115,11 @@ const evalRatio = (r: string) => {
   return d ? n! / d : n!;
 };
 
-/** Grab one 8x8 grayscale thumbnail per second and average it. 64 bytes per sample. */
+/** Grab one 8x8 grayscale thumbnail every 0.5 s and average it. 64 bytes per sample. */
 async function sampleLuminance(file: string): Promise<number[]> {
   const { stdout } = await execa(
     "ffmpeg",
-    ["-v", "error", "-i", file, "-vf", "fps=1,scale=8:8,format=gray", "-f", "rawvideo", "-"],
+    ["-v", "error", "-i", file, "-vf", "fps=2,scale=8:8,format=gray", "-f", "rawvideo", "-"],
     { encoding: "buffer" },
   );
   const out: number[] = [];

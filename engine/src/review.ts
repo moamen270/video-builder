@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { execa } from "execa";
 import { latestVersion, projectPaths, versionPaths, type VersionPaths } from "./paths.js";
@@ -52,6 +52,8 @@ interface SceneFacts {
   stripFrames: number[];
   strip: string;
   visualEvents: number;
+  /** Dense strips around contact events (hit/strike/shot/throw): 7 frames at 2-frame spacing, centred on the event. */
+  events: { label: string; frame: number; strip: string }[];
 }
 
 export interface ReviewPack {
@@ -68,7 +70,7 @@ export interface ReviewPack {
   scenes: SceneFacts[];
   checks: ReviewCheck[];
   qa: unknown;
-  files: { dir: string; summary: string; checklist: string; contact: string; report: string };
+  files: { dir: string; summary: string; checklist: string; contact: string; report: string; frames: string };
 }
 
 const sec = (frame: number, fps: number) => Math.round((frame / fps) * 100) / 100;
@@ -83,7 +85,17 @@ export async function buildReviewPack(slug: string, version?: number, opts: { lo
   const qa = existsSync(v.qaReport) ? JSON.parse(readFileSync(v.qaReport, "utf8")) : null;
   const dir = path.join(v.dir, "review");
   mkdirSync(path.join(dir, "scenes"), { recursive: true });
+  mkdirSync(path.join(dir, "events"), { recursive: true });
+  mkdirSync(path.join(dir, "frames"), { recursive: true });
   const fps = resolved.fps;
+
+  // Every half second of the whole video as its own image (frames/t012.5.png = 12.5 s). For debugging by eye.
+  log("dumping a frame every 0.5 s…");
+  await execa("ffmpeg", ["-y", "-v", "error", "-i", v.finalMp4, "-vf", "fps=2,scale=360:-1", path.join(dir, "frames", "f%04d.png")]);
+  for (const name of readdirSync(path.join(dir, "frames"))) {
+    const mm = /^f(\d{4})\.png$/.exec(name);
+    if (mm) renameSync(path.join(dir, "frames", name), path.join(dir, "frames", `t${((Number(mm[1]) - 1) / 2).toFixed(1).padStart(5, "0")}.png`));
+  }
 
   const scenes: SceneFacts[] = [];
   for (const [i, s] of resolved.scenes.entries()) {
@@ -122,6 +134,21 @@ export async function buildReviewPack(slug: string, version?: number, opts: { lo
     const sel = stripFrames.map((f) => `eq(n\\,${f})`).join("+");
     log(`frames for ${s.id}: ${stripFrames.join(",")}`);
     await execa("ffmpeg", ["-y", "-v", "error", "-i", v.finalMp4, "-vf", `select='${sel}',scale=324:-1,tile=${stripFrames.length}x1:padding=6:color=black`, "-frames:v", "1", strip]);
+
+    // Contact events → dense strips (every 2nd frame from -6 to +6) so a touch or a miss can be verified, not guessed.
+    const contacts: { label: string; frame: number }[] = [];
+    s.character?.strikes.forEach((x, k) => contacts.push({ label: `strike${k}`, frame: x.atFrame }));
+    s.character?.shots.forEach((x, k) => contacts.push({ label: `shot${k}`, frame: x.atFrame + 5 }));
+    s.character?.throws.forEach((x, k) => x.hops.forEach((h, j) => contacts.push({ label: `throw${k}-hop${j}`, frame: h.hitFrame })));
+    s.projectiles.forEach((x, k) => contacts.push({ label: `ball${k}-${x.outcome}${x.outcome === "miss" ? "-" + x.path : ""}`, frame: x.hitFrame }));
+    const eventStrips: SceneFacts["events"] = [];
+    for (const c of contacts.slice(0, 6)) {
+      const fr = [-6, -4, -2, 0, 2, 4, 6].map((d) => Math.max(s.startFrame, Math.min(s.startFrame + s.durationInFrames - 1, c.frame + d)));
+      const file = path.join(dir, "events", `${String(i).padStart(2, "0")}-${s.id}-${c.label}.png`);
+      const selE = [...new Set(fr)].map((f) => `eq(n\\,${f})`).join("+");
+      await execa("ffmpeg", ["-y", "-v", "error", "-i", v.finalMp4, "-vf", `select='${selE}',scale=300:-1,tile=${new Set(fr).size}x1:padding=4:color=black`, "-frames:v", "1", file]);
+      eventStrips.push({ label: c.label, frame: c.frame, strip: path.relative(dir, file).replace(/\\/g, "/") });
+    }
 
     scenes.push({
       id: s.id,
@@ -164,6 +191,7 @@ export async function buildReviewPack(slug: string, version?: number, opts: { lo
       stripFrames,
       strip: path.relative(dir, strip).replace(/\\/g, "/"),
       visualEvents: uniq.length,
+      events: eventStrips,
     });
   }
 
@@ -183,7 +211,7 @@ export async function buildReviewPack(slug: string, version?: number, opts: { lo
     scenes,
     checks,
     qa,
-    files: { dir, summary: path.join(dir, "summary.json"), checklist: path.join(dir, "checklist.md"), contact: v.contactSheet, report: path.join(dir, "report.md") },
+    files: { dir, summary: path.join(dir, "summary.json"), checklist: path.join(dir, "checklist.md"), contact: v.contactSheet, report: path.join(dir, "report.md"), frames: path.join(dir, "frames") },
   };
   writeFileSync(pack.files.summary, JSON.stringify(pack, null, 2));
   writeFileSync(pack.files.checklist, checklistMarkdown(pack));
@@ -262,7 +290,7 @@ function runChecks(m: Manifest, r: ResolvedManifest, scenes: SceneFacts[], qa: {
   // --- action
   for (const s of scenes) {
     if (s.hero && (s.hero.strikes || s.hero.shots || s.hero.throws) || s.projectiles.length) {
-      add({ id: `A-contact-${s.id}`, scope: "unit", area: "action", title: `"${s.id}": hits connect (weapon/ball reaches its target; target reacts after, not before)`, mode: "visual", result: "check", detail: `strikes ${s.hero?.strikes ?? 0}, shots ${s.hero?.shots ?? 0}, throws ${s.hero?.throws ?? 0}, projectiles ${s.projectiles.map((p) => `${p.from}→${p.to} ${p.outcome}@${p.at}s`).join("; ") || 0}`, refs: [s.strip] });
+      add({ id: `A-contact-${s.id}`, scope: "unit", area: "action", title: `"${s.id}": hits connect / misses miss by a visible margin (check the dense event strips frame by frame)`, mode: "visual", result: "check", detail: `strikes ${s.hero?.strikes ?? 0}, shots ${s.hero?.shots ?? 0}, throws ${s.hero?.throws ?? 0}, projectiles ${s.projectiles.map((p) => `${p.from}→${p.to} ${p.outcome}@${p.at}s`).join("; ") || 0}`, refs: [s.strip, ...s.events.map((e) => e.strip)] });
     }
     const sameFrame = new Map<number, string[]>();
     for (const fx of s.sfx) sameFrame.set(fx.at, [...(sameFrame.get(fx.at) ?? []), fx.name]);
@@ -314,6 +342,8 @@ function readme(p: ReviewPack): string {
 - \`summary.json\` — every scene's facts (text, word timings, voices, poses, props, SFX, camera, projectiles) + the checks.
 - \`checklist.md\` — the checks as a table; automatic ones decided, the rest say which strip to look at.
 - \`scenes/NN-<id>.png\` — 5 frames per scene, left→right in time: first frame, up to three event frames, last frame.
+- \`events/NN-<id>-<event>.png\` — 7 frames at 2-frame spacing around every contact (ball hit/miss, strike, shot, throw): verify touches and misses HERE, frame by frame.
+- \`frames/tSSS.S.png\` — the whole video every 0.5 s as single images (t012.5.png = 12.5 s).
 - \`../contact.png\` — 4×3 overview of the whole video.
 - \`../final.mp4\` — the render (for a human; models review from the strips).
 

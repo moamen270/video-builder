@@ -4,7 +4,7 @@
   "createdAt": "2026-09-19T00:00:00.000Z",
   "targetSeconds": 45,
   "status": "qa_passed",
-  "lastRenderMs": 88224,
+  "lastRenderMs": 77535,
   "versions": [
     {
       "n": 1,
@@ -95,6 +95,16 @@
       "manifestHash": "cbaf3e51ae09e4b1",
       "note": "v9: projectile paths — lean under (over), jump over (under), moonwalk away from a ball that lands and bounces where he stood (through)",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/dodgeball-duel-v9/final.mp4"
+    },
+    {
+      "n": 10,
+      "at": "2026-09-19T07:38:53.812Z",
+      "seconds": 48.833333333333336,
+      "renderMs": 77535,
+      "qaOk": true,
+      "manifestHash": "cbaf3e51ae09e4b1",
+      "note": "v10: through-misses land a step short of the old position; review pack now dumps every 0.5 s + dense event strips",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/dodgeball-duel-v10/final.mp4"
     }
   ]
 }
