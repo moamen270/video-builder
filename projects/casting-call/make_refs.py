@@ -21,6 +21,7 @@ PACKS = {
     "glados": ("PC _ Computer - Portal 2 - Voices - GLaDOS", ["dlc1_mp_coop_paint_crazy_box_intro02.wav"]),
     "spongebob": ("PlayStation - SpongeBob SquarePants_ SuperSponge - Playable Characters - SpongeBob SquarePants", ["042.wav", "065.wav"]),
     "jinx": ("jinx", ["Jinx_Select.ogg", "Jinx_Ban.ogg"]),
+    "jjj": ("PlayStation 3 - Disney Infinity 2.0 - Non-Playable Character Voices (English) - J. Jonah Jameson", ["JJJ0168.mp3", "JJJ0148.mp3"]),
 }
 
 

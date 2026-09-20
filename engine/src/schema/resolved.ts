@@ -87,6 +87,7 @@ export const ResolvedExtra = z.object({
   held: z.enum(["frying_pan", "ball", "mic", "mic_stand"]).nullable().default(null),
   heldFrame: z.number().int().default(0),
   hat: z.enum(["fedora"]).nullable().default(null),
+  seated: z.boolean().default(false),
   hatFrame: z.number().int().default(0),
   hatUntilFrame: z.number().int().default(0),
 });

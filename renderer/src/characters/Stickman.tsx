@@ -46,6 +46,8 @@ interface Props {
   held?: "frying_pan" | "ball" | "mic" | "mic_stand" | null;
   /** mic_stand only: the mic has been taken off the stand (a throw happened). */
   micTaken?: boolean;
+  /** Draw a chair behind the figure and sit him on it (pose becomes `sitting`). */
+  seated?: boolean;
   /** Name tag above the head. */
   label?: string | null;
   /** Hat currently worn. */
@@ -186,7 +188,7 @@ const polar = (x: number, y: number, len: number, deg: number) => {
   return { x: x + Math.sin(r) * len, y: y + Math.cos(r) * len };
 };
 
-export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, style, flip, walker, zones, actor, ko, squash = 0, speaking, held = null, micTaken = false, label = null, hat = null, labelUp = false }) => {
+export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, style, flip, walker, zones, actor, ko, squash = 0, speaking, held = null, micTaken = false, seated = false, label = null, hat = null, labelUp = false }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const abs = frame + scene.startFrame;
@@ -194,7 +196,11 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const st0 = poseAt(source, scene.startFrame, abs);
   // Knock-out overrides everything from its frame on.
   const koActive = Boolean(ko && abs >= ko.frame);
-  const st: PoseState = koActive ? { pose: "knocked_out", expression: "ko", since: ko!.frame, prev: st0.pose } : st0;
+  const st: PoseState = koActive
+    ? { pose: "knocked_out", expression: "ko", since: ko!.frame, prev: st0.pose }
+    : seated
+      ? { ...st0, pose: "sitting", prev: "sitting" }
+      : st0;
   const thug = style === "thug";
   const beanie = headDecorFor(style, ink);
   const robin = style === "robin";
@@ -316,6 +322,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
       >
         {/* shadow */}
         <ellipse cx={120} cy={404} rx={58 + Math.abs(lift) * 0.4} ry={7} fill="rgba(0,0,0,0.25)" />
+        {seated && <Chair ink={ink} />}
         {bat && <Cape shoulder={shoulder} hip={HIP} torso={torso} frame={abs} ink={ink} />}
         {style === "vader" && <Cape shoulder={shoulder} hip={HIP} torso={torso} frame={abs} ink={ink} fill="#0b0b10" length={110} width={84} />}
         {style === "jinx" && <Braids shoulder={shoulder} headC={headC} frame={abs} />}
@@ -433,6 +440,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
             <Mouth kind={face.mouth} open={mouthOpen} ink={faceInk} accent={accent} />
           </g>}
         </g>
+        {style === "director" && <Tie neck={neck} torso={torso} />}
         {style === "director" && <Desk ink={ink} headFill={headFill} />}
         {held === "mic_stand" && <MicStand ink={ink} headC={headC} micGone={micTaken} />}
         {/* held ball: drawn after the head so a wind-up behind the head still shows it */}
@@ -644,11 +652,10 @@ function headDecorFor(style: CharacterStyle, ink: string): React.ReactNode {
     case "director":
       return (
         <g>
-          {/* thick black glasses + a flat cap: the man who says "next" */}
-          <path d={`M -${HEAD_R} -14 Q -${HEAD_R - 6} -${HEAD_R + 8} 0 -${HEAD_R + 4} Q ${HEAD_R - 6} -${HEAD_R + 8} ${HEAD_R} -14 L ${HEAD_R + 14} -10 L -${HEAD_R} -10 Z`} fill="#4a3b2a" stroke={ink} strokeWidth={2} />
-          <rect x={-26} y={-12} width={20} height={14} rx={4} fill="none" stroke={ink} strokeWidth={4} />
-          <rect x={6} y={-12} width={20} height={14} rx={4} fill="none" stroke={ink} strokeWidth={4} />
-          <line x1={-6} y1={-6} x2={6} y2={-6} stroke={ink} strokeWidth={3} />
+          {/* J. Jonah Jameson: grey flat-top with white temples, heavy brows, the moustache */}
+          <path d={`M -${HEAD_R} -12 L -${HEAD_R} -${HEAD_R + 8} L ${HEAD_R} -${HEAD_R + 8} L ${HEAD_R} -12 Q ${HEAD_R - 8} -${HEAD_R - 8} 0 -${HEAD_R - 6} Q -${HEAD_R - 8} -${HEAD_R - 8} -${HEAD_R} -12 Z`} fill="#4b515e" stroke={ink} strokeWidth={2.5} strokeLinejoin="round" />
+          <path d={`M -${HEAD_R} -12 L -${HEAD_R} -${HEAD_R + 8} L -${HEAD_R - 9} -${HEAD_R + 8} L -${HEAD_R - 9} -14 Z M ${HEAD_R} -12 L ${HEAD_R} -${HEAD_R + 8} L ${HEAD_R - 9} -${HEAD_R + 8} L ${HEAD_R - 9} -14 Z`} fill="#e6e9f0" stroke={ink} strokeWidth={1.5} />
+          <path d="M -22 14 Q -11 6 0 12 Q 11 6 22 14 Q 11 22 0 18 Q -11 22 -22 14 Z" fill="#2b2f3a" stroke={ink} strokeWidth={1.5} />
         </g>
       );
     case "jinx":
@@ -753,10 +760,12 @@ const Mic: React.FC<{ x: number; y: number; deg: number; ink: string }> = ({ x, 
 );
 
 /** Floor mic stand in front of the performer: base on the ground, pole, boom, capsule at mouth height (follows the head). */
-const MicStand: React.FC<{ ink: string; headC: { x: number; y: number }; micGone: boolean }> = ({ ink, headC, micGone }) => {
-  const x = 168; // a little to the performer's right so the body stays readable
-  const capX = headC.x + 50; // beside the chin, so masks and faces stay visible
-  const capY = headC.y + 30;
+const MicStand: React.FC<{ ink: string; headC: { x: number; y: number }; micGone: boolean }> = ({ ink, micGone }) => {
+  // Fixed in rig space: the stand is furniture, it does not follow the head. Capsule at upper-chest height, a step to the
+  // performer's side, so faces, masks and hair stay clear and the mic never appears glued to a moving head.
+  const x = 196;
+  const capX = 188;
+  const capY = 124;
   return (
     <g>
       <path d={`M ${x - 46} 402 L ${x + 46} 402 M ${x - 30} 396 L ${x + 30} 396`} stroke={ink} strokeWidth={STROKE} strokeLinecap="round" />
@@ -813,9 +822,10 @@ const GladosVisor: React.FC<{ talking: number; frame: number }> = ({ talking, fr
 /** Vegeta's white breastplate with yellow shoulder pads, following the torso lean. */
 const Armour: React.FC<{ shoulder: { x: number; y: number }; torso: number; ink: string }> = ({ shoulder, torso, ink }) => (
   <g transform={`translate(${shoulder.x} ${shoulder.y}) rotate(${-torso})`}>
-    <path d="M -34 -6 L 34 -6 L 28 70 Q 0 84 -28 70 Z" fill="#f1f3f7" stroke={ink} strokeWidth={2.5} strokeLinejoin="round" />
-    <path d="M -48 -4 L -30 -10 L -22 22 L -40 24 Z M 48 -4 L 30 -10 L 22 22 L 40 24 Z" fill="#ffd23c" stroke={ink} strokeWidth={2.5} strokeLinejoin="round" />
-    <path d="M -14 10 Q 0 24 14 10" stroke="#c9ced9" strokeWidth={3} fill="none" />
+    {/* navy battle suit under a pale plate — dark outlines so it reads against a white stickman */}
+    <path d="M -34 -6 L 34 -6 L 28 70 Q 0 84 -28 70 Z" fill="#dfe6ff" stroke="#1f2a5a" strokeWidth={4} strokeLinejoin="round" />
+    <path d="M -48 -4 L -30 -10 L -22 22 L -40 24 Z M 48 -4 L 30 -10 L 22 22 L 40 24 Z" fill="#ffd23c" stroke="#1f2a5a" strokeWidth={4} strokeLinejoin="round" />
+    <path d="M -14 10 Q 0 24 14 10 M -22 40 Q 0 52 22 40" stroke="#1f2a5a" strokeWidth={3} fill="none" />
   </g>
 );
 
@@ -862,6 +872,23 @@ const Braids: React.FC<{ shoulder: { x: number; y: number }; headC: { x: number;
     </g>
   );
 };
+
+/** A plain chair behind a seated figure: seat at hip height, backrest, two visible legs. */
+const Chair: React.FC<{ ink: string }> = ({ ink }) => (
+  <g stroke={ink} strokeWidth={5} strokeLinecap="round" fill="none">
+    <rect x={70} y={196} width={100} height={14} rx={5} fill="#5b4632" />
+    <rect x={76} y={120} width={88} height={78} rx={8} fill="#6b5340" />
+    <line x1={80} y1={210} x2={78} y2={400} />
+    <line x1={160} y1={210} x2={162} y2={400} />
+  </g>
+);
+
+/** Jameson's tie: red, hangs from the collar with the torso lean. */
+const Tie: React.FC<{ neck: { x: number; y: number }; torso: number }> = ({ neck, torso }) => (
+  <g transform={`translate(${neck.x} ${neck.y + 8}) rotate(${-torso})`}>
+    <path d="M -7 0 L 7 0 L 9 18 L 0 78 L -9 18 Z" fill="#c1121f" stroke="#7a0b14" strokeWidth={2} strokeLinejoin="round" />
+  </g>
+);
 
 /** Casting desk in front of the director: hides the legs, carries a clipboard and a coffee. */
 const Desk: React.FC<{ ink: string; headFill: string }> = ({ ink, headFill }) => (

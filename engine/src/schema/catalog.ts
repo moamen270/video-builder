@@ -40,6 +40,7 @@ export const POSES = [
   "spin", // hurricane: body whirls about its axis (scaleX oscillates), arms out — with a held pan it deflects
   "mic", // right hand up at the mouth (holding a microphone), left arm relaxed — auditions, singers, hosts
   "mic_out", // right arm straight out toward the viewer, presenting the mic (before a strike on the camera)
+  "sitting", // on a chair (set automatically when an extra has `seated: true`); hands in the lap
   "windup", // ball arm cocked far back over the shoulder, other arm forward, weight on the back foot
   "throw", // arm snapped forward after the release, body leaning into it
   "victory", // both arms up, chest out, chin up — champion
@@ -100,6 +101,7 @@ export const PROPS = [
   "watermelon",
   "watermelon_split", // two halves flying apart with juice — pair with anim "burst"
   "target", // bullseye on a post
+  "table", // small round table with water glasses and a bottle (a waiting room / panel)
   "lotus", // flower that blooms — pair with anim "bloom"
   "number_1",
   "number_2",

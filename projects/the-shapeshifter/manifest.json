@@ -39,7 +39,7 @@
       "style": "spongebob"
     }
   ],
-  "notes": "Voice-engine test video (D13 trial): one actor, five impressions, each with its own Chatterbox reference (real game voice clips in clips/ref-*.wav, built by make_refs.py in projects/casting-call) and its own look. Director = Kokoro bm_fable so the host never sounds like an impression. Standard shape kept: bare opening with the title + one line (and one transform), screen broken with the mic, black, then the CTA — here spoken by the five forms, one piece each. Alternative hooks: 'One actor. Five voices.' / 'Casting call. Bring everyone.' / 'He does voices. All of them.' v4: stand mic (never behind the head), director permanently bored (typing/arms crossed, no reaction), Jinx words at emotion 0.95 + separate laugh beat, SpongeBob catchphrases + snail line, mic thrown off the stand into the screen (mic_stuck), ending on a clean screen, ASR read-back retakes for unclear lines.",
+  "notes": "Voice-engine test video (D13 trial): one actor, five impressions, each with its own Chatterbox reference (real game voice clips in clips/ref-*.wav, built by make_refs.py in projects/casting-call) and its own look. Director = Kokoro bm_fable so the host never sounds like an impression. Standard shape kept: bare opening with the title + one line (and one transform), screen broken with the mic, black, then the CTA — here spoken by the five forms, one piece each. Alternative hooks: 'One actor. Five voices.' / 'Casting call. Bring everyone.' / 'He does voices. All of them.' v4: stand mic (never behind the head), director permanently bored (typing/arms crossed, no reaction), Jinx words at emotion 0.95 + separate laugh beat, SpongeBob catchphrases + snail line, mic thrown off the stand into the screen (mic_stuck), ending on a clean screen, ASR read-back retakes for unclear lines. v6: opening = the whole panel (five forms seated in a circle with a water table, actor centre in the spotlight, no early transform); director drawn and voiced as J. Jonah Jameson (ref-jjj.wav); stand mic fixed in space at chest height; Vegeta armour with navy outlines.",
   "social": {
     "title": "One stickman auditions as Vader, Jinx, Vegeta, GLaDOS and SpongeBob — The Shapeshifter",
     "hook": "One actor. Five voices.",
@@ -88,16 +88,18 @@
       "emphasis": [
         "Five voices"
       ],
-      "emotion": 0.55,
+      "emotion": 0.7,
       "layout": "character_center",
       "bare": true,
       "captions": false,
-      "pauseAfter": 0.7,
+      "pauseAfter": 0.5,
       "character": {
         "id": "actor",
-        "pose": "idle",
-        "expression": "worried",
+        "position": "center",
+        "pose": "arms_crossed",
+        "expression": "smug",
         "held": "mic_stand",
+        "scale": 0.95,
         "poseChanges": [
           {
             "pose": "presenting",
@@ -116,11 +118,6 @@
           "name": "tick",
           "at": "word:five",
           "volume": 0.5
-        },
-        {
-          "name": "transform",
-          "at": "end-0.5",
-          "volume": 0.8
         }
       ],
       "overlays": [
@@ -132,11 +129,7 @@
           "kind": "hook_card",
           "text": "THE SHAPESHIFTER",
           "at": "start+0.2",
-          "until": "end-0.5"
-        },
-        {
-          "kind": "transform",
-          "at": "end-0.55"
+          "until": "end-0.2"
         }
       ],
       "camera": [
@@ -144,48 +137,66 @@
           "move": "slow_zoom",
           "at": "start"
         }
-      ]
-    },
-    {
-      "id": "open2",
-      "speech": "Impressive.",
-      "voiceRef": "ref-vader.wav",
-      "emotion": 0.45,
-      "speed": 0.95,
-      "layout": "character_center",
-      "bare": true,
-      "captions": false,
-      "pauseAfter": 0.5,
-      "character": {
-        "id": "vader",
-        "pose": "arms_crossed",
-        "expression": "neutral",
-        "held": "mic_stand"
-      },
-      "sfx": [
-        {
-          "name": "breath",
-          "at": "end-0.7",
-          "volume": 0.9
-        }
       ],
-      "overlays": [
+      "extras": [
         {
-          "kind": "spotlight",
-          "at": "start"
+          "id": "p_vader",
+          "style": "vader",
+          "pose": "idle",
+          "expression": "neutral",
+          "x": 0.5,
+          "scale": 0.5,
+          "seated": true
         },
         {
-          "kind": "flash",
-          "at": "start"
+          "id": "p_jinx",
+          "style": "jinx",
+          "pose": "idle",
+          "expression": "happy",
+          "x": 0.28,
+          "scale": 0.5,
+          "seated": true
+        },
+        {
+          "id": "p_glados",
+          "style": "glados",
+          "pose": "idle",
+          "expression": "neutral",
+          "x": 0.72,
+          "scale": 0.5,
+          "seated": true
+        },
+        {
+          "id": "p_vegeta",
+          "style": "vegeta",
+          "pose": "idle",
+          "expression": "fierce",
+          "x": 0.09,
+          "scale": 0.66,
+          "seated": true
+        },
+        {
+          "id": "p_sponge",
+          "style": "spongebob",
+          "pose": "idle",
+          "expression": "happy",
+          "x": 0.91,
+          "scale": 0.66,
+          "seated": true
+        }
+      ],
+      "props": [
+        {
+          "name": "table",
+          "at": "start",
+          "position": "ground_center",
+          "scale": 1.15
         }
       ]
     },
     {
       "id": "room",
       "speech": "Talent?",
-      "engine": "kokoro",
-      "voice": "bm_fable",
-      "voiceFx": "none",
       "speed": 1.0,
       "speaker": "director",
       "layout": "character_center",
@@ -208,7 +219,9 @@
           "pose": "typing",
           "expression": "neutral"
         }
-      ]
+      ],
+      "voiceRef": "ref-jjj.wav",
+      "emotion": 0.5
     },
     {
       "id": "name",
@@ -245,9 +258,6 @@
     {
       "id": "ask1",
       "speech": "Prove it. Vader.",
-      "engine": "kokoro",
-      "voice": "bm_fable",
-      "voiceFx": "none",
       "speaker": "director",
       "layout": "character_center",
       "pauseAfter": 0.25,
@@ -281,7 +291,10 @@
           "kind": "transform",
           "at": "end-0.5"
         }
-      ]
+      ],
+      "voiceRef": "ref-jjj.wav",
+      "emotion": 0.5,
+      "speed": 1.0
     },
     {
       "id": "vader1",
@@ -375,9 +388,6 @@
     {
       "id": "ask2",
       "speech": "Fine. Jinx.",
-      "engine": "kokoro",
-      "voice": "bm_fable",
-      "voiceFx": "none",
       "speaker": "director",
       "layout": "character_center",
       "pauseAfter": 0.25,
@@ -411,7 +421,10 @@
           "kind": "transform",
           "at": "end-0.5"
         }
-      ]
+      ],
+      "voiceRef": "ref-jjj.wav",
+      "emotion": 0.5,
+      "speed": 1.0
     },
     {
       "id": "jinx1",
@@ -514,10 +527,7 @@
     },
     {
       "id": "ask3",
-      "speech": "Vegeta.",
-      "engine": "kokoro",
-      "voice": "bm_fable",
-      "voiceFx": "none",
+      "speech": "Next. Vegeta.",
       "speaker": "director",
       "layout": "character_center",
       "pauseAfter": 0.25,
@@ -551,7 +561,10 @@
           "kind": "transform",
           "at": "end-0.5"
         }
-      ]
+      ],
+      "voiceRef": "ref-jjj.wav",
+      "emotion": 0.5,
+      "speed": 1.0
     },
     {
       "id": "vegeta1",
@@ -650,10 +663,7 @@
     },
     {
       "id": "ask4",
-      "speech": "Glados.",
-      "engine": "kokoro",
-      "voice": "bm_fable",
-      "voiceFx": "none",
+      "speech": "Now Glados.",
       "speaker": "director",
       "layout": "character_center",
       "pauseAfter": 0.25,
@@ -687,7 +697,10 @@
           "kind": "transform",
           "at": "end-0.5"
         }
-      ]
+      ],
+      "voiceRef": "ref-jjj.wav",
+      "emotion": 0.5,
+      "speed": 1.0
     },
     {
       "id": "glados1",
@@ -733,10 +746,7 @@
     },
     {
       "id": "ask5",
-      "speech": "SpongeBob.",
-      "engine": "kokoro",
-      "voice": "bm_fable",
-      "voiceFx": "none",
+      "speech": "Fine. SpongeBob.",
       "speaker": "director",
       "layout": "character_center",
       "pauseAfter": 0.25,
@@ -770,7 +780,10 @@
           "kind": "transform",
           "at": "end-0.5"
         }
-      ]
+      ],
+      "voiceRef": "ref-jjj.wav",
+      "emotion": 0.5,
+      "speed": 1.0
     },
     {
       "id": "sponge1",
@@ -940,10 +953,7 @@
       "emphasis": [
         "Get out"
       ],
-      "engine": "kokoro",
-      "voice": "bm_fable",
-      "voiceFx": "none",
-      "speed": 0.95,
+      "speed": 1.0,
       "speaker": "director",
       "layout": "character_center",
       "pauseAfter": 0.6,
@@ -978,7 +988,9 @@
           "at": "word:out",
           "volume": 0.5
         }
-      ]
+      ],
+      "voiceRef": "ref-jjj.wav",
+      "emotion": 0.4
     },
     {
       "id": "rage",

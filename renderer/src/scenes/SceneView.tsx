@@ -177,6 +177,7 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
             held={abs >= e.heldFrame && !(e.held === "ball" && scene.projectiles.some((p) => p.from === e.id && p.atFrame <= abs)) ? e.held : null}
             label={e.label}
             hat={abs >= e.hatFrame && abs < e.hatUntilFrame ? e.hat : null}
+            seated={e.seated}
             labelUp={scene.props.some((p) => p.on === e.id && p.position === "above_character" && abs >= p.atFrame && abs < p.untilFrame)}
             walker={{ action: m.action, shadow: 1 }}
             ko={e.koFrame !== null ? { frame: e.koFrame, dir: e.fallDir ? (e.fallDir === "right" ? 1 : -1) : m.cx < 540 ? 1 : -1 } : null}

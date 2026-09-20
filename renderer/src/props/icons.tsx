@@ -192,6 +192,21 @@ export const ICONS: Record<PropName, Icon> = {
       <path d="M44 54h12v14H44zM30 68h40v16H30z" fill={fill} />
     </g>
   ),
+  table: ({ line }) => (
+    <g {...base(line)}>
+      <ellipse cx={50} cy={58} rx={46} ry={12} fill="#8b6438" />
+      <path d="M50 70v22M30 96h40" />
+      {/* five glasses and a bottle */}
+      {[16, 32, 48, 64, 80].map((x, i) => (
+        <g key={i}>
+          <rect x={x - 4} y={40} width={8} height={14} rx={1.5} fill="#dff4ff" stroke={line} strokeWidth={2} />
+          <rect x={x - 3} y={46} width={6} height={7} fill="#7cc7ff" stroke="none" />
+        </g>
+      ))}
+      <rect x={45} y={22} width={10} height={30} rx={3} fill="#7cc7ff" stroke={line} strokeWidth={2} />
+      <rect x={47} y={16} width={6} height={8} rx={1} fill="#1f5fa8" stroke={line} strokeWidth={1.5} />
+    </g>
+  ),
   target: ({ line, fill }) => (
     <g {...base(line)}>
       <rect x={46} y={70} width={8} height={26} fill="#5b3a1a" stroke="none" />

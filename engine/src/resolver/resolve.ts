@@ -142,6 +142,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
         held: e.held ?? null,
         heldFrame: e.heldAt ? at(e.heldAt, `extras[${i}].heldAt`) : startFrame,
         hat: e.hat ?? null,
+        seated: e.seated,
         hatFrame: e.hatAt ? at(e.hatAt, `extras[${i}].hatAt`) : startFrame,
         hatUntilFrame: e.hatUntil ? at(e.hatUntil, `extras[${i}].hatUntil`) : endFrame,
       };

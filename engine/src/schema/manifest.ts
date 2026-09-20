@@ -72,6 +72,8 @@ export const Extra = z.object({
   heldAt: Anchor.optional(),
   /** Hat that appears at `hatAt` and vanishes at `hatUntil` (fedora: the MJ move). */
   hat: z.enum(["fedora"]).optional(),
+  /** Sit the extra on a chair (drawn behind him) for the whole scene. */
+  seated: z.boolean().default(false),
   hatAt: Anchor.optional(),
   hatUntil: Anchor.optional(),
 });
