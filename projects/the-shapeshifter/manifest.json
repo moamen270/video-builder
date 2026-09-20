@@ -1,0 +1,1291 @@
+{
+  "version": 1,
+  "slug": "the-shapeshifter",
+  "title": "The Shapeshifter",
+  "voice": "am_michael",
+  "speed": 1.0,
+  "voiceFx": "none",
+  "engine": "chatterbox",
+  "voiceRef": "michael.wav",
+  "emotion": 0.3,
+  "theme": "grape",
+  "music": {
+    "track": "lofi-02",
+    "volume": 0.06
+  },
+  "characters": [
+    {
+      "id": "actor",
+      "style": "stickman"
+    },
+    {
+      "id": "vader",
+      "style": "vader"
+    },
+    {
+      "id": "jinx",
+      "style": "jinx"
+    },
+    {
+      "id": "vegeta",
+      "style": "vegeta"
+    },
+    {
+      "id": "glados",
+      "style": "glados"
+    },
+    {
+      "id": "spongebob",
+      "style": "spongebob"
+    }
+  ],
+  "notes": "Voice-engine test video (D13 trial): one actor, five impressions, each with its own Chatterbox reference (real game voice clips in clips/ref-*.wav, built by make_refs.py in projects/casting-call) and its own look. Director = Kokoro bm_fable so the host never sounds like an impression. Standard shape kept: bare opening with the title + one line (and one transform), screen broken with the mic, black, then the CTA — here spoken by the five forms, one piece each. Alternative hooks: 'One actor. Five voices.' / 'Casting call. Bring everyone.' / 'He does voices. All of them.'",
+  "social": {
+    "title": "One stickman auditions as Vader, Jinx, Vegeta, GLaDOS and SpongeBob — The Shapeshifter",
+    "hook": "One actor. Five voices.",
+    "description": "A casting call. One stickman. He says he does voices.\n\nDarth Vader, Jinx, Vegeta, GLaDOS and SpongeBob walk into the room one after another — all of them him. The director is not impressed. The director should have been impressed.\n\nNew stickmen with too much attitude every week. Follow Dummy Sticky — the audition is never over.",
+    "tags": [
+      "stickman",
+      "stickman animation",
+      "stick figure animation",
+      "voice impressions",
+      "darth vader",
+      "jinx",
+      "arcane",
+      "vegeta",
+      "dragon ball",
+      "glados",
+      "portal",
+      "spongebob",
+      "casting call",
+      "audition",
+      "parody",
+      "funny animation",
+      "2d animation",
+      "animated shorts",
+      "comedy shorts",
+      "dummy sticky"
+    ],
+    "hashtags": [
+      "#shorts",
+      "#stickman",
+      "#animation",
+      "#voiceimpressions",
+      "#darthvader",
+      "#jinx",
+      "#vegeta",
+      "#glados",
+      "#spongebob",
+      "#parody"
+    ],
+    "pinnedComment": "Which voice should he audition with next? 🎤",
+    "coverText": "ONE ACTOR. FIVE VOICES."
+  },
+  "scenes": [
+    {
+      "id": "open",
+      "speech": "One actor. Five voices.",
+      "emphasis": [
+        "Five voices"
+      ],
+      "emotion": 0.35,
+      "layout": "character_center",
+      "bare": true,
+      "captions": false,
+      "pauseAfter": 0.7,
+      "character": {
+        "id": "actor",
+        "pose": "mic",
+        "expression": "worried",
+        "held": "mic",
+        "poseChanges": [
+          {
+            "pose": "mic_out",
+            "expression": "smug",
+            "at": "word:five"
+          }
+        ]
+      },
+      "sfx": [
+        {
+          "name": "tick",
+          "at": "word:one",
+          "volume": 0.5
+        },
+        {
+          "name": "tick",
+          "at": "word:five",
+          "volume": 0.5
+        },
+        {
+          "name": "transform",
+          "at": "end-0.5",
+          "volume": 0.8
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "spotlight",
+          "at": "start"
+        },
+        {
+          "kind": "hook_card",
+          "text": "THE SHAPESHIFTER",
+          "at": "start+0.2",
+          "until": "end-0.5"
+        },
+        {
+          "kind": "transform",
+          "at": "end-0.55"
+        }
+      ],
+      "camera": [
+        {
+          "move": "slow_zoom",
+          "at": "start"
+        }
+      ]
+    },
+    {
+      "id": "open2",
+      "speech": "Impressive.",
+      "voiceRef": "lewis.wav",
+      "emotion": 0.25,
+      "speed": 0.95,
+      "layout": "character_center",
+      "bare": true,
+      "captions": false,
+      "pauseAfter": 0.7,
+      "character": {
+        "id": "vader",
+        "pose": "arms_crossed",
+        "expression": "neutral",
+        "held": "mic"
+      },
+      "sfx": [
+        {
+          "name": "breath",
+          "at": "end-0.7",
+          "volume": 0.9
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "spotlight",
+          "at": "start"
+        },
+        {
+          "kind": "flash",
+          "at": "start"
+        }
+      ]
+    },
+    {
+      "id": "room",
+      "speech": "Name and talent.",
+      "engine": "kokoro",
+      "voice": "bm_fable",
+      "voiceFx": "none",
+      "speed": 1.0,
+      "speaker": "director",
+      "layout": "character_center",
+      "pauseAfter": 0.35,
+      "transition": "wipe",
+      "character": {
+        "id": "actor",
+        "position": "right",
+        "pose": "mic",
+        "expression": "worried",
+        "held": "mic",
+        "scale": 0.9
+      },
+      "extras": [
+        {
+          "id": "director",
+          "style": "director",
+          "pose": "explaining",
+          "expression": "neutral",
+          "x": 0.24,
+          "scale": 0.8
+        }
+      ]
+    },
+    {
+      "id": "name",
+      "speech": "Sticky. Voices.",
+      "emotion": 0.35,
+      "layout": "character_center",
+      "pauseAfter": 0.3,
+      "character": {
+        "id": "actor",
+        "position": "right",
+        "pose": "mic",
+        "expression": "worried",
+        "held": "mic",
+        "scale": 0.9
+      },
+      "extras": [
+        {
+          "id": "director",
+          "style": "director",
+          "pose": "arms_crossed",
+          "expression": "neutral",
+          "x": 0.24,
+          "scale": 0.8
+        }
+      ]
+    },
+    {
+      "id": "ask1",
+      "speech": "Prove it. Vader.",
+      "engine": "kokoro",
+      "voice": "bm_fable",
+      "voiceFx": "none",
+      "speaker": "director",
+      "layout": "character_center",
+      "pauseAfter": 0.25,
+      "character": {
+        "id": "actor",
+        "position": "right",
+        "pose": "mic",
+        "expression": "surprised",
+        "held": "mic",
+        "scale": 0.9
+      },
+      "extras": [
+        {
+          "id": "director",
+          "style": "director",
+          "pose": "pointing_right",
+          "expression": "neutral",
+          "x": 0.24,
+          "scale": 0.8
+        }
+      ],
+      "sfx": [
+        {
+          "name": "transform",
+          "at": "end-0.45",
+          "volume": 0.8
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "transform",
+          "at": "end-0.5"
+        }
+      ]
+    },
+    {
+      "id": "vader1",
+      "speech": "You don't know the power of the dark side.",
+      "emphasis": [
+        "dark side"
+      ],
+      "voiceRef": "lewis.wav",
+      "emotion": 0.3,
+      "speed": 0.95,
+      "layout": "character_center",
+      "pauseAfter": 0.7,
+      "character": {
+        "id": "vader",
+        "position": "right",
+        "pose": "mic",
+        "expression": "neutral",
+        "held": "mic",
+        "scale": 0.9,
+        "poseChanges": [
+          {
+            "pose": "pointing_left",
+            "at": "word:dark"
+          }
+        ]
+      },
+      "extras": [
+        {
+          "id": "director",
+          "style": "director",
+          "pose": "arms_crossed",
+          "expression": "neutral",
+          "x": 0.24,
+          "scale": 0.8,
+          "poseChanges": [
+            {
+              "pose": "thinking",
+              "expression": "surprised",
+              "at": "word:power"
+            }
+          ]
+        }
+      ],
+      "sfx": [
+        {
+          "name": "breath",
+          "at": "end-0.65",
+          "volume": 0.9
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "flash",
+          "at": "start"
+        }
+      ]
+    },
+    {
+      "id": "vader2",
+      "speech": "Your parking is terrible.",
+      "voiceRef": "lewis.wav",
+      "emotion": 0.3,
+      "speed": 0.95,
+      "layout": "character_center",
+      "pauseAfter": 0.4,
+      "character": {
+        "id": "vader",
+        "position": "right",
+        "pose": "pointing_left",
+        "expression": "neutral",
+        "held": "mic",
+        "scale": 0.9,
+        "poseChanges": [
+          {
+            "pose": "mic",
+            "at": "word:terrible"
+          }
+        ]
+      },
+      "extras": [
+        {
+          "id": "director",
+          "style": "director",
+          "pose": "thinking",
+          "expression": "confused",
+          "x": 0.24,
+          "scale": 0.8
+        }
+      ]
+    },
+    {
+      "id": "ask2",
+      "speech": "Fine. Jinx.",
+      "engine": "kokoro",
+      "voice": "bm_fable",
+      "voiceFx": "none",
+      "speaker": "director",
+      "layout": "character_center",
+      "pauseAfter": 0.25,
+      "character": {
+        "id": "vader",
+        "position": "right",
+        "pose": "mic",
+        "expression": "neutral",
+        "held": "mic",
+        "scale": 0.9
+      },
+      "extras": [
+        {
+          "id": "director",
+          "style": "director",
+          "pose": "pointing_right",
+          "expression": "neutral",
+          "x": 0.24,
+          "scale": 0.8
+        }
+      ],
+      "sfx": [
+        {
+          "name": "transform",
+          "at": "end-0.45",
+          "volume": 0.8
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "transform",
+          "at": "end-0.5"
+        }
+      ]
+    },
+    {
+      "id": "jinx1",
+      "speech": "Rules are made to be broken! [laugh] Like buildings! Or people!",
+      "emphasis": [
+        "broken"
+      ],
+      "voiceRef": "heart.wav",
+      "speed": 1.05,
+      "captionStyle": "beat",
+      "layout": "character_center",
+      "pauseAfter": 0.3,
+      "character": {
+        "id": "jinx",
+        "position": "right",
+        "pose": "mic",
+        "expression": "laughing",
+        "held": "mic",
+        "scale": 0.8,
+        "poseChanges": [
+          {
+            "pose": "celebrating",
+            "expression": "laughing",
+            "at": "word:broken"
+          },
+          {
+            "pose": "pointing_left",
+            "expression": "happy",
+            "at": "word:people"
+          }
+        ]
+      },
+      "extras": [
+        {
+          "id": "director",
+          "style": "director",
+          "pose": "arms_crossed",
+          "expression": "worried",
+          "x": 0.24,
+          "scale": 0.8,
+          "poseChanges": [
+            {
+              "pose": "shocked",
+              "expression": "surprised",
+              "at": "word:people"
+            }
+          ]
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "flash",
+          "at": "start"
+        }
+      ]
+    },
+    {
+      "id": "ask3",
+      "speech": "Vegeta.",
+      "engine": "kokoro",
+      "voice": "bm_fable",
+      "voiceFx": "none",
+      "speaker": "director",
+      "layout": "character_center",
+      "pauseAfter": 0.25,
+      "character": {
+        "id": "jinx",
+        "position": "right",
+        "pose": "mic",
+        "expression": "happy",
+        "held": "mic",
+        "scale": 0.8
+      },
+      "extras": [
+        {
+          "id": "director",
+          "style": "director",
+          "pose": "pointing_right",
+          "expression": "neutral",
+          "x": 0.24,
+          "scale": 0.8
+        }
+      ],
+      "sfx": [
+        {
+          "name": "transform",
+          "at": "end-0.45",
+          "volume": 0.8
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "transform",
+          "at": "end-0.5"
+        }
+      ]
+    },
+    {
+      "id": "vegeta1",
+      "speech": "It's over nine thousand!",
+      "emphasis": [
+        "nine thousand"
+      ],
+      "voiceRef": "george.wav",
+      "emotion": 0.85,
+      "layout": "character_center",
+      "pauseAfter": 0.35,
+      "character": {
+        "id": "vegeta",
+        "position": "right",
+        "pose": "mic",
+        "expression": "fierce",
+        "held": "mic",
+        "scale": 0.9,
+        "poseChanges": [
+          {
+            "pose": "victory",
+            "expression": "fierce",
+            "at": "word:nine"
+          }
+        ]
+      },
+      "extras": [
+        {
+          "id": "director",
+          "style": "director",
+          "pose": "arms_crossed",
+          "expression": "neutral",
+          "x": 0.24,
+          "scale": 0.8,
+          "poseChanges": [
+            {
+              "pose": "shocked",
+              "expression": "surprised",
+              "at": "word:thousand"
+            }
+          ]
+        }
+      ],
+      "sfx": [
+        {
+          "name": "boom",
+          "at": "word:thousand",
+          "volume": 0.6
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "flash",
+          "at": "start"
+        }
+      ],
+      "camera": [
+        {
+          "move": "shake",
+          "at": "word:thousand"
+        }
+      ]
+    },
+    {
+      "id": "vegeta2",
+      "speech": "Reduced to a microphone.",
+      "voiceRef": "george.wav",
+      "emotion": 0.6,
+      "layout": "character_center",
+      "pauseAfter": 0.4,
+      "character": {
+        "id": "vegeta",
+        "position": "right",
+        "pose": "mic",
+        "expression": "fierce",
+        "held": "mic",
+        "scale": 0.9,
+        "poseChanges": [
+          {
+            "pose": "arms_crossed",
+            "expression": "smug",
+            "at": "word:microphone"
+          }
+        ]
+      },
+      "extras": [
+        {
+          "id": "director",
+          "style": "director",
+          "pose": "thinking",
+          "expression": "neutral",
+          "x": 0.24,
+          "scale": 0.8
+        }
+      ]
+    },
+    {
+      "id": "ask4",
+      "speech": "Glados.",
+      "engine": "kokoro",
+      "voice": "bm_fable",
+      "voiceFx": "none",
+      "speaker": "director",
+      "layout": "character_center",
+      "pauseAfter": 0.25,
+      "character": {
+        "id": "vegeta",
+        "position": "right",
+        "pose": "mic",
+        "expression": "smug",
+        "held": "mic",
+        "scale": 0.9
+      },
+      "extras": [
+        {
+          "id": "director",
+          "style": "director",
+          "pose": "pointing_right",
+          "expression": "neutral",
+          "x": 0.24,
+          "scale": 0.8
+        }
+      ],
+      "sfx": [
+        {
+          "name": "transform",
+          "at": "end-0.45",
+          "volume": 0.8
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "transform",
+          "at": "end-0.5"
+        }
+      ]
+    },
+    {
+      "id": "glados1",
+      "speech": "Congratulations. You survived. That was not the plan.",
+      "emphasis": [
+        "not the plan"
+      ],
+      "voiceRef": "heart.wav",
+      "emotion": 0.15,
+      "speed": 1.0,
+      "layout": "character_center",
+      "pauseAfter": 0.45,
+      "character": {
+        "id": "glados",
+        "position": "right",
+        "pose": "idle",
+        "expression": "neutral",
+        "held": "mic",
+        "scale": 0.9,
+        "poseChanges": [
+          {
+            "pose": "presenting",
+            "at": "word:survived"
+          }
+        ]
+      },
+      "extras": [
+        {
+          "id": "director",
+          "style": "director",
+          "pose": "arms_crossed",
+          "expression": "neutral",
+          "x": 0.24,
+          "scale": 0.8,
+          "poseChanges": [
+            {
+              "pose": "shrugging",
+              "expression": "confused",
+              "at": "word:plan"
+            }
+          ]
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "flash",
+          "at": "start"
+        }
+      ]
+    },
+    {
+      "id": "ask5",
+      "speech": "SpongeBob.",
+      "engine": "kokoro",
+      "voice": "bm_fable",
+      "voiceFx": "none",
+      "speaker": "director",
+      "layout": "character_center",
+      "pauseAfter": 0.25,
+      "character": {
+        "id": "glados",
+        "position": "right",
+        "pose": "idle",
+        "expression": "neutral",
+        "held": "mic",
+        "scale": 0.9
+      },
+      "extras": [
+        {
+          "id": "director",
+          "style": "director",
+          "pose": "pointing_right",
+          "expression": "smug",
+          "x": 0.24,
+          "scale": 0.8
+        }
+      ],
+      "sfx": [
+        {
+          "name": "transform",
+          "at": "end-0.45",
+          "volume": 0.8
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "transform",
+          "at": "end-0.5"
+        }
+      ]
+    },
+    {
+      "id": "sponge1",
+      "speech": "I'm ready! I'm ready! I'm ready! [laugh]",
+      "emphasis": [
+        "ready"
+      ],
+      "voiceRef": "puck.wav",
+      "speed": 1.05,
+      "captionStyle": "beat",
+      "layout": "character_center",
+      "pauseAfter": 0.5,
+      "character": {
+        "id": "spongebob",
+        "position": "right",
+        "pose": "celebrating",
+        "expression": "happy",
+        "held": "mic",
+        "scale": 0.9,
+        "poseChanges": [
+          {
+            "pose": "laughing",
+            "expression": "laughing",
+            "at": "word:ready#3"
+          }
+        ]
+      },
+      "extras": [
+        {
+          "id": "director",
+          "style": "director",
+          "pose": "arms_crossed",
+          "expression": "neutral",
+          "x": 0.24,
+          "scale": 0.8,
+          "poseChanges": [
+            {
+              "pose": "laughing",
+              "expression": "laughing",
+              "at": "word:ready#3"
+            }
+          ]
+        }
+      ],
+      "sfx": [
+        {
+          "name": "pop",
+          "at": "word:ready",
+          "volume": 0.5
+        },
+        {
+          "name": "pop",
+          "at": "word:ready#2",
+          "volume": 0.5
+        },
+        {
+          "name": "pop",
+          "at": "word:ready#3",
+          "volume": 0.5
+        },
+        {
+          "name": "transform",
+          "at": "end-0.45",
+          "volume": 0.7
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "flash",
+          "at": "start"
+        },
+        {
+          "kind": "transform",
+          "at": "end-0.5"
+        }
+      ]
+    },
+    {
+      "id": "ego",
+      "speech": "One take. Where do I sign?",
+      "emphasis": [
+        "One take"
+      ],
+      "emotion": 0.85,
+      "layout": "character_center",
+      "pauseAfter": 0.35,
+      "character": {
+        "id": "actor",
+        "position": "right",
+        "pose": "arms_crossed",
+        "expression": "smug",
+        "held": "mic",
+        "scale": 0.9,
+        "poseChanges": [
+          {
+            "pose": "presenting",
+            "expression": "smug",
+            "at": "word:where"
+          }
+        ]
+      },
+      "extras": [
+        {
+          "id": "director",
+          "style": "director",
+          "pose": "arms_crossed",
+          "expression": "neutral",
+          "x": 0.24,
+          "scale": 0.8
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "flash",
+          "at": "start"
+        }
+      ],
+      "camera": [
+        {
+          "move": "punch_in",
+          "at": "word:take"
+        }
+      ]
+    },
+    {
+      "id": "reject",
+      "speech": "Nowhere. Get out.",
+      "emphasis": [
+        "Get out"
+      ],
+      "engine": "kokoro",
+      "voice": "bm_fable",
+      "voiceFx": "none",
+      "speed": 0.95,
+      "speaker": "director",
+      "layout": "character_center",
+      "pauseAfter": 0.5,
+      "character": {
+        "id": "actor",
+        "position": "right",
+        "pose": "presenting",
+        "expression": "smug",
+        "held": "mic",
+        "scale": 0.9,
+        "poseChanges": [
+          {
+            "pose": "shocked",
+            "expression": "surprised",
+            "at": "word:get"
+          }
+        ]
+      },
+      "extras": [
+        {
+          "id": "director",
+          "style": "director",
+          "pose": "pointing_right",
+          "expression": "angry",
+          "x": 0.24,
+          "scale": 0.8
+        }
+      ],
+      "sfx": [
+        {
+          "name": "error",
+          "at": "word:out",
+          "volume": 0.45
+        }
+      ]
+    },
+    {
+      "id": "rage",
+      "speech": "GET. OUT?!",
+      "emphasis": [
+        "OUT"
+      ],
+      "emotion": 0.95,
+      "layout": "character_center",
+      "captions": false,
+      "pauseAfter": 0.7,
+      "character": {
+        "id": "actor",
+        "position": "right",
+        "pose": "mic",
+        "expression": "angry",
+        "held": "mic",
+        "scale": 0.9,
+        "poseChanges": [
+          {
+            "pose": "mic_out",
+            "expression": "angry",
+            "at": "word:out"
+          }
+        ],
+        "strikes": [
+          {
+            "at": "word:out+0.15",
+            "target": "camera",
+            "big": true
+          }
+        ]
+      },
+      "extras": [
+        {
+          "id": "director",
+          "style": "director",
+          "pose": "shocked",
+          "expression": "surprised",
+          "x": 0.24,
+          "scale": 0.8
+        }
+      ],
+      "sfx": [
+        {
+          "name": "whoosh",
+          "at": "word:out+0.1",
+          "volume": 0.6
+        },
+        {
+          "name": "glitch",
+          "at": "word:out+0.4",
+          "volume": 0.7
+        },
+        {
+          "name": "boom",
+          "at": "word:out+0.45",
+          "volume": 0.6
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "screen_crack",
+          "at": "word:out+0.45"
+        },
+        {
+          "kind": "blackout",
+          "at": "end-0.5"
+        }
+      ],
+      "camera": [
+        {
+          "move": "shake",
+          "at": "word:out+0.45"
+        }
+      ]
+    },
+    {
+      "id": "cta1",
+      "speech": "Follow.",
+      "voiceRef": "lewis.wav",
+      "emotion": 0.3,
+      "speed": 0.95,
+      "speaker": "v",
+      "layout": "character_center",
+      "captions": false,
+      "pauseAfter": 0.25,
+      "transition": "cut",
+      "character": null,
+      "extras": [
+        {
+          "id": "v",
+          "style": "vader",
+          "pose": "idle",
+          "x": 0.12,
+          "scale": 0.62
+        },
+        {
+          "id": "j",
+          "style": "jinx",
+          "pose": "idle",
+          "expression": "happy",
+          "x": 0.31,
+          "scale": 0.55
+        },
+        {
+          "id": "g",
+          "style": "vegeta",
+          "pose": "arms_crossed",
+          "expression": "fierce",
+          "x": 0.5,
+          "scale": 0.62
+        },
+        {
+          "id": "l",
+          "style": "glados",
+          "pose": "idle",
+          "x": 0.69,
+          "scale": 0.62
+        },
+        {
+          "id": "s",
+          "style": "spongebob",
+          "pose": "waving",
+          "expression": "happy",
+          "x": 0.88,
+          "scale": 0.62
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "screen_crack",
+          "at": "start"
+        }
+      ]
+    },
+    {
+      "id": "cta2",
+      "speech": "Dummy Sticky!",
+      "voiceRef": "heart.wav",
+      "emotion": 0.8,
+      "speed": 1.05,
+      "speaker": "j",
+      "layout": "character_center",
+      "captions": false,
+      "pauseAfter": 0.2,
+      "character": null,
+      "extras": [
+        {
+          "id": "v",
+          "style": "vader",
+          "pose": "idle",
+          "x": 0.12,
+          "scale": 0.62
+        },
+        {
+          "id": "j",
+          "style": "jinx",
+          "pose": "celebrating",
+          "expression": "laughing",
+          "x": 0.31,
+          "scale": 0.55
+        },
+        {
+          "id": "g",
+          "style": "vegeta",
+          "pose": "arms_crossed",
+          "expression": "fierce",
+          "x": 0.5,
+          "scale": 0.62
+        },
+        {
+          "id": "l",
+          "style": "glados",
+          "pose": "idle",
+          "x": 0.69,
+          "scale": 0.62
+        },
+        {
+          "id": "s",
+          "style": "spongebob",
+          "pose": "waving",
+          "expression": "happy",
+          "x": 0.88,
+          "scale": 0.62
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "screen_crack",
+          "at": "start"
+        },
+        {
+          "kind": "follow_card",
+          "at": "start"
+        }
+      ]
+    },
+    {
+      "id": "cta3",
+      "speech": "FOR MORE!",
+      "voiceRef": "george.wav",
+      "emotion": 0.9,
+      "speaker": "g",
+      "layout": "character_center",
+      "captions": false,
+      "pauseAfter": 0.2,
+      "character": null,
+      "extras": [
+        {
+          "id": "v",
+          "style": "vader",
+          "pose": "idle",
+          "x": 0.12,
+          "scale": 0.62
+        },
+        {
+          "id": "j",
+          "style": "jinx",
+          "pose": "celebrating",
+          "expression": "happy",
+          "x": 0.31,
+          "scale": 0.55
+        },
+        {
+          "id": "g",
+          "style": "vegeta",
+          "pose": "victory",
+          "expression": "fierce",
+          "x": 0.5,
+          "scale": 0.62
+        },
+        {
+          "id": "l",
+          "style": "glados",
+          "pose": "idle",
+          "x": 0.69,
+          "scale": 0.62
+        },
+        {
+          "id": "s",
+          "style": "spongebob",
+          "pose": "waving",
+          "expression": "happy",
+          "x": 0.88,
+          "scale": 0.62
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "screen_crack",
+          "at": "start"
+        },
+        {
+          "kind": "follow_card",
+          "at": "start"
+        }
+      ]
+    },
+    {
+      "id": "cta4",
+      "speech": "I'll make a note.",
+      "voiceRef": "heart.wav",
+      "emotion": 0.15,
+      "speaker": "l",
+      "layout": "character_center",
+      "captions": false,
+      "pauseAfter": 0.25,
+      "character": null,
+      "extras": [
+        {
+          "id": "v",
+          "style": "vader",
+          "pose": "idle",
+          "x": 0.12,
+          "scale": 0.62
+        },
+        {
+          "id": "j",
+          "style": "jinx",
+          "pose": "idle",
+          "expression": "happy",
+          "x": 0.31,
+          "scale": 0.55
+        },
+        {
+          "id": "g",
+          "style": "vegeta",
+          "pose": "arms_crossed",
+          "expression": "smug",
+          "x": 0.5,
+          "scale": 0.62
+        },
+        {
+          "id": "l",
+          "style": "glados",
+          "pose": "presenting",
+          "x": 0.69,
+          "scale": 0.62
+        },
+        {
+          "id": "s",
+          "style": "spongebob",
+          "pose": "waving",
+          "expression": "happy",
+          "x": 0.88,
+          "scale": 0.62
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "screen_crack",
+          "at": "start"
+        },
+        {
+          "kind": "follow_card",
+          "at": "start"
+        }
+      ]
+    },
+    {
+      "id": "cta5",
+      "speech": "[laugh] Bye!",
+      "voiceRef": "puck.wav",
+      "speaker": "s",
+      "layout": "character_center",
+      "captions": false,
+      "pauseAfter": 0.8,
+      "character": null,
+      "extras": [
+        {
+          "id": "v",
+          "style": "vader",
+          "pose": "idle",
+          "x": 0.12,
+          "scale": 0.62
+        },
+        {
+          "id": "j",
+          "style": "jinx",
+          "pose": "idle",
+          "expression": "happy",
+          "x": 0.31,
+          "scale": 0.55
+        },
+        {
+          "id": "g",
+          "style": "vegeta",
+          "pose": "arms_crossed",
+          "expression": "smug",
+          "x": 0.5,
+          "scale": 0.62
+        },
+        {
+          "id": "l",
+          "style": "glados",
+          "pose": "idle",
+          "x": 0.69,
+          "scale": 0.62
+        },
+        {
+          "id": "s",
+          "style": "spongebob",
+          "pose": "laughing",
+          "expression": "laughing",
+          "x": 0.88,
+          "scale": 0.62,
+          "poseChanges": [
+            {
+              "pose": "waving",
+              "expression": "happy",
+              "at": "word:bye"
+            }
+          ]
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "screen_crack",
+          "at": "start"
+        },
+        {
+          "kind": "follow_card",
+          "at": "start"
+        },
+        {
+          "kind": "blackout",
+          "at": "end-0.4"
+        }
+      ]
+    }
+  ]
+}

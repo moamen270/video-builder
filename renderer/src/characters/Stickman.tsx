@@ -42,8 +42,8 @@ interface Props {
   squash?: number;
   /** This figure is the one speaking (mouth moves with the words). Default: the hero, not extras. */
   speaking?: boolean;
-  /** Item in the right hand (frying pan, ball) — from extras.held. */
-  held?: "frying_pan" | "ball" | null;
+  /** Item in the right hand (frying pan, ball, mic) — from extras.held / character.held. */
+  held?: "frying_pan" | "ball" | "mic" | null;
   /** Name tag above the head. */
   label?: string | null;
   /** Hat currently worn. */
@@ -198,7 +198,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const robin = style === "robin";
   if (WALK_POSES.has(st.pose)) {
     return (
-      <Walker rect={rect} frame={abs} fps={fps} ink={ink} headFill={headFill} facingLeft={st.pose === "walk_left" || st.pose === "run_left"} action={walker?.action} shadow={walker?.shadow} run={RUN_POSES.has(st.pose)} headDecor={hat === "fedora" ? <Fedora ink={ink} /> : style === "jhin" ? <JhinMaskProfile /> : beanie} faceless={style === "jhin"} />
+      <Walker rect={rect} frame={abs} fps={fps} ink={ink} headFill={headFill} facingLeft={st.pose === "walk_left" || st.pose === "run_left"} action={walker?.action} shadow={walker?.shadow} run={RUN_POSES.has(st.pose)} headDecor={hat === "fedora" ? <Fedora ink={ink} /> : style === "jhin" ? <JhinMaskProfile /> : style === "vader" ? <VaderHelmet talking={0} /> : style === "glados" ? <GladosVisor talking={0} frame={abs} /> : beanie} faceless={style === "jhin" || style === "vader" || style === "glados"} />
     );
   }
 
@@ -247,8 +247,8 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const wolv = style === "wolverine";
   // "gunslinger" = pistol in the right hand; `shots` add a muzzle flash + recoil.
   const gun = style === "gunslinger" || style === "jhin";
-  const masked = style === "jhin";
-  const gunColor = masked ? "#ff2bd6" : accent;
+  const masked = style === "jhin" || style === "vader" || style === "glados"; // faces replaced by a mask / visor
+  const gunColor = style === "jhin" ? "#ff2bd6" : accent;
   const frontGun = gun && st.pose === "aim_camera";
   // twirl: the pistol spins about the hand, two turns a second, then settles into the next pose.
   const spin = gun && st.pose === "twirl" ? (abs - st.since) * 24 : 0;
@@ -293,6 +293,9 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
   const rFoot = polar(rKnee.x, rKnee.y, SHIN, rig.rThigh + rig.rShin);
 
   const face = faceFor(st.expression); // no hooks below the Walker early-return: an actor may switch rigs mid-scene
+  // Faces drawn on a light-coloured head need dark features (SpongeBob's yellow square, Vegeta's white face stays ink).
+  const faceInk = style === "spongebob" ? "#1f1f1f" : ink;
+  const faceLine = { ...{ stroke: faceInk, strokeWidth: STROKE, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, fill: "none" } };
   const mouthOpen = talking ? (laughing ? 0.7 + 0.3 * laughBeat : 0.5 + 0.5 * Math.abs(Math.sin(abs / 1.7))) : 0;
 
   const line = { stroke: ink, strokeWidth: STROKE, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, fill: "none" };
@@ -312,12 +315,17 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
         {/* shadow */}
         <ellipse cx={120} cy={404} rx={58 + Math.abs(lift) * 0.4} ry={7} fill="rgba(0,0,0,0.25)" />
         {bat && <Cape shoulder={shoulder} hip={HIP} torso={torso} frame={abs} ink={ink} />}
+        {style === "vader" && <Cape shoulder={shoulder} hip={HIP} torso={torso} frame={abs} ink={ink} fill="#0b0b10" length={110} width={84} />}
+        {style === "jinx" && <Braids shoulder={shoulder} headC={headC} frame={abs} />}
         {robin && <Cape shoulder={shoulder} hip={HIP} torso={torso} frame={abs} ink={ink} fill="#f2c400" length={30} width={58} />}
         {/* legs */}
         <polyline points={`${HIP.x},${HIP.y} ${lKnee.x},${lKnee.y} ${lFoot.x},${lFoot.y}`} {...line} />
         <polyline points={`${HIP.x},${HIP.y} ${rKnee.x},${rKnee.y} ${rFoot.x},${rFoot.y}`} {...line} />
         {/* torso */}
         <line x1={HIP.x} y1={HIP.y} x2={neck.x} y2={neck.y} {...line} strokeWidth={STROKE + 1} />
+        {style === "vegeta" && <Armour shoulder={shoulder} torso={torso} ink={ink} />}
+        {style === "spongebob" && <Pants hip={HIP} ink={ink} />}
+        {style === "glados" && <RobotBody shoulder={shoulder} hip={HIP} frame={abs} />}
         {/* arms */}
         <polyline points={`${shoulder.x},${shoulder.y} ${lElbow.x},${lElbow.y} ${lHand.x},${lHand.y}`} {...line} />
         <polyline points={`${shoulder.x},${shoulder.y} ${rElbow.x},${rElbow.y} ${rHand.x},${rHand.y}`} {...line} />
@@ -329,6 +337,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
         <circle cx={lHand.x} cy={lHand.y} r={wolv ? 9 : 7} fill={ink} />
         <circle cx={rHand.x} cy={rHand.y} r={wolv ? 9 : 7} fill={ink} />
         {held === "frying_pan" && <FryingPan x={rHand.x} y={rHand.y} deg={rForeDeg} ink={ink} />}
+        {held === "mic" && <Mic x={rHand.x} y={rHand.y} deg={rForeDeg} ink={ink} />}
 
         {st.pose === "spin" && (
           <g opacity={0.5} fill="none" stroke={ink} strokeWidth={4} strokeLinecap="round">
@@ -370,7 +379,9 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
           )}
           {beanie}
           {hat === "fedora" && <Fedora ink={ink} />}
-          {masked && <JhinMask talking={mouthOpen} />}
+          {style === "jhin" && <JhinMask talking={mouthOpen} />}
+          {style === "vader" && <VaderHelmet talking={mouthOpen} />}
+          {style === "glados" && <GladosVisor talking={mouthOpen} frame={abs} />}
           {kid && (
             <g>
               <path d={`M -6 -${HEAD_R} q -6 -22 4 -26 M 0 -${HEAD_R + 2} q 2 -24 12 -22 M 6 -${HEAD_R} q 10 -14 18 -8`} stroke={ink} strokeWidth={4} fill="none" strokeLinecap="round" />
@@ -382,36 +393,45 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
             {/* eyes */}
             {blink ? (
               <>
-                <line x1={-14} y1={-6} x2={-6} y2={-6} {...line} strokeWidth={4} />
-                <line x1={6} y1={-6} x2={14} y2={-6} {...line} strokeWidth={4} />
+                <line x1={-14} y1={-6} x2={-6} y2={-6} {...faceLine} strokeWidth={4} />
+                <line x1={6} y1={-6} x2={14} y2={-6} {...faceLine} strokeWidth={4} />
               </>
             ) : (
               <>
                 {face.eyes === "x" ? (
                   <>
-                    <path d="M -15 -9 L -5 1 M -5 -9 L -15 1" stroke={ink} strokeWidth={4} strokeLinecap="round" />
-                    <path d="M 5 -9 L 15 1 M 15 -9 L 5 1" stroke={ink} strokeWidth={4} strokeLinecap="round" />
+                    <path d="M -15 -9 L -5 1 M -5 -9 L -15 1" stroke={faceInk} strokeWidth={4} strokeLinecap="round" />
+                    <path d="M 5 -9 L 15 1 M 15 -9 L 5 1" stroke={faceInk} strokeWidth={4} strokeLinecap="round" />
                   </>
                 ) : face.eyes === "closed" ? (
                   <>
-                    <path d="M -17 -4 Q -10 -12 -3 -4" stroke={ink} strokeWidth={4} fill="none" strokeLinecap="round" />
-                    <path d="M 3 -4 Q 10 -12 17 -4" stroke={ink} strokeWidth={4} fill="none" strokeLinecap="round" />
+                    <path d="M -17 -4 Q -10 -12 -3 -4" stroke={faceInk} strokeWidth={4} fill="none" strokeLinecap="round" />
+                    <path d="M 3 -4 Q 10 -12 17 -4" stroke={faceInk} strokeWidth={4} fill="none" strokeLinecap="round" />
                   </>
                 ) : (
                   <>
-                    <circle cx={-10} cy={-4} r={face.eyeR} fill={robin ? "#ffffff" : ink} />
-                    <circle cx={10} cy={-4} r={face.eyeR} fill={robin ? "#ffffff" : ink} />
+                    {style === "spongebob" && (
+                      <>
+                        <circle cx={-11} cy={-5} r={face.eyeR + 6} fill="#ffffff" stroke={faceInk} strokeWidth={2} />
+                        <circle cx={11} cy={-5} r={face.eyeR + 6} fill="#ffffff" stroke={faceInk} strokeWidth={2} />
+                        <circle cx={-11} cy={-5} r={face.eyeR + 1} fill="#2f7bd6" />
+                        <circle cx={11} cy={-5} r={face.eyeR + 1} fill="#2f7bd6" />
+                      </>
+                    )}
+                    <circle cx={-10 - (style === "spongebob" ? 1 : 0)} cy={-4 - (style === "spongebob" ? 1 : 0)} r={face.eyeR * (style === "spongebob" ? 0.6 : 1)} fill={robin ? "#ffffff" : faceInk} />
+                    <circle cx={10 + (style === "spongebob" ? 1 : 0)} cy={-4 - (style === "spongebob" ? 1 : 0)} r={face.eyeR * (style === "spongebob" ? 0.6 : 1)} fill={robin ? "#ffffff" : faceInk} />
                   </>
                 )}
               </>
             )}
             {/* brows */}
-            <line x1={-17} y1={-16 + face.browL[0]} x2={-4} y2={-16 + face.browL[1]} {...line} strokeWidth={4} />
-            <line x1={4} y1={-16 + face.browR[0]} x2={17} y2={-16 + face.browR[1]} {...line} strokeWidth={4} />
+            <line x1={-17} y1={-16 + face.browL[0]} x2={-4} y2={-16 + face.browL[1]} {...faceLine} strokeWidth={4} />
+            <line x1={4} y1={-16 + face.browR[0]} x2={17} y2={-16 + face.browR[1]} {...faceLine} strokeWidth={4} />
             {/* mouth */}
-            <Mouth kind={face.mouth} open={mouthOpen} ink={ink} accent={accent} />
+            <Mouth kind={face.mouth} open={mouthOpen} ink={faceInk} accent={accent} />
           </g>}
         </g>
+        {style === "director" && <Desk ink={ink} headFill={headFill} />}
         {/* held ball: drawn after the head so a wind-up behind the head still shows it */}
         {held === "ball" && (
           <g transform={`translate(${rHand.x + 22} ${rHand.y})`}>
@@ -618,6 +638,52 @@ export function muzzlePoint(rect: Rect, pose: Pose, flip: boolean): { x: number;
 
 function headDecorFor(style: CharacterStyle, ink: string): React.ReactNode {
   switch (style) {
+    case "director":
+      return (
+        <g>
+          {/* thick black glasses + a flat cap: the man who says "next" */}
+          <path d={`M -${HEAD_R} -14 Q -${HEAD_R - 6} -${HEAD_R + 8} 0 -${HEAD_R + 4} Q ${HEAD_R - 6} -${HEAD_R + 8} ${HEAD_R} -14 L ${HEAD_R + 14} -10 L -${HEAD_R} -10 Z`} fill="#4a3b2a" stroke={ink} strokeWidth={2} />
+          <rect x={-26} y={-12} width={20} height={14} rx={4} fill="none" stroke={ink} strokeWidth={4} />
+          <rect x={6} y={-12} width={20} height={14} rx={4} fill="none" stroke={ink} strokeWidth={4} />
+          <line x1={-6} y1={-6} x2={6} y2={-6} stroke={ink} strokeWidth={3} />
+        </g>
+      );
+    case "jinx":
+      return (
+        <g>
+          {/* electric-blue fringe, pink eye rings; the braids hang from the body layer */}
+          <path d={`M -${HEAD_R} -6 Q -${HEAD_R} -${HEAD_R + 14} -4 -${HEAD_R + 8} Q 8 -${HEAD_R + 16} ${HEAD_R} -8 Q ${HEAD_R - 12} -${HEAD_R} 10 -${HEAD_R - 4} Q -6 -${HEAD_R + 2} -${HEAD_R} -6 Z`} fill="#3b7dff" stroke={ink} strokeWidth={2.5} />
+          <circle cx={-10} cy={-4} r={11} fill="#ff7bd5" opacity={0.85} />
+          <circle cx={10} cy={-4} r={11} fill="#ff7bd5" opacity={0.85} />
+        </g>
+      );
+    case "vegeta":
+      return (
+        <g>
+          {/* black flame hair with the widow's peak */}
+          <path
+            d={`M -${HEAD_R + 2} 4 L -${HEAD_R + 16} -${HEAD_R + 30} L -24 -${HEAD_R + 12} L -22 -${HEAD_R + 74} L -8 -${HEAD_R + 20} L 0 -${HEAD_R + 92} L 8 -${HEAD_R + 20} L 22 -${HEAD_R + 74} L 24 -${HEAD_R + 12} L ${HEAD_R + 16} -${HEAD_R + 30} L ${HEAD_R + 2} 4 L ${HEAD_R - 6} -${HEAD_R - 16} Q 8 -${HEAD_R - 4} 0 -${HEAD_R - 14} Q -8 -${HEAD_R - 4} -${HEAD_R - 6} -${HEAD_R - 16} Z`}
+            fill="#15161c"
+            stroke={ink}
+            strokeWidth={2.5}
+            strokeLinejoin="round"
+          />
+        </g>
+      );
+    case "spongebob":
+      return (
+        <g>
+          {/* square yellow head over the circle, pores, freckles, red tie under the chin */}
+          <rect x={-HEAD_R - 6} y={-HEAD_R - 8} width={HEAD_R * 2 + 12} height={HEAD_R * 2 + 12} rx={7} fill="#ffe14d" stroke={ink} strokeWidth={STROKE} />
+          {[[-26, -22], [22, -26], [-28, 14], [26, 18], [0, 24]].map(([x, y], i) => (
+            <ellipse key={i} cx={x} cy={y} rx={5} ry={4} fill="#e0b800" opacity={0.7} />
+          ))}
+          <circle cx={-20} cy={10} r={2} fill="#c46b1f" />
+          <circle cx={20} cy={10} r={2} fill="#c46b1f" />
+          <circle cx={-14} cy={14} r={2} fill="#c46b1f" />
+          <circle cx={14} cy={14} r={2} fill="#c46b1f" />
+        </g>
+      );
     case "thug":
       return (
         <g>
@@ -669,6 +735,114 @@ function headDecorFor(style: CharacterStyle, ink: string): React.ReactNode {
 }
 
 /** Three adamantium claws fanning out of a hand, along the forearm direction. */
+/** Handheld microphone along the forearm; the capsule points away from the hand. */
+const Mic: React.FC<{ x: number; y: number; deg: number; ink: string }> = ({ x, y, deg, ink }) => (
+  <g transform={`translate(${x} ${y}) rotate(${-deg})`}>
+    <rect x={-6} y={-6} width={12} height={54} rx={5} fill="#2b2f3a" stroke={ink} strokeWidth={2} />
+    <circle cx={0} cy={-14} r={15} fill="#8d95a8" stroke={ink} strokeWidth={2.5} />
+    <path d="M -10 -20 L 10 -20 M -12 -14 L 12 -14 M -10 -8 L 10 -8" stroke="#3a3f4d" strokeWidth={2} />
+  </g>
+);
+
+/** Vader: dome + triangular grille; the grille lights faintly while talking. */
+const VaderHelmet: React.FC<{ talking: number }> = ({ talking }) => (
+  <g>
+    {/* dome with the flared rim */}
+    <path d={`M -${HEAD_R + 12} 2 Q -${HEAD_R + 14} -${HEAD_R + 30} 0 -${HEAD_R + 30} Q ${HEAD_R + 14} -${HEAD_R + 30} ${HEAD_R + 12} 2 L ${HEAD_R + 24} 16 Q ${HEAD_R + 4} 8 0 10 Q -${HEAD_R + 4} 8 -${HEAD_R + 24} 16 Z`} fill="#0b0b10" stroke="#4a5068" strokeWidth={2.5} />
+    {/* face mask: brow ridge, lenses, cheek panels, mouth grille */}
+    <path d={`M -${HEAD_R} -6 L -12 ${HEAD_R + 14} L 12 ${HEAD_R + 14} L ${HEAD_R} -6 Q 0 -22 -${HEAD_R} -6 Z`} fill="#1d2030" stroke="#4a5068" strokeWidth={2.5} />
+    <path d="M -28 -12 Q -14 -26 -2 -10 Q -14 -2 -28 -12 Z M 28 -12 Q 14 -26 2 -10 Q 14 -2 28 -12 Z" fill="#05060b" stroke="#6b7390" strokeWidth={1.5} />
+    <path d="M -26 -4 L -8 30 L 8 30 L 26 -4" fill="none" stroke="#4a5068" strokeWidth={2} />
+    <path d="M -10 12 L 0 38 L 10 12 Z" fill="#2c3040" stroke="#4a5068" strokeWidth={1.5} />
+    <g stroke={`rgba(170,180,215,${0.45 + talking * 0.5})`} strokeWidth={3} strokeLinecap="round">
+      <line x1={-7} y1={16} x2={-3} y2={30} />
+      <line x1={0} y1={15} x2={0} y2={33} />
+      <line x1={7} y1={16} x2={3} y2={30} />
+    </g>
+  </g>
+);
+
+/** GLaDOS as a head: white shell, one big optic with a yellow iris that narrows when she talks, a cable antenna. */
+const GladosVisor: React.FC<{ talking: number; frame: number }> = ({ talking, frame }) => {
+  const iris = 9 - talking * 3 + Math.sin(frame / 6) * 0.6;
+  return (
+    <g>
+      <circle r={HEAD_R - 2} fill="#e9ecf2" stroke="#9aa3b8" strokeWidth={2} />
+      <path d={`M -${HEAD_R} -2 Q 0 ${HEAD_R} ${HEAD_R} -2`} fill="none" stroke="#9aa3b8" strokeWidth={2} />
+      <circle r={17} fill="#111420" />
+      <circle r={iris} fill="#ffcc33" />
+      <circle r={3} fill="#ffffff" opacity={0.9} />
+      <path d={`M 4 -${HEAD_R} q 10 -22 22 -30`} stroke="#9aa3b8" strokeWidth={4} fill="none" strokeLinecap="round" />
+      <circle cx={26} cy={-HEAD_R - 30} r={5} fill="#ffcc33" opacity={0.6 + 0.4 * Math.sin(frame / 4)} />
+    </g>
+  );
+};
+
+/** Vegeta's white breastplate with yellow shoulder pads, following the torso lean. */
+const Armour: React.FC<{ shoulder: { x: number; y: number }; torso: number; ink: string }> = ({ shoulder, torso, ink }) => (
+  <g transform={`translate(${shoulder.x} ${shoulder.y}) rotate(${-torso})`}>
+    <path d="M -34 -6 L 34 -6 L 28 70 Q 0 84 -28 70 Z" fill="#f1f3f7" stroke={ink} strokeWidth={2.5} strokeLinejoin="round" />
+    <path d="M -48 -4 L -30 -10 L -22 22 L -40 24 Z M 48 -4 L 30 -10 L 22 22 L 40 24 Z" fill="#ffd23c" stroke={ink} strokeWidth={2.5} strokeLinejoin="round" />
+    <path d="M -14 10 Q 0 24 14 10" stroke="#c9ced9" strokeWidth={3} fill="none" />
+  </g>
+);
+
+/** SpongeBob's square pants: brown shorts with a belt, drawn at the hip. */
+const Pants: React.FC<{ hip: { x: number; y: number }; ink: string }> = ({ hip, ink }) => (
+  <g transform={`translate(${hip.x} ${hip.y})`}>
+    <rect x={-30} y={-22} width={60} height={46} rx={4} fill="#8b5a2b" stroke={ink} strokeWidth={2.5} />
+    <rect x={-30} y={-24} width={60} height={9} fill="#111111" />
+    <rect x={-6} y={-25} width={12} height={11} fill="#ffe14d" />
+    <rect x={-30} y={-36} width={60} height={14} fill="#ffffff" stroke={ink} strokeWidth={2} />
+    <path d="M -6 -36 L 0 -22 L 6 -36 Z" fill="#d62828" />
+  </g>
+);
+
+/** The actor as a machine: grey chassis plate on the torso and a cable running off screen-left. */
+const RobotBody: React.FC<{ shoulder: { x: number; y: number }; hip: { x: number; y: number }; frame: number }> = ({ shoulder, hip, frame }) => (
+  <g>
+    <rect x={shoulder.x - 22} y={shoulder.y + 6} width={44} height={hip.y - shoulder.y - 30} rx={8} fill="#c9ced9" stroke="#8a93a8" strokeWidth={2.5} />
+    <circle cx={shoulder.x} cy={shoulder.y + 34} r={6} fill="#ffcc33" opacity={0.7 + 0.3 * Math.sin(frame / 5)} />
+    <path d={`M ${shoulder.x - 22} ${hip.y - 40} q -40 10 -70 -20`} stroke="#8a93a8" strokeWidth={5} fill="none" strokeLinecap="round" />
+  </g>
+);
+
+/** Jinx: two long blue braids swinging behind the shoulders. */
+const Braids: React.FC<{ shoulder: { x: number; y: number }; headC: { x: number; y: number }; frame: number }> = ({ shoulder, headC, frame }) => {
+  const sway = Math.sin(frame / 9) * 10;
+  const braid = (dir: number) => {
+    const x0 = headC.x + dir * (HEAD_R - 6);
+    const y0 = headC.y - 10;
+    const x1 = shoulder.x + dir * 44 + sway * dir * 0.5;
+    const y1 = shoulder.y + 120;
+    const x2 = shoulder.x + dir * 30 + sway * dir;
+    const y2 = shoulder.y + 250;
+    return `M ${x0} ${y0} Q ${x1} ${y1} ${x2} ${y2}`;
+  };
+  return (
+    <g fill="none" strokeLinecap="round">
+      {[-1, 1].map((d) => (
+        <g key={d}>
+          <path d={braid(d)} stroke="#1f3f8f" strokeWidth={16} />
+          <path d={braid(d)} stroke="#3b7dff" strokeWidth={10} strokeDasharray="14 10" />
+        </g>
+      ))}
+    </g>
+  );
+};
+
+/** Casting desk in front of the director: hides the legs, carries a clipboard and a coffee. */
+const Desk: React.FC<{ ink: string; headFill: string }> = ({ ink, headFill }) => (
+  <g>
+    <rect x={-10} y={250} width={260} height={20} rx={5} fill="#6b4a2b" stroke={ink} strokeWidth={3} />
+    <rect x={0} y={270} width={240} height={130} fill="#8b6438" stroke={ink} strokeWidth={3} />
+    <rect x={30} y={236} width={54} height={18} rx={3} fill={headFill} stroke={ink} strokeWidth={2} transform="rotate(-8 57 245)" />
+    <path d="M 40 244 L 72 240 M 42 249 L 70 246" stroke={ink} strokeWidth={2} transform="rotate(-8 57 245)" />
+    <rect x={182} y={228} width={26} height={24} rx={4} fill="#f1f3f7" stroke={ink} strokeWidth={2.5} />
+    <path d="M 208 234 q 12 4 0 14" stroke={ink} strokeWidth={2.5} fill="none" />
+  </g>
+);
+
 const Claws: React.FC<{ x: number; y: number; deg: number }> = ({ x, y, deg }) => (
   <g transform={`translate(${x} ${y}) rotate(${-deg})`}>
     {[-16, 0, 16].map((dx) => (

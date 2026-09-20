@@ -47,7 +47,8 @@ export const SAMPLE: ResolvedManifest = {
         pose: "explaining",
         expression: "neutral",
         position: "center",
-      scale: 1,
+        scale: 1,
+        held: null,
         poseChanges: [
           { pose: "shocked", expression: "surprised", atFrame: 30 },
           { pose: "pointing_up", atFrame: 66 },

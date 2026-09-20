@@ -72,6 +72,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
           expression: s.character.expression,
           position: s.character.position,
           scale: s.character.scale,
+          held: s.character.held ?? null,
           poseChanges: s.character.poseChanges
             .map((pc, i) => ({ pose: pc.pose, expression: pc.expression, atFrame: at(pc.at, `character.poseChanges[${i}]`) }))
             .sort((x, y) => x.atFrame - y.atFrame),

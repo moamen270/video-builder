@@ -68,7 +68,7 @@ export const Extra = z.object({
   /** Name tag drawn above the head (duels, sports). ≤ 10 chars. */
   label: z.string().max(10).optional(),
   /** Item in the right hand from `heldAt` (default scene start): frying_pan deflects balls; ball = about to throw. */
-  held: z.enum(["frying_pan", "ball"]).optional(),
+  held: z.enum(["frying_pan", "ball", "mic"]).optional(),
   heldAt: Anchor.optional(),
   /** Hat that appears at `hatAt` and vanishes at `hatUntil` (fedora: the MJ move). */
   hat: z.enum(["fedora"]).optional(),
@@ -101,6 +101,8 @@ export const CharacterState = z.object({
   id: z.string().default("narrator"),
   pose: z.enum(POSES).default("explaining"),
   expression: z.enum(EXPRESSIONS).default("neutral"),
+  /** Item in the hero's right hand for the whole scene (mic for auditions; strikes on the camera swing it). */
+  held: z.enum(["frying_pan", "ball", "mic"]).optional(),
   position: z.enum(POSITIONS).default("center"),
   /** Draw the hero smaller (0.5–1.2) — more room between him and far targets. Feet stay on the ground line. */
   scale: z.number().min(0.5).max(1.2).default(1),

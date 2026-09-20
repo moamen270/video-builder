@@ -84,6 +84,12 @@ const FX_FILTERS: Record<Exclude<VoiceFx, "none">, string> = {
   young: "asetrate=24000*1.12,aresample=24000,atempo=1/1.12,treble=g=2,aecho=0.6:0.2:14:0.08",
   growl: "asetrate=24000*0.88,aresample=24000,atempo=1/0.88,acompressor=threshold=-20dB:ratio=6:attack=4:release=90:makeup=4,volume=4dB,aeval=tanh(1.7*val(0)),equalizer=f=2200:t=q:w=1.4:g=3,treble=g=-5,bass=g=4:f=130,aecho=0.6:0.25:16:0.12,alimiter=limit=0.92",
   villain: "asetrate=24000*0.80,aresample=24000,atempo=1/0.80,bass=g=8:f=120,aecho=0.8:0.6:45|95|170:0.42|0.28|0.16,alimiter=limit=0.95",
+  // Vader: a little lower, band-limited like a helmet speaker, compressed, two very short metallic reflections.
+  vader: "asetrate=24000*0.90,aresample=24000,atempo=1/0.90,highpass=f=140,lowpass=f=3400,acompressor=threshold=-18dB:ratio=5:attack=5:release=120:makeup=3,equalizer=f=900:t=q:w=1.2:g=3,aecho=0.8:0.5:7|13:0.35|0.2,alimiter=limit=0.93",
+  // GLaDOS: slight pitch flutter, chorus for the synthetic sheen, close metallic echo, no lows.
+  robot: "highpass=f=220,lowpass=f=5200,vibrato=f=5.5:d=0.06,chorus=0.6:0.9:40|55:0.4|0.3:0.25|0.35:2|2.2,aecho=0.8:0.55:11:0.3,equalizer=f=2500:t=q:w=1.5:g=3,alimiter=limit=0.95",
+  // SpongeBob: pitched up ~32%, nasal presence, a touch of brightness.
+  squeaky: "asetrate=24000*1.32,aresample=24000,atempo=1/1.32,equalizer=f=1500:t=q:w=1.4:g=5,equalizer=f=300:t=q:w=1.2:g=-3,treble=g=2,alimiter=limit=0.95",
 };
 
 async function applyVoiceFx(file: string, fx: VoiceFx, seconds: number) {

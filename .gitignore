@@ -21,3 +21,6 @@ brand/.*.props.json
 *.tsbuildinfo
 py-chatterbox/.venv/
 projects/*/build/chatterbox.*.json
+
+# third-party voice packs used only as local Chatterbox references — never in the repo
+projects/casting-call/clips/

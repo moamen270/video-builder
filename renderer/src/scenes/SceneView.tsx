@@ -203,6 +203,7 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
             zones={spec.props}
             squash={heroSquash}
             speaking={scene.speaker === null || scene.speaker === scene.character.id}
+            held={scene.character.held}
           />
         )}
 
@@ -252,7 +253,8 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
         const flip = scene.character?.position === "right";
         const geom = cs && charRect ? cameraSlashGeometry(charRect, Boolean(flip)) : null;
         const cam = { scale: camScale, x: camX, y: camY, ox: 540, oy: 1920 * 0.45 };
-        return <Overlay key={i} overlay={o} abs={abs} slash={geom ? { ...geom, atFrame: cs!.atFrame } : null} camera={cam} palette={palette} brand={brand} captionRect={spec.caption} />;
+        const focus = charRect ? { x: charRect.x + charRect.w / 2, y: charRect.y + charRect.h * 0.5 } : { x: 540, y: 1100 };
+        return <Overlay key={i} overlay={o} abs={abs} slash={geom ? { ...geom, atFrame: cs!.atFrame } : null} camera={cam} palette={palette} brand={brand} captionRect={spec.caption} focus={focus} />;
       })}
     </AbsoluteFill>
   );

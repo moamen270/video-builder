@@ -34,7 +34,14 @@ def cmd_synth(args: argparse.Namespace) -> int:
     out_dir = Path(args.out_dir)
     synth = Synth()
     scenes = []
-    for sc in req["scenes"]:
+    # Both models together (~5 GB) thrash a 6 GB card. Do every plain line (original model) first, drop it,
+    # then every tagged line (Turbo). Output order is restored by the Node side (it maps by sceneId).
+    from .tags import has_tags
+
+    ordered = sorted(req["scenes"], key=lambda sc: has_tags(sc["speech"]))
+    for i, sc in enumerate(ordered):
+        if i > 0 and has_tags(sc["speech"]) and not has_tags(ordered[i - 1]["speech"]):
+            synth.release("original")
         t1 = time.perf_counter()
         res = synth.synth_scene(
             sc["id"],

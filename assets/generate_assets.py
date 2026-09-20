@@ -376,6 +376,34 @@ def cheer() -> np.ndarray:
     return (vowel * 1.0 + claps * 0.35) * tail
 
 
+def breath() -> np.ndarray:
+    """One slow mechanical breath (Vader): band-limited pink noise, inhale swell then exhale, a little lower on the exhale."""
+    rng = np.random.default_rng(45)
+    x = t(1.7)
+    n = len(x)
+    inhale = np.exp(-((x - 0.42) ** 2) / (2 * 0.16**2))
+    exhale = np.exp(-((x - 1.15) ** 2) / (2 * 0.2**2)) * 0.9
+    src = pink(rng, n)
+    a = bandpass(src, 500, 1800) * inhale
+    b = bandpass(src, 300, 1200) * exhale
+    return (a + b) * 0.9
+
+
+def transform() -> np.ndarray:
+    """Shape change: rising resonant sweep + shimmer of high partials, then a soft thump when the new form lands."""
+    rng = np.random.default_rng(46)
+    x = t(0.8)
+    n = len(x)
+    sweep = swept_band(pink(rng, n), 180, 2600, q=3.0) * np.sin(np.pi * np.clip(x / 0.62, 0, 1)) ** 1.2
+    shimmer = np.zeros(n)
+    for k in range(7):
+        f = 1600 * 1.5 ** (k * 0.5)
+        shimmer += np.sin(2 * np.pi * f * x + rng.uniform(0, 6)) * env(n, 0.05 + k * 0.03, 0.35, 2.0) / 7
+    kx = x - 0.58
+    thump = np.where(kx > 0, np.sin(2 * np.pi * (110 * np.exp(-np.clip(kx, 0, None) * 12) + 45) * kx) * np.exp(-np.clip(kx, 0, None) * 9), 0)
+    return sweep * 0.8 + shimmer * 0.5 + thump * 0.7
+
+
 def lofi_loop(name: str = "lofi-01", bpm: float = 78, bars: int = 8, seed: int = 7) -> np.ndarray:
     """Warm lo-fi chord loop with soft kick/hat. Loops cleanly (bar-aligned)."""
     rng = np.random.default_rng(seed)
@@ -445,6 +473,8 @@ def main() -> None:
     write("clang", clang())
     write("whistle", whistle())
     write("cheer", cheer())
+    write("breath", breath())
+    write("transform", transform())
     print("music:")
     write("lofi-01", lofi_loop("lofi-01", 78, 8, 7), MUSIC)
     write("lofi-02", lofi_loop("lofi-02", 88, 8, 11), MUSIC)

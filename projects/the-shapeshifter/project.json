@@ -1,0 +1,18 @@
+{
+  "slug": "the-shapeshifter",
+  "topic": "The Shapeshifter - one actor auditions as five characters",
+  "createdAt": "2026-09-20T00:00:00.000Z",
+  "targetSeconds": 55,
+  "status": "qa_passed",
+  "lastRenderMs": 130407,
+  "versions": [
+    {
+      "n": 1,
+      "at": "2026-09-20T00:15:15.397Z",
+      "seconds": 55.53333333333333,
+      "renderMs": 130407,
+      "qaOk": true,
+      "manifestHash": "b922870f1b8d126a"
+    }
+  ]
+}

@@ -32,7 +32,7 @@ const toScreen = (cam: CameraMap, x: number, y: number) => ({ x: cam.ox + (x - c
  * claw_marks: three gashes torn along the claw-tip path over the swing, a white
  * hit-flash, then the picture behind dims and stays scarred.
  */
-export const Overlay: React.FC<{ overlay: Cue; abs: number; slash: SlashGeom | null; camera: CameraMap; palette: Palette; brand: { handle: string; name: string } | null; captionRect: { x: number; y: number; w: number; h: number } }> = ({ overlay, abs, slash, camera, palette, brand, captionRect }) => {
+export const Overlay: React.FC<{ overlay: Cue; abs: number; slash: SlashGeom | null; camera: CameraMap; palette: Palette; brand: { handle: string; name: string } | null; captionRect: { x: number; y: number; w: number; h: number }; focus?: { x: number; y: number } }> = ({ overlay, abs, slash, camera, palette, brand, captionRect, focus }) => {
   if (abs < overlay.atFrame || abs >= overlay.untilFrame) return null;
   const t = abs - overlay.atFrame;
   switch (overlay.kind) {
@@ -54,6 +54,8 @@ export const Overlay: React.FC<{ overlay: Cue; abs: number; slash: SlashGeom | n
       return <Spotlight t={t} />;
     case "flourish":
       return <Flourish t={t} />;
+    case "transform":
+      return <Transform t={t} cx={focus?.x ?? 540} cy={focus?.y ?? 1100} />;
     case "follow_card":
       return <FollowCard t={t} handle={brand?.handle ?? "@DummySticky"} palette={palette} rect={captionRect} />;
   }
@@ -181,6 +183,53 @@ const Flourish: React.FC<{ t: number }> = ({ t }) => {
           <path d={`M ${540 - 240 * flare} ${y} L 552 ${y - 10} L ${540 + 240 * flare} ${y} L 552 ${y + 10} Z`} fill="#ffffff" opacity={0.7 * flare} />
         </g>
       </svg>
+    </AbsoluteFill>
+  );
+};
+
+/**
+ * The shapeshifter changing form: a green energy whirl tightens around the character, sparks fly off it,
+ * a white flash on the swap frame (t = 6), then the whirl unwinds and fades. ~20 frames total.
+ * Deterministic: everything is a function of t and a hash.
+ */
+const Transform: React.FC<{ t: number; cx: number; cy: number }> = ({ t, cx, cy }) => {
+  const green = "#3ddc84";
+  const lime = "#b8ff5e";
+  const grow = interpolate(t, [0, 6, 14, 20], [0.2, 1, 1.15, 0], { extrapolateRight: "clamp" });
+  const flash = interpolate(t, [4, 6, 11], [0, 0.95, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const wash = interpolate(t, [0, 6, 20], [0, 0.22, 0], { extrapolateRight: "clamp" });
+  const spin = t * 34;
+  const R = 330;
+  const arcs = [0, 1, 2, 3].map((k) => {
+    const r = R * grow * (0.55 + k * 0.16);
+    const a0 = ((spin * (k % 2 ? -1.3 : 1) + k * 90) * Math.PI) / 180;
+    const a1 = a0 + Math.PI * 0.9;
+    const x0 = cx + Math.cos(a0) * r, y0 = cy + Math.sin(a0) * r * 0.55;
+    const x1 = cx + Math.cos(a1) * r, y1 = cy + Math.sin(a1) * r * 0.55;
+    return { d: `M ${x0} ${y0} A ${r} ${r * 0.55} 0 0 1 ${x1} ${y1}`, w: 22 - k * 4, o: 0.9 - k * 0.15 };
+  });
+  const sparks = Array.from({ length: 18 }, (_, i) => {
+    const a = hash(i, 7) * Math.PI * 2 + t * 0.12;
+    const d = (0.3 + hash(i, 11) * 0.9) * R * Math.min(1, t / 8) * (1 + Math.max(0, t - 6) * 0.08);
+    return { x: cx + Math.cos(a) * d, y: cy + Math.sin(a) * d * 0.7, r: 5 + hash(i, 3) * 9, o: interpolate(t, [0, 5, 12, 20], [0, 1, 0.8, 0], { extrapolateRight: "clamp" }) };
+  });
+  return (
+    <AbsoluteFill style={{ pointerEvents: "none" }}>
+      <AbsoluteFill style={{ background: `radial-gradient(circle at ${cx}px ${cy}px, ${green} 0%, rgba(61,220,132,0) 60%)`, opacity: wash, mixBlendMode: "screen" }} />
+      <svg width={1080} height={1920} style={{ position: "absolute", inset: 0, overflow: "visible" }}>
+        <g fill="none" strokeLinecap="round">
+          {arcs.map((a, i) => (
+            <g key={i}>
+              <path d={a.d} stroke={green} strokeWidth={a.w * 2.2} opacity={a.o * 0.25} />
+              <path d={a.d} stroke={lime} strokeWidth={a.w} opacity={a.o} />
+            </g>
+          ))}
+        </g>
+        {sparks.map((s, i) => (
+          <circle key={i} cx={s.x} cy={s.y} r={s.r} fill={i % 3 ? lime : "#ffffff"} opacity={s.o} />
+        ))}
+      </svg>
+      <AbsoluteFill style={{ background: "#ffffff", opacity: flash }} />
     </AbsoluteFill>
   );
 };

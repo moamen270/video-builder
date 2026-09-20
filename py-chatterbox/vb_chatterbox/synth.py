@@ -64,6 +64,21 @@ class Synth:
         self._orig = None
 
     # -- models ---------------------------------------------------------------------------------------------------
+    def release(self, which: str) -> None:
+        """Free one model's VRAM before loading the other (a 6 GB card cannot hold both comfortably)."""
+        if which == "original" and self._orig is not None:
+            self._orig = None
+        elif which == "turbo" and self._turbo is not None:
+            self._turbo = None
+        else:
+            return
+        import gc
+
+        gc.collect()
+        if self.device == "cuda":
+            self.torch.cuda.empty_cache()
+        _log(f"released {which} model")
+
     def turbo(self):
         if self._turbo is None:
             from chatterbox.tts_turbo import ChatterboxTurboTTS  # type: ignore

@@ -271,7 +271,7 @@ function runChecks(m: Manifest, r: ResolvedManifest, scenes: SceneFacts[], qa: {
   const noCap = scenes.filter((s) => !s.captions && !s.bare && s.kind === "speech" && !s.overlays.some((o) => o.kind === "follow_card"));
   if (noCap.length) add({ id: "C-missing", scope: "unit", area: "captions", title: "speech scenes without captions", mode: "auto", result: "warn", detail: noCap.map((s) => s.id).join(", ") });
   add({ id: "C-readable", scope: "unit", area: "captions", title: "captions inside the safe area, not over a character's face", mode: "visual", result: "check", detail: "every strip: caption block bottom-centre, no character head under it", refs: scenes.filter((s) => s.captions && s.kind !== "silence").map((s) => s.strip) });
-  add({ id: "C-emphasis", scope: "unit", area: "captions", title: "emphasis on the words that carry the idea", mode: "auto", result: m.scenes.every((s) => !s.speech || s.emphasis.length > 0 || s.speech.split(" ").length <= 2) ? "pass" : "warn", detail: m.scenes.filter((s) => s.speech && s.emphasis.length === 0 && s.speech.split(" ").length > 2).map((s) => s.id).join(", ") || "all scenes have emphasis" });
+  add({ id: "C-emphasis", scope: "unit", area: "captions", title: "emphasis on the words that carry the idea", mode: "auto", result: m.scenes.every((s) => !s.speech || (s.emphasis ?? []).length > 0 || s.speech.split(" ").length <= 2) ? "pass" : "warn", detail: m.scenes.filter((s) => s.speech && (s.emphasis ?? []).length === 0 && s.speech.split(" ").length > 2).map((s) => s.id).join(", ") || "all scenes have emphasis" });
 
   // --- characters
   for (const s of scenes) {
