@@ -34,7 +34,7 @@ export function sceneHash(m: Manifest, s: Scene, p: ProjectPaths): string {
     // Engine, acting intensity and the reference clip (by size+mtime) all change the audio.
     const ref = s.speech !== undefined ? resolveVoiceRef(m, s, p) : null;
     const st = ref && existsSync(ref) ? statSync(ref) : null;
-    parts.push("engine", engine, "cb3", sceneEmotion(m, s), ref ?? "", st?.size ?? 0, st?.mtimeMs ?? 0);
+    parts.push("engine", engine, "cb3", sceneEmotion(m, s), s.seed ?? 0, ref ?? "", st?.size ?? 0, st?.mtimeMs ?? 0);
   }
   if (s.clip) {
     const f = path.join(p.clipsDir, s.clip.file);
@@ -131,7 +131,7 @@ export async function ensureAudio(
     .map((s) => ({ id: s.id, speech: s.speech!, pauseAfter: s.pauseAfter, speed: sceneSpeed(m, s), voice: sceneVoice(m, s), fx: sceneFx(m, s), hash: sceneHash(m, s, p) }));
   const todoChatterbox = spoken
     .filter((s) => sceneEngine(m, s) === "chatterbox")
-    .map((s) => ({ id: s.id, speech: s.speech!, pauseAfter: s.pauseAfter, speed: sceneSpeed(m, s), voiceRef: resolveVoiceRef(m, s, p), emotion: sceneEmotion(m, s), seed: 0, fx: sceneFx(m, s), hash: sceneHash(m, s, p) }));
+    .map((s) => ({ id: s.id, speech: s.speech!, pauseAfter: s.pauseAfter, speed: sceneSpeed(m, s), voiceRef: resolveVoiceRef(m, s, p), emotion: sceneEmotion(m, s), seed: s.seed ?? 0, fx: sceneFx(m, s), hash: sceneHash(m, s, p) }));
 
   let fresh: (SceneAlignment & { hash: string })[] = [];
   for (const s of clipScenes) {

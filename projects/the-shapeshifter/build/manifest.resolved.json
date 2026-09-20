@@ -5,7 +5,7 @@
   "fps": 30,
   "width": 1080,
   "height": 1920,
-  "durationInFrames": 1666,
+  "durationInFrames": 1768,
   "theme": "grape",
   "voice": "am_michael",
   "music": {
@@ -19,8 +19,8 @@
       "isClip": false,
       "clipVolume": 1,
       "startFrame": 0,
-      "durationInFrames": 91,
-      "speechFrames": 70,
+      "durationInFrames": 100,
+      "speechFrames": 79,
       "audioSrc": "audio/open.wav",
       "words": [
         {
@@ -35,28 +35,28 @@
         {
           "text": "actor.",
           "i": 1,
-          "start": 0.261,
-          "end": 0.577,
+          "start": 0.282,
+          "end": 0.598,
           "startFrame": 8,
-          "endFrame": 17,
+          "endFrame": 18,
           "emphasis": false
         },
         {
           "text": "Five",
           "i": 2,
-          "start": 1.286,
-          "end": 1.663,
-          "startFrame": 39,
+          "start": 1.328,
+          "end": 1.665,
+          "startFrame": 40,
           "endFrame": 50,
           "emphasis": true
         },
         {
           "text": "voices.",
           "i": 3,
-          "start": 1.648,
-          "end": 2.145,
-          "startFrame": 49,
-          "endFrame": 64,
+          "start": 1.691,
+          "end": 2.229,
+          "startFrame": 51,
+          "endFrame": 67,
           "emphasis": true
         }
       ],
@@ -78,7 +78,7 @@
           {
             "pose": "mic_out",
             "expression": "smug",
-            "atFrame": 39
+            "atFrame": 40
           }
         ],
         "shots": [],
@@ -100,13 +100,13 @@
         },
         {
           "name": "tick",
-          "atFrame": 39,
+          "atFrame": 40,
           "volume": 0.4,
           "src": "assets/sfx/tick.wav"
         },
         {
           "name": "transform",
-          "atFrame": 76,
+          "atFrame": 85,
           "volume": 0.64,
           "src": "assets/sfx/transform.wav"
         }
@@ -123,18 +123,18 @@
         {
           "kind": "spotlight",
           "atFrame": 0,
-          "untilFrame": 91
+          "untilFrame": 100
         },
         {
           "kind": "hook_card",
           "atFrame": 6,
-          "untilFrame": 76,
+          "untilFrame": 85,
           "text": "THE SHAPESHIFTER"
         },
         {
           "kind": "transform",
-          "atFrame": 75,
-          "untilFrame": 91
+          "atFrame": 84,
+          "untilFrame": 100
         }
       ],
       "projectiles": []
@@ -144,18 +144,18 @@
       "speech": "Impressive.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 91,
-      "durationInFrames": 51,
-      "speechFrames": 30,
+      "startFrame": 100,
+      "durationInFrames": 64,
+      "speechFrames": 43,
       "audioSrc": "audio/open2.wav",
       "words": [
         {
           "text": "Impressive.",
           "i": 0,
           "start": 0.08,
-          "end": 0.805,
-          "startFrame": 93,
-          "endFrame": 115,
+          "end": 1.191,
+          "startFrame": 102,
+          "endFrame": 136,
           "emphasis": false
         }
       ],
@@ -187,7 +187,7 @@
       "sfx": [
         {
           "name": "breath",
-          "atFrame": 121,
+          "atFrame": 143,
           "volume": 0.72,
           "src": "assets/sfx/breath.wav"
         }
@@ -197,13 +197,13 @@
       "overlays": [
         {
           "kind": "spotlight",
-          "atFrame": 91,
-          "untilFrame": 142
+          "atFrame": 100,
+          "untilFrame": 164
         },
         {
           "kind": "flash",
-          "atFrame": 91,
-          "untilFrame": 142
+          "atFrame": 100,
+          "untilFrame": 164
         }
       ],
       "projectiles": []
@@ -213,7 +213,7 @@
       "speech": "Name and talent.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 142,
+      "startFrame": 164,
       "durationInFrames": 66,
       "speechFrames": 55,
       "audioSrc": "audio/room.wav",
@@ -223,8 +223,8 @@
           "i": 0,
           "start": 0.325,
           "end": 0.637,
-          "startFrame": 152,
-          "endFrame": 161,
+          "startFrame": 174,
+          "endFrame": 183,
           "emphasis": false
         },
         {
@@ -232,8 +232,8 @@
           "i": 1,
           "start": 0.637,
           "end": 0.762,
-          "startFrame": 161,
-          "endFrame": 165,
+          "startFrame": 183,
+          "endFrame": 187,
           "emphasis": false
         },
         {
@@ -241,8 +241,8 @@
           "i": 2,
           "start": 0.762,
           "end": 1.725,
-          "startFrame": 165,
-          "endFrame": 194,
+          "startFrame": 187,
+          "endFrame": 216,
           "emphasis": false
         }
       ],
@@ -283,10 +283,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 142,
+          "heldFrame": 164,
           "hat": null,
-          "hatFrame": 142,
-          "hatUntilFrame": 208
+          "hatFrame": 164,
+          "hatUntilFrame": 230
         }
       ],
       "props": [],
@@ -301,27 +301,27 @@
       "speech": "Sticky. Voices.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 208,
-      "durationInFrames": 81,
-      "speechFrames": 72,
+      "startFrame": 230,
+      "durationInFrames": 72,
+      "speechFrames": 63,
       "audioSrc": "audio/name.wav",
       "words": [
         {
           "text": "Sticky.",
           "i": 0,
-          "start": 0.08,
-          "end": 0.538,
-          "startFrame": 210,
-          "endFrame": 224,
+          "start": 0.086,
+          "end": 0.502,
+          "startFrame": 233,
+          "endFrame": 245,
           "emphasis": false
         },
         {
           "text": "Voices.",
           "i": 1,
-          "start": 1.53,
-          "end": 2.048,
-          "startFrame": 254,
-          "endFrame": 269,
+          "start": 1.372,
+          "end": 1.909,
+          "startFrame": 271,
+          "endFrame": 287,
           "emphasis": false
         }
       ],
@@ -362,10 +362,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 208,
+          "heldFrame": 230,
           "hat": null,
-          "hatFrame": 208,
-          "hatUntilFrame": 289
+          "hatFrame": 230,
+          "hatUntilFrame": 302
         }
       ],
       "props": [],
@@ -380,7 +380,7 @@
       "speech": "Prove it. Vader.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 289,
+      "startFrame": 302,
       "durationInFrames": 64,
       "speechFrames": 57,
       "audioSrc": "audio/ask1.wav",
@@ -390,8 +390,8 @@
           "i": 0,
           "start": 0.25,
           "end": 0.6,
-          "startFrame": 297,
-          "endFrame": 307,
+          "startFrame": 310,
+          "endFrame": 320,
           "emphasis": false
         },
         {
@@ -399,8 +399,8 @@
           "i": 1,
           "start": 0.6,
           "end": 0.838,
-          "startFrame": 307,
-          "endFrame": 314,
+          "startFrame": 320,
+          "endFrame": 327,
           "emphasis": false
         },
         {
@@ -408,8 +408,8 @@
           "i": 2,
           "start": 0.838,
           "end": 1.75,
-          "startFrame": 314,
-          "endFrame": 342,
+          "startFrame": 327,
+          "endFrame": 355,
           "emphasis": false
         }
       ],
@@ -450,17 +450,17 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 289,
+          "heldFrame": 302,
           "hat": null,
-          "hatFrame": 289,
-          "hatUntilFrame": 353
+          "hatFrame": 302,
+          "hatUntilFrame": 366
         }
       ],
       "props": [],
       "sfx": [
         {
           "name": "transform",
-          "atFrame": 340,
+          "atFrame": 353,
           "volume": 0.64,
           "src": "assets/sfx/transform.wav"
         }
@@ -470,8 +470,8 @@
       "overlays": [
         {
           "kind": "transform",
-          "atFrame": 338,
-          "untilFrame": 353
+          "atFrame": 351,
+          "untilFrame": 366
         }
       ],
       "projectiles": []
@@ -481,90 +481,90 @@
       "speech": "You don't know the power of the dark side.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 353,
-      "durationInFrames": 103,
-      "speechFrames": 82,
+      "startFrame": 366,
+      "durationInFrames": 118,
+      "speechFrames": 97,
       "audioSrc": "audio/vader1.wav",
       "words": [
         {
           "text": "You",
           "i": 0,
-          "start": 0.026,
-          "end": 0.181,
-          "startFrame": 354,
-          "endFrame": 358,
+          "start": 0.045,
+          "end": 0.22,
+          "startFrame": 367,
+          "endFrame": 373,
           "emphasis": false
         },
         {
           "text": "don't",
           "i": 1,
-          "start": 0.187,
-          "end": 0.443,
-          "startFrame": 359,
-          "endFrame": 366,
+          "start": 0.266,
+          "end": 0.581,
+          "startFrame": 374,
+          "endFrame": 383,
           "emphasis": false
         },
         {
           "text": "know",
           "i": 2,
-          "start": 0.489,
-          "end": 0.785,
-          "startFrame": 368,
-          "endFrame": 377,
+          "start": 0.606,
+          "end": 0.902,
+          "startFrame": 384,
+          "endFrame": 393,
           "emphasis": false
         },
         {
           "text": "the",
           "i": 3,
-          "start": 0.891,
-          "end": 1.047,
-          "startFrame": 380,
-          "endFrame": 384,
+          "start": 1.007,
+          "end": 1.162,
+          "startFrame": 396,
+          "endFrame": 401,
           "emphasis": false
         },
         {
           "text": "power",
           "i": 4,
-          "start": 1.052,
-          "end": 1.489,
-          "startFrame": 385,
-          "endFrame": 398,
+          "start": 1.208,
+          "end": 1.704,
+          "startFrame": 402,
+          "endFrame": 417,
           "emphasis": false
         },
         {
           "text": "of",
           "i": 5,
-          "start": 1.595,
-          "end": 1.711,
-          "startFrame": 401,
-          "endFrame": 404,
+          "start": 1.989,
+          "end": 2.104,
+          "startFrame": 426,
+          "endFrame": 429,
           "emphasis": false
         },
         {
           "text": "the",
           "i": 6,
-          "start": 1.736,
-          "end": 1.872,
-          "startFrame": 405,
-          "endFrame": 409,
+          "start": 2.15,
+          "end": 2.285,
+          "startFrame": 431,
+          "endFrame": 435,
           "emphasis": false
         },
         {
           "text": "dark",
           "i": 7,
-          "start": 1.837,
-          "end": 2.154,
-          "startFrame": 408,
-          "endFrame": 418,
+          "start": 2.27,
+          "end": 2.565,
+          "startFrame": 434,
+          "endFrame": 443,
           "emphasis": true
         },
         {
           "text": "side.",
           "i": 8,
-          "start": 2.199,
-          "end": 2.536,
-          "startFrame": 419,
-          "endFrame": 429,
+          "start": 2.611,
+          "end": 3.086,
+          "startFrame": 444,
+          "endFrame": 459,
           "emphasis": true
         }
       ],
@@ -585,7 +585,7 @@
         "poseChanges": [
           {
             "pose": "pointing_left",
-            "atFrame": 408
+            "atFrame": 434
           }
         ],
         "shots": [],
@@ -609,24 +609,24 @@
             {
               "pose": "thinking",
               "expression": "surprised",
-              "atFrame": 385
+              "atFrame": 402
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 353,
+          "heldFrame": 366,
           "hat": null,
-          "hatFrame": 353,
-          "hatUntilFrame": 456
+          "hatFrame": 366,
+          "hatUntilFrame": 484
         }
       ],
       "props": [],
       "sfx": [
         {
           "name": "breath",
-          "atFrame": 437,
+          "atFrame": 465,
           "volume": 0.72,
           "src": "assets/sfx/breath.wav"
         }
@@ -636,8 +636,8 @@
       "overlays": [
         {
           "kind": "flash",
-          "atFrame": 353,
-          "untilFrame": 456
+          "atFrame": 366,
+          "untilFrame": 484
         }
       ],
       "projectiles": []
@@ -647,7 +647,7 @@
       "speech": "Your parking is terrible.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 456,
+      "startFrame": 484,
       "durationInFrames": 65,
       "speechFrames": 53,
       "audioSrc": "audio/vader2.wav",
@@ -656,36 +656,36 @@
           "text": "Your",
           "i": 0,
           "start": 0.026,
-          "end": 0.243,
-          "startFrame": 457,
-          "endFrame": 463,
+          "end": 0.242,
+          "startFrame": 485,
+          "endFrame": 491,
           "emphasis": false
         },
         {
           "text": "parking",
           "i": 1,
-          "start": 0.229,
-          "end": 0.75,
-          "startFrame": 463,
-          "endFrame": 479,
+          "start": 0.268,
+          "end": 0.787,
+          "startFrame": 492,
+          "endFrame": 508,
           "emphasis": false
         },
         {
           "text": "is",
           "i": 2,
-          "start": 0.918,
-          "end": 1.054,
-          "startFrame": 484,
-          "endFrame": 488,
+          "start": 0.853,
+          "end": 0.989,
+          "startFrame": 510,
+          "endFrame": 514,
           "emphasis": false
         },
         {
           "text": "terrible.",
           "i": 3,
-          "start": 1.08,
-          "end": 1.581,
-          "startFrame": 488,
-          "endFrame": 503,
+          "start": 1.035,
+          "end": 1.614,
+          "startFrame": 515,
+          "endFrame": 532,
           "emphasis": false
         }
       ],
@@ -706,7 +706,7 @@
         "poseChanges": [
           {
             "pose": "mic",
-            "atFrame": 488
+            "atFrame": 515
           }
         ],
         "shots": [],
@@ -731,10 +731,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 456,
+          "heldFrame": 484,
           "hat": null,
-          "hatFrame": 456,
-          "hatUntilFrame": 521
+          "hatFrame": 484,
+          "hatUntilFrame": 549
         }
       ],
       "props": [],
@@ -749,7 +749,7 @@
       "speech": "Fine. Jinx.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 521,
+      "startFrame": 549,
       "durationInFrames": 63,
       "speechFrames": 55,
       "audioSrc": "audio/ask2.wav",
@@ -759,8 +759,8 @@
           "i": 0,
           "start": 0.275,
           "end": 0.713,
-          "startFrame": 529,
-          "endFrame": 542,
+          "startFrame": 557,
+          "endFrame": 570,
           "emphasis": false
         },
         {
@@ -768,8 +768,8 @@
           "i": 1,
           "start": 0.713,
           "end": 1.725,
-          "startFrame": 542,
-          "endFrame": 573,
+          "startFrame": 570,
+          "endFrame": 601,
           "emphasis": false
         }
       ],
@@ -810,17 +810,17 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 521,
+          "heldFrame": 549,
           "hat": null,
-          "hatFrame": 521,
-          "hatUntilFrame": 584
+          "hatFrame": 549,
+          "hatUntilFrame": 612
         }
       ],
       "props": [],
       "sfx": [
         {
           "name": "transform",
-          "atFrame": 571,
+          "atFrame": 599,
           "volume": 0.64,
           "src": "assets/sfx/transform.wav"
         }
@@ -830,8 +830,8 @@
       "overlays": [
         {
           "kind": "transform",
-          "atFrame": 569,
-          "untilFrame": 584
+          "atFrame": 597,
+          "untilFrame": 612
         }
       ],
       "projectiles": []
@@ -841,99 +841,99 @@
       "speech": "Rules are made to be broken! Like buildings! Or people!",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 584,
-      "durationInFrames": 127,
-      "speechFrames": 118,
+      "startFrame": 612,
+      "durationInFrames": 161,
+      "speechFrames": 152,
       "audioSrc": "audio/jinx1.wav",
       "words": [
         {
           "text": "Rules",
           "i": 0,
-          "start": 0.066,
-          "end": 0.423,
-          "startFrame": 586,
-          "endFrame": 597,
+          "start": 0.065,
+          "end": 0.401,
+          "startFrame": 614,
+          "endFrame": 624,
           "emphasis": false
         },
         {
           "text": "are",
           "i": 1,
-          "start": 0.408,
-          "end": 0.564,
-          "startFrame": 596,
-          "endFrame": 601,
+          "start": 0.386,
+          "end": 0.542,
+          "startFrame": 624,
+          "endFrame": 628,
           "emphasis": false
         },
         {
           "text": "made",
           "i": 2,
-          "start": 0.529,
-          "end": 0.745,
-          "startFrame": 600,
-          "endFrame": 606,
+          "start": 0.507,
+          "end": 0.722,
+          "startFrame": 627,
+          "endFrame": 634,
           "emphasis": false
         },
         {
           "text": "to",
           "i": 3,
-          "start": 0.73,
-          "end": 0.845,
-          "startFrame": 606,
-          "endFrame": 609,
+          "start": 0.707,
+          "end": 0.862,
+          "startFrame": 633,
+          "endFrame": 638,
           "emphasis": false
         },
         {
           "text": "be",
           "i": 4,
-          "start": 0.831,
-          "end": 0.966,
-          "startFrame": 609,
-          "endFrame": 613,
+          "start": 0.827,
+          "end": 0.983,
+          "startFrame": 637,
+          "endFrame": 641,
           "emphasis": false
         },
         {
           "text": "broken!",
           "i": 5,
-          "start": 0.971,
-          "end": 1.389,
-          "startFrame": 613,
-          "endFrame": 626,
+          "start": 1.048,
+          "end": 1.584,
+          "startFrame": 643,
+          "endFrame": 660,
           "emphasis": true
         },
         {
           "text": "Like",
           "i": 6,
-          "start": 2.139,
-          "end": 2.375,
-          "startFrame": 648,
-          "endFrame": 655,
+          "start": 2.853,
+          "end": 3.089,
+          "startFrame": 698,
+          "endFrame": 705,
           "emphasis": false
         },
         {
           "text": "buildings!",
           "i": 7,
-          "start": 2.36,
-          "end": 2.878,
-          "startFrame": 655,
-          "endFrame": 670,
+          "start": 3.154,
+          "end": 3.75,
+          "startFrame": 707,
+          "endFrame": 725,
           "emphasis": false
         },
         {
           "text": "Or",
           "i": 8,
-          "start": 3.225,
-          "end": 3.381,
-          "startFrame": 681,
-          "endFrame": 685,
+          "start": 4.076,
+          "end": 4.232,
+          "startFrame": 734,
+          "endFrame": 739,
           "emphasis": false
         },
         {
           "text": "people!",
           "i": 9,
-          "start": 3.386,
-          "end": 3.824,
-          "startFrame": 686,
-          "endFrame": 699,
+          "start": 4.257,
+          "end": 4.853,
+          "startFrame": 740,
+          "endFrame": 758,
           "emphasis": false
         }
       ],
@@ -955,12 +955,12 @@
           {
             "pose": "celebrating",
             "expression": "laughing",
-            "atFrame": 613
+            "atFrame": 643
           },
           {
             "pose": "pointing_left",
             "expression": "happy",
-            "atFrame": 686
+            "atFrame": 740
           }
         ],
         "shots": [],
@@ -984,17 +984,17 @@
             {
               "pose": "shocked",
               "expression": "surprised",
-              "atFrame": 686
+              "atFrame": 740
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 584,
+          "heldFrame": 612,
           "hat": null,
-          "hatFrame": 584,
-          "hatUntilFrame": 711
+          "hatFrame": 612,
+          "hatUntilFrame": 773
         }
       ],
       "props": [],
@@ -1004,8 +1004,8 @@
       "overlays": [
         {
           "kind": "flash",
-          "atFrame": 584,
-          "untilFrame": 711
+          "atFrame": 612,
+          "untilFrame": 773
         }
       ],
       "projectiles": []
@@ -1015,7 +1015,7 @@
       "speech": "Vegeta.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 711,
+      "startFrame": 773,
       "durationInFrames": 45,
       "speechFrames": 38,
       "audioSrc": "audio/ask3.wav",
@@ -1025,8 +1025,8 @@
           "i": 0,
           "start": 0.275,
           "end": 1.125,
-          "startFrame": 719,
-          "endFrame": 745,
+          "startFrame": 781,
+          "endFrame": 807,
           "emphasis": false
         }
       ],
@@ -1067,17 +1067,17 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 711,
+          "heldFrame": 773,
           "hat": null,
-          "hatFrame": 711,
-          "hatUntilFrame": 756
+          "hatFrame": 773,
+          "hatUntilFrame": 818
         }
       ],
       "props": [],
       "sfx": [
         {
           "name": "transform",
-          "atFrame": 743,
+          "atFrame": 805,
           "volume": 0.64,
           "src": "assets/sfx/transform.wav"
         }
@@ -1087,8 +1087,8 @@
       "overlays": [
         {
           "kind": "transform",
-          "atFrame": 741,
-          "untilFrame": 756
+          "atFrame": 803,
+          "untilFrame": 818
         }
       ],
       "projectiles": []
@@ -1098,45 +1098,45 @@
       "speech": "It's over nine thousand!",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 756,
-      "durationInFrames": 74,
-      "speechFrames": 64,
+      "startFrame": 818,
+      "durationInFrames": 76,
+      "speechFrames": 66,
       "audioSrc": "audio/vegeta1.wav",
       "words": [
         {
           "text": "It's",
           "i": 0,
-          "start": 0.066,
-          "end": 0.282,
-          "startFrame": 758,
-          "endFrame": 764,
+          "start": 0.087,
+          "end": 0.283,
+          "startFrame": 821,
+          "endFrame": 826,
           "emphasis": false
         },
         {
           "text": "over",
           "i": 1,
-          "start": 0.347,
-          "end": 0.583,
-          "startFrame": 766,
-          "endFrame": 773,
+          "start": 0.43,
+          "end": 0.728,
+          "startFrame": 831,
+          "endFrame": 840,
           "emphasis": false
         },
         {
           "text": "nine",
           "i": 2,
-          "start": 0.709,
-          "end": 1.086,
-          "startFrame": 777,
-          "endFrame": 789,
+          "start": 0.774,
+          "end": 1.132,
+          "startFrame": 841,
+          "endFrame": 852,
           "emphasis": true
         },
         {
           "text": "thousand!",
           "i": 3,
-          "start": 1.253,
-          "end": 1.871,
-          "startFrame": 794,
-          "endFrame": 812,
+          "start": 1.198,
+          "end": 1.859,
+          "startFrame": 854,
+          "endFrame": 874,
           "emphasis": true
         }
       ],
@@ -1158,7 +1158,7 @@
           {
             "pose": "victory",
             "expression": "fierce",
-            "atFrame": 777
+            "atFrame": 841
           }
         ],
         "shots": [],
@@ -1182,24 +1182,24 @@
             {
               "pose": "shocked",
               "expression": "surprised",
-              "atFrame": 794
+              "atFrame": 854
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 756,
+          "heldFrame": 818,
           "hat": null,
-          "hatFrame": 756,
-          "hatUntilFrame": 830
+          "hatFrame": 818,
+          "hatUntilFrame": 894
         }
       ],
       "props": [],
       "sfx": [
         {
           "name": "boom",
-          "atFrame": 794,
+          "atFrame": 854,
           "volume": 0.48,
           "src": "assets/sfx/boom.wav"
         }
@@ -1208,15 +1208,15 @@
       "camera": [
         {
           "move": "shake",
-          "atFrame": 794,
+          "atFrame": 854,
           "on": null
         }
       ],
       "overlays": [
         {
           "kind": "flash",
-          "atFrame": 756,
-          "untilFrame": 830
+          "atFrame": 818,
+          "untilFrame": 894
         }
       ],
       "projectiles": []
@@ -1226,45 +1226,45 @@
       "speech": "Reduced to a microphone.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 830,
-      "durationInFrames": 66,
-      "speechFrames": 54,
+      "startFrame": 894,
+      "durationInFrames": 64,
+      "speechFrames": 52,
       "audioSrc": "audio/vegeta2.wav",
       "words": [
         {
           "text": "Reduced",
           "i": 0,
           "start": 0.026,
-          "end": 0.524,
-          "startFrame": 831,
-          "endFrame": 846,
+          "end": 0.527,
+          "startFrame": 895,
+          "endFrame": 910,
           "emphasis": false
         },
         {
           "text": "to",
           "i": 1,
-          "start": 0.589,
-          "end": 0.765,
-          "startFrame": 848,
-          "endFrame": 853,
+          "start": 0.513,
+          "end": 0.649,
+          "startFrame": 909,
+          "endFrame": 913,
           "emphasis": false
         },
         {
           "text": "a",
           "i": 2,
-          "start": 0.791,
-          "end": 0.886,
-          "startFrame": 854,
-          "endFrame": 857,
+          "start": 0.675,
+          "end": 0.771,
+          "startFrame": 914,
+          "endFrame": 917,
           "emphasis": false
         },
         {
           "text": "microphone.",
           "i": 3,
-          "start": 0.891,
-          "end": 1.631,
-          "startFrame": 857,
-          "endFrame": 879,
+          "start": 0.776,
+          "end": 1.581,
+          "startFrame": 917,
+          "endFrame": 941,
           "emphasis": false
         }
       ],
@@ -1286,7 +1286,7 @@
           {
             "pose": "arms_crossed",
             "expression": "smug",
-            "atFrame": 857
+            "atFrame": 917
           }
         ],
         "shots": [],
@@ -1311,10 +1311,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 830,
+          "heldFrame": 894,
           "hat": null,
-          "hatFrame": 830,
-          "hatUntilFrame": 896
+          "hatFrame": 894,
+          "hatUntilFrame": 958
         }
       ],
       "props": [],
@@ -1329,7 +1329,7 @@
       "speech": "Glados.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 896,
+      "startFrame": 958,
       "durationInFrames": 43,
       "speechFrames": 36,
       "audioSrc": "audio/ask4.wav",
@@ -1339,8 +1339,8 @@
           "i": 0,
           "start": 0.25,
           "end": 1.075,
-          "startFrame": 904,
-          "endFrame": 928,
+          "startFrame": 966,
+          "endFrame": 990,
           "emphasis": false
         }
       ],
@@ -1381,17 +1381,17 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 896,
+          "heldFrame": 958,
           "hat": null,
-          "hatFrame": 896,
-          "hatUntilFrame": 939
+          "hatFrame": 958,
+          "hatUntilFrame": 1001
         }
       ],
       "props": [],
       "sfx": [
         {
           "name": "transform",
-          "atFrame": 926,
+          "atFrame": 988,
           "volume": 0.64,
           "src": "assets/sfx/transform.wav"
         }
@@ -1401,8 +1401,8 @@
       "overlays": [
         {
           "kind": "transform",
-          "atFrame": 924,
-          "untilFrame": 939
+          "atFrame": 986,
+          "untilFrame": 1001
         }
       ],
       "projectiles": []
@@ -1412,81 +1412,81 @@
       "speech": "Congratulations. You survived. That was not the plan.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 939,
-      "durationInFrames": 150,
-      "speechFrames": 136,
+      "startFrame": 1001,
+      "durationInFrames": 122,
+      "speechFrames": 108,
       "audioSrc": "audio/glados1.wav",
       "words": [
         {
           "text": "Congratulations.",
           "i": 0,
-          "start": 0.005,
-          "end": 0.942,
-          "startFrame": 939,
-          "endFrame": 967,
+          "start": 0.025,
+          "end": 1.002,
+          "startFrame": 1002,
+          "endFrame": 1031,
           "emphasis": false
         },
         {
           "text": "You",
           "i": 1,
-          "start": 1.548,
-          "end": 1.723,
-          "startFrame": 985,
-          "endFrame": 991,
+          "start": 1.228,
+          "end": 1.403,
+          "startFrame": 1038,
+          "endFrame": 1043,
           "emphasis": false
         },
         {
           "text": "survived.",
           "i": 2,
-          "start": 1.748,
-          "end": 2.364,
-          "startFrame": 991,
-          "endFrame": 1010,
+          "start": 1.408,
+          "end": 2.025,
+          "startFrame": 1043,
+          "endFrame": 1062,
           "emphasis": false
         },
         {
           "text": "That",
           "i": 3,
-          "start": 3.05,
-          "end": 3.266,
-          "startFrame": 1031,
-          "endFrame": 1037,
+          "start": 2.491,
+          "end": 2.666,
+          "startFrame": 1076,
+          "endFrame": 1081,
           "emphasis": false
         },
         {
           "text": "was",
           "i": 4,
-          "start": 3.251,
-          "end": 3.426,
-          "startFrame": 1037,
-          "endFrame": 1042,
+          "start": 2.631,
+          "end": 2.767,
+          "startFrame": 1080,
+          "endFrame": 1084,
           "emphasis": false
         },
         {
           "text": "not",
           "i": 5,
-          "start": 3.451,
-          "end": 3.747,
-          "startFrame": 1043,
-          "endFrame": 1051,
+          "start": 2.752,
+          "end": 2.927,
+          "startFrame": 1084,
+          "endFrame": 1089,
           "emphasis": true
         },
         {
           "text": "the",
           "i": 6,
-          "start": 3.792,
-          "end": 3.947,
-          "startFrame": 1053,
-          "endFrame": 1057,
+          "start": 2.892,
+          "end": 3.027,
+          "startFrame": 1088,
+          "endFrame": 1092,
           "emphasis": true
         },
         {
           "text": "plan.",
           "i": 7,
-          "start": 3.932,
-          "end": 4.388,
-          "startFrame": 1057,
-          "endFrame": 1071,
+          "start": 2.972,
+          "end": 3.448,
+          "startFrame": 1090,
+          "endFrame": 1104,
           "emphasis": true
         }
       ],
@@ -1507,7 +1507,7 @@
         "poseChanges": [
           {
             "pose": "presenting",
-            "atFrame": 991
+            "atFrame": 1043
           }
         ],
         "shots": [],
@@ -1531,17 +1531,17 @@
             {
               "pose": "shrugging",
               "expression": "confused",
-              "atFrame": 1057
+              "atFrame": 1090
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 939,
+          "heldFrame": 1001,
           "hat": null,
-          "hatFrame": 939,
-          "hatUntilFrame": 1089
+          "hatFrame": 1001,
+          "hatUntilFrame": 1123
         }
       ],
       "props": [],
@@ -1551,8 +1551,8 @@
       "overlays": [
         {
           "kind": "flash",
-          "atFrame": 939,
-          "untilFrame": 1089
+          "atFrame": 1001,
+          "untilFrame": 1123
         }
       ],
       "projectiles": []
@@ -1562,7 +1562,7 @@
       "speech": "SpongeBob.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 1089,
+      "startFrame": 1123,
       "durationInFrames": 47,
       "speechFrames": 39,
       "audioSrc": "audio/ask5.wav",
@@ -1572,8 +1572,8 @@
           "i": 0,
           "start": 0.275,
           "end": 1.2,
-          "startFrame": 1097,
-          "endFrame": 1125,
+          "startFrame": 1131,
+          "endFrame": 1159,
           "emphasis": false
         }
       ],
@@ -1614,17 +1614,17 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1089,
+          "heldFrame": 1123,
           "hat": null,
-          "hatFrame": 1089,
-          "hatUntilFrame": 1136
+          "hatFrame": 1123,
+          "hatUntilFrame": 1170
         }
       ],
       "props": [],
       "sfx": [
         {
           "name": "transform",
-          "atFrame": 1123,
+          "atFrame": 1157,
           "volume": 0.64,
           "src": "assets/sfx/transform.wav"
         }
@@ -1634,8 +1634,8 @@
       "overlays": [
         {
           "kind": "transform",
-          "atFrame": 1121,
-          "untilFrame": 1136
+          "atFrame": 1155,
+          "untilFrame": 1170
         }
       ],
       "projectiles": []
@@ -1645,63 +1645,63 @@
       "speech": "I'm ready! I'm ready! I'm ready!",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 1136,
-      "durationInFrames": 79,
-      "speechFrames": 64,
+      "startFrame": 1170,
+      "durationInFrames": 100,
+      "speechFrames": 85,
       "audioSrc": "audio/sponge1.wav",
       "words": [
         {
           "text": "I'm",
           "i": 0,
-          "start": 0.045,
+          "start": 0.025,
           "end": 0.221,
-          "startFrame": 1137,
-          "endFrame": 1143,
+          "startFrame": 1171,
+          "endFrame": 1177,
           "emphasis": false
         },
         {
           "text": "ready!",
           "i": 1,
-          "start": 0.226,
+          "start": 0.206,
           "end": 0.542,
-          "startFrame": 1143,
-          "endFrame": 1152,
+          "startFrame": 1176,
+          "endFrame": 1186,
           "emphasis": true
         },
         {
           "text": "I'm",
           "i": 2,
-          "start": 0.748,
-          "end": 0.923,
-          "startFrame": 1158,
-          "endFrame": 1164,
+          "start": 0.829,
+          "end": 1.024,
+          "startFrame": 1195,
+          "endFrame": 1201,
           "emphasis": false
         },
         {
           "text": "ready!",
           "i": 3,
-          "start": 0.928,
-          "end": 1.244,
-          "startFrame": 1164,
-          "endFrame": 1173,
+          "start": 1.01,
+          "end": 1.346,
+          "startFrame": 1200,
+          "endFrame": 1210,
           "emphasis": true
         },
         {
           "text": "I'm",
           "i": 4,
-          "start": 1.43,
-          "end": 1.585,
-          "startFrame": 1179,
-          "endFrame": 1184,
+          "start": 1.652,
+          "end": 1.828,
+          "startFrame": 1220,
+          "endFrame": 1225,
           "emphasis": false
         },
         {
           "text": "ready!",
           "i": 5,
-          "start": 1.57,
-          "end": 1.946,
-          "startFrame": 1183,
-          "endFrame": 1194,
+          "start": 1.833,
+          "end": 2.229,
+          "startFrame": 1225,
+          "endFrame": 1237,
           "emphasis": true
         }
       ],
@@ -1723,7 +1723,7 @@
           {
             "pose": "laughing",
             "expression": "laughing",
-            "atFrame": 1183
+            "atFrame": 1225
           }
         ],
         "shots": [],
@@ -1747,42 +1747,42 @@
             {
               "pose": "laughing",
               "expression": "laughing",
-              "atFrame": 1183
+              "atFrame": 1225
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1136,
+          "heldFrame": 1170,
           "hat": null,
-          "hatFrame": 1136,
-          "hatUntilFrame": 1215
+          "hatFrame": 1170,
+          "hatUntilFrame": 1270
         }
       ],
       "props": [],
       "sfx": [
         {
           "name": "pop",
-          "atFrame": 1143,
+          "atFrame": 1176,
           "volume": 0.4,
           "src": "assets/sfx/pop.wav"
         },
         {
           "name": "pop",
-          "atFrame": 1164,
+          "atFrame": 1200,
           "volume": 0.4,
           "src": "assets/sfx/pop.wav"
         },
         {
           "name": "pop",
-          "atFrame": 1183,
+          "atFrame": 1225,
           "volume": 0.4,
           "src": "assets/sfx/pop.wav"
         },
         {
           "name": "transform",
-          "atFrame": 1202,
+          "atFrame": 1257,
           "volume": 0.56,
           "src": "assets/sfx/transform.wav"
         }
@@ -1792,13 +1792,13 @@
       "overlays": [
         {
           "kind": "flash",
-          "atFrame": 1136,
-          "untilFrame": 1215
+          "atFrame": 1170,
+          "untilFrame": 1270
         },
         {
           "kind": "transform",
-          "atFrame": 1200,
-          "untilFrame": 1215
+          "atFrame": 1255,
+          "untilFrame": 1270
         }
       ],
       "projectiles": []
@@ -1808,63 +1808,63 @@
       "speech": "One take. Where do I sign?",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 1215,
+      "startFrame": 1270,
       "durationInFrames": 82,
-      "speechFrames": 72,
+      "speechFrames": 71,
       "audioSrc": "audio/ego.wav",
       "words": [
         {
           "text": "One",
           "i": 0,
           "start": 0.08,
-          "end": 0.256,
-          "startFrame": 1217,
-          "endFrame": 1223,
+          "end": 0.276,
+          "startFrame": 1272,
+          "endFrame": 1278,
           "emphasis": true
         },
         {
           "text": "take.",
           "i": 1,
-          "start": 0.261,
-          "end": 0.558,
-          "startFrame": 1223,
-          "endFrame": 1232,
+          "start": 0.262,
+          "end": 0.579,
+          "startFrame": 1278,
+          "endFrame": 1287,
           "emphasis": true
         },
         {
           "text": "Where",
           "i": 2,
-          "start": 1.207,
-          "end": 1.524,
-          "startFrame": 1251,
-          "endFrame": 1261,
+          "start": 1.331,
+          "end": 1.548,
+          "startFrame": 1310,
+          "endFrame": 1316,
           "emphasis": false
         },
         {
           "text": "do",
           "i": 3,
-          "start": 1.469,
-          "end": 1.584,
-          "startFrame": 1259,
-          "endFrame": 1263,
+          "start": 1.513,
+          "end": 1.649,
+          "startFrame": 1315,
+          "endFrame": 1319,
           "emphasis": false
         },
         {
           "text": "I",
           "i": 4,
-          "start": 1.59,
-          "end": 1.685,
-          "startFrame": 1263,
-          "endFrame": 1266,
+          "start": 1.695,
+          "end": 1.79,
+          "startFrame": 1321,
+          "endFrame": 1324,
           "emphasis": false
         },
         {
           "text": "sign?",
           "i": 5,
-          "start": 1.73,
-          "end": 2.168,
-          "startFrame": 1267,
-          "endFrame": 1280,
+          "start": 1.816,
+          "end": 2.275,
+          "startFrame": 1324,
+          "endFrame": 1338,
           "emphasis": false
         }
       ],
@@ -1886,7 +1886,7 @@
           {
             "pose": "presenting",
             "expression": "smug",
-            "atFrame": 1251
+            "atFrame": 1310
           }
         ],
         "shots": [],
@@ -1911,10 +1911,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1215,
+          "heldFrame": 1270,
           "hat": null,
-          "hatFrame": 1215,
-          "hatUntilFrame": 1297
+          "hatFrame": 1270,
+          "hatUntilFrame": 1352
         }
       ],
       "props": [],
@@ -1923,15 +1923,15 @@
       "camera": [
         {
           "move": "punch_in",
-          "atFrame": 1223,
+          "atFrame": 1278,
           "on": null
         }
       ],
       "overlays": [
         {
           "kind": "flash",
-          "atFrame": 1215,
-          "untilFrame": 1297
+          "atFrame": 1270,
+          "untilFrame": 1352
         }
       ],
       "projectiles": []
@@ -1941,7 +1941,7 @@
       "speech": "Nowhere. Get out.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 1297,
+      "startFrame": 1352,
       "durationInFrames": 77,
       "speechFrames": 62,
       "audioSrc": "audio/reject.wav",
@@ -1951,8 +1951,8 @@
           "i": 0,
           "start": 0.325,
           "end": 0.8,
-          "startFrame": 1307,
-          "endFrame": 1321,
+          "startFrame": 1362,
+          "endFrame": 1376,
           "emphasis": false
         },
         {
@@ -1960,8 +1960,8 @@
           "i": 1,
           "start": 0.8,
           "end": 1,
-          "startFrame": 1321,
-          "endFrame": 1327,
+          "startFrame": 1376,
+          "endFrame": 1382,
           "emphasis": true
         },
         {
@@ -1969,8 +1969,8 @@
           "i": 2,
           "start": 1,
           "end": 1.95,
-          "startFrame": 1327,
-          "endFrame": 1356,
+          "startFrame": 1382,
+          "endFrame": 1411,
           "emphasis": true
         }
       ],
@@ -1992,7 +1992,7 @@
           {
             "pose": "shocked",
             "expression": "surprised",
-            "atFrame": 1321
+            "atFrame": 1376
           }
         ],
         "shots": [],
@@ -2017,17 +2017,17 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1297,
+          "heldFrame": 1352,
           "hat": null,
-          "hatFrame": 1297,
-          "hatUntilFrame": 1374
+          "hatFrame": 1352,
+          "hatUntilFrame": 1429
         }
       ],
       "props": [],
       "sfx": [
         {
           "name": "error",
-          "atFrame": 1327,
+          "atFrame": 1382,
           "volume": 0.36,
           "src": "assets/sfx/error.wav"
         }
@@ -2042,27 +2042,27 @@
       "speech": "GET. OUT?!",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 1374,
-      "durationInFrames": 98,
-      "speechFrames": 77,
+      "startFrame": 1429,
+      "durationInFrames": 90,
+      "speechFrames": 69,
       "audioSrc": "audio/rage.wav",
       "words": [
         {
           "text": "GET.",
           "i": 0,
           "start": 0.08,
-          "end": 1.26,
-          "startFrame": 1376,
-          "endFrame": 1412,
+          "end": 0.476,
+          "startFrame": 1431,
+          "endFrame": 1443,
           "emphasis": false
         },
         {
           "text": "OUT?!",
           "i": 1,
-          "start": 2.069,
-          "end": 2.285,
-          "startFrame": 1436,
-          "endFrame": 1443,
+          "start": 1.807,
+          "end": 2.042,
+          "startFrame": 1483,
+          "endFrame": 1490,
           "emphasis": true
         }
       ],
@@ -2084,7 +2084,7 @@
           {
             "pose": "mic_out",
             "expression": "angry",
-            "atFrame": 1436
+            "atFrame": 1483
           }
         ],
         "shots": [],
@@ -2093,7 +2093,7 @@
         "exit": null,
         "strikes": [
           {
-            "atFrame": 1441,
+            "atFrame": 1488,
             "target": "camera",
             "big": true
           }
@@ -2115,29 +2115,29 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1374,
+          "heldFrame": 1429,
           "hat": null,
-          "hatFrame": 1374,
-          "hatUntilFrame": 1472
+          "hatFrame": 1429,
+          "hatUntilFrame": 1519
         }
       ],
       "props": [],
       "sfx": [
         {
           "name": "whoosh",
-          "atFrame": 1439,
+          "atFrame": 1486,
           "volume": 0.48,
           "src": "assets/sfx/whoosh.wav"
         },
         {
           "name": "glitch",
-          "atFrame": 1448,
+          "atFrame": 1495,
           "volume": 0.56,
           "src": "assets/sfx/glitch.wav"
         },
         {
           "name": "boom",
-          "atFrame": 1450,
+          "atFrame": 1497,
           "volume": 0.48,
           "src": "assets/sfx/boom.wav"
         }
@@ -2146,20 +2146,20 @@
       "camera": [
         {
           "move": "shake",
-          "atFrame": 1450,
+          "atFrame": 1497,
           "on": null
         }
       ],
       "overlays": [
         {
           "kind": "screen_crack",
-          "atFrame": 1450,
-          "untilFrame": 1472
+          "atFrame": 1497,
+          "untilFrame": 1519
         },
         {
           "kind": "blackout",
-          "atFrame": 1457,
-          "untilFrame": 1472
+          "atFrame": 1504,
+          "untilFrame": 1519
         }
       ],
       "projectiles": []
@@ -2169,18 +2169,18 @@
       "speech": "Follow.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 1472,
-      "durationInFrames": 28,
-      "speechFrames": 21,
+      "startFrame": 1519,
+      "durationInFrames": 36,
+      "speechFrames": 28,
       "audioSrc": "audio/cta1.wav",
       "words": [
         {
           "text": "Follow.",
           "i": 0,
           "start": 0.08,
-          "end": 0.58,
-          "startFrame": 1474,
-          "endFrame": 1489,
+          "end": 0.74,
+          "startFrame": 1521,
+          "endFrame": 1541,
           "emphasis": false
         }
       ],
@@ -2205,10 +2205,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1472,
+          "heldFrame": 1519,
           "hat": null,
-          "hatFrame": 1472,
-          "hatUntilFrame": 1500
+          "hatFrame": 1519,
+          "hatUntilFrame": 1555
         },
         {
           "id": "j",
@@ -2223,10 +2223,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1472,
+          "heldFrame": 1519,
           "hat": null,
-          "hatFrame": 1472,
-          "hatUntilFrame": 1500
+          "hatFrame": 1519,
+          "hatUntilFrame": 1555
         },
         {
           "id": "g",
@@ -2241,10 +2241,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1472,
+          "heldFrame": 1519,
           "hat": null,
-          "hatFrame": 1472,
-          "hatUntilFrame": 1500
+          "hatFrame": 1519,
+          "hatUntilFrame": 1555
         },
         {
           "id": "l",
@@ -2259,10 +2259,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1472,
+          "heldFrame": 1519,
           "hat": null,
-          "hatFrame": 1472,
-          "hatUntilFrame": 1500
+          "hatFrame": 1519,
+          "hatUntilFrame": 1555
         },
         {
           "id": "s",
@@ -2277,10 +2277,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1472,
+          "heldFrame": 1519,
           "hat": null,
-          "hatFrame": 1472,
-          "hatUntilFrame": 1500
+          "hatFrame": 1519,
+          "hatUntilFrame": 1555
         }
       ],
       "props": [],
@@ -2290,8 +2290,8 @@
       "overlays": [
         {
           "kind": "screen_crack",
-          "atFrame": 1472,
-          "untilFrame": 1500
+          "atFrame": 1519,
+          "untilFrame": 1555
         }
       ],
       "projectiles": []
@@ -2301,27 +2301,27 @@
       "speech": "Dummy Sticky!",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 1500,
-      "durationInFrames": 38,
-      "speechFrames": 32,
+      "startFrame": 1555,
+      "durationInFrames": 63,
+      "speechFrames": 57,
       "audioSrc": "audio/cta2.wav",
       "words": [
         {
           "text": "Dummy",
           "i": 0,
           "start": 0.08,
-          "end": 0.418,
-          "startFrame": 1502,
-          "endFrame": 1513,
+          "end": 0.538,
+          "startFrame": 1557,
+          "endFrame": 1571,
           "emphasis": false
         },
         {
           "text": "Sticky!",
           "i": 1,
-          "start": 0.484,
-          "end": 0.862,
-          "startFrame": 1515,
-          "endFrame": 1526,
+          "start": 0.988,
+          "end": 1.688,
+          "startFrame": 1585,
+          "endFrame": 1606,
           "emphasis": false
         }
       ],
@@ -2346,10 +2346,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1500,
+          "heldFrame": 1555,
           "hat": null,
-          "hatFrame": 1500,
-          "hatUntilFrame": 1538
+          "hatFrame": 1555,
+          "hatUntilFrame": 1618
         },
         {
           "id": "j",
@@ -2364,10 +2364,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1500,
+          "heldFrame": 1555,
           "hat": null,
-          "hatFrame": 1500,
-          "hatUntilFrame": 1538
+          "hatFrame": 1555,
+          "hatUntilFrame": 1618
         },
         {
           "id": "g",
@@ -2382,10 +2382,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1500,
+          "heldFrame": 1555,
           "hat": null,
-          "hatFrame": 1500,
-          "hatUntilFrame": 1538
+          "hatFrame": 1555,
+          "hatUntilFrame": 1618
         },
         {
           "id": "l",
@@ -2400,10 +2400,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1500,
+          "heldFrame": 1555,
           "hat": null,
-          "hatFrame": 1500,
-          "hatUntilFrame": 1538
+          "hatFrame": 1555,
+          "hatUntilFrame": 1618
         },
         {
           "id": "s",
@@ -2418,10 +2418,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1500,
+          "heldFrame": 1555,
           "hat": null,
-          "hatFrame": 1500,
-          "hatUntilFrame": 1538
+          "hatFrame": 1555,
+          "hatUntilFrame": 1618
         }
       ],
       "props": [],
@@ -2431,13 +2431,13 @@
       "overlays": [
         {
           "kind": "screen_crack",
-          "atFrame": 1500,
-          "untilFrame": 1538
+          "atFrame": 1555,
+          "untilFrame": 1618
         },
         {
           "kind": "follow_card",
-          "atFrame": 1500,
-          "untilFrame": 1538
+          "atFrame": 1555,
+          "untilFrame": 1618
         }
       ],
       "projectiles": []
@@ -2447,27 +2447,27 @@
       "speech": "FOR MORE!",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 1538,
-      "durationInFrames": 47,
-      "speechFrames": 41,
+      "startFrame": 1618,
+      "durationInFrames": 40,
+      "speechFrames": 34,
       "audioSrc": "audio/cta3.wav",
       "words": [
         {
           "text": "FOR",
           "i": 0,
-          "start": 0.08,
-          "end": 0.459,
-          "startFrame": 1540,
-          "endFrame": 1552,
+          "start": 0.027,
+          "end": 0.285,
+          "startFrame": 1619,
+          "endFrame": 1627,
           "emphasis": false
         },
         {
           "text": "MORE!",
           "i": 1,
-          "start": 0.667,
-          "end": 1.229,
-          "startFrame": 1558,
-          "endFrame": 1575,
+          "start": 0.434,
+          "end": 0.937,
+          "startFrame": 1631,
+          "endFrame": 1646,
           "emphasis": false
         }
       ],
@@ -2492,10 +2492,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1538,
+          "heldFrame": 1618,
           "hat": null,
-          "hatFrame": 1538,
-          "hatUntilFrame": 1585
+          "hatFrame": 1618,
+          "hatUntilFrame": 1658
         },
         {
           "id": "j",
@@ -2510,10 +2510,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1538,
+          "heldFrame": 1618,
           "hat": null,
-          "hatFrame": 1538,
-          "hatUntilFrame": 1585
+          "hatFrame": 1618,
+          "hatUntilFrame": 1658
         },
         {
           "id": "g",
@@ -2528,10 +2528,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1538,
+          "heldFrame": 1618,
           "hat": null,
-          "hatFrame": 1538,
-          "hatUntilFrame": 1585
+          "hatFrame": 1618,
+          "hatUntilFrame": 1658
         },
         {
           "id": "l",
@@ -2546,10 +2546,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1538,
+          "heldFrame": 1618,
           "hat": null,
-          "hatFrame": 1538,
-          "hatUntilFrame": 1585
+          "hatFrame": 1618,
+          "hatUntilFrame": 1658
         },
         {
           "id": "s",
@@ -2564,10 +2564,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1538,
+          "heldFrame": 1618,
           "hat": null,
-          "hatFrame": 1538,
-          "hatUntilFrame": 1585
+          "hatFrame": 1618,
+          "hatUntilFrame": 1658
         }
       ],
       "props": [],
@@ -2577,13 +2577,13 @@
       "overlays": [
         {
           "kind": "screen_crack",
-          "atFrame": 1538,
-          "untilFrame": 1585
+          "atFrame": 1618,
+          "untilFrame": 1658
         },
         {
           "kind": "follow_card",
-          "atFrame": 1538,
-          "untilFrame": 1585
+          "atFrame": 1618,
+          "untilFrame": 1658
         }
       ],
       "projectiles": []
@@ -2593,9 +2593,9 @@
       "speech": "I'll make a note.",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 1585,
+      "startFrame": 1658,
       "durationInFrames": 36,
-      "speechFrames": 28,
+      "speechFrames": 29,
       "audioSrc": "audio/cta4.wav",
       "words": [
         {
@@ -2603,8 +2603,8 @@
           "i": 0,
           "start": 0.027,
           "end": 0.246,
-          "startFrame": 1586,
-          "endFrame": 1592,
+          "startFrame": 1659,
+          "endFrame": 1665,
           "emphasis": false
         },
         {
@@ -2612,26 +2612,26 @@
           "i": 1,
           "start": 0.191,
           "end": 0.41,
-          "startFrame": 1591,
-          "endFrame": 1597,
+          "startFrame": 1664,
+          "endFrame": 1670,
           "emphasis": false
         },
         {
           "text": "a",
           "i": 2,
           "start": 0.376,
-          "end": 0.472,
-          "startFrame": 1596,
-          "endFrame": 1599,
+          "end": 0.471,
+          "startFrame": 1669,
+          "endFrame": 1672,
           "emphasis": false
         },
         {
           "text": "note.",
           "i": 3,
-          "start": 0.458,
+          "start": 0.457,
           "end": 0.738,
-          "startFrame": 1599,
-          "endFrame": 1607,
+          "startFrame": 1672,
+          "endFrame": 1680,
           "emphasis": false
         }
       ],
@@ -2656,10 +2656,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1585,
+          "heldFrame": 1658,
           "hat": null,
-          "hatFrame": 1585,
-          "hatUntilFrame": 1621
+          "hatFrame": 1658,
+          "hatUntilFrame": 1694
         },
         {
           "id": "j",
@@ -2674,10 +2674,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1585,
+          "heldFrame": 1658,
           "hat": null,
-          "hatFrame": 1585,
-          "hatUntilFrame": 1621
+          "hatFrame": 1658,
+          "hatUntilFrame": 1694
         },
         {
           "id": "g",
@@ -2692,10 +2692,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1585,
+          "heldFrame": 1658,
           "hat": null,
-          "hatFrame": 1585,
-          "hatUntilFrame": 1621
+          "hatFrame": 1658,
+          "hatUntilFrame": 1694
         },
         {
           "id": "l",
@@ -2710,10 +2710,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1585,
+          "heldFrame": 1658,
           "hat": null,
-          "hatFrame": 1585,
-          "hatUntilFrame": 1621
+          "hatFrame": 1658,
+          "hatUntilFrame": 1694
         },
         {
           "id": "s",
@@ -2728,10 +2728,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1585,
+          "heldFrame": 1658,
           "hat": null,
-          "hatFrame": 1585,
-          "hatUntilFrame": 1621
+          "hatFrame": 1658,
+          "hatUntilFrame": 1694
         }
       ],
       "props": [],
@@ -2741,34 +2741,43 @@
       "overlays": [
         {
           "kind": "screen_crack",
-          "atFrame": 1585,
-          "untilFrame": 1621
+          "atFrame": 1658,
+          "untilFrame": 1694
         },
         {
           "kind": "follow_card",
-          "atFrame": 1585,
-          "untilFrame": 1621
+          "atFrame": 1658,
+          "untilFrame": 1694
         }
       ],
       "projectiles": []
     },
     {
       "id": "cta5",
-      "speech": "Bye!",
+      "speech": "Bye bye!",
       "isClip": false,
       "clipVolume": 1,
-      "startFrame": 1621,
-      "durationInFrames": 45,
-      "speechFrames": 21,
+      "startFrame": 1694,
+      "durationInFrames": 74,
+      "speechFrames": 50,
       "audioSrc": "audio/cta5.wav",
       "words": [
         {
-          "text": "Bye!",
+          "text": "Bye",
           "i": 0,
           "start": 0.08,
-          "end": 0.582,
-          "startFrame": 1623,
-          "endFrame": 1638,
+          "end": 0.416,
+          "startFrame": 1696,
+          "endFrame": 1706,
+          "emphasis": false
+        },
+        {
+          "text": "bye!",
+          "i": 1,
+          "start": 0.964,
+          "end": 1.48,
+          "startFrame": 1723,
+          "endFrame": 1738,
           "emphasis": false
         }
       ],
@@ -2793,10 +2802,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1621,
+          "heldFrame": 1694,
           "hat": null,
-          "hatFrame": 1621,
-          "hatUntilFrame": 1666
+          "hatFrame": 1694,
+          "hatUntilFrame": 1768
         },
         {
           "id": "j",
@@ -2811,10 +2820,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1621,
+          "heldFrame": 1694,
           "hat": null,
-          "hatFrame": 1621,
-          "hatUntilFrame": 1666
+          "hatFrame": 1694,
+          "hatUntilFrame": 1768
         },
         {
           "id": "g",
@@ -2829,10 +2838,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1621,
+          "heldFrame": 1694,
           "hat": null,
-          "hatFrame": 1621,
-          "hatUntilFrame": 1666
+          "hatFrame": 1694,
+          "hatUntilFrame": 1768
         },
         {
           "id": "l",
@@ -2847,10 +2856,10 @@
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1621,
+          "heldFrame": 1694,
           "hat": null,
-          "hatFrame": 1621,
-          "hatUntilFrame": 1666
+          "hatFrame": 1694,
+          "hatUntilFrame": 1768
         },
         {
           "id": "s",
@@ -2864,17 +2873,17 @@
             {
               "pose": "waving",
               "expression": "happy",
-              "atFrame": 1623
+              "atFrame": 1696
             }
           ],
           "koFrame": null,
           "fallDir": null,
           "label": null,
           "held": null,
-          "heldFrame": 1621,
+          "heldFrame": 1694,
           "hat": null,
-          "hatFrame": 1621,
-          "hatUntilFrame": 1666
+          "hatFrame": 1694,
+          "hatUntilFrame": 1768
         }
       ],
       "props": [],
@@ -2884,18 +2893,18 @@
       "overlays": [
         {
           "kind": "screen_crack",
-          "atFrame": 1621,
-          "untilFrame": 1666
+          "atFrame": 1694,
+          "untilFrame": 1768
         },
         {
           "kind": "follow_card",
-          "atFrame": 1621,
-          "untilFrame": 1666
+          "atFrame": 1694,
+          "untilFrame": 1768
         },
         {
           "kind": "blackout",
-          "atFrame": 1654,
-          "untilFrame": 1666
+          "atFrame": 1756,
+          "untilFrame": 1768
         }
       ],
       "projectiles": []
@@ -2906,9 +2915,9 @@
     "name": "Dummy Sticky"
   },
   "meta": {
-    "resolvedAt": "2026-09-20T00:13:01.459Z",
+    "resolvedAt": "2026-09-20T00:39:37.978Z",
     "engineVersion": "0.1.0",
     "ttsModel": "hexgrad/Kokoro-82M+ResembleAI/chatterbox",
-    "manifestHash": "b922870f1b8d126a"
+    "manifestHash": "d22c1bfabee555ff"
   }
 }

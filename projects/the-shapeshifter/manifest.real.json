@@ -1218,7 +1218,7 @@
     },
     {
       "id": "cta5",
-      "speech": "[laugh] Bye!",
+      "speech": "Bye bye! [laugh]",
       "voiceRef": "ref-spongebob.wav",
       "speaker": "s",
       "layout": "character_center",
@@ -1285,7 +1285,8 @@
           "kind": "blackout",
           "at": "end-0.4"
         }
-      ]
+      ],
+      "seed": 2
     }
   ]
 }

@@ -149,7 +149,7 @@
     {
       "id": "open2",
       "speech": "Impressive.",
-      "voiceRef": "lewis.wav",
+      "voiceRef": "ref-vader.wav",
       "emotion": 0.45,
       "speed": 0.95,
       "layout": "character_center",
@@ -282,7 +282,7 @@
       "emphasis": [
         "dark side"
       ],
-      "voiceRef": "lewis.wav",
+      "voiceRef": "ref-vader.wav",
       "emotion": 0.5,
       "speed": 0.95,
       "layout": "character_center",
@@ -335,7 +335,7 @@
     {
       "id": "vader2",
       "speech": "Your parking is terrible.",
-      "voiceRef": "lewis.wav",
+      "voiceRef": "ref-vader.wav",
       "emotion": 0.5,
       "speed": 0.95,
       "layout": "character_center",
@@ -412,7 +412,7 @@
       "emphasis": [
         "broken"
       ],
-      "voiceRef": "heart.wav",
+      "voiceRef": "ref-jinx.wav",
       "speed": 1.05,
       "captionStyle": "beat",
       "layout": "character_center",
@@ -508,7 +508,7 @@
       "emphasis": [
         "nine thousand"
       ],
-      "voiceRef": "george.wav",
+      "voiceRef": "ref-vegeta.wav",
       "emotion": 0.95,
       "layout": "character_center",
       "pauseAfter": 0.35,
@@ -567,7 +567,7 @@
     {
       "id": "vegeta2",
       "speech": "Reduced to a microphone.",
-      "voiceRef": "george.wav",
+      "voiceRef": "ref-vegeta.wav",
       "emotion": 0.8,
       "layout": "character_center",
       "pauseAfter": 0.4,
@@ -644,7 +644,7 @@
       "emphasis": [
         "not the plan"
       ],
-      "voiceRef": "heart.wav",
+      "voiceRef": "ref-glados.wav",
       "emotion": 0.35,
       "speed": 1.0,
       "layout": "character_center",
@@ -734,7 +734,7 @@
       "emphasis": [
         "ready"
       ],
-      "voiceRef": "puck.wav",
+      "voiceRef": "ref-spongebob.wav",
       "speed": 1.05,
       "captionStyle": "beat",
       "layout": "character_center",
@@ -976,7 +976,7 @@
     {
       "id": "cta1",
       "speech": "Follow.",
-      "voiceRef": "lewis.wav",
+      "voiceRef": "ref-vader.wav",
       "emotion": 0.5,
       "speed": 0.95,
       "speaker": "v",
@@ -1035,7 +1035,7 @@
     {
       "id": "cta2",
       "speech": "Dummy Sticky!",
-      "voiceRef": "heart.wav",
+      "voiceRef": "ref-jinx.wav",
       "emotion": 0.95,
       "speed": 1.05,
       "speaker": "j",
@@ -1097,7 +1097,7 @@
     {
       "id": "cta3",
       "speech": "FOR MORE!",
-      "voiceRef": "george.wav",
+      "voiceRef": "ref-vegeta.wav",
       "emotion": 1.0,
       "speaker": "g",
       "layout": "character_center",
@@ -1158,7 +1158,7 @@
     {
       "id": "cta4",
       "speech": "I'll make a note.",
-      "voiceRef": "heart.wav",
+      "voiceRef": "ref-glados.wav",
       "emotion": 0.35,
       "speaker": "l",
       "layout": "character_center",
@@ -1218,8 +1218,8 @@
     },
     {
       "id": "cta5",
-      "speech": "[laugh] Bye!",
-      "voiceRef": "puck.wav",
+      "speech": "Bye bye! [laugh]",
+      "voiceRef": "ref-spongebob.wav",
       "speaker": "s",
       "layout": "character_center",
       "captions": false,
@@ -1285,7 +1285,8 @@
           "kind": "blackout",
           "at": "end-0.4"
         }
-      ]
+      ],
+      "seed": 2
     }
   ]
 }

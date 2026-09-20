@@ -30,10 +30,13 @@ def duration(p: Path) -> float:
 
 
 def build(name: str, folder: str, files: list[str]) -> Path:
-    srcs = [CLIPS / folder / f for f in files]
-    for s in srcs:
-        if not s.exists():
-            sys.exit(f"missing {s}")
+    # packs may be unzipped one level deeper ("<pack>/<Character>/file.wav"): find each file by name under the pack
+    srcs = []
+    for f in files:
+        hits = list((CLIPS / folder).rglob(f))
+        if not hits:
+            sys.exit(f"missing {f} under {CLIPS / folder}")
+        srcs.append(hits[0])
     out = CLIPS / f"ref-{name}.wav"
     args = ["ffmpeg", "-y", "-v", "error"]
     for s in srcs:

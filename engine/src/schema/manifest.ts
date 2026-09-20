@@ -267,6 +267,8 @@ export const Scene = z.object({
   voiceRef: z.string().min(1).optional(),
   /** Chatterbox only: how acted the delivery is, 0 = flat read, 1 = maximum. ≥ 0.7 also speeds up and raises the voice. */
   emotion: z.number().min(0).max(1).optional(),
+  /** Chatterbox only: sampling seed (default 0). Change it to get another take — e.g. when a [laugh] was skipped. */
+  seed: z.number().int().min(0).max(9999).optional(),
   layout: z.enum(LAYOUTS).default("character_bottom"),
   transition: z.enum(TRANSITIONS).default("cut"),
   /** false = no kinetic captions this scene (CTA scenes: the follow_card takes the caption slot). */
