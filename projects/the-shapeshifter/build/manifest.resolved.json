@@ -93,10 +93,10 @@
         {
           "id": "p_vader",
           "style": "vader",
-          "pose": "idle",
+          "pose": "arms_crossed",
           "expression": "neutral",
-          "x": 324,
-          "scale": 0.52,
+          "x": 345.6,
+          "scale": 0.54,
           "travel": null,
           "poseChanges": [],
           "koFrame": null,
@@ -105,7 +105,7 @@
           "held": null,
           "heldFrame": 0,
           "hat": null,
-          "seated": true,
+          "seated": false,
           "depth": 190,
           "hatFrame": 0,
           "hatUntilFrame": 93
@@ -113,10 +113,10 @@
         {
           "id": "p_vegeta",
           "style": "vegeta",
-          "pose": "idle",
+          "pose": "arms_crossed",
           "expression": "fierce",
           "x": 712.8000000000001,
-          "scale": 0.52,
+          "scale": 0.54,
           "travel": null,
           "poseChanges": [],
           "koFrame": null,
@@ -125,7 +125,7 @@
           "held": null,
           "heldFrame": 0,
           "hat": null,
-          "seated": true,
+          "seated": false,
           "depth": 190,
           "hatFrame": 0,
           "hatUntilFrame": 93
@@ -133,10 +133,10 @@
         {
           "id": "p_jinx",
           "style": "jinx",
-          "pose": "idle",
+          "pose": "celebrating",
           "expression": "happy",
-          "x": 108,
-          "scale": 0.62,
+          "x": 118.8,
+          "scale": 0.64,
           "travel": null,
           "poseChanges": [],
           "koFrame": null,
@@ -145,7 +145,7 @@
           "held": null,
           "heldFrame": 0,
           "hat": null,
-          "seated": true,
+          "seated": false,
           "depth": 80,
           "hatFrame": 0,
           "hatUntilFrame": 93
@@ -155,8 +155,8 @@
           "style": "glados",
           "pose": "idle",
           "expression": "neutral",
-          "x": 950.4,
-          "scale": 0.62,
+          "x": 993.6,
+          "scale": 0.6,
           "travel": null,
           "poseChanges": [],
           "koFrame": null,
@@ -165,7 +165,7 @@
           "held": null,
           "heldFrame": 0,
           "hat": null,
-          "seated": true,
+          "seated": false,
           "depth": 80,
           "hatFrame": 0,
           "hatUntilFrame": 93
@@ -173,10 +173,10 @@
         {
           "id": "p_sponge",
           "style": "spongebob",
-          "pose": "idle",
+          "pose": "waving",
           "expression": "happy",
-          "x": 820.8,
-          "scale": 0.7,
+          "x": 874.8000000000001,
+          "scale": 0.68,
           "travel": null,
           "poseChanges": [],
           "koFrame": null,
@@ -185,24 +185,13 @@
           "held": null,
           "heldFrame": 0,
           "hat": null,
-          "seated": true,
+          "seated": false,
           "depth": 0,
           "hatFrame": 0,
           "hatUntilFrame": 93
         }
       ],
-      "props": [
-        {
-          "name": "table",
-          "atFrame": 0,
-          "untilFrame": 93,
-          "anim": "pop",
-          "position": "ground_left",
-          "scale": 1.1,
-          "exit": "fade",
-          "on": null
-        }
-      ],
+      "props": [],
       "sfx": [
         {
           "name": "tick",
@@ -3288,9 +3277,9 @@
     "name": "Dummy Sticky"
   },
   "meta": {
-    "resolvedAt": "2026-09-20T06:58:48.459Z",
+    "resolvedAt": "2026-09-20T07:02:34.707Z",
     "engineVersion": "0.1.0",
     "ttsModel": "ResembleAI/chatterbox",
-    "manifestHash": "129fb0bbf05b7199"
+    "manifestHash": "4e2c0e84d6119b2c"
   }
 }

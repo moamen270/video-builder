@@ -142,31 +142,31 @@
         {
           "id": "p_vader",
           "style": "vader",
-          "pose": "idle",
+          "pose": "arms_crossed",
           "expression": "neutral",
-          "x": 0.3,
-          "scale": 0.52,
-          "seated": true,
+          "x": 0.32,
+          "scale": 0.54,
+          "seated": false,
           "depth": 190
         },
         {
           "id": "p_vegeta",
           "style": "vegeta",
-          "pose": "idle",
+          "pose": "arms_crossed",
           "expression": "fierce",
           "x": 0.66,
-          "scale": 0.52,
-          "seated": true,
+          "scale": 0.54,
+          "seated": false,
           "depth": 190
         },
         {
           "id": "p_jinx",
           "style": "jinx",
-          "pose": "idle",
+          "pose": "celebrating",
           "expression": "happy",
-          "x": 0.1,
-          "scale": 0.62,
-          "seated": true,
+          "x": 0.11,
+          "scale": 0.64,
+          "seated": false,
           "depth": 80
         },
         {
@@ -174,30 +174,23 @@
           "style": "glados",
           "pose": "idle",
           "expression": "neutral",
-          "x": 0.88,
-          "scale": 0.62,
-          "seated": true,
+          "x": 0.92,
+          "scale": 0.6,
+          "seated": false,
           "depth": 80
         },
         {
           "id": "p_sponge",
           "style": "spongebob",
-          "pose": "idle",
+          "pose": "waving",
           "expression": "happy",
-          "x": 0.76,
-          "scale": 0.7,
-          "seated": true,
+          "x": 0.81,
+          "scale": 0.68,
+          "seated": false,
           "depth": 0
         }
       ],
-      "props": [
-        {
-          "name": "table",
-          "at": "start",
-          "position": "ground_left",
-          "scale": 1.1
-        }
-      ]
+      "props": []
     },
     {
       "id": "room",
