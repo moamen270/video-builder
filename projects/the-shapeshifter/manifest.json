@@ -7,7 +7,7 @@
   "voiceFx": "none",
   "engine": "chatterbox",
   "voiceRef": "michael.wav",
-  "emotion": 0.3,
+  "emotion": 0.55,
   "theme": "grape",
   "music": {
     "track": "lofi-02",
@@ -88,7 +88,7 @@
       "emphasis": [
         "Five voices"
       ],
-      "emotion": 0.35,
+      "emotion": 0.55,
       "layout": "character_center",
       "bare": true,
       "captions": false,
@@ -150,7 +150,7 @@
       "id": "open2",
       "speech": "Impressive.",
       "voiceRef": "lewis.wav",
-      "emotion": 0.25,
+      "emotion": 0.45,
       "speed": 0.95,
       "layout": "character_center",
       "bare": true,
@@ -213,7 +213,7 @@
     {
       "id": "name",
       "speech": "Sticky. Voices.",
-      "emotion": 0.35,
+      "emotion": 0.5,
       "layout": "character_center",
       "pauseAfter": 0.3,
       "character": {
@@ -283,7 +283,7 @@
         "dark side"
       ],
       "voiceRef": "lewis.wav",
-      "emotion": 0.3,
+      "emotion": 0.5,
       "speed": 0.95,
       "layout": "character_center",
       "pauseAfter": 0.7,
@@ -336,7 +336,7 @@
       "id": "vader2",
       "speech": "Your parking is terrible.",
       "voiceRef": "lewis.wav",
-      "emotion": 0.3,
+      "emotion": 0.5,
       "speed": 0.95,
       "layout": "character_center",
       "pauseAfter": 0.4,
@@ -509,7 +509,7 @@
         "nine thousand"
       ],
       "voiceRef": "george.wav",
-      "emotion": 0.85,
+      "emotion": 0.95,
       "layout": "character_center",
       "pauseAfter": 0.35,
       "character": {
@@ -568,7 +568,7 @@
       "id": "vegeta2",
       "speech": "Reduced to a microphone.",
       "voiceRef": "george.wav",
-      "emotion": 0.6,
+      "emotion": 0.8,
       "layout": "character_center",
       "pauseAfter": 0.4,
       "character": {
@@ -645,7 +645,7 @@
         "not the plan"
       ],
       "voiceRef": "heart.wav",
-      "emotion": 0.15,
+      "emotion": 0.35,
       "speed": 1.0,
       "layout": "character_center",
       "pauseAfter": 0.45,
@@ -810,7 +810,7 @@
       "emphasis": [
         "One take"
       ],
-      "emotion": 0.85,
+      "emotion": 0.95,
       "layout": "character_center",
       "pauseAfter": 0.35,
       "character": {
@@ -903,7 +903,7 @@
       "emphasis": [
         "OUT"
       ],
-      "emotion": 0.95,
+      "emotion": 1.0,
       "layout": "character_center",
       "captions": false,
       "pauseAfter": 0.7,
@@ -977,7 +977,7 @@
       "id": "cta1",
       "speech": "Follow.",
       "voiceRef": "lewis.wav",
-      "emotion": 0.3,
+      "emotion": 0.5,
       "speed": 0.95,
       "speaker": "v",
       "layout": "character_center",
@@ -1036,7 +1036,7 @@
       "id": "cta2",
       "speech": "Dummy Sticky!",
       "voiceRef": "heart.wav",
-      "emotion": 0.8,
+      "emotion": 0.95,
       "speed": 1.05,
       "speaker": "j",
       "layout": "character_center",
@@ -1098,7 +1098,7 @@
       "id": "cta3",
       "speech": "FOR MORE!",
       "voiceRef": "george.wav",
-      "emotion": 0.9,
+      "emotion": 1.0,
       "speaker": "g",
       "layout": "character_center",
       "captions": false,
@@ -1159,7 +1159,7 @@
       "id": "cta4",
       "speech": "I'll make a note.",
       "voiceRef": "heart.wav",
-      "emotion": 0.15,
+      "emotion": 0.35,
       "speaker": "l",
       "layout": "character_center",
       "captions": false,

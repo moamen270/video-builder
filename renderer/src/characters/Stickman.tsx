@@ -735,12 +735,17 @@ function headDecorFor(style: CharacterStyle, ink: string): React.ReactNode {
 }
 
 /** Three adamantium claws fanning out of a hand, along the forearm direction. */
-/** Handheld microphone along the forearm; the capsule points away from the hand. */
+/**
+ * Handheld microphone. Local +y runs along the forearm, elbow → hand → beyond (same convention as Pistol),
+ * so the hand grips the handle (y −12…+22 around the fist) and the capsule sits out past the fingertips
+ * (y ≈ +38) — in the `mic` pose that is up at the mouth.
+ */
 const Mic: React.FC<{ x: number; y: number; deg: number; ink: string }> = ({ x, y, deg, ink }) => (
   <g transform={`translate(${x} ${y}) rotate(${-deg})`}>
-    <rect x={-6} y={-6} width={12} height={54} rx={5} fill="#2b2f3a" stroke={ink} strokeWidth={2} />
-    <circle cx={0} cy={-14} r={15} fill="#8d95a8" stroke={ink} strokeWidth={2.5} />
-    <path d="M -10 -20 L 10 -20 M -12 -14 L 12 -14 M -10 -8 L 10 -8" stroke="#3a3f4d" strokeWidth={2} />
+    <rect x={-7} y={-16} width={14} height={44} rx={6} fill="#2b2f3a" stroke={ink} strokeWidth={2} />
+    <rect x={-8} y={20} width={16} height={8} rx={3} fill="#5a6070" stroke={ink} strokeWidth={1.5} />
+    <circle cx={0} cy={40} r={16} fill="#8d95a8" stroke={ink} strokeWidth={2.5} />
+    <path d="M -11 34 L 11 34 M -13 40 L 13 40 M -11 46 L 11 46" stroke="#3a3f4d" strokeWidth={2} />
   </g>
 );
 

@@ -61,7 +61,7 @@ export const RIGS: Record<Pose, Rig> = {
   dodge_split: { lUpper: -95, lLower: 0, rUpper: 95, rLower: 0, lThigh: -82, lShin: 0, rThigh: 82, rShin: 0, head: 0, torso: 0, lift: 130, nod: 6 },
   spin: { lUpper: -92, lLower: -10, rUpper: 92, rLower: 10, lThigh: -10, lShin: 0, rThigh: 10, rShin: 0, head: 0, torso: 0, lift: -6, nod: 0 },
   // mic: right hand raised to the chin (upper arm forward-up, forearm folded back), left arm loose.
-  mic: { lUpper: -14, lLower: -10, rUpper: 62, rLower: -150, lThigh: -7, lShin: 0, rThigh: 7, rShin: 0, head: 2, torso: 0, lift: 0, nod: 3 },
+  mic: { lUpper: -14, lLower: -10, rUpper: 48, rLower: -198, lThigh: -7, lShin: 0, rThigh: 7, rShin: 0, head: 2, torso: 0, lift: 0, nod: 3 },
   // mic_out: the mic thrust at the viewer, arm straight, body leaning in.
   mic_out: { lUpper: -30, lLower: -20, rUpper: 96, rLower: 0, lThigh: -12, lShin: 0, rThigh: 14, rShin: 0, head: 4, torso: 6, lift: 0, nod: 4 },
   windup: { lUpper: -70, lLower: -20, rUpper: 150, rLower: 80, lThigh: -6, lShin: 0, rThigh: 26, rShin: -20, head: -6, torso: -12, lift: 0, nod: 4 },
