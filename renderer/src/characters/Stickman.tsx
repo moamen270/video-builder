@@ -876,10 +876,11 @@ const Braids: React.FC<{ shoulder: { x: number; y: number }; headC: { x: number;
 /** A plain chair behind a seated figure: seat at hip height, backrest, two visible legs. */
 const Chair: React.FC<{ ink: string }> = ({ ink }) => (
   <g stroke={ink} strokeWidth={5} strokeLinecap="round" fill="none">
-    <rect x={70} y={196} width={100} height={14} rx={5} fill="#5b4632" />
-    <rect x={76} y={120} width={88} height={78} rx={8} fill="#6b5340" />
-    <line x1={80} y1={210} x2={78} y2={400} />
-    <line x1={160} y1={210} x2={162} y2={400} />
+    {/* seat at the sitting rig's hip height (y≈304), backrest behind the torso, legs to the ground */}
+    <rect x={62} y={296} width={116} height={16} rx={6} fill="#5b4632" />
+    <rect x={72} y={186} width={96} height={112} rx={10} fill="#6b5340" />
+    <line x1={74} y1={312} x2={72} y2={400} />
+    <line x1={166} y1={312} x2={168} y2={400} />
   </g>
 );
 

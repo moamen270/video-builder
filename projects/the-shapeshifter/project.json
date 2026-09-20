@@ -4,7 +4,7 @@
   "createdAt": "2026-09-20T00:00:00.000Z",
   "targetSeconds": 55,
   "status": "qa_passed",
-  "lastRenderMs": 83583,
+  "lastRenderMs": 85450,
   "versions": [
     {
       "n": 1,
@@ -74,6 +74,15 @@
       "qaOk": true,
       "manifestHash": "129fb0bbf05b7199",
       "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/the-shapeshifter-v8/final.mp4"
+    },
+    {
+      "n": 9,
+      "at": "2026-09-20T07:00:16.980Z",
+      "seconds": 53.3,
+      "renderMs": 85450,
+      "qaOk": true,
+      "manifestHash": "129fb0bbf05b7199",
+      "publishedUrl": "https://github.com/moamen270/video-builder/releases/download/the-shapeshifter-v9/final.mp4"
     }
   ]
 }

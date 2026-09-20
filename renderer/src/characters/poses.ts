@@ -63,7 +63,8 @@ export const RIGS: Record<Pose, Rig> = {
   // mic: right hand raised to the chin (upper arm forward-up, forearm folded back), left arm loose.
   mic: { lUpper: -14, lLower: -10, rUpper: 48, rLower: -198, lThigh: -7, lShin: 0, rThigh: 7, rShin: 0, head: 2, torso: 0, lift: 0, nod: 3 },
   // sitting: on a chair — thighs out to the sides, shins straight down, hands resting in the lap, body a little lower.
-  sitting: { lUpper: -22, lLower: -70, rUpper: 22, rLower: 70, lThigh: -48, lShin: 46, rThigh: 48, rShin: -46, head: 0, torso: 0, lift: -24, nod: 2 },
+  // hips come down to seat height (+64), thighs nearly horizontal, shins vertical so the feet stay on the ground.
+  sitting: { lUpper: -30, lLower: -95, rUpper: 30, rLower: 95, lThigh: -75, lShin: 75, rThigh: 75, rShin: -75, head: 0, torso: 0, lift: 64, nod: 2 },
   // mic_out: the mic thrust at the viewer, arm straight, body leaning in.
   mic_out: { lUpper: -30, lLower: -20, rUpper: 96, rLower: 0, lThigh: -12, lShin: 0, rThigh: 14, rShin: 0, head: 4, torso: 6, lift: 0, nod: 4 },
   windup: { lUpper: -70, lLower: -20, rUpper: 150, rLower: 80, lThigh: -6, lShin: 0, rThigh: 26, rShin: -20, head: -6, torso: -12, lift: 0, nod: 4 },
