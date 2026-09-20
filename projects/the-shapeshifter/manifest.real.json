@@ -39,7 +39,7 @@
       "style": "spongebob"
     }
   ],
-  "notes": "Voice-engine test video (D13 trial): one actor, five impressions, each with its own Chatterbox reference (real game voice clips in clips/ref-*.wav, built by make_refs.py in projects/casting-call) and its own look. Director = Kokoro bm_fable so the host never sounds like an impression. Standard shape kept: bare opening with the title + one line (and one transform), screen broken with the mic, black, then the CTA — here spoken by the five forms, one piece each. Alternative hooks: 'One actor. Five voices.' / 'Casting call. Bring everyone.' / 'He does voices. All of them.'",
+  "notes": "Voice-engine test video (D13 trial): one actor, five impressions, each with its own Chatterbox reference (real game voice clips in clips/ref-*.wav, built by make_refs.py in projects/casting-call) and its own look. Director = Kokoro bm_fable so the host never sounds like an impression. Standard shape kept: bare opening with the title + one line (and one transform), screen broken with the mic, black, then the CTA — here spoken by the five forms, one piece each. Alternative hooks: 'One actor. Five voices.' / 'Casting call. Bring everyone.' / 'He does voices. All of them.' v4: stand mic (never behind the head), director permanently bored (typing/arms crossed, no reaction), Jinx words at emotion 0.95 + separate laugh beat, SpongeBob catchphrases + snail line, mic thrown off the stand into the screen (mic_stuck), ending on a clean screen, ASR read-back retakes for unclear lines.",
   "social": {
     "title": "One stickman auditions as Vader, Jinx, Vegeta, GLaDOS and SpongeBob — The Shapeshifter",
     "hook": "One actor. Five voices.",
@@ -95,12 +95,12 @@
       "pauseAfter": 0.7,
       "character": {
         "id": "actor",
-        "pose": "mic",
+        "pose": "idle",
         "expression": "worried",
-        "held": "mic",
+        "held": "mic_stand",
         "poseChanges": [
           {
-            "pose": "mic_out",
+            "pose": "presenting",
             "expression": "smug",
             "at": "word:five"
           }
@@ -155,12 +155,12 @@
       "layout": "character_center",
       "bare": true,
       "captions": false,
-      "pauseAfter": 0.7,
+      "pauseAfter": 0.5,
       "character": {
         "id": "vader",
         "pose": "arms_crossed",
         "expression": "neutral",
-        "held": "mic"
+        "held": "mic_stand"
       },
       "sfx": [
         {
@@ -182,7 +182,7 @@
     },
     {
       "id": "room",
-      "speech": "Name and talent.",
+      "speech": "Talent?",
       "engine": "kokoro",
       "voice": "bm_fable",
       "voiceFx": "none",
@@ -194,44 +194,51 @@
       "character": {
         "id": "actor",
         "position": "right",
-        "pose": "mic",
+        "pose": "explaining",
         "expression": "worried",
-        "held": "mic",
+        "held": "mic_stand",
         "scale": 0.9
       },
       "extras": [
         {
           "id": "director",
           "style": "director",
-          "pose": "explaining",
-          "expression": "neutral",
           "x": 0.24,
-          "scale": 0.8
+          "scale": 0.8,
+          "pose": "typing",
+          "expression": "neutral"
         }
       ]
     },
     {
       "id": "name",
-      "speech": "Sticky. Voices.",
+      "speech": "Voices.",
       "emotion": 0.5,
       "layout": "character_center",
       "pauseAfter": 0.3,
       "character": {
         "id": "actor",
         "position": "right",
-        "pose": "mic",
+        "pose": "explaining",
         "expression": "worried",
-        "held": "mic",
+        "held": "mic_stand",
         "scale": 0.9
       },
       "extras": [
         {
           "id": "director",
           "style": "director",
-          "pose": "arms_crossed",
-          "expression": "neutral",
           "x": 0.24,
-          "scale": 0.8
+          "scale": 0.8,
+          "pose": "typing",
+          "expression": "neutral",
+          "poseChanges": [
+            {
+              "pose": "arms_crossed",
+              "expression": "neutral",
+              "at": "word:voices"
+            }
+          ]
         }
       ]
     },
@@ -247,19 +254,19 @@
       "character": {
         "id": "actor",
         "position": "right",
-        "pose": "mic",
+        "pose": "explaining",
         "expression": "surprised",
-        "held": "mic",
+        "held": "mic_stand",
         "scale": 0.9
       },
       "extras": [
         {
           "id": "director",
           "style": "director",
-          "pose": "pointing_right",
-          "expression": "neutral",
           "x": 0.24,
-          "scale": 0.8
+          "scale": 0.8,
+          "pose": "arms_crossed",
+          "expression": "neutral"
         }
       ],
       "sfx": [
@@ -286,13 +293,13 @@
       "emotion": 0.5,
       "speed": 0.95,
       "layout": "character_center",
-      "pauseAfter": 0.7,
+      "pauseAfter": 0.6,
       "character": {
         "id": "vader",
         "position": "right",
-        "pose": "mic",
+        "pose": "idle",
         "expression": "neutral",
-        "held": "mic",
+        "held": "mic_stand",
         "scale": 0.9,
         "poseChanges": [
           {
@@ -305,14 +312,14 @@
         {
           "id": "director",
           "style": "director",
-          "pose": "arms_crossed",
-          "expression": "neutral",
           "x": 0.24,
           "scale": 0.8,
+          "pose": "arms_crossed",
+          "expression": "neutral",
           "poseChanges": [
             {
-              "pose": "thinking",
-              "expression": "surprised",
+              "pose": "typing",
+              "expression": "neutral",
               "at": "word:power"
             }
           ]
@@ -321,7 +328,7 @@
       "sfx": [
         {
           "name": "breath",
-          "at": "end-0.65",
+          "at": "end-0.55",
           "volume": 0.9
         }
       ],
@@ -339,17 +346,17 @@
       "emotion": 0.5,
       "speed": 0.95,
       "layout": "character_center",
-      "pauseAfter": 0.4,
+      "pauseAfter": 0.25,
       "character": {
         "id": "vader",
         "position": "right",
         "pose": "pointing_left",
         "expression": "neutral",
-        "held": "mic",
+        "held": "mic_stand",
         "scale": 0.9,
         "poseChanges": [
           {
-            "pose": "mic",
+            "pose": "presenting",
             "at": "word:terrible"
           }
         ]
@@ -358,10 +365,10 @@
         {
           "id": "director",
           "style": "director",
-          "pose": "thinking",
-          "expression": "confused",
           "x": 0.24,
-          "scale": 0.8
+          "scale": 0.8,
+          "pose": "typing",
+          "expression": "neutral"
         }
       ]
     },
@@ -377,19 +384,19 @@
       "character": {
         "id": "vader",
         "position": "right",
-        "pose": "mic",
+        "pose": "idle",
         "expression": "neutral",
-        "held": "mic",
+        "held": "mic_stand",
         "scale": 0.9
       },
       "extras": [
         {
           "id": "director",
           "style": "director",
-          "pose": "pointing_right",
-          "expression": "neutral",
           "x": 0.24,
-          "scale": 0.8
+          "scale": 0.8,
+          "pose": "typing",
+          "expression": "neutral"
         }
       ],
       "sfx": [
@@ -408,31 +415,75 @@
     },
     {
       "id": "jinx1",
-      "speech": "Rules are made to be broken! [laugh] Like buildings! Or people!",
+      "speech": "Rules are made to be broken!",
       "emphasis": [
         "broken"
       ],
       "voiceRef": "ref-jinx.wav",
-      "speed": 1.05,
-      "captionStyle": "beat",
+      "speed": 1.08,
+      "captionStyle": "normal",
       "layout": "character_center",
-      "pauseAfter": 0.3,
+      "pauseAfter": 0.1,
       "character": {
         "id": "jinx",
         "position": "right",
-        "pose": "mic",
+        "pose": "explaining",
         "expression": "laughing",
-        "held": "mic",
+        "held": "mic_stand",
         "scale": 0.8,
         "poseChanges": [
           {
             "pose": "celebrating",
             "expression": "laughing",
             "at": "word:broken"
-          },
+          }
+        ]
+      },
+      "extras": [
+        {
+          "id": "director",
+          "style": "director",
+          "x": 0.24,
+          "scale": 0.8,
+          "pose": "arms_crossed",
+          "expression": "neutral"
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "flash",
+          "at": "start"
+        }
+      ],
+      "emotion": 0.95
+    },
+    {
+      "id": "jinx2",
+      "speech": "[laugh] Like buildings! Or people!",
+      "voiceRef": "ref-jinx.wav",
+      "speed": 1.05,
+      "captionStyle": "beat",
+      "emphasis": [
+        "people"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 0.25,
+      "character": {
+        "id": "jinx",
+        "position": "right",
+        "pose": "celebrating",
+        "expression": "laughing",
+        "held": "mic_stand",
+        "scale": 0.8,
+        "poseChanges": [
           {
             "pose": "pointing_left",
             "expression": "happy",
+            "at": "word:buildings"
+          },
+          {
+            "pose": "shocked",
+            "expression": "laughing",
             "at": "word:people"
           }
         ]
@@ -441,23 +492,23 @@
         {
           "id": "director",
           "style": "director",
-          "pose": "arms_crossed",
-          "expression": "worried",
           "x": 0.24,
           "scale": 0.8,
+          "pose": "arms_crossed",
+          "expression": "neutral",
           "poseChanges": [
             {
-              "pose": "shocked",
-              "expression": "surprised",
+              "pose": "typing",
+              "expression": "neutral",
               "at": "word:people"
             }
           ]
         }
       ],
-      "overlays": [
+      "camera": [
         {
-          "kind": "flash",
-          "at": "start"
+          "move": "shake",
+          "at": "word:people"
         }
       ]
     },
@@ -473,9 +524,9 @@
       "character": {
         "id": "jinx",
         "position": "right",
-        "pose": "mic",
+        "pose": "idle",
         "expression": "happy",
-        "held": "mic",
+        "held": "mic_stand",
         "scale": 0.8
       },
       "extras": [
@@ -515,9 +566,9 @@
       "character": {
         "id": "vegeta",
         "position": "right",
-        "pose": "mic",
+        "pose": "idle",
         "expression": "fierce",
-        "held": "mic",
+        "held": "mic_stand",
         "scale": 0.9,
         "poseChanges": [
           {
@@ -531,14 +582,14 @@
         {
           "id": "director",
           "style": "director",
-          "pose": "arms_crossed",
-          "expression": "neutral",
           "x": 0.24,
           "scale": 0.8,
+          "pose": "arms_crossed",
+          "expression": "neutral",
           "poseChanges": [
             {
-              "pose": "shocked",
-              "expression": "surprised",
+              "pose": "thinking",
+              "expression": "neutral",
               "at": "word:thousand"
             }
           ]
@@ -570,13 +621,13 @@
       "voiceRef": "ref-vegeta.wav",
       "emotion": 0.8,
       "layout": "character_center",
-      "pauseAfter": 0.4,
+      "pauseAfter": 0.25,
       "character": {
         "id": "vegeta",
         "position": "right",
-        "pose": "mic",
+        "pose": "idle",
         "expression": "fierce",
-        "held": "mic",
+        "held": "mic_stand",
         "scale": 0.9,
         "poseChanges": [
           {
@@ -590,10 +641,10 @@
         {
           "id": "director",
           "style": "director",
-          "pose": "thinking",
-          "expression": "neutral",
           "x": 0.24,
-          "scale": 0.8
+          "scale": 0.8,
+          "pose": "typing",
+          "expression": "smug"
         }
       ]
     },
@@ -609,19 +660,19 @@
       "character": {
         "id": "vegeta",
         "position": "right",
-        "pose": "mic",
+        "pose": "idle",
         "expression": "smug",
-        "held": "mic",
+        "held": "mic_stand",
         "scale": 0.9
       },
       "extras": [
         {
           "id": "director",
           "style": "director",
-          "pose": "pointing_right",
-          "expression": "neutral",
           "x": 0.24,
-          "scale": 0.8
+          "scale": 0.8,
+          "pose": "typing",
+          "expression": "neutral"
         }
       ],
       "sfx": [
@@ -640,7 +691,7 @@
     },
     {
       "id": "glados1",
-      "speech": "Congratulations. You survived. That was not the plan.",
+      "speech": "You survived. That was not the plan.",
       "emphasis": [
         "not the plan"
       ],
@@ -648,13 +699,13 @@
       "emotion": 0.35,
       "speed": 1.0,
       "layout": "character_center",
-      "pauseAfter": 0.45,
+      "pauseAfter": 0.3,
       "character": {
         "id": "glados",
         "position": "right",
         "pose": "idle",
         "expression": "neutral",
-        "held": "mic",
+        "held": "mic_stand",
         "scale": 0.9,
         "poseChanges": [
           {
@@ -667,17 +718,10 @@
         {
           "id": "director",
           "style": "director",
-          "pose": "arms_crossed",
-          "expression": "neutral",
           "x": 0.24,
           "scale": 0.8,
-          "poseChanges": [
-            {
-              "pose": "shrugging",
-              "expression": "confused",
-              "at": "word:plan"
-            }
-          ]
+          "pose": "arms_crossed",
+          "expression": "neutral"
         }
       ],
       "overlays": [
@@ -701,17 +745,17 @@
         "position": "right",
         "pose": "idle",
         "expression": "neutral",
-        "held": "mic",
+        "held": "mic_stand",
         "scale": 0.9
       },
       "extras": [
         {
           "id": "director",
           "style": "director",
-          "pose": "pointing_right",
-          "expression": "smug",
           "x": 0.24,
-          "scale": 0.8
+          "scale": 0.8,
+          "pose": "typing",
+          "expression": "neutral"
         }
       ],
       "sfx": [
@@ -730,7 +774,7 @@
     },
     {
       "id": "sponge1",
-      "speech": "I'm ready! I'm ready! I'm ready! [laugh]",
+      "speech": "Aye aye, captain! [laugh] I'm ready, I'm ready, I'm ready!",
       "emphasis": [
         "ready"
       ],
@@ -738,19 +782,24 @@
       "speed": 1.05,
       "captionStyle": "beat",
       "layout": "character_center",
-      "pauseAfter": 0.5,
+      "pauseAfter": 0.25,
       "character": {
         "id": "spongebob",
         "position": "right",
         "pose": "celebrating",
         "expression": "happy",
-        "held": "mic",
+        "held": "mic_stand",
         "scale": 0.9,
         "poseChanges": [
           {
-            "pose": "laughing",
+            "pose": "presenting",
+            "expression": "happy",
+            "at": "word:captain"
+          },
+          {
+            "pose": "celebrating",
             "expression": "laughing",
-            "at": "word:ready#3"
+            "at": "word:ready"
           }
         ]
       },
@@ -758,17 +807,10 @@
         {
           "id": "director",
           "style": "director",
-          "pose": "arms_crossed",
-          "expression": "neutral",
           "x": 0.24,
           "scale": 0.8,
-          "poseChanges": [
-            {
-              "pose": "laughing",
-              "expression": "laughing",
-              "at": "word:ready#3"
-            }
-          ]
+          "pose": "arms_crossed",
+          "expression": "neutral"
         }
       ],
       "sfx": [
@@ -786,7 +828,52 @@
           "name": "pop",
           "at": "word:ready#3",
           "volume": 0.5
-        },
+        }
+      ],
+      "overlays": [
+        {
+          "kind": "flash",
+          "at": "start"
+        }
+      ]
+    },
+    {
+      "id": "sponge2",
+      "speech": "Can I bring my snail? He sings! [laugh]",
+      "voiceRef": "ref-spongebob.wav",
+      "speed": 1.05,
+      "captionStyle": "beat",
+      "emphasis": [
+        "snail"
+      ],
+      "layout": "character_center",
+      "pauseAfter": 0.3,
+      "character": {
+        "id": "spongebob",
+        "position": "right",
+        "pose": "presenting",
+        "expression": "happy",
+        "held": "mic_stand",
+        "scale": 0.9,
+        "poseChanges": [
+          {
+            "pose": "shrugging",
+            "expression": "laughing",
+            "at": "word:sings"
+          }
+        ]
+      },
+      "extras": [
+        {
+          "id": "director",
+          "style": "director",
+          "x": 0.24,
+          "scale": 0.8,
+          "pose": "typing",
+          "expression": "neutral"
+        }
+      ],
+      "sfx": [
         {
           "name": "transform",
           "at": "end-0.45",
@@ -794,10 +881,6 @@
         }
       ],
       "overlays": [
-        {
-          "kind": "flash",
-          "at": "start"
-        },
         {
           "kind": "transform",
           "at": "end-0.5"
@@ -818,7 +901,7 @@
         "position": "right",
         "pose": "arms_crossed",
         "expression": "smug",
-        "held": "mic",
+        "held": "mic_stand",
         "scale": 0.9,
         "poseChanges": [
           {
@@ -832,10 +915,10 @@
         {
           "id": "director",
           "style": "director",
-          "pose": "arms_crossed",
-          "expression": "neutral",
           "x": 0.24,
-          "scale": 0.8
+          "scale": 0.8,
+          "pose": "arms_crossed",
+          "expression": "neutral"
         }
       ],
       "overlays": [
@@ -863,18 +946,18 @@
       "speed": 0.95,
       "speaker": "director",
       "layout": "character_center",
-      "pauseAfter": 0.5,
+      "pauseAfter": 0.6,
       "character": {
         "id": "actor",
         "position": "right",
         "pose": "presenting",
         "expression": "smug",
-        "held": "mic",
+        "held": "mic_stand",
         "scale": 0.9,
         "poseChanges": [
           {
-            "pose": "shocked",
-            "expression": "surprised",
+            "pose": "shrugging",
+            "expression": "worried",
             "at": "word:get"
           }
         ]
@@ -883,49 +966,62 @@
         {
           "id": "director",
           "style": "director",
-          "pose": "pointing_right",
-          "expression": "angry",
           "x": 0.24,
-          "scale": 0.8
+          "scale": 0.8,
+          "pose": "typing",
+          "expression": "neutral"
         }
       ],
       "sfx": [
         {
-          "name": "error",
+          "name": "tick",
           "at": "word:out",
-          "volume": 0.45
+          "volume": 0.5
         }
       ]
     },
     {
       "id": "rage",
-      "speech": "GET. OUT?!",
+      "speech": "GET OUT?!",
       "emphasis": [
         "OUT"
       ],
-      "emotion": 1.0,
+      "emotion": 0.75,
       "layout": "character_center",
-      "captions": false,
-      "pauseAfter": 0.7,
+      "captions": true,
+      "pauseAfter": 0.8,
       "character": {
         "id": "actor",
         "position": "right",
-        "pose": "mic",
+        "pose": "arms_crossed",
         "expression": "angry",
-        "held": "mic",
+        "held": "mic_stand",
         "scale": 0.9,
         "poseChanges": [
           {
-            "pose": "mic_out",
+            "pose": "windup",
             "expression": "angry",
-            "at": "word:out"
+            "at": "word:out-0.1"
+          },
+          {
+            "pose": "throw",
+            "expression": "angry",
+            "at": "word:out+0.15"
+          },
+          {
+            "pose": "arms_crossed",
+            "expression": "angry",
+            "at": "word:out+0.9"
           }
         ],
-        "strikes": [
+        "throws": [
           {
-            "at": "word:out+0.15",
-            "target": "camera",
-            "big": true
+            "at": "word:out+0.2",
+            "item": "mic",
+            "targets": [
+              "camera"
+            ],
+            "flight": 0.4
           }
         ]
       },
@@ -933,56 +1029,65 @@
         {
           "id": "director",
           "style": "director",
-          "pose": "shocked",
-          "expression": "surprised",
           "x": 0.24,
-          "scale": 0.8
+          "scale": 0.8,
+          "pose": "typing",
+          "expression": "neutral",
+          "poseChanges": [
+            {
+              "pose": "thinking",
+              "expression": "neutral",
+              "at": "word:out+0.6"
+            }
+          ]
         }
       ],
       "sfx": [
         {
           "name": "whoosh",
-          "at": "word:out+0.1",
+          "at": "word:out+0.2",
           "volume": 0.6
         },
         {
           "name": "glitch",
-          "at": "word:out+0.4",
+          "at": "word:out+0.6",
           "volume": 0.7
         },
         {
           "name": "boom",
-          "at": "word:out+0.45",
+          "at": "word:out+0.62",
           "volume": 0.6
         }
       ],
       "overlays": [
         {
-          "kind": "screen_crack",
-          "at": "word:out+0.45"
+          "kind": "mic_stuck",
+          "at": "word:out+0.6"
         },
         {
           "kind": "blackout",
-          "at": "end-0.5"
+          "at": "end-0.45"
         }
       ],
       "camera": [
         {
           "move": "shake",
-          "at": "word:out+0.45"
+          "at": "word:out+0.6"
         }
-      ]
+      ],
+      "captionStyle": "beat",
+      "seed": 2
     },
     {
       "id": "cta1",
-      "speech": "Follow.",
+      "speech": "Follow Dummy Sticky.",
       "voiceRef": "ref-vader.wav",
-      "emotion": 0.5,
+      "emotion": 0.4,
       "speed": 0.95,
       "speaker": "v",
-      "layout": "character_center",
+      "layout": "character_bottom",
       "captions": false,
-      "pauseAfter": 0.25,
+      "pauseAfter": 0.2,
       "transition": "cut",
       "character": null,
       "extras": [
@@ -1025,21 +1130,15 @@
           "scale": 0.62
         }
       ],
-      "overlays": [
-        {
-          "kind": "screen_crack",
-          "at": "start"
-        }
-      ]
+      "overlays": []
     },
     {
       "id": "cta2",
-      "speech": "Dummy Sticky!",
+      "speech": "[chuckle] For more!",
       "voiceRef": "ref-jinx.wav",
-      "emotion": 0.95,
-      "speed": 1.05,
+      "speed": 1.0,
       "speaker": "j",
-      "layout": "character_center",
+      "layout": "character_bottom",
       "captions": false,
       "pauseAfter": 0.2,
       "character": null,
@@ -1085,22 +1184,19 @@
       ],
       "overlays": [
         {
-          "kind": "screen_crack",
-          "at": "start"
-        },
-        {
           "kind": "follow_card",
           "at": "start"
         }
-      ]
+      ],
+      "seed": 0
     },
     {
       "id": "cta3",
-      "speech": "FOR MORE!",
+      "speech": "Or else!",
       "voiceRef": "ref-vegeta.wav",
-      "emotion": 1.0,
+      "emotion": 0.7,
       "speaker": "g",
-      "layout": "character_center",
+      "layout": "character_bottom",
       "captions": false,
       "pauseAfter": 0.2,
       "character": null,
@@ -1146,14 +1242,11 @@
       ],
       "overlays": [
         {
-          "kind": "screen_crack",
-          "at": "start"
-        },
-        {
           "kind": "follow_card",
           "at": "start"
         }
-      ]
+      ],
+      "seed": 1
     },
     {
       "id": "cta4",
@@ -1161,9 +1254,9 @@
       "voiceRef": "ref-glados.wav",
       "emotion": 0.35,
       "speaker": "l",
-      "layout": "character_center",
+      "layout": "character_bottom",
       "captions": false,
-      "pauseAfter": 0.25,
+      "pauseAfter": 0.15,
       "character": null,
       "extras": [
         {
@@ -1207,10 +1300,6 @@
       ],
       "overlays": [
         {
-          "kind": "screen_crack",
-          "at": "start"
-        },
-        {
           "kind": "follow_card",
           "at": "start"
         }
@@ -1221,9 +1310,9 @@
       "speech": "Bye bye! [laugh]",
       "voiceRef": "ref-spongebob.wav",
       "speaker": "s",
-      "layout": "character_center",
+      "layout": "character_bottom",
       "captions": false,
-      "pauseAfter": 0.8,
+      "pauseAfter": 0.5,
       "character": null,
       "extras": [
         {
@@ -1273,10 +1362,6 @@
         }
       ],
       "overlays": [
-        {
-          "kind": "screen_crack",
-          "at": "start"
-        },
         {
           "kind": "follow_card",
           "at": "start"

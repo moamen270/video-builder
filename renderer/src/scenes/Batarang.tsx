@@ -32,3 +32,13 @@ export function alongHop(h: HopPath, abs: number): { x: number; y: number; t: nu
   const y = h.from.y + (h.to.y - h.from.y) * t - Math.sin(Math.PI * t) * 80;
   return { x, y, t: interpolate(t, [0, 1], [0, 1]) };
 }
+
+
+/** A thrown microphone tumbling toward its target (size grows as it comes at the camera). */
+export const FlyingMic: React.FC<{ x: number; y: number; frame: number; size: number; ink: string }> = ({ x, y, frame, size, ink }) => (
+  <svg width={size} height={size} viewBox="-40 -60 80 120" style={{ position: "absolute", left: x - size / 2, top: y - size / 2, overflow: "visible", transform: `rotate(${frame * 31}deg)` }}>
+    <rect x={-8} y={-10} width={16} height={56} rx={7} fill="#6b7280" stroke={ink} strokeWidth={3} />
+    <circle cx={0} cy={-26} r={22} fill="#8d95a8" stroke={ink} strokeWidth={3.5} />
+    <path d="M -15 -34 L 15 -34 M -18 -26 L 18 -26 M -15 -18 L 15 -18" stroke="#3a3f4d" strokeWidth={3} />
+  </svg>
+);

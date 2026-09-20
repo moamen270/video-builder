@@ -43,7 +43,9 @@ interface Props {
   /** This figure is the one speaking (mouth moves with the words). Default: the hero, not extras. */
   speaking?: boolean;
   /** Item in the right hand (frying pan, ball, mic) — from extras.held / character.held. */
-  held?: "frying_pan" | "ball" | "mic" | null;
+  held?: "frying_pan" | "ball" | "mic" | "mic_stand" | null;
+  /** mic_stand only: the mic has been taken off the stand (a throw happened). */
+  micTaken?: boolean;
   /** Name tag above the head. */
   label?: string | null;
   /** Hat currently worn. */
@@ -184,7 +186,7 @@ const polar = (x: number, y: number, len: number, deg: number) => {
   return { x: x + Math.sin(r) * len, y: y + Math.cos(r) * len };
 };
 
-export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, style, flip, walker, zones, actor, ko, squash = 0, speaking, held = null, label = null, hat = null, labelUp = false }) => {
+export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, style, flip, walker, zones, actor, ko, squash = 0, speaking, held = null, micTaken = false, label = null, hat = null, labelUp = false }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const abs = frame + scene.startFrame;
@@ -432,6 +434,7 @@ export const Stickman: React.FC<Props> = ({ scene, rect, ink, accent, headFill, 
           </g>}
         </g>
         {style === "director" && <Desk ink={ink} headFill={headFill} />}
+        {held === "mic_stand" && <MicStand ink={ink} headC={headC} micGone={micTaken} />}
         {/* held ball: drawn after the head so a wind-up behind the head still shows it */}
         {held === "ball" && (
           <g transform={`translate(${rHand.x + 22} ${rHand.y})`}>
@@ -742,12 +745,34 @@ function headDecorFor(style: CharacterStyle, ink: string): React.ReactNode {
  */
 const Mic: React.FC<{ x: number; y: number; deg: number; ink: string }> = ({ x, y, deg, ink }) => (
   <g transform={`translate(${x} ${y}) rotate(${-deg})`}>
-    <rect x={-7} y={-16} width={14} height={44} rx={6} fill="#2b2f3a" stroke={ink} strokeWidth={2} />
+    <rect x={-7} y={-16} width={14} height={44} rx={6} fill="#6b7280" stroke={ink} strokeWidth={2} />
     <rect x={-8} y={20} width={16} height={8} rx={3} fill="#5a6070" stroke={ink} strokeWidth={1.5} />
     <circle cx={0} cy={40} r={16} fill="#8d95a8" stroke={ink} strokeWidth={2.5} />
     <path d="M -11 34 L 11 34 M -13 40 L 13 40 M -11 46 L 11 46" stroke="#3a3f4d" strokeWidth={2} />
   </g>
 );
+
+/** Floor mic stand in front of the performer: base on the ground, pole, boom, capsule at mouth height (follows the head). */
+const MicStand: React.FC<{ ink: string; headC: { x: number; y: number }; micGone: boolean }> = ({ ink, headC, micGone }) => {
+  const x = 168; // a little to the performer's right so the body stays readable
+  const capX = headC.x + 50; // beside the chin, so masks and faces stay visible
+  const capY = headC.y + 30;
+  return (
+    <g>
+      <path d={`M ${x - 46} 402 L ${x + 46} 402 M ${x - 30} 396 L ${x + 30} 396`} stroke={ink} strokeWidth={STROKE} strokeLinecap="round" />
+      <line x1={x} y1={398} x2={x} y2={capY + 40} stroke={ink} strokeWidth={6} strokeLinecap="round" />
+      <line x1={x} y1={capY + 40} x2={capX} y2={capY + 12} stroke={ink} strokeWidth={6} strokeLinecap="round" />
+      <circle cx={x} cy={capY + 40} r={7} fill={ink} />
+      {!micGone && (
+        <g transform={`translate(${capX} ${capY}) rotate(-28)`}>
+          <rect x={-7} y={-8} width={14} height={36} rx={6} fill="#6b7280" stroke={ink} strokeWidth={2} />
+          <circle cx={0} cy={-18} r={16} fill="#8d95a8" stroke={ink} strokeWidth={2.5} />
+          <path d="M -11 -24 L 11 -24 M -13 -18 L 13 -18 M -11 -12 L 11 -12" stroke="#3a3f4d" strokeWidth={2} />
+        </g>
+      )}
+    </g>
+  );
+};
 
 /** Vader: dome + triangular grille; the grille lights faintly while talking. */
 const VaderHelmet: React.FC<{ talking: number }> = ({ talking }) => (
@@ -774,9 +799,11 @@ const GladosVisor: React.FC<{ talking: number; frame: number }> = ({ talking, fr
     <g>
       <circle r={HEAD_R - 2} fill="#e9ecf2" stroke="#9aa3b8" strokeWidth={2} />
       <path d={`M -${HEAD_R} -2 Q 0 ${HEAD_R} ${HEAD_R} -2`} fill="none" stroke="#9aa3b8" strokeWidth={2} />
-      <circle r={17} fill="#111420" />
-      <circle r={iris} fill="#ffcc33" />
-      <circle r={3} fill="#ffffff" opacity={0.9} />
+      <circle r={26} fill="#ff9a1f" opacity={0.35 + 0.15 * Math.sin(frame / 5)} />
+      <circle r={22} fill="#111420" />
+      <circle r={iris + 4} fill="#ffb020" />
+      <circle r={Math.max(2, iris - 4)} fill="#111420" />
+      <circle cx={-4} cy={-4} r={3} fill="#ffffff" opacity={0.9} />
       <path d={`M 4 -${HEAD_R} q 10 -22 22 -30`} stroke="#9aa3b8" strokeWidth={4} fill="none" strokeLinecap="round" />
       <circle cx={26} cy={-HEAD_R - 30} r={5} fill="#ffcc33" opacity={0.6 + 0.4 * Math.sin(frame / 4)} />
     </g>
@@ -806,8 +833,8 @@ const Pants: React.FC<{ hip: { x: number; y: number }; ink: string }> = ({ hip, 
 /** The actor as a machine: grey chassis plate on the torso and a cable running off screen-left. */
 const RobotBody: React.FC<{ shoulder: { x: number; y: number }; hip: { x: number; y: number }; frame: number }> = ({ shoulder, hip, frame }) => (
   <g>
-    <rect x={shoulder.x - 22} y={shoulder.y + 6} width={44} height={hip.y - shoulder.y - 30} rx={8} fill="#c9ced9" stroke="#8a93a8" strokeWidth={2.5} />
-    <circle cx={shoulder.x} cy={shoulder.y + 34} r={6} fill="#ffcc33" opacity={0.7 + 0.3 * Math.sin(frame / 5)} />
+    <rect x={shoulder.x - 22} y={shoulder.y + 6} width={44} height={hip.y - shoulder.y - 30} rx={8} fill="#2a2f3f" stroke="#c9ced9" strokeWidth={2.5} />
+    <circle cx={shoulder.x} cy={shoulder.y + 34} r={8} fill="#ffb020" opacity={0.7 + 0.3 * Math.sin(frame / 5)} />
     <path d={`M ${shoulder.x - 22} ${hip.y - 40} q -40 10 -70 -20`} stroke="#8a93a8" strokeWidth={5} fill="none" strokeLinecap="round" />
   </g>
 );

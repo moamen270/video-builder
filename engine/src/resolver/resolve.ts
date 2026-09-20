@@ -77,7 +77,7 @@ export function resolveManifest(m: Manifest, align: AlignmentFile, p: ProjectPat
             .map((pc, i) => ({ pose: pc.pose, expression: pc.expression, atFrame: at(pc.at, `character.poseChanges[${i}]`) }))
             .sort((x, y) => x.atFrame - y.atFrame),
           shots: s.character.shots.map((sh, i) => ({ atFrame: at(sh.at, `character.shots[${i}]`), big: sh.big, camera: sh.camera })),
-          throws: [] as { atFrame: number; item: "batarang"; hops: { target: string; hitFrame: number }[] }[],
+          throws: [] as { atFrame: number; item: "batarang" | "mic"; hops: { target: string; hitFrame: number }[] }[],
           entrance: null as null | { atFrame: number; landFrame: number },
           exit: null as null | { atFrame: number; endFrame: number },
           strikes: s.character.strikes

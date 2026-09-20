@@ -143,9 +143,16 @@ line (rtf ~1.5 original, ~0.7 Turbo); `batman-alley` (9 lines) compiles in ~1.5 
 warm (cache key includes engine, emotion, and the reference file's size+mtime). Models: ~3 GB each,
 downloaded once to `HF_HOME` (`F:\caches\hf`). Output carries Resemble's inaudible Perth watermark.
 
+**Read-back check (intelligibility).** Every Chatterbox take is transcribed back with the same wav2vec2 model
+(`align.py::intelligibility`, greedy CTC) and compared with the intended words; the log shows
+`heard 'you don't know the power of the dark side' (1.00)`. Below 0.62 the engine retakes with the next seed (up to 3)
+and keeps the best; a `WARNING still unclear` means reword or lower `emotion` (high exaggeration smears short words —
+"Dummy Sticky" from the Jinx reference came back as "tell me sticky" until Vader took the line). Tagged lines are never
+retaken on this score: the laugh itself reads as gibberish to the ASR. Per-scene `seed` picks a different take by hand.
+
 Non-verbal quality control: a tagged take is not guaranteed to contain the laugh (3 of 4 in the
-experiments). If a `[laugh]` line sounds like plain speech, change `seed` by editing the text
-trivially or re-run with `--force-audio` — and listen before shipping.
+experiments). If a `[laugh]` line sounds like plain speech, change the scene's `seed` or put the tag *after* the words
+("Bye bye! [laugh]" performed; "[laugh] Bye!" did not) — and listen before shipping.
 
 Research, measurements and the alternatives (Qwen3-TTS VoiceDesign, RVC, ElevenLabs…) live in
 the sibling repo `F:/PoCs/audios` (`docs/06-decision-matrix.md`).

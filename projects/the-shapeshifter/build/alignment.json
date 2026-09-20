@@ -49,55 +49,37 @@
           "ws": " "
         }
       ],
-      "hash": "c68165e045bc6695"
+      "hash": "90c0e55264ed4320"
     },
     {
       "sceneId": "room",
       "file": "room.wav",
-      "duration": 1.825,
+      "duration": 1.1,
       "sampleRate": 24000,
       "tokens": [
         {
-          "text": "Name",
-          "start": 0.325,
-          "end": 0.637,
-          "ws": " "
-        },
-        {
-          "text": "and",
-          "start": 0.637,
-          "end": 0.762,
-          "ws": " "
-        },
-        {
-          "text": "talent.",
-          "start": 0.762,
-          "end": 1.725,
+          "text": "Talent?",
+          "start": 0.25,
+          "end": 1,
           "ws": ""
         }
       ],
-      "hash": "63b81363f21a6156"
+      "hash": "9e1df788e49514df"
     },
     {
       "sceneId": "name",
       "file": "name.wav",
-      "duration": 2.0693,
+      "duration": 0.8394,
       "sampleRate": 24000,
       "tokens": [
         {
-          "text": "Sticky.",
-          "start": 0.086,
-          "end": 0.502,
-          "ws": " "
-        },
-        {
           "text": "Voices.",
-          "start": 1.372,
-          "end": 1.909,
+          "start": 0.08,
+          "end": 0.678,
           "ws": " "
         }
       ],
-      "hash": "48c8637c4994c081"
+      "hash": "8f99ec783d2b703e"
     },
     {
       "sceneId": "ask1",
@@ -187,7 +169,7 @@
           "ws": " "
         }
       ],
-      "hash": "48195432e8faf374"
+      "hash": "c88a791f6a622114"
     },
     {
       "sceneId": "vader2",
@@ -220,7 +202,7 @@
           "ws": " "
         }
       ],
-      "hash": "cbf83ad9d352cf83"
+      "hash": "9b0619716a1665ad"
     },
     {
       "sceneId": "ask2",
@@ -246,71 +228,80 @@
     {
       "sceneId": "jinx1",
       "file": "jinx1.wav",
-      "duration": 5.0539,
+      "duration": 2.26,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "Rules",
-          "start": 0.065,
-          "end": 0.401,
+          "start": 0.066,
+          "end": 0.505,
           "ws": " "
         },
         {
           "text": "are",
-          "start": 0.386,
-          "end": 0.542,
+          "start": 0.53,
+          "end": 0.727,
           "ws": " "
         },
         {
           "text": "made",
-          "start": 0.507,
-          "end": 0.722,
+          "start": 0.732,
+          "end": 1.029,
           "ws": " "
         },
         {
           "text": "to",
-          "start": 0.707,
-          "end": 0.862,
+          "start": 1.035,
+          "end": 1.171,
           "ws": " "
         },
         {
           "text": "be",
-          "start": 0.827,
-          "end": 0.983,
+          "start": 1.176,
+          "end": 1.332,
           "ws": " "
         },
         {
           "text": "broken!",
-          "start": 1.048,
-          "end": 1.584,
+          "start": 1.438,
+          "end": 2.099,
           "ws": " "
-        },
+        }
+      ],
+      "hash": "92687a10fdf34f00"
+    },
+    {
+      "sceneId": "jinx2",
+      "file": "jinx2.wav",
+      "duration": 2.3701,
+      "sampleRate": 24000,
+      "tokens": [
         {
           "text": "Like",
-          "start": 2.853,
-          "end": 3.089,
+          "start": 0.08,
+          "end": 0.78,
           "ws": " "
         },
         {
           "text": "buildings!",
-          "start": 3.154,
-          "end": 3.75,
+          "start": 0.745,
+          "end": 1.223,
           "ws": " "
         },
         {
           "text": "Or",
-          "start": 4.076,
-          "end": 4.232,
+          "start": 1.691,
+          "end": 1.827,
           "ws": " "
         },
         {
           "text": "people!",
-          "start": 4.257,
-          "end": 4.853,
+          "start": 1.832,
+          "end": 2.169,
           "ws": " "
         }
       ],
-      "hash": "26a3fa8d07ce496b"
+      "hash": "9b6de3eb6913cd90"
     },
     {
       "sceneId": "ask3",
@@ -391,7 +382,7 @@
           "ws": " "
         }
       ],
-      "hash": "30192152ab51d8bf"
+      "hash": "ee724822e3339b9e"
     },
     {
       "sceneId": "ask4",
@@ -411,59 +402,53 @@
     {
       "sceneId": "glados1",
       "file": "glados1.wav",
-      "duration": 3.5883,
+      "duration": 2.6529,
       "sampleRate": 24000,
       "tokens": [
         {
-          "text": "Congratulations.",
-          "start": 0.025,
-          "end": 1.002,
-          "ws": " "
-        },
-        {
           "text": "You",
-          "start": 1.228,
-          "end": 1.403,
+          "start": 0.005,
+          "end": 0.181,
           "ws": " "
         },
         {
           "text": "survived.",
-          "start": 1.408,
-          "end": 2.025,
+          "start": 0.186,
+          "end": 0.804,
           "ws": " "
         },
         {
           "text": "That",
-          "start": 2.491,
-          "end": 2.666,
+          "start": 1.312,
+          "end": 1.507,
           "ws": " "
         },
         {
           "text": "was",
-          "start": 2.631,
-          "end": 2.767,
+          "start": 1.493,
+          "end": 1.648,
           "ws": " "
         },
         {
           "text": "not",
-          "start": 2.752,
-          "end": 2.927,
+          "start": 1.633,
+          "end": 1.849,
           "ws": " "
         },
         {
           "text": "the",
-          "start": 2.892,
-          "end": 3.027,
+          "start": 1.814,
+          "end": 1.97,
           "ws": " "
         },
         {
           "text": "plan.",
-          "start": 2.972,
-          "end": 3.448,
+          "start": 1.955,
+          "end": 2.472,
           "ws": " "
         }
       ],
-      "hash": "01930ca0efd0f47a"
+      "hash": "e96e22e28b5ca553"
     },
     {
       "sceneId": "ask5",
@@ -483,47 +468,116 @@
     {
       "sceneId": "sponge1",
       "file": "sponge1.wav",
-      "duration": 2.8117,
+      "duration": 4.3687,
       "sampleRate": 24000,
       "tokens": [
         {
-          "text": "I'm",
-          "start": 0.025,
-          "end": 0.221,
+          "text": "Aye",
+          "start": 0.085,
+          "end": 0.241,
           "ws": " "
         },
         {
-          "text": "ready!",
-          "start": 0.206,
-          "end": 0.542,
+          "text": "aye,",
+          "start": 0.346,
+          "end": 0.501,
           "ws": " "
         },
         {
-          "text": "I'm",
-          "start": 0.829,
-          "end": 1.024,
-          "ws": " "
-        },
-        {
-          "text": "ready!",
-          "start": 1.01,
-          "end": 1.346,
+          "text": "captain!",
+          "start": 0.526,
+          "end": 1.022,
           "ws": " "
         },
         {
           "text": "I'm",
-          "start": 1.652,
-          "end": 1.828,
+          "start": 2.21,
+          "end": 2.385,
+          "ws": " "
+        },
+        {
+          "text": "ready,",
+          "start": 2.37,
+          "end": 2.705,
+          "ws": " "
+        },
+        {
+          "text": "I'm",
+          "start": 2.931,
+          "end": 3.106,
+          "ws": " "
+        },
+        {
+          "text": "ready,",
+          "start": 3.091,
+          "end": 3.427,
+          "ws": " "
+        },
+        {
+          "text": "I'm",
+          "start": 3.632,
+          "end": 3.808,
           "ws": " "
         },
         {
           "text": "ready!",
-          "start": 1.833,
-          "end": 2.229,
+          "start": 3.813,
+          "end": 4.249,
           "ws": " "
         }
       ],
-      "hash": "f60b9a5f25bc98c0"
+      "hash": "68551bec303644d8"
+    },
+    {
+      "sceneId": "sponge2",
+      "file": "sponge2.wav",
+      "duration": 2.1521,
+      "sampleRate": 24000,
+      "tokens": [
+        {
+          "text": "Can",
+          "start": 0.005,
+          "end": 0.161,
+          "ws": " "
+        },
+        {
+          "text": "I",
+          "start": 0.186,
+          "end": 0.282,
+          "ws": " "
+        },
+        {
+          "text": "bring",
+          "start": 0.287,
+          "end": 0.503,
+          "ws": " "
+        },
+        {
+          "text": "my",
+          "start": 0.488,
+          "end": 0.624,
+          "ws": " "
+        },
+        {
+          "text": "snail?",
+          "start": 0.629,
+          "end": 1.006,
+          "ws": " "
+        },
+        {
+          "text": "He",
+          "start": 1.192,
+          "end": 1.368,
+          "ws": " "
+        },
+        {
+          "text": "sings!",
+          "start": 1.454,
+          "end": 1.911,
+          "ws": " "
+        }
+      ],
+      "hash": "2428004c51db9061"
     },
     {
       "sceneId": "ego",
@@ -595,85 +649,97 @@
           "ws": ""
         }
       ],
-      "hash": "90900d6e276bae0c"
+      "hash": "32fb0628d972dd24"
     },
     {
       "sceneId": "rage",
       "file": "rage.wav",
-      "duration": 2.2833,
+      "duration": 0.7726,
       "sampleRate": 24000,
       "tokens": [
         {
-          "text": "GET.",
+          "text": "GET",
           "start": 0.08,
-          "end": 0.476,
+          "end": 0.382,
           "ws": " "
         },
         {
           "text": "OUT?!",
-          "start": 1.807,
-          "end": 2.042,
+          "start": 0.492,
+          "end": 0.65,
           "ws": " "
         }
       ],
-      "hash": "002ed77e59132285"
+      "hash": "2baf0ea1873be126"
     },
     {
       "sceneId": "cta1",
       "file": "cta1.wav",
-      "duration": 0.9217,
+      "duration": 1.7243,
       "sampleRate": 24000,
       "tokens": [
         {
-          "text": "Follow.",
-          "start": 0.08,
-          "end": 0.74,
+          "text": "Follow",
+          "start": 0.006,
+          "end": 0.426,
+          "ws": " "
+        },
+        {
+          "text": "Dummy",
+          "start": 0.534,
+          "end": 0.913,
+          "ws": " "
+        },
+        {
+          "text": "Sticky.",
+          "start": 1.02,
+          "end": 1.481,
           "ws": " "
         }
       ],
-      "hash": "e16685b0caf5e71e"
+      "hash": "69bd6000798a4a8d"
     },
     {
       "sceneId": "cta2",
       "file": "cta2.wav",
-      "duration": 1.8695,
+      "duration": 0.7419,
       "sampleRate": 24000,
       "tokens": [
         {
-          "text": "Dummy",
+          "text": "For",
           "start": 0.08,
-          "end": 0.538,
+          "end": 0.277,
           "ws": " "
         },
         {
-          "text": "Sticky!",
-          "start": 0.988,
-          "end": 1.688,
+          "text": "more!",
+          "start": 0.262,
+          "end": 0.621,
           "ws": " "
         }
       ],
-      "hash": "a626124d2e0557d8"
+      "hash": "fdf1cda56b172486"
     },
     {
       "sceneId": "cta3",
       "file": "cta3.wav",
-      "duration": 1.12,
+      "duration": 0.7148,
       "sampleRate": 24000,
       "tokens": [
         {
-          "text": "FOR",
+          "text": "Or",
           "start": 0.027,
-          "end": 0.285,
+          "end": 0.164,
           "ws": " "
         },
         {
-          "text": "MORE!",
-          "start": 0.434,
-          "end": 0.937,
+          "text": "else!",
+          "start": 0.231,
+          "end": 0.47,
           "ws": " "
         }
       ],
-      "hash": "5db0d6475326fe59"
+      "hash": "1ed9451bbb2b3a80"
     },
     {
       "sceneId": "cta4",
@@ -706,28 +772,28 @@
           "ws": " "
         }
       ],
-      "hash": "657354e9a3eed8ad"
+      "hash": "47844816caddecf2"
     },
     {
       "sceneId": "cta5",
       "file": "cta5.wav",
-      "duration": 1.661,
+      "duration": 2.0595,
       "sampleRate": 24000,
       "tokens": [
         {
           "text": "Bye",
           "start": 0.08,
-          "end": 0.416,
+          "end": 0.496,
           "ws": " "
         },
         {
           "text": "bye!",
-          "start": 0.964,
-          "end": 1.48,
+          "start": 1.102,
+          "end": 1.618,
           "ws": " "
         }
       ],
-      "hash": "ea6e85d54d070e0f"
+      "hash": "d2955fad4a54a689"
     }
   ]
 }

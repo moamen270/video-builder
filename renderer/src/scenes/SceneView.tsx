@@ -5,7 +5,7 @@ import { Stickman, cameraSlashGeometry, muzzlePoint } from "../characters/Stickm
 import { Shots } from "./Shots";
 import { Projectiles } from "./Projectiles";
 import { extraMotionAt, heroEntranceExit, motionAt, type MotionState } from "../characters/motion";
-import { Batarang, alongHop, type HopPath } from "./Batarang";
+import { Batarang, FlyingMic, alongHop, type HopPath } from "./Batarang";
 import { KineticCaption } from "../captions/KineticCaption";
 import { Prop } from "../props/Prop";
 import { Bubble } from "./Bubble";
@@ -121,7 +121,7 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
   };
 
   // Throws: build hop paths hero-hand → target → target …; last hop returns to the hero unless it hit the camera.
-  const hops: { path: HopPath; toCamera: boolean }[] = [];
+  const hops: { path: HopPath; toCamera: boolean; item: "batarang" | "mic" }[] = [];
   if (scene.character && charRect) {
     const hand = { x: charRect.x + charRect.w * 0.68, y: charRect.y + charRect.h * 0.42 };
     for (const th of scene.character.throws) {
@@ -130,13 +130,13 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
       for (const hop of th.hops) {
         const toCamera = hop.target === "camera";
         const to = toCamera ? { x: 540, y: 900 } : (extraCenter(hop.target) ?? hand);
-        hops.push({ path: { from, to, startFrame: start, endFrame: hop.hitFrame }, toCamera });
+        hops.push({ path: { from, to, startFrame: start, endFrame: hop.hitFrame }, toCamera, item: th.item });
         from = to;
         start = hop.hitFrame;
       }
       const last = th.hops[th.hops.length - 1];
       if (last && last.target !== "camera") {
-        hops.push({ path: { from, to: hand, startFrame: last.hitFrame, endFrame: last.hitFrame + Math.round(fps * 0.3) }, toCamera: false });
+        hops.push({ path: { from, to: hand, startFrame: last.hitFrame, endFrame: last.hitFrame + Math.round(fps * 0.3) }, toCamera: false, item: th.item });
       }
     }
   }
@@ -204,6 +204,7 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
             squash={heroSquash}
             speaking={scene.speaker === null || scene.speaker === scene.character.id}
             held={scene.character.held}
+            micTaken={scene.character.throws.some((th) => th.item === "mic" && th.atFrame <= abs)}
           />
         )}
 
@@ -235,10 +236,11 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
             return anchor ? <Bubble key={i} bubble={b} sceneStart={scene.startFrame} anchor={anchor} palette={palette} /> : null;
           })}
 
-        {hops.map(({ path, toCamera }, i) => {
+        {hops.map(({ path, toCamera, item }, i) => {
           const p = alongHop(path, abs);
           if (!p) return null;
           const size = toCamera ? interpolate(p.t, [0, 1], [130, 900]) : 130;
+          if (item === "mic") return <FlyingMic key={i} x={p.x} y={p.y} frame={abs} size={size * 0.7} ink={palette.ink} />;
           return <Batarang key={i} x={p.x} y={p.y} frame={abs} size={size} ink={palette.ink} />;
         })}
 

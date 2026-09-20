@@ -85,3 +85,32 @@ def align_file(path: str, text: str, device: str | None = None) -> list[dict]:
     if audio.ndim > 1:
         audio = audio.mean(axis=1)
     return align(audio, sr, text, device or ("cuda" if torch.cuda.is_available() else "cpu"))
+
+
+def transcribe(audio: np.ndarray, sr: int, device: str) -> str:
+    """Greedy CTC decode with the same wav2vec2 model: what the line actually sounds like, as text."""
+    bundle, model, labels = _load(device)
+    wave = torch.from_numpy(np.asarray(audio, dtype=np.float32)).unsqueeze(0)
+    if sr != bundle.sample_rate:
+        wave = torchaudio.functional.resample(wave, sr, bundle.sample_rate)
+    with torch.inference_mode():
+        emission, _ = model(wave.to(device))
+    idx = emission[0].argmax(-1).tolist()
+    out, prev = [], None
+    for i in idx:
+        if i != prev and i != 0:
+            out.append(labels[i])
+        prev = i
+    return "".join(out).replace("|", " ").strip().lower()
+
+
+def intelligibility(audio: np.ndarray, sr: int, text: str, device: str) -> tuple[float, str]:
+    """0..1 similarity between the ASR read-back and the intended words (letters only). Below ~0.6 a listener
+    will not catch the line either — e.g. Chatterbox turning 'Dummy Sticky' into a smear at high exaggeration."""
+    import difflib
+
+    heard = transcribe(audio, sr, device)
+    want = " ".join(w["letters"].lower() for w in words_of(text))
+    got = re.sub(r"[^a-z' ]", "", heard)
+    score = difflib.SequenceMatcher(None, want.replace(" ", ""), got.replace(" ", "")).ratio()
+    return round(score, 3), heard

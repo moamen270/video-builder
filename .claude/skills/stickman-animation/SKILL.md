@@ -277,3 +277,17 @@ caption; props are visible when their noun is spoken (compare against the
 `words` timing); no scene shows the same pose in 3 consecutive frames; text
 stays inside the frame. Fix by moving anchors or changing layout, then re-render
 (only changed scenes are re-synthesized).
+
+## Auditions, hosts and shape-changers (the-shapeshifter)
+
+- `style: director` = a stickman seated behind a casting desk (legs hidden, clipboard, coffee). Keep him bored:
+  `typing` / `arms_crossed` / `thinking`, expression `neutral`/`smug`. He never points, laughs or gets angry — the
+  performer does all the moving.
+- `held: mic_stand` on the hero = a floor stand with the mic beside his chin; it never hides the face and frees both
+  hands for poses. `throws: [{ item: "mic", targets: ["camera"] }]` takes the mic off the stand and buries it in the
+  glass — pair with overlay `mic_stuck` at `at + flight`, `blackout` after, and a clean screen (no `screen_crack`) in the CTA.
+- Changing form = a new `character.id` on the next scene with a different style, `transform` overlay + `transform` sfx at
+  `end-0.5` of the old scene and `flash` at `start` of the new one. Styles that read at phone size: `vader` (dome + cape),
+  `jinx` (blue braids, pink eyes, scale 0.8), `vegeta` (flame hair + armour), `glados` (orange optic), `spongebob` (yellow square).
+- Split a laugh from its words when the words need acting: `"Rules are made to be broken!"` at `emotion 0.95` on one scene,
+  `"[laugh] Like buildings! Or people!"` (Turbo) on the next — Turbo has no emotion knob.

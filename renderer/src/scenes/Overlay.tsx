@@ -46,6 +46,8 @@ export const Overlay: React.FC<{ overlay: Cue; abs: number; slash: SlashGeom | n
       return <BatSignal t={t} />;
     case "batarang_stuck":
       return <BatarangStuck t={t} />;
+    case "mic_stuck":
+      return <MicStuck t={t} />;
     case "hook_card":
       return <HookCard t={t} out={overlay.untilFrame - abs} text={overlay.text ?? ""} palette={palette} />;
     case "screen_crack":
@@ -388,6 +390,45 @@ const BatarangStuck: React.FC<{ t: number }> = ({ t }) => {
           <circle r={70} fill="#050608" opacity={0.7} />
           <g transform="scale(6.8) rotate(-18)">
             <path d={BAT_PATH} fill="#0b0d14" stroke="#e8edf7" strokeWidth={0.8} strokeLinejoin="round" />
+          </g>
+        </g>
+      </svg>
+      <AbsoluteFill style={{ background: "#ffffff", opacity: flash }} />
+    </AbsoluteFill>
+  );
+};
+
+/** The microphone buried in the viewer's glass: same crack burst as the batarang, the handle sticking out toward us. */
+const MicStuck: React.FC<{ t: number }> = ({ t }) => {
+  const flash = interpolate(t, [0, 1, 7], [0, 0.9, 0], { extrapolateRight: "clamp" });
+  const settle = interpolate(t, [0, 4], [1.15, 1], { extrapolateRight: "clamp" });
+  const shake = t < 8 ? Math.sin(t * 2.9) * (8 - t) * 1.8 : 0;
+  const wobble = t < 14 ? Math.sin(t * 1.4) * (14 - t) * 1.1 : 0; // the handle keeps vibrating after impact
+  const cracks = [
+    [0, -330], [250, -220], [340, 60], [200, 300], [-120, 340], [-320, 160], [-330, -140], [-170, -300],
+  ] as const;
+  return (
+    <AbsoluteFill style={{ pointerEvents: "none" }}>
+      <svg width={1080} height={1920} viewBox="0 0 1080 1920" style={{ position: "absolute", inset: 0, transform: `translate(${shake}px, ${-shake * 0.7}px)` }}>
+        <g transform={`translate(540 900) scale(${settle})`}>
+          {cracks.map(([dx, dy], i) => {
+            const grow = interpolate(t, [i * 0.4, i * 0.4 + 3], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+            const mx = dx * 0.55 + (i % 2 ? 40 : -40);
+            const my = dy * 0.55 + (i % 2 ? -30 : 30);
+            return (
+              <g key={i} opacity={0.9}>
+                <path d={`M 0 0 L ${mx * grow} ${my * grow} L ${dx * grow} ${dy * grow}`} fill="none" stroke="#050608" strokeWidth={9} strokeLinecap="round" />
+                <path d={`M 0 0 L ${mx * grow} ${my * grow} L ${dx * grow} ${dy * grow}`} fill="none" stroke="#e8edf7" strokeWidth={3} strokeLinecap="round" />
+              </g>
+            );
+          })}
+          <circle r={64} fill="#050608" opacity={0.75} />
+          {/* the capsule is inside the hole; the handle sticks out and up toward the viewer */}
+          <g transform={`rotate(${-22 + wobble})`}>
+            <rect x={-26} y={-30} width={52} height={230} rx={22} fill="#6b7280" stroke="#e8edf7" strokeWidth={5} />
+            <rect x={-30} y={150} width={60} height={26} rx={9} fill="#3a3f4d" stroke="#e8edf7" strokeWidth={4} />
+            <circle r={56} fill="#8d95a8" stroke="#e8edf7" strokeWidth={6} />
+            <path d="M -40 -20 L 40 -20 M -46 0 L 46 0 M -40 20 L 40 20" stroke="#3a3f4d" strokeWidth={6} />
           </g>
         </g>
       </svg>

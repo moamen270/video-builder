@@ -68,7 +68,7 @@ export const Extra = z.object({
   /** Name tag drawn above the head (duels, sports). ≤ 10 chars. */
   label: z.string().max(10).optional(),
   /** Item in the right hand from `heldAt` (default scene start): frying_pan deflects balls; ball = about to throw. */
-  held: z.enum(["frying_pan", "ball", "mic"]).optional(),
+  held: z.enum(["frying_pan", "ball", "mic", "mic_stand"]).optional(),
   heldAt: Anchor.optional(),
   /** Hat that appears at `hatAt` and vanishes at `hatUntil` (fedora: the MJ move). */
   hat: z.enum(["fedora"]).optional(),
@@ -101,8 +101,9 @@ export const CharacterState = z.object({
   id: z.string().default("narrator"),
   pose: z.enum(POSES).default("explaining"),
   expression: z.enum(EXPRESSIONS).default("neutral"),
-  /** Item in the hero's right hand for the whole scene (mic for auditions; strikes on the camera swing it). */
-  held: z.enum(["frying_pan", "ball", "mic"]).optional(),
+  /** Item for the whole scene: in the right hand (frying_pan, ball, mic) or on the floor in front (mic_stand — a stand mic at
+   *  mouth height; a `throws` with item "mic" takes the mic off the stand). */
+  held: z.enum(["frying_pan", "ball", "mic", "mic_stand"]).optional(),
   position: z.enum(POSITIONS).default("center"),
   /** Draw the hero smaller (0.5–1.2) — more room between him and far targets. Feet stay on the ground line. */
   scale: z.number().min(0.5).max(1.2).default(1),
@@ -150,7 +151,7 @@ export const CharacterState = z.object({
     .array(
       z.object({
         at: Anchor,
-        item: z.literal("batarang").default("batarang"),
+        item: z.enum(["batarang", "mic"]).default("batarang"),
         targets: z.array(z.string().min(1)).min(1).max(4),
         /** Seconds per hop. */
         flight: z.number().min(0.15).max(0.8).default(0.35),

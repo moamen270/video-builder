@@ -84,7 +84,7 @@ export const ResolvedExtra = z.object({
   koFrame: z.number().int().nullable(),
   fallDir: z.enum(["left", "right"]).nullable().default(null),
   label: z.string().nullable().default(null),
-  held: z.enum(["frying_pan", "ball", "mic"]).nullable().default(null),
+  held: z.enum(["frying_pan", "ball", "mic", "mic_stand"]).nullable().default(null),
   heldFrame: z.number().int().default(0),
   hat: z.enum(["fedora"]).nullable().default(null),
   hatFrame: z.number().int().default(0),
@@ -105,7 +105,7 @@ export const ResolvedProjectile = z.object({
 
 export const ResolvedThrow = z.object({
   atFrame: z.number().int(),
-  item: z.literal("batarang"),
+  item: z.enum(["batarang", "mic"]),
   /** One entry per hop: target id ("camera" allowed) and the frame it lands. */
   hops: z.array(z.object({ target: z.string(), hitFrame: z.number().int() })),
 });
@@ -154,7 +154,7 @@ export const ResolvedScene = z.object({
       expression: z.enum(EXPRESSIONS),
       position: z.enum(POSITIONS),
       scale: z.number().default(1),
-      held: z.enum(["frying_pan", "ball", "mic"]).nullable().default(null),
+      held: z.enum(["frying_pan", "ball", "mic", "mic_stand"]).nullable().default(null),
       poseChanges: z.array(ResolvedPoseChange),
       shots: z.array(ResolvedShot).default([]),
       strikes: z.array(ResolvedStrike).default([]),

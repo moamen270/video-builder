@@ -23,11 +23,14 @@ from pathlib import Path
 import numpy as np
 import soundfile as sf
 
-from .align import align
+from .align import align, intelligibility
 from .tags import has_tags, strip_tags
 
 SAMPLE_RATE = 24_000
 MIN_REF_SECONDS = 5.0
+# Read the line back with ASR; below this similarity the take is retried with the next seed (up to MAX_TAKES).
+MIN_INTELLIGIBILITY = 0.62
+MAX_TAKES = 3
 HEAD_S = 0.08  # lead-in kept before the first word
 
 
@@ -119,24 +122,37 @@ class Synth:
         elif tagged:
             raise ValueError(f"scene {scene_id!r}: tags like [laugh] need the Turbo model, which needs a voiceRef (> {MIN_REF_SECONDS:.0f} s clip)")
 
-        self.torch.manual_seed(seed)
-        if tagged:
-            model = self.turbo()
-            wav = model.generate(text, audio_prompt_path=voice_ref)
-        else:
-            model = self.original()
-            cfg = 0.3 if emotion >= 0.7 else 0.5
-            kwargs = dict(exaggeration=float(emotion), cfg_weight=cfg)
-            wav = model.generate(spoken, audio_prompt_path=voice_ref, **kwargs) if voice_ref else model.generate(spoken, **kwargs)
-        audio = wav.squeeze().cpu().numpy().astype(np.float32)
-        sr = int(model.sr)
-        if sr != SAMPLE_RATE:
-            audio = _ffmpeg(audio, sr, f"aresample={SAMPLE_RATE}", SAMPLE_RATE)
-        if abs(speed - 1.0) > 1e-3:
-            audio = _ffmpeg(audio, SAMPLE_RATE, f"atempo={speed:.4f}", SAMPLE_RATE)
-        audio = _trim_edges(audio)
+        best = None  # (score, audio, toks, heard, seed)
+        for take in range(MAX_TAKES):
+            s = seed + take
+            self.torch.manual_seed(s)
+            if tagged:
+                model = self.turbo()
+                wav = model.generate(text, audio_prompt_path=voice_ref)
+            else:
+                model = self.original()
+                cfg = 0.3 if emotion >= 0.7 else 0.5
+                kwargs = dict(exaggeration=float(emotion), cfg_weight=cfg)
+                wav = model.generate(spoken, audio_prompt_path=voice_ref, **kwargs) if voice_ref else model.generate(spoken, **kwargs)
+            audio = wav.squeeze().cpu().numpy().astype(np.float32)
+            sr = int(model.sr)
+            if sr != SAMPLE_RATE:
+                audio = _ffmpeg(audio, sr, f"aresample={SAMPLE_RATE}", SAMPLE_RATE)
+            if abs(speed - 1.0) > 1e-3:
+                audio = _ffmpeg(audio, SAMPLE_RATE, f"atempo={speed:.4f}", SAMPLE_RATE)
+            audio = _trim_edges(audio)
+            toks = align(audio, SAMPLE_RATE, spoken, self.device)
+            score, heard = intelligibility(audio, SAMPLE_RATE, spoken, self.device)
+            if best is None or score > best[0]:
+                best = (score, audio, toks, heard, s)
+            if score >= MIN_INTELLIGIBILITY or tagged:
+                break  # tagged lines: the laugh itself reads as gibberish to the ASR, so never retake on that score
+            _log(f"{scene_id}: take {take + 1} unclear ({score:.2f}, heard '{heard}') — retrying with seed {s + 1}")
+        score, audio, toks, heard, used_seed = best
+        _log(f"{scene_id}: heard '{heard}' ({score:.2f}{'' if used_seed == seed else f', seed {used_seed}'})")
+        if score < MIN_INTELLIGIBILITY:
+            _log(f"{scene_id}: WARNING still unclear after {MAX_TAKES} takes — reword the line or lower emotion")
 
-        toks = align(audio, SAMPLE_RATE, spoken, self.device)
         # Chatterbox sometimes opens with a click or breath, then 0.5-1 s of nothing before the first word. The aligner
         # knows where the first word is; cut everything before it (minus a small lead-in) so the line lands on the cut.
         if toks:
