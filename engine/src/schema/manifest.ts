@@ -74,6 +74,8 @@ export const Extra = z.object({
   hat: z.enum(["fedora"]).optional(),
   /** Sit the extra on a chair (drawn behind him) for the whole scene. */
   seated: z.boolean().default(false),
+  /** Raise the extra above the ground line by this many px (fake a back row; pair with a smaller `scale`). */
+  depth: z.number().min(0).max(400).default(0),
   hatAt: Anchor.optional(),
   hatUntil: Anchor.optional(),
 });

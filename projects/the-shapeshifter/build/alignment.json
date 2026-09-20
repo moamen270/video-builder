@@ -39,17 +39,29 @@
     {
       "sceneId": "room",
       "file": "room.wav",
-      "duration": 0.7958,
+      "duration": 1.0578,
       "sampleRate": 24000,
       "tokens": [
         {
-          "text": "Talent?",
-          "start": 0,
-          "end": 0.47,
+          "text": "Name",
+          "start": 0.067,
+          "end": 0.285,
+          "ws": " "
+        },
+        {
+          "text": "your",
+          "start": 0.25,
+          "end": 0.509,
+          "ws": " "
+        },
+        {
+          "text": "talent.",
+          "start": 0.495,
+          "end": 0.916,
           "ws": " "
         }
       ],
-      "hash": "d94c13a015afa246"
+      "hash": "43e1230f3b7a6800"
     },
     {
       "sceneId": "name",

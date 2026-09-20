@@ -99,10 +99,10 @@
         "pose": "arms_crossed",
         "expression": "smug",
         "held": "mic_stand",
-        "scale": 0.95,
+        "scale": 0.92,
         "poseChanges": [
           {
-            "pose": "presenting",
+            "pose": "pointing_up",
             "expression": "smug",
             "at": "word:five"
           }
@@ -144,59 +144,64 @@
           "style": "vader",
           "pose": "idle",
           "expression": "neutral",
-          "x": 0.5,
-          "scale": 0.5,
-          "seated": true
-        },
-        {
-          "id": "p_jinx",
-          "style": "jinx",
-          "pose": "idle",
-          "expression": "happy",
-          "x": 0.28,
-          "scale": 0.5,
-          "seated": true
-        },
-        {
-          "id": "p_glados",
-          "style": "glados",
-          "pose": "idle",
-          "expression": "neutral",
-          "x": 0.72,
-          "scale": 0.5,
-          "seated": true
+          "x": 0.3,
+          "scale": 0.52,
+          "seated": true,
+          "depth": 190
         },
         {
           "id": "p_vegeta",
           "style": "vegeta",
           "pose": "idle",
           "expression": "fierce",
-          "x": 0.09,
-          "scale": 0.66,
-          "seated": true
+          "x": 0.66,
+          "scale": 0.52,
+          "seated": true,
+          "depth": 190
+        },
+        {
+          "id": "p_jinx",
+          "style": "jinx",
+          "pose": "idle",
+          "expression": "happy",
+          "x": 0.1,
+          "scale": 0.62,
+          "seated": true,
+          "depth": 80
+        },
+        {
+          "id": "p_glados",
+          "style": "glados",
+          "pose": "idle",
+          "expression": "neutral",
+          "x": 0.88,
+          "scale": 0.62,
+          "seated": true,
+          "depth": 80
         },
         {
           "id": "p_sponge",
           "style": "spongebob",
           "pose": "idle",
           "expression": "happy",
-          "x": 0.91,
-          "scale": 0.66,
-          "seated": true
+          "x": 0.76,
+          "scale": 0.7,
+          "seated": true,
+          "depth": 0
         }
       ],
       "props": [
         {
           "name": "table",
           "at": "start",
-          "position": "ground_center",
-          "scale": 1.15
+          "position": "ground_left",
+          "scale": 1.1
         }
       ]
     },
     {
       "id": "room",
-      "speech": "Talent?",
+      "speech": "Name your talent.",
       "speed": 1.0,
       "speaker": "director",
       "layout": "character_center",

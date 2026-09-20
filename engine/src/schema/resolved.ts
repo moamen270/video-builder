@@ -88,6 +88,7 @@ export const ResolvedExtra = z.object({
   heldFrame: z.number().int().default(0),
   hat: z.enum(["fedora"]).nullable().default(null),
   seated: z.boolean().default(false),
+  depth: z.number().default(0),
   hatFrame: z.number().int().default(0),
   hatUntilFrame: z.number().int().default(0),
 });

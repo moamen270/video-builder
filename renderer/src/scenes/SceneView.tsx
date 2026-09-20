@@ -40,7 +40,7 @@ export const SceneView: React.FC<Props> = ({ scene, palette, brand }) => {
       const m = extraMotionAt(e, frame);
       const w = base.w * e.scale;
       const h = base.h * e.scale;
-      return { e, m, rect: { x: m.cx - w / 2, y: base.y + base.h - h, w, h } };
+      return { e, m, rect: { x: m.cx - w / 2, y: base.y + base.h - h - e.depth, w, h } };
     });
   const extraRects = extraRectsAt(abs);
 
